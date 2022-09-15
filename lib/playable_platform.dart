@@ -17,10 +17,6 @@ class PlayablePlatform {
 
   PlatformDesignSetting designSetting = PlatformDesignSetting();
 
-  void init() {
-    updateStatusAll();
-  }
-
   PlayablePlatform();
   PlayablePlatform.fromJson(Map<String, dynamic> json)
       : stringImageName = json['stringImageName'] ?? '',
