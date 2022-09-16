@@ -108,13 +108,14 @@ class ChoiceNode extends GenerableParserAndPosition {
 
   void selectNode(int n) {
     if (choiceNodeMode == ChoiceNodeMode.multiSelect) {
-      select = n;
+      select += n;
     } else {
       random = -1;
       select = select == 1 ? 0 : 1;
     }
   }
 
+  @override
   bool isExecutable() {
     return select > 0;
   }
@@ -132,9 +133,8 @@ class ChoiceNode extends GenerableParserAndPosition {
       VariableDataBase().setValue('$titleWhitespaceRemoved:multi',
           ValueTypeWrapper(ValueType.int(select)), isGlobal: true);
     }
-    if (isExecutable()) {
-      choiceStatus = choiceStatus.copyWith(
-          status: SelectableStatus.open);
+    if (isClickable()) {
+      choiceStatus = choiceStatus.copyWith(status: SelectableStatus.open);
     }
     for (var child in children) {
       child.initValueTypeWrapper();
