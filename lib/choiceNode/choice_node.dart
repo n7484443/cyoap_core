@@ -109,6 +109,7 @@ class ChoiceNode extends GenerableParserAndPosition {
   void selectNode(int n) {
     if (choiceNodeMode == ChoiceNodeMode.multiSelect) {
       select += n;
+      select = select.clamp(0, maximumStatus);
     } else {
       random = -1;
       select = select == 1 ? 0 : 1;
@@ -123,15 +124,18 @@ class ChoiceNode extends GenerableParserAndPosition {
   @override
   void initValueTypeWrapper() {
     var titleWhitespaceRemoved = title.replaceAll(" ", "");
-    VariableDataBase().setValue(
-        titleWhitespaceRemoved, ValueTypeWrapper(ValueType.bool(isExecutable())), isGlobal: true);
-    if(choiceNodeMode == ChoiceNodeMode.randomMode){
+    VariableDataBase().setValue(titleWhitespaceRemoved,
+        ValueTypeWrapper(ValueType.bool(isExecutable())),
+        isGlobal: true);
+    if (choiceNodeMode == ChoiceNodeMode.randomMode) {
       VariableDataBase().setValue('$titleWhitespaceRemoved:random',
-          ValueTypeWrapper(ValueType.int(random)), isGlobal: true);
+          ValueTypeWrapper(ValueType.int(random)),
+          isGlobal: true);
     }
     if (choiceNodeMode == ChoiceNodeMode.multiSelect) {
       VariableDataBase().setValue('$titleWhitespaceRemoved:multi',
-          ValueTypeWrapper(ValueType.int(select)), isGlobal: true);
+          ValueTypeWrapper(ValueType.int(select)),
+          isGlobal: true);
     }
     if (isClickable()) {
       choiceStatus = choiceStatus.copyWith(status: SelectableStatus.open);
@@ -201,8 +205,7 @@ class ChoiceNode extends GenerableParserAndPosition {
 
   @override
   void execute() {
-    if (isExecutable() ||
-        choiceNodeMode == ChoiceNodeMode.onlyCode) {
+    if (isExecutable() || choiceNodeMode == ChoiceNodeMode.onlyCode) {
       Analyser().run(recursiveStatus.executeCode, pos: errorName);
       for (var child in children) {
         child.execute();

@@ -6,7 +6,7 @@ import 'package:test/test.dart';
 
 void main() {
   var ins = VariableDataBase();
-  test('clickTest', () {
+  test('defaultModeTest', () {
     var platform = PlayablePlatform();
     platform.lineSettings.add(LineSetting(0));
     var choiceNode = ChoiceNode.empty()..title = "testNode";
@@ -21,12 +21,13 @@ void main() {
     platform.updateStatusAll();
     expect(ins.getValueType("testNode")?.dataUnzip, false);
   });
-  test('multiTest', () {
+  test('multiSelectTest', () {
     var platform = PlayablePlatform();
     platform.lineSettings.add(LineSetting(0));
     var choiceNode = ChoiceNode.empty()
       ..title = "testNode"
-      ..choiceNodeMode = ChoiceNodeMode.multiSelect;
+      ..choiceNodeMode = ChoiceNodeMode.multiSelect
+      ..maximumStatus = 2;
     platform.lineSettings[0].addChildren(choiceNode);
     platform.updateStatusAll();
 
@@ -37,6 +38,11 @@ void main() {
     platform.updateStatusAll();
     expect(ins.getValueType("testNode")?.dataUnzip, true);
     expect(ins.getValueType("testNode:multi")?.dataUnzip, 1);
+
+    choiceNode.selectNode(1);
+    platform.updateStatusAll();
+    expect(ins.getValueType("testNode")?.dataUnzip, true);
+    expect(ins.getValueType("testNode:multi")?.dataUnzip, 2);
 
     choiceNode.selectNode(1);
     platform.updateStatusAll();
