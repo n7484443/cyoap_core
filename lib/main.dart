@@ -6,6 +6,7 @@ import 'dart:convert';
 import 'package:cyoap_core/playable_platform.dart';
 import 'package:js/js.dart';
 import 'choiceNode/choice_line.dart';
+import 'choiceNode/choice_node.dart';
 import 'choiceNode/pos.dart';
 
 late PlayablePlatform platform;
@@ -14,13 +15,16 @@ late PlayablePlatform platform;
 void main() {
   _loadPlatform = allowInterop(_loadPlatformInternal);
   _isSelectable = allowInterop(_isSelectableInternal);
-  _isSelected = allowInterop(_isSelectedInternal);
+  _getSelect = allowInterop(_getSelectInternal);
   _select = allowInterop(_selectInternal);
+  _isVisible = allowInterop(_isVisibleInternal);
   _getSize = allowInterop(_getSizeInternal);
   _getImage = allowInterop(_getImageInternal);
   _getContents = allowInterop(_getContentsInternal);
   _childLength = allowInterop(_childLengthInternal);
   _lineLength = allowInterop(_lineLengthInternal);
+  _getChoiceNodeMode = allowInterop(_getChoiceNodeModeInternal);
+  _addNodeStateListener = allowInterop(_addNodeStateListenerInternal);
 }
 
 @JS('loadPlatform')
@@ -44,13 +48,14 @@ bool _isSelectableInternal(List<dynamic> pos) {
   return platform.getChoiceNode(innerPos)?.isSelectableMode ?? false;
 }
 
-@JS('isSelected')
-external set _isSelected(bool Function(List<dynamic> pos) f);
+@JS('getSelect')
+external set _getSelect(int Function(List<dynamic> pos) f);
 
 @JS()
-bool _isSelectedInternal(List<dynamic> pos) {
+int _getSelectInternal(List<dynamic> pos) {
   Pos innerPos = listToPos(pos);
-  return platform.getChoiceNode(innerPos)?.isSelected() ?? false;
+  var node = platform.getChoiceNode(innerPos);
+  return node?.select ?? 0;
 }
 
 @JS('select')
@@ -60,6 +65,15 @@ external set _select(void Function(List<dynamic> pos, int n) f);
 void _selectInternal(List<dynamic> pos, int n) {
   Pos innerPos = listToPos(pos);
   platform.getChoiceNode(innerPos)?.selectNode(n);
+}
+
+@JS('isVisible')
+external set _isVisible(bool Function(List<dynamic> pos) f);
+
+@JS()
+bool _isVisibleInternal(List<dynamic> pos) {
+  Pos innerPos = listToPos(pos);
+  return !(platform.getChoiceNode(innerPos)?.isHide ?? false);
 }
 
 @JS('getSize')
@@ -108,4 +122,23 @@ int _lineLengthInternal() {
 
 Pos listToPos(List<dynamic> pos) {
   return Pos(data: pos.map((e) => e as int).toList());
+}
+
+@JS('getChoiceNodeMode')
+external set _getChoiceNodeMode(String Function(List<dynamic> pos) f);
+
+@JS()
+String _getChoiceNodeModeInternal(List<dynamic> pos) {
+  Pos innerPos = listToPos(pos);
+  var mod = platform.getChoiceNode(innerPos)?.choiceNodeMode ?? ChoiceNodeMode.defaultMode;
+  return mod.name.trim();
+}
+
+@JS('addStateListener')
+external set _addNodeStateListener(void Function(List<dynamic>, void Function()) f);
+
+@JS()
+void _addNodeStateListenerInternal(List<dynamic> pos, void Function() f) {
+  Pos innerPos = listToPos(pos);
+  platform.getChoiceNode(innerPos)?.listener = f;
 }

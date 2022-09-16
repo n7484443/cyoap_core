@@ -37,8 +37,12 @@ abstract class GenerableParserAndPosition {
   bool get isSelectableMode => true;
   bool get isHide => choiceStatus.isHide();
 
+  bool isExecutable() {
+    return true;
+  }
+
   void execute() {
-    if (choiceStatus.isSelected()) {
+    if (isExecutable()) {
       Analyser().run(recursiveStatus.executeCode, pos: errorName);
       for (var child in children) {
         child.execute();
@@ -74,7 +78,7 @@ abstract class GenerableParserAndPosition {
     } else {
       var selectable = isClickable();
       if (isSelectableMode) {
-        if (choiceStatus.isNotSelected() && !choiceStatus.isHide()) {
+        if (!isExecutable() && !choiceStatus.isHide()) {
           selectable &= parent;
           choiceStatus = choiceStatus.copyWith(
               status:
@@ -83,7 +87,7 @@ abstract class GenerableParserAndPosition {
       }
     }
     for (var child in children) {
-      child.checkClickable(choiceStatus.isSelected(), false);
+      child.checkClickable(isExecutable(), false);
     }
   }
 

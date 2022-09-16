@@ -20,6 +20,8 @@ enum ChoiceNodeMode {
 
 const int defaultMaxSize = 12;
 
+typedef VoidCallback = void Function();
+
 class ChoiceNode extends GenerableParserAndPosition {
   //grid 단위로 설정
   bool isCard;
@@ -31,6 +33,8 @@ class ChoiceNode extends GenerableParserAndPosition {
   String contentsString;
   String imageString;
 
+  VoidCallback? listener;
+
   @override
   bool get isSelectableMode =>
       choiceNodeMode != ChoiceNodeMode.unSelectableMode &&
@@ -41,21 +45,13 @@ class ChoiceNode extends GenerableParserAndPosition {
 
   int maximumStatus = 0;
   int random = -1;
-  int multiSelect = 0;
+  int select = 0;
 
   ChoiceNode(int width, this.isCard, this.title, this.contentsString,
       this.imageString) {
     recursiveStatus = RecursiveStatus();
     this.width = width;
   }
-
-  ChoiceNode.noTitle(
-      int width, this.isCard, this.contentsString, this.imageString)
-      : title = '' {
-    recursiveStatus = RecursiveStatus();
-    title = "선택지 ${Random().nextInt(99)}";
-    this.width = width;
-  } //랜덤 문자로 제목 중복 방지
 
   ChoiceNode.empty()
       : isCard = true,
@@ -112,43 +108,33 @@ class ChoiceNode extends GenerableParserAndPosition {
 
   void selectNode(int n) {
     if (choiceNodeMode == ChoiceNodeMode.multiSelect) {
-      multiSelect = n;
-      if (n > 0) {
-        choiceStatus = choiceStatus.copyWith(status: SelectableStatus.selected);
-      } else {
-        choiceStatus = choiceStatus.copyWith(status: SelectableStatus.open);
-      }
+      select = n;
     } else {
       random = -1;
-      multiSelect = -1;
-      choiceStatus = choiceStatus.copyWith(
-          status: choiceStatus.reverseSelected(isSelectableMode));
+      select = select == 1 ? 0 : 1;
     }
   }
 
-  bool isSelected() {
-    return choiceStatus.isSelected() ||
-        (choiceNodeMode == ChoiceNodeMode.multiSelect && multiSelect > 0);
+  bool isExecutable() {
+    return select > 0;
   }
 
   @override
   void initValueTypeWrapper() {
     var titleWhitespaceRemoved = title.replaceAll(" ", "");
     VariableDataBase().setValue(
-        titleWhitespaceRemoved, ValueTypeWrapper(ValueType.bool(isSelected())), isGlobal: true);
+        titleWhitespaceRemoved, ValueTypeWrapper(ValueType.bool(isExecutable())), isGlobal: true);
     if(choiceNodeMode == ChoiceNodeMode.randomMode){
       VariableDataBase().setValue('$titleWhitespaceRemoved:random',
           ValueTypeWrapper(ValueType.int(random)), isGlobal: true);
     }
     if (choiceNodeMode == ChoiceNodeMode.multiSelect) {
       VariableDataBase().setValue('$titleWhitespaceRemoved:multi',
-          ValueTypeWrapper(ValueType.int(multiSelect)), isGlobal: true);
+          ValueTypeWrapper(ValueType.int(select)), isGlobal: true);
     }
-    if (choiceStatus.isNotSelected()) {
+    if (isExecutable()) {
       choiceStatus = choiceStatus.copyWith(
-          status: isSelectableMode
-              ? SelectableStatus.open
-              : SelectableStatus.selected);
+          status: SelectableStatus.open);
     }
     for (var child in children) {
       child.initValueTypeWrapper();
@@ -215,7 +201,7 @@ class ChoiceNode extends GenerableParserAndPosition {
 
   @override
   void execute() {
-    if (choiceStatus.isSelected() ||
+    if (isExecutable() ||
         choiceNodeMode == ChoiceNodeMode.onlyCode) {
       Analyser().run(recursiveStatus.executeCode, pos: errorName);
       for (var child in children) {
