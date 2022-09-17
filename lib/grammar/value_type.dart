@@ -135,7 +135,7 @@ class ValueTypeWrapper {
 
   ValueTypeWrapper.fromJson(Map<String, dynamic> json)
       : valueType = getValueTypeFromDynamicInput(json['valueType']),
-        visible = json['visible'] == 'true',
+        visible = json['visible'] ?? false,
         displayName = json['displayName'] ?? '';
 
   Map<String, dynamic> toJson() => {
