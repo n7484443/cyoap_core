@@ -20,8 +20,6 @@ enum ChoiceNodeMode {
 
 const int defaultMaxSize = 12;
 
-typedef VoidCallback = void Function();
-
 class ChoiceNode extends GenerableParserAndPosition {
   //grid 단위로 설정
   bool isCard;
@@ -32,8 +30,6 @@ class ChoiceNode extends GenerableParserAndPosition {
   String title;
   String contentsString;
   String imageString;
-
-  VoidCallback? listener;
 
   @override
   bool get isSelectableMode =>
