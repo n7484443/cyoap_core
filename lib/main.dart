@@ -5,6 +5,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:cyoap_core/playable_platform.dart';
+import 'package:cyoap_core/variable_db.dart';
 import 'package:js/js.dart';
 import 'choiceNode/choice_line.dart';
 import 'choiceNode/choice_node.dart';
@@ -26,6 +27,7 @@ void main() {
   _lineLength = allowInterop(_lineLengthInternal);
   _getChoiceNodeMode = allowInterop(_getChoiceNodeModeInternal);
   _updatePlatform = allowInterop(_updatePlatformInternal);
+  _getValueList = allowInterop(_getValueListInternal);
 }
 
 @JS('loadPlatform')
@@ -149,4 +151,19 @@ external set _updatePlatform(void Function() f);
 @JS()
 void _updatePlatformInternal() {
   platform.updateStatusAll();
+}
+
+@JS('getValueList')
+external set _getValueList(List<String> Function() f);
+
+@JS()
+List<String> _getValueListInternal() {
+  var list = <String>[];
+  for(var key in VariableDataBase().varMapGlobal.keys){
+    var wrapper = VariableDataBase().getValueTypeWrapper(key)!;
+    if(wrapper.visible){
+      list.add("${wrapper.displayName} : ${wrapper.valueType.dataUnzip}");
+    }
+  }
+  return list;
 }
