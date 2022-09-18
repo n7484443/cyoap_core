@@ -14,6 +14,10 @@ extension SelectableStatusExtension on SelectableStatus {
     return this == SelectableStatus.open;
   }
 
+  bool isClosed() {
+    return this == SelectableStatus.closed;
+  }
+
   bool isPointerInteractive(bool isSelectable) {
     if (isSelectable) {
       return isOpen();
