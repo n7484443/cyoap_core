@@ -262,6 +262,10 @@ class ChoiceNode extends GenerableParserAndPosition {
       return;
     }
     if (parent is LineSetting) {
+      if(select != 0){
+        super.updateStatus();
+        return;
+      }
       if (!parent!.recursiveStatus.analyseClickable(parent!.errorName)) {
         selectableStatus = SelectableStatus.closed;
       }else if (!recursiveStatus.analyseClickable(errorName)) {

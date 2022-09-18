@@ -24,18 +24,24 @@ void main() {
 
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 0);
+    expect(choiceNode0.selectableStatus, SelectableStatus.open);
+    expect(choiceNode1.selectableStatus, SelectableStatus.open);
     expect(lineSetting.selectableStatus, SelectableStatus.open);
     choiceNode0.selectNode(0);
     platform.updateStatusAll();
 
     expect(choiceNode0.select, 1);
     expect(choiceNode1.select, 0);
+    expect(choiceNode0.selectableStatus, SelectableStatus.open);
+    expect(choiceNode1.selectableStatus, SelectableStatus.closed);
     expect(lineSetting.selectableStatus, SelectableStatus.open);
     choiceNode1.selectNode(0);
     platform.updateStatusAll();
 
     expect(choiceNode0.select, 1);
     expect(choiceNode1.select, 0);
+    expect(choiceNode0.selectableStatus, SelectableStatus.open);
+    expect(choiceNode1.selectableStatus, SelectableStatus.closed);
     expect(lineSetting.selectableStatus, SelectableStatus.open);
     choiceNode0.selectNode(0);
     platform.updateStatusAll();
@@ -44,18 +50,24 @@ void main() {
 
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 1);
+    expect(choiceNode0.selectableStatus, SelectableStatus.closed);
+    expect(choiceNode1.selectableStatus, SelectableStatus.open);
     expect(lineSetting.selectableStatus, SelectableStatus.open);
     choiceNode0.selectNode(0);
     platform.updateStatusAll();
 
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 1);
+    expect(choiceNode0.selectableStatus, SelectableStatus.closed);
+    expect(choiceNode1.selectableStatus, SelectableStatus.open);
     expect(lineSetting.selectableStatus, SelectableStatus.open);
     choiceNode1.selectNode(0);
     platform.updateStatusAll();
 
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 0);
+    expect(choiceNode0.selectableStatus, SelectableStatus.open);
+    expect(choiceNode1.selectableStatus, SelectableStatus.open);
     expect(lineSetting.selectableStatus, SelectableStatus.open);
   });
 
