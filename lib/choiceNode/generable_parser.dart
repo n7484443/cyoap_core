@@ -63,7 +63,7 @@ abstract class GenerableParserAndPosition {
     }
   }
 
-  bool isClickable() {
+  bool analyseClickable() {
     return Analyser()
             .run(recursiveStatus.conditionClickableCode, pos: errorName) ??
         true;
@@ -73,7 +73,7 @@ abstract class GenerableParserAndPosition {
     if (!onlyWorkLine) {
       selectableStatus = analyseVisibleCode() ? SelectableStatus.closed : SelectableStatus.hide;
     } else {
-      var selectable = isClickable();
+      var selectable = analyseClickable();
       if (isSelectableMode) {
         if (!isExecutable() && !selectableStatus.isHide()) {
           selectableStatus =
@@ -113,4 +113,11 @@ abstract class GenerableParserAndPosition {
   }
 
   String get errorName => pos.toString();
+
+  bool checkParentClickable(){
+    if(!selectableStatus.isOpen()){
+      return false;
+    }
+    return parent?.checkParentClickable() ?? true;
+  }
 }

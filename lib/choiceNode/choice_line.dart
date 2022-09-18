@@ -1,5 +1,6 @@
 
 
+import 'package:cyoap_core/choiceNode/choice_status.dart';
 import 'package:cyoap_core/grammar/analyser.dart';
 import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/variable_db.dart';
@@ -103,8 +104,13 @@ class LineSetting extends GenerableParserAndPosition {
 
   @override
   void checkClickable(bool onlyWorkLine) {
+    if(analyseClickable()){
+      selectableStatus = SelectableStatus.open;
+    }else{
+      selectableStatus = SelectableStatus.closed;
+    }
     for (var child in children) {
-      child.checkClickable(isClickable());
+      child.checkClickable(true);
     }
   }
 
@@ -120,4 +126,12 @@ class LineSetting extends GenerableParserAndPosition {
 
   @override
   String get errorName => "${pos.data.toString()} $valName";
+
+  @override
+  bool checkParentClickable(){
+    if(!selectableStatus.isOpen()){
+      return false;
+    }
+    return true;
+  }
 }

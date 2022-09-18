@@ -109,7 +109,7 @@ class ChoiceNode extends GenerableParserAndPosition {
   }
 
   void selectNode(int n, {int? seed}) {
-    if (selectableStatus.isOpen()) {
+    if (checkParentClickable()) {
       switch (choiceNodeMode) {
         case ChoiceNodeMode.multiSelect:
           select += n;
@@ -154,7 +154,7 @@ class ChoiceNode extends GenerableParserAndPosition {
           ValueTypeWrapper(ValueType.int(select)),
           isGlobal: true);
     }
-    if (isClickable()) {
+    if (analyseClickable()) {
       selectableStatus = SelectableStatus.open;
     }
     for (var child in children) {
@@ -213,11 +213,11 @@ class ChoiceNode extends GenerableParserAndPosition {
   }
 
   @override
-  bool isClickable() {
+  bool analyseClickable() {
     if (choiceNodeMode == ChoiceNodeMode.onlyCode) {
       return false;
     }
-    return super.isClickable();
+    return super.analyseClickable();
   }
 
   @override
@@ -235,4 +235,12 @@ class ChoiceNode extends GenerableParserAndPosition {
 
   @override
   bool get isHide => !choiceNodeDesign.isOccupySpace && selectableStatus.isHide();
+
+  @override
+  bool checkParentClickable(){
+    if(select > 0){
+      return true;
+    }
+    return super.checkParentClickable();
+  }
 }
