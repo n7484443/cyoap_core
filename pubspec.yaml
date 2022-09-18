@@ -10,6 +10,7 @@ dependencies:
   freezed_annotation: any
   json_annotation: any
   js: any
+  meta: any
 
 dev_dependencies:
   freezed: 2.1.0+1
