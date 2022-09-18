@@ -31,7 +31,7 @@ class ChoiceNodeDesign with _$ChoiceNodeDesign {
     @Default(true) bool isCard,
     @Default(true) bool isRound,
     @Default(true) bool isOccupySpace,
-    @Default(false) bool maximizingImage,
+    @Default(false) bool maximizingImage, //true: 80%, false: 50%
     @Default(false) bool hideTitle,
     @Default(0) int imagePosition, //0:default, 1:left 2:right
   }) = _ChoiceNodeDesign;
@@ -109,7 +109,7 @@ class ChoiceNode extends GenerableParserAndPosition {
   }
 
   void selectNode(int n, {int? seed}) {
-    if (choiceStatus.isOpen()) {
+    if (selectableStatus.isOpen()) {
       switch (choiceNodeMode) {
         case ChoiceNodeMode.multiSelect:
           select += n;
@@ -135,7 +135,7 @@ class ChoiceNode extends GenerableParserAndPosition {
 
   @override
   bool isExecutable() {
-    return select > 0;
+    return choiceNodeMode == ChoiceNodeMode.onlyCode || select > 0;
   }
 
   @override
@@ -155,7 +155,7 @@ class ChoiceNode extends GenerableParserAndPosition {
           isGlobal: true);
     }
     if (isClickable()) {
-      choiceStatus = choiceStatus.copyWith(status: SelectableStatus.open);
+      selectableStatus = SelectableStatus.open;
     }
     for (var child in children) {
       child.initValueTypeWrapper();
@@ -222,7 +222,7 @@ class ChoiceNode extends GenerableParserAndPosition {
 
   @override
   void execute() {
-    if (isExecutable() || choiceNodeMode == ChoiceNodeMode.onlyCode) {
+    if (isExecutable()) {
       Analyser().run(recursiveStatus.executeCode, pos: errorName);
       for (var child in children) {
         child.execute();
@@ -234,5 +234,5 @@ class ChoiceNode extends GenerableParserAndPosition {
   String get errorName => "${pos.data.toString()} $title";
 
   @override
-  bool get isHide => !choiceNodeDesign.isOccupySpace && choiceStatus.isHide();
+  bool get isHide => !choiceNodeDesign.isOccupySpace && selectableStatus.isHide();
 }

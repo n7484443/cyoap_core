@@ -4,7 +4,7 @@ import 'recursive_status.dart';
 import 'choice_status.dart';
 
 abstract class GenerableParserAndPosition {
-  ChoiceStatus choiceStatus = ChoiceStatus();
+  SelectableStatus selectableStatus = SelectableStatus.open;
 
   void generateParser() {
     recursiveStatus.generateParser(errorName);
@@ -35,7 +35,8 @@ abstract class GenerableParserAndPosition {
   late RecursiveStatus recursiveStatus;
 
   bool get isSelectableMode => true;
-  bool get isHide => choiceStatus.isHide();
+
+  bool get isHide => selectableStatus.isHide();
 
   bool isExecutable() {
     return true;
@@ -51,43 +52,37 @@ abstract class GenerableParserAndPosition {
   }
 
   bool analyseVisibleCode() {
-    return Analyser().run(recursiveStatus.conditionVisibleCode, pos: errorName) ?? true;
+    return Analyser()
+            .run(recursiveStatus.conditionVisibleCode, pos: errorName) ??
+        true;
   }
 
-  void checkVisible(bool parent) {
-    if (!parent) {
-      choiceStatus = choiceStatus.copyWith(visible: false);
-    } else {
-      choiceStatus = choiceStatus.copyWith(visible: analyseVisibleCode());
-    }
-
+  void checkVisible() {
     for (var child in children) {
-      child.checkVisible(choiceStatus.visible);
+      child.checkVisible();
     }
   }
 
   bool isClickable() {
-    return Analyser().run(recursiveStatus.conditionClickableCode, pos: errorName) ?? true;
+    return Analyser()
+            .run(recursiveStatus.conditionClickableCode, pos: errorName) ??
+        true;
   }
 
-  void checkClickable(bool parent, bool onlyWorkLine) {
-    if (!onlyWorkLine && !parent) {
-      choiceStatus = choiceStatus.copyWith(
-          status:
-              analyseVisibleCode() ? SelectableStatus.closed : SelectableStatus.hide);
+  void checkClickable(bool onlyWorkLine) {
+    if (!onlyWorkLine) {
+      selectableStatus = analyseVisibleCode() ? SelectableStatus.closed : SelectableStatus.hide;
     } else {
       var selectable = isClickable();
       if (isSelectableMode) {
-        if (!isExecutable() && !choiceStatus.isHide()) {
-          selectable &= parent;
-          choiceStatus = choiceStatus.copyWith(
-              status:
-                  selectable ? SelectableStatus.open : SelectableStatus.closed);
+        if (!isExecutable() && !selectableStatus.isHide()) {
+          selectableStatus =
+              selectable ? SelectableStatus.open : SelectableStatus.closed;
         }
       }
     }
     for (var child in children) {
-      child.checkClickable(isExecutable(), false);
+      child.checkClickable(isExecutable());
     }
   }
 

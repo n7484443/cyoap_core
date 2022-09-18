@@ -59,8 +59,8 @@ class PlayablePlatform {
       var lineSetting = lineSettings[i];
       lineSetting.initValueTypeWrapper();
       lineSetting.execute();
-      lineSetting.checkVisible(true);
-      lineSetting.checkClickable(true, true);
+      lineSetting.checkVisible();
+      lineSetting.checkClickable(true);
       VariableDataBase().clearLocalVariable();
     }
   }

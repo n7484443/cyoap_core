@@ -23,7 +23,8 @@ mixin _$ChoiceNodeDesign {
   bool get isCard => throw _privateConstructorUsedError;
   bool get isRound => throw _privateConstructorUsedError;
   bool get isOccupySpace => throw _privateConstructorUsedError;
-  bool get maximizingImage => throw _privateConstructorUsedError;
+  bool get maximizingImage =>
+      throw _privateConstructorUsedError; //true: 80%, false: 50%
   bool get hideTitle => throw _privateConstructorUsedError;
   int get imagePosition => throw _privateConstructorUsedError;
 
@@ -186,6 +187,7 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
   @override
   @JsonKey()
   final bool maximizingImage;
+//true: 80%, false: 50%
   @override
   @JsonKey()
   final bool hideTitle;
@@ -258,7 +260,7 @@ abstract class _ChoiceNodeDesign implements ChoiceNodeDesign {
   bool get isOccupySpace;
   @override
   bool get maximizingImage;
-  @override
+  @override //true: 80%, false: 50%
   bool get hideTitle;
   @override
   int get imagePosition;

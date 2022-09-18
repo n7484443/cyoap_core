@@ -1,7 +1,3 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'choice_status.freezed.dart';
-
 enum SelectableStatus {
   //isSelectable가 false 인 경우에는 open과 hide 두가지로 사용
   hide, //숨긴 상태
@@ -9,23 +5,13 @@ enum SelectableStatus {
   closed, //약간 흐릿하면서 선택 불가능한 상태
 }
 
-extension SelectableStatusExtension on SelectableStatus {}
-
-@freezed
-class ChoiceStatus with _$ChoiceStatus {
-  factory ChoiceStatus({
-    @Default(SelectableStatus.open) SelectableStatus status,
-    @Default(true) bool visible,
-  }) = _ChoiceStatus;
-
-  ChoiceStatus._();
-
+extension SelectableStatusExtension on SelectableStatus {
   bool isHide() {
-    return status == SelectableStatus.hide;
+    return this == SelectableStatus.hide;
   }
 
   bool isOpen() {
-    return status == SelectableStatus.open;
+    return this == SelectableStatus.open;
   }
 
   bool isPointerInteractive(bool isSelectable) {

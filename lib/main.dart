@@ -24,7 +24,6 @@ void main() {
   _getSelect = allowInterop(_getSelectInternal);
   _select = allowInterop(_selectInternal);
   _getChoiceStatus = allowInterop(_getChoiceStatusInternal);
-  _getVisible = allowInterop(_getVisibleInternal);
   _getSize = allowInterop(_getSizeInternal);
   _getTitle = allowInterop(_getTitleInternal);
   _getImage = allowInterop(_getImageInternal);
@@ -81,16 +80,7 @@ external set _getChoiceStatus(String Function(List<dynamic> pos) f);
 @JS()
 String _getChoiceStatusInternal(List<dynamic> pos) {
   Pos innerPos = listToPos(pos);
-  return platform.getGenerableParserAndPosition(innerPos)?.choiceStatus.status.name ?? '';
-}
-
-@JS('getVisible')
-external set _getVisible(bool Function(List<dynamic> pos) f);
-
-@JS()
-bool _getVisibleInternal(List<dynamic> pos) {
-  Pos innerPos = listToPos(pos);
-  return platform.getGenerableParserAndPosition(innerPos)?.choiceStatus.visible ?? true;
+  return platform.getGenerableParserAndPosition(innerPos)?.selectableStatus.name ?? '';
 }
 
 @JS('getSize')

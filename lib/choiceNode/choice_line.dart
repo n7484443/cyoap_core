@@ -102,9 +102,9 @@ class LineSetting extends GenerableParserAndPosition {
   }
 
   @override
-  void checkClickable(bool parent, bool onlyWorkLine) {
+  void checkClickable(bool onlyWorkLine) {
     for (var child in children) {
-      child.checkClickable(isClickable(), true);
+      child.checkClickable(isClickable());
     }
   }
 
