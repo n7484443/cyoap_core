@@ -46,15 +46,22 @@ void main() {
     var choiceNode = ChoiceNode.empty()
       ..title = "testNode"
       ..choiceNodeMode = ChoiceNodeMode.randomMode
-      ..maximumStatus = 2;
+      ..maximumStatus = 10;
     platform.lineSettings[0].addChildren(choiceNode);
     platform.updateStatusAll();
-
+    expect(ins.getValueType("testNode")?.dataUnzip, false);
     expect(ins.getValueType("testNode:random")?.dataUnzip, -1);
+
     choiceNode.selectNode(0, seed: seed);
     platform.updateStatusAll();
+    expect(ins.getValueType("testNode")?.dataUnzip, true);
     expect(ins.getValueType("testNode:random")?.dataUnzip,
-        Random(seed).nextInt(2));
+        Random(seed).nextInt(10));
+
+    choiceNode.selectNode(0);
+    platform.updateStatusAll();
+    expect(ins.getValueType("testNode")?.dataUnzip, false);
+    expect(ins.getValueType("testNode:random")?.dataUnzip, -1);
   });
 
   test('multiSelectTest', () {

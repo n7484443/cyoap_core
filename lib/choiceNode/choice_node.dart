@@ -116,9 +116,14 @@ class ChoiceNode extends GenerableParserAndPosition {
           select = select.clamp(0, maximumStatus);
           break;
         case ChoiceNodeMode.randomMode:
-          random = -1;
-          if(maximumStatus >= 0){
-            random = Random(seed).nextInt(maximumStatus);
+          if(select == 0){
+            select = 1;
+            if(maximumStatus >= 0){
+              random = Random(seed).nextInt(maximumStatus);
+            }
+          }else{
+            select = 0;
+            random = -1;
           }
           break;
         default:
