@@ -78,10 +78,7 @@ abstract class GenerableParserAndPosition {
 
   String get errorName => pos.toString();
 
-  bool checkParentClickable(){
-    if(!selectableStatus.isOpen()){
-      return false;
-    }
+  bool checkParentClickable({bool first = false}) {
     return parent?.checkParentClickable() ?? true;
   }
 

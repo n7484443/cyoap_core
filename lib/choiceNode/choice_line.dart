@@ -116,7 +116,7 @@ class LineSetting extends GenerableParserAndPosition {
   String get errorName => "${pos.data.toString()} $valName";
 
   @override
-  bool checkParentClickable(){
+  bool checkParentClickable({bool first = false}) {
     if(selectableStatus.isHide()){
       return false;
     }

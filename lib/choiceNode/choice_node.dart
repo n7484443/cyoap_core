@@ -109,20 +109,32 @@ class ChoiceNode extends GenerableParserAndPosition {
     return map;
   }
 
+  bool canDisableSelect(int n) {
+    switch (choiceNodeMode) {
+      case ChoiceNodeMode.multiSelect:
+        return n < 0;
+      case ChoiceNodeMode.defaultMode:
+      case ChoiceNodeMode.randomMode:
+        return select == 1;
+      default:
+        return false;
+    }
+  }
+
   void selectNode(int n, {int? seed}) {
-    if (checkParentClickable()) {
+    if (canDisableSelect(n) || checkParentClickable(first: true)) {
       switch (choiceNodeMode) {
         case ChoiceNodeMode.multiSelect:
           select += n;
           select = select.clamp(0, maximumStatus);
           break;
         case ChoiceNodeMode.randomMode:
-          if(select == 0){
+          if (select == 0) {
             select = 1;
-            if(maximumStatus >= 0){
+            if (maximumStatus >= 0) {
               random = Random(seed).nextInt(maximumStatus);
             }
-          }else{
+          } else {
             select = 0;
             random = -1;
           }
@@ -136,7 +148,14 @@ class ChoiceNode extends GenerableParserAndPosition {
 
   @override
   bool isExecutable() {
-    return choiceNodeMode == ChoiceNodeMode.onlyCode || select > 0;
+    switch (choiceNodeMode) {
+      case ChoiceNodeMode.unSelectableMode:
+        return selectableStatus.isOpen();
+      case ChoiceNodeMode.onlyCode:
+        return true;
+      default:
+        return selectableStatus.isOpen() && select > 0;
+    }
   }
 
   @override
@@ -216,44 +235,43 @@ class ChoiceNode extends GenerableParserAndPosition {
   String get errorName => "${pos.data.toString()} $title";
 
   @override
-  bool get isHide => !choiceNodeDesign.isOccupySpace && selectableStatus.isHide();
+  bool get isHide =>
+      !choiceNodeDesign.isOccupySpace && selectableStatus.isHide();
 
   @override
-  bool checkParentClickable(){
-    if(select > 0){
-      return true;
+  bool checkParentClickable({bool first = false}) {
+    if(!selectableStatus.isOpen()){
+      return false;
+    }
+    if (!first && !isExecutable()) {
+      return false;
     }
     return super.checkParentClickable();
   }
 
   @override
-  void updateStatus(){
-    if(!recursiveStatus.analyseVisibleCode(errorName)){
+  void updateStatus() {
+    if (!recursiveStatus.analyseVisibleCode(errorName)) {
       selectableStatus = SelectableStatus.hide;
       super.updateStatus();
       return;
     }
     selectableStatus = SelectableStatus.open;
-    if(parent == null){
+    if (parent == null) {
       super.updateStatus();
       return;
     }
-    if(parent is LineSetting){
-      if(!parent!.recursiveStatus.analyseClickable(parent!.errorName)){
+    if (parent is LineSetting) {
+      if (!parent!.recursiveStatus.analyseClickable(parent!.errorName)) {
         selectableStatus = SelectableStatus.closed;
-        super.updateStatus();
-        return;
+      }else if (!recursiveStatus.analyseClickable(errorName)) {
+        selectableStatus = SelectableStatus.closed;
       }
-      if(!recursiveStatus.analyseClickable(errorName)){
+    } else {
+      if(!parent!.isExecutable()){
+        select = 0;
+      } else if (!recursiveStatus.analyseClickable(errorName)) {
         selectableStatus = SelectableStatus.closed;
-        super.updateStatus();
-        return;
-      }
-    }else{
-      if(!recursiveStatus.analyseClickable(errorName)){
-        selectableStatus = SelectableStatus.closed;
-        super.updateStatus();
-        return;
       }
     }
     super.updateStatus();
