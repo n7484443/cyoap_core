@@ -23,6 +23,7 @@ void main() {
   _getSize = allowInterop(_getSizeInternal);
   _getImage = allowInterop(_getImageInternal);
   _getContents = allowInterop(_getContentsInternal);
+  _getChoiceNodeDesign = allowInterop(_getChoiceNodeDesignInternal);
   _childLength = allowInterop(_childLengthInternal);
   _lineLength = allowInterop(_lineLengthInternal);
   _getChoiceNodeMode = allowInterop(_getChoiceNodeModeInternal);
@@ -166,4 +167,14 @@ List<String> _getValueListInternal() {
     }
   }
   return list;
+}
+
+@JS('getChoiceNodeDesign')
+external set _getChoiceNodeDesign(String Function(List<dynamic> pos) f);
+
+@JS()
+String _getChoiceNodeDesignInternal(List<dynamic> pos) {
+  Pos innerPos = listToPos(pos);
+  var node = platform.getChoiceNode(innerPos);
+  return jsonEncode(node?.choiceNodeDesign.toJson()) ;
 }

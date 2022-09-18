@@ -4,11 +4,17 @@ import 'dart:math';
 import 'package:cyoap_core/grammar/analyser.dart';
 import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/variable_db.dart';
+import 'package:js/js.dart';
 import '../option.dart';
 import 'recursive_status.dart';
 
 import 'choice_status.dart';
 import 'generable_parser.dart';
+
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'choice_node.freezed.dart';
+part 'choice_node.g.dart';
 
 enum ChoiceNodeMode {
   defaultMode,
@@ -18,13 +24,26 @@ enum ChoiceNodeMode {
   onlyCode
 }
 
+@freezed
+class ChoiceNodeDesign with _$ChoiceNodeDesign {
+  @JsonSerializable(explicitToJson: true)
+  factory ChoiceNodeDesign({
+    @Default(true) bool isCard,
+    @Default(true) bool isRound,
+    @Default(true) bool isOccupySpace,
+    @Default(false) bool maximizingImage,
+    @Default(false) bool hideTitle,
+    @Default(0) int imagePosition, //0:default, 1:left 2:right
+  }) = _ChoiceNodeDesign;
+
+  factory ChoiceNodeDesign.fromJson(Map<String, dynamic> json) =>
+      _$ChoiceNodeDesignFromJson(json);
+}
+
 const int defaultMaxSize = 12;
 
 class ChoiceNode extends GenerableParserAndPosition {
-  //grid 단위로 설정
-  bool isCard;
-  bool isRound = true;
-  int imagePosition = 0; //0:default, 1:left 2:right
+  ChoiceNodeDesign choiceNodeDesign;
   ChoiceNodeMode choiceNodeMode = ChoiceNodeMode.defaultMode;
 
   String title;
@@ -35,39 +54,31 @@ class ChoiceNode extends GenerableParserAndPosition {
   bool get isSelectableMode =>
       choiceNodeMode != ChoiceNodeMode.unSelectableMode &&
       choiceNodeMode != ChoiceNodeMode.onlyCode;
-  bool isOccupySpace = true;
-  bool maximizingImage = false;
-  bool hideTitle = false;
 
   int maximumStatus = 0;
   int random = -1;
   int select = 0;
 
-  ChoiceNode(int width, this.isCard, this.title, this.contentsString,
-      this.imageString) {
+  ChoiceNode(this.title, this.contentsString, this.imageString)
+      : choiceNodeDesign = ChoiceNodeDesign() {
     recursiveStatus = RecursiveStatus();
-    this.width = width;
+    super.width = width;
   }
 
   ChoiceNode.empty()
-      : isCard = true,
-        title = "선택지 ${Random().nextInt(99)}",
+      : title = "선택지 ${Random().nextInt(99)}",
         imageString = '',
-        contentsString = '' {
+        contentsString = '',
+        choiceNodeDesign = ChoiceNodeDesign(){
     recursiveStatus = RecursiveStatus();
   } //랜덤 문자로 제목 중복 방지
 
   ChoiceNode.fromJson(Map<String, dynamic> json)
-      : isCard = json['isCard'] ?? true,
-        isRound = json['isRound'] ?? true,
-        isOccupySpace = json['isOccupySpace'] ?? true,
-        maximizingImage = json['maximizingImage'] ?? false,
-        maximumStatus = json['maximumStatus'] ?? 0,
-        imagePosition = json['imagePosition'] ?? 0,
+      : maximumStatus = json['maximumStatus'] ?? 0,
         title = json['title'] ?? '',
         contentsString = json['contentsString'],
         imageString = json['imageString'] ?? json['image'],
-        hideTitle = json['hideTitle'] ?? false,
+        choiceNodeDesign = ChoiceNodeDesign.fromJson(json),
         choiceNodeMode = json['choiceNodeMode'] == null
             ? ChoiceNodeMode.defaultMode
             : ((json['isSelectable'] ?? true)
@@ -87,18 +98,13 @@ class ChoiceNode extends GenerableParserAndPosition {
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = super.toJson();
     map.addAll({
-      'isCard': isCard,
-      'isRound': isRound,
-      'isOccupySpace': isOccupySpace,
-      'imagePosition': imagePosition,
-      'hideTitle': hideTitle,
       'maximumStatus': maximumStatus,
       'title': title,
       'contentsString': contentsString,
       'image': Option().convertToWebp(imageString),
-      'maximizingImage': maximizingImage,
       'choiceNodeMode': choiceNodeMode.name,
     });
+    map.addAll(choiceNodeDesign.toJson());
     return map;
   }
 
@@ -213,5 +219,5 @@ class ChoiceNode extends GenerableParserAndPosition {
   String get errorName => "${pos.data.toString()} $title";
 
   @override
-  bool get isHide => !isOccupySpace && choiceStatus.isHide();
+  bool get isHide => !choiceNodeDesign.isOccupySpace && choiceStatus.isHide();
 }
