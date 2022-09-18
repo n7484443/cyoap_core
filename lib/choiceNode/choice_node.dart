@@ -4,7 +4,6 @@ import 'dart:math';
 import 'package:cyoap_core/grammar/analyser.dart';
 import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/variable_db.dart';
-import 'package:js/js.dart';
 import '../option.dart';
 import 'recursive_status.dart';
 
@@ -59,7 +58,7 @@ class ChoiceNode extends GenerableParserAndPosition {
   int random = -1;
   int select = 0;
 
-  ChoiceNode(this.title, this.contentsString, this.imageString)
+  ChoiceNode(width, this.title, this.contentsString, this.imageString)
       : choiceNodeDesign = ChoiceNodeDesign() {
     recursiveStatus = RecursiveStatus();
     super.width = width;
