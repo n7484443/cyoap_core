@@ -1,7 +1,6 @@
-import 'package:cyoap_core/grammar/analyser.dart';
 import 'pos.dart';
 import 'recursive_status.dart';
-import 'choice_status.dart';
+import 'selectable_status.dart';
 
 abstract class GenerableParserAndPosition {
   SelectableStatus selectableStatus = SelectableStatus.open;
@@ -44,45 +43,10 @@ abstract class GenerableParserAndPosition {
 
   void execute() {
     if (isExecutable()) {
-      Analyser().run(recursiveStatus.executeCode, pos: errorName);
+      recursiveStatus.execute(errorName);
       for (var child in children) {
         child.execute();
       }
-    }
-  }
-
-  bool analyseVisibleCode() {
-    return Analyser()
-            .run(recursiveStatus.conditionVisibleCode, pos: errorName) ??
-        true;
-  }
-
-  void checkVisible() {
-    for (var child in children) {
-      child.checkVisible();
-    }
-  }
-
-  bool analyseClickable() {
-    return Analyser()
-            .run(recursiveStatus.conditionClickableCode, pos: errorName) ??
-        true;
-  }
-
-  void checkClickable(bool onlyWorkLine) {
-    if (!onlyWorkLine) {
-      selectableStatus = analyseVisibleCode() ? SelectableStatus.closed : SelectableStatus.hide;
-    } else {
-      var selectable = analyseClickable();
-      if (isSelectableMode) {
-        if (!isExecutable() && !selectableStatus.isHide()) {
-          selectableStatus =
-              selectable ? SelectableStatus.open : SelectableStatus.closed;
-        }
-      }
-    }
-    for (var child in children) {
-      child.checkClickable(isExecutable());
     }
   }
 
@@ -119,5 +83,11 @@ abstract class GenerableParserAndPosition {
       return false;
     }
     return parent?.checkParentClickable() ?? true;
+  }
+
+  void updateStatus(){
+    for(var child in children){
+      child.updateStatus();
+    }
   }
 }

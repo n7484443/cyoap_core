@@ -1,6 +1,6 @@
 
 
-import 'package:cyoap_core/choiceNode/choice_status.dart';
+import 'package:cyoap_core/choiceNode/selectable_status.dart';
 import 'package:cyoap_core/grammar/analyser.dart';
 import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/variable_db.dart';
@@ -103,18 +103,6 @@ class LineSetting extends GenerableParserAndPosition {
   }
 
   @override
-  void checkClickable(bool onlyWorkLine) {
-    if(analyseClickable()){
-      selectableStatus = SelectableStatus.open;
-    }else{
-      selectableStatus = SelectableStatus.closed;
-    }
-    for (var child in children) {
-      child.checkClickable(true);
-    }
-  }
-
-  @override
   void execute() {
     for (var node in children) {
       node.execute();
@@ -129,9 +117,19 @@ class LineSetting extends GenerableParserAndPosition {
 
   @override
   bool checkParentClickable(){
-    if(!selectableStatus.isOpen()){
+    if(selectableStatus.isHide()){
       return false;
     }
     return true;
+  }
+
+  @override
+  void updateStatus(){
+    if(recursiveStatus.analyseVisibleCode(errorName)){
+      selectableStatus = SelectableStatus.open;
+    }else{
+      selectableStatus = SelectableStatus.hide;
+    }
+    super.updateStatus();
   }
 }

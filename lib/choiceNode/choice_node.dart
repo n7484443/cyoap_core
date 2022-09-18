@@ -5,9 +5,10 @@ import 'package:cyoap_core/grammar/analyser.dart';
 import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/variable_db.dart';
 import '../option.dart';
+import 'choice_line.dart';
 import 'recursive_status.dart';
 
-import 'choice_status.dart';
+import 'selectable_status.dart';
 import 'generable_parser.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -154,9 +155,6 @@ class ChoiceNode extends GenerableParserAndPosition {
           ValueTypeWrapper(ValueType.int(select)),
           isGlobal: true);
     }
-    if (analyseClickable()) {
-      selectableStatus = SelectableStatus.open;
-    }
     for (var child in children) {
       child.initValueTypeWrapper();
     }
@@ -205,22 +203,6 @@ class ChoiceNode extends GenerableParserAndPosition {
   }
 
   @override
-  bool analyseVisibleCode() {
-    if (choiceNodeMode == ChoiceNodeMode.onlyCode) {
-      return false;
-    }
-    return super.analyseVisibleCode();
-  }
-
-  @override
-  bool analyseClickable() {
-    if (choiceNodeMode == ChoiceNodeMode.onlyCode) {
-      return false;
-    }
-    return super.analyseClickable();
-  }
-
-  @override
   void execute() {
     if (isExecutable()) {
       Analyser().run(recursiveStatus.executeCode, pos: errorName);
@@ -242,5 +224,38 @@ class ChoiceNode extends GenerableParserAndPosition {
       return true;
     }
     return super.checkParentClickable();
+  }
+
+  @override
+  void updateStatus(){
+    if(!recursiveStatus.analyseVisibleCode(errorName)){
+      selectableStatus = SelectableStatus.hide;
+      super.updateStatus();
+      return;
+    }
+    selectableStatus = SelectableStatus.open;
+    if(parent == null){
+      super.updateStatus();
+      return;
+    }
+    if(parent is LineSetting){
+      if(!parent!.recursiveStatus.analyseClickable(parent!.errorName)){
+        selectableStatus = SelectableStatus.closed;
+        super.updateStatus();
+        return;
+      }
+      if(!recursiveStatus.analyseClickable(errorName)){
+        selectableStatus = SelectableStatus.closed;
+        super.updateStatus();
+        return;
+      }
+    }else{
+      if(!recursiveStatus.analyseClickable(errorName)){
+        selectableStatus = SelectableStatus.closed;
+        super.updateStatus();
+        return;
+      }
+    }
+    super.updateStatus();
   }
 }
