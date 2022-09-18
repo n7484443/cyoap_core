@@ -240,7 +240,7 @@ class ChoiceNode extends GenerableParserAndPosition {
 
   @override
   bool checkParentClickable({bool first = false}) {
-    if(!selectableStatus.isOpen()){
+    if (!selectableStatus.isOpen()) {
       return false;
     }
     if (!first && !isExecutable()) {
@@ -262,17 +262,18 @@ class ChoiceNode extends GenerableParserAndPosition {
       return;
     }
     if (parent is LineSetting) {
-      if(select != 0){
+      if (select != 0) {
         super.updateStatus();
         return;
       }
-      if (!parent!.recursiveStatus.analyseClickable(parent!.errorName)) {
+      if (!parent!.recursiveStatus.analyseClickable(parent!.errorName) &&
+          choiceNodeMode != ChoiceNodeMode.unSelectableMode) {
         selectableStatus = SelectableStatus.closed;
-      }else if (!recursiveStatus.analyseClickable(errorName)) {
+      } else if (!recursiveStatus.analyseClickable(errorName)) {
         selectableStatus = SelectableStatus.closed;
       }
     } else {
-      if(!parent!.isExecutable()){
+      if (!parent!.isExecutable()) {
         select = 0;
       } else if (!recursiveStatus.analyseClickable(errorName)) {
         selectableStatus = SelectableStatus.closed;
