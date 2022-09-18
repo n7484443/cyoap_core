@@ -16,18 +16,23 @@ late PlayablePlatform platform;
 //dart compile js -O2 --no-source-maps lib/main.dart -o cyoap_core.js
 void main() {
   _loadPlatform = allowInterop(_loadPlatformInternal);
+  _getPlatformDesign = allowInterop(_getPlatformDesignInternal);
+  _updatePlatform = allowInterop(_updatePlatformInternal);
+
+  _lineLength = allowInterop(_lineLengthInternal);
+
   _getSelect = allowInterop(_getSelectInternal);
   _select = allowInterop(_selectInternal);
   _getChoiceStatus = allowInterop(_getChoiceStatusInternal);
   _getVisible = allowInterop(_getVisibleInternal);
   _getSize = allowInterop(_getSizeInternal);
+  _getTitle = allowInterop(_getTitleInternal);
   _getImage = allowInterop(_getImageInternal);
   _getContents = allowInterop(_getContentsInternal);
   _getChoiceNodeDesign = allowInterop(_getChoiceNodeDesignInternal);
   _childLength = allowInterop(_childLengthInternal);
-  _lineLength = allowInterop(_lineLengthInternal);
   _getChoiceNodeMode = allowInterop(_getChoiceNodeModeInternal);
-  _updatePlatform = allowInterop(_updatePlatformInternal);
+
   _getValueList = allowInterop(_getValueListInternal);
 }
 
@@ -115,6 +120,15 @@ String _getImageInternal(List<dynamic> pos) {
   return platform.getChoiceNode(innerPos)?.imageString ?? "";
 }
 
+@JS('getTitle')
+external set _getTitle(String Function(List<dynamic> pos) f);
+
+@JS()
+String _getTitleInternal(List<dynamic> pos) {
+  Pos innerPos = listToPos(pos);
+  return platform.getChoiceNode(innerPos)?.title ?? "";
+}
+
 @JS('childLength')
 external set _childLength(int Function(List<dynamic> pos) f);
 
@@ -177,4 +191,12 @@ String _getChoiceNodeDesignInternal(List<dynamic> pos) {
   Pos innerPos = listToPos(pos);
   var node = platform.getChoiceNode(innerPos);
   return jsonEncode(node?.choiceNodeDesign.toJson()) ;
+}
+
+@JS('getPlatformDesign')
+external set _getPlatformDesign(String Function() f);
+
+@JS()
+String _getPlatformDesignInternal() {
+  return jsonEncode(platform.designSetting.toJson());
 }

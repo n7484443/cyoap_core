@@ -13,6 +13,7 @@ import 'generable_parser.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'choice_node.freezed.dart';
+
 part 'choice_node.g.dart';
 
 enum ChoiceNodeMode {
@@ -68,7 +69,7 @@ class ChoiceNode extends GenerableParserAndPosition {
       : title = "선택지 ${Random().nextInt(99)}",
         imageString = '',
         contentsString = '',
-        choiceNodeDesign = ChoiceNodeDesign(){
+        choiceNodeDesign = ChoiceNodeDesign() {
     recursiveStatus = RecursiveStatus();
   } //랜덤 문자로 제목 중복 방지
 
@@ -107,13 +108,23 @@ class ChoiceNode extends GenerableParserAndPosition {
     return map;
   }
 
-  void selectNode(int n) {
-    if (choiceNodeMode == ChoiceNodeMode.multiSelect) {
-      select += n;
-      select = select.clamp(0, maximumStatus);
-    } else {
-      random = -1;
-      select = select == 1 ? 0 : 1;
+  void selectNode(int n, {int? seed}) {
+    if (choiceStatus.isOpen()) {
+      switch (choiceNodeMode) {
+        case ChoiceNodeMode.multiSelect:
+          select += n;
+          select = select.clamp(0, maximumStatus);
+          break;
+        case ChoiceNodeMode.randomMode:
+          random = -1;
+          if(maximumStatus >= 0){
+            random = Random(seed).nextInt(maximumStatus);
+          }
+          break;
+        default:
+          select = select == 1 ? 0 : 1;
+          break;
+      }
     }
   }
 
