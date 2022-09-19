@@ -139,6 +139,8 @@ class ChoiceNode extends GenerableParserAndPosition {
             random = -1;
           }
           break;
+        case ChoiceNodeMode.unSelectableMode:
+          break;
         default:
           select = select == 1 ? 0 : 1;
           break;

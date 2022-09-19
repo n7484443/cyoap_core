@@ -102,4 +102,20 @@ void main() {
     expect(ins.getValueType("testNode")?.dataUnzip, false);
     expect(ins.getValueType("testNode:multi")?.dataUnzip, 0);
   });
+
+  test('defaultModeTest', () {
+    var platform = PlayablePlatform();
+    platform.lineSettings.add(LineSetting(0));
+    var choiceNode = ChoiceNode.empty()..title = "testNode"..choiceNodeMode=ChoiceNodeMode.unSelectableMode;
+    platform.lineSettings[0].addChildren(choiceNode);
+
+    platform.updateStatusAll();
+    expect(ins.getValueType("testNode")?.dataUnzip, true);
+    expect(choiceNode.select, 0);
+
+    choiceNode.selectNode(0);
+    platform.updateStatusAll();
+    expect(ins.getValueType("testNode")?.dataUnzip, true);
+    expect(choiceNode.select, 0);
+  });
 }
