@@ -21,7 +21,6 @@ PlatformDesignSetting _$PlatformDesignSettingFromJson(
 
 /// @nodoc
 mixin _$PlatformDesignSetting {
-  bool get titleOverlap => throw _privateConstructorUsedError;
   bool get titlePosition => throw _privateConstructorUsedError;
   bool get titleOutline => throw _privateConstructorUsedError;
   String get titleFont => throw _privateConstructorUsedError;
@@ -44,8 +43,7 @@ abstract class $PlatformDesignSettingCopyWith<$Res> {
           $Res Function(PlatformDesignSetting) then) =
       _$PlatformDesignSettingCopyWithImpl<$Res>;
   $Res call(
-      {bool titleOverlap,
-      bool titlePosition,
+      {bool titlePosition,
       bool titleOutline,
       String titleFont,
       String mainFont,
@@ -67,7 +65,6 @@ class _$PlatformDesignSettingCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? titleOverlap = freezed,
     Object? titlePosition = freezed,
     Object? titleOutline = freezed,
     Object? titleFont = freezed,
@@ -79,10 +76,6 @@ class _$PlatformDesignSettingCopyWithImpl<$Res>
     Object? colorTitle = freezed,
   }) {
     return _then(_value.copyWith(
-      titleOverlap: titleOverlap == freezed
-          ? _value.titleOverlap
-          : titleOverlap // ignore: cast_nullable_to_non_nullable
-              as bool,
       titlePosition: titlePosition == freezed
           ? _value.titlePosition
           : titlePosition // ignore: cast_nullable_to_non_nullable
@@ -131,8 +124,7 @@ abstract class _$$_PlatformDesignSettingCopyWith<$Res>
       __$$_PlatformDesignSettingCopyWithImpl<$Res>;
   @override
   $Res call(
-      {bool titleOverlap,
-      bool titlePosition,
+      {bool titlePosition,
       bool titleOutline,
       String titleFont,
       String mainFont,
@@ -157,7 +149,6 @@ class __$$_PlatformDesignSettingCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? titleOverlap = freezed,
     Object? titlePosition = freezed,
     Object? titleOutline = freezed,
     Object? titleFont = freezed,
@@ -169,10 +160,6 @@ class __$$_PlatformDesignSettingCopyWithImpl<$Res>
     Object? colorTitle = freezed,
   }) {
     return _then(_$_PlatformDesignSetting(
-      titleOverlap: titleOverlap == freezed
-          ? _value.titleOverlap
-          : titleOverlap // ignore: cast_nullable_to_non_nullable
-              as bool,
       titlePosition: titlePosition == freezed
           ? _value.titlePosition
           : titlePosition // ignore: cast_nullable_to_non_nullable
@@ -218,8 +205,7 @@ class __$$_PlatformDesignSettingCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_PlatformDesignSetting implements _PlatformDesignSetting {
   _$_PlatformDesignSetting(
-      {this.titleOverlap = true,
-      this.titlePosition = true,
+      {this.titlePosition = true,
       this.titleOutline = true,
       this.titleFont = "notoSans",
       this.mainFont = "notoSans",
@@ -232,9 +218,6 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
   factory _$_PlatformDesignSetting.fromJson(Map<String, dynamic> json) =>
       _$$_PlatformDesignSettingFromJson(json);
 
-  @override
-  @JsonKey()
-  final bool titleOverlap;
   @override
   @JsonKey()
   final bool titlePosition;
@@ -265,7 +248,7 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
 
   @override
   String toString() {
-    return 'PlatformDesignSetting(titleOverlap: $titleOverlap, titlePosition: $titlePosition, titleOutline: $titleOutline, titleFont: $titleFont, mainFont: $mainFont, variableFont: $variableFont, colorBackground: $colorBackground, colorNode: $colorNode, colorOutline: $colorOutline, colorTitle: $colorTitle)';
+    return 'PlatformDesignSetting(titlePosition: $titlePosition, titleOutline: $titleOutline, titleFont: $titleFont, mainFont: $mainFont, variableFont: $variableFont, colorBackground: $colorBackground, colorNode: $colorNode, colorOutline: $colorOutline, colorTitle: $colorTitle)';
   }
 
   @override
@@ -273,8 +256,6 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PlatformDesignSetting &&
-            const DeepCollectionEquality()
-                .equals(other.titleOverlap, titleOverlap) &&
             const DeepCollectionEquality()
                 .equals(other.titlePosition, titlePosition) &&
             const DeepCollectionEquality()
@@ -296,7 +277,6 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(titleOverlap),
       const DeepCollectionEquality().hash(titlePosition),
       const DeepCollectionEquality().hash(titleOutline),
       const DeepCollectionEquality().hash(titleFont),
@@ -323,8 +303,7 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
 
 abstract class _PlatformDesignSetting implements PlatformDesignSetting {
   factory _PlatformDesignSetting(
-      {final bool titleOverlap,
-      final bool titlePosition,
+      {final bool titlePosition,
       final bool titleOutline,
       final String titleFont,
       final String mainFont,
@@ -337,8 +316,6 @@ abstract class _PlatformDesignSetting implements PlatformDesignSetting {
   factory _PlatformDesignSetting.fromJson(Map<String, dynamic> json) =
       _$_PlatformDesignSetting.fromJson;
 
-  @override
-  bool get titleOverlap;
   @override
   bool get titlePosition;
   @override

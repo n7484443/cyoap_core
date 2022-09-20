@@ -9,7 +9,6 @@ part of 'design_setting.dart';
 _$_PlatformDesignSetting _$$_PlatformDesignSettingFromJson(
         Map<String, dynamic> json) =>
     _$_PlatformDesignSetting(
-      titleOverlap: json['titleOverlap'] as bool? ?? true,
       titlePosition: json['titlePosition'] as bool? ?? true,
       titleOutline: json['titleOutline'] as bool? ?? true,
       titleFont: json['titleFont'] as String? ?? "notoSans",
@@ -24,7 +23,6 @@ _$_PlatformDesignSetting _$$_PlatformDesignSettingFromJson(
 Map<String, dynamic> _$$_PlatformDesignSettingToJson(
         _$_PlatformDesignSetting instance) =>
     <String, dynamic>{
-      'titleOverlap': instance.titleOverlap,
       'titlePosition': instance.titlePosition,
       'titleOutline': instance.titleOutline,
       'titleFont': instance.titleFont,
