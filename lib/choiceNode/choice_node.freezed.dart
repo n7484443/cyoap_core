@@ -23,6 +23,7 @@ mixin _$ChoiceNodeDesign {
   bool get isCard => throw _privateConstructorUsedError;
   bool get isRound => throw _privateConstructorUsedError;
   bool get isOccupySpace => throw _privateConstructorUsedError;
+  bool get enableElevation => throw _privateConstructorUsedError;
   bool get maximizingImage =>
       throw _privateConstructorUsedError; //true: 80%, false: 50%
   bool get hideTitle => throw _privateConstructorUsedError;
@@ -43,6 +44,7 @@ abstract class $ChoiceNodeDesignCopyWith<$Res> {
       {bool isCard,
       bool isRound,
       bool isOccupySpace,
+      bool enableElevation,
       bool maximizingImage,
       bool hideTitle,
       int imagePosition});
@@ -62,6 +64,7 @@ class _$ChoiceNodeDesignCopyWithImpl<$Res>
     Object? isCard = freezed,
     Object? isRound = freezed,
     Object? isOccupySpace = freezed,
+    Object? enableElevation = freezed,
     Object? maximizingImage = freezed,
     Object? hideTitle = freezed,
     Object? imagePosition = freezed,
@@ -78,6 +81,10 @@ class _$ChoiceNodeDesignCopyWithImpl<$Res>
       isOccupySpace: isOccupySpace == freezed
           ? _value.isOccupySpace
           : isOccupySpace // ignore: cast_nullable_to_non_nullable
+              as bool,
+      enableElevation: enableElevation == freezed
+          ? _value.enableElevation
+          : enableElevation // ignore: cast_nullable_to_non_nullable
               as bool,
       maximizingImage: maximizingImage == freezed
           ? _value.maximizingImage
@@ -106,6 +113,7 @@ abstract class _$$_ChoiceNodeDesignCopyWith<$Res>
       {bool isCard,
       bool isRound,
       bool isOccupySpace,
+      bool enableElevation,
       bool maximizingImage,
       bool hideTitle,
       int imagePosition});
@@ -127,6 +135,7 @@ class __$$_ChoiceNodeDesignCopyWithImpl<$Res>
     Object? isCard = freezed,
     Object? isRound = freezed,
     Object? isOccupySpace = freezed,
+    Object? enableElevation = freezed,
     Object? maximizingImage = freezed,
     Object? hideTitle = freezed,
     Object? imagePosition = freezed,
@@ -143,6 +152,10 @@ class __$$_ChoiceNodeDesignCopyWithImpl<$Res>
       isOccupySpace: isOccupySpace == freezed
           ? _value.isOccupySpace
           : isOccupySpace // ignore: cast_nullable_to_non_nullable
+              as bool,
+      enableElevation: enableElevation == freezed
+          ? _value.enableElevation
+          : enableElevation // ignore: cast_nullable_to_non_nullable
               as bool,
       maximizingImage: maximizingImage == freezed
           ? _value.maximizingImage
@@ -168,6 +181,7 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
       {this.isCard = true,
       this.isRound = true,
       this.isOccupySpace = true,
+      this.enableElevation = true,
       this.maximizingImage = false,
       this.hideTitle = false,
       this.imagePosition = 0});
@@ -186,6 +200,9 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
   final bool isOccupySpace;
   @override
   @JsonKey()
+  final bool enableElevation;
+  @override
+  @JsonKey()
   final bool maximizingImage;
 //true: 80%, false: 50%
   @override
@@ -197,7 +214,7 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
 
   @override
   String toString() {
-    return 'ChoiceNodeDesign(isCard: $isCard, isRound: $isRound, isOccupySpace: $isOccupySpace, maximizingImage: $maximizingImage, hideTitle: $hideTitle, imagePosition: $imagePosition)';
+    return 'ChoiceNodeDesign(isCard: $isCard, isRound: $isRound, isOccupySpace: $isOccupySpace, enableElevation: $enableElevation, maximizingImage: $maximizingImage, hideTitle: $hideTitle, imagePosition: $imagePosition)';
   }
 
   @override
@@ -209,6 +226,8 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
             const DeepCollectionEquality().equals(other.isRound, isRound) &&
             const DeepCollectionEquality()
                 .equals(other.isOccupySpace, isOccupySpace) &&
+            const DeepCollectionEquality()
+                .equals(other.enableElevation, enableElevation) &&
             const DeepCollectionEquality()
                 .equals(other.maximizingImage, maximizingImage) &&
             const DeepCollectionEquality().equals(other.hideTitle, hideTitle) &&
@@ -223,6 +242,7 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
       const DeepCollectionEquality().hash(isCard),
       const DeepCollectionEquality().hash(isRound),
       const DeepCollectionEquality().hash(isOccupySpace),
+      const DeepCollectionEquality().hash(enableElevation),
       const DeepCollectionEquality().hash(maximizingImage),
       const DeepCollectionEquality().hash(hideTitle),
       const DeepCollectionEquality().hash(imagePosition));
@@ -245,6 +265,7 @@ abstract class _ChoiceNodeDesign implements ChoiceNodeDesign {
       {final bool isCard,
       final bool isRound,
       final bool isOccupySpace,
+      final bool enableElevation,
       final bool maximizingImage,
       final bool hideTitle,
       final int imagePosition}) = _$_ChoiceNodeDesign;
@@ -258,6 +279,8 @@ abstract class _ChoiceNodeDesign implements ChoiceNodeDesign {
   bool get isRound;
   @override
   bool get isOccupySpace;
+  @override
+  bool get enableElevation;
   @override
   bool get maximizingImage;
   @override //true: 80%, false: 50%

@@ -32,6 +32,7 @@ class ChoiceNodeDesign with _$ChoiceNodeDesign {
     @Default(true) bool isCard,
     @Default(true) bool isRound,
     @Default(true) bool isOccupySpace,
+    @Default(true) bool enableElevation,
     @Default(false) bool maximizingImage, //true: 80%, false: 50%
     @Default(false) bool hideTitle,
     @Default(0) int imagePosition, //0:default, 1:left 2:right
