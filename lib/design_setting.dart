@@ -7,7 +7,6 @@ part 'design_setting.g.dart';
 class PlatformDesignSetting with _$PlatformDesignSetting {
   @JsonSerializable(explicitToJson: true)
   factory PlatformDesignSetting({
-    @Default(true) bool titleOverlap,
     @Default(true) bool titlePosition,
     @Default(true) bool titleOutline,
     @Default("notoSans") String titleFont,
