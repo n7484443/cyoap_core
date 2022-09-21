@@ -253,6 +253,11 @@ class ChoiceNode extends GenerableParserAndPosition {
 
   @override
   void updateStatus() {
+    if(select > 0 && parent!.isExecutable()){
+      selectableStatus = SelectableStatus.open;
+      super.updateStatus();
+      return;
+    }
     if (!recursiveStatus.analyseVisibleCode(errorName)) {
       selectableStatus = SelectableStatus.hide;
       super.updateStatus();
