@@ -165,20 +165,38 @@ void main() {
 
   test('ifTest', () {
     String strTest = """
-    var numberTest0 = -5.5
-    if(numberTest0 == -5.5){
-      var alpha = 11
+    if(true){
+      var if_test_alpha = true
     }else{
-      var beta = 15
+      var if_test_beta = true
     }
-    if(numberTest0 == -5.5){
-      var gamma = 12
+    if(true){
+      var if_test_gamma = true
     }
     """;
     Analyser().run(Analyser().analyseMultiLine(strTest));
-    expect(ins.getValueType('alpha')?.dataUnzip, 11);
-    expect(ins.getValueType('beta')?.dataUnzip, null);
-    expect(ins.getValueType('gamma')?.dataUnzip, 12);
+    expect(ins.getValueType('if_test_alpha')?.dataUnzip, true);
+    expect(ins.getValueType('if_test_beta')?.dataUnzip, null);
+    expect(ins.getValueType('if_test_gamma')?.dataUnzip, true);
+  });
+
+  test('ifNestedTest', () {
+    String strTest = """
+    if(true){
+      if(true){
+        var testValue0 = true
+        if(true){
+          var testValue1 = true
+        }
+      }
+    }else{
+      var testValue2 = true;
+    }
+    """;
+    Analyser().run(Analyser().analyseMultiLine(strTest));
+    expect(ins.getValueType('testValue0')?.dataUnzip, true);
+    expect(ins.getValueType('testValue1')?.dataUnzip, true);
+    expect(ins.getValueType('testValue2')?.dataUnzip, null);
   });
 
   test('simpleTest', () {

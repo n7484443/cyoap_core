@@ -32,6 +32,9 @@ class Analyser {
       }
       tokenList.addAll(
           lexicalAnalyser.analyse(code.replaceAll(RegExp(r"//.*"), "")));
+      if(tokenList.isNotEmpty && tokenList.last.type == AnalyserConst.blockEnd){
+        continue;
+      }
       tokenList.add(Token(AnalyserConst.lineEnd));
     }
     tokenList = lexicalAnalyser.changeToFunction(tokenList);

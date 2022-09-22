@@ -44,7 +44,7 @@ class RecursiveFunction extends RecursiveUnit {
   @override
   Map<String, dynamic> toJson() => {
         'childNode': childNode,
-        'value': body,
+        'value': body.toString(),
       };
 
   @override
@@ -99,7 +99,7 @@ class RecursiveData extends RecursiveUnit {
 
   @override
   Map<String, dynamic> toJson() => {
-        'value': body,
+        'value': body.toString(),
       };
 
   @override
