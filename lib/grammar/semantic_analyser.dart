@@ -3,14 +3,13 @@ import 'recursive_parser.dart';
 import 'token.dart';
 import 'value_type.dart';
 
-import 'analyser.dart';
-
 class SemanticAnalyser {
   static const int blockEndSign = -1;
   static const int functionEndSign = -2;
 
   ///-1:block end
   void abstractSyntaxTreeAnalyse(RecursiveUnit mother, List<Token> tokens) {
+    print(tokens);
     List<RecursiveUnit> stack = [mother];
     for (var pos = 0; pos < tokens.length; pos++) {
       var token = tokens[pos];

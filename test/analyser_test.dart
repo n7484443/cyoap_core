@@ -163,42 +163,6 @@ void main() {
     expect(ins.getValueType('commentTest1')?.dataUnzip, 0);
   });
 
-  test('ifTest', () {
-    String strTest = """
-    if(true){
-      var if_test_alpha = true
-    }else{
-      var if_test_beta = true
-    }
-    if(true){
-      var if_test_gamma = true
-    }
-    """;
-    Analyser().run(Analyser().analyseMultiLine(strTest));
-    expect(ins.getValueType('if_test_alpha')?.dataUnzip, true);
-    expect(ins.getValueType('if_test_beta')?.dataUnzip, null);
-    expect(ins.getValueType('if_test_gamma')?.dataUnzip, true);
-  });
-
-  test('ifNestedTest', () {
-    String strTest = """
-    if(true){
-      if(true){
-        var testValue0 = true
-        if(true){
-          var testValue1 = true
-        }
-      }
-    }else{
-      var testValue2 = true;
-    }
-    """;
-    Analyser().run(Analyser().analyseMultiLine(strTest));
-    expect(ins.getValueType('testValue0')?.dataUnzip, true);
-    expect(ins.getValueType('testValue1')?.dataUnzip, true);
-    expect(ins.getValueType('testValue2')?.dataUnzip, null);
-  });
-
   test('simpleTest', () {
     String strTest1 = "true";
     var out = Analyser().run(Analyser().analyseSingleLine(strTest1));
