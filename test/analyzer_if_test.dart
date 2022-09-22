@@ -1,7 +1,6 @@
 import 'package:cyoap_core/grammar/analyser.dart';
 import 'package:cyoap_core/variable_db.dart';
-import 'package:test/expect.dart';
-import 'package:test/scaffolding.dart';
+import 'package:test/test.dart';
 
 void main(){
   test('ifTest', () {
@@ -22,24 +21,48 @@ void main(){
     expect(ins.getValueType('if_test_gamma')?.dataUnzip, true);
   });
 
-  test('ifNestedTest', () {
+  test('ifNestedTest0', () {
     var ins = VariableDataBase();
     String strTest = """
     if(true){
       if(true){
-        var testValue0 = true
+        var ifNestedTest0_0 = true
         if(true){
-          var testValue1 = true
+          var ifNestedTest0_1 = true
         }
       }
     }else{
-      var testValue2 = true;
+      var ifNestedTest0_2 = true;
     }
     """;
     Analyser().run(Analyser().analyseMultiLine(strTest));
-    expect(ins.getValueType('testValue0')?.dataUnzip, true);
-    expect(ins.getValueType('testValue1')?.dataUnzip, true);
-    expect(ins.getValueType('testValue2')?.dataUnzip, null);
+    expect(ins.getValueType('ifNestedTest0_0')?.dataUnzip, true);
+    expect(ins.getValueType('ifNestedTest0_1')?.dataUnzip, true);
+    expect(ins.getValueType('ifNestedTest0_2')?.dataUnzip, null);
+  });
+
+  test('ifNestedTest1', () {
+    var ins = VariableDataBase();
+    String strTest = """
+    if(true){
+      if(true){
+        var ifNestedTest1_0 = true
+        if(true){
+          var ifNestedTest1_1 = true
+        }
+        
+      }
+      
+    }
+    else
+    {
+      var ifNestedTest1_2 = true;
+    }
+    """;
+    Analyser().run(Analyser().analyseMultiLine(strTest));
+    expect(ins.getValueType('ifNestedTest1_0')?.dataUnzip, true);
+    expect(ins.getValueType('ifNestedTest1_1')?.dataUnzip, true);
+    expect(ins.getValueType('ifNestedTest1_2')?.dataUnzip, null);
   });
 
   test('ifSpacedTest', () {
