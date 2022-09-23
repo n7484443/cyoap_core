@@ -198,5 +198,5 @@ external set _getSelectedPos(String Function() f);
 
 @JS()
 String _getSelectedPosInternal() {
-  return jsonEncode(platform.selectedPos);
+  return jsonEncode(platform.selectedPos.map((e) => e.data).toList());
 }
