@@ -75,7 +75,7 @@ class PlayablePlatform {
     for (var line in lineSettings) {
       for (var choice in line.children) {
         (choice as ChoiceNode).doAllChild((node) {
-          if (node.isExecutable() && node.isSelectableMode) {
+          if (node.isExecutable() && node.isSelectableMode && !node.choiceNodeDesign.hideAsResult) {
             selectedPos.add(node.pos);
           }
         });

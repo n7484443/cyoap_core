@@ -34,6 +34,7 @@ class ChoiceNodeDesign with _$ChoiceNodeDesign {
     @Default(true) bool isOccupySpace,
     @Default(false) bool maximizingImage, //true: 80%, false: 50%
     @Default(false) bool hideTitle,
+    @Default(false) bool hideAsResult,
     @Default(0) int imagePosition, //0:default, 1:left 2:right
   }) = _ChoiceNodeDesign;
 
@@ -51,14 +52,15 @@ class ChoiceNode extends GenerableParserAndPosition {
   String contentsString;
   String imageString;
 
-  @override
-  bool get isSelectableMode =>
-      choiceNodeMode != ChoiceNodeMode.unSelectableMode &&
-      choiceNodeMode != ChoiceNodeMode.onlyCode;
-
   int maximumStatus = 0;
   int random = -1;
   int select = 0;
+
+  @override
+  bool get isSelectableMode =>
+      choiceNodeMode != ChoiceNodeMode.unSelectableMode &&
+          choiceNodeMode != ChoiceNodeMode.onlyCode;
+
 
   ChoiceNode(width, this.title, this.contentsString, this.imageString)
       : choiceNodeDesign = ChoiceNodeDesign() {

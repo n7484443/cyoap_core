@@ -26,6 +26,7 @@ mixin _$ChoiceNodeDesign {
   bool get maximizingImage =>
       throw _privateConstructorUsedError; //true: 80%, false: 50%
   bool get hideTitle => throw _privateConstructorUsedError;
+  bool get hideAsResult => throw _privateConstructorUsedError;
   int get imagePosition => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,6 +46,7 @@ abstract class $ChoiceNodeDesignCopyWith<$Res> {
       bool isOccupySpace,
       bool maximizingImage,
       bool hideTitle,
+      bool hideAsResult,
       int imagePosition});
 }
 
@@ -64,6 +66,7 @@ class _$ChoiceNodeDesignCopyWithImpl<$Res>
     Object? isOccupySpace = freezed,
     Object? maximizingImage = freezed,
     Object? hideTitle = freezed,
+    Object? hideAsResult = freezed,
     Object? imagePosition = freezed,
   }) {
     return _then(_value.copyWith(
@@ -87,6 +90,10 @@ class _$ChoiceNodeDesignCopyWithImpl<$Res>
           ? _value.hideTitle
           : hideTitle // ignore: cast_nullable_to_non_nullable
               as bool,
+      hideAsResult: hideAsResult == freezed
+          ? _value.hideAsResult
+          : hideAsResult // ignore: cast_nullable_to_non_nullable
+              as bool,
       imagePosition: imagePosition == freezed
           ? _value.imagePosition
           : imagePosition // ignore: cast_nullable_to_non_nullable
@@ -108,6 +115,7 @@ abstract class _$$_ChoiceNodeDesignCopyWith<$Res>
       bool isOccupySpace,
       bool maximizingImage,
       bool hideTitle,
+      bool hideAsResult,
       int imagePosition});
 }
 
@@ -129,6 +137,7 @@ class __$$_ChoiceNodeDesignCopyWithImpl<$Res>
     Object? isOccupySpace = freezed,
     Object? maximizingImage = freezed,
     Object? hideTitle = freezed,
+    Object? hideAsResult = freezed,
     Object? imagePosition = freezed,
   }) {
     return _then(_$_ChoiceNodeDesign(
@@ -152,6 +161,10 @@ class __$$_ChoiceNodeDesignCopyWithImpl<$Res>
           ? _value.hideTitle
           : hideTitle // ignore: cast_nullable_to_non_nullable
               as bool,
+      hideAsResult: hideAsResult == freezed
+          ? _value.hideAsResult
+          : hideAsResult // ignore: cast_nullable_to_non_nullable
+              as bool,
       imagePosition: imagePosition == freezed
           ? _value.imagePosition
           : imagePosition // ignore: cast_nullable_to_non_nullable
@@ -170,6 +183,7 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
       this.isOccupySpace = true,
       this.maximizingImage = false,
       this.hideTitle = false,
+      this.hideAsResult = false,
       this.imagePosition = 0});
 
   factory _$_ChoiceNodeDesign.fromJson(Map<String, dynamic> json) =>
@@ -193,11 +207,14 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
   final bool hideTitle;
   @override
   @JsonKey()
+  final bool hideAsResult;
+  @override
+  @JsonKey()
   final int imagePosition;
 
   @override
   String toString() {
-    return 'ChoiceNodeDesign(isCard: $isCard, isRound: $isRound, isOccupySpace: $isOccupySpace, maximizingImage: $maximizingImage, hideTitle: $hideTitle, imagePosition: $imagePosition)';
+    return 'ChoiceNodeDesign(isCard: $isCard, isRound: $isRound, isOccupySpace: $isOccupySpace, maximizingImage: $maximizingImage, hideTitle: $hideTitle, hideAsResult: $hideAsResult, imagePosition: $imagePosition)';
   }
 
   @override
@@ -213,6 +230,8 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
                 .equals(other.maximizingImage, maximizingImage) &&
             const DeepCollectionEquality().equals(other.hideTitle, hideTitle) &&
             const DeepCollectionEquality()
+                .equals(other.hideAsResult, hideAsResult) &&
+            const DeepCollectionEquality()
                 .equals(other.imagePosition, imagePosition));
   }
 
@@ -225,6 +244,7 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
       const DeepCollectionEquality().hash(isOccupySpace),
       const DeepCollectionEquality().hash(maximizingImage),
       const DeepCollectionEquality().hash(hideTitle),
+      const DeepCollectionEquality().hash(hideAsResult),
       const DeepCollectionEquality().hash(imagePosition));
 
   @JsonKey(ignore: true)
@@ -247,6 +267,7 @@ abstract class _ChoiceNodeDesign implements ChoiceNodeDesign {
       final bool isOccupySpace,
       final bool maximizingImage,
       final bool hideTitle,
+      final bool hideAsResult,
       final int imagePosition}) = _$_ChoiceNodeDesign;
 
   factory _ChoiceNodeDesign.fromJson(Map<String, dynamic> json) =
@@ -262,6 +283,8 @@ abstract class _ChoiceNodeDesign implements ChoiceNodeDesign {
   bool get maximizingImage;
   @override //true: 80%, false: 50%
   bool get hideTitle;
+  @override
+  bool get hideAsResult;
   @override
   int get imagePosition;
   @override
