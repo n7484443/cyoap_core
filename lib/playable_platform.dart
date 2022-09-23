@@ -69,4 +69,18 @@ class PlayablePlatform {
       lineSetting.generateParser();
     }
   }
+
+  List<Pos> get selectedPos{
+    List<Pos> selectedPos = [];
+    for (var line in lineSettings) {
+      for (var choice in line.children) {
+        (choice as ChoiceNode).doAllChild((node) {
+          if (node.isExecutable() && node.isSelectableMode) {
+            selectedPos.add(node.pos);
+          }
+        });
+      }
+    }
+    return selectedPos;
+  }
 }

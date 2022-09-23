@@ -19,6 +19,8 @@ void main() {
   _getPlatformDesign = allowInterop(_getPlatformDesignInternal);
   _updatePlatform = allowInterop(_updatePlatformInternal);
 
+  _getSelectedPos = allowInterop(_getSelectedPosInternal);
+
   _lineLength = allowInterop(_lineLengthInternal);
 
   _getSelect = allowInterop(_getSelectInternal);
@@ -189,4 +191,12 @@ external set _getPlatformDesign(String Function() f);
 @JS()
 String _getPlatformDesignInternal() {
   return jsonEncode(platform.designSetting.toJson());
+}
+
+@JS('getSelectedPos')
+external set _getSelectedPos(String Function() f);
+
+@JS()
+String _getSelectedPosInternal() {
+  return jsonEncode(platform.selectedPos);
 }
