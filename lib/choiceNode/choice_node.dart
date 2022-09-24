@@ -36,8 +36,8 @@ class ChoiceNodeDesign with _$ChoiceNodeDesign {
     @Default(false) bool hideTitle,
     @Default(false) bool hideAsResult,
     @Default(0) int imagePosition, //0:default, 1:left 2:right
-    @Default(null) int? colorNode,
-    @Default(null) int? colorSelectNode,
+    int? colorNode,
+    int? colorSelectNode,
   }) = _ChoiceNodeDesign;
 
   factory ChoiceNodeDesign.fromJson(Map<String, dynamic> json) =>
