@@ -212,8 +212,8 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
       this.hideTitle = false,
       this.hideAsResult = false,
       this.imagePosition = 0,
-      this.colorNode = null,
-      this.colorSelectNode = null});
+      this.colorNode,
+      this.colorSelectNode});
 
   factory _$_ChoiceNodeDesign.fromJson(Map<String, dynamic> json) =>
       _$$_ChoiceNodeDesignFromJson(json);
@@ -242,10 +242,8 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
   final int imagePosition;
 //0:default, 1:left 2:right
   @override
-  @JsonKey()
   final int? colorNode;
   @override
-  @JsonKey()
   final int? colorSelectNode;
 
   @override
