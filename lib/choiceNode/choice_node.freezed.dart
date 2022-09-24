@@ -27,7 +27,10 @@ mixin _$ChoiceNodeDesign {
       throw _privateConstructorUsedError; //true: 80%, false: 50%
   bool get hideTitle => throw _privateConstructorUsedError;
   bool get hideAsResult => throw _privateConstructorUsedError;
-  int get imagePosition => throw _privateConstructorUsedError;
+  int get imagePosition =>
+      throw _privateConstructorUsedError; //0:default, 1:left 2:right
+  int? get colorNode => throw _privateConstructorUsedError;
+  int? get colorSelectNode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,7 +50,9 @@ abstract class $ChoiceNodeDesignCopyWith<$Res> {
       bool maximizingImage,
       bool hideTitle,
       bool hideAsResult,
-      int imagePosition});
+      int imagePosition,
+      int? colorNode,
+      int? colorSelectNode});
 }
 
 /// @nodoc
@@ -68,6 +73,8 @@ class _$ChoiceNodeDesignCopyWithImpl<$Res>
     Object? hideTitle = freezed,
     Object? hideAsResult = freezed,
     Object? imagePosition = freezed,
+    Object? colorNode = freezed,
+    Object? colorSelectNode = freezed,
   }) {
     return _then(_value.copyWith(
       isCard: isCard == freezed
@@ -98,6 +105,14 @@ class _$ChoiceNodeDesignCopyWithImpl<$Res>
           ? _value.imagePosition
           : imagePosition // ignore: cast_nullable_to_non_nullable
               as int,
+      colorNode: colorNode == freezed
+          ? _value.colorNode
+          : colorNode // ignore: cast_nullable_to_non_nullable
+              as int?,
+      colorSelectNode: colorSelectNode == freezed
+          ? _value.colorSelectNode
+          : colorSelectNode // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -116,7 +131,9 @@ abstract class _$$_ChoiceNodeDesignCopyWith<$Res>
       bool maximizingImage,
       bool hideTitle,
       bool hideAsResult,
-      int imagePosition});
+      int imagePosition,
+      int? colorNode,
+      int? colorSelectNode});
 }
 
 /// @nodoc
@@ -139,6 +156,8 @@ class __$$_ChoiceNodeDesignCopyWithImpl<$Res>
     Object? hideTitle = freezed,
     Object? hideAsResult = freezed,
     Object? imagePosition = freezed,
+    Object? colorNode = freezed,
+    Object? colorSelectNode = freezed,
   }) {
     return _then(_$_ChoiceNodeDesign(
       isCard: isCard == freezed
@@ -169,6 +188,14 @@ class __$$_ChoiceNodeDesignCopyWithImpl<$Res>
           ? _value.imagePosition
           : imagePosition // ignore: cast_nullable_to_non_nullable
               as int,
+      colorNode: colorNode == freezed
+          ? _value.colorNode
+          : colorNode // ignore: cast_nullable_to_non_nullable
+              as int?,
+      colorSelectNode: colorSelectNode == freezed
+          ? _value.colorSelectNode
+          : colorSelectNode // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -184,7 +211,9 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
       this.maximizingImage = false,
       this.hideTitle = false,
       this.hideAsResult = false,
-      this.imagePosition = 0});
+      this.imagePosition = 0,
+      this.colorNode = null,
+      this.colorSelectNode = null});
 
   factory _$_ChoiceNodeDesign.fromJson(Map<String, dynamic> json) =>
       _$$_ChoiceNodeDesignFromJson(json);
@@ -211,10 +240,17 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
   @override
   @JsonKey()
   final int imagePosition;
+//0:default, 1:left 2:right
+  @override
+  @JsonKey()
+  final int? colorNode;
+  @override
+  @JsonKey()
+  final int? colorSelectNode;
 
   @override
   String toString() {
-    return 'ChoiceNodeDesign(isCard: $isCard, isRound: $isRound, isOccupySpace: $isOccupySpace, maximizingImage: $maximizingImage, hideTitle: $hideTitle, hideAsResult: $hideAsResult, imagePosition: $imagePosition)';
+    return 'ChoiceNodeDesign(isCard: $isCard, isRound: $isRound, isOccupySpace: $isOccupySpace, maximizingImage: $maximizingImage, hideTitle: $hideTitle, hideAsResult: $hideAsResult, imagePosition: $imagePosition, colorNode: $colorNode, colorSelectNode: $colorSelectNode)';
   }
 
   @override
@@ -232,7 +268,10 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
             const DeepCollectionEquality()
                 .equals(other.hideAsResult, hideAsResult) &&
             const DeepCollectionEquality()
-                .equals(other.imagePosition, imagePosition));
+                .equals(other.imagePosition, imagePosition) &&
+            const DeepCollectionEquality().equals(other.colorNode, colorNode) &&
+            const DeepCollectionEquality()
+                .equals(other.colorSelectNode, colorSelectNode));
   }
 
   @JsonKey(ignore: true)
@@ -245,7 +284,9 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
       const DeepCollectionEquality().hash(maximizingImage),
       const DeepCollectionEquality().hash(hideTitle),
       const DeepCollectionEquality().hash(hideAsResult),
-      const DeepCollectionEquality().hash(imagePosition));
+      const DeepCollectionEquality().hash(imagePosition),
+      const DeepCollectionEquality().hash(colorNode),
+      const DeepCollectionEquality().hash(colorSelectNode));
 
   @JsonKey(ignore: true)
   @override
@@ -268,7 +309,9 @@ abstract class _ChoiceNodeDesign implements ChoiceNodeDesign {
       final bool maximizingImage,
       final bool hideTitle,
       final bool hideAsResult,
-      final int imagePosition}) = _$_ChoiceNodeDesign;
+      final int imagePosition,
+      final int? colorNode,
+      final int? colorSelectNode}) = _$_ChoiceNodeDesign;
 
   factory _ChoiceNodeDesign.fromJson(Map<String, dynamic> json) =
       _$_ChoiceNodeDesign.fromJson;
@@ -287,6 +330,10 @@ abstract class _ChoiceNodeDesign implements ChoiceNodeDesign {
   bool get hideAsResult;
   @override
   int get imagePosition;
+  @override //0:default, 1:left 2:right
+  int? get colorNode;
+  @override
+  int? get colorSelectNode;
   @override
   @JsonKey(ignore: true)
   _$$_ChoiceNodeDesignCopyWith<_$_ChoiceNodeDesign> get copyWith =>

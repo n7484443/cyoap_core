@@ -15,6 +15,8 @@ _$_ChoiceNodeDesign _$$_ChoiceNodeDesignFromJson(Map<String, dynamic> json) =>
       hideTitle: json['hideTitle'] as bool? ?? false,
       hideAsResult: json['hideAsResult'] as bool? ?? false,
       imagePosition: json['imagePosition'] as int? ?? 0,
+      colorNode: json['colorNode'] as int? ?? null,
+      colorSelectNode: json['colorSelectNode'] as int? ?? null,
     );
 
 Map<String, dynamic> _$$_ChoiceNodeDesignToJson(_$_ChoiceNodeDesign instance) =>
@@ -26,4 +28,6 @@ Map<String, dynamic> _$$_ChoiceNodeDesignToJson(_$_ChoiceNodeDesign instance) =>
       'hideTitle': instance.hideTitle,
       'hideAsResult': instance.hideAsResult,
       'imagePosition': instance.imagePosition,
+      'colorNode': instance.colorNode,
+      'colorSelectNode': instance.colorSelectNode,
     };
