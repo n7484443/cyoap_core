@@ -16,8 +16,21 @@ class LexicalAnalyser {
           tokenAdded.type = AnalyserConst.variableLet;
         } else if (tokenAdded.dataString == 'var') {
           tokenAdded.type = AnalyserConst.variableVar;
+        } else if (tokenAdded.dataString == 'in') {
+          tokenAdded.type = AnalyserConst.functionUnspecified;
+          tokenAdded.dataString = 'in';
+        } else if (tokenAdded.dataString == 'break') {
+          tokenAdded.type = AnalyserConst.keywordBreak;
         } else if (tokenAdded.type == AnalyserConst.unspecified) {
-          if (isStringDouble(tokenAdded.dataString)) {
+          if(tokenAdded.dataString.contains("..")){
+            var split = tokenAdded.dataString.split("..");
+            tokenList.add(Token(AnalyserConst.functionStart));
+            tokenList.add(Token(AnalyserConst.ints, dataString: split[0]));
+            tokenList.add(Token(AnalyserConst.functionUnspecified, dataString: "to"));
+            tokenList.add(Token(AnalyserConst.ints, dataString: split[1]));
+            tokenList.add(Token(AnalyserConst.functionEnd));
+            return;
+          }else if (isStringDouble(tokenAdded.dataString)) {
             if (tokenAdded.dataString.contains('.')) {
               tokenAdded.type = AnalyserConst.doubles;
             } else {
@@ -96,6 +109,8 @@ class LexicalAnalyser {
           if (tokenAdded != null) {
             if (tokenAdded.dataString == "if") {
               tokenAdded.type = AnalyserConst.functionIf;
+            } else if (tokenAdded.dataString == "for") {
+              tokenAdded.type = AnalyserConst.functionFor;
             } else {
               tokenAdded.type = AnalyserConst.function;
             }
@@ -192,17 +207,17 @@ class LexicalAnalyser {
         tokenOutput
             .add(Token(AnalyserConst.functionUnspecified, dataString: "equal"));
       } else if (token.dataString == ">") {
-        tokenOutput
-            .add(Token(AnalyserConst.functionUnspecified, dataString: "bigger"));
+        tokenOutput.add(
+            Token(AnalyserConst.functionUnspecified, dataString: "bigger"));
       } else if (token.dataString == ">=") {
-        tokenOutput
-            .add(Token(AnalyserConst.functionUnspecified, dataString: "biggerEqual"));
+        tokenOutput.add(Token(AnalyserConst.functionUnspecified,
+            dataString: "biggerEqual"));
       } else if (token.dataString == "<") {
-        tokenOutput
-            .add(Token(AnalyserConst.functionUnspecified, dataString: "smaller"));
+        tokenOutput.add(
+            Token(AnalyserConst.functionUnspecified, dataString: "smaller"));
       } else if (token.dataString == "<=") {
-        tokenOutput
-            .add(Token(AnalyserConst.functionUnspecified, dataString: "smallerEqual"));
+        tokenOutput.add(Token(AnalyserConst.functionUnspecified,
+            dataString: "smallerEqual"));
       } else {
         tokenOutput.add(token);
       }

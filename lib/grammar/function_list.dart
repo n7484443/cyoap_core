@@ -24,6 +24,7 @@ enum FunctionListEnum {
   exist(1),
   isVisible(1),
   loadVariable(1),
+  loadArray(2),
   returnCondition(1),
   setLocal(2, hasOutput: false),
   setGlobal(2, hasOutput: false),
@@ -31,15 +32,17 @@ enum FunctionListEnum {
   setVisible(2, hasOutput: false),
   none(0, hasOutput: false);
 
-  const FunctionListEnum(this.argumentLength, {this.hasOutput = true, this.hasMultipleArgument = false});
+  const FunctionListEnum(this.argumentLength,
+      {this.hasOutput = true, this.hasMultipleArgument = false});
 
   final int argumentLength;
   final bool hasOutput;
   final bool hasMultipleArgument;
 
-  static FunctionListEnum getFunctionListEnum(String name){
-    return FunctionListEnum.values.firstWhere((element) => element.name == name, orElse: (){
-      print(name);
+  static FunctionListEnum getFunctionListEnum(String name) {
+    return FunctionListEnum.values.firstWhere((element) => element.name == name,
+        orElse: () {
+      print("unfounded function $name");
       return none;
     });
   }
@@ -48,8 +51,8 @@ enum FunctionListEnum {
 class Functions {
   Map<FunctionListEnum, ValueType Function(List<ValueType> input)>
       functionUnspecifiedFunction = {};
-  Map<FunctionListEnum, Function(List<ValueType> input)>
-      functionValueType = {};
+
+  Map<FunctionListEnum, Function(List<ValueType> input)> functionValueType = {};
 
   void init() {
     functionUnspecifiedFunction[FunctionListEnum.plus] = funcPlus;
@@ -71,13 +74,19 @@ class Functions {
     functionValueType[FunctionListEnum.or] = funcOr;
     functionValueType[FunctionListEnum.not] = funcNot;
     functionValueType[FunctionListEnum.random] = funcRandom;
-    functionValueType[FunctionListEnum.exist] =
-        (input) => ValueType.bool(VariableDataBase().hasValue(input[0].dataUnzip));
+    functionValueType[FunctionListEnum.exist] = (input) =>
+        ValueType.bool(VariableDataBase().hasValue(input[0].dataUnzip));
     functionValueType[FunctionListEnum.isVisible] = (input) => ValueType.bool(
         VariableDataBase().getValueTypeWrapper(input[0].dataUnzip)?.visible ??
             false);
-    functionValueType[FunctionListEnum.loadVariable] =
-        (input) => VariableDataBase().getValueType(input[0].dataUnzip) ?? const ValueType.nulls();
+    functionValueType[FunctionListEnum.loadVariable] = (input) =>
+        VariableDataBase().getValueType(input[0].dataUnzip) ??
+        const ValueType.nulls();
+    functionValueType[FunctionListEnum.loadArray] = (input) {
+      var array = input[0].dataUnzip as List;
+      var pos = input[1].dataUnzip as int;
+      return ValueType.int(array[pos]);
+    };
     functionValueType[FunctionListEnum.returnCondition] = (input) => input[0];
 
     functionValueType[FunctionListEnum.setLocal] = (input) {
@@ -114,8 +123,7 @@ class Functions {
   }
 
   Function? getFunction(FunctionListEnum enumData) {
-    return functionUnspecifiedFunction[enumData] ??
-        functionValueType[enumData];
+    return functionUnspecifiedFunction[enumData] ?? functionValueType[enumData];
   }
 
   bool isUnspecifiedFunction(String name) {

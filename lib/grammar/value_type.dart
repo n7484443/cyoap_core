@@ -7,6 +7,7 @@ enum DataType {
   doubles,
   strings,
   bools,
+  arrays,
 }
 
 extension DataTypeExtension on DataType {
@@ -27,6 +28,9 @@ ValueType getValueTypeFromStringInput(String input) {
   if (input.startsWith('"') && input.endsWith('"')) {
     return ValueType.string(input.substring(1, input.length - 1));
   }
+  if (input.startsWith('[') && input.endsWith(']')) {
+    return ValueType.array(input);
+  }
   if (input == "true" || input == "false") {
     return ValueType(input, DataType.bools);
   }
@@ -45,7 +49,7 @@ ValueType getValueTypeFromStringInput(String input) {
 }
 
 ValueType getValueTypeFromDynamicInput(dynamic input) {
-  if(input is Map<String, dynamic>){
+  if (input is Map<String, dynamic>) {
     return getValueTypeFromDynamicInput(input["data"]);
   }
   if (input is String) {
@@ -67,6 +71,9 @@ ValueType getValueTypeFromDynamicInput(dynamic input) {
   if (input is double) {
     return ValueType.double(input);
   }
+  if (input is List) {
+    return ValueType.array(input.toString());
+  }
   return ValueType.string(input.toString());
 }
 
@@ -85,6 +92,8 @@ class ValueType {
       : data = data.toString(),
         type = DataType.doubles;
 
+  ValueType.array(this.data) : type = DataType.arrays;
+
   const ValueType.nulls()
       : data = "",
         type = DataType.strings;
@@ -100,6 +109,13 @@ class ValueType {
     if (type == DataType.ints) return int.parse(data);
     if (type == DataType.bools) return data == "true";
     if (type == DataType.doubles) return double.parse(data);
+    if (type == DataType.arrays) {
+      return data
+          .substring(1, data.length - 1)
+          .split(",")
+          .map((e) => int.parse(e))
+          .toList();
+    }
     return data;
   }
 

@@ -42,4 +42,9 @@ enum AnalyserConst {
 
   /// ;
   lineEnd,
+
+  /// for
+  functionFor,
+  ///break
+  keywordBreak,
 }

@@ -79,6 +79,78 @@ class RecursiveFunction extends RecursiveUnit {
       }
       return output;
     }
+    if (body.type.isString && body.data == "for") {
+      var variable = child[0].child[0].child[0].body.dataUnzip;
+      var array = child[0].child[1].toByteCode();
+      var arrayLength = (ValueType.array(array.first).dataUnzip).length;
+      var loopCode = child[1].toByteCode();
+      var loopVariable = "__loop_$hashCode";
+      var arrayVariable = "__array_$hashCode";
+      var arrayLengthVariable = "__array_length_$hashCode";
+      List<String> setup = [
+        'push "$loopVariable"',
+        "push 0",
+        "setLocal",
+        'push "$arrayVariable"',
+        "push ${array.first}",
+        "setLocal",
+        'push "$arrayLengthVariable"',
+        "push $arrayLength",
+        "setLocal",
+
+        'push "$variable"',
+        'push "$arrayVariable"',
+        "loadVariable",
+        'push "$loopVariable"',
+        "loadVariable",
+        "loadArray",
+        "setLocal",
+      ];
+      List<String> update = [
+        'push "$variable"',
+        'push "$arrayVariable"',
+        "loadVariable",
+        'push "$loopVariable"',
+        "loadVariable",
+        "loadArray",
+        "setVariable",
+      ];
+      List<String> check = [
+        'push "$loopVariable"',
+        "loadVariable",
+        'push "$arrayLengthVariable"',
+        "loadVariable",
+        'smaller',
+      ];
+      List<String> loop = [
+        ...loopCode,
+        'push "$loopVariable"',
+        'push "$loopVariable"',
+        "loadVariable",
+        "push 1",
+        "plus",
+        "setVariable",
+      ];
+      List<String> output = [
+        ...setup,
+        ...check,
+        "if_goto ${update.length + loop.length + 1}",
+        ...update,
+        ...loop,
+        "goto -${update.length + check.length + 1 + loop.length + 1}"
+      ];
+      return output;
+    }
+    if (body.type.isString && body.data == "to") {
+      var rangeStart = child[0].body.dataUnzip as int;
+      var rangeEnd = child[1].body.dataUnzip as int;
+      var range = rangeEnd - rangeStart;
+      var data = List.generate(range, (index) => rangeStart + index);
+      List<String> output = [
+        "[${data.join(",")}]"
+      ];
+      return output;
+    }
     if (Analyser().functionList.hasFunction(body.data)) {
       var funcEnum = FunctionListEnum.getFunctionListEnum(body.data);
       List<String> output = [];

@@ -7,6 +7,10 @@ class SemanticAnalyser {
   static const int blockEndSign = -1;
   static const int functionEndSign = -2;
 
+  bool checkBlock(RecursiveUnit input) {
+    return input.body.data != "if" && input.body.data != "for";
+  }
+
   ///-1:block end
   void abstractSyntaxTreeAnalyse(RecursiveUnit mother, List<Token> tokens) {
     List<RecursiveUnit> stack = [mother];
@@ -27,20 +31,21 @@ class SemanticAnalyser {
           stack.add(sub);
           break;
         case AnalyserConst.blockStart:
-          while (stack.last.body.data != "if") {
+          while (checkBlock(stack.last)) {
             var last = stack.removeLast();
             stack.last.add(last);
           }
           RecursiveFunction sub =
-          RecursiveFunction(const ValueType.string("doLines"));
+              RecursiveFunction(const ValueType.string("doLines"));
           stack.add(sub);
           break;
         case AnalyserConst.blockEnd:
-          while (stack.last.body.data != "if") {
+          while (checkBlock(stack.last)) {
             var last = stack.removeLast();
             stack.last.add(last);
           }
-          if(!(pos < tokens.length - 1 && tokens[pos + 1].type == AnalyserConst.functionElse)){
+          if (!(pos < tokens.length - 1 &&
+              tokens[pos + 1].type == AnalyserConst.functionElse)) {
             var last = stack.removeLast();
             stack.last.add(last);
           }
@@ -50,6 +55,11 @@ class SemanticAnalyser {
         case AnalyserConst.functionIf:
           RecursiveFunction sub =
               RecursiveFunction(const ValueType.string("if"));
+          stack.add(sub);
+          break;
+        case AnalyserConst.functionFor:
+          RecursiveFunction sub =
+              RecursiveFunction(const ValueType.string("for"));
           stack.add(sub);
           break;
         case AnalyserConst.function:
