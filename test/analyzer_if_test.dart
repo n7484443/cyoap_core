@@ -44,25 +44,27 @@ void main(){
   test('ifNestedTest1', () {
     var ins = VariableDataBase();
     String strTest = """
-    if(true){
+    if(true) 
+    {
       if(true){
         var ifNestedTest1_0 = true
-        if(true){
+        if(true)
+        {
           var ifNestedTest1_1 = true
+        }else{
+          var ifNestedTest1_2 = true
         }
-        
-      }
-      
-    }
+      }}
     else
     {
-      var ifNestedTest1_2 = true;
+      var ifNestedTest1_3 = true;
     }
     """;
     Analyser().run(Analyser().analyseMultiLine(strTest));
     expect(ins.getValueType('ifNestedTest1_0')?.dataUnzip, true);
     expect(ins.getValueType('ifNestedTest1_1')?.dataUnzip, true);
     expect(ins.getValueType('ifNestedTest1_2')?.dataUnzip, null);
+    expect(ins.getValueType('ifNestedTest1_3')?.dataUnzip, null);
   });
 
   test('ifSpacedTest', () {
