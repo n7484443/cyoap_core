@@ -30,6 +30,7 @@ abstract class RecursiveUnit {
 
 class RecursiveFunction extends RecursiveUnit {
   RecursiveFunction(super.body);
+
   List<RecursiveUnit> childNode = List.empty(growable: true);
 
   @override
@@ -50,7 +51,7 @@ class RecursiveFunction extends RecursiveUnit {
   @override
   List<String> toByteCode() {
     if (body.data.isEmpty) return [];
-    if(body.type.isString && body.data == "doLines"){
+    if (body.type.isString && body.data == "doLines") {
       List<String> list = [];
       for (var e in child) {
         var out = e.toByteCode();
@@ -59,7 +60,7 @@ class RecursiveFunction extends RecursiveUnit {
       return list;
     }
     if (body.type.isString && body.data == "returnCondition") {
-      return  [...child[0].toByteCode(), "return"];
+      return [...child[0].toByteCode(), "return"];
     }
     if (body.type.isString && body.data == "if") {
       var condition = child[0].toByteCode();
@@ -69,7 +70,7 @@ class RecursiveFunction extends RecursiveUnit {
         "if_goto ${ifCode.length + 1}",
         ...ifCode,
       ];
-      if(child.length == 3){
+      if (child.length == 3) {
         var elseCode = child[2].toByteCode();
         return [
           ...output,
@@ -97,7 +98,6 @@ class RecursiveFunction extends RecursiveUnit {
         'push "$arrayLengthVariable"',
         "push $arrayLength",
         "setLocal",
-
         'push "$variable"',
         'push "$arrayVariable"',
         "loadVariable",
@@ -106,7 +106,7 @@ class RecursiveFunction extends RecursiveUnit {
         "loadArray",
         "setLocal",
       ];
-      List<String> update = [
+      List<String> updateFromList = [
         'push "$variable"',
         'push "$arrayVariable"',
         "loadVariable",
@@ -122,8 +122,7 @@ class RecursiveFunction extends RecursiveUnit {
         "loadVariable",
         'smaller',
       ];
-      List<String> loop = [
-        ...loopCode,
+      List<String> update = [
         'push "$loopVariable"',
         'push "$loopVariable"',
         "loadVariable",
@@ -131,13 +130,24 @@ class RecursiveFunction extends RecursiveUnit {
         "plus",
         "setVariable",
       ];
+      var loopData = [];
+      for (int i = 0; i < loopCode.length; i++) {
+        if (loopCode[i] == 'continue') {
+          loopData.add('goto ${loopCode.length - i}');
+        }
+        if (loopCode[i] == 'break') {
+          loopData.add('goto ${loopCode.length - i + update.length + 1}');
+        }
+        loopData.add(loopCode[i]);
+      }
       List<String> output = [
         ...setup,
         ...check,
-        "if_goto ${update.length + loop.length + 1}",
+        "if_goto ${updateFromList.length + loopData.length + update.length + 1}",
+        ...updateFromList,
+        ...loopData,
         ...update,
-        ...loop,
-        "goto -${update.length + check.length + 1 + loop.length + 1}"
+        "goto -${check.length + 1 + update.length + loopData.length + updateFromList.length + 1}"
       ];
       return output;
     }
@@ -146,9 +156,7 @@ class RecursiveFunction extends RecursiveUnit {
       var rangeEnd = child[1].body.dataUnzip as int;
       var range = rangeEnd - rangeStart;
       var data = List.generate(range, (index) => rangeStart + index);
-      List<String> output = [
-        "[${data.join(",")}]"
-      ];
+      List<String> output = ["[${data.join(",")}]"];
       return output;
     }
     if (Analyser().functionList.hasFunction(body.data)) {
@@ -157,7 +165,7 @@ class RecursiveFunction extends RecursiveUnit {
       for (var e in child) {
         output.addAll(e.toByteCode());
       }
-      if(funcEnum.hasMultipleArgument){
+      if (funcEnum.hasMultipleArgument) {
         return [...output, "${body.data} ${child.length}"];
       }
       return [...output, body.data];
@@ -176,8 +184,14 @@ class RecursiveData extends RecursiveUnit {
 
   @override
   List<String> toByteCode() {
-    if(body.data.isEmpty) return [];
-    if(body.type.isString){
+    if (body.data.isEmpty) return [];
+    if (body.type.isString) {
+      if (body.data == "break") {
+        return ["break"];
+      }
+      if (body.data == "continue") {
+        return ["continue"];
+      }
       return ["push \"${body.data}\""];
     }
     return ["push ${body.data}"];

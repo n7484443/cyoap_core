@@ -21,6 +21,8 @@ class LexicalAnalyser {
           tokenAdded.dataString = 'in';
         } else if (tokenAdded.dataString == 'break') {
           tokenAdded.type = AnalyserConst.keywordBreak;
+        } else if (tokenAdded.dataString == 'continue') {
+          tokenAdded.type = AnalyserConst.keywordContinue;
         } else if (tokenAdded.type == AnalyserConst.unspecified) {
           if(tokenAdded.dataString.contains("..")){
             var split = tokenAdded.dataString.split("..");

@@ -47,4 +47,6 @@ enum AnalyserConst {
   functionFor,
   ///break
   keywordBreak,
+  ///break
+  keywordContinue,
 }

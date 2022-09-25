@@ -1,5 +1,3 @@
-import 'package:cyoap_core/variable_db.dart';
-
 import 'lexical_analyser.dart';
 import 'recursive_parser.dart';
 import 'semantic_analyser.dart';
@@ -84,7 +82,6 @@ class Analyser {
       List<ValueType> stack = [];
       for(int line = 0; line < unitList.length; line++){
         var code = unitList[line];
-        print("$line $code $stack ${VariableDataBase().varMapLocal}");
         var spaceIndex = code.indexOf(" ");
         spaceIndex = spaceIndex == -1 ? code.length : spaceIndex;
         var opCode = code.substring(0, spaceIndex);

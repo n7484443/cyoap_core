@@ -11,7 +11,6 @@ void main(){
       for_test_0 += i
     }
     """;
-    print(Analyser().analyseMultiLine(strTest));
     Analyser().run(Analyser().analyseMultiLine(strTest));
     expect(ins.getValueType('for_test_0')?.dataUnzip, 45);
   });
@@ -22,12 +21,25 @@ void main(){
     for(i in 0..10){
       for_break_test_0 += i
       if(i == 5){
-        break;
+        break
       }
     }
     """;
-    print(Analyser().toTokenList(strTest));
     Analyser().run(Analyser().analyseMultiLine(strTest));
     expect(ins.getValueType('for_break_test_0')?.dataUnzip, 15);
+  });
+  test('forContinueTest', () {
+    var ins = VariableDataBase();
+    String strTest = """
+    var for_continue_test_0 = 0
+    for(i in 0..10){
+      if(i == 5){
+        continue
+      }
+      for_continue_test_0 += i
+    }
+    """;
+    Analyser().run(Analyser().analyseMultiLine(strTest));
+    expect(ins.getValueType('for_continue_test_0')?.dataUnzip, 40);
   });
 }
