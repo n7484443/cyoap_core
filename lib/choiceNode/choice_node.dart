@@ -31,7 +31,7 @@ class ChoiceNodeDesign with _$ChoiceNodeDesign {
   factory ChoiceNodeDesign({
     @Default(true) bool isCard,
     @Default(true) bool isRound,
-    @Default(true) bool isOccupySpace,
+    @Default(false) bool isOccupySpace,
     @Default(false) bool maximizingImage, //true: 80%, false: 50%
     @Default(false) bool hideTitle,
     @Default(false) bool hideAsResult,
