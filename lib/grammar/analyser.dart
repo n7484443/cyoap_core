@@ -46,7 +46,6 @@ class Analyser {
       tokenList.add(Token(AnalyserConst.lineEnd));
     }
     tokenList = lexicalAnalyser.changeToFunction(tokenList);
-    print(tokenList);
     return tokenList;
   }
 
