@@ -42,6 +42,9 @@ class Analyser {
         if(out.isNotEmpty && out.first.type == AnalyserConst.functionIf){
           continue;
         }
+        if(out.isNotEmpty && out.first.type == AnalyserConst.functionFor){
+          continue;
+        }
       }
       tokenList.add(Token(AnalyserConst.lineEnd));
     }

@@ -3,7 +3,7 @@ import 'package:cyoap_core/variable_db.dart';
 import 'package:test/test.dart';
 
 void main(){
-  test('forTest', () {
+  test('forTest0', () {
     var ins = VariableDataBase();
     String strTest = """
     var for_test_0 = 0
@@ -13,6 +13,18 @@ void main(){
     """;
     Analyser().run(Analyser().analyseMultiLine(strTest));
     expect(ins.getValueType('for_test_0')?.dataUnzip, 45);
+  });
+  test('forTest1', () {
+    var ins = VariableDataBase();
+    String strTest = """
+    var for_test_1 = 0
+    for(i in 0..10)
+    {
+      for_test_1 += i
+    }
+    """;
+    Analyser().run(Analyser().analyseMultiLine(strTest));
+    expect(ins.getValueType('for_test_1')?.dataUnzip, 45);
   });
   test('forBreakTest', () {
     var ins = VariableDataBase();
