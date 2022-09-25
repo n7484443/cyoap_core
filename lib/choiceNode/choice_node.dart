@@ -241,10 +241,6 @@ class ChoiceNode extends GenerableParserAndPosition {
   String get errorName => "${pos.data.toString()} $title";
 
   @override
-  bool get isHide =>
-      !choiceNodeDesign.isOccupySpace && selectableStatus.isHide();
-
-  @override
   bool checkParentClickable({bool first = false}) {
     if (!selectableStatus.isOpen()) {
       return false;
