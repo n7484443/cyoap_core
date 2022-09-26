@@ -133,12 +133,12 @@ class RecursiveFunction extends RecursiveUnit {
       var loopData = [];
       for (int i = 0; i < loopCode.length; i++) {
         if (loopCode[i] == 'continue') {
-          loopData.add('goto ${loopCode.length - i}');
-        }
-        if (loopCode[i] == 'break') {
+          loopData.add('goto ${loopCode.length - i - 1}');
+        }else if (loopCode[i] == 'break') {
           loopData.add('goto ${loopCode.length - i + update.length + 1}');
+        }else{
+          loopData.add(loopCode[i]);
         }
-        loopData.add(loopCode[i]);
       }
       List<String> output = [
         ...setup,
