@@ -14,6 +14,7 @@ class SemanticAnalyser {
   ///-1:block end
   void abstractSyntaxTreeAnalyse(RecursiveUnit mother, List<Token> tokens) {
     List<RecursiveUnit> stack = [mother];
+    print(tokens);
     for (var pos = 0; pos < tokens.length; pos++) {
       var token = tokens[pos];
       switch (token.type) {
