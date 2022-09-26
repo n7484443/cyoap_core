@@ -67,7 +67,7 @@ class RecursiveFunction extends RecursiveUnit {
       var ifCode = child[1].toByteCode();
       List<String> output = [
         ...condition,
-        "if_goto ${ifCode.length + 1}",
+        "if_goto ${ifCode.length}",
         ...ifCode,
       ];
       if (child.length == 3) {
