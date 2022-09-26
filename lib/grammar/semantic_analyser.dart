@@ -1,3 +1,5 @@
+import 'package:cyoap_core/option.dart';
+
 import 'analyser_const.dart';
 import 'recursive_parser.dart';
 import 'token.dart';
@@ -14,7 +16,9 @@ class SemanticAnalyser {
   ///-1:block end
   void abstractSyntaxTreeAnalyse(RecursiveUnit mother, List<Token> tokens) {
     List<RecursiveUnit> stack = [mother];
-    print(tokens);
+    if(Option().isDebugMode){
+      print(tokens);
+    }
     for (var pos = 0; pos < tokens.length; pos++) {
       var token = tokens[pos];
       switch (token.type) {

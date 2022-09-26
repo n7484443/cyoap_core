@@ -12,4 +12,6 @@ class Option {
     }
     return convertToWebpFunction!(name);
   }
+
+  bool isDebugMode = false;
 }
