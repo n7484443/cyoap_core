@@ -17,4 +17,5 @@ class Option {
   bool enableCode = false;
   bool enableToken = false;
   bool enableRecursiveStack = false;
+  bool enableRecursiveResult = false;
 }

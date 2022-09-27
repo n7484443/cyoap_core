@@ -135,6 +135,9 @@ class SemanticAnalyser {
         }
       }
     }
+    if(Option().isDebugMode && Option().enableRecursiveResult){
+      print(output);
+    }
     return output;
   }
 

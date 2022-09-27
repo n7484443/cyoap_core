@@ -65,20 +65,21 @@ class RecursiveFunction extends RecursiveUnit {
     if (body.type.isString && body.data == "if") {
       var condition = child[0].toByteCode();
       var ifCode = child[1].toByteCode();
-      List<String> output = [
-        ...condition,
-        "if_goto ${ifCode.length}",
-        ...ifCode,
-      ];
       if (child.length == 3) {
         var elseCode = child[2].toByteCode();
         return [
-          ...output,
+          ...condition,
+          "if_goto ${ifCode.length + 1}",
+          ...ifCode,
           "goto ${elseCode.length}",
           ...elseCode,
         ];
       }
-      return output;
+      return [
+        ...condition,
+        "if_goto ${ifCode.length}",
+        ...ifCode,
+      ];
     }
     if (body.type.isString && body.data == "for") {
       var variable = child[0].child[0].child[0].body.dataUnzip;
