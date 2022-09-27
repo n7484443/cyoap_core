@@ -14,4 +14,7 @@ class Option {
   }
 
   bool isDebugMode = false;
+  bool enableCode = false;
+  bool enableToken = false;
+  bool enableRecursiveStack = false;
 }

@@ -16,11 +16,14 @@ class SemanticAnalyser {
   ///-1:block end
   void abstractSyntaxTreeAnalyse(RecursiveUnit mother, List<Token> tokens) {
     List<RecursiveUnit> stack = [mother];
-    if(Option().isDebugMode){
+    if(Option().isDebugMode && Option().enableToken){
       print(tokens);
     }
     for (var pos = 0; pos < tokens.length; pos++) {
       var token = tokens[pos];
+      if(Option().isDebugMode && Option().enableRecursiveStack){
+        print("$token $stack");
+      }
       switch (token.type) {
         case AnalyserConst.functionUnspecified:
           RecursiveFunction sub =

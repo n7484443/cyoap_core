@@ -86,7 +86,7 @@ class Analyser {
       List<ValueType> stack = [];
       for(int line = 0; line < unitList.length; line++){
         var code = unitList[line];
-        if(Option().isDebugMode){
+        if(Option().isDebugMode && Option().enableCode){
           print("$line $stack $code");
         }
         var spaceIndex = code.indexOf(" ");
