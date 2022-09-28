@@ -51,4 +51,133 @@ void main(){
       'and_test_1_input_1': true,
     });
   });
+  test('and_test_2', () {
+    String strTest = """
+    var and_test_2_output_0 = and(and_test_2_input_0 == and_test_2_input_1 == true, and_test_2_input_2 == false)
+    """;
+    var code = Analyser().analyseMultiLine(strTest);
+    expectMultiple(code, {
+      'and_test_2_output_0': true,
+    }, input: {
+      'and_test_2_input_0': false,
+      'and_test_2_input_1': false,
+      'and_test_2_input_2': false,
+    });
+    expectMultiple(code, {
+      'and_test_2_output_0': false,
+    }, input: {
+      'and_test_2_input_0': false,
+      'and_test_2_input_1': true,
+      'and_test_2_input_2': false,
+    });
+    expectMultiple(code, {
+      'and_test_2_output_0': false,
+    }, input: {
+      'and_test_2_input_0': true,
+      'and_test_2_input_1': false,
+      'and_test_2_input_2': false,
+    });
+    expectMultiple(code, {
+      'and_test_2_output_0': true,
+    }, input: {
+      'and_test_2_input_0': true,
+      'and_test_2_input_1': true,
+      'and_test_2_input_2': false,
+    });
+
+
+    expectMultiple(code, {
+      'and_test_2_output_0': false,
+    }, input: {
+      'and_test_2_input_0': false,
+      'and_test_2_input_1': false,
+      'and_test_2_input_2': true,
+    });
+    expectMultiple(code, {
+      'and_test_2_output_0': false,
+    }, input: {
+      'and_test_2_input_0': false,
+      'and_test_2_input_1': true,
+      'and_test_2_input_2': true,
+    });
+    expectMultiple(code, {
+      'and_test_2_output_0': false,
+    }, input: {
+      'and_test_2_input_0': true,
+      'and_test_2_input_1': false,
+      'and_test_2_input_2': true,
+    });
+    expectMultiple(code, {
+      'and_test_2_output_0': false,
+    }, input: {
+      'and_test_2_input_0': true,
+      'and_test_2_input_1': true,
+      'and_test_2_input_2': true,
+    });
+  });
+
+  test('and_test_3', () {
+    String strTest = """
+    var and_test_3_output_0 = and(and_test_3_input_0 == (and_test_3_input_1 == true), and_test_3_input_2 == false)
+    """;
+    var code = Analyser().analyseMultiLine(strTest);
+    expectMultiple(code, {
+      'and_test_3_output_0': true,
+    }, input: {
+      'and_test_3_input_0': false,
+      'and_test_3_input_1': false,
+      'and_test_3_input_2': false,
+    });
+    expectMultiple(code, {
+      'and_test_3_output_0': false,
+    }, input: {
+      'and_test_3_input_0': false,
+      'and_test_3_input_1': true,
+      'and_test_3_input_2': false,
+    });
+    expectMultiple(code, {
+      'and_test_3_output_0': false,
+    }, input: {
+      'and_test_3_input_0': true,
+      'and_test_3_input_1': false,
+      'and_test_3_input_2': false,
+    });
+    expectMultiple(code, {
+      'and_test_3_output_0': true,
+    }, input: {
+      'and_test_3_input_0': true,
+      'and_test_3_input_1': true,
+      'and_test_3_input_2': false,
+    });
+
+
+    expectMultiple(code, {
+      'and_test_3_output_0': false,
+    }, input: {
+      'and_test_3_input_0': false,
+      'and_test_3_input_1': false,
+      'and_test_3_input_2': true,
+    });
+    expectMultiple(code, {
+      'and_test_3_output_0': false,
+    }, input: {
+      'and_test_3_input_0': false,
+      'and_test_3_input_1': true,
+      'and_test_3_input_2': true,
+    });
+    expectMultiple(code, {
+      'and_test_3_output_0': false,
+    }, input: {
+      'and_test_3_input_0': true,
+      'and_test_3_input_1': false,
+      'and_test_3_input_2': true,
+    });
+    expectMultiple(code, {
+      'and_test_3_output_0': false,
+    }, input: {
+      'and_test_3_input_0': true,
+      'and_test_3_input_1': true,
+      'and_test_3_input_2': true,
+    });
+  });
 }

@@ -80,15 +80,13 @@ class SemanticAnalyser {
           RecursiveFunction sub = RecursiveFunction(ValueType.string("bracket"));
           stack.add(sub);
           break;
+        case AnalyserConst.functionComma:
         case AnalyserConst.functionEnd:
-          while (stack.last.body.data != "bracket") {
+          do{
             var last = stack.removeLast();
             stack.last.add(last);
           }
-          break;
-        case AnalyserConst.functionComma:
-          var last = stack.removeLast();
-          stack.last.add(last);
+          while (stack.last.body.data != "bracket");
           break;
         case AnalyserConst.variableName:
           RecursiveUnit out =
