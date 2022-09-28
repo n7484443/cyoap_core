@@ -231,6 +231,6 @@ class SemanticAnalyser {
     RecursiveUnit mother =
         RecursiveFunction(const ValueType.string("returnCondition"));
     abstractSyntaxTreeAnalyse(mother, analysedData);
-    return mother;
+    return optimizeTree(mother);
   }
 }
