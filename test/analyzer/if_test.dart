@@ -3,9 +3,10 @@ import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/variable_db.dart';
 import 'package:test/test.dart';
 
+import 'analyzer_tool.dart';
+
 void main(){
   test('ifTest', () {
-    var ins = VariableDataBase();
     String strTest = """
     if(true){
       var if_test_alpha = true
@@ -16,14 +17,15 @@ void main(){
       var if_test_gamma = true
     }
     """;
-    Analyser().run(Analyser().analyseMultiLine(strTest));
-    expect(ins.getValueType('if_test_alpha')?.dataUnzip, true);
-    expect(ins.getValueType('if_test_beta')?.dataUnzip, null);
-    expect(ins.getValueType('if_test_gamma')?.dataUnzip, true);
+    var code = Analyser().analyseMultiLine(strTest);
+    expectMultiple(code, {
+      'if_test_alpha': true,
+      'if_test_beta': null,
+      'if_test_gamma': true,
+    });
   });
 
   test('ifNestedTest0', () {
-    var ins = VariableDataBase();
     String strTest = """
     if(true){
       if(true){
@@ -36,14 +38,15 @@ void main(){
       var ifNestedTest0_2 = true;
     }
     """;
-    Analyser().run(Analyser().analyseMultiLine(strTest));
-    expect(ins.getValueType('ifNestedTest0_0')?.dataUnzip, true);
-    expect(ins.getValueType('ifNestedTest0_1')?.dataUnzip, true);
-    expect(ins.getValueType('ifNestedTest0_2')?.dataUnzip, null);
+    var code = Analyser().analyseMultiLine(strTest);
+    expectMultiple(code, {
+      'ifNestedTest0_0': true,
+      'ifNestedTest0_1': true,
+      'ifNestedTest0_2': null,
+    });
   });
 
   test('ifNestedTest1', () {
-    var ins = VariableDataBase();
     String strTest = """
     if(true) 
     {
@@ -61,15 +64,16 @@ void main(){
       var ifNestedTest1_3 = true;
     }
     """;
-    Analyser().run(Analyser().analyseMultiLine(strTest));
-    expect(ins.getValueType('ifNestedTest1_0')?.dataUnzip, true);
-    expect(ins.getValueType('ifNestedTest1_1')?.dataUnzip, true);
-    expect(ins.getValueType('ifNestedTest1_2')?.dataUnzip, null);
-    expect(ins.getValueType('ifNestedTest1_3')?.dataUnzip, null);
+    var code = Analyser().analyseMultiLine(strTest);
+    expectMultiple(code, {
+      'ifNestedTest1_0': true,
+      'ifNestedTest1_1': true,
+      'ifNestedTest1_2': null,
+      'ifNestedTest1_3': null,
+    });
   });
 
   test('ifSpacedTest0', () {
-    var ins = VariableDataBase();
     String strTest = """
     if(true){
       var ifSpacedTest0_0 = true
@@ -79,9 +83,11 @@ void main(){
       var ifSpacedTest0_1 = true
     }
     """;
-    Analyser().run(Analyser().analyseMultiLine(strTest));
-    expect(ins.getValueType('ifSpacedTest0_0')?.dataUnzip, true);
-    expect(ins.getValueType('ifSpacedTest0_1')?.dataUnzip, null);
+    var code = Analyser().analyseMultiLine(strTest);
+    expectMultiple(code, {
+      'ifSpacedTest0_0': true,
+      'ifSpacedTest0_1': null,
+    });
   });
 
   test('if_elseIfTest0', () {
@@ -94,34 +100,38 @@ void main(){
       var if_elseIfTest0_1 = true
     }else{var if_elseIfTest0_2 = true}
     """;
-
+    var code = Analyser().analyseMultiLine(strTest);
 
     ins.setValue('if_elseIfTest0_input0', ValueTypeWrapper(ValueType.bool(false)), isGlobal: false);
     ins.setValue('if_elseIfTest0_input1', ValueTypeWrapper(ValueType.bool(false)), isGlobal: false);
-    Analyser().run(Analyser().analyseMultiLine(strTest));
-    expect(ins.getValueType('if_elseIfTest0_0')?.dataUnzip, null);
-    expect(ins.getValueType('if_elseIfTest0_1')?.dataUnzip, null);
-    expect(ins.getValueType('if_elseIfTest0_2')?.dataUnzip, true);
+    expectMultiple(code, {
+      'if_elseIfTest0_0': null,
+      'if_elseIfTest0_1': null,
+      'if_elseIfTest0_2': true,
+    });
 
     ins.setValue('if_elseIfTest0_input0', ValueTypeWrapper(ValueType.bool(true)), isGlobal: false);
     ins.setValue('if_elseIfTest0_input1', ValueTypeWrapper(ValueType.bool(false)), isGlobal: false);
-    Analyser().run(Analyser().analyseMultiLine(strTest));
-    expect(ins.getValueType('if_elseIfTest0_0')?.dataUnzip, true);
-    expect(ins.getValueType('if_elseIfTest0_1')?.dataUnzip, null);
-    expect(ins.getValueType('if_elseIfTest0_2')?.dataUnzip, null);
+    expectMultiple(code, {
+      'if_elseIfTest0_0': true,
+      'if_elseIfTest0_1': null,
+      'if_elseIfTest0_2': null,
+    });
 
     ins.setValue('if_elseIfTest0_input0', ValueTypeWrapper(ValueType.bool(false)), isGlobal: false);
     ins.setValue('if_elseIfTest0_input1', ValueTypeWrapper(ValueType.bool(true)), isGlobal: false);
-    Analyser().run(Analyser().analyseMultiLine(strTest));
-    expect(ins.getValueType('if_elseIfTest0_0')?.dataUnzip, null);
-    expect(ins.getValueType('if_elseIfTest0_1')?.dataUnzip, true);
-    expect(ins.getValueType('if_elseIfTest0_2')?.dataUnzip, null);
+    expectMultiple(code, {
+      'if_elseIfTest0_0': null,
+      'if_elseIfTest0_1': true,
+      'if_elseIfTest0_2': null,
+    });
 
     ins.setValue('if_elseIfTest0_input0', ValueTypeWrapper(ValueType.bool(true)), isGlobal: false);
     ins.setValue('if_elseIfTest0_input1', ValueTypeWrapper(ValueType.bool(true)), isGlobal: false);
-    Analyser().run(Analyser().analyseMultiLine(strTest));
-    expect(ins.getValueType('if_elseIfTest0_0')?.dataUnzip, true);
-    expect(ins.getValueType('if_elseIfTest0_1')?.dataUnzip, null);
-    expect(ins.getValueType('if_elseIfTest0_2')?.dataUnzip, null);
+    expectMultiple(code, {
+      'if_elseIfTest0_0': true,
+      'if_elseIfTest0_1': null,
+      'if_elseIfTest0_2': null,
+    });
   });
 }
