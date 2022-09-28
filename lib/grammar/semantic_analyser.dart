@@ -16,12 +16,12 @@ class SemanticAnalyser {
   ///-1:block end
   void abstractSyntaxTreeAnalyse(RecursiveUnit mother, List<Token> tokens) {
     List<RecursiveUnit> stack = [mother];
-    if(Option().isDebugMode && Option().enableToken){
+    if (Option().isDebugMode && Option().enableToken) {
       print(tokens);
     }
     for (var pos = 0; pos < tokens.length; pos++) {
       var token = tokens[pos];
-      if(Option().isDebugMode && Option().enableRecursiveStack){
+      if (Option().isDebugMode && Option().enableRecursiveStack) {
         print("$token $stack");
       }
       switch (token.type) {
@@ -129,13 +129,53 @@ class SemanticAnalyser {
           output = replace;
           replace.parent = null;
         }
-      } else {
-        for (var child in pointer.child) {
-          needVisit.add(child);
+        continue;
+      }
+      if (pointer.body.data == "equal" && pointer.child.length == 2) {
+        var replace = pointer.parent;
+        if (replace != null) {
+          var left = pointer.child[0];
+          var right = pointer.child[1];
+          if (left.body.type == DataType.bools || right.body.type == DataType.bools) {
+            var parentChildList = replace.child;
+            var pos = parentChildList.indexOf(pointer);
+            if(pos != -1){
+              if (left.body.data == 'true') {
+                parentChildList[pos] = right;
+                right.parent = replace;
+                needVisit.add(right);
+                continue;
+              }
+              if (left.body.data == 'false') {
+                RecursiveUnit not = RecursiveFunction(const ValueType.string("not"));
+                parentChildList[pos] = not;
+                not.add(right);
+                needVisit.add(right);
+                continue;
+              }
+              if (right.body.data == 'true') {
+                parentChildList[pos] = left;
+                left.parent = replace;
+                needVisit.add(left);
+                continue;
+              }
+              if (right.body.data == 'false') {
+                RecursiveUnit not = RecursiveFunction(const ValueType.string("not"));
+                parentChildList[pos] = not;
+                not.add(left);
+                needVisit.add(left);
+                continue;
+              }
+            }
+          }
         }
       }
+
+      for (var child in pointer.child) {
+        needVisit.add(child);
+      }
     }
-    if(Option().isDebugMode && Option().enableRecursiveResult){
+    if (Option().isDebugMode && Option().enableRecursiveResult) {
       print(output);
     }
     return output;
