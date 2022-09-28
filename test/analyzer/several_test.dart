@@ -83,22 +83,6 @@ void main() {
     expect(ins.getValueType('test_beta')?.dataUnzip, -4);
   });
 
-  test('and Test', () {
-    var andTestStr = """
-    var and_test_alpha = true
-    var and_test_beta = true
-    var and_test_1 = and(true, and_test_beta, true, true, true, true)
-    var and_test_2 = and(false, true, true, true)
-    var and_test_3 = and(true, false)
-    var and_test_4 = and(false, false)
-    """;
-    Analyser().run(Analyser().analyseMultiLine(andTestStr));
-
-    expect(ins.getValueType('and_test_1')?.dataUnzip, true);
-    expect(ins.getValueType('and_test_2')?.dataUnzip, false);
-    expect(ins.getValueType('and_test_3')?.dataUnzip, false);
-    expect(ins.getValueType('and_test_4')?.dataUnzip, false);
-  });
 
   test('multiple Test', () {
     String strTest = """

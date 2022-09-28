@@ -29,7 +29,8 @@ abstract class RecursiveUnit {
 }
 
 class RecursiveFunction extends RecursiveUnit {
-  RecursiveFunction(super.body);
+  bool functionUnspecified;
+  RecursiveFunction(super.body, {this.functionUnspecified = false});
 
   List<RecursiveUnit> childNode = List.empty(growable: true);
 

@@ -1,6 +1,4 @@
 import 'package:cyoap_core/grammar/analyser.dart';
-import 'package:cyoap_core/grammar/value_type.dart';
-import 'package:cyoap_core/variable_db.dart';
 import 'package:test/test.dart';
 
 import 'analyzer_tool.dart';
@@ -89,7 +87,7 @@ void main(){
       'ifSpacedTest0_1': null,
     });
   });
-
+  /*
   test('if_elseIfTest0', () {
     var ins = VariableDataBase();
     String strTest = """
@@ -133,5 +131,5 @@ void main(){
       'if_elseIfTest0_1': null,
       'if_elseIfTest0_2': null,
     });
-  });
+  });*/
 }
