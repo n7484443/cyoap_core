@@ -20,12 +20,13 @@ void main(){
     var optimize_bool_output_2 = optimize_bool_input_2 == true
     var optimize_bool_output_3 = optimize_bool_input_3 == false
     """;
+    var code = Analyser().analyseMultiLine(strTest);
 
     ins.setValue('optimize_bool_input_0', ValueTypeWrapper(ValueType.bool(false)), isGlobal: false);
     ins.setValue('optimize_bool_input_1', ValueTypeWrapper(ValueType.bool(false)), isGlobal: false);
     ins.setValue('optimize_bool_input_2', ValueTypeWrapper(ValueType.bool(false)), isGlobal: false);
     ins.setValue('optimize_bool_input_3', ValueTypeWrapper(ValueType.bool(false)), isGlobal: false);
-    Analyser().run(Analyser().analyseMultiLine(strTest));
+    Analyser().run(code);
     expect(ins.getValueType('optimize_bool_output_0')?.dataUnzip, false);
     expect(ins.getValueType('optimize_bool_output_1')?.dataUnzip, true);
     expect(ins.getValueType('optimize_bool_output_2')?.dataUnzip, false);
@@ -35,7 +36,7 @@ void main(){
     ins.setValue('optimize_bool_input_1', ValueTypeWrapper(ValueType.bool(true)), isGlobal: false);
     ins.setValue('optimize_bool_input_2', ValueTypeWrapper(ValueType.bool(true)), isGlobal: false);
     ins.setValue('optimize_bool_input_3', ValueTypeWrapper(ValueType.bool(true)), isGlobal: false);
-    Analyser().run(Analyser().analyseMultiLine(strTest));
+    Analyser().run(code);
     expect(ins.getValueType('optimize_bool_output_0')?.dataUnzip, true);
     expect(ins.getValueType('optimize_bool_output_1')?.dataUnzip, false);
     expect(ins.getValueType('optimize_bool_output_2')?.dataUnzip, true);
