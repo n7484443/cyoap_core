@@ -121,7 +121,7 @@ class ValueType {
 
   @override
   String toString() {
-    return "$data : $type";
+    return dataUnzip.toString();
   }
 }
 
