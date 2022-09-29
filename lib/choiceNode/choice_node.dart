@@ -4,7 +4,6 @@ import 'dart:math';
 import 'package:cyoap_core/grammar/analyser.dart';
 import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/variable_db.dart';
-import '../option.dart';
 import 'choice_line.dart';
 import 'recursive_status.dart';
 
@@ -106,7 +105,7 @@ class ChoiceNode extends GenerableParserAndPosition {
       'maximumStatus': maximumStatus,
       'title': title,
       'contentsString': contentsString,
-      'image': Option().convertToWebp(imageString),
+      'image': imageString,
       'choiceNodeMode': choiceNodeMode.name,
     });
     map.addAll(choiceNodeDesign.toJson());

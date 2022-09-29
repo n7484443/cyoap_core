@@ -207,7 +207,7 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
   _$_ChoiceNodeDesign(
       {this.isCard = true,
       this.isRound = true,
-      this.isOccupySpace = true,
+      this.isOccupySpace = false,
       this.maximizingImage = false,
       this.hideTitle = false,
       this.hideAsResult = false,

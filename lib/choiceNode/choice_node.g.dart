@@ -10,7 +10,7 @@ _$_ChoiceNodeDesign _$$_ChoiceNodeDesignFromJson(Map<String, dynamic> json) =>
     _$_ChoiceNodeDesign(
       isCard: json['isCard'] as bool? ?? true,
       isRound: json['isRound'] as bool? ?? true,
-      isOccupySpace: json['isOccupySpace'] as bool? ?? true,
+      isOccupySpace: json['isOccupySpace'] as bool? ?? false,
       maximizingImage: json['maximizingImage'] as bool? ?? false,
       hideTitle: json['hideTitle'] as bool? ?? false,
       hideAsResult: json['hideAsResult'] as bool? ?? false,

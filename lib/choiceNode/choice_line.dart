@@ -4,7 +4,6 @@ import 'package:cyoap_core/choiceNode/selectable_status.dart';
 import 'package:cyoap_core/grammar/analyser.dart';
 import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/variable_db.dart';
-import '../option.dart';
 import 'recursive_status.dart';
 import 'choice_node.dart';
 import 'generable_parser.dart';
@@ -32,7 +31,7 @@ class LineSetting extends GenerableParserAndPosition {
       'maxSelect': maxSelect,
       'alwaysVisible': alwaysVisible,
       'backgroundColor': backgroundColor,
-      'backgroundImageString': Option().convertToWebp(backgroundImageString),
+      'backgroundImageString': backgroundImageString,
       'optimizedLengthList': optimizedLengthList,
     });
     return map;

@@ -5,14 +5,6 @@ class Option {
   }
   Option._internal();
 
-  String? Function(String? name)? convertToWebpFunction;
-  String? convertToWebp(String? name){
-    if(convertToWebpFunction == null){
-      return name;
-    }
-    return convertToWebpFunction!(name);
-  }
-
   bool isDebugMode = false;
   bool enableCode = false;
   bool enableToken = false;
