@@ -63,7 +63,7 @@ class ChoiceNode extends GenerableParserAndPosition {
           choiceNodeMode != ChoiceNodeMode.onlyCode;
 
 
-  ChoiceNode(width, this.title, this.contentsString, this.imageString)
+  ChoiceNode(int width, this.title, this.contentsString, this.imageString)
       : choiceNodeDesign = ChoiceNodeDesign() {
     recursiveStatus = RecursiveStatus();
     super.width = width;
@@ -257,7 +257,7 @@ class ChoiceNode extends GenerableParserAndPosition {
       super.updateStatus();
       return;
     }
-    if (!recursiveStatus.analyseVisibleCode(errorName)) {
+    if (!recursiveStatus.analyseVisible(errorName)) {
       selectableStatus = SelectableStatus.hide;
       super.updateStatus();
       return;

@@ -35,7 +35,7 @@ class RecursiveStatus {
     executeCode = Analyser().analyseMultiLine(executeCodeString, pos: pos);
   }
 
-  bool analyseVisibleCode(String errorName) {
+  bool analyseVisible(String errorName) {
     return Analyser().run(conditionVisibleCode, pos: errorName) ?? true;
   }
 

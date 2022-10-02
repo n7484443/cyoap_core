@@ -124,7 +124,7 @@ class LineSetting extends GenerableParserAndPosition {
 
   @override
   void updateStatus(){
-    if(recursiveStatus.analyseVisibleCode(errorName)){
+    if(recursiveStatus.analyseVisible(errorName)){
       selectableStatus = SelectableStatus.open;
     }else{
       selectableStatus = SelectableStatus.hide;
