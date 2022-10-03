@@ -78,8 +78,8 @@ abstract class Choice {
 
   String get errorName => pos.toString();
 
-  bool checkParentClickable({bool first = false}) {
-    return parent?.checkParentClickable() ?? true;
+  bool checkParentClickable({bool first = true}) {
+    return parent?.checkParentClickable(first: false) ?? true;
   }
 
   void updateStatus(){

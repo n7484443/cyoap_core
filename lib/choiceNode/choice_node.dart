@@ -125,7 +125,7 @@ class ChoiceNode extends Choice {
   }
 
   void selectNode(int n, {int? seed}) {
-    if (canDisableSelect(n) || checkParentClickable(first: true)) {
+    if (canDisableSelect(n) || checkParentClickable()) {
       switch (choiceNodeMode) {
         case ChoiceNodeMode.multiSelect:
           select += n;
@@ -240,7 +240,7 @@ class ChoiceNode extends Choice {
   String get errorName => "${pos.data.toString()} $title";
 
   @override
-  bool checkParentClickable({bool first = false}) {
+  bool checkParentClickable({bool first = true}) {
     if (!selectableStatus.isOpen()) {
       return false;
     }
