@@ -1,6 +1,6 @@
 import 'package:cyoap_core/choiceNode/choice_line.dart';
 import 'package:cyoap_core/choiceNode/choice_node.dart';
-import 'package:cyoap_core/choiceNode/generable_parser.dart';
+import 'package:cyoap_core/choiceNode/choice.dart';
 import 'package:cyoap_core/choiceNode/pos.dart';
 import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/variable_db.dart';
@@ -12,7 +12,7 @@ const int nonPositioned = -1;
 
 class PlayablePlatform {
   String? stringImageName;
-  List<LineSetting> lineSettings = List.empty(growable: true);
+  List<ChoiceLine> lineSettings = List.empty(growable: true);
   Map<String, ValueTypeWrapper> globalSetting = {};
 
   PlatformDesignSetting designSetting = PlatformDesignSetting();
@@ -24,14 +24,14 @@ class PlayablePlatform {
             .map((k, v) => MapEntry(k, ValueTypeWrapper.fromJson(v))),
         designSetting = PlatformDesignSetting.fromJson(json);
 
-  GenerableParserAndPosition? getNode(Pos pos) {
+  Choice? getNode(Pos pos) {
     if (pos.length == 1) return lineSettings[pos.first];
     return getChoiceNode(pos);
   }
 
-  GenerableParserAndPosition? getGenerableParserAndPosition(Pos pos) {
+  Choice? getGenerableParserAndPosition(Pos pos) {
     if (pos.first >= lineSettings.length) return null;
-    GenerableParserAndPosition child = lineSettings[pos.first];
+    Choice child = lineSettings[pos.first];
     for (var i = 1; i < pos.length; i++) {
       if (child.children.length <= pos.data[i]) {
         return null;
@@ -47,7 +47,7 @@ class PlayablePlatform {
     return getGenerableParserAndPosition(pos) as ChoiceNode?;
   }
 
-  LineSetting? getLineSetting(int y) {
+  ChoiceLine? getLineSetting(int y) {
     if (lineSettings.length <= y) return null;
     return lineSettings[y];
   }

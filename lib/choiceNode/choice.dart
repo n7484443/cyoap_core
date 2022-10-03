@@ -2,7 +2,7 @@ import 'pos.dart';
 import 'recursive_status.dart';
 import 'selectable_status.dart';
 
-abstract class GenerableParserAndPosition {
+abstract class Choice {
   SelectableStatus selectableStatus = SelectableStatus.open;
 
   void generateParser() {
@@ -28,9 +28,9 @@ abstract class GenerableParserAndPosition {
   int currentPos = 0;
   int width = 12;
 
-  List<GenerableParserAndPosition> children = List.empty(growable: true);
+  List<Choice> children = List.empty(growable: true);
 
-  GenerableParserAndPosition? parent;
+  Choice? parent;
   late RecursiveStatus recursiveStatus;
 
   bool get isSelectableMode => true;
@@ -55,7 +55,7 @@ abstract class GenerableParserAndPosition {
     return posList.addLast(currentPos);
   }
 
-  void addChildren(GenerableParserAndPosition childNode, {int? pos}) {
+  void addChildren(Choice childNode, {int? pos}) {
     pos ??= children.length;
     childNode.parent = this;
     childNode.width = childNode.width.clamp(0, width);
@@ -65,7 +65,7 @@ abstract class GenerableParserAndPosition {
     }
   }
 
-  void removeChildren(GenerableParserAndPosition childNode) {
+  void removeChildren(Choice childNode) {
     childNode.parent = null;
     if (children.length > childNode.currentPos) {
       children.removeAt(childNode.currentPos);

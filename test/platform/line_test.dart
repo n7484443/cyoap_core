@@ -13,7 +13,7 @@ void printStatus(List<ChoiceNode> choiceNode){
 void main() {
   test('lineMaximumTest', () {
     var platform = PlayablePlatform();
-    var lineSetting = LineSetting(0)..maxSelect = 1;
+    var lineSetting = ChoiceLine(0)..maxSelect = 1;
     lineSetting.generateParser();
     platform.lineSettings.add(lineSetting);
     var choiceNode0 = ChoiceNode.empty()..title = "testNode0";
@@ -81,8 +81,8 @@ void main() {
 
   test('lineHideTest', () {
     var platform = PlayablePlatform();
-    platform.lineSettings.add(LineSetting(0));
-    var lineSetting = LineSetting(0)..recursiveStatus.conditionVisibleString = "testNode0";
+    platform.lineSettings.add(ChoiceLine(0));
+    var lineSetting = ChoiceLine(0)..recursiveStatus.conditionVisibleString = "testNode0";
     lineSetting.generateParser();
     platform.lineSettings.add(lineSetting);
     var choiceNode0 = ChoiceNode.empty()..title = "testNode0";

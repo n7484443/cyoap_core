@@ -6,20 +6,18 @@ import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/variable_db.dart';
 import 'recursive_status.dart';
 import 'choice_node.dart';
-import 'generable_parser.dart';
+import 'choice.dart';
 
-class LineSetting extends GenerableParserAndPosition {
+class ChoiceLine extends Choice {
   int maxSelect;
   bool alwaysVisible;
   int? backgroundColor;
   String? backgroundImageString;
-  List<int> optimizedLengthList;
 
-  LineSetting(int currentPos,
+  ChoiceLine(int currentPos,
       {this.alwaysVisible = true,
       this.maxSelect = -1,
-      this.backgroundImageString})
-      : optimizedLengthList = [] {
+      this.backgroundImageString}){
     super.currentPos = currentPos;
     recursiveStatus = RecursiveStatus();
   }
@@ -32,17 +30,15 @@ class LineSetting extends GenerableParserAndPosition {
       'alwaysVisible': alwaysVisible,
       'backgroundColor': backgroundColor,
       'backgroundImageString': backgroundImageString,
-      'optimizedLengthList': optimizedLengthList,
     });
     return map;
   }
 
-  LineSetting.fromJson(Map<String, dynamic> json)
+  ChoiceLine.fromJson(Map<String, dynamic> json)
       : maxSelect = json['maxSelect'] ?? -1,
         alwaysVisible = json['alwaysVisible'] ?? true,
         backgroundColor = json['backgroundColor'],
-        backgroundImageString = json['backgroundImageString'],
-        optimizedLengthList = [] {
+        backgroundImageString = json['backgroundImageString']{
     super.currentPos = json['y'] ?? json['pos'];
     if (json.containsKey('children')) {
       children = (json['children'] as List)
@@ -50,10 +46,6 @@ class LineSetting extends GenerableParserAndPosition {
           .toList();
     }
     recursiveStatus = RecursiveStatus.fromJson(json);
-    if (json.containsKey('optimizedLengthList')) {
-      optimizedLengthList =
-          (json['optimizedLengthList'] as List).map((e) => e as int).toList();
-    }
   }
 
   void addData(int x, ChoiceNode node) {

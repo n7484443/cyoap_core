@@ -10,7 +10,7 @@ void main() {
   var ins = VariableDataBase();
   test('defaultModeTest', () {
     var platform = PlayablePlatform();
-    platform.lineSettings.add(LineSetting(0));
+    platform.lineSettings.add(ChoiceLine(0));
     var choiceNode = ChoiceNode.empty()..title = "testNode";
     platform.lineSettings[0].addChildren(choiceNode);
     platform.updateStatusAll();
@@ -26,7 +26,7 @@ void main() {
 
   test('defaultModeTest_nonSelectable', () {
     var platform = PlayablePlatform();
-    platform.lineSettings.add(LineSetting(0));
+    platform.lineSettings.add(ChoiceLine(0));
     var choiceNode = ChoiceNode.empty()..title = "testNode";
     choiceNode.recursiveStatus.conditionClickableString = "false";
     platform.lineSettings[0].addChildren(choiceNode);
@@ -42,7 +42,7 @@ void main() {
   test('randomModeTest', () {
     var seed = 10;
     var platform = PlayablePlatform();
-    platform.lineSettings.add(LineSetting(0));
+    platform.lineSettings.add(ChoiceLine(0));
     var choiceNode = ChoiceNode.empty()
       ..title = "testNode"
       ..choiceNodeMode = ChoiceNodeMode.randomMode
@@ -66,7 +66,7 @@ void main() {
 
   test('multiSelectTest', () {
     var platform = PlayablePlatform();
-    platform.lineSettings.add(LineSetting(0));
+    platform.lineSettings.add(ChoiceLine(0));
     var choiceNode = ChoiceNode.empty()
       ..title = "testNode"
       ..choiceNodeMode = ChoiceNodeMode.multiSelect
@@ -105,7 +105,7 @@ void main() {
 
   test('defaultModeTest', () {
     var platform = PlayablePlatform();
-    platform.lineSettings.add(LineSetting(0));
+    platform.lineSettings.add(ChoiceLine(0));
     var choiceNode = ChoiceNode.empty()..title = "testNode"..choiceNodeMode=ChoiceNodeMode.unSelectableMode;
     platform.lineSettings[0].addChildren(choiceNode);
 

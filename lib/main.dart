@@ -44,7 +44,7 @@ external set _loadPlatform(void Function(String, List<dynamic>) f);
 void _loadPlatformInternal(String jsonPlatform, List<dynamic> jsonLine) {
   platform = PlayablePlatform.fromJson(jsonDecode(jsonPlatform));
   for (var line in jsonLine) {
-    platform.lineSettings.add(LineSetting.fromJson(jsonDecode(line as String)));
+    platform.lineSettings.add(ChoiceLine.fromJson(jsonDecode(line as String)));
   }
   platform.updateStatusAll();
 }

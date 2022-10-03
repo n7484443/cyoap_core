@@ -8,7 +8,7 @@ import 'choice_line.dart';
 import 'recursive_status.dart';
 
 import 'selectable_status.dart';
-import 'generable_parser.dart';
+import 'choice.dart';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -45,7 +45,7 @@ class ChoiceNodeDesign with _$ChoiceNodeDesign {
 
 const int defaultMaxSize = 12;
 
-class ChoiceNode extends GenerableParserAndPosition {
+class ChoiceNode extends Choice {
   ChoiceNodeDesign choiceNodeDesign;
   ChoiceNodeMode choiceNodeMode = ChoiceNodeMode.defaultMode;
 
@@ -267,7 +267,7 @@ class ChoiceNode extends GenerableParserAndPosition {
       super.updateStatus();
       return;
     }
-    if (parent is LineSetting) {
+    if (parent is ChoiceLine) {
       if (select != 0) {
         super.updateStatus();
         return;

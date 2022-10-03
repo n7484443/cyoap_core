@@ -7,7 +7,7 @@ import 'package:test/test.dart';
 void main() {
   test('nestedTest', () {
     var platform = PlayablePlatform();
-    platform.lineSettings.add(LineSetting(0));
+    platform.lineSettings.add(ChoiceLine(0));
     var parent = ChoiceNode.empty()..title = "parent";
     var child = ChoiceNode.empty()..title = "child";
     parent.addChildren(child);
@@ -39,7 +39,7 @@ void main() {
 
   test('nestedMultipleTest', () {
     var platform = PlayablePlatform();
-    platform.lineSettings.add(LineSetting(0));
+    platform.lineSettings.add(ChoiceLine(0));
     var parent = ChoiceNode.empty()
       ..title = "parent"
       ..recursiveStatus.executeCodeString = "let test = true";
