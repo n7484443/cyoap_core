@@ -7,6 +7,8 @@ import 'selectable_status.dart';
 //부모 Choice가 숨겨져 있거나 꺼져 있는 경우, 자식도 숨겨지거나 꺼진다.
 //같은 부모의 자식들은 동일 우선도로 규정하여, 앞의 Choice 가 뒤의 Choice 의 조건을 만족할 수 있고, 반대도 가능하다.
 //다른 부모의 자식들은 부모의 순서에 우선한다.
+//즉 너비 우선 탐색을 활용해야 할 듯 하다.
+//시작 전 ValueType 과 결과 ValueType을 저장해야 한다.
 
 abstract class Choice {
   SelectableStatus selectableStatus = SelectableStatus.open;
