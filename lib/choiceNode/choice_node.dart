@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:cyoap_core/grammar/analyser.dart';
 import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/variable_db.dart';
 import 'choice_line.dart';
@@ -124,6 +123,28 @@ class ChoiceNode extends Choice {
     }
   }
 
+  @override
+  bool execute() {
+    var out = false;
+    if (isExecutable()) {
+      if(!recursiveStatus.analyseClickable(errorName)){
+        selectableStatus = SelectableStatus.closed;
+        select = 0;
+        return true;
+      }
+      if(!recursiveStatus.analyseVisible(errorName)){
+        selectableStatus = SelectableStatus.hide;
+        select = 0;
+        return true;
+      }
+      recursiveStatus.execute(errorName);
+      for (var child in children) {
+        out |= child.execute();
+      }
+    }
+    return out;
+  }
+
   void selectNode(int n, {int? seed}) {
     if (canDisableSelect(n) || checkParentClickable()) {
       switch (choiceNodeMode) {
@@ -224,16 +245,6 @@ class ChoiceNode extends Choice {
   ChoiceNode clone() {
     var json = jsonDecode(jsonEncode(toJson()));
     return ChoiceNode.fromJson(json);
-  }
-
-  @override
-  void execute() {
-    if (isExecutable()) {
-      Analyser().run(recursiveStatus.executeCode, pos: errorName);
-      for (var child in children) {
-        child.execute();
-      }
-    }
   }
 
   @override

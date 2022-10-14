@@ -49,13 +49,15 @@ abstract class Choice {
     return true;
   }
 
-  void execute() {
+  bool execute() {
+    var out = false;
     if (isExecutable()) {
       recursiveStatus.execute(errorName);
       for (var child in children) {
-        child.execute();
+        out |= child.execute();
       }
     }
+    return out;
   }
 
   Pos get pos {

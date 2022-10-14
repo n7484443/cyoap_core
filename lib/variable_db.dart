@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'grammar/value_type.dart';
 
 typedef VariableChangeCallback = void Function();
@@ -14,8 +12,8 @@ class VariableDataBase {
 
   VariableDataBase._init();
 
-  var varMapGlobal = HashMap<String, ValueTypeWrapper>();
-  var varMapLocal = HashMap<String, ValueTypeWrapper>();
+  var varMapGlobal = <String, ValueTypeWrapper>{};
+  var varMapLocal = <String, ValueTypeWrapper>{};
 
   VariableChangeCallback? variableChangeCallback;
   CheckListChangeCallback? checkListChangeCallback;

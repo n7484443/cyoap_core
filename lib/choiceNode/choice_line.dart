@@ -1,7 +1,4 @@
-
-
 import 'package:cyoap_core/choiceNode/selectable_status.dart';
-import 'package:cyoap_core/grammar/analyser.dart';
 import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/variable_db.dart';
 import 'recursive_status.dart';
@@ -94,12 +91,20 @@ class ChoiceLine extends Choice {
   }
 
   @override
-  void execute() {
-    for (var node in children) {
-      node.execute();
-      if (node.isExecutable() && node.isSelectableMode) {
-        Analyser().run(recursiveStatus.executeCode, pos: errorName);
+  bool execute() {
+    Map<String, ValueTypeWrapper> db = VariableDataBase().varMapGlobal.map((key, value) => MapEntry(key, value.copyWith()));
+    while(true){
+      var out = false;
+      for (var node in children) {
+        out |= node.execute();
+        if (node.isExecutable() && node.isSelectableMode) {
+          recursiveStatus.execute(errorName);
+        }
       }
+      if(!out){
+        return false;
+      }
+      VariableDataBase().varMapGlobal = db.map((key, value) => MapEntry(key, value.copyWith()));
     }
   }
 
