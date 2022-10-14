@@ -26,4 +26,8 @@ class ChoicePage extends Choice {
 
   @override
   bool get isSelectableMode => true;
+
+  @override
+  void updateStatus() {
+  }
 }

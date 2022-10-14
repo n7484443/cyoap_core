@@ -90,9 +90,5 @@ abstract class Choice {
     return parent?.checkParentClickable(first: false) ?? true;
   }
 
-  void updateStatus(){
-    for(var child in children){
-      child.updateStatus();
-    }
-  }
+  void updateStatus();
 }

@@ -121,6 +121,11 @@ class ChoiceLine extends Choice {
     }else{
       selectableStatus = SelectableStatus.hide;
     }
-    super.updateStatus();
+    List<Choice> list = [...children];
+    while(list.isNotEmpty){
+      var check = list.removeAt(0);
+      check.updateStatus();
+      list.addAll(check.children);
+    }
   }
 }

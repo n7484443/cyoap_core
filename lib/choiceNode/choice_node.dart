@@ -254,22 +254,18 @@ class ChoiceNode extends Choice {
   void updateStatus() {
     if(select > 0 && parent!.isExecutable()){
       selectableStatus = SelectableStatus.open;
-      super.updateStatus();
       return;
     }
     if (!recursiveStatus.analyseVisible(errorName)) {
       selectableStatus = SelectableStatus.hide;
-      super.updateStatus();
       return;
     }
     selectableStatus = SelectableStatus.open;
     if (parent == null) {
-      super.updateStatus();
       return;
     }
     if (parent is ChoiceLine) {
       if (select != 0) {
-        super.updateStatus();
         return;
       }
       if (!parent!.recursiveStatus.analyseClickable(parent!.errorName) &&
@@ -285,6 +281,5 @@ class ChoiceNode extends Choice {
         selectableStatus = SelectableStatus.closed;
       }
     }
-    super.updateStatus();
   }
 }
