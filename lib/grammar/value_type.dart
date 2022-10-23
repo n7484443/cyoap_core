@@ -3,11 +3,13 @@ import 'dart:convert';
 import 'package:meta/meta.dart';
 
 enum DataType {
-  ints,
-  doubles,
-  strings,
-  bools,
-  arrays,
+  ints("int"),
+  doubles("double"),
+  strings("String"),
+  bools("bool"),
+  arrays("array");
+  final String name;
+  const DataType(this.name);
 }
 
 extension DataTypeExtension on DataType {
