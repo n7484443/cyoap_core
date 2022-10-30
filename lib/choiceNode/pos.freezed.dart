@@ -30,28 +30,31 @@ mixin _$Pos {
 /// @nodoc
 abstract class $PosCopyWith<$Res> {
   factory $PosCopyWith(Pos value, $Res Function(Pos) then) =
-      _$PosCopyWithImpl<$Res>;
+      _$PosCopyWithImpl<$Res, Pos>;
+  @useResult
   $Res call({List<int> data});
 }
 
 /// @nodoc
-class _$PosCopyWithImpl<$Res> implements $PosCopyWith<$Res> {
+class _$PosCopyWithImpl<$Res, $Val extends Pos> implements $PosCopyWith<$Res> {
   _$PosCopyWithImpl(this._value, this._then);
 
-  final Pos _value;
   // ignore: unused_field
-  final $Res Function(Pos) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = freezed,
+    Object? data = null,
   }) {
     return _then(_value.copyWith(
-      data: data == freezed
+      data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as List<int>,
-    ));
+    ) as $Val);
   }
 }
 
@@ -60,24 +63,23 @@ abstract class _$$_PosCopyWith<$Res> implements $PosCopyWith<$Res> {
   factory _$$_PosCopyWith(_$_Pos value, $Res Function(_$_Pos) then) =
       __$$_PosCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({List<int> data});
 }
 
 /// @nodoc
-class __$$_PosCopyWithImpl<$Res> extends _$PosCopyWithImpl<$Res>
+class __$$_PosCopyWithImpl<$Res> extends _$PosCopyWithImpl<$Res, _$_Pos>
     implements _$$_PosCopyWith<$Res> {
   __$$_PosCopyWithImpl(_$_Pos _value, $Res Function(_$_Pos) _then)
-      : super(_value, (v) => _then(v as _$_Pos));
+      : super(_value, _then);
 
-  @override
-  _$_Pos get _value => super._value as _$_Pos;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? data = freezed,
+    Object? data = null,
   }) {
     return _then(_$_Pos(
-      data: data == freezed
+      data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
               as List<int>,
@@ -122,6 +124,7 @@ class _$_Pos extends _Pos {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_PosCopyWith<_$_Pos> get copyWith =>
       __$$_PosCopyWithImpl<_$_Pos>(this, _$identity);
 

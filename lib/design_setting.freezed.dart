@@ -30,6 +30,7 @@ mixin _$PlatformDesignSetting {
   int get colorNode => throw _privateConstructorUsedError;
   int get colorOutline => throw _privateConstructorUsedError;
   int get colorTitle => throw _privateConstructorUsedError;
+  String? get backgroundImage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +42,8 @@ mixin _$PlatformDesignSetting {
 abstract class $PlatformDesignSettingCopyWith<$Res> {
   factory $PlatformDesignSettingCopyWith(PlatformDesignSetting value,
           $Res Function(PlatformDesignSetting) then) =
-      _$PlatformDesignSettingCopyWithImpl<$Res>;
+      _$PlatformDesignSettingCopyWithImpl<$Res, PlatformDesignSetting>;
+  @useResult
   $Res call(
       {bool titlePosition,
       bool titleOutline,
@@ -51,68 +53,77 @@ abstract class $PlatformDesignSettingCopyWith<$Res> {
       int colorBackground,
       int colorNode,
       int colorOutline,
-      int colorTitle});
+      int colorTitle,
+      String? backgroundImage});
 }
 
 /// @nodoc
-class _$PlatformDesignSettingCopyWithImpl<$Res>
+class _$PlatformDesignSettingCopyWithImpl<$Res,
+        $Val extends PlatformDesignSetting>
     implements $PlatformDesignSettingCopyWith<$Res> {
   _$PlatformDesignSettingCopyWithImpl(this._value, this._then);
 
-  final PlatformDesignSetting _value;
   // ignore: unused_field
-  final $Res Function(PlatformDesignSetting) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? titlePosition = freezed,
-    Object? titleOutline = freezed,
-    Object? titleFont = freezed,
-    Object? mainFont = freezed,
-    Object? variableFont = freezed,
-    Object? colorBackground = freezed,
-    Object? colorNode = freezed,
-    Object? colorOutline = freezed,
-    Object? colorTitle = freezed,
+    Object? titlePosition = null,
+    Object? titleOutline = null,
+    Object? titleFont = null,
+    Object? mainFont = null,
+    Object? variableFont = null,
+    Object? colorBackground = null,
+    Object? colorNode = null,
+    Object? colorOutline = null,
+    Object? colorTitle = null,
+    Object? backgroundImage = freezed,
   }) {
     return _then(_value.copyWith(
-      titlePosition: titlePosition == freezed
+      titlePosition: null == titlePosition
           ? _value.titlePosition
           : titlePosition // ignore: cast_nullable_to_non_nullable
               as bool,
-      titleOutline: titleOutline == freezed
+      titleOutline: null == titleOutline
           ? _value.titleOutline
           : titleOutline // ignore: cast_nullable_to_non_nullable
               as bool,
-      titleFont: titleFont == freezed
+      titleFont: null == titleFont
           ? _value.titleFont
           : titleFont // ignore: cast_nullable_to_non_nullable
               as String,
-      mainFont: mainFont == freezed
+      mainFont: null == mainFont
           ? _value.mainFont
           : mainFont // ignore: cast_nullable_to_non_nullable
               as String,
-      variableFont: variableFont == freezed
+      variableFont: null == variableFont
           ? _value.variableFont
           : variableFont // ignore: cast_nullable_to_non_nullable
               as String,
-      colorBackground: colorBackground == freezed
+      colorBackground: null == colorBackground
           ? _value.colorBackground
           : colorBackground // ignore: cast_nullable_to_non_nullable
               as int,
-      colorNode: colorNode == freezed
+      colorNode: null == colorNode
           ? _value.colorNode
           : colorNode // ignore: cast_nullable_to_non_nullable
               as int,
-      colorOutline: colorOutline == freezed
+      colorOutline: null == colorOutline
           ? _value.colorOutline
           : colorOutline // ignore: cast_nullable_to_non_nullable
               as int,
-      colorTitle: colorTitle == freezed
+      colorTitle: null == colorTitle
           ? _value.colorTitle
           : colorTitle // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+      backgroundImage: freezed == backgroundImage
+          ? _value.backgroundImage
+          : backgroundImage // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
   }
 }
 
@@ -123,6 +134,7 @@ abstract class _$$_PlatformDesignSettingCopyWith<$Res>
           $Res Function(_$_PlatformDesignSetting) then) =
       __$$_PlatformDesignSettingCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {bool titlePosition,
       bool titleOutline,
@@ -132,70 +144,73 @@ abstract class _$$_PlatformDesignSettingCopyWith<$Res>
       int colorBackground,
       int colorNode,
       int colorOutline,
-      int colorTitle});
+      int colorTitle,
+      String? backgroundImage});
 }
 
 /// @nodoc
 class __$$_PlatformDesignSettingCopyWithImpl<$Res>
-    extends _$PlatformDesignSettingCopyWithImpl<$Res>
+    extends _$PlatformDesignSettingCopyWithImpl<$Res, _$_PlatformDesignSetting>
     implements _$$_PlatformDesignSettingCopyWith<$Res> {
   __$$_PlatformDesignSettingCopyWithImpl(_$_PlatformDesignSetting _value,
       $Res Function(_$_PlatformDesignSetting) _then)
-      : super(_value, (v) => _then(v as _$_PlatformDesignSetting));
+      : super(_value, _then);
 
-  @override
-  _$_PlatformDesignSetting get _value =>
-      super._value as _$_PlatformDesignSetting;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? titlePosition = freezed,
-    Object? titleOutline = freezed,
-    Object? titleFont = freezed,
-    Object? mainFont = freezed,
-    Object? variableFont = freezed,
-    Object? colorBackground = freezed,
-    Object? colorNode = freezed,
-    Object? colorOutline = freezed,
-    Object? colorTitle = freezed,
+    Object? titlePosition = null,
+    Object? titleOutline = null,
+    Object? titleFont = null,
+    Object? mainFont = null,
+    Object? variableFont = null,
+    Object? colorBackground = null,
+    Object? colorNode = null,
+    Object? colorOutline = null,
+    Object? colorTitle = null,
+    Object? backgroundImage = freezed,
   }) {
     return _then(_$_PlatformDesignSetting(
-      titlePosition: titlePosition == freezed
+      titlePosition: null == titlePosition
           ? _value.titlePosition
           : titlePosition // ignore: cast_nullable_to_non_nullable
               as bool,
-      titleOutline: titleOutline == freezed
+      titleOutline: null == titleOutline
           ? _value.titleOutline
           : titleOutline // ignore: cast_nullable_to_non_nullable
               as bool,
-      titleFont: titleFont == freezed
+      titleFont: null == titleFont
           ? _value.titleFont
           : titleFont // ignore: cast_nullable_to_non_nullable
               as String,
-      mainFont: mainFont == freezed
+      mainFont: null == mainFont
           ? _value.mainFont
           : mainFont // ignore: cast_nullable_to_non_nullable
               as String,
-      variableFont: variableFont == freezed
+      variableFont: null == variableFont
           ? _value.variableFont
           : variableFont // ignore: cast_nullable_to_non_nullable
               as String,
-      colorBackground: colorBackground == freezed
+      colorBackground: null == colorBackground
           ? _value.colorBackground
           : colorBackground // ignore: cast_nullable_to_non_nullable
               as int,
-      colorNode: colorNode == freezed
+      colorNode: null == colorNode
           ? _value.colorNode
           : colorNode // ignore: cast_nullable_to_non_nullable
               as int,
-      colorOutline: colorOutline == freezed
+      colorOutline: null == colorOutline
           ? _value.colorOutline
           : colorOutline // ignore: cast_nullable_to_non_nullable
               as int,
-      colorTitle: colorTitle == freezed
+      colorTitle: null == colorTitle
           ? _value.colorTitle
           : colorTitle // ignore: cast_nullable_to_non_nullable
               as int,
+      backgroundImage: freezed == backgroundImage
+          ? _value.backgroundImage
+          : backgroundImage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -213,7 +228,8 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
       this.colorBackground = 0xFFFFFFFF,
       this.colorNode = 0xFFFFFFFF,
       this.colorOutline = 0xFF40C4FF,
-      this.colorTitle = 0xFF000000});
+      this.colorTitle = 0xFF000000,
+      this.backgroundImage});
 
   factory _$_PlatformDesignSetting.fromJson(Map<String, dynamic> json) =>
       _$$_PlatformDesignSettingFromJson(json);
@@ -245,10 +261,12 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
   @override
   @JsonKey()
   final int colorTitle;
+  @override
+  final String? backgroundImage;
 
   @override
   String toString() {
-    return 'PlatformDesignSetting(titlePosition: $titlePosition, titleOutline: $titleOutline, titleFont: $titleFont, mainFont: $mainFont, variableFont: $variableFont, colorBackground: $colorBackground, colorNode: $colorNode, colorOutline: $colorOutline, colorTitle: $colorTitle)';
+    return 'PlatformDesignSetting(titlePosition: $titlePosition, titleOutline: $titleOutline, titleFont: $titleFont, mainFont: $mainFont, variableFont: $variableFont, colorBackground: $colorBackground, colorNode: $colorNode, colorOutline: $colorOutline, colorTitle: $colorTitle, backgroundImage: $backgroundImage)';
   }
 
   @override
@@ -256,39 +274,46 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PlatformDesignSetting &&
-            const DeepCollectionEquality()
-                .equals(other.titlePosition, titlePosition) &&
-            const DeepCollectionEquality()
-                .equals(other.titleOutline, titleOutline) &&
-            const DeepCollectionEquality().equals(other.titleFont, titleFont) &&
-            const DeepCollectionEquality().equals(other.mainFont, mainFont) &&
-            const DeepCollectionEquality()
-                .equals(other.variableFont, variableFont) &&
-            const DeepCollectionEquality()
-                .equals(other.colorBackground, colorBackground) &&
-            const DeepCollectionEquality().equals(other.colorNode, colorNode) &&
-            const DeepCollectionEquality()
-                .equals(other.colorOutline, colorOutline) &&
-            const DeepCollectionEquality()
-                .equals(other.colorTitle, colorTitle));
+            (identical(other.titlePosition, titlePosition) ||
+                other.titlePosition == titlePosition) &&
+            (identical(other.titleOutline, titleOutline) ||
+                other.titleOutline == titleOutline) &&
+            (identical(other.titleFont, titleFont) ||
+                other.titleFont == titleFont) &&
+            (identical(other.mainFont, mainFont) ||
+                other.mainFont == mainFont) &&
+            (identical(other.variableFont, variableFont) ||
+                other.variableFont == variableFont) &&
+            (identical(other.colorBackground, colorBackground) ||
+                other.colorBackground == colorBackground) &&
+            (identical(other.colorNode, colorNode) ||
+                other.colorNode == colorNode) &&
+            (identical(other.colorOutline, colorOutline) ||
+                other.colorOutline == colorOutline) &&
+            (identical(other.colorTitle, colorTitle) ||
+                other.colorTitle == colorTitle) &&
+            (identical(other.backgroundImage, backgroundImage) ||
+                other.backgroundImage == backgroundImage));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(titlePosition),
-      const DeepCollectionEquality().hash(titleOutline),
-      const DeepCollectionEquality().hash(titleFont),
-      const DeepCollectionEquality().hash(mainFont),
-      const DeepCollectionEquality().hash(variableFont),
-      const DeepCollectionEquality().hash(colorBackground),
-      const DeepCollectionEquality().hash(colorNode),
-      const DeepCollectionEquality().hash(colorOutline),
-      const DeepCollectionEquality().hash(colorTitle));
+      titlePosition,
+      titleOutline,
+      titleFont,
+      mainFont,
+      variableFont,
+      colorBackground,
+      colorNode,
+      colorOutline,
+      colorTitle,
+      backgroundImage);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_PlatformDesignSettingCopyWith<_$_PlatformDesignSetting> get copyWith =>
       __$$_PlatformDesignSettingCopyWithImpl<_$_PlatformDesignSetting>(
           this, _$identity);
@@ -311,7 +336,8 @@ abstract class _PlatformDesignSetting implements PlatformDesignSetting {
       final int colorBackground,
       final int colorNode,
       final int colorOutline,
-      final int colorTitle}) = _$_PlatformDesignSetting;
+      final int colorTitle,
+      final String? backgroundImage}) = _$_PlatformDesignSetting;
 
   factory _PlatformDesignSetting.fromJson(Map<String, dynamic> json) =
       _$_PlatformDesignSetting.fromJson;
@@ -334,6 +360,8 @@ abstract class _PlatformDesignSetting implements PlatformDesignSetting {
   int get colorOutline;
   @override
   int get colorTitle;
+  @override
+  String? get backgroundImage;
   @override
   @JsonKey(ignore: true)
   _$$_PlatformDesignSettingCopyWith<_$_PlatformDesignSetting> get copyWith =>

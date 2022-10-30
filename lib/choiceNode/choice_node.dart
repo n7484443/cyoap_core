@@ -194,9 +194,6 @@ class ChoiceNode extends Choice {
     VariableDataBase().setValue(titleWhitespaceRemoved,
         ValueTypeWrapper(ValueType.bool(isExecutable())),
         isGlobal: true);
-    if(Option().isDebugMode && Option().enableSelectLog){
-      print("$errorName ${isExecutable()}");
-    }
     if (choiceNodeMode == ChoiceNodeMode.randomMode) {
       VariableDataBase().setValue('$titleWhitespaceRemoved:random',
           ValueTypeWrapper(ValueType.int(random)),

@@ -42,7 +42,8 @@ mixin _$ChoiceNodeDesign {
 abstract class $ChoiceNodeDesignCopyWith<$Res> {
   factory $ChoiceNodeDesignCopyWith(
           ChoiceNodeDesign value, $Res Function(ChoiceNodeDesign) then) =
-      _$ChoiceNodeDesignCopyWithImpl<$Res>;
+      _$ChoiceNodeDesignCopyWithImpl<$Res, ChoiceNodeDesign>;
+  @useResult
   $Res call(
       {bool isCard,
       bool isRound,
@@ -56,64 +57,66 @@ abstract class $ChoiceNodeDesignCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ChoiceNodeDesignCopyWithImpl<$Res>
+class _$ChoiceNodeDesignCopyWithImpl<$Res, $Val extends ChoiceNodeDesign>
     implements $ChoiceNodeDesignCopyWith<$Res> {
   _$ChoiceNodeDesignCopyWithImpl(this._value, this._then);
 
-  final ChoiceNodeDesign _value;
   // ignore: unused_field
-  final $Res Function(ChoiceNodeDesign) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isCard = freezed,
-    Object? isRound = freezed,
-    Object? isOccupySpace = freezed,
-    Object? maximizingImage = freezed,
-    Object? hideTitle = freezed,
-    Object? hideAsResult = freezed,
-    Object? imagePosition = freezed,
+    Object? isCard = null,
+    Object? isRound = null,
+    Object? isOccupySpace = null,
+    Object? maximizingImage = null,
+    Object? hideTitle = null,
+    Object? hideAsResult = null,
+    Object? imagePosition = null,
     Object? colorNode = freezed,
     Object? colorSelectNode = freezed,
   }) {
     return _then(_value.copyWith(
-      isCard: isCard == freezed
+      isCard: null == isCard
           ? _value.isCard
           : isCard // ignore: cast_nullable_to_non_nullable
               as bool,
-      isRound: isRound == freezed
+      isRound: null == isRound
           ? _value.isRound
           : isRound // ignore: cast_nullable_to_non_nullable
               as bool,
-      isOccupySpace: isOccupySpace == freezed
+      isOccupySpace: null == isOccupySpace
           ? _value.isOccupySpace
           : isOccupySpace // ignore: cast_nullable_to_non_nullable
               as bool,
-      maximizingImage: maximizingImage == freezed
+      maximizingImage: null == maximizingImage
           ? _value.maximizingImage
           : maximizingImage // ignore: cast_nullable_to_non_nullable
               as bool,
-      hideTitle: hideTitle == freezed
+      hideTitle: null == hideTitle
           ? _value.hideTitle
           : hideTitle // ignore: cast_nullable_to_non_nullable
               as bool,
-      hideAsResult: hideAsResult == freezed
+      hideAsResult: null == hideAsResult
           ? _value.hideAsResult
           : hideAsResult // ignore: cast_nullable_to_non_nullable
               as bool,
-      imagePosition: imagePosition == freezed
+      imagePosition: null == imagePosition
           ? _value.imagePosition
           : imagePosition // ignore: cast_nullable_to_non_nullable
               as int,
-      colorNode: colorNode == freezed
+      colorNode: freezed == colorNode
           ? _value.colorNode
           : colorNode // ignore: cast_nullable_to_non_nullable
               as int?,
-      colorSelectNode: colorSelectNode == freezed
+      colorSelectNode: freezed == colorSelectNode
           ? _value.colorSelectNode
           : colorSelectNode // ignore: cast_nullable_to_non_nullable
               as int?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -124,6 +127,7 @@ abstract class _$$_ChoiceNodeDesignCopyWith<$Res>
           _$_ChoiceNodeDesign value, $Res Function(_$_ChoiceNodeDesign) then) =
       __$$_ChoiceNodeDesignCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {bool isCard,
       bool isRound,
@@ -138,61 +142,59 @@ abstract class _$$_ChoiceNodeDesignCopyWith<$Res>
 
 /// @nodoc
 class __$$_ChoiceNodeDesignCopyWithImpl<$Res>
-    extends _$ChoiceNodeDesignCopyWithImpl<$Res>
+    extends _$ChoiceNodeDesignCopyWithImpl<$Res, _$_ChoiceNodeDesign>
     implements _$$_ChoiceNodeDesignCopyWith<$Res> {
   __$$_ChoiceNodeDesignCopyWithImpl(
       _$_ChoiceNodeDesign _value, $Res Function(_$_ChoiceNodeDesign) _then)
-      : super(_value, (v) => _then(v as _$_ChoiceNodeDesign));
+      : super(_value, _then);
 
-  @override
-  _$_ChoiceNodeDesign get _value => super._value as _$_ChoiceNodeDesign;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isCard = freezed,
-    Object? isRound = freezed,
-    Object? isOccupySpace = freezed,
-    Object? maximizingImage = freezed,
-    Object? hideTitle = freezed,
-    Object? hideAsResult = freezed,
-    Object? imagePosition = freezed,
+    Object? isCard = null,
+    Object? isRound = null,
+    Object? isOccupySpace = null,
+    Object? maximizingImage = null,
+    Object? hideTitle = null,
+    Object? hideAsResult = null,
+    Object? imagePosition = null,
     Object? colorNode = freezed,
     Object? colorSelectNode = freezed,
   }) {
     return _then(_$_ChoiceNodeDesign(
-      isCard: isCard == freezed
+      isCard: null == isCard
           ? _value.isCard
           : isCard // ignore: cast_nullable_to_non_nullable
               as bool,
-      isRound: isRound == freezed
+      isRound: null == isRound
           ? _value.isRound
           : isRound // ignore: cast_nullable_to_non_nullable
               as bool,
-      isOccupySpace: isOccupySpace == freezed
+      isOccupySpace: null == isOccupySpace
           ? _value.isOccupySpace
           : isOccupySpace // ignore: cast_nullable_to_non_nullable
               as bool,
-      maximizingImage: maximizingImage == freezed
+      maximizingImage: null == maximizingImage
           ? _value.maximizingImage
           : maximizingImage // ignore: cast_nullable_to_non_nullable
               as bool,
-      hideTitle: hideTitle == freezed
+      hideTitle: null == hideTitle
           ? _value.hideTitle
           : hideTitle // ignore: cast_nullable_to_non_nullable
               as bool,
-      hideAsResult: hideAsResult == freezed
+      hideAsResult: null == hideAsResult
           ? _value.hideAsResult
           : hideAsResult // ignore: cast_nullable_to_non_nullable
               as bool,
-      imagePosition: imagePosition == freezed
+      imagePosition: null == imagePosition
           ? _value.imagePosition
           : imagePosition // ignore: cast_nullable_to_non_nullable
               as int,
-      colorNode: colorNode == freezed
+      colorNode: freezed == colorNode
           ? _value.colorNode
           : colorNode // ignore: cast_nullable_to_non_nullable
               as int?,
-      colorSelectNode: colorSelectNode == freezed
+      colorSelectNode: freezed == colorSelectNode
           ? _value.colorSelectNode
           : colorSelectNode // ignore: cast_nullable_to_non_nullable
               as int?,
@@ -256,38 +258,41 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ChoiceNodeDesign &&
-            const DeepCollectionEquality().equals(other.isCard, isCard) &&
-            const DeepCollectionEquality().equals(other.isRound, isRound) &&
-            const DeepCollectionEquality()
-                .equals(other.isOccupySpace, isOccupySpace) &&
-            const DeepCollectionEquality()
-                .equals(other.maximizingImage, maximizingImage) &&
-            const DeepCollectionEquality().equals(other.hideTitle, hideTitle) &&
-            const DeepCollectionEquality()
-                .equals(other.hideAsResult, hideAsResult) &&
-            const DeepCollectionEquality()
-                .equals(other.imagePosition, imagePosition) &&
-            const DeepCollectionEquality().equals(other.colorNode, colorNode) &&
-            const DeepCollectionEquality()
-                .equals(other.colorSelectNode, colorSelectNode));
+            (identical(other.isCard, isCard) || other.isCard == isCard) &&
+            (identical(other.isRound, isRound) || other.isRound == isRound) &&
+            (identical(other.isOccupySpace, isOccupySpace) ||
+                other.isOccupySpace == isOccupySpace) &&
+            (identical(other.maximizingImage, maximizingImage) ||
+                other.maximizingImage == maximizingImage) &&
+            (identical(other.hideTitle, hideTitle) ||
+                other.hideTitle == hideTitle) &&
+            (identical(other.hideAsResult, hideAsResult) ||
+                other.hideAsResult == hideAsResult) &&
+            (identical(other.imagePosition, imagePosition) ||
+                other.imagePosition == imagePosition) &&
+            (identical(other.colorNode, colorNode) ||
+                other.colorNode == colorNode) &&
+            (identical(other.colorSelectNode, colorSelectNode) ||
+                other.colorSelectNode == colorSelectNode));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(isCard),
-      const DeepCollectionEquality().hash(isRound),
-      const DeepCollectionEquality().hash(isOccupySpace),
-      const DeepCollectionEquality().hash(maximizingImage),
-      const DeepCollectionEquality().hash(hideTitle),
-      const DeepCollectionEquality().hash(hideAsResult),
-      const DeepCollectionEquality().hash(imagePosition),
-      const DeepCollectionEquality().hash(colorNode),
-      const DeepCollectionEquality().hash(colorSelectNode));
+      isCard,
+      isRound,
+      isOccupySpace,
+      maximizingImage,
+      hideTitle,
+      hideAsResult,
+      imagePosition,
+      colorNode,
+      colorSelectNode);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ChoiceNodeDesignCopyWith<_$_ChoiceNodeDesign> get copyWith =>
       __$$_ChoiceNodeDesignCopyWithImpl<_$_ChoiceNodeDesign>(this, _$identity);
 

@@ -16,6 +16,7 @@ class PlatformDesignSetting with _$PlatformDesignSetting {
     @Default(0xFFFFFFFF) int colorNode,
     @Default(0xFF40C4FF) int colorOutline,
     @Default(0xFF000000) int colorTitle,
+    String? backgroundImage,
   }) = _PlatformDesignSetting;
 
   factory PlatformDesignSetting.fromJson(Map<String, dynamic> json) =>
