@@ -3,6 +3,13 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'design_setting.freezed.dart';
 part 'design_setting.g.dart';
 
+enum ImageAttribute {
+  fit,
+  fill,
+  pattern,
+  stretch,
+}
+
 @freezed
 class PlatformDesignSetting with _$PlatformDesignSetting {
   @JsonSerializable(explicitToJson: true)
@@ -17,6 +24,7 @@ class PlatformDesignSetting with _$PlatformDesignSetting {
     @Default(0xFF40C4FF) int colorOutline,
     @Default(0xFF000000) int colorTitle,
     String? backgroundImage,
+    @Default(ImageAttribute.fit) ImageAttribute backgroundAttribute,
   }) = _PlatformDesignSetting;
 
   factory PlatformDesignSetting.fromJson(Map<String, dynamic> json) =>
