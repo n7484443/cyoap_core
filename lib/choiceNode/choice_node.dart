@@ -172,7 +172,7 @@ class ChoiceNode extends Choice {
       }
     }
     if(Option().isDebugMode && Option().enableSelectLog){
-      print("$errorName $select $choiceNodeMode ${canDisableSelect(n)} ${checkParentClickable()}");
+      print("$errorName $select $selectableStatus $choiceNodeMode ${canDisableSelect(n)} ${checkParentClickable()}");
     }
   }
 
