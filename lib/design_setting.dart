@@ -4,10 +4,12 @@ part 'design_setting.freezed.dart';
 part 'design_setting.g.dart';
 
 enum ImageAttribute {
-  fit,
-  fill,
-  pattern,
-  stretch,
+  fit("맞춤"),
+  fill("채움"),
+  pattern("패턴"),
+  stretch("늘리기");
+  final String name;
+  const ImageAttribute(this.name);
 }
 
 @freezed
