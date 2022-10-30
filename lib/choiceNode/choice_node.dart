@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:cyoap_core/grammar/value_type.dart';
+import 'package:cyoap_core/option.dart';
 import 'package:cyoap_core/variable_db.dart';
 import 'choice_line.dart';
 import 'recursive_status.dart';
@@ -169,6 +170,9 @@ class ChoiceNode extends Choice {
           select = select == 1 ? 0 : 1;
           break;
       }
+    }
+    if(Option().isDebugMode && Option().enableSelectLog){
+      print("$errorName $n $choiceNodeMode ${canDisableSelect(n)} ${checkParentClickable()}");
     }
   }
 

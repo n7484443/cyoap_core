@@ -6,6 +6,7 @@ class Option {
   Option._internal();
 
   bool isDebugMode = false;
+  bool enableSelectLog = false;
   bool enableCode = false;
   bool enableToken = false;
   bool enableRecursiveStack = false;

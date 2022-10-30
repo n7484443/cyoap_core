@@ -13,7 +13,7 @@ dependencies:
   meta: any
 
 dev_dependencies:
-  freezed: 2.1.0+1
+  freezed: ^2.2.0
   build_runner: any
   json_serializable: any
   lints: ^2.0.0
