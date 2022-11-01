@@ -27,6 +27,8 @@ class PlatformDesignSetting with _$PlatformDesignSetting {
     @Default(0xFF000000) int colorTitle,
     String? backgroundImage,
     @Default(ImageAttribute.fit) ImageAttribute backgroundAttribute,
+
+    @Default(12.0) double marginVertical,
   }) = _PlatformDesignSetting;
 
   factory PlatformDesignSetting.fromJson(Map<String, dynamic> json) =>

@@ -22,6 +22,7 @@ _$_PlatformDesignSetting _$$_PlatformDesignSettingFromJson(
       backgroundAttribute: $enumDecodeNullable(
               _$ImageAttributeEnumMap, json['backgroundAttribute']) ??
           ImageAttribute.fit,
+      marginVertical: (json['marginVertical'] as num?)?.toDouble() ?? 12.0,
     );
 
 Map<String, dynamic> _$$_PlatformDesignSettingToJson(
@@ -39,6 +40,7 @@ Map<String, dynamic> _$$_PlatformDesignSettingToJson(
       'backgroundImage': instance.backgroundImage,
       'backgroundAttribute':
           _$ImageAttributeEnumMap[instance.backgroundAttribute]!,
+      'marginVertical': instance.marginVertical,
     };
 
 const _$ImageAttributeEnumMap = {

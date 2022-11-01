@@ -32,6 +32,7 @@ mixin _$PlatformDesignSetting {
   int get colorTitle => throw _privateConstructorUsedError;
   String? get backgroundImage => throw _privateConstructorUsedError;
   ImageAttribute get backgroundAttribute => throw _privateConstructorUsedError;
+  double get marginVertical => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -56,7 +57,8 @@ abstract class $PlatformDesignSettingCopyWith<$Res> {
       int colorOutline,
       int colorTitle,
       String? backgroundImage,
-      ImageAttribute backgroundAttribute});
+      ImageAttribute backgroundAttribute,
+      double marginVertical});
 }
 
 /// @nodoc
@@ -84,6 +86,7 @@ class _$PlatformDesignSettingCopyWithImpl<$Res,
     Object? colorTitle = null,
     Object? backgroundImage = freezed,
     Object? backgroundAttribute = null,
+    Object? marginVertical = null,
   }) {
     return _then(_value.copyWith(
       titlePosition: null == titlePosition
@@ -130,6 +133,10 @@ class _$PlatformDesignSettingCopyWithImpl<$Res,
           ? _value.backgroundAttribute
           : backgroundAttribute // ignore: cast_nullable_to_non_nullable
               as ImageAttribute,
+      marginVertical: null == marginVertical
+          ? _value.marginVertical
+          : marginVertical // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -153,7 +160,8 @@ abstract class _$$_PlatformDesignSettingCopyWith<$Res>
       int colorOutline,
       int colorTitle,
       String? backgroundImage,
-      ImageAttribute backgroundAttribute});
+      ImageAttribute backgroundAttribute,
+      double marginVertical});
 }
 
 /// @nodoc
@@ -178,6 +186,7 @@ class __$$_PlatformDesignSettingCopyWithImpl<$Res>
     Object? colorTitle = null,
     Object? backgroundImage = freezed,
     Object? backgroundAttribute = null,
+    Object? marginVertical = null,
   }) {
     return _then(_$_PlatformDesignSetting(
       titlePosition: null == titlePosition
@@ -224,6 +233,10 @@ class __$$_PlatformDesignSettingCopyWithImpl<$Res>
           ? _value.backgroundAttribute
           : backgroundAttribute // ignore: cast_nullable_to_non_nullable
               as ImageAttribute,
+      marginVertical: null == marginVertical
+          ? _value.marginVertical
+          : marginVertical // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -243,7 +256,8 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
       this.colorOutline = 0xFF40C4FF,
       this.colorTitle = 0xFF000000,
       this.backgroundImage,
-      this.backgroundAttribute = ImageAttribute.fit});
+      this.backgroundAttribute = ImageAttribute.fit,
+      this.marginVertical = 12.0});
 
   factory _$_PlatformDesignSetting.fromJson(Map<String, dynamic> json) =>
       _$$_PlatformDesignSettingFromJson(json);
@@ -280,10 +294,13 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
   @override
   @JsonKey()
   final ImageAttribute backgroundAttribute;
+  @override
+  @JsonKey()
+  final double marginVertical;
 
   @override
   String toString() {
-    return 'PlatformDesignSetting(titlePosition: $titlePosition, titleOutline: $titleOutline, titleFont: $titleFont, mainFont: $mainFont, variableFont: $variableFont, colorBackground: $colorBackground, colorNode: $colorNode, colorOutline: $colorOutline, colorTitle: $colorTitle, backgroundImage: $backgroundImage, backgroundAttribute: $backgroundAttribute)';
+    return 'PlatformDesignSetting(titlePosition: $titlePosition, titleOutline: $titleOutline, titleFont: $titleFont, mainFont: $mainFont, variableFont: $variableFont, colorBackground: $colorBackground, colorNode: $colorNode, colorOutline: $colorOutline, colorTitle: $colorTitle, backgroundImage: $backgroundImage, backgroundAttribute: $backgroundAttribute, marginVertical: $marginVertical)';
   }
 
   @override
@@ -312,7 +329,9 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
             (identical(other.backgroundImage, backgroundImage) ||
                 other.backgroundImage == backgroundImage) &&
             (identical(other.backgroundAttribute, backgroundAttribute) ||
-                other.backgroundAttribute == backgroundAttribute));
+                other.backgroundAttribute == backgroundAttribute) &&
+            (identical(other.marginVertical, marginVertical) ||
+                other.marginVertical == marginVertical));
   }
 
   @JsonKey(ignore: true)
@@ -329,7 +348,8 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
       colorOutline,
       colorTitle,
       backgroundImage,
-      backgroundAttribute);
+      backgroundAttribute,
+      marginVertical);
 
   @JsonKey(ignore: true)
   @override
@@ -358,7 +378,8 @@ abstract class _PlatformDesignSetting implements PlatformDesignSetting {
       final int colorOutline,
       final int colorTitle,
       final String? backgroundImage,
-      final ImageAttribute backgroundAttribute}) = _$_PlatformDesignSetting;
+      final ImageAttribute backgroundAttribute,
+      final double marginVertical}) = _$_PlatformDesignSetting;
 
   factory _PlatformDesignSetting.fromJson(Map<String, dynamic> json) =
       _$_PlatformDesignSetting.fromJson;
@@ -385,6 +406,8 @@ abstract class _PlatformDesignSetting implements PlatformDesignSetting {
   String? get backgroundImage;
   @override
   ImageAttribute get backgroundAttribute;
+  @override
+  double get marginVertical;
   @override
   @JsonKey(ignore: true)
   _$$_PlatformDesignSettingCopyWith<_$_PlatformDesignSetting> get copyWith =>
