@@ -1,6 +1,6 @@
 name: cyoap_core
-description: A sample command-line application.
-version: 1.3.0
+description: CYOAP Project's core library
+version: 1.4.0
 # homepage: https://www.example.com
 
 environment:
