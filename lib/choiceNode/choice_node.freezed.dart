@@ -28,7 +28,7 @@ mixin _$ChoiceNodeDesign {
   bool get hideTitle => throw _privateConstructorUsedError;
   bool get hideAsResult => throw _privateConstructorUsedError;
   int get imagePosition =>
-      throw _privateConstructorUsedError; //0:default, 1:left 2:right
+      throw _privateConstructorUsedError; //0:default, 1:image-right 2:image-left
   int? get colorNode => throw _privateConstructorUsedError;
   int? get colorSelectNode => throw _privateConstructorUsedError;
 
@@ -242,7 +242,7 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
   @override
   @JsonKey()
   final int imagePosition;
-//0:default, 1:left 2:right
+//0:default, 1:image-right 2:image-left
   @override
   final int? colorNode;
   @override
@@ -333,7 +333,7 @@ abstract class _ChoiceNodeDesign implements ChoiceNodeDesign {
   bool get hideAsResult;
   @override
   int get imagePosition;
-  @override //0:default, 1:left 2:right
+  @override //0:default, 1:image-right 2:image-left
   int? get colorNode;
   @override
   int? get colorSelectNode;

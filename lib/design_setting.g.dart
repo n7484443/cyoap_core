@@ -10,7 +10,6 @@ _$_PlatformDesignSetting _$$_PlatformDesignSettingFromJson(
         Map<String, dynamic> json) =>
     _$_PlatformDesignSetting(
       titlePosition: json['titlePosition'] as bool? ?? true,
-      titleOutline: json['titleOutline'] as bool? ?? true,
       titleFont: json['titleFont'] as String? ?? "notoSans",
       mainFont: json['mainFont'] as String? ?? "notoSans",
       variableFont: json['variableFont'] as String? ?? "notoSans",
@@ -29,7 +28,6 @@ Map<String, dynamic> _$$_PlatformDesignSettingToJson(
         _$_PlatformDesignSetting instance) =>
     <String, dynamic>{
       'titlePosition': instance.titlePosition,
-      'titleOutline': instance.titleOutline,
       'titleFont': instance.titleFont,
       'mainFont': instance.mainFont,
       'variableFont': instance.variableFont,

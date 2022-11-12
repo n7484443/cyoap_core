@@ -22,7 +22,6 @@ PlatformDesignSetting _$PlatformDesignSettingFromJson(
 /// @nodoc
 mixin _$PlatformDesignSetting {
   bool get titlePosition => throw _privateConstructorUsedError;
-  bool get titleOutline => throw _privateConstructorUsedError;
   String get titleFont => throw _privateConstructorUsedError;
   String get mainFont => throw _privateConstructorUsedError;
   String get variableFont => throw _privateConstructorUsedError;
@@ -48,7 +47,6 @@ abstract class $PlatformDesignSettingCopyWith<$Res> {
   @useResult
   $Res call(
       {bool titlePosition,
-      bool titleOutline,
       String titleFont,
       String mainFont,
       String variableFont,
@@ -76,7 +74,6 @@ class _$PlatformDesignSettingCopyWithImpl<$Res,
   @override
   $Res call({
     Object? titlePosition = null,
-    Object? titleOutline = null,
     Object? titleFont = null,
     Object? mainFont = null,
     Object? variableFont = null,
@@ -92,10 +89,6 @@ class _$PlatformDesignSettingCopyWithImpl<$Res,
       titlePosition: null == titlePosition
           ? _value.titlePosition
           : titlePosition // ignore: cast_nullable_to_non_nullable
-              as bool,
-      titleOutline: null == titleOutline
-          ? _value.titleOutline
-          : titleOutline // ignore: cast_nullable_to_non_nullable
               as bool,
       titleFont: null == titleFont
           ? _value.titleFont
@@ -151,7 +144,6 @@ abstract class _$$_PlatformDesignSettingCopyWith<$Res>
   @useResult
   $Res call(
       {bool titlePosition,
-      bool titleOutline,
       String titleFont,
       String mainFont,
       String variableFont,
@@ -176,7 +168,6 @@ class __$$_PlatformDesignSettingCopyWithImpl<$Res>
   @override
   $Res call({
     Object? titlePosition = null,
-    Object? titleOutline = null,
     Object? titleFont = null,
     Object? mainFont = null,
     Object? variableFont = null,
@@ -192,10 +183,6 @@ class __$$_PlatformDesignSettingCopyWithImpl<$Res>
       titlePosition: null == titlePosition
           ? _value.titlePosition
           : titlePosition // ignore: cast_nullable_to_non_nullable
-              as bool,
-      titleOutline: null == titleOutline
-          ? _value.titleOutline
-          : titleOutline // ignore: cast_nullable_to_non_nullable
               as bool,
       titleFont: null == titleFont
           ? _value.titleFont
@@ -247,7 +234,6 @@ class __$$_PlatformDesignSettingCopyWithImpl<$Res>
 class _$_PlatformDesignSetting implements _PlatformDesignSetting {
   _$_PlatformDesignSetting(
       {this.titlePosition = true,
-      this.titleOutline = true,
       this.titleFont = "notoSans",
       this.mainFont = "notoSans",
       this.variableFont = "notoSans",
@@ -265,9 +251,6 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
   @override
   @JsonKey()
   final bool titlePosition;
-  @override
-  @JsonKey()
-  final bool titleOutline;
   @override
   @JsonKey()
   final String titleFont;
@@ -300,7 +283,7 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
 
   @override
   String toString() {
-    return 'PlatformDesignSetting(titlePosition: $titlePosition, titleOutline: $titleOutline, titleFont: $titleFont, mainFont: $mainFont, variableFont: $variableFont, colorBackground: $colorBackground, colorNode: $colorNode, colorOutline: $colorOutline, colorTitle: $colorTitle, backgroundImage: $backgroundImage, backgroundAttribute: $backgroundAttribute, marginVertical: $marginVertical)';
+    return 'PlatformDesignSetting(titlePosition: $titlePosition, titleFont: $titleFont, mainFont: $mainFont, variableFont: $variableFont, colorBackground: $colorBackground, colorNode: $colorNode, colorOutline: $colorOutline, colorTitle: $colorTitle, backgroundImage: $backgroundImage, backgroundAttribute: $backgroundAttribute, marginVertical: $marginVertical)';
   }
 
   @override
@@ -310,8 +293,6 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
             other is _$_PlatformDesignSetting &&
             (identical(other.titlePosition, titlePosition) ||
                 other.titlePosition == titlePosition) &&
-            (identical(other.titleOutline, titleOutline) ||
-                other.titleOutline == titleOutline) &&
             (identical(other.titleFont, titleFont) ||
                 other.titleFont == titleFont) &&
             (identical(other.mainFont, mainFont) ||
@@ -339,7 +320,6 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
   int get hashCode => Object.hash(
       runtimeType,
       titlePosition,
-      titleOutline,
       titleFont,
       mainFont,
       variableFont,
@@ -369,7 +349,6 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
 abstract class _PlatformDesignSetting implements PlatformDesignSetting {
   factory _PlatformDesignSetting(
       {final bool titlePosition,
-      final bool titleOutline,
       final String titleFont,
       final String mainFont,
       final String variableFont,
@@ -386,8 +365,6 @@ abstract class _PlatformDesignSetting implements PlatformDesignSetting {
 
   @override
   bool get titlePosition;
-  @override
-  bool get titleOutline;
   @override
   String get titleFont;
   @override
