@@ -34,7 +34,7 @@ class ChoiceNodeDesign with _$ChoiceNodeDesign {
     @Default(false) bool maximizingImage, //true: 80%, false: 50%
     @Default(false) bool hideTitle,
     @Default(false) bool hideAsResult,
-    @Default(0) int imagePosition, //0:default, 1:left 2:right
+    @Default(0) int imagePosition, //0:default, 1:image-right 2:image-left
     int? colorNode,
     int? colorSelectNode,
   }) = _ChoiceNodeDesign;
