@@ -20,7 +20,7 @@ enum FunctionListEnum {
   and(2, hasMultipleArgument: true),
   or(2, hasMultipleArgument: true),
   not(1),
-  random(1),
+  random(1, hasSeedInput: true),
   exist(1),
   isVisible(1),
   loadVariable(1),
@@ -33,11 +33,12 @@ enum FunctionListEnum {
   none(0, hasOutput: false);
 
   const FunctionListEnum(this.argumentLength,
-      {this.hasOutput = true, this.hasMultipleArgument = false});
+      {this.hasOutput = true, this.hasMultipleArgument = false, this.hasSeedInput = false});
 
   final int argumentLength;
   final bool hasOutput;
   final bool hasMultipleArgument;
+  final bool hasSeedInput;
 
   static FunctionListEnum getFunctionListEnum(String name) {
     return FunctionListEnum.values.firstWhere((element) => element.name == name,
@@ -246,10 +247,12 @@ class Functions {
       ValueType.bool(!funcBigger(input).dataUnzip);
 
   ValueType funcRandom(List<ValueType> input) {
-    if (input[0].type.isInt) {
-      return ValueType.int(Random().nextInt(input[0].dataUnzip as int));
+    int? seed = input.length == 1 ? null : input.last.dataUnzip as int;
+
+    if (input.first.type.isInt) {
+      return ValueType.int(Random(seed).nextInt(input[0].dataUnzip as int));
     }
-    return ValueType.bool(Random().nextBool());
+    return ValueType.bool(Random(seed).nextBool());
   }
 
   ValueType funcAnd(List<ValueType> input) {

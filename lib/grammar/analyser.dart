@@ -1,3 +1,7 @@
+import 'dart:math';
+
+import 'package:cyoap_core/choiceNode/choice_node.dart';
+
 import '../option.dart';
 import 'lexical_analyser.dart';
 import 'recursive_parser.dart';
@@ -80,8 +84,9 @@ class Analyser {
     return [];
   }
 
-  bool? run(List<String> unitList, {String pos = ""}) {
+  bool? run(List<String> unitList, {String pos = "", int? seedInput}) {
     if (unitList.isEmpty) return null;
+    int seed = seedInput ?? Random().nextInt(seedMax);
     try{
       List<ValueType> stack = [];
       for(int line = 0; line < unitList.length; line++){
@@ -123,6 +128,10 @@ class Analyser {
             argumentList.add(stack.removeLast());
           }
           argumentList = argumentList.reversed.toList();
+          if(funcEnum.hasSeedInput){
+            argumentList.add(ValueType.int(seed));
+            seed += 1;
+          }
           ValueType? out = func(argumentList);
           if(out != null){
             stack.add(out);

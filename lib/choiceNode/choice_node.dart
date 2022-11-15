@@ -46,6 +46,7 @@ class ChoiceNodeDesign with _$ChoiceNodeDesign {
 
 const int defaultMaxSize = 12;
 
+const int seedMax = 1000000000;
 class ChoiceNode extends Choice {
   ChoiceNodeDesign choiceNodeDesign;
   ChoiceNodeMode choiceNodeMode = ChoiceNodeMode.defaultMode;
@@ -57,6 +58,8 @@ class ChoiceNode extends Choice {
   int maximumStatus = 0;
   int random = -1;
   int select = 0;
+
+  int seed = Random().nextInt(seedMax);
 
   @override
   bool get isSelectableMode =>
@@ -129,17 +132,17 @@ class ChoiceNode extends Choice {
   bool execute() {
     var out = false;
     if (isExecutable()) {
-      if(!recursiveStatus.analyseClickable(errorName)){
+      if(!recursiveStatus.analyseClickable(errorName, seedInput: seed)){
         selectableStatus = SelectableStatus.closed;
         select = 0;
         return true;
       }
-      if(!recursiveStatus.analyseVisible(errorName)){
+      if(!recursiveStatus.analyseVisible(errorName, seedInput: seed)){
         selectableStatus = SelectableStatus.hide;
         select = 0;
         return true;
       }
-      recursiveStatus.execute(errorName);
+      recursiveStatus.execute(errorName, seedInput: seed);
       for (var child in children) {
         out |= child.execute();
       }
@@ -171,6 +174,7 @@ class ChoiceNode extends Choice {
           select = select == 1 ? 0 : 1;
           break;
       }
+      seed = Random().nextInt(seedMax);
     }
     if(Option().isDebugMode && Option().enableSelectLog){
       print("$errorName $select $selectableStatus $choiceNodeMode ${canDisableSelect(n)} ${checkParentClickable()}");
@@ -272,7 +276,7 @@ class ChoiceNode extends Choice {
       selectableStatus = SelectableStatus.open;
       return;
     }
-    if (!recursiveStatus.analyseVisible(errorName)) {
+    if (!recursiveStatus.analyseVisible(errorName, seedInput: seed)) {
       selectableStatus = SelectableStatus.hide;
       return;
     }
@@ -284,16 +288,16 @@ class ChoiceNode extends Choice {
       if (select != 0) {
         return;
       }
-      if (!parent!.recursiveStatus.analyseClickable(parent!.errorName) &&
+      if (!parent!.recursiveStatus.analyseClickable(parent!.errorName, seedInput: seed) &&
           choiceNodeMode != ChoiceNodeMode.unSelectableMode) {
         selectableStatus = SelectableStatus.closed;
-      } else if (!recursiveStatus.analyseClickable(errorName)) {
+      } else if (!recursiveStatus.analyseClickable(errorName, seedInput: seed)) {
         selectableStatus = SelectableStatus.closed;
       }
     } else {
       if (!parent!.isExecutable()) {
         select = 0;
-      } else if (!recursiveStatus.analyseClickable(errorName)) {
+      } else if (!recursiveStatus.analyseClickable(errorName, seedInput: seed)) {
         selectableStatus = SelectableStatus.closed;
       }
     }

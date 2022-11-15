@@ -35,15 +35,15 @@ class RecursiveStatus {
     executeCode = Analyser().analyseMultiLine(executeCodeString, pos: pos);
   }
 
-  bool analyseVisible(String errorName) {
-    return Analyser().run(conditionVisibleCode, pos: errorName) ?? true;
+  bool analyseVisible(String errorName, {int? seedInput}) {
+    return Analyser().run(conditionVisibleCode, pos: errorName, seedInput: seedInput) ?? true;
   }
 
-  bool analyseClickable(String errorName) {
-    return Analyser().run(conditionClickableCode, pos: errorName) ?? true;
+  bool analyseClickable(String errorName, {int? seedInput}) {
+    return Analyser().run(conditionClickableCode, pos: errorName, seedInput: seedInput) ?? true;
   }
 
-  void execute(String errorName) {
-    Analyser().run(executeCode, pos: errorName);
+  void execute(String errorName, {int? seedInput}) {
+    Analyser().run(executeCode, pos: errorName, seedInput: seedInput);
   }
 }
