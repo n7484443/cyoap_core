@@ -77,6 +77,8 @@ class PlayablePlatform {
         (choice as ChoiceNode).doAllChild((node) {
           if (node.isExecutable() && node.isSelectableMode && !node.choiceNodeDesign.hideAsResult) {
             selectedPos.add(node.pos);
+          }else if (node.choiceNodeMode == ChoiceNodeMode.unSelectableMode && node.choiceNodeDesign.showAsResult){
+            selectedPos.add(node.pos);
           }
         });
       }
