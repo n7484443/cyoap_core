@@ -27,6 +27,7 @@ mixin _$ChoiceNodeDesign {
       throw _privateConstructorUsedError; //true: 80%, false: 50%
   bool get hideTitle => throw _privateConstructorUsedError;
   bool get hideAsResult => throw _privateConstructorUsedError;
+  bool get showAsResult => throw _privateConstructorUsedError;
   int get imagePosition =>
       throw _privateConstructorUsedError; //0:default, 1:image-right 2:image-left
   int? get colorNode => throw _privateConstructorUsedError;
@@ -51,6 +52,7 @@ abstract class $ChoiceNodeDesignCopyWith<$Res> {
       bool maximizingImage,
       bool hideTitle,
       bool hideAsResult,
+      bool showAsResult,
       int imagePosition,
       int? colorNode,
       int? colorSelectNode});
@@ -75,6 +77,7 @@ class _$ChoiceNodeDesignCopyWithImpl<$Res, $Val extends ChoiceNodeDesign>
     Object? maximizingImage = null,
     Object? hideTitle = null,
     Object? hideAsResult = null,
+    Object? showAsResult = null,
     Object? imagePosition = null,
     Object? colorNode = freezed,
     Object? colorSelectNode = freezed,
@@ -103,6 +106,10 @@ class _$ChoiceNodeDesignCopyWithImpl<$Res, $Val extends ChoiceNodeDesign>
       hideAsResult: null == hideAsResult
           ? _value.hideAsResult
           : hideAsResult // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showAsResult: null == showAsResult
+          ? _value.showAsResult
+          : showAsResult // ignore: cast_nullable_to_non_nullable
               as bool,
       imagePosition: null == imagePosition
           ? _value.imagePosition
@@ -135,6 +142,7 @@ abstract class _$$_ChoiceNodeDesignCopyWith<$Res>
       bool maximizingImage,
       bool hideTitle,
       bool hideAsResult,
+      bool showAsResult,
       int imagePosition,
       int? colorNode,
       int? colorSelectNode});
@@ -157,6 +165,7 @@ class __$$_ChoiceNodeDesignCopyWithImpl<$Res>
     Object? maximizingImage = null,
     Object? hideTitle = null,
     Object? hideAsResult = null,
+    Object? showAsResult = null,
     Object? imagePosition = null,
     Object? colorNode = freezed,
     Object? colorSelectNode = freezed,
@@ -186,6 +195,10 @@ class __$$_ChoiceNodeDesignCopyWithImpl<$Res>
           ? _value.hideAsResult
           : hideAsResult // ignore: cast_nullable_to_non_nullable
               as bool,
+      showAsResult: null == showAsResult
+          ? _value.showAsResult
+          : showAsResult // ignore: cast_nullable_to_non_nullable
+              as bool,
       imagePosition: null == imagePosition
           ? _value.imagePosition
           : imagePosition // ignore: cast_nullable_to_non_nullable
@@ -213,6 +226,7 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
       this.maximizingImage = false,
       this.hideTitle = false,
       this.hideAsResult = false,
+      this.showAsResult = false,
       this.imagePosition = 0,
       this.colorNode,
       this.colorSelectNode});
@@ -241,6 +255,9 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
   final bool hideAsResult;
   @override
   @JsonKey()
+  final bool showAsResult;
+  @override
+  @JsonKey()
   final int imagePosition;
 //0:default, 1:image-right 2:image-left
   @override
@@ -250,7 +267,7 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
 
   @override
   String toString() {
-    return 'ChoiceNodeDesign(isCard: $isCard, isRound: $isRound, isOccupySpace: $isOccupySpace, maximizingImage: $maximizingImage, hideTitle: $hideTitle, hideAsResult: $hideAsResult, imagePosition: $imagePosition, colorNode: $colorNode, colorSelectNode: $colorSelectNode)';
+    return 'ChoiceNodeDesign(isCard: $isCard, isRound: $isRound, isOccupySpace: $isOccupySpace, maximizingImage: $maximizingImage, hideTitle: $hideTitle, hideAsResult: $hideAsResult, showAsResult: $showAsResult, imagePosition: $imagePosition, colorNode: $colorNode, colorSelectNode: $colorSelectNode)';
   }
 
   @override
@@ -268,6 +285,8 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
                 other.hideTitle == hideTitle) &&
             (identical(other.hideAsResult, hideAsResult) ||
                 other.hideAsResult == hideAsResult) &&
+            (identical(other.showAsResult, showAsResult) ||
+                other.showAsResult == showAsResult) &&
             (identical(other.imagePosition, imagePosition) ||
                 other.imagePosition == imagePosition) &&
             (identical(other.colorNode, colorNode) ||
@@ -286,6 +305,7 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
       maximizingImage,
       hideTitle,
       hideAsResult,
+      showAsResult,
       imagePosition,
       colorNode,
       colorSelectNode);
@@ -312,6 +332,7 @@ abstract class _ChoiceNodeDesign implements ChoiceNodeDesign {
       final bool maximizingImage,
       final bool hideTitle,
       final bool hideAsResult,
+      final bool showAsResult,
       final int imagePosition,
       final int? colorNode,
       final int? colorSelectNode}) = _$_ChoiceNodeDesign;
@@ -331,6 +352,8 @@ abstract class _ChoiceNodeDesign implements ChoiceNodeDesign {
   bool get hideTitle;
   @override
   bool get hideAsResult;
+  @override
+  bool get showAsResult;
   @override
   int get imagePosition;
   @override //0:default, 1:image-right 2:image-left
