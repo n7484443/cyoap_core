@@ -52,7 +52,8 @@ void main() {
     expect(ins.getValueType("testNode")?.dataUnzip, false);
     expect(ins.getValueType("testNode:random")?.dataUnzip, -1);
 
-    choiceNode.selectNode(0, seed: seed);
+    choiceNode.seed = seed;
+    choiceNode.selectNode(0);
     platform.updateStatusAll();
     expect(ins.getValueType("testNode")?.dataUnzip, true);
     expect(ins.getValueType("testNode:random")?.dataUnzip,
