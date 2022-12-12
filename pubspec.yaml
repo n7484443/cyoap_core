@@ -10,6 +10,7 @@ dependencies:
   json_annotation: any
   js: any
   meta: any
+  tuple: ^2.0.0
 
 dev_dependencies:
   freezed: ^2.2.0

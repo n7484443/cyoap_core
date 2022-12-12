@@ -4,6 +4,7 @@ import 'package:cyoap_core/choiceNode/choice.dart';
 import 'package:cyoap_core/choiceNode/pos.dart';
 import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/variable_db.dart';
+import 'package:tuple/tuple.dart';
 import 'design_setting.dart';
 
 const int designSamplePosition0 = -100;
@@ -70,15 +71,15 @@ class PlayablePlatform {
     }
   }
 
-  List<Pos> get selectedPos{
-    List<Pos> selectedPos = [];
+  List<Tuple2<Pos, int>> get selectedPos{
+    List<Tuple2<Pos, int>> selectedPos = [];
     for (var line in lineSettings) {
       for (var choice in line.children) {
         (choice as ChoiceNode).doAllChild((node) {
           if (node.isExecutable() && node.isSelectableMode && !node.choiceNodeDesign.hideAsResult) {
-            selectedPos.add(node.pos);
+            selectedPos.add(Tuple2(node.pos, node.select));
           }else if (node.choiceNodeMode == ChoiceNodeMode.unSelectableMode && node.choiceNodeDesign.showAsResult){
-            selectedPos.add(node.pos);
+            selectedPos.add(Tuple2(node.pos, node.select));
           }
         });
       }

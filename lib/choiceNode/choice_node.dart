@@ -150,8 +150,8 @@ class ChoiceNode extends Choice {
     return out;
   }
 
-  void selectNode(int n) {
-    if (canDisableSelect(n) || checkParentClickable()) {
+  void selectNode(int n, {bool disableCheck = false}) {
+    if (disableCheck || (canDisableSelect(n) || checkParentClickable())) {
       switch (choiceNodeMode) {
         case ChoiceNodeMode.multiSelect:
           select += n;
