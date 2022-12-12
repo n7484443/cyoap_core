@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cyoap_core/choiceNode/choice_line.dart';
 import 'package:cyoap_core/choiceNode/choice_node.dart';
 import 'package:cyoap_core/choiceNode/choice.dart';
@@ -86,4 +88,22 @@ class PlayablePlatform {
     }
     return selectedPos;
   }
+
+  void setSelectedPosInternal(String json) {
+    var jsonDecoded = jsonDecode(json);
+    for(var data in jsonDecoded){
+      var pos = Pos(data: (data['pos'] as List).map((e) => e as int).toList());
+      var select = data['select'] as int;
+      getChoiceNode(pos)?.selectNode(select, disableCheck: true);
+    }
+    updateStatusAll();
+  }
+
+  String getSelectedPosInternal() {
+    return jsonEncode(selectedPos.map((e) => {
+      'pos' : e.item1.data,
+      'select' : e.item2
+    }).toList());
+  }
+
 }

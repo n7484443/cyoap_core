@@ -19,8 +19,8 @@ void main() {
   _getPlatformDesign = allowInterop(_getPlatformDesignInternal);
   _updatePlatform = allowInterop(_updatePlatformInternal);
 
-  _getSelectedPos = allowInterop(getSelectedPosInternal);
-  _setSelectedPos = allowInterop(setSelectedPosInternal);
+  _getSelectedPos = allowInterop(_getSelectedPosInternal);
+  _setSelectedPos = allowInterop(_setSelectedPosInternal);
 
   _lineLength = allowInterop(_lineLengthInternal);
 
@@ -198,11 +198,8 @@ String _getPlatformDesignInternal() {
 external set _getSelectedPos(String Function() f);
 
 @JS()
-String getSelectedPosInternal() {
-  return jsonEncode(platform.selectedPos.map((e) => {
-    'pos' : e.item1.data,
-    'select' : e.item2
-  }).toList());
+String _getSelectedPosInternal() {
+  return platform.getSelectedPosInternal();
 }
 
 
@@ -210,12 +207,6 @@ String getSelectedPosInternal() {
 external set _setSelectedPos(void Function(String json) f);
 
 @JS()
-void setSelectedPosInternal(String json) {
-  var jsonDecoded = jsonDecode(json);
-  for(var data in jsonDecoded){
-    var pos = Pos(data: (data['pos'] as List).map((e) => e as int).toList());
-    var select = data['select'] as int;
-    platform.getChoiceNode(pos)?.selectNode(select, disableCheck: true);
-  }
-  platform.updateStatusAll();
+void _setSelectedPosInternal(String json) {
+  platform.setSelectedPosInternal(json);
 }
