@@ -1,3 +1,4 @@
+import 'package:cyoap_core/preset/choice_node_preset.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'design_setting.freezed.dart';
@@ -21,12 +22,10 @@ class PlatformDesignSetting with _$PlatformDesignSetting {
     @Default("notoSans") String mainFont,
     @Default("notoSans") String variableFont,
     @Default(0xFFFFFFFF) int colorBackground,
-    @Default(0xFFFFFFFF) int colorNode,
-    @Default(0xFF40C4FF) int colorOutline,
     @Default(0xFF000000) int colorTitle,
     String? backgroundImage,
     @Default(ImageAttribute.fit) ImageAttribute backgroundAttribute,
-
+    @Default([]) List<ChoiceNodeDesignPreset> choiceNodePresetList,
     @Default(12.0) double marginVertical,
   }) = _PlatformDesignSetting;
 

@@ -8,28 +8,16 @@ part of 'choice_node.dart';
 
 _$_ChoiceNodeDesign _$$_ChoiceNodeDesignFromJson(Map<String, dynamic> json) =>
     _$_ChoiceNodeDesign(
-      isCard: json['isCard'] as bool? ?? true,
-      isRound: json['isRound'] as bool? ?? true,
       isOccupySpace: json['isOccupySpace'] as bool? ?? false,
-      maximizingImage: json['maximizingImage'] as bool? ?? false,
-      hideTitle: json['hideTitle'] as bool? ?? false,
       hideAsResult: json['hideAsResult'] as bool? ?? false,
       showAsResult: json['showAsResult'] as bool? ?? false,
-      imagePosition: json['imagePosition'] as int? ?? 0,
-      colorNode: json['colorNode'] as int?,
-      colorSelectNode: json['colorSelectNode'] as int?,
+      presetName: json['presetName'] as String? ?? 'default',
     );
 
 Map<String, dynamic> _$$_ChoiceNodeDesignToJson(_$_ChoiceNodeDesign instance) =>
     <String, dynamic>{
-      'isCard': instance.isCard,
-      'isRound': instance.isRound,
       'isOccupySpace': instance.isOccupySpace,
-      'maximizingImage': instance.maximizingImage,
-      'hideTitle': instance.hideTitle,
       'hideAsResult': instance.hideAsResult,
       'showAsResult': instance.showAsResult,
-      'imagePosition': instance.imagePosition,
-      'colorNode': instance.colorNode,
-      'colorSelectNode': instance.colorSelectNode,
+      'presetName': instance.presetName,
     };

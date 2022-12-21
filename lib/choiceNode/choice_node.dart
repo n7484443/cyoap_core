@@ -28,16 +28,10 @@ enum ChoiceNodeMode {
 class ChoiceNodeDesign with _$ChoiceNodeDesign {
   @JsonSerializable(explicitToJson: true)
   factory ChoiceNodeDesign({
-    @Default(true) bool isCard,
-    @Default(true) bool isRound,
     @Default(false) bool isOccupySpace,
-    @Default(false) bool maximizingImage, //true: 80%, false: 50%
-    @Default(false) bool hideTitle,
     @Default(false) bool hideAsResult,
     @Default(false) bool showAsResult,
-    @Default(0) int imagePosition, //0:default, 1:image-right 2:image-left
-    int? colorNode,
-    int? colorSelectNode,
+    @Default('default') String presetName,
   }) = _ChoiceNodeDesign;
 
   factory ChoiceNodeDesign.fromJson(Map<String, dynamic> json) =>
