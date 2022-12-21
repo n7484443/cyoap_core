@@ -21,15 +21,11 @@ PlatformDesignSetting _$PlatformDesignSettingFromJson(
 
 /// @nodoc
 mixin _$PlatformDesignSetting {
-  bool get titlePosition => throw _privateConstructorUsedError;
-  String get titleFont => throw _privateConstructorUsedError;
-  String get mainFont => throw _privateConstructorUsedError;
   String get variableFont => throw _privateConstructorUsedError;
   int get colorBackground => throw _privateConstructorUsedError;
-  int get colorTitle => throw _privateConstructorUsedError;
   String? get backgroundImage => throw _privateConstructorUsedError;
   ImageAttribute get backgroundAttribute => throw _privateConstructorUsedError;
-  List<ChoiceNodeDesignPreset> get choiceNodePresetList =>
+  Map<String, ChoiceNodeDesignPreset> get choiceNodePresetList =>
       throw _privateConstructorUsedError;
   double get marginVertical => throw _privateConstructorUsedError;
 
@@ -46,15 +42,11 @@ abstract class $PlatformDesignSettingCopyWith<$Res> {
       _$PlatformDesignSettingCopyWithImpl<$Res, PlatformDesignSetting>;
   @useResult
   $Res call(
-      {bool titlePosition,
-      String titleFont,
-      String mainFont,
-      String variableFont,
+      {String variableFont,
       int colorBackground,
-      int colorTitle,
       String? backgroundImage,
       ImageAttribute backgroundAttribute,
-      List<ChoiceNodeDesignPreset> choiceNodePresetList,
+      Map<String, ChoiceNodeDesignPreset> choiceNodePresetList,
       double marginVertical});
 }
 
@@ -72,30 +64,14 @@ class _$PlatformDesignSettingCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? titlePosition = null,
-    Object? titleFont = null,
-    Object? mainFont = null,
     Object? variableFont = null,
     Object? colorBackground = null,
-    Object? colorTitle = null,
     Object? backgroundImage = freezed,
     Object? backgroundAttribute = null,
     Object? choiceNodePresetList = null,
     Object? marginVertical = null,
   }) {
     return _then(_value.copyWith(
-      titlePosition: null == titlePosition
-          ? _value.titlePosition
-          : titlePosition // ignore: cast_nullable_to_non_nullable
-              as bool,
-      titleFont: null == titleFont
-          ? _value.titleFont
-          : titleFont // ignore: cast_nullable_to_non_nullable
-              as String,
-      mainFont: null == mainFont
-          ? _value.mainFont
-          : mainFont // ignore: cast_nullable_to_non_nullable
-              as String,
       variableFont: null == variableFont
           ? _value.variableFont
           : variableFont // ignore: cast_nullable_to_non_nullable
@@ -103,10 +79,6 @@ class _$PlatformDesignSettingCopyWithImpl<$Res,
       colorBackground: null == colorBackground
           ? _value.colorBackground
           : colorBackground // ignore: cast_nullable_to_non_nullable
-              as int,
-      colorTitle: null == colorTitle
-          ? _value.colorTitle
-          : colorTitle // ignore: cast_nullable_to_non_nullable
               as int,
       backgroundImage: freezed == backgroundImage
           ? _value.backgroundImage
@@ -119,7 +91,7 @@ class _$PlatformDesignSettingCopyWithImpl<$Res,
       choiceNodePresetList: null == choiceNodePresetList
           ? _value.choiceNodePresetList
           : choiceNodePresetList // ignore: cast_nullable_to_non_nullable
-              as List<ChoiceNodeDesignPreset>,
+              as Map<String, ChoiceNodeDesignPreset>,
       marginVertical: null == marginVertical
           ? _value.marginVertical
           : marginVertical // ignore: cast_nullable_to_non_nullable
@@ -137,15 +109,11 @@ abstract class _$$_PlatformDesignSettingCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool titlePosition,
-      String titleFont,
-      String mainFont,
-      String variableFont,
+      {String variableFont,
       int colorBackground,
-      int colorTitle,
       String? backgroundImage,
       ImageAttribute backgroundAttribute,
-      List<ChoiceNodeDesignPreset> choiceNodePresetList,
+      Map<String, ChoiceNodeDesignPreset> choiceNodePresetList,
       double marginVertical});
 }
 
@@ -160,30 +128,14 @@ class __$$_PlatformDesignSettingCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? titlePosition = null,
-    Object? titleFont = null,
-    Object? mainFont = null,
     Object? variableFont = null,
     Object? colorBackground = null,
-    Object? colorTitle = null,
     Object? backgroundImage = freezed,
     Object? backgroundAttribute = null,
     Object? choiceNodePresetList = null,
     Object? marginVertical = null,
   }) {
     return _then(_$_PlatformDesignSetting(
-      titlePosition: null == titlePosition
-          ? _value.titlePosition
-          : titlePosition // ignore: cast_nullable_to_non_nullable
-              as bool,
-      titleFont: null == titleFont
-          ? _value.titleFont
-          : titleFont // ignore: cast_nullable_to_non_nullable
-              as String,
-      mainFont: null == mainFont
-          ? _value.mainFont
-          : mainFont // ignore: cast_nullable_to_non_nullable
-              as String,
       variableFont: null == variableFont
           ? _value.variableFont
           : variableFont // ignore: cast_nullable_to_non_nullable
@@ -191,10 +143,6 @@ class __$$_PlatformDesignSettingCopyWithImpl<$Res>
       colorBackground: null == colorBackground
           ? _value.colorBackground
           : colorBackground // ignore: cast_nullable_to_non_nullable
-              as int,
-      colorTitle: null == colorTitle
-          ? _value.colorTitle
-          : colorTitle // ignore: cast_nullable_to_non_nullable
               as int,
       backgroundImage: freezed == backgroundImage
           ? _value.backgroundImage
@@ -207,7 +155,7 @@ class __$$_PlatformDesignSettingCopyWithImpl<$Res>
       choiceNodePresetList: null == choiceNodePresetList
           ? _value._choiceNodePresetList
           : choiceNodePresetList // ignore: cast_nullable_to_non_nullable
-              as List<ChoiceNodeDesignPreset>,
+              as Map<String, ChoiceNodeDesignPreset>,
       marginVertical: null == marginVertical
           ? _value.marginVertical
           : marginVertical // ignore: cast_nullable_to_non_nullable
@@ -221,15 +169,11 @@ class __$$_PlatformDesignSettingCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_PlatformDesignSetting implements _PlatformDesignSetting {
   _$_PlatformDesignSetting(
-      {this.titlePosition = true,
-      this.titleFont = "notoSans",
-      this.mainFont = "notoSans",
-      this.variableFont = "notoSans",
+      {this.variableFont = "notoSans",
       this.colorBackground = 0xFFFFFFFF,
-      this.colorTitle = 0xFF000000,
       this.backgroundImage,
       this.backgroundAttribute = ImageAttribute.fit,
-      final List<ChoiceNodeDesignPreset> choiceNodePresetList = const [],
+      final Map<String, ChoiceNodeDesignPreset> choiceNodePresetList = const {},
       this.marginVertical = 12.0})
       : _choiceNodePresetList = choiceNodePresetList;
 
@@ -238,33 +182,21 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
 
   @override
   @JsonKey()
-  final bool titlePosition;
-  @override
-  @JsonKey()
-  final String titleFont;
-  @override
-  @JsonKey()
-  final String mainFont;
-  @override
-  @JsonKey()
   final String variableFont;
   @override
   @JsonKey()
   final int colorBackground;
   @override
-  @JsonKey()
-  final int colorTitle;
-  @override
   final String? backgroundImage;
   @override
   @JsonKey()
   final ImageAttribute backgroundAttribute;
-  final List<ChoiceNodeDesignPreset> _choiceNodePresetList;
+  final Map<String, ChoiceNodeDesignPreset> _choiceNodePresetList;
   @override
   @JsonKey()
-  List<ChoiceNodeDesignPreset> get choiceNodePresetList {
+  Map<String, ChoiceNodeDesignPreset> get choiceNodePresetList {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_choiceNodePresetList);
+    return EqualUnmodifiableMapView(_choiceNodePresetList);
   }
 
   @override
@@ -273,7 +205,7 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
 
   @override
   String toString() {
-    return 'PlatformDesignSetting(titlePosition: $titlePosition, titleFont: $titleFont, mainFont: $mainFont, variableFont: $variableFont, colorBackground: $colorBackground, colorTitle: $colorTitle, backgroundImage: $backgroundImage, backgroundAttribute: $backgroundAttribute, choiceNodePresetList: $choiceNodePresetList, marginVertical: $marginVertical)';
+    return 'PlatformDesignSetting(variableFont: $variableFont, colorBackground: $colorBackground, backgroundImage: $backgroundImage, backgroundAttribute: $backgroundAttribute, choiceNodePresetList: $choiceNodePresetList, marginVertical: $marginVertical)';
   }
 
   @override
@@ -281,18 +213,10 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PlatformDesignSetting &&
-            (identical(other.titlePosition, titlePosition) ||
-                other.titlePosition == titlePosition) &&
-            (identical(other.titleFont, titleFont) ||
-                other.titleFont == titleFont) &&
-            (identical(other.mainFont, mainFont) ||
-                other.mainFont == mainFont) &&
             (identical(other.variableFont, variableFont) ||
                 other.variableFont == variableFont) &&
             (identical(other.colorBackground, colorBackground) ||
                 other.colorBackground == colorBackground) &&
-            (identical(other.colorTitle, colorTitle) ||
-                other.colorTitle == colorTitle) &&
             (identical(other.backgroundImage, backgroundImage) ||
                 other.backgroundImage == backgroundImage) &&
             (identical(other.backgroundAttribute, backgroundAttribute) ||
@@ -307,12 +231,8 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      titlePosition,
-      titleFont,
-      mainFont,
       variableFont,
       colorBackground,
-      colorTitle,
       backgroundImage,
       backgroundAttribute,
       const DeepCollectionEquality().hash(_choiceNodePresetList),
@@ -335,38 +255,26 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
 
 abstract class _PlatformDesignSetting implements PlatformDesignSetting {
   factory _PlatformDesignSetting(
-      {final bool titlePosition,
-      final String titleFont,
-      final String mainFont,
-      final String variableFont,
+      {final String variableFont,
       final int colorBackground,
-      final int colorTitle,
       final String? backgroundImage,
       final ImageAttribute backgroundAttribute,
-      final List<ChoiceNodeDesignPreset> choiceNodePresetList,
+      final Map<String, ChoiceNodeDesignPreset> choiceNodePresetList,
       final double marginVertical}) = _$_PlatformDesignSetting;
 
   factory _PlatformDesignSetting.fromJson(Map<String, dynamic> json) =
       _$_PlatformDesignSetting.fromJson;
 
   @override
-  bool get titlePosition;
-  @override
-  String get titleFont;
-  @override
-  String get mainFont;
-  @override
   String get variableFont;
   @override
   int get colorBackground;
-  @override
-  int get colorTitle;
   @override
   String? get backgroundImage;
   @override
   ImageAttribute get backgroundAttribute;
   @override
-  List<ChoiceNodeDesignPreset> get choiceNodePresetList;
+  Map<String, ChoiceNodeDesignPreset> get choiceNodePresetList;
   @override
   double get marginVertical;
   @override

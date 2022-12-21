@@ -19,9 +19,10 @@ class PlayablePlatform {
   List<ChoiceLine> lineSettings = List.empty(growable: true);
   Map<String, ValueTypeWrapper> globalSetting = {};
 
-  PlatformDesignSetting designSetting = PlatformDesignSetting(choiceNodePresetList: {
-    'default' : ChoiceNodeDesignPreset()
-  });
+  PlatformDesignSetting designSetting = PlatformDesignSetting();
+
+  Map<String, ChoiceNodeDesignPreset> get defaultPresetList =>
+      {'default': ChoiceNodeDesignPreset()};
 
   PlayablePlatform();
   PlayablePlatform.fromJson(Map<String, dynamic> json)
