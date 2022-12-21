@@ -2,6 +2,7 @@ import 'package:cyoap_core/preset/choice_node_preset.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'design_setting.freezed.dart';
+
 part 'design_setting.g.dart';
 
 enum ImageAttribute {
@@ -10,6 +11,7 @@ enum ImageAttribute {
   pattern("패턴"),
   stretch("늘리기");
   final String name;
+
   const ImageAttribute(this.name);
 }
 
@@ -21,7 +23,10 @@ class PlatformDesignSetting with _$PlatformDesignSetting {
     @Default(0xFFFFFFFF) int colorBackground,
     String? backgroundImage,
     @Default(ImageAttribute.fit) ImageAttribute backgroundAttribute,
-    @Default({}) Map<String, ChoiceNodeDesignPreset> choiceNodePresetList,
+    @Default({
+      'default' : ChoiceNodeDesignPreset(),
+    })
+    Map<String, ChoiceNodeDesignPreset> choiceNodePresetMap,
     @Default(12.0) double marginVertical,
   }) = _PlatformDesignSetting;
 

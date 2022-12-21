@@ -235,7 +235,7 @@ class __$$_ChoiceNodeDesignPresetCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
-  _$_ChoiceNodeDesignPreset(
+  const _$_ChoiceNodeDesignPreset(
       {this.titlePosition = true,
       this.isCard = true,
       this.isRound = true,
@@ -351,7 +351,7 @@ class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
 }
 
 abstract class _ChoiceNodeDesignPreset implements ChoiceNodeDesignPreset {
-  factory _ChoiceNodeDesignPreset(
+  const factory _ChoiceNodeDesignPreset(
       {final bool titlePosition,
       final bool isCard,
       final bool isRound,

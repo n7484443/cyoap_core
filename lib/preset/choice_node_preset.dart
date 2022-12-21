@@ -6,7 +6,7 @@ part 'choice_node_preset.g.dart';
 @freezed
 class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
   @JsonSerializable(explicitToJson: true)
-  factory ChoiceNodeDesignPreset({
+  const factory ChoiceNodeDesignPreset({
     @Default(true) bool titlePosition,
     @Default(true) bool isCard,
     @Default(true) bool isRound,

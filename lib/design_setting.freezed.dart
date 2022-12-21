@@ -25,7 +25,7 @@ mixin _$PlatformDesignSetting {
   int get colorBackground => throw _privateConstructorUsedError;
   String? get backgroundImage => throw _privateConstructorUsedError;
   ImageAttribute get backgroundAttribute => throw _privateConstructorUsedError;
-  Map<String, ChoiceNodeDesignPreset> get choiceNodePresetList =>
+  Map<String, ChoiceNodeDesignPreset> get choiceNodePresetMap =>
       throw _privateConstructorUsedError;
   double get marginVertical => throw _privateConstructorUsedError;
 
@@ -46,7 +46,7 @@ abstract class $PlatformDesignSettingCopyWith<$Res> {
       int colorBackground,
       String? backgroundImage,
       ImageAttribute backgroundAttribute,
-      Map<String, ChoiceNodeDesignPreset> choiceNodePresetList,
+      Map<String, ChoiceNodeDesignPreset> choiceNodePresetMap,
       double marginVertical});
 }
 
@@ -68,7 +68,7 @@ class _$PlatformDesignSettingCopyWithImpl<$Res,
     Object? colorBackground = null,
     Object? backgroundImage = freezed,
     Object? backgroundAttribute = null,
-    Object? choiceNodePresetList = null,
+    Object? choiceNodePresetMap = null,
     Object? marginVertical = null,
   }) {
     return _then(_value.copyWith(
@@ -88,9 +88,9 @@ class _$PlatformDesignSettingCopyWithImpl<$Res,
           ? _value.backgroundAttribute
           : backgroundAttribute // ignore: cast_nullable_to_non_nullable
               as ImageAttribute,
-      choiceNodePresetList: null == choiceNodePresetList
-          ? _value.choiceNodePresetList
-          : choiceNodePresetList // ignore: cast_nullable_to_non_nullable
+      choiceNodePresetMap: null == choiceNodePresetMap
+          ? _value.choiceNodePresetMap
+          : choiceNodePresetMap // ignore: cast_nullable_to_non_nullable
               as Map<String, ChoiceNodeDesignPreset>,
       marginVertical: null == marginVertical
           ? _value.marginVertical
@@ -113,7 +113,7 @@ abstract class _$$_PlatformDesignSettingCopyWith<$Res>
       int colorBackground,
       String? backgroundImage,
       ImageAttribute backgroundAttribute,
-      Map<String, ChoiceNodeDesignPreset> choiceNodePresetList,
+      Map<String, ChoiceNodeDesignPreset> choiceNodePresetMap,
       double marginVertical});
 }
 
@@ -132,7 +132,7 @@ class __$$_PlatformDesignSettingCopyWithImpl<$Res>
     Object? colorBackground = null,
     Object? backgroundImage = freezed,
     Object? backgroundAttribute = null,
-    Object? choiceNodePresetList = null,
+    Object? choiceNodePresetMap = null,
     Object? marginVertical = null,
   }) {
     return _then(_$_PlatformDesignSetting(
@@ -152,9 +152,9 @@ class __$$_PlatformDesignSettingCopyWithImpl<$Res>
           ? _value.backgroundAttribute
           : backgroundAttribute // ignore: cast_nullable_to_non_nullable
               as ImageAttribute,
-      choiceNodePresetList: null == choiceNodePresetList
-          ? _value._choiceNodePresetList
-          : choiceNodePresetList // ignore: cast_nullable_to_non_nullable
+      choiceNodePresetMap: null == choiceNodePresetMap
+          ? _value._choiceNodePresetMap
+          : choiceNodePresetMap // ignore: cast_nullable_to_non_nullable
               as Map<String, ChoiceNodeDesignPreset>,
       marginVertical: null == marginVertical
           ? _value.marginVertical
@@ -173,9 +173,11 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
       this.colorBackground = 0xFFFFFFFF,
       this.backgroundImage,
       this.backgroundAttribute = ImageAttribute.fit,
-      final Map<String, ChoiceNodeDesignPreset> choiceNodePresetList = const {},
+      final Map<String, ChoiceNodeDesignPreset> choiceNodePresetMap = const {
+        'default': ChoiceNodeDesignPreset()
+      },
       this.marginVertical = 12.0})
-      : _choiceNodePresetList = choiceNodePresetList;
+      : _choiceNodePresetMap = choiceNodePresetMap;
 
   factory _$_PlatformDesignSetting.fromJson(Map<String, dynamic> json) =>
       _$$_PlatformDesignSettingFromJson(json);
@@ -191,12 +193,12 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
   @override
   @JsonKey()
   final ImageAttribute backgroundAttribute;
-  final Map<String, ChoiceNodeDesignPreset> _choiceNodePresetList;
+  final Map<String, ChoiceNodeDesignPreset> _choiceNodePresetMap;
   @override
   @JsonKey()
-  Map<String, ChoiceNodeDesignPreset> get choiceNodePresetList {
+  Map<String, ChoiceNodeDesignPreset> get choiceNodePresetMap {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_choiceNodePresetList);
+    return EqualUnmodifiableMapView(_choiceNodePresetMap);
   }
 
   @override
@@ -205,7 +207,7 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
 
   @override
   String toString() {
-    return 'PlatformDesignSetting(variableFont: $variableFont, colorBackground: $colorBackground, backgroundImage: $backgroundImage, backgroundAttribute: $backgroundAttribute, choiceNodePresetList: $choiceNodePresetList, marginVertical: $marginVertical)';
+    return 'PlatformDesignSetting(variableFont: $variableFont, colorBackground: $colorBackground, backgroundImage: $backgroundImage, backgroundAttribute: $backgroundAttribute, choiceNodePresetMap: $choiceNodePresetMap, marginVertical: $marginVertical)';
   }
 
   @override
@@ -222,7 +224,7 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
             (identical(other.backgroundAttribute, backgroundAttribute) ||
                 other.backgroundAttribute == backgroundAttribute) &&
             const DeepCollectionEquality()
-                .equals(other._choiceNodePresetList, _choiceNodePresetList) &&
+                .equals(other._choiceNodePresetMap, _choiceNodePresetMap) &&
             (identical(other.marginVertical, marginVertical) ||
                 other.marginVertical == marginVertical));
   }
@@ -235,7 +237,7 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
       colorBackground,
       backgroundImage,
       backgroundAttribute,
-      const DeepCollectionEquality().hash(_choiceNodePresetList),
+      const DeepCollectionEquality().hash(_choiceNodePresetMap),
       marginVertical);
 
   @JsonKey(ignore: true)
@@ -259,7 +261,7 @@ abstract class _PlatformDesignSetting implements PlatformDesignSetting {
       final int colorBackground,
       final String? backgroundImage,
       final ImageAttribute backgroundAttribute,
-      final Map<String, ChoiceNodeDesignPreset> choiceNodePresetList,
+      final Map<String, ChoiceNodeDesignPreset> choiceNodePresetMap,
       final double marginVertical}) = _$_PlatformDesignSetting;
 
   factory _PlatformDesignSetting.fromJson(Map<String, dynamic> json) =
@@ -274,7 +276,7 @@ abstract class _PlatformDesignSetting implements PlatformDesignSetting {
   @override
   ImageAttribute get backgroundAttribute;
   @override
-  Map<String, ChoiceNodeDesignPreset> get choiceNodePresetList;
+  Map<String, ChoiceNodeDesignPreset> get choiceNodePresetMap;
   @override
   double get marginVertical;
   @override
