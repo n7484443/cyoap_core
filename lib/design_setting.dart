@@ -17,15 +17,11 @@ enum ImageAttribute {
 class PlatformDesignSetting with _$PlatformDesignSetting {
   @JsonSerializable(explicitToJson: true)
   factory PlatformDesignSetting({
-    @Default(true) bool titlePosition,
-    @Default("notoSans") String titleFont,
-    @Default("notoSans") String mainFont,
     @Default("notoSans") String variableFont,
     @Default(0xFFFFFFFF) int colorBackground,
-    @Default(0xFF000000) int colorTitle,
     String? backgroundImage,
     @Default(ImageAttribute.fit) ImageAttribute backgroundAttribute,
-    @Default([]) List<ChoiceNodeDesignPreset> choiceNodePresetList,
+    @Default({}) Map<String, ChoiceNodeDesignPreset> choiceNodePresetList,
     @Default(12.0) double marginVertical,
   }) = _PlatformDesignSetting;
 

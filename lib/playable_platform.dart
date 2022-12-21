@@ -5,6 +5,7 @@ import 'package:cyoap_core/choiceNode/choice_node.dart';
 import 'package:cyoap_core/choiceNode/choice.dart';
 import 'package:cyoap_core/choiceNode/pos.dart';
 import 'package:cyoap_core/grammar/value_type.dart';
+import 'package:cyoap_core/preset/choice_node_preset.dart';
 import 'package:cyoap_core/variable_db.dart';
 import 'package:tuple/tuple.dart';
 import 'design_setting.dart';
@@ -18,7 +19,9 @@ class PlayablePlatform {
   List<ChoiceLine> lineSettings = List.empty(growable: true);
   Map<String, ValueTypeWrapper> globalSetting = {};
 
-  PlatformDesignSetting designSetting = PlatformDesignSetting();
+  PlatformDesignSetting designSetting = PlatformDesignSetting(choiceNodePresetList: {
+    'default' : ChoiceNodeDesignPreset()
+  });
 
   PlayablePlatform();
   PlayablePlatform.fromJson(Map<String, dynamic> json)
