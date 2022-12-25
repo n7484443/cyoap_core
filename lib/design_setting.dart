@@ -23,10 +23,10 @@ class PlatformDesignSetting with _$PlatformDesignSetting {
     @Default(0xFFFFFFFF) int colorBackground,
     String? backgroundImage,
     @Default(ImageAttribute.fit) ImageAttribute backgroundAttribute,
-    @Default({
-      'default' : ChoiceNodeDesignPreset(),
-    })
-    Map<String, ChoiceNodeDesignPreset> choiceNodePresetMap,
+    @Default([
+      ChoiceNodeDesignPreset(name: 'default'),
+    ])
+    List<ChoiceNodeDesignPreset> choiceNodePresetList,
     @Default(12.0) double marginVertical,
   }) = _PlatformDesignSetting;
 

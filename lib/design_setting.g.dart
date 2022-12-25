@@ -15,12 +15,11 @@ _$_PlatformDesignSetting _$$_PlatformDesignSettingFromJson(
       backgroundAttribute: $enumDecodeNullable(
               _$ImageAttributeEnumMap, json['backgroundAttribute']) ??
           ImageAttribute.fit,
-      choiceNodePresetMap:
-          (json['choiceNodePresetMap'] as Map<String, dynamic>?)?.map(
-                (k, e) => MapEntry(k,
-                    ChoiceNodeDesignPreset.fromJson(e as Map<String, dynamic>)),
-              ) ??
-              const {'default': ChoiceNodeDesignPreset()},
+      choiceNodePresetList: (json['choiceNodePresetList'] as List<dynamic>?)
+              ?.map((e) =>
+                  ChoiceNodeDesignPreset.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [ChoiceNodeDesignPreset(name: 'default')],
       marginVertical: (json['marginVertical'] as num?)?.toDouble() ?? 12.0,
     );
 
@@ -32,8 +31,8 @@ Map<String, dynamic> _$$_PlatformDesignSettingToJson(
       'backgroundImage': instance.backgroundImage,
       'backgroundAttribute':
           _$ImageAttributeEnumMap[instance.backgroundAttribute]!,
-      'choiceNodePresetMap':
-          instance.choiceNodePresetMap.map((k, e) => MapEntry(k, e.toJson())),
+      'choiceNodePresetList':
+          instance.choiceNodePresetList.map((e) => e.toJson()).toList(),
       'marginVertical': instance.marginVertical,
     };
 

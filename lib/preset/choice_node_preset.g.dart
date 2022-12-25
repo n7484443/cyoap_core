@@ -9,6 +9,7 @@ part of 'choice_node_preset.dart';
 _$_ChoiceNodeDesignPreset _$$_ChoiceNodeDesignPresetFromJson(
         Map<String, dynamic> json) =>
     _$_ChoiceNodeDesignPreset(
+      name: json['name'] as String,
       titlePosition: json['titlePosition'] as bool? ?? true,
       isCard: json['isCard'] as bool? ?? true,
       isRound: json['isRound'] as bool? ?? true,
@@ -25,6 +26,7 @@ _$_ChoiceNodeDesignPreset _$$_ChoiceNodeDesignPresetFromJson(
 Map<String, dynamic> _$$_ChoiceNodeDesignPresetToJson(
         _$_ChoiceNodeDesignPreset instance) =>
     <String, dynamic>{
+      'name': instance.name,
       'titlePosition': instance.titlePosition,
       'isCard': instance.isCard,
       'isRound': instance.isRound,

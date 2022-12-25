@@ -21,6 +21,7 @@ ChoiceNodeDesignPreset _$ChoiceNodeDesignPresetFromJson(
 
 /// @nodoc
 mixin _$ChoiceNodeDesignPreset {
+  String get name => throw _privateConstructorUsedError;
   bool get titlePosition => throw _privateConstructorUsedError;
   bool get isCard => throw _privateConstructorUsedError;
   bool get isRound => throw _privateConstructorUsedError;
@@ -48,7 +49,8 @@ abstract class $ChoiceNodeDesignPresetCopyWith<$Res> {
       _$ChoiceNodeDesignPresetCopyWithImpl<$Res, ChoiceNodeDesignPreset>;
   @useResult
   $Res call(
-      {bool titlePosition,
+      {String name,
+      bool titlePosition,
       bool isCard,
       bool isRound,
       bool maximizingImage,
@@ -75,6 +77,7 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? name = null,
     Object? titlePosition = null,
     Object? isCard = null,
     Object? isRound = null,
@@ -88,6 +91,10 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
     Object? mainFont = null,
   }) {
     return _then(_value.copyWith(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       titlePosition: null == titlePosition
           ? _value.titlePosition
           : titlePosition // ignore: cast_nullable_to_non_nullable
@@ -145,7 +152,8 @@ abstract class _$$_ChoiceNodeDesignPresetCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool titlePosition,
+      {String name,
+      bool titlePosition,
       bool isCard,
       bool isRound,
       bool maximizingImage,
@@ -170,6 +178,7 @@ class __$$_ChoiceNodeDesignPresetCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? name = null,
     Object? titlePosition = null,
     Object? isCard = null,
     Object? isRound = null,
@@ -183,6 +192,10 @@ class __$$_ChoiceNodeDesignPresetCopyWithImpl<$Res>
     Object? mainFont = null,
   }) {
     return _then(_$_ChoiceNodeDesignPreset(
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       titlePosition: null == titlePosition
           ? _value.titlePosition
           : titlePosition // ignore: cast_nullable_to_non_nullable
@@ -236,7 +249,8 @@ class __$$_ChoiceNodeDesignPresetCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
   const _$_ChoiceNodeDesignPreset(
-      {this.titlePosition = true,
+      {required this.name,
+      this.titlePosition = true,
       this.isCard = true,
       this.isRound = true,
       this.maximizingImage = false,
@@ -251,6 +265,8 @@ class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
   factory _$_ChoiceNodeDesignPreset.fromJson(Map<String, dynamic> json) =>
       _$$_ChoiceNodeDesignPresetFromJson(json);
 
+  @override
+  final String name;
   @override
   @JsonKey()
   final bool titlePosition;
@@ -289,7 +305,7 @@ class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
 
   @override
   String toString() {
-    return 'ChoiceNodeDesignPreset(titlePosition: $titlePosition, isCard: $isCard, isRound: $isRound, maximizingImage: $maximizingImage, hideTitle: $hideTitle, imagePosition: $imagePosition, colorNode: $colorNode, colorSelectNode: $colorSelectNode, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont)';
+    return 'ChoiceNodeDesignPreset(name: $name, titlePosition: $titlePosition, isCard: $isCard, isRound: $isRound, maximizingImage: $maximizingImage, hideTitle: $hideTitle, imagePosition: $imagePosition, colorNode: $colorNode, colorSelectNode: $colorSelectNode, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont)';
   }
 
   @override
@@ -297,6 +313,7 @@ class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ChoiceNodeDesignPreset &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.titlePosition, titlePosition) ||
                 other.titlePosition == titlePosition) &&
             (identical(other.isCard, isCard) || other.isCard == isCard) &&
@@ -323,6 +340,7 @@ class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      name,
       titlePosition,
       isCard,
       isRound,
@@ -352,7 +370,8 @@ class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
 
 abstract class _ChoiceNodeDesignPreset implements ChoiceNodeDesignPreset {
   const factory _ChoiceNodeDesignPreset(
-      {final bool titlePosition,
+      {required final String name,
+      final bool titlePosition,
       final bool isCard,
       final bool isRound,
       final bool maximizingImage,
@@ -367,6 +386,8 @@ abstract class _ChoiceNodeDesignPreset implements ChoiceNodeDesignPreset {
   factory _ChoiceNodeDesignPreset.fromJson(Map<String, dynamic> json) =
       _$_ChoiceNodeDesignPreset.fromJson;
 
+  @override
+  String get name;
   @override
   bool get titlePosition;
   @override
