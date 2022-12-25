@@ -9,7 +9,6 @@ import 'package:cyoap_core/variable_db.dart';
 import 'package:tuple/tuple.dart';
 import 'design_setting.dart';
 
-const int designSamplePosition = -100;
 const int nonPositioned = -1;
 
 class PlayablePlatform {
