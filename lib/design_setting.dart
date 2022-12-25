@@ -10,6 +10,7 @@ enum ImageAttribute {
   fill("채움"),
   pattern("패턴"),
   stretch("늘리기");
+
   final String name;
 
   const ImageAttribute(this.name);
@@ -19,15 +20,19 @@ enum ImageAttribute {
 class PlatformDesignSetting with _$PlatformDesignSetting {
   @JsonSerializable(explicitToJson: true)
   factory PlatformDesignSetting({
-    @Default("notoSans") String variableFont,
-    @Default(0xFFFFFFFF) int colorBackground,
+    @Default("notoSans")
+        String variableFont,
+    @Default(0xFFFFFFFF)
+        int colorBackground,
     String? backgroundImage,
-    @Default(ImageAttribute.fit) ImageAttribute backgroundAttribute,
+    @Default(ImageAttribute.fit)
+        ImageAttribute backgroundAttribute,
     @Default([
       ChoiceNodeDesignPreset(name: 'default'),
     ])
-    List<ChoiceNodeDesignPreset> choiceNodePresetList,
-    @Default(12.0) double marginVertical,
+        List<ChoiceNodeDesignPreset> choiceNodePresetList,
+    @Default(12.0)
+        double marginVertical,
   }) = _PlatformDesignSetting;
 
   factory PlatformDesignSetting.fromJson(Map<String, dynamic> json) =>

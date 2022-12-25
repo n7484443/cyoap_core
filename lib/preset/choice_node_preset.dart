@@ -3,6 +3,16 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'choice_node_preset.freezed.dart';
 part 'choice_node_preset.g.dart';
 
+enum Outline{
+  solid("실선"),
+  dotted("점선"),
+  dashed("파선"),
+  longDashed("긴파선");
+  final String name;
+
+  const Outline(this.name);
+}
+
 @freezed
 class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
   @JsonSerializable(explicitToJson: true)
@@ -19,6 +29,7 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
     @Default(0xFF000000) int colorTitle,
     @Default("notoSans") String titleFont,
     @Default("notoSans") String mainFont,
+    @Default(Outline.solid) Outline outline,
   }) = _ChoiceNodeDesignPreset;
 
   factory ChoiceNodeDesignPreset.fromJson(Map<String, dynamic> json) =>

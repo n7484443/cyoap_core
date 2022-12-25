@@ -35,6 +35,7 @@ mixin _$ChoiceNodeDesignPreset {
   int get colorTitle => throw _privateConstructorUsedError;
   String get titleFont => throw _privateConstructorUsedError;
   String get mainFont => throw _privateConstructorUsedError;
+  Outline get outline => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -60,7 +61,8 @@ abstract class $ChoiceNodeDesignPresetCopyWith<$Res> {
       int colorSelectNode,
       int colorTitle,
       String titleFont,
-      String mainFont});
+      String mainFont,
+      Outline outline});
 }
 
 /// @nodoc
@@ -89,6 +91,7 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
     Object? colorTitle = null,
     Object? titleFont = null,
     Object? mainFont = null,
+    Object? outline = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -139,6 +142,10 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
           ? _value.mainFont
           : mainFont // ignore: cast_nullable_to_non_nullable
               as String,
+      outline: null == outline
+          ? _value.outline
+          : outline // ignore: cast_nullable_to_non_nullable
+              as Outline,
     ) as $Val);
   }
 }
@@ -163,7 +170,8 @@ abstract class _$$_ChoiceNodeDesignPresetCopyWith<$Res>
       int colorSelectNode,
       int colorTitle,
       String titleFont,
-      String mainFont});
+      String mainFont,
+      Outline outline});
 }
 
 /// @nodoc
@@ -190,6 +198,7 @@ class __$$_ChoiceNodeDesignPresetCopyWithImpl<$Res>
     Object? colorTitle = null,
     Object? titleFont = null,
     Object? mainFont = null,
+    Object? outline = null,
   }) {
     return _then(_$_ChoiceNodeDesignPreset(
       name: null == name
@@ -240,6 +249,10 @@ class __$$_ChoiceNodeDesignPresetCopyWithImpl<$Res>
           ? _value.mainFont
           : mainFont // ignore: cast_nullable_to_non_nullable
               as String,
+      outline: null == outline
+          ? _value.outline
+          : outline // ignore: cast_nullable_to_non_nullable
+              as Outline,
     ));
   }
 }
@@ -260,7 +273,8 @@ class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
       this.colorSelectNode = 0xFF40C4FF,
       this.colorTitle = 0xFF000000,
       this.titleFont = "notoSans",
-      this.mainFont = "notoSans"});
+      this.mainFont = "notoSans",
+      this.outline = Outline.solid});
 
   factory _$_ChoiceNodeDesignPreset.fromJson(Map<String, dynamic> json) =>
       _$$_ChoiceNodeDesignPresetFromJson(json);
@@ -302,10 +316,13 @@ class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
   @override
   @JsonKey()
   final String mainFont;
+  @override
+  @JsonKey()
+  final Outline outline;
 
   @override
   String toString() {
-    return 'ChoiceNodeDesignPreset(name: $name, titlePosition: $titlePosition, isCard: $isCard, isRound: $isRound, maximizingImage: $maximizingImage, hideTitle: $hideTitle, imagePosition: $imagePosition, colorNode: $colorNode, colorSelectNode: $colorSelectNode, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont)';
+    return 'ChoiceNodeDesignPreset(name: $name, titlePosition: $titlePosition, isCard: $isCard, isRound: $isRound, maximizingImage: $maximizingImage, hideTitle: $hideTitle, imagePosition: $imagePosition, colorNode: $colorNode, colorSelectNode: $colorSelectNode, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont, outline: $outline)';
   }
 
   @override
@@ -333,7 +350,8 @@ class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
             (identical(other.titleFont, titleFont) ||
                 other.titleFont == titleFont) &&
             (identical(other.mainFont, mainFont) ||
-                other.mainFont == mainFont));
+                other.mainFont == mainFont) &&
+            (identical(other.outline, outline) || other.outline == outline));
   }
 
   @JsonKey(ignore: true)
@@ -351,7 +369,8 @@ class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
       colorSelectNode,
       colorTitle,
       titleFont,
-      mainFont);
+      mainFont,
+      outline);
 
   @JsonKey(ignore: true)
   @override
@@ -381,7 +400,8 @@ abstract class _ChoiceNodeDesignPreset implements ChoiceNodeDesignPreset {
       final int colorSelectNode,
       final int colorTitle,
       final String titleFont,
-      final String mainFont}) = _$_ChoiceNodeDesignPreset;
+      final String mainFont,
+      final Outline outline}) = _$_ChoiceNodeDesignPreset;
 
   factory _ChoiceNodeDesignPreset.fromJson(Map<String, dynamic> json) =
       _$_ChoiceNodeDesignPreset.fromJson;
@@ -410,6 +430,8 @@ abstract class _ChoiceNodeDesignPreset implements ChoiceNodeDesignPreset {
   String get titleFont;
   @override
   String get mainFont;
+  @override
+  Outline get outline;
   @override
   @JsonKey(ignore: true)
   _$$_ChoiceNodeDesignPresetCopyWith<_$_ChoiceNodeDesignPreset> get copyWith =>
