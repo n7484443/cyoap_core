@@ -46,6 +46,4 @@ Map<String, dynamic> _$$_ChoiceNodeDesignPresetToJson(
 const _$OutlineEnumMap = {
   Outline.solid: 'solid',
   Outline.dotted: 'dotted',
-  Outline.dashed: 'dashed',
-  Outline.longDashed: 'longDashed',
 };

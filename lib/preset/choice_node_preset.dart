@@ -5,9 +5,7 @@ part 'choice_node_preset.g.dart';
 
 enum Outline{
   solid("실선"),
-  dotted("점선"),
-  dashed("파선"),
-  longDashed("긴파선");
+  dotted("점선");
   final String name;
 
   const Outline(this.name);
