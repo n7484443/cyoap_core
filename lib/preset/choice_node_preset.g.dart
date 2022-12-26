@@ -11,8 +11,8 @@ _$_ChoiceNodeDesignPreset _$$_ChoiceNodeDesignPresetFromJson(
     _$_ChoiceNodeDesignPreset(
       name: json['name'] as String,
       titlePosition: json['titlePosition'] as bool? ?? true,
-      isCard: json['isCard'] as bool? ?? true,
-      isRound: json['isRound'] as bool? ?? true,
+      elevation: (json['elevation'] as num?)?.toDouble() ?? 0.0,
+      round: (json['round'] as num?)?.toDouble() ?? 0.0,
       maximizingImage: json['maximizingImage'] as bool? ?? false,
       hideTitle: json['hideTitle'] as bool? ?? false,
       imagePosition: json['imagePosition'] as int? ?? 0,
@@ -30,8 +30,8 @@ Map<String, dynamic> _$$_ChoiceNodeDesignPresetToJson(
     <String, dynamic>{
       'name': instance.name,
       'titlePosition': instance.titlePosition,
-      'isCard': instance.isCard,
-      'isRound': instance.isRound,
+      'elevation': instance.elevation,
+      'round': instance.round,
       'maximizingImage': instance.maximizingImage,
       'hideTitle': instance.hideTitle,
       'imagePosition': instance.imagePosition,
@@ -44,6 +44,7 @@ Map<String, dynamic> _$$_ChoiceNodeDesignPresetToJson(
     };
 
 const _$OutlineEnumMap = {
+  Outline.none: 'none',
   Outline.solid: 'solid',
   Outline.dotted: 'dotted',
 };

@@ -4,6 +4,7 @@ part 'choice_node_preset.freezed.dart';
 part 'choice_node_preset.g.dart';
 
 enum Outline{
+  none("없음"),
   solid("실선"),
   dotted("점선");
   final String name;
@@ -17,8 +18,8 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
   const factory ChoiceNodeDesignPreset({
     required String name,
     @Default(true) bool titlePosition,
-    @Default(true) bool isCard,
-    @Default(true) bool isRound,
+    @Default(0.0) double elevation,
+    @Default(0.0) double round,
     @Default(false) bool maximizingImage, //true: 80%, false: 50%
     @Default(false) bool hideTitle,
     @Default(0) int imagePosition, //0:default, 1:image-right 2:image-left
