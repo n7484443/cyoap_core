@@ -31,11 +31,12 @@ void main() {
   _getTitle = allowInterop(_getTitleInternal);
   _getImage = allowInterop(_getImageInternal);
   _getContents = allowInterop(_getContentsInternal);
-  _getChoiceNodeDesign = allowInterop(_getChoiceNodeDesignInternal);
+  _getChoiceNodeOption = allowInterop(_getChoiceNodeOptionInternal);
   _childLength = allowInterop(_childLengthInternal);
   _getChoiceNodeMode = allowInterop(_getChoiceNodeModeInternal);
 
   _getValueList = allowInterop(_getValueListInternal);
+  _getPresetList = allowInterop(_getPresetListInternal);
 }
 
 @JS('loadPlatform')
@@ -176,15 +177,25 @@ List<String> _getValueListInternal() {
   return list;
 }
 
-@JS('getChoiceNodeDesign')
-external set _getChoiceNodeDesign(String Function(List<dynamic> pos) f);
+@JS('getChoiceNodeOption')
+external set _getChoiceNodeOption(String Function(List<dynamic> pos) f);
 
 @JS()
-String _getChoiceNodeDesignInternal(List<dynamic> pos) {
+String _getChoiceNodeOptionInternal(List<dynamic> pos) {
   Pos innerPos = listToPos(pos);
   var node = platform.getChoiceNode(innerPos);
-  return jsonEncode(node?.choiceNodeDesign.toJson()) ;
+  return jsonEncode(node?.choiceNodeOption.toJson()) ;
 }
+
+@JS('getPresetList')
+external set _getPresetList(String Function() f);
+
+@JS()
+String _getPresetListInternal() {
+  var list = platform.designSetting.choiceNodePresetList;
+  return jsonEncode(list.map((e) => e.toJson()).toList()) ;
+}
+
 
 @JS('getPlatformDesign')
 external set _getPlatformDesign(String Function() f);

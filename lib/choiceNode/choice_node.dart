@@ -25,24 +25,24 @@ enum ChoiceNodeMode {
 }
 
 @freezed
-class ChoiceNodeDesign with _$ChoiceNodeDesign {
+class ChoiceNodeOption with _$ChoiceNodeOption {
   @JsonSerializable(explicitToJson: true)
-  factory ChoiceNodeDesign({
+  factory ChoiceNodeOption({
     @Default(false) bool isOccupySpace,
     @Default(false) bool hideAsResult,
     @Default(false) bool showAsResult,
     @Default('default') String presetName,
   }) = _ChoiceNodeDesign;
 
-  factory ChoiceNodeDesign.fromJson(Map<String, dynamic> json) =>
-      _$ChoiceNodeDesignFromJson(json);
+  factory ChoiceNodeOption.fromJson(Map<String, dynamic> json) =>
+      _$ChoiceNodeOptionFromJson(json);
 }
 
 const int defaultMaxSize = 12;
 
 const int seedMax = 1000000000;
 class ChoiceNode extends Choice {
-  ChoiceNodeDesign choiceNodeDesign;
+  ChoiceNodeOption choiceNodeOption;
   ChoiceNodeMode choiceNodeMode = ChoiceNodeMode.defaultMode;
 
   String title;
@@ -62,7 +62,7 @@ class ChoiceNode extends Choice {
 
 
   ChoiceNode(int width, this.title, this.contentsString, this.imageString)
-      : choiceNodeDesign = ChoiceNodeDesign() {
+      : choiceNodeOption = ChoiceNodeOption() {
     recursiveStatus = RecursiveStatus();
     super.width = width;
   }
@@ -71,7 +71,7 @@ class ChoiceNode extends Choice {
       : title = "선택지 ${Random().nextInt(99)}",
         imageString = '',
         contentsString = '',
-        choiceNodeDesign = ChoiceNodeDesign() {
+        choiceNodeOption = ChoiceNodeOption() {
     recursiveStatus = RecursiveStatus();
   } //랜덤 문자로 제목 중복 방지
 
@@ -80,7 +80,7 @@ class ChoiceNode extends Choice {
         title = json['title'] ?? '',
         contentsString = json['contentsString'],
         imageString = json['imageString'] ?? json['image'],
-        choiceNodeDesign = ChoiceNodeDesign.fromJson(json),
+        choiceNodeOption = ChoiceNodeOption.fromJson(json),
         choiceNodeMode = json['choiceNodeMode'] == null
             ? ChoiceNodeMode.defaultMode
             : ((json['isSelectable'] ?? true)
@@ -106,7 +106,7 @@ class ChoiceNode extends Choice {
       'image': imageString,
       'choiceNodeMode': choiceNodeMode.name,
     });
-    map.addAll(choiceNodeDesign.toJson());
+    map.addAll(choiceNodeOption.toJson());
     return map;
   }
 

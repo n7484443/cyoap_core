@@ -76,9 +76,9 @@ class PlayablePlatform {
     for (var line in lineSettings) {
       for (var choice in line.children) {
         (choice as ChoiceNode).doAllChild((node) {
-          if (node.isExecutable() && node.isSelectableMode && !node.choiceNodeDesign.hideAsResult) {
+          if (node.isExecutable() && node.isSelectableMode && !node.choiceNodeOption.hideAsResult) {
             selectedPos.add(Tuple2(node.pos, node.select));
-          }else if (node.choiceNodeMode == ChoiceNodeMode.unSelectableMode && node.choiceNodeDesign.showAsResult){
+          }else if (node.choiceNodeMode == ChoiceNodeMode.unSelectableMode && node.choiceNodeOption.showAsResult){
             selectedPos.add(Tuple2(node.pos, node.select));
           }
         });

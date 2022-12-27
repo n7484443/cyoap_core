@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ChoiceNodeDesign _$ChoiceNodeDesignFromJson(Map<String, dynamic> json) {
+ChoiceNodeOption _$ChoiceNodeOptionFromJson(Map<String, dynamic> json) {
   return _ChoiceNodeDesign.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ChoiceNodeDesign {
+mixin _$ChoiceNodeOption {
   bool get isOccupySpace => throw _privateConstructorUsedError;
   bool get hideAsResult => throw _privateConstructorUsedError;
   bool get showAsResult => throw _privateConstructorUsedError;
@@ -27,15 +27,15 @@ mixin _$ChoiceNodeDesign {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ChoiceNodeDesignCopyWith<ChoiceNodeDesign> get copyWith =>
+  $ChoiceNodeOptionCopyWith<ChoiceNodeOption> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ChoiceNodeDesignCopyWith<$Res> {
-  factory $ChoiceNodeDesignCopyWith(
-          ChoiceNodeDesign value, $Res Function(ChoiceNodeDesign) then) =
-      _$ChoiceNodeDesignCopyWithImpl<$Res, ChoiceNodeDesign>;
+abstract class $ChoiceNodeOptionCopyWith<$Res> {
+  factory $ChoiceNodeOptionCopyWith(
+          ChoiceNodeOption value, $Res Function(ChoiceNodeOption) then) =
+      _$ChoiceNodeOptionCopyWithImpl<$Res, ChoiceNodeOption>;
   @useResult
   $Res call(
       {bool isOccupySpace,
@@ -45,9 +45,9 @@ abstract class $ChoiceNodeDesignCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ChoiceNodeDesignCopyWithImpl<$Res, $Val extends ChoiceNodeDesign>
-    implements $ChoiceNodeDesignCopyWith<$Res> {
-  _$ChoiceNodeDesignCopyWithImpl(this._value, this._then);
+class _$ChoiceNodeOptionCopyWithImpl<$Res, $Val extends ChoiceNodeOption>
+    implements $ChoiceNodeOptionCopyWith<$Res> {
+  _$ChoiceNodeOptionCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -85,7 +85,7 @@ class _$ChoiceNodeDesignCopyWithImpl<$Res, $Val extends ChoiceNodeDesign>
 
 /// @nodoc
 abstract class _$$_ChoiceNodeDesignCopyWith<$Res>
-    implements $ChoiceNodeDesignCopyWith<$Res> {
+    implements $ChoiceNodeOptionCopyWith<$Res> {
   factory _$$_ChoiceNodeDesignCopyWith(
           _$_ChoiceNodeDesign value, $Res Function(_$_ChoiceNodeDesign) then) =
       __$$_ChoiceNodeDesignCopyWithImpl<$Res>;
@@ -100,7 +100,7 @@ abstract class _$$_ChoiceNodeDesignCopyWith<$Res>
 
 /// @nodoc
 class __$$_ChoiceNodeDesignCopyWithImpl<$Res>
-    extends _$ChoiceNodeDesignCopyWithImpl<$Res, _$_ChoiceNodeDesign>
+    extends _$ChoiceNodeOptionCopyWithImpl<$Res, _$_ChoiceNodeDesign>
     implements _$$_ChoiceNodeDesignCopyWith<$Res> {
   __$$_ChoiceNodeDesignCopyWithImpl(
       _$_ChoiceNodeDesign _value, $Res Function(_$_ChoiceNodeDesign) _then)
@@ -163,7 +163,7 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
 
   @override
   String toString() {
-    return 'ChoiceNodeDesign(isOccupySpace: $isOccupySpace, hideAsResult: $hideAsResult, showAsResult: $showAsResult, presetName: $presetName)';
+    return 'ChoiceNodeOption(isOccupySpace: $isOccupySpace, hideAsResult: $hideAsResult, showAsResult: $showAsResult, presetName: $presetName)';
   }
 
   @override
@@ -200,7 +200,7 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
   }
 }
 
-abstract class _ChoiceNodeDesign implements ChoiceNodeDesign {
+abstract class _ChoiceNodeDesign implements ChoiceNodeOption {
   factory _ChoiceNodeDesign(
       {final bool isOccupySpace,
       final bool hideAsResult,
