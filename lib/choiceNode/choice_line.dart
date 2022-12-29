@@ -7,14 +7,11 @@ import 'choice.dart';
 
 class ChoiceLine extends Choice {
   int maxSelect;
-  bool alwaysVisible;
-  int? backgroundColor;
-  String? backgroundImageString;
+  String? presetName;
 
   ChoiceLine(int currentPos,
-      {this.alwaysVisible = true,
-      this.maxSelect = -1,
-      this.backgroundImageString}){
+      {this.presetName = "default",
+      this.maxSelect = -1}){
     super.currentPos = currentPos;
     recursiveStatus = RecursiveStatus();
   }
@@ -24,18 +21,14 @@ class ChoiceLine extends Choice {
     Map<String, dynamic> map = super.toJson();
     map.addAll({
       'maxSelect': maxSelect,
-      'alwaysVisible': alwaysVisible,
-      'backgroundColor': backgroundColor,
-      'backgroundImageString': backgroundImageString,
+      'presetName': presetName,
     });
     return map;
   }
 
   ChoiceLine.fromJson(Map<String, dynamic> json)
       : maxSelect = json['maxSelect'] ?? -1,
-        alwaysVisible = json['alwaysVisible'] ?? true,
-        backgroundColor = json['backgroundColor'],
-        backgroundImageString = json['backgroundImageString']{
+        presetName = json['presetName'] ?? "default"{
     super.currentPos = json['y'] ?? json['pos'];
     if (json.containsKey('children')) {
       children = (json['children'] as List)

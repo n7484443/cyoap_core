@@ -1,8 +1,8 @@
+import 'package:cyoap_core/preset/choice_line_preset.dart';
 import 'package:cyoap_core/preset/choice_node_preset.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'design_setting.freezed.dart';
-
 part 'design_setting.g.dart';
 
 enum ImageAttribute {
@@ -27,6 +27,10 @@ class PlatformDesignSetting with _$PlatformDesignSetting {
     String? backgroundImage,
     @Default(ImageAttribute.fit)
         ImageAttribute backgroundAttribute,
+    @Default([
+      ChoiceLineDesignPreset(name: 'default'),
+    ])
+    List<ChoiceLineDesignPreset> choiceLinePresetList,
     @Default([
       ChoiceNodeDesignPreset(name: 'default'),
     ])
