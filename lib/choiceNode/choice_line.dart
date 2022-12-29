@@ -7,7 +7,7 @@ import 'choice.dart';
 
 class ChoiceLine extends Choice {
   int maxSelect;
-  String? presetName;
+  String presetName;
 
   ChoiceLine(int currentPos,
       {this.presetName = "default",
