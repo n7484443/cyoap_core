@@ -22,8 +22,6 @@ class PlatformDesignSetting with _$PlatformDesignSetting {
   factory PlatformDesignSetting({
     @Default("notoSans")
         String variableFont,
-    @Default(0xFFFFFFFF)
-        int colorBackground,
     String? backgroundImage,
     @Default(ImageAttribute.fit)
         ImageAttribute backgroundAttribute,

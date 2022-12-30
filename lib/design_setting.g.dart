@@ -10,7 +10,6 @@ _$_PlatformDesignSetting _$$_PlatformDesignSettingFromJson(
         Map<String, dynamic> json) =>
     _$_PlatformDesignSetting(
       variableFont: json['variableFont'] as String? ?? "notoSans",
-      colorBackground: json['colorBackground'] as int? ?? 0xFFFFFFFF,
       backgroundImage: json['backgroundImage'] as String?,
       backgroundAttribute: $enumDecodeNullable(
               _$ImageAttributeEnumMap, json['backgroundAttribute']) ??
@@ -32,7 +31,6 @@ Map<String, dynamic> _$$_PlatformDesignSettingToJson(
         _$_PlatformDesignSetting instance) =>
     <String, dynamic>{
       'variableFont': instance.variableFont,
-      'colorBackground': instance.colorBackground,
       'backgroundImage': instance.backgroundImage,
       'backgroundAttribute':
           _$ImageAttributeEnumMap[instance.backgroundAttribute]!,
