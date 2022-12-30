@@ -8,6 +8,7 @@ enum DataType {
   strings("String"),
   bools("bool"),
   arrays("array");
+
   final String name;
   const DataType(this.name);
 }

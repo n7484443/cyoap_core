@@ -1,12 +1,13 @@
 import 'dart:convert';
 
+import 'package:cyoap_core/choiceNode/choice.dart';
 import 'package:cyoap_core/choiceNode/choice_line.dart';
 import 'package:cyoap_core/choiceNode/choice_node.dart';
-import 'package:cyoap_core/choiceNode/choice.dart';
 import 'package:cyoap_core/choiceNode/pos.dart';
 import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/variable_db.dart';
 import 'package:tuple/tuple.dart';
+
 import 'design_setting.dart';
 
 const int nonPositioned = -1;
@@ -71,14 +72,17 @@ class PlayablePlatform {
     }
   }
 
-  List<Tuple2<Pos, int>> get selectedPos{
+  List<Tuple2<Pos, int>> get selectedPos {
     List<Tuple2<Pos, int>> selectedPos = [];
     for (var line in lineSettings) {
       for (var choice in line.children) {
         (choice as ChoiceNode).doAllChild((node) {
-          if (node.isExecutable() && node.isSelectableMode && !node.choiceNodeOption.hideAsResult) {
+          if (node.isExecutable() &&
+              node.isSelectableMode &&
+              !node.choiceNodeOption.hideAsResult) {
             selectedPos.add(Tuple2(node.pos, node.select));
-          }else if (node.choiceNodeMode == ChoiceNodeMode.unSelectableMode && node.choiceNodeOption.showAsResult){
+          } else if (node.choiceNodeMode == ChoiceNodeMode.unSelectableMode &&
+              node.choiceNodeOption.showAsResult) {
             selectedPos.add(Tuple2(node.pos, node.select));
           }
         });
@@ -89,7 +93,7 @@ class PlayablePlatform {
 
   void setSelectedPosInternal(String json) {
     var jsonDecoded = jsonDecode(json);
-    for(var data in jsonDecoded){
+    for (var data in jsonDecoded) {
       var pos = Pos(data: (data['pos'] as List).map((e) => e as int).toList());
       var select = data['select'] as int;
       getChoiceNode(pos)?.selectNode(select, disableCheck: true);
@@ -98,10 +102,8 @@ class PlayablePlatform {
   }
 
   String getSelectedPosInternal() {
-    return jsonEncode(selectedPos.map((e) => {
-      'pos' : e.item1.data,
-      'select' : e.item2
-    }).toList());
+    return jsonEncode(selectedPos
+        .map((e) => {'pos': e.item1.data, 'select': e.item2})
+        .toList());
   }
-
 }

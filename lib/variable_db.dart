@@ -19,28 +19,28 @@ class VariableDataBase {
   CheckListChangeCallback? checkListChangeCallback;
 
   void updateVariableTiles() {
-    if(variableChangeCallback != null){
+    if (variableChangeCallback != null) {
       variableChangeCallback!();
     }
   }
 
   void updateCheckList() {
-    if(checkListChangeCallback != null) {
+    if (checkListChangeCallback != null) {
       checkListChangeCallback!();
     }
   }
 
   void setValue(String name, ValueTypeWrapper value, {bool? isGlobal}) {
     var trim = name.trim();
-    if(isGlobal == null){
-      if(varMapLocal.containsKey(name)){
+    if (isGlobal == null) {
+      if (varMapLocal.containsKey(name)) {
         varMapLocal[trim] = value;
-      }else if(varMapGlobal.containsKey(name)) {
+      } else if (varMapGlobal.containsKey(name)) {
         varMapGlobal[trim] = value;
       }
-    }else if(isGlobal){
+    } else if (isGlobal) {
       varMapGlobal[trim] = value;
-    }else{
+    } else {
       varMapLocal[trim] = value;
     }
 
@@ -49,9 +49,9 @@ class VariableDataBase {
 
   void deleteValue(String name) {
     var trim = name.trim();
-    if(varMapLocal.containsKey(trim)){
+    if (varMapLocal.containsKey(trim)) {
       varMapLocal.remove(trim);
-    }else{
+    } else {
       varMapGlobal.remove(trim);
     }
     updateVariableTiles();
@@ -64,7 +64,7 @@ class VariableDataBase {
 
   ValueTypeWrapper? getValueTypeWrapper(String name) {
     var trim = name.trim();
-    if(hasValue(trim)){
+    if (hasValue(trim)) {
       return varMapLocal[trim] ?? varMapGlobal[trim];
     }
     return null;

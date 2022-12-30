@@ -26,8 +26,9 @@ class SemanticAnalyser {
       }
       switch (token.type) {
         case AnalyserConst.functionUnspecified:
-          RecursiveFunction sub =
-              RecursiveFunction(ValueType.string(token.data), functionUnspecified: true);
+          RecursiveFunction sub = RecursiveFunction(
+              ValueType.string(token.data),
+              functionUnspecified: true);
           var deleted = stack.removeLast();
           if (token.data == "setLocal" ||
               token.data == "setGlobal" ||
@@ -77,16 +78,16 @@ class SemanticAnalyser {
           stack.add(sub);
           break;
         case AnalyserConst.functionStart:
-          RecursiveFunction sub = RecursiveFunction(ValueType.string("bracket"));
+          RecursiveFunction sub =
+              RecursiveFunction(ValueType.string("bracket"));
           stack.add(sub);
           break;
         case AnalyserConst.functionComma:
         case AnalyserConst.functionEnd:
-          do{
+          do {
             var last = stack.removeLast();
             stack.last.add(last);
-          }
-          while (stack.last.body.data != "bracket");
+          } while (stack.last.body.data != "bracket");
           break;
         case AnalyserConst.variableName:
           RecursiveUnit out =
@@ -105,7 +106,7 @@ class SemanticAnalyser {
           var last = stack.last;
           var sub = RecursiveData(getValueTypeFromDynamicInput(token.data));
           stack.add(sub);
-          if(last is RecursiveFunction && last.functionUnspecified){
+          if (last is RecursiveFunction && last.functionUnspecified) {
             var last = stack.removeLast();
             stack.last.add(last);
           }
@@ -117,15 +118,16 @@ class SemanticAnalyser {
       stack.first.add(last);
     }
   }
+
   RecursiveUnit removeBracket(RecursiveUnit mother) {
     List<RecursiveUnit> needVisit = List.from([mother], growable: true);
     while (needVisit.isNotEmpty) {
       var pointer = needVisit.removeAt(0);
-      if(pointer.body.data == "bracket"){
+      if (pointer.body.data == "bracket") {
         var index = pointer.parent!.child.indexOf(pointer);
-        var parent= pointer.parent!;
+        var parent = pointer.parent!;
         parent.child.remove(pointer);
-        for(var child in pointer.child.reversed){
+        for (var child in pointer.child.reversed) {
           parent.child.insert(index, child);
           child.parent = parent;
           needVisit.add(child);
@@ -144,9 +146,9 @@ class SemanticAnalyser {
     List<RecursiveUnit> needVisit = List.from([mother], growable: true);
     while (needVisit.isNotEmpty) {
       var pointer = needVisit.removeAt(0);
-      if(pointer.body.data == "bracket"){
+      if (pointer.body.data == "bracket") {
         pointer.parent!.child.remove(pointer);
-        for(var child in pointer.child){
+        for (var child in pointer.child) {
           pointer.parent!.add(child);
           needVisit.add(child);
         }
@@ -174,10 +176,11 @@ class SemanticAnalyser {
         if (replace != null) {
           var left = pointer.child[0];
           var right = pointer.child[1];
-          if (left.body.type == DataType.bools || right.body.type == DataType.bools) {
+          if (left.body.type == DataType.bools ||
+              right.body.type == DataType.bools) {
             var parentChildList = replace.child;
             var pos = parentChildList.indexOf(pointer);
-            if(pos != -1){
+            if (pos != -1) {
               if (left.body.data == 'true') {
                 parentChildList[pos] = right;
                 right.parent = replace;
@@ -185,7 +188,8 @@ class SemanticAnalyser {
                 continue;
               }
               if (left.body.data == 'false') {
-                RecursiveUnit not = RecursiveFunction(const ValueType.string("not"));
+                RecursiveUnit not =
+                    RecursiveFunction(const ValueType.string("not"));
                 parentChildList[pos] = not;
                 not.add(right);
                 needVisit.add(right);
@@ -198,7 +202,8 @@ class SemanticAnalyser {
                 continue;
               }
               if (right.body.data == 'false') {
-                RecursiveUnit not = RecursiveFunction(const ValueType.string("not"));
+                RecursiveUnit not =
+                    RecursiveFunction(const ValueType.string("not"));
                 parentChildList[pos] = not;
                 not.add(left);
                 needVisit.add(left);

@@ -4,16 +4,14 @@ import 'dart:math';
 import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/option.dart';
 import 'package:cyoap_core/variable_db.dart';
-import 'choice_line.dart';
-import 'recursive_status.dart';
-
-import 'selectable_status.dart';
-import 'choice.dart';
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'choice_node.freezed.dart';
+import 'choice.dart';
+import 'choice_line.dart';
+import 'recursive_status.dart';
+import 'selectable_status.dart';
 
+part 'choice_node.freezed.dart';
 part 'choice_node.g.dart';
 
 enum ChoiceNodeMode {
@@ -41,6 +39,7 @@ class ChoiceNodeOption with _$ChoiceNodeOption {
 const int defaultMaxSize = 12;
 
 const int seedMax = 1000000000;
+
 class ChoiceNode extends Choice {
   ChoiceNodeOption choiceNodeOption;
   ChoiceNodeMode choiceNodeMode = ChoiceNodeMode.defaultMode;
@@ -58,8 +57,7 @@ class ChoiceNode extends Choice {
   @override
   bool get isSelectableMode =>
       choiceNodeMode != ChoiceNodeMode.unSelectableMode &&
-          choiceNodeMode != ChoiceNodeMode.onlyCode;
-
+      choiceNodeMode != ChoiceNodeMode.onlyCode;
 
   ChoiceNode(int width, this.title, this.contentsString, this.imageString)
       : choiceNodeOption = ChoiceNodeOption() {
@@ -126,12 +124,12 @@ class ChoiceNode extends Choice {
   bool execute() {
     var out = false;
     if (isExecutable()) {
-      if(!recursiveStatus.analyseClickable(errorName, seedInput: seed)){
+      if (!recursiveStatus.analyseClickable(errorName, seedInput: seed)) {
         selectableStatus = SelectableStatus.closed;
         select = 0;
         return true;
       }
-      if(!recursiveStatus.analyseVisible(errorName, seedInput: seed)){
+      if (!recursiveStatus.analyseVisible(errorName, seedInput: seed)) {
         selectableStatus = SelectableStatus.hide;
         select = 0;
         return true;
@@ -170,8 +168,9 @@ class ChoiceNode extends Choice {
       }
       seed = Random().nextInt(seedMax);
     }
-    if(Option().isDebugMode && Option().enableSelectLog){
-      print("$errorName $select $selectableStatus $choiceNodeMode ${canDisableSelect(n)} ${checkParentClickable()}");
+    if (Option().isDebugMode && Option().enableSelectLog) {
+      print(
+          "$errorName $select $selectableStatus $choiceNodeMode ${canDisableSelect(n)} ${checkParentClickable()}");
     }
   }
 
@@ -266,7 +265,7 @@ class ChoiceNode extends Choice {
 
   @override
   void updateStatus() {
-    if(select > 0 && parent!.isExecutable()){
+    if (select > 0 && parent!.isExecutable()) {
       selectableStatus = SelectableStatus.open;
       return;
     }
@@ -282,16 +281,19 @@ class ChoiceNode extends Choice {
       if (select != 0) {
         return;
       }
-      if (!parent!.recursiveStatus.analyseClickable(parent!.errorName, seedInput: seed) &&
+      if (!parent!.recursiveStatus
+              .analyseClickable(parent!.errorName, seedInput: seed) &&
           choiceNodeMode != ChoiceNodeMode.unSelectableMode) {
         selectableStatus = SelectableStatus.closed;
-      } else if (!recursiveStatus.analyseClickable(errorName, seedInput: seed)) {
+      } else if (!recursiveStatus.analyseClickable(errorName,
+          seedInput: seed)) {
         selectableStatus = SelectableStatus.closed;
       }
     } else {
       if (!parent!.isExecutable()) {
         select = 0;
-      } else if (!recursiveStatus.analyseClickable(errorName, seedInput: seed)) {
+      } else if (!recursiveStatus.analyseClickable(errorName,
+          seedInput: seed)) {
         selectableStatus = SelectableStatus.closed;
       }
     }

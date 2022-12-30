@@ -3,10 +3,11 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'node_preset.freezed.dart';
 part 'node_preset.g.dart';
 
-enum Outline{
+enum Outline {
   none("없음"),
   solid("실선"),
   dotted("점선");
+
   final String name;
 
   const Outline(this.name);

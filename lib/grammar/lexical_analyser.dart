@@ -24,15 +24,16 @@ class LexicalAnalyser {
         } else if (tokenAdded.dataString == 'continue') {
           tokenAdded.type = AnalyserConst.keywordContinue;
         } else if (tokenAdded.type == AnalyserConst.unspecified) {
-          if(tokenAdded.dataString.contains("..")){
+          if (tokenAdded.dataString.contains("..")) {
             var split = tokenAdded.dataString.split("..");
             tokenList.add(Token(AnalyserConst.functionStart));
             tokenList.add(Token(AnalyserConst.ints, dataString: split[0]));
-            tokenList.add(Token(AnalyserConst.functionUnspecified, dataString: "to"));
+            tokenList.add(
+                Token(AnalyserConst.functionUnspecified, dataString: "to"));
             tokenList.add(Token(AnalyserConst.ints, dataString: split[1]));
             tokenList.add(Token(AnalyserConst.functionEnd));
             return;
-          }else if (isStringDouble(tokenAdded.dataString)) {
+          } else if (isStringDouble(tokenAdded.dataString)) {
             if (tokenAdded.dataString.contains('.')) {
               tokenAdded.type = AnalyserConst.doubles;
             } else {

@@ -30,7 +30,7 @@ class PlatformDesignSetting with _$PlatformDesignSetting {
     @Default([
       ChoiceLineDesignPreset(name: 'default'),
     ])
-    List<ChoiceLineDesignPreset> choiceLinePresetList,
+        List<ChoiceLineDesignPreset> choiceLinePresetList,
     @Default([
       ChoiceNodeDesignPreset(name: 'default'),
     ])

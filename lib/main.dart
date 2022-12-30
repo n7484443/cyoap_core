@@ -7,6 +7,7 @@ import 'dart:convert';
 import 'package:cyoap_core/playable_platform.dart';
 import 'package:cyoap_core/variable_db.dart';
 import 'package:js/js.dart';
+
 import 'choiceNode/choice_line.dart';
 import 'choiceNode/choice_node.dart';
 import 'choiceNode/pos.dart';
@@ -68,11 +69,11 @@ external set _select(void Function(List<dynamic> pos, int n) f);
 
 @JS()
 void _selectInternal(List<dynamic> pos, int n) {
-  if(!isProcessing){
+  if (!isProcessing) {
     Pos innerPos = listToPos(pos);
     platform.getChoiceNode(innerPos)?.selectNode(n);
     isProcessing = true;
-    Timer(Duration(microseconds: 100), (){
+    Timer(Duration(microseconds: 100), () {
       isProcessing = false;
     });
   }
@@ -84,7 +85,11 @@ external set _getChoiceStatus(String Function(List<dynamic> pos) f);
 @JS()
 String _getChoiceStatusInternal(List<dynamic> pos) {
   Pos innerPos = listToPos(pos);
-  return platform.getGenerableParserAndPosition(innerPos)?.selectableStatus.name ?? '';
+  return platform
+          .getGenerableParserAndPosition(innerPos)
+          ?.selectableStatus
+          .name ??
+      '';
 }
 
 @JS('getSize')
@@ -150,7 +155,8 @@ external set _getChoiceNodeMode(String Function(List<dynamic> pos) f);
 @JS()
 String _getChoiceNodeModeInternal(List<dynamic> pos) {
   Pos innerPos = listToPos(pos);
-  var mod = platform.getChoiceNode(innerPos)?.choiceNodeMode ?? ChoiceNodeMode.defaultMode;
+  var mod = platform.getChoiceNode(innerPos)?.choiceNodeMode ??
+      ChoiceNodeMode.defaultMode;
   return mod.name.trim();
 }
 
@@ -168,9 +174,9 @@ external set _getValueList(List<String> Function() f);
 @JS()
 List<String> _getValueListInternal() {
   var list = <String>[];
-  for(var key in VariableDataBase().varMapGlobal.keys){
+  for (var key in VariableDataBase().varMapGlobal.keys) {
     var wrapper = VariableDataBase().getValueTypeWrapper(key)!;
-    if(wrapper.visible){
+    if (wrapper.visible) {
       list.add("${wrapper.displayName} : ${wrapper.valueType.dataUnzip}");
     }
   }
@@ -184,7 +190,7 @@ external set _getChoiceNodeOption(String Function(List<dynamic> pos) f);
 String _getChoiceNodeOptionInternal(List<dynamic> pos) {
   Pos innerPos = listToPos(pos);
   var node = platform.getChoiceNode(innerPos);
-  return jsonEncode(node?.choiceNodeOption.toJson()) ;
+  return jsonEncode(node?.choiceNodeOption.toJson());
 }
 
 @JS('getPresetList')
@@ -193,9 +199,8 @@ external set _getPresetList(String Function() f);
 @JS()
 String _getPresetListInternal() {
   var list = platform.designSetting.choiceNodePresetList;
-  return jsonEncode(list.map((e) => e.toJson()).toList()) ;
+  return jsonEncode(list.map((e) => e.toJson()).toList());
 }
-
 
 @JS('getPlatformDesign')
 external set _getPlatformDesign(String Function() f);
@@ -212,7 +217,6 @@ external set _getSelectedPos(String Function() f);
 String _getSelectedPosInternal() {
   return platform.getSelectedPosInternal();
 }
-
 
 @JS('setSelectedPos')
 external set _setSelectedPos(void Function(String json) f);

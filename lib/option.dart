@@ -1,6 +1,6 @@
 class Option {
   static final Option _instance = Option._internal();
-  factory Option(){
+  factory Option() {
     return _instance;
   }
   Option._internal();

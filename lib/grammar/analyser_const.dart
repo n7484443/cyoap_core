@@ -1,10 +1,13 @@
 enum AnalyserConst {
   /// 정수
   ints,
+
   /// 소수점 붙음
   doubles,
+
   /// boolean
   bools,
+
   /// string, "" 혹은 ''로 판단
   strings,
 
@@ -16,6 +19,7 @@ enum AnalyserConst {
 
   /// 전역 변수 설정, let
   variableLet,
+
   /// 지역 변수 설정, var
   variableVar,
 
@@ -24,6 +28,7 @@ enum AnalyserConst {
 
   /// (
   functionStart,
+
   /// )
   functionEnd,
 
@@ -32,11 +37,13 @@ enum AnalyserConst {
 
   /// if
   functionIf,
+
   /// else
   functionElse,
 
   /// {
   blockStart,
+
   /// }
   blockEnd,
 
@@ -45,8 +52,10 @@ enum AnalyserConst {
 
   /// for
   functionFor,
+
   ///break
   keywordBreak,
+
   ///break
   keywordContinue,
 }

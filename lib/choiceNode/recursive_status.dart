@@ -36,11 +36,15 @@ class RecursiveStatus {
   }
 
   bool analyseVisible(String errorName, {int? seedInput}) {
-    return Analyser().run(conditionVisibleCode, pos: errorName, seedInput: seedInput) ?? true;
+    return Analyser()
+            .run(conditionVisibleCode, pos: errorName, seedInput: seedInput) ??
+        true;
   }
 
   bool analyseClickable(String errorName, {int? seedInput}) {
-    return Analyser().run(conditionClickableCode, pos: errorName, seedInput: seedInput) ?? true;
+    return Analyser().run(conditionClickableCode,
+            pos: errorName, seedInput: seedInput) ??
+        true;
   }
 
   void execute(String errorName, {int? seedInput}) {

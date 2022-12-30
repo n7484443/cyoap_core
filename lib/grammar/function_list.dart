@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'value_type.dart';
 import '/variable_db.dart';
+import 'value_type.dart';
 
 enum FunctionListEnum {
   plus(2),
@@ -33,7 +33,9 @@ enum FunctionListEnum {
   none(0, hasOutput: false);
 
   const FunctionListEnum(this.argumentLength,
-      {this.hasOutput = true, this.hasMultipleArgument = false, this.hasSeedInput = false});
+      {this.hasOutput = true,
+      this.hasMultipleArgument = false,
+      this.hasSeedInput = false});
 
   final int argumentLength;
   final bool hasOutput;

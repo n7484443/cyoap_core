@@ -136,9 +136,9 @@ class RecursiveFunction extends RecursiveUnit {
       for (int i = 0; i < loopCode.length; i++) {
         if (loopCode[i] == 'continue') {
           loopData.add('goto ${loopCode.length - i - 1}');
-        }else if (loopCode[i] == 'break') {
+        } else if (loopCode[i] == 'break') {
           loopData.add('goto ${loopCode.length - i + update.length + 1}');
-        }else{
+        } else {
           loopData.add(loopCode[i]);
         }
       }

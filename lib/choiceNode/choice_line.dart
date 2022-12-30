@@ -1,17 +1,17 @@
 import 'package:cyoap_core/choiceNode/selectable_status.dart';
 import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/variable_db.dart';
-import 'recursive_status.dart';
-import 'choice_node.dart';
+
 import 'choice.dart';
+import 'choice_node.dart';
+import 'recursive_status.dart';
 
 class ChoiceLine extends Choice {
   int maxSelect;
   String presetName;
 
   ChoiceLine(int currentPos,
-      {this.presetName = "default",
-      this.maxSelect = -1}){
+      {this.presetName = "default", this.maxSelect = -1}) {
     super.currentPos = currentPos;
     recursiveStatus = RecursiveStatus();
   }
@@ -28,7 +28,7 @@ class ChoiceLine extends Choice {
 
   ChoiceLine.fromJson(Map<String, dynamic> json)
       : maxSelect = json['maxSelect'] ?? -1,
-        presetName = json['presetName'] ?? "default"{
+        presetName = json['presetName'] ?? "default" {
     super.currentPos = json['y'] ?? json['pos'];
     if (json.containsKey('children')) {
       children = (json['children'] as List)
@@ -73,7 +73,8 @@ class ChoiceLine extends Choice {
   @override
   void initValueTypeWrapper() {
     if (isNeedToCheck()) {
-      VariableDataBase().setValue(valName, ValueTypeWrapper(ValueType.int(0)), isGlobal: true);
+      VariableDataBase().setValue(valName, ValueTypeWrapper(ValueType.int(0)),
+          isGlobal: true);
     } else {
       VariableDataBase().deleteValue(valName);
     }
@@ -85,8 +86,10 @@ class ChoiceLine extends Choice {
 
   @override
   bool execute() {
-    Map<String, ValueTypeWrapper> db = VariableDataBase().varMapGlobal.map((key, value) => MapEntry(key, value.copyWith()));
-    while(true){
+    Map<String, ValueTypeWrapper> db = VariableDataBase()
+        .varMapGlobal
+        .map((key, value) => MapEntry(key, value.copyWith()));
+    while (true) {
       var out = false;
       for (var node in children) {
         out |= node.execute();
@@ -94,10 +97,11 @@ class ChoiceLine extends Choice {
           recursiveStatus.execute(errorName);
         }
       }
-      if(!out){
+      if (!out) {
         return false;
       }
-      VariableDataBase().varMapGlobal = db.map((key, value) => MapEntry(key, value.copyWith()));
+      VariableDataBase().varMapGlobal =
+          db.map((key, value) => MapEntry(key, value.copyWith()));
     }
   }
 
@@ -106,21 +110,21 @@ class ChoiceLine extends Choice {
 
   @override
   bool checkParentClickable({bool first = false}) {
-    if(selectableStatus.isHide()){
+    if (selectableStatus.isHide()) {
       return false;
     }
     return true;
   }
 
   @override
-  void updateStatus(){
-    if(recursiveStatus.analyseVisible(errorName)){
+  void updateStatus() {
+    if (recursiveStatus.analyseVisible(errorName)) {
       selectableStatus = SelectableStatus.open;
-    }else{
+    } else {
       selectableStatus = SelectableStatus.hide;
     }
     List<Choice> list = [...children];
-    while(list.isNotEmpty){
+    while (list.isNotEmpty) {
       var check = list.removeAt(0);
       check.updateStatus();
       list.addAll(check.children);
