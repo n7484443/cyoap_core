@@ -1,5 +1,5 @@
-import 'package:cyoap_core/preset/choice_line_preset.dart';
-import 'package:cyoap_core/preset/choice_node_preset.dart';
+import 'package:cyoap_core/preset/line_preset.dart';
+import 'package:cyoap_core/preset/node_preset.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'design_setting.freezed.dart';

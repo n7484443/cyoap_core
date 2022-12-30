@@ -1,10 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'choice_line_preset.freezed.dart';
-part 'choice_line_preset.g.dart';
+part 'line_preset.freezed.dart';
+part 'line_preset.g.dart';
 
 @freezed
-class ChoiceLineDesignPreset with _$ChoiceLineDesignPreset {
+class ChoiceLineDesignPreset with _$ChoiceLineDesignPreset{
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory ChoiceLineDesignPreset({
     required String name,

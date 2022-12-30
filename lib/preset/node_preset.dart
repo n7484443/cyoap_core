@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'choice_node_preset.freezed.dart';
-part 'choice_node_preset.g.dart';
+part 'node_preset.freezed.dart';
+part 'node_preset.g.dart';
 
 enum Outline{
   none("없음"),

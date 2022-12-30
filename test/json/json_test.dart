@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:cyoap_core/design_setting.dart';
-import 'package:cyoap_core/preset/choice_node_preset.dart';
+import 'package:cyoap_core/preset/node_preset.dart';
 import 'package:test/test.dart';
 
 void main() {
