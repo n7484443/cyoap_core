@@ -37,7 +37,11 @@ void main() {
   _getChoiceNodeMode = allowInterop(_getChoiceNodeModeInternal);
 
   _getValueList = allowInterop(_getValueListInternal);
-  _getPresetList = allowInterop(_getPresetListInternal);
+  _getNodePresetList = allowInterop(_getNodePresetListInternal);
+  _getLinePresetList = allowInterop(_getLinePresetListInternal);
+
+  _getLinePresetName = allowInterop(_getLinePresetNameInternal);
+  _getLineMaxSelect = allowInterop(_getLineMaxSelectInternal);
 }
 
 @JS('loadPlatform')
@@ -193,14 +197,41 @@ String _getChoiceNodeOptionInternal(List<dynamic> pos) {
   return jsonEncode(node?.choiceNodeOption.toJson());
 }
 
-@JS('getPresetList')
-external set _getPresetList(String Function() f);
+@JS('getNodePresetList')
+external set _getNodePresetList(String Function() f);
 
 @JS()
-String _getPresetListInternal() {
+String _getNodePresetListInternal() {
   var list = platform.designSetting.choiceNodePresetList;
   return jsonEncode(list.map((e) => e.toJson()).toList());
 }
+
+@JS('getLinePresetList')
+external set _getLinePresetList(String Function() f);
+
+@JS()
+String _getLinePresetListInternal() {
+  var list = platform.designSetting.choiceLinePresetList;
+  return jsonEncode(list.map((e) => e.toJson()).toList());
+}
+
+@JS('getLinePresetName')
+external set _getLinePresetName(String Function(int pos) f);
+
+@JS()
+String _getLinePresetNameInternal(int pos) {
+  var line = platform.lineSettings[pos];
+  return line.presetName;
+}
+@JS('getLineMaxSelect')
+external set _getLineMaxSelect(int Function(int pos) f);
+
+@JS()
+int _getLineMaxSelectInternal(int pos) {
+  var line = platform.lineSettings[pos];
+  return line.maxSelect;
+}
+
 
 @JS('getPlatformDesign')
 external set _getPlatformDesign(String Function() f);
