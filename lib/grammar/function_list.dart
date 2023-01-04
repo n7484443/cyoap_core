@@ -4,16 +4,16 @@ import '/variable_db.dart';
 import 'value_type.dart';
 
 enum FunctionListEnum {
-  plus(2),
-  minus(2),
-  mul(2),
-  div(2),
-  equal(2),
-  notEqual(2),
-  bigger(2),
-  smaller(2),
-  biggerEqual(2),
-  smallerEqual(2),
+  plus(2, displayWithColor: false),
+  minus(2, displayWithColor: false),
+  mul(2, displayWithColor: false),
+  div(2, displayWithColor: false),
+  equal(2, displayWithColor: false),
+  notEqual(2, displayWithColor: false),
+  bigger(2, displayWithColor: false),
+  smaller(2, displayWithColor: false),
+  biggerEqual(2, displayWithColor: false),
+  smallerEqual(2, displayWithColor: false),
   floor(1),
   round(1),
   ceil(1),
@@ -23,24 +23,28 @@ enum FunctionListEnum {
   random(1, hasSeedInput: true),
   exist(1),
   isVisible(1),
-  loadVariable(1),
-  loadArray(2),
-  returnCondition(1),
-  setLocal(2, hasOutput: false),
-  setGlobal(2, hasOutput: false),
-  setVariable(2, hasOutput: false),
+  loadVariable(1, displayWithColor: false),
+  loadArray(2, displayWithColor: false),
+  returnCondition(1, displayWithColor: false),
+  setLocal(2, hasOutput: false, functionName: 'var'),
+  setGlobal(2, hasOutput: false, functionName: 'let'),
+  setVariable(2, hasOutput: false, displayWithColor: false),
   setVisible(2, hasOutput: false),
-  none(0, hasOutput: false);
+  none(0, hasOutput: false, displayWithColor: false);
 
   const FunctionListEnum(this.argumentLength,
       {this.hasOutput = true,
       this.hasMultipleArgument = false,
-      this.hasSeedInput = false});
+      this.hasSeedInput = false,
+      this.displayWithColor = true,
+        this.functionName});
 
   final int argumentLength;
   final bool hasOutput;
   final bool hasMultipleArgument;
   final bool hasSeedInput;
+  final bool displayWithColor;
+  final String? functionName;
 
   static FunctionListEnum getFunctionListEnum(String name) {
     return FunctionListEnum.values.firstWhere((element) => element.name == name,
