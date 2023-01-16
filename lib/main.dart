@@ -27,6 +27,7 @@ void main() {
 
   _getSelect = allowInterop(_getSelectInternal);
   _select = allowInterop(_selectInternal);
+  _getMaximumStatus = allowInterop(_getMaximumStatusInternal);
   _getChoiceStatus = allowInterop(_getChoiceStatusInternal);
   _getSize = allowInterop(_getSizeInternal);
   _getTitle = allowInterop(_getTitleInternal);
@@ -77,10 +78,19 @@ void _selectInternal(List<dynamic> pos, int n) {
     Pos innerPos = listToPos(pos);
     platform.getChoiceNode(innerPos)?.selectNode(n);
     isProcessing = true;
-    Timer(Duration(microseconds: 100), () {
+    Timer(Duration(microseconds: 10), () {
       isProcessing = false;
     });
   }
+}
+
+@JS('getMaximumStatus')
+external set _getMaximumStatus(int Function(List<dynamic> pos) f);
+
+@JS()
+int _getMaximumStatusInternal(List<dynamic> pos) {
+  Pos innerPos = listToPos(pos);
+  return platform.getChoiceNode(innerPos)?.maximumStatus ?? 0;
 }
 
 @JS('getChoiceStatus')
