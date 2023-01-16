@@ -29,6 +29,7 @@ class ChoiceNodeOption with _$ChoiceNodeOption {
     @Default(false) bool isOccupySpace,
     @Default(false) bool hideAsResult,
     @Default(false) bool showAsResult,
+    @Default(false) bool showAsSlider,
     @Default('default') String presetName,
   }) = _ChoiceNodeDesign;
 

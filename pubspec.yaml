@@ -1,6 +1,6 @@
 name: cyoap_core
 description: CYOAP Project's core library
-version: 2.1.1
+version: 2.2.0
 
 environment:
   sdk: '>=2.17.0 <3.0.0'

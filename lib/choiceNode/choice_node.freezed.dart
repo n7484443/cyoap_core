@@ -23,6 +23,7 @@ mixin _$ChoiceNodeOption {
   bool get isOccupySpace => throw _privateConstructorUsedError;
   bool get hideAsResult => throw _privateConstructorUsedError;
   bool get showAsResult => throw _privateConstructorUsedError;
+  bool get showAsSlider => throw _privateConstructorUsedError;
   String get presetName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,6 +42,7 @@ abstract class $ChoiceNodeOptionCopyWith<$Res> {
       {bool isOccupySpace,
       bool hideAsResult,
       bool showAsResult,
+      bool showAsSlider,
       String presetName});
 }
 
@@ -60,6 +62,7 @@ class _$ChoiceNodeOptionCopyWithImpl<$Res, $Val extends ChoiceNodeOption>
     Object? isOccupySpace = null,
     Object? hideAsResult = null,
     Object? showAsResult = null,
+    Object? showAsSlider = null,
     Object? presetName = null,
   }) {
     return _then(_value.copyWith(
@@ -74,6 +77,10 @@ class _$ChoiceNodeOptionCopyWithImpl<$Res, $Val extends ChoiceNodeOption>
       showAsResult: null == showAsResult
           ? _value.showAsResult
           : showAsResult // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showAsSlider: null == showAsSlider
+          ? _value.showAsSlider
+          : showAsSlider // ignore: cast_nullable_to_non_nullable
               as bool,
       presetName: null == presetName
           ? _value.presetName
@@ -95,6 +102,7 @@ abstract class _$$_ChoiceNodeDesignCopyWith<$Res>
       {bool isOccupySpace,
       bool hideAsResult,
       bool showAsResult,
+      bool showAsSlider,
       String presetName});
 }
 
@@ -112,6 +120,7 @@ class __$$_ChoiceNodeDesignCopyWithImpl<$Res>
     Object? isOccupySpace = null,
     Object? hideAsResult = null,
     Object? showAsResult = null,
+    Object? showAsSlider = null,
     Object? presetName = null,
   }) {
     return _then(_$_ChoiceNodeDesign(
@@ -126,6 +135,10 @@ class __$$_ChoiceNodeDesignCopyWithImpl<$Res>
       showAsResult: null == showAsResult
           ? _value.showAsResult
           : showAsResult // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showAsSlider: null == showAsSlider
+          ? _value.showAsSlider
+          : showAsSlider // ignore: cast_nullable_to_non_nullable
               as bool,
       presetName: null == presetName
           ? _value.presetName
@@ -143,6 +156,7 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
       {this.isOccupySpace = false,
       this.hideAsResult = false,
       this.showAsResult = false,
+      this.showAsSlider = false,
       this.presetName = 'default'});
 
   factory _$_ChoiceNodeDesign.fromJson(Map<String, dynamic> json) =>
@@ -159,11 +173,14 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
   final bool showAsResult;
   @override
   @JsonKey()
+  final bool showAsSlider;
+  @override
+  @JsonKey()
   final String presetName;
 
   @override
   String toString() {
-    return 'ChoiceNodeOption(isOccupySpace: $isOccupySpace, hideAsResult: $hideAsResult, showAsResult: $showAsResult, presetName: $presetName)';
+    return 'ChoiceNodeOption(isOccupySpace: $isOccupySpace, hideAsResult: $hideAsResult, showAsResult: $showAsResult, showAsSlider: $showAsSlider, presetName: $presetName)';
   }
 
   @override
@@ -177,14 +194,16 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
                 other.hideAsResult == hideAsResult) &&
             (identical(other.showAsResult, showAsResult) ||
                 other.showAsResult == showAsResult) &&
+            (identical(other.showAsSlider, showAsSlider) ||
+                other.showAsSlider == showAsSlider) &&
             (identical(other.presetName, presetName) ||
                 other.presetName == presetName));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, isOccupySpace, hideAsResult, showAsResult, presetName);
+  int get hashCode => Object.hash(runtimeType, isOccupySpace, hideAsResult,
+      showAsResult, showAsSlider, presetName);
 
   @JsonKey(ignore: true)
   @override
@@ -205,6 +224,7 @@ abstract class _ChoiceNodeDesign implements ChoiceNodeOption {
       {final bool isOccupySpace,
       final bool hideAsResult,
       final bool showAsResult,
+      final bool showAsSlider,
       final String presetName}) = _$_ChoiceNodeDesign;
 
   factory _ChoiceNodeDesign.fromJson(Map<String, dynamic> json) =
@@ -216,6 +236,8 @@ abstract class _ChoiceNodeDesign implements ChoiceNodeOption {
   bool get hideAsResult;
   @override
   bool get showAsResult;
+  @override
+  bool get showAsSlider;
   @override
   String get presetName;
   @override

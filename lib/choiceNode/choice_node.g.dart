@@ -11,6 +11,7 @@ _$_ChoiceNodeDesign _$$_ChoiceNodeDesignFromJson(Map<String, dynamic> json) =>
       isOccupySpace: json['isOccupySpace'] as bool? ?? false,
       hideAsResult: json['hideAsResult'] as bool? ?? false,
       showAsResult: json['showAsResult'] as bool? ?? false,
+      showAsSlider: json['showAsSlider'] as bool? ?? false,
       presetName: json['presetName'] as String? ?? 'default',
     );
 
@@ -19,5 +20,6 @@ Map<String, dynamic> _$$_ChoiceNodeDesignToJson(_$_ChoiceNodeDesign instance) =>
       'isOccupySpace': instance.isOccupySpace,
       'hideAsResult': instance.hideAsResult,
       'showAsResult': instance.showAsResult,
+      'showAsSlider': instance.showAsSlider,
       'presetName': instance.presetName,
     };
