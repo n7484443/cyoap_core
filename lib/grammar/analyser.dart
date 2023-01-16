@@ -129,8 +129,7 @@ class Analyser {
             argumentList.add(stack.removeLast());
           }
           argumentList = argumentList.reversed.toList();
-          print(funcEnum);
-          if (funcEnum.hasSeedInput) {
+          if (funcEnum.hasSeedInput ?? false) {//어떤 에러인지는 모르겠지만 enum 의 변수가 null 로 인식되는 오류. 아마 dart 의 오류인 듯 함.
             argumentList.add(ValueType.int(seed));
             seed += 1;
           }
