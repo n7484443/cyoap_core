@@ -129,6 +129,7 @@ class Analyser {
             argumentList.add(stack.removeLast());
           }
           argumentList = argumentList.reversed.toList();
+          print(funcEnum);
           if (funcEnum.hasSeedInput) {
             argumentList.add(ValueType.int(seed));
             seed += 1;
