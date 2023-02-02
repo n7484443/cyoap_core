@@ -16,14 +16,24 @@ class PlayablePlatform {
   String? stringImageName;
   List<ChoiceLine> lineSettings = List.empty(growable: true);
   Map<String, ValueTypeWrapper> globalSetting = {};
+  List<String> globalSettingOrder = [];
 
   PlatformDesignSetting designSetting = PlatformDesignSetting();
 
   PlayablePlatform();
+
   PlayablePlatform.fromJson(Map<String, dynamic> json)
       : stringImageName = json['stringImageName'] ?? '',
         globalSetting = (json['globalSetting'] as Map)
             .map((k, v) => MapEntry(k, ValueTypeWrapper.fromJson(v))),
+        globalSettingOrder = (json['globalSettingOrder'] == null
+            ? ((json['globalSetting'] as Map)
+                .keys
+                .map((e) => e as String)
+                .toList())
+            : (json['globalSettingOrder'] as List)
+                .map((e) => e as String)
+                .toList()),
         designSetting = PlatformDesignSetting.fromJson(json);
 
   Choice? getNode(Pos pos) {
