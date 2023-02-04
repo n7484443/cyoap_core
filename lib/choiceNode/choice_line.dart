@@ -23,13 +23,15 @@ class ChoiceLine extends Choice {
     map.addAll({
       'maxSelect': maxSelect,
       'presetName': presetName,
+      'name': name,
     });
     return map;
   }
 
   ChoiceLine.fromJson(Map<String, dynamic> json)
       : maxSelect = json['maxSelect'] ?? -1,
-        presetName = json['presetName'] ?? "default" {
+        presetName = json['presetName'] ?? "default",
+        name = json['name'] {
     super.currentPos = json['y'] ?? json['pos'];
     if (json.containsKey('children')) {
       children = (json['children'] as List)
