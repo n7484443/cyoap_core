@@ -37,7 +37,7 @@ enum FunctionListEnum {
       this.hasMultipleArgument = false,
       this.hasSeedInput = false,
       this.displayWithColor = true,
-        this.functionName});
+      this.functionName});
 
   final int argumentLength;
   final bool hasOutput;

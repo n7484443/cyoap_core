@@ -233,6 +233,7 @@ String _getLinePresetNameInternal(int pos) {
   var line = platform.lineSettings[pos];
   return line.presetName;
 }
+
 @JS('getLineMaxSelect')
 external set _getLineMaxSelect(int Function(int pos) f);
 
@@ -241,7 +242,6 @@ int _getLineMaxSelectInternal(int pos) {
   var line = platform.lineSettings[pos];
   return line.maxSelect;
 }
-
 
 @JS('getPlatformDesign')
 external set _getPlatformDesign(String Function() f);

@@ -9,6 +9,7 @@ import 'recursive_status.dart';
 class ChoiceLine extends Choice {
   int maxSelect;
   String presetName;
+  String? name;
 
   ChoiceLine(int currentPos,
       {this.presetName = "default", this.maxSelect = -1}) {
