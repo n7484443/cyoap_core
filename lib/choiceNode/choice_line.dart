@@ -6,13 +6,30 @@ import 'choice.dart';
 import 'choice_node.dart';
 import 'recursive_status.dart';
 
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'choice_line.g.dart';
+
+part 'choice_line.freezed.dart';
+
+@freezed
+class ChoiceLineOption with _$ChoiceLineOption {
+  @JsonSerializable(explicitToJson: true)
+  const factory ChoiceLineOption({
+    @Default(-1) int maxSelect,
+    @Default('default') String presetName,
+    String? name,
+  }) = _ChoiceLineOption;
+
+  factory ChoiceLineOption.fromJson(Map<String, dynamic> json) =>
+      _$ChoiceLineOptionFromJson(json);
+}
+
 class ChoiceLine extends Choice {
-  int maxSelect;
-  String presetName;
-  String? name;
+  ChoiceLineOption choiceLineOption;
 
   ChoiceLine(int currentPos,
-      {this.presetName = "default", this.maxSelect = -1}) {
+      {this.choiceLineOption = const ChoiceLineOption()}) {
     super.currentPos = currentPos;
     recursiveStatus = RecursiveStatus();
   }
@@ -20,18 +37,12 @@ class ChoiceLine extends Choice {
   @override
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = super.toJson();
-    map.addAll({
-      'maxSelect': maxSelect,
-      'presetName': presetName,
-      'name': name,
-    });
+    map.addAll(choiceLineOption.toJson());
     return map;
   }
 
   ChoiceLine.fromJson(Map<String, dynamic> json)
-      : maxSelect = json['maxSelect'] ?? -1,
-        presetName = json['presetName'] ?? "default",
-        name = json['name'] {
+      : choiceLineOption = ChoiceLineOption.fromJson(json) {
     super.currentPos = json['y'] ?? json['pos'];
     if (json.containsKey('children')) {
       children = (json['children'] as List)
@@ -62,7 +73,7 @@ class ChoiceLine extends Choice {
   void generateParser() {
     recursiveStatus.executeCodeString = '$valName += 1';
     if (isNeedToCheck()) {
-      recursiveStatus.conditionClickableString = '$valName < $maxSelect';
+      recursiveStatus.conditionClickableString = '$valName < ${choiceLineOption.maxSelect}';
     } else {
       recursiveStatus.conditionClickableString = 'true';
     }
@@ -70,7 +81,7 @@ class ChoiceLine extends Choice {
   }
 
   bool isNeedToCheck() {
-    return maxSelect > 0;
+    return choiceLineOption.maxSelect > 0;
   }
 
   @override

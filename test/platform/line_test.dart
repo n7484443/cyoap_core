@@ -13,7 +13,7 @@ void printStatus(List<ChoiceNode> choiceNode){
 void main() {
   test('lineMaximumTest', () {
     var platform = PlayablePlatform();
-    var lineSetting = ChoiceLine(0)..maxSelect = 1;
+    var lineSetting = ChoiceLine(0, choiceLineOption: ChoiceLineOption(maxSelect: 1));
     lineSetting.generateParser();
     platform.lineSettings.add(lineSetting);
     var choiceNode0 = ChoiceNode.empty()..title = "testNode0";

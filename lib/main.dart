@@ -41,8 +41,7 @@ void main() {
   _getNodePresetList = allowInterop(_getNodePresetListInternal);
   _getLinePresetList = allowInterop(_getLinePresetListInternal);
 
-  _getLinePresetName = allowInterop(_getLinePresetNameInternal);
-  _getLineMaxSelect = allowInterop(_getLineMaxSelectInternal);
+  _getLineOption = allowInterop(_getLineOptionInternal);
 }
 
 @JS('loadPlatform')
@@ -225,22 +224,13 @@ String _getLinePresetListInternal() {
   return jsonEncode(list.map((e) => e.toJson()).toList());
 }
 
-@JS('getLinePresetName')
-external set _getLinePresetName(String Function(int pos) f);
+@JS('getLineOption')
+external set _getLineOption(String Function(int pos) f);
 
 @JS()
-String _getLinePresetNameInternal(int pos) {
+String _getLineOptionInternal(int pos) {
   var line = platform.lineSettings[pos];
-  return line.presetName;
-}
-
-@JS('getLineMaxSelect')
-external set _getLineMaxSelect(int Function(int pos) f);
-
-@JS()
-int _getLineMaxSelectInternal(int pos) {
-  var line = platform.lineSettings[pos];
-  return line.maxSelect;
+  return jsonEncode(line.choiceLineOption.toJson());
 }
 
 @JS('getPlatformDesign')
