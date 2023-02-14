@@ -1,19 +1,22 @@
+import 'package:cyoap_core/i18n.dart';
 import 'package:cyoap_core/preset/line_preset.dart';
 import 'package:cyoap_core/preset/node_preset.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'design_setting.freezed.dart';
+
 part 'design_setting.g.dart';
 
 enum ImageAttribute {
-  fit("맞춤"),
-  fill("채움"),
-  pattern("패턴"),
-  stretch("늘리기");
+  fit,
+  fill,
+  pattern,
+  stretch;
 
-  final String name;
+  @override
+  String toString() => name.i18n;
 
-  const ImageAttribute(this.name);
+  const ImageAttribute();
 }
 
 @freezed

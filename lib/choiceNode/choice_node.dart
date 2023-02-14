@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:cyoap_core/grammar/value_type.dart';
+import 'package:cyoap_core/i18n.dart';
 import 'package:cyoap_core/option.dart';
 import 'package:cyoap_core/variable_db.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -67,7 +68,7 @@ class ChoiceNode extends Choice {
   }
 
   ChoiceNode.empty()
-      : title = "선택지 ${Random().nextInt(99)}",
+      : title = "${"choice".i18n} ${Random().nextInt(99)}",
         imageString = '',
         contentsString = '',
         choiceNodeOption = ChoiceNodeOption() {
