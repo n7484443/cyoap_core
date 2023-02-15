@@ -25,6 +25,7 @@ mixin _$ChoiceNodeDesignPreset {
   bool get titlePosition => throw _privateConstructorUsedError;
   double get elevation => throw _privateConstructorUsedError;
   double get round => throw _privateConstructorUsedError;
+  double get padding => throw _privateConstructorUsedError;
   bool get maximizingImage =>
       throw _privateConstructorUsedError; //true: 80%, false: 50%
   bool get hideTitle => throw _privateConstructorUsedError;
@@ -54,6 +55,7 @@ abstract class $ChoiceNodeDesignPresetCopyWith<$Res> {
       bool titlePosition,
       double elevation,
       double round,
+      double padding,
       bool maximizingImage,
       bool hideTitle,
       int imagePosition,
@@ -83,6 +85,7 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
     Object? titlePosition = null,
     Object? elevation = null,
     Object? round = null,
+    Object? padding = null,
     Object? maximizingImage = null,
     Object? hideTitle = null,
     Object? imagePosition = null,
@@ -109,6 +112,10 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
       round: null == round
           ? _value.round
           : round // ignore: cast_nullable_to_non_nullable
+              as double,
+      padding: null == padding
+          ? _value.padding
+          : padding // ignore: cast_nullable_to_non_nullable
               as double,
       maximizingImage: null == maximizingImage
           ? _value.maximizingImage
@@ -163,6 +170,7 @@ abstract class _$$_ChoiceNodeDesignPresetCopyWith<$Res>
       bool titlePosition,
       double elevation,
       double round,
+      double padding,
       bool maximizingImage,
       bool hideTitle,
       int imagePosition,
@@ -190,6 +198,7 @@ class __$$_ChoiceNodeDesignPresetCopyWithImpl<$Res>
     Object? titlePosition = null,
     Object? elevation = null,
     Object? round = null,
+    Object? padding = null,
     Object? maximizingImage = null,
     Object? hideTitle = null,
     Object? imagePosition = null,
@@ -216,6 +225,10 @@ class __$$_ChoiceNodeDesignPresetCopyWithImpl<$Res>
       round: null == round
           ? _value.round
           : round // ignore: cast_nullable_to_non_nullable
+              as double,
+      padding: null == padding
+          ? _value.padding
+          : padding // ignore: cast_nullable_to_non_nullable
               as double,
       maximizingImage: null == maximizingImage
           ? _value.maximizingImage
@@ -266,6 +279,7 @@ class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
       this.titlePosition = true,
       this.elevation = 0.0,
       this.round = 0.0,
+      this.padding = 0.0,
       this.maximizingImage = false,
       this.hideTitle = false,
       this.imagePosition = 0,
@@ -290,6 +304,9 @@ class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
   @override
   @JsonKey()
   final double round;
+  @override
+  @JsonKey()
+  final double padding;
   @override
   @JsonKey()
   final bool maximizingImage;
@@ -322,7 +339,7 @@ class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
 
   @override
   String toString() {
-    return 'ChoiceNodeDesignPreset(name: $name, titlePosition: $titlePosition, elevation: $elevation, round: $round, maximizingImage: $maximizingImage, hideTitle: $hideTitle, imagePosition: $imagePosition, colorNode: $colorNode, colorSelectNode: $colorSelectNode, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont, outline: $outline)';
+    return 'ChoiceNodeDesignPreset(name: $name, titlePosition: $titlePosition, elevation: $elevation, round: $round, padding: $padding, maximizingImage: $maximizingImage, hideTitle: $hideTitle, imagePosition: $imagePosition, colorNode: $colorNode, colorSelectNode: $colorSelectNode, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont, outline: $outline)';
   }
 
   @override
@@ -336,6 +353,7 @@ class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
             (identical(other.elevation, elevation) ||
                 other.elevation == elevation) &&
             (identical(other.round, round) || other.round == round) &&
+            (identical(other.padding, padding) || other.padding == padding) &&
             (identical(other.maximizingImage, maximizingImage) ||
                 other.maximizingImage == maximizingImage) &&
             (identical(other.hideTitle, hideTitle) ||
@@ -363,6 +381,7 @@ class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
       titlePosition,
       elevation,
       round,
+      padding,
       maximizingImage,
       hideTitle,
       imagePosition,
@@ -394,6 +413,7 @@ abstract class _ChoiceNodeDesignPreset implements ChoiceNodeDesignPreset {
       final bool titlePosition,
       final double elevation,
       final double round,
+      final double padding,
       final bool maximizingImage,
       final bool hideTitle,
       final int imagePosition,
@@ -415,6 +435,8 @@ abstract class _ChoiceNodeDesignPreset implements ChoiceNodeDesignPreset {
   double get elevation;
   @override
   double get round;
+  @override
+  double get padding;
   @override
   bool get maximizingImage;
   @override //true: 80%, false: 50%

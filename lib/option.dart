@@ -1,3 +1,5 @@
+import 'package:intl/locale.dart';
+
 class Option {
   static final Option _instance = Option._internal();
   factory Option() {
@@ -11,4 +13,5 @@ class Option {
   bool enableToken = false;
   bool enableRecursiveStack = false;
   bool enableRecursiveResult = false;
+  Locale? locale;
 }

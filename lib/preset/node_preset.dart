@@ -21,6 +21,7 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
     @Default(true) bool titlePosition,
     @Default(0.0) double elevation,
     @Default(0.0) double round,
+    @Default(0.0) double padding,
     @Default(false) bool maximizingImage, //true: 80%, false: 50%
     @Default(false) bool hideTitle,
     @Default(0) int imagePosition, //0:default, 1:image-right 2:image-left

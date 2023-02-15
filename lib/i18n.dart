@@ -1,8 +1,7 @@
-import 'package:i18n_extension/i18n_extension.dart';
+import 'option.dart';
 
 extension Localization on String {
-  static final _t = Translations.byLocale("en_us") +
-      const {
+  static final _t = const {
         "en_us": {
           "choice" : "Choice",
           
@@ -22,8 +21,13 @@ extension Localization on String {
       };
 
   String get i18n {
-    return localize(this, _t);
-  }
+    Map<String, String> data;
+    if(!_t.containsKey(Option().locale)){
+      data = _t["en_us"]!;
+    }else{
+      data = _t[Option().locale]!;
+    }
 
-  String fill(List<Object> params) => localizeFill(this, params);
+    return data[this] ?? 'error';
+  }
 }
