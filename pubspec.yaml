@@ -11,7 +11,6 @@ dependencies:
   js: any
   meta: any
   tuple: ^2.0.0
-  intl: ^0.17.0
 
 dev_dependencies:
   freezed: ^2.2.0
