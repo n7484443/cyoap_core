@@ -23,6 +23,7 @@ PlatformDesignSetting _$PlatformDesignSettingFromJson(
 mixin _$PlatformDesignSetting {
   String get variableFont => throw _privateConstructorUsedError;
   String? get backgroundImage => throw _privateConstructorUsedError;
+  int? get backgroundColor => throw _privateConstructorUsedError;
   ImageAttribute get backgroundAttribute => throw _privateConstructorUsedError;
   List<ChoiceLineDesignPreset> get choiceLinePresetList =>
       throw _privateConstructorUsedError;
@@ -45,6 +46,7 @@ abstract class $PlatformDesignSettingCopyWith<$Res> {
   $Res call(
       {String variableFont,
       String? backgroundImage,
+      int? backgroundColor,
       ImageAttribute backgroundAttribute,
       List<ChoiceLineDesignPreset> choiceLinePresetList,
       List<ChoiceNodeDesignPreset> choiceNodePresetList,
@@ -67,6 +69,7 @@ class _$PlatformDesignSettingCopyWithImpl<$Res,
   $Res call({
     Object? variableFont = null,
     Object? backgroundImage = freezed,
+    Object? backgroundColor = freezed,
     Object? backgroundAttribute = null,
     Object? choiceLinePresetList = null,
     Object? choiceNodePresetList = null,
@@ -81,6 +84,10 @@ class _$PlatformDesignSettingCopyWithImpl<$Res,
           ? _value.backgroundImage
           : backgroundImage // ignore: cast_nullable_to_non_nullable
               as String?,
+      backgroundColor: freezed == backgroundColor
+          ? _value.backgroundColor
+          : backgroundColor // ignore: cast_nullable_to_non_nullable
+              as int?,
       backgroundAttribute: null == backgroundAttribute
           ? _value.backgroundAttribute
           : backgroundAttribute // ignore: cast_nullable_to_non_nullable
@@ -112,6 +119,7 @@ abstract class _$$_PlatformDesignSettingCopyWith<$Res>
   $Res call(
       {String variableFont,
       String? backgroundImage,
+      int? backgroundColor,
       ImageAttribute backgroundAttribute,
       List<ChoiceLineDesignPreset> choiceLinePresetList,
       List<ChoiceNodeDesignPreset> choiceNodePresetList,
@@ -131,6 +139,7 @@ class __$$_PlatformDesignSettingCopyWithImpl<$Res>
   $Res call({
     Object? variableFont = null,
     Object? backgroundImage = freezed,
+    Object? backgroundColor = freezed,
     Object? backgroundAttribute = null,
     Object? choiceLinePresetList = null,
     Object? choiceNodePresetList = null,
@@ -145,6 +154,10 @@ class __$$_PlatformDesignSettingCopyWithImpl<$Res>
           ? _value.backgroundImage
           : backgroundImage // ignore: cast_nullable_to_non_nullable
               as String?,
+      backgroundColor: freezed == backgroundColor
+          ? _value.backgroundColor
+          : backgroundColor // ignore: cast_nullable_to_non_nullable
+              as int?,
       backgroundAttribute: null == backgroundAttribute
           ? _value.backgroundAttribute
           : backgroundAttribute // ignore: cast_nullable_to_non_nullable
@@ -172,6 +185,7 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
   _$_PlatformDesignSetting(
       {this.variableFont = "notoSans",
       this.backgroundImage,
+      this.backgroundColor,
       this.backgroundAttribute = ImageAttribute.fit,
       final List<ChoiceLineDesignPreset> choiceLinePresetList = const [
         ChoiceLineDesignPreset(name: 'default')
@@ -191,6 +205,8 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
   final String variableFont;
   @override
   final String? backgroundImage;
+  @override
+  final int? backgroundColor;
   @override
   @JsonKey()
   final ImageAttribute backgroundAttribute;
@@ -220,7 +236,7 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
 
   @override
   String toString() {
-    return 'PlatformDesignSetting(variableFont: $variableFont, backgroundImage: $backgroundImage, backgroundAttribute: $backgroundAttribute, choiceLinePresetList: $choiceLinePresetList, choiceNodePresetList: $choiceNodePresetList, marginVertical: $marginVertical)';
+    return 'PlatformDesignSetting(variableFont: $variableFont, backgroundImage: $backgroundImage, backgroundColor: $backgroundColor, backgroundAttribute: $backgroundAttribute, choiceLinePresetList: $choiceLinePresetList, choiceNodePresetList: $choiceNodePresetList, marginVertical: $marginVertical)';
   }
 
   @override
@@ -232,6 +248,8 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
                 other.variableFont == variableFont) &&
             (identical(other.backgroundImage, backgroundImage) ||
                 other.backgroundImage == backgroundImage) &&
+            (identical(other.backgroundColor, backgroundColor) ||
+                other.backgroundColor == backgroundColor) &&
             (identical(other.backgroundAttribute, backgroundAttribute) ||
                 other.backgroundAttribute == backgroundAttribute) &&
             const DeepCollectionEquality()
@@ -248,6 +266,7 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
       runtimeType,
       variableFont,
       backgroundImage,
+      backgroundColor,
       backgroundAttribute,
       const DeepCollectionEquality().hash(_choiceLinePresetList),
       const DeepCollectionEquality().hash(_choiceNodePresetList),
@@ -272,6 +291,7 @@ abstract class _PlatformDesignSetting implements PlatformDesignSetting {
   factory _PlatformDesignSetting(
       {final String variableFont,
       final String? backgroundImage,
+      final int? backgroundColor,
       final ImageAttribute backgroundAttribute,
       final List<ChoiceLineDesignPreset> choiceLinePresetList,
       final List<ChoiceNodeDesignPreset> choiceNodePresetList,
@@ -284,6 +304,8 @@ abstract class _PlatformDesignSetting implements PlatformDesignSetting {
   String get variableFont;
   @override
   String? get backgroundImage;
+  @override
+  int? get backgroundColor;
   @override
   ImageAttribute get backgroundAttribute;
   @override

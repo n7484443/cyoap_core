@@ -11,6 +11,7 @@ _$_PlatformDesignSetting _$$_PlatformDesignSettingFromJson(
     _$_PlatformDesignSetting(
       variableFont: json['variableFont'] as String? ?? "notoSans",
       backgroundImage: json['backgroundImage'] as String?,
+      backgroundColor: json['backgroundColor'] as int?,
       backgroundAttribute: $enumDecodeNullable(
               _$ImageAttributeEnumMap, json['backgroundAttribute']) ??
           ImageAttribute.fit,
@@ -32,6 +33,7 @@ Map<String, dynamic> _$$_PlatformDesignSettingToJson(
     <String, dynamic>{
       'variableFont': instance.variableFont,
       'backgroundImage': instance.backgroundImage,
+      'backgroundColor': instance.backgroundColor,
       'backgroundAttribute':
           _$ImageAttributeEnumMap[instance.backgroundAttribute]!,
       'choiceLinePresetList':
