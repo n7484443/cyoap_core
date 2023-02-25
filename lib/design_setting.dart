@@ -26,6 +26,7 @@ class PlatformDesignSetting with _$PlatformDesignSetting {
     @Default("notoSans")
         String variableFont,
     String? backgroundImage,
+    int? backgroundColor,
     @Default(ImageAttribute.fit)
         ImageAttribute backgroundAttribute,
     @Default([
