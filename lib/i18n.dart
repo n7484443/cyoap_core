@@ -2,7 +2,7 @@ import 'option.dart';
 
 extension Localization on String {
   static final _t = const {
-        "en_us": {
+        "en": {
           "choice" : "Choice",
           
           "fit" : "fit",
@@ -10,7 +10,7 @@ extension Localization on String {
           "pattern" : "pattern",
           "stretch" : "stretch",
         },
-        "ko_kr": {
+        "ko": {
           "choice" : "선택지",
           
           "fit" : "맞춤",
@@ -23,7 +23,7 @@ extension Localization on String {
   String get i18n {
     Map<String, String> data;
     if(!_t.containsKey(Option().locale)){
-      data = _t["en_us"]!;
+      data = _t["en"]!;
     }else{
       data = _t[Option().locale]!;
     }
