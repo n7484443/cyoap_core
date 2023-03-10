@@ -3,6 +3,8 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'recursive_status.g.dart';
 
+final RegExp textFinder = RegExp(r"\{\{(.*?)\}\}");
+
 @JsonSerializable(explicitToJson: true)
 class RecursiveStatus {
   @JsonKey(defaultValue: [])
@@ -11,6 +13,8 @@ class RecursiveStatus {
   List<String> conditionVisibleCode = [];
   @JsonKey(defaultValue: [])
   List<String> executeCode = [];
+  @JsonKey(defaultValue: [[]])
+  List<List<String>> textCode = [[]];
 
   String? conditionClickableString;
   String? conditionVisibleString;
@@ -27,12 +31,16 @@ class RecursiveStatus {
 
   Map<String, dynamic> toJson() => _$RecursiveStatusToJson(this);
 
-  void generateParser(String pos) {
+  void generateParser(String pos, {String? text}) {
     conditionClickableCode =
         Analyser().analyseSingleLine(conditionClickableString, pos: pos);
     conditionVisibleCode =
         Analyser().analyseSingleLine(conditionVisibleString, pos: pos);
     executeCode = Analyser().analyseMultiLine(executeCodeString, pos: pos);
+    textCode.clear();
+    textFinder.allMatches(text ?? '').forEach((element) {
+      textCode.add(Analyser().analyseMultiLine(text));
+    });
   }
 
   bool analyseVisible(String errorName, {int? seedInput}) {
