@@ -24,13 +24,19 @@ RecursiveStatus _$RecursiveStatusFromJson(Map<String, dynamic> json) =>
       ..executeCode = (json['executeCode'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
-          [];
+          []
+      ..textCode = (json['textCode'] as List<dynamic>?)
+              ?.map(
+                  (e) => (e as List<dynamic>).map((e) => e as String).toList())
+              .toList() ??
+          [[]];
 
 Map<String, dynamic> _$RecursiveStatusToJson(RecursiveStatus instance) =>
     <String, dynamic>{
       'conditionClickableCode': instance.conditionClickableCode,
       'conditionVisibleCode': instance.conditionVisibleCode,
       'executeCode': instance.executeCode,
+      'textCode': instance.textCode,
       'conditionClickableString': instance.conditionClickableString,
       'conditionVisibleString': instance.conditionVisibleString,
       'executeCodeString': instance.executeCodeString,

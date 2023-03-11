@@ -190,7 +190,11 @@ List<String> _getValueListInternal() {
   for (var key in VariableDataBase().varMapGlobal.keys) {
     var wrapper = VariableDataBase().getValueTypeWrapper(key)!;
     if (wrapper.visible) {
-      list.add("${wrapper.displayName} : ${wrapper.valueType.dataUnzip}");
+      if(wrapper.displayName.isEmpty){
+        list.add("$key : ${wrapper.valueType.dataUnzip}");
+      }else{
+        list.add("${wrapper.displayName } : ${wrapper.valueType.dataUnzip}");
+      }
     }
   }
   return list;
