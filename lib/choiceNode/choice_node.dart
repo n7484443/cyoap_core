@@ -59,7 +59,7 @@ class ChoiceNode extends Choice {
 
   @override
   void generateParser() {
-    recursiveStatus.generateParser(errorName, text: contentsString);
+    recursiveStatus.compile(errorName, text: contentsString);
     for (var child in children) {
       child.generateParser();
     }

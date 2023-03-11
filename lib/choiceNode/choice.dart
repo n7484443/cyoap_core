@@ -13,7 +13,7 @@ abstract class Choice {
   SelectableStatus selectableStatus = SelectableStatus.open;
 
   void generateParser() {
-    recursiveStatus.generateParser(errorName);
+    recursiveStatus.compile(errorName);
     for (var child in children) {
       child.generateParser();
     }
