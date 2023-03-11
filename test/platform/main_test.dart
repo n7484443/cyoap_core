@@ -20,6 +20,7 @@ void main() {
     var choiceNode0 = ChoiceNode.empty()..title = "testNode0";
     choiceNode0.recursiveStatus.executeCodeString = "test = 0";
     var choiceNode1 = ChoiceNode(title: "testNode1", contents: "t{{test}} t", width: 1, imageString: '');
+    choiceNode1.recursiveStatus.executeCodeString = "test = 'self'";
     lineSetting0.addChildren(choiceNode0);
     lineSetting0.addChildren(choiceNode1);
     lineSetting0.generateParser();
@@ -51,5 +52,10 @@ void main() {
     platform.updateStatusAll();
 
     expect(choiceNode1.contentsString, "tfor test t");
+
+    choiceNode1.selectNode(0);
+    platform.updateStatusAll();
+
+    expect(choiceNode1.contentsString, "tself t");
   });
 }

@@ -81,6 +81,7 @@ class ChoiceNode extends Choice {
   }
 
   String get contentsString => _currentContentsString;
+  String get contentsOriginalString => _contentsString;
   set contentsString(String str){
     _contentsString = str;
     updateCurrentContentsString();
