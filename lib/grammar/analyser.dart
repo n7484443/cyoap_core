@@ -83,7 +83,7 @@ class Analyser {
     return [];
   }
 
-  bool? run(List<String> unitList, {String pos = "", int? seedInput}) {
+  dynamic run(List<String> unitList, {String pos = "", int? seedInput}) {
     if (unitList.isEmpty) return null;
     int seed = seedInput ?? Random().nextInt(seedMax);
     try {
@@ -103,7 +103,7 @@ class Analyser {
           stack.add(getValueTypeFromStringInput(argument!));
         } else if (opCode == "return") {
           var out = stack.removeLast().dataUnzip;
-          return out as bool;
+          return out;
         } else if (opCode == "if_goto") {
           if (stack.removeLast().dataUnzip as bool) {
             continue;

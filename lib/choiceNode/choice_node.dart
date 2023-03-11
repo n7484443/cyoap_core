@@ -13,6 +13,7 @@ import 'recursive_status.dart';
 import 'selectable_status.dart';
 
 part 'choice_node.freezed.dart';
+
 part 'choice_node.g.dart';
 
 enum ChoiceNodeMode {
@@ -55,6 +56,27 @@ class ChoiceNode extends Choice {
   int select = 0;
 
   int seed = Random().nextInt(seedMax);
+
+  @override
+  void generateParser() {
+    recursiveStatus.generateParser(errorName, text: contentsString);
+    for (var child in children) {
+      child.generateParser();
+    }
+  }
+
+  String get currentContentsString {
+    var currentContentsString = contentsString;
+    for (int i = 0; i < recursiveStatus.textCode.length; i++) {
+      var match = textFinderAll.firstMatch(currentContentsString);
+      if(match == null){
+        break;
+      }
+      currentContentsString = currentContentsString.replaceRange(
+          match.start, match.end, recursiveStatus.executeText('error in text!', i, seedInput: seed));
+    }
+    return currentContentsString;
+  }
 
   @override
   bool get isSelectableMode =>

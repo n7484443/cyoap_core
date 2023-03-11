@@ -4,6 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'recursive_status.g.dart';
 
 final RegExp textFinder = RegExp(r"\{\{(.*?)\}\}");
+final RegExp textFinderAll = RegExp(r"\{\{.*?\}\}");
 
 @JsonSerializable(explicitToJson: true)
 class RecursiveStatus {
@@ -39,23 +40,29 @@ class RecursiveStatus {
     executeCode = Analyser().analyseMultiLine(executeCodeString, pos: pos);
     textCode.clear();
     textFinder.allMatches(text ?? '').forEach((element) {
-      textCode.add(Analyser().analyseMultiLine(text));
+      textCode.add(Analyser().analyseSingleLine(element.group(1)));
     });
   }
 
   bool analyseVisible(String errorName, {int? seedInput}) {
-    return Analyser()
-            .run(conditionVisibleCode, pos: errorName, seedInput: seedInput) ??
-        true;
+    var out = Analyser()
+        .run(conditionVisibleCode, pos: errorName, seedInput: seedInput);
+    if(out is bool) return out;
+    return  true;
   }
 
   bool analyseClickable(String errorName, {int? seedInput}) {
-    return Analyser().run(conditionClickableCode,
-            pos: errorName, seedInput: seedInput) ??
-        true;
+    var out = Analyser()
+        .run(conditionClickableCode, pos: errorName, seedInput: seedInput);
+    if(out is bool) return out;
+    return true;
   }
 
   void execute(String errorName, {int? seedInput}) {
     Analyser().run(executeCode, pos: errorName, seedInput: seedInput);
+  }
+
+  String executeText(String errorName, int num, {int? seedInput}) {
+    return Analyser().run(textCode[num], pos: errorName, seedInput: seedInput).toString();
   }
 }
