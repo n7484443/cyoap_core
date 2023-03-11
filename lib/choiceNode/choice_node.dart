@@ -48,7 +48,8 @@ class ChoiceNode extends Choice {
   ChoiceNodeMode choiceNodeMode = ChoiceNodeMode.defaultMode;
 
   String title;
-  String contentsString;
+  String _contentsString;
+  String _currentContentsString;
   String imageString;
 
   int maximumStatus = 0;
@@ -59,23 +60,30 @@ class ChoiceNode extends Choice {
 
   @override
   void generateParser() {
-    recursiveStatus.compile(errorName, text: contentsString);
+    recursiveStatus.compile(errorName, text: _contentsString);
     for (var child in children) {
       child.generateParser();
     }
   }
 
-  String get currentContentsString {
-    var currentContentsString = contentsString;
+  void updateCurrentContentsString() {
+    _currentContentsString = _contentsString;
     for (int i = 0; i < recursiveStatus.textCode.length; i++) {
-      var match = textFinderAll.firstMatch(currentContentsString);
-      if(match == null){
+      var match = textFinderAll.firstMatch(_currentContentsString);
+      if (match == null) {
         break;
       }
-      currentContentsString = currentContentsString.replaceRange(
-          match.start, match.end, recursiveStatus.executeText('error in text!', i, seedInput: seed));
+      _currentContentsString = _currentContentsString.replaceRange(
+          match.start,
+          match.end,
+          recursiveStatus.executeText('error in text!', i, seedInput: seed));
     }
-    return currentContentsString;
+  }
+
+  String get contentsString => _currentContentsString;
+  set contentsString(String str){
+    _contentsString = str;
+    updateCurrentContentsString();
   }
 
   @override
@@ -83,8 +91,14 @@ class ChoiceNode extends Choice {
       choiceNodeMode != ChoiceNodeMode.unSelectableMode &&
       choiceNodeMode != ChoiceNodeMode.onlyCode;
 
-  ChoiceNode(int width, this.title, this.contentsString, this.imageString)
-      : choiceNodeOption = ChoiceNodeOption() {
+  ChoiceNode(
+      {int width = 1,
+      required this.title,
+      required contents,
+      this.imageString = ""})
+      : choiceNodeOption = ChoiceNodeOption(),
+        _currentContentsString = contents,
+        _contentsString = contents {
     recursiveStatus = RecursiveStatus();
     super.width = width;
   }
@@ -92,7 +106,8 @@ class ChoiceNode extends Choice {
   ChoiceNode.empty()
       : title = "${"choice".i18n} ${Random().nextInt(99)}",
         imageString = '',
-        contentsString = '',
+        _contentsString = '',
+        _currentContentsString = '',
         choiceNodeOption = ChoiceNodeOption() {
     recursiveStatus = RecursiveStatus();
   } //랜덤 문자로 제목 중복 방지
@@ -100,7 +115,8 @@ class ChoiceNode extends Choice {
   ChoiceNode.fromJson(Map<String, dynamic> json)
       : maximumStatus = json['maximumStatus'] ?? 0,
         title = json['title'] ?? '',
-        contentsString = json['contentsString'],
+        _contentsString = json['contentsString'],
+        _currentContentsString = json['contentsString'],
         imageString = json['imageString'] ?? json['image'],
         choiceNodeOption = ChoiceNodeOption.fromJson(json),
         choiceNodeMode = json['choiceNodeMode'] == null
@@ -124,7 +140,7 @@ class ChoiceNode extends Choice {
     map.addAll({
       'maximumStatus': maximumStatus,
       'title': title,
-      'contentsString': contentsString,
+      'contentsString': _contentsString,
       'image': imageString,
       'choiceNodeMode': choiceNodeMode.name,
     });
@@ -289,6 +305,7 @@ class ChoiceNode extends Choice {
 
   @override
   void updateStatus() {
+    updateCurrentContentsString();
     if (select > 0 && parent!.isExecutable()) {
       selectableStatus = SelectableStatus.open;
       return;

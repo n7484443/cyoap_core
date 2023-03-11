@@ -15,28 +15,41 @@ void main() {
   test('main replacement test', () {
     var ins = VariableDataBase();
     var platform = PlayablePlatform();
-    var lineSetting = ChoiceLine(0);
-    platform.lineSettings.add(lineSetting);
+    platform.globalSetting['test'] = ValueTypeWrapper(ValueType.string("for test"));
+    var lineSetting0 = ChoiceLine(0);
     var choiceNode0 = ChoiceNode.empty()..title = "testNode0";
     choiceNode0.recursiveStatus.executeCodeString = "test = 0";
-    var choiceNode1 = ChoiceNode.empty()..title = "testNode1"..contentsString = "t{{test}} t";
-    platform.lineSettings[0].addChildren(choiceNode0);
-    platform.lineSettings[0].addChildren(choiceNode1);
-    lineSetting.generateParser();
-    platform.updateStatusAll();
+    var choiceNode1 = ChoiceNode(title: "testNode1", contents: "t{{test}} t", width: 1, imageString: '');
+    lineSetting0.addChildren(choiceNode0);
+    lineSetting0.addChildren(choiceNode1);
+    lineSetting0.generateParser();
 
-    ins.setValue('test', ValueTypeWrapper(ValueType.string("for test")), isGlobal: true);
-    expect(choiceNode1.currentContentsString, "tfor test t");
+    var lineSetting1 = ChoiceLine(1);
+    var choiceNode1_0 = ChoiceNode.empty()..title = "testNode 1_0";
+    choiceNode1_0.recursiveStatus.executeCodeString = "test = 'printTest'";
+    lineSetting1.addChildren(choiceNode1_0);
+    lineSetting1.generateParser();
+
+    platform.lineSettings.add(lineSetting0);
+    platform.lineSettings.add(lineSetting1);
+
+    platform.updateStatusAll();
+    expect(choiceNode1.contentsString, "tfor test t");
 
     choiceNode0.selectNode(0);
     platform.updateStatusAll();
 
     print(ins.getValueType('test'));
-    expect(choiceNode1.currentContentsString, "t0 t");
+    expect(choiceNode1.contentsString, "t0 t");
+
+    choiceNode1_0.selectNode(0);
+    platform.updateStatusAll();
+
+    expect(choiceNode1.contentsString, "t0 t");
 
     choiceNode0.selectNode(0);
     platform.updateStatusAll();
 
-    expect(choiceNode1.currentContentsString, "tfor test t");
+    expect(choiceNode1.contentsString, "tfor test t");
   });
 }
