@@ -36,6 +36,10 @@ class PlayablePlatform {
     _globalSetting.removeWhere((element) => element.item1 == name);
   }
 
+  void clearGlobalSetting() {
+    _globalSetting.clear();
+  }
+
   ValueTypeWrapper? getGlobalSetting(String name) {
     int pos = _globalSetting.indexWhere((element) => element.item1 == name);
     if (pos == -1) {
