@@ -17,28 +17,30 @@ class PlayablePlatform {
   List<ChoiceLine> lineSettings = List.empty(growable: true);
   List<Tuple2<String, ValueTypeWrapper>> _globalSetting = [];
 
+  List<Tuple2<String, ValueTypeWrapper>> get globalSetting => _globalSetting;
+
   PlatformDesignSetting designSetting = PlatformDesignSetting();
 
   PlayablePlatform();
 
-  void addGlobalSetting(String name, ValueTypeWrapper wrapper){
+  void addGlobalSetting(String name, ValueTypeWrapper wrapper) {
     int pos = _globalSetting.indexWhere((element) => element.item1 == name);
-    if(pos == -1) {
+    if (pos == -1) {
       _globalSetting.add(Tuple2(name, wrapper));
-    }else{
+    } else {
       _globalSetting[pos] = Tuple2(name, wrapper);
     }
   }
 
-  void removeGlobalSetting(String name){
+  void removeGlobalSetting(String name) {
     _globalSetting.removeWhere((element) => element.item1 == name);
   }
 
-  ValueTypeWrapper? getGlobalSetting(String name){
+  ValueTypeWrapper? getGlobalSetting(String name) {
     int pos = _globalSetting.indexWhere((element) => element.item1 == name);
-    if(pos == -1) {
+    if (pos == -1) {
       return null;
-    }else{
+    } else {
       return _globalSetting[pos].item2;
     }
   }
@@ -47,8 +49,8 @@ class PlayablePlatform {
       : stringImageName = json['stringImageName'] ?? '',
         _globalSetting = (json['globalSetting'] as Map)
             .keys
-            .map((name) => Tuple2(
-                name as String, ValueTypeWrapper.fromJson(json['globalSetting'][name])))
+            .map((name) => Tuple2(name as String,
+                ValueTypeWrapper.fromJson(json['globalSetting'][name])))
             .toList(),
         designSetting = PlatformDesignSetting.fromJson(json);
 
