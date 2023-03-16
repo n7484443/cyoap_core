@@ -15,7 +15,7 @@ void main() {
   test('main replacement test', () {
     var ins = VariableDataBase();
     var platform = PlayablePlatform();
-    platform.globalSetting['test'] = ValueTypeWrapper(ValueType.string("for test"));
+    platform.addGlobalSetting('test', ValueTypeWrapper(ValueType.string("for test")));
     var lineSetting0 = ChoiceLine(0);
     var choiceNode0 = ChoiceNode.empty()..title = "testNode0";
     choiceNode0.recursiveStatus.executeCodeString = "test = 0";

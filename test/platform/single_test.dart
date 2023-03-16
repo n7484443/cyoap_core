@@ -7,8 +7,6 @@ import 'package:cyoap_core/playable_platform.dart';
 import 'package:cyoap_core/variable_db.dart';
 import 'package:test/test.dart';
 
-import '../analyzer/analyzer_tool.dart';
-
 void main() {
   test('defaultModeTest', () {
     var ins = VariableDataBase();
@@ -51,21 +49,20 @@ void main() {
     choiceNode.choiceNodeMode = ChoiceNodeMode.unSelectableMode;
     choiceNode.recursiveStatus.conditionVisibleString = "testInput";
     choiceNode.recursiveStatus.executeCodeString = "point += 1";
-    var choiceNode2 = ChoiceNode.empty()..title = "testNode2";
 
 
     platform.lineSettings[0].addChildren(choiceNode);
     //platform.lineSettings[0].addChildren(choiceNode2);
     choiceNode.generateParser();
 
-    platform.globalSetting['testInput'] = ValueTypeWrapper(ValueType.bool(false));
-    platform.globalSetting['point'] = ValueTypeWrapper(ValueType.int(0));
+    platform.addGlobalSetting('testInput', ValueTypeWrapper(ValueType.bool(false)));
+    platform.addGlobalSetting('point', ValueTypeWrapper(ValueType.int(0)));
     platform.updateStatusAll();
     expect(ins.getValueType("testNode")?.dataUnzip, false);
     expect(ins.getValueType("point")?.dataUnzip, 0);
 
-    platform.globalSetting['testInput'] = ValueTypeWrapper(ValueType.bool(true));
-    platform.globalSetting['point'] = ValueTypeWrapper(ValueType.int(0));
+    platform.addGlobalSetting('testInput', ValueTypeWrapper(ValueType.bool(true)));
+    platform.addGlobalSetting('point', ValueTypeWrapper(ValueType.int(0)));
     platform.updateStatusAll();
     expect(ins.getValueType("testNode")?.dataUnzip, true);
     expect(ins.getValueType("point")?.dataUnzip, 1);

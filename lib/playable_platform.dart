@@ -15,25 +15,41 @@ const int nonPositioned = -1;
 class PlayablePlatform {
   String? stringImageName;
   List<ChoiceLine> lineSettings = List.empty(growable: true);
-  Map<String, ValueTypeWrapper> globalSetting = {};
-  List<String> globalSettingOrder = [];
+  List<Tuple2<String, ValueTypeWrapper>> _globalSetting = [];
 
   PlatformDesignSetting designSetting = PlatformDesignSetting();
 
   PlayablePlatform();
 
+  void addGlobalSetting(String name, ValueTypeWrapper wrapper){
+    int pos = _globalSetting.indexWhere((element) => element.item1 == name);
+    if(pos == -1) {
+      _globalSetting.add(Tuple2(name, wrapper));
+    }else{
+      _globalSetting[pos] = Tuple2(name, wrapper);
+    }
+  }
+
+  void removeGlobalSetting(String name){
+    _globalSetting.removeWhere((element) => element.item1 == name);
+  }
+
+  ValueTypeWrapper? getGlobalSetting(String name){
+    int pos = _globalSetting.indexWhere((element) => element.item1 == name);
+    if(pos == -1) {
+      return null;
+    }else{
+      return _globalSetting[pos].item2;
+    }
+  }
+
   PlayablePlatform.fromJson(Map<String, dynamic> json)
       : stringImageName = json['stringImageName'] ?? '',
-        globalSetting = (json['globalSetting'] as Map)
-            .map((k, v) => MapEntry(k, ValueTypeWrapper.fromJson(v))),
-        globalSettingOrder = (json['globalSettingOrder'] == null
-            ? ((json['globalSetting'] as Map)
-                .keys
-                .map((e) => e as String)
-                .toList())
-            : (json['globalSettingOrder'] as List)
-                .map((e) => e as String)
-                .toList()),
+        _globalSetting = (json['globalSetting'] as Map)
+            .keys
+            .map((name) => Tuple2(
+                name as String, ValueTypeWrapper.fromJson(json['globalSetting'][name])))
+            .toList(),
         designSetting = PlatformDesignSetting.fromJson(json);
 
   Choice? getNode(Pos pos) {
@@ -66,7 +82,9 @@ class PlayablePlatform {
 
   void updateStatusAll({int startLine = 0}) {
     VariableDataBase().clear();
-    VariableDataBase().varMapGlobal.addAll(globalSetting);
+    for (var element in _globalSetting) {
+      VariableDataBase().varMapGlobal[element.item1] = element.item2;
+    }
     for (var i = startLine; i < lineSettings.length; i++) {
       var lineSetting = lineSettings[i];
       lineSetting.initValueTypeWrapper();
