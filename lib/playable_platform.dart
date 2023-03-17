@@ -51,12 +51,20 @@ class PlayablePlatform {
 
   PlayablePlatform.fromJson(Map<String, dynamic> json)
       : stringImageName = json['stringImageName'] ?? '',
-        _globalSetting = (json['globalSetting'] as Map)
-            .keys
-            .map((name) => Tuple2(name as String,
-                ValueTypeWrapper.fromJson(json['globalSetting'][name])))
-            .toList(),
-        designSetting = PlatformDesignSetting.fromJson(json);
+        designSetting = PlatformDesignSetting.fromJson(json) {
+    if (json['globalSetting'] is Map) {
+      _globalSetting = (json['globalSetting'] as Map)
+          .keys
+          .map((name) => Tuple2(name as String,
+              ValueTypeWrapper.fromJson(json['globalSetting'][name])))
+          .toList();
+    } else if (json['globalSetting'] is List) {
+      _globalSetting = (json['globalSetting'] as List<List>)
+          .map((entity) =>
+              Tuple2(entity[0] as String, ValueTypeWrapper.fromJson(entity[1])))
+          .toList();
+    }
+  }
 
   Choice? getNode(Pos pos) {
     if (pos.length == 1) return lineSettings[pos.first];
