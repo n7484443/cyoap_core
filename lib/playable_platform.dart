@@ -64,7 +64,8 @@ class PlayablePlatform {
               Tuple2(entity[0] as String, ValueTypeWrapper.fromJson(entity[1])))
           .toList();
     }
-
+    print(json['globalSetting']);
+    print(_globalSetting);
   }
 
   Choice? getNode(Pos pos) {
