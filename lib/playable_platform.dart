@@ -55,13 +55,17 @@ class PlayablePlatform {
     if (json['globalSetting'] is Map) {
       _globalSetting = (json['globalSetting'] as Map)
           .keys
-          .map((name) => Tuple2(name as String,
+          .map((name) =>
+          Tuple2(name as String,
               ValueTypeWrapper.fromJson(json['globalSetting'][name])))
           .toList();
-    } else{
+    } else {
       _globalSetting = (json['globalSetting'] as List<List>)
-          .map((entity) =>
-              Tuple2(entity[0] as String, ValueTypeWrapper.fromJson(entity[1])))
+          .map((entity) {
+            print(entity);
+        return Tuple2(
+            entity[0] as String, ValueTypeWrapper.fromJson(entity[1]));
+      })
           .toList();
     }
     print(json['globalSetting']);
