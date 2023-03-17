@@ -52,8 +52,6 @@ class PlayablePlatform {
   PlayablePlatform.fromJson(Map<String, dynamic> json)
       : stringImageName = json['stringImageName'] ?? '',
         designSetting = PlatformDesignSetting.fromJson(json) {
-    print(json['globalSetting']);
-    print(json['globalSetting'].runtimeType);
     if (json['globalSetting'] is Map) {
       _globalSetting = (json['globalSetting'] as Map)
           .keys
@@ -67,7 +65,6 @@ class PlayablePlatform {
             entity[0] as String, ValueTypeWrapper.fromJson(entity[1]));
       }).toList();
     }
-    print(_globalSetting);
   }
 
   Choice? getNode(Pos pos) {
