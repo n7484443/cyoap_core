@@ -58,12 +58,13 @@ class PlayablePlatform {
           .map((name) => Tuple2(name as String,
               ValueTypeWrapper.fromJson(json['globalSetting'][name])))
           .toList();
-    } else if (json['globalSetting'] is List) {
+    } else{
       _globalSetting = (json['globalSetting'] as List<List>)
           .map((entity) =>
               Tuple2(entity[0] as String, ValueTypeWrapper.fromJson(entity[1])))
           .toList();
     }
+
   }
 
   Choice? getNode(Pos pos) {
