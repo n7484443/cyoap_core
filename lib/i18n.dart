@@ -9,6 +9,9 @@ extension Localization on String {
           "fill" : "fill",
           "pattern" : "pattern",
           "stretch" : "stretch",
+          
+          "solid": "solid",
+          "dotted": "dotted",
         },
         "ko": {
           "choice" : "선택지",
@@ -17,6 +20,9 @@ extension Localization on String {
           "fill" : "채움",
           "pattern" : "패턴",
           "stretch" : "늘리기",
+          
+          "solid": "실선",
+          "dotted": "점선",
         },
       };
 

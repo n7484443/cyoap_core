@@ -1,16 +1,17 @@
+import 'package:cyoap_core/i18n.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'node_preset.freezed.dart';
 part 'node_preset.g.dart';
 
 enum Outline {
-  none("없음"),
-  solid("실선"),
-  dotted("점선");
+  solid,
+  dotted;
 
-  final String name;
+  @override
+  String toString() => name.i18n;
 
-  const Outline(this.name);
+  const Outline();
 }
 
 @freezed
