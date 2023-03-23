@@ -305,7 +305,7 @@ class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
       this.titlePosition = true,
       this.elevation = 0.0,
       this.round = 0.0,
-      this.padding = 0.0,
+      this.padding = 2.0,
       this.maximizingImage = false,
       this.hideTitle = false,
       this.imagePosition = 0,
@@ -315,7 +315,7 @@ class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
       this.titleFont = "notoSans",
       this.mainFont = "notoSans",
       this.outline = Outline.solid,
-      this.outlinePadding = 0.0,
+      this.outlinePadding = 4.0,
       this.outlineWidth = 2.0});
 
   factory _$_ChoiceNodeDesignPreset.fromJson(Map<String, dynamic> json) =>

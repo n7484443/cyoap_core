@@ -13,7 +13,7 @@ _$_ChoiceNodeDesignPreset _$$_ChoiceNodeDesignPresetFromJson(
       titlePosition: json['titlePosition'] as bool? ?? true,
       elevation: (json['elevation'] as num?)?.toDouble() ?? 0.0,
       round: (json['round'] as num?)?.toDouble() ?? 0.0,
-      padding: (json['padding'] as num?)?.toDouble() ?? 0.0,
+      padding: (json['padding'] as num?)?.toDouble() ?? 2.0,
       maximizingImage: json['maximizingImage'] as bool? ?? false,
       hideTitle: json['hideTitle'] as bool? ?? false,
       imagePosition: json['imagePosition'] as int? ?? 0,
@@ -24,7 +24,7 @@ _$_ChoiceNodeDesignPreset _$$_ChoiceNodeDesignPresetFromJson(
       mainFont: json['mainFont'] as String? ?? "notoSans",
       outline: $enumDecodeNullable(_$OutlineEnumMap, json['outline']) ??
           Outline.solid,
-      outlinePadding: (json['outlinePadding'] as num?)?.toDouble() ?? 0.0,
+      outlinePadding: (json['outlinePadding'] as num?)?.toDouble() ?? 4.0,
       outlineWidth: (json['outlineWidth'] as num?)?.toDouble() ?? 2.0,
     );
 
