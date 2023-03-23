@@ -38,6 +38,7 @@ mixin _$ChoiceNodeDesignPreset {
   String get mainFont => throw _privateConstructorUsedError;
   Outline get outline => throw _privateConstructorUsedError;
   double get outlinePadding => throw _privateConstructorUsedError;
+  double get outlineWidth => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -66,7 +67,8 @@ abstract class $ChoiceNodeDesignPresetCopyWith<$Res> {
       String titleFont,
       String mainFont,
       Outline outline,
-      double outlinePadding});
+      double outlinePadding,
+      double outlineWidth});
 }
 
 /// @nodoc
@@ -98,6 +100,7 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
     Object? mainFont = null,
     Object? outline = null,
     Object? outlinePadding = null,
+    Object? outlineWidth = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -160,6 +163,10 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
           ? _value.outlinePadding
           : outlinePadding // ignore: cast_nullable_to_non_nullable
               as double,
+      outlineWidth: null == outlineWidth
+          ? _value.outlineWidth
+          : outlineWidth // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -187,7 +194,8 @@ abstract class _$$_ChoiceNodeDesignPresetCopyWith<$Res>
       String titleFont,
       String mainFont,
       Outline outline,
-      double outlinePadding});
+      double outlinePadding,
+      double outlineWidth});
 }
 
 /// @nodoc
@@ -217,6 +225,7 @@ class __$$_ChoiceNodeDesignPresetCopyWithImpl<$Res>
     Object? mainFont = null,
     Object? outline = null,
     Object? outlinePadding = null,
+    Object? outlineWidth = null,
   }) {
     return _then(_$_ChoiceNodeDesignPreset(
       name: null == name
@@ -279,6 +288,10 @@ class __$$_ChoiceNodeDesignPresetCopyWithImpl<$Res>
           ? _value.outlinePadding
           : outlinePadding // ignore: cast_nullable_to_non_nullable
               as double,
+      outlineWidth: null == outlineWidth
+          ? _value.outlineWidth
+          : outlineWidth // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -302,7 +315,8 @@ class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
       this.titleFont = "notoSans",
       this.mainFont = "notoSans",
       this.outline = Outline.solid,
-      this.outlinePadding = 0.0});
+      this.outlinePadding = 0.0,
+      this.outlineWidth = 2.0});
 
   factory _$_ChoiceNodeDesignPreset.fromJson(Map<String, dynamic> json) =>
       _$$_ChoiceNodeDesignPresetFromJson(json);
@@ -353,10 +367,13 @@ class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
   @override
   @JsonKey()
   final double outlinePadding;
+  @override
+  @JsonKey()
+  final double outlineWidth;
 
   @override
   String toString() {
-    return 'ChoiceNodeDesignPreset(name: $name, titlePosition: $titlePosition, elevation: $elevation, round: $round, padding: $padding, maximizingImage: $maximizingImage, hideTitle: $hideTitle, imagePosition: $imagePosition, colorNode: $colorNode, colorSelectNode: $colorSelectNode, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont, outline: $outline, outlinePadding: $outlinePadding)';
+    return 'ChoiceNodeDesignPreset(name: $name, titlePosition: $titlePosition, elevation: $elevation, round: $round, padding: $padding, maximizingImage: $maximizingImage, hideTitle: $hideTitle, imagePosition: $imagePosition, colorNode: $colorNode, colorSelectNode: $colorSelectNode, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont, outline: $outline, outlinePadding: $outlinePadding, outlineWidth: $outlineWidth)';
   }
 
   @override
@@ -389,7 +406,9 @@ class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
                 other.mainFont == mainFont) &&
             (identical(other.outline, outline) || other.outline == outline) &&
             (identical(other.outlinePadding, outlinePadding) ||
-                other.outlinePadding == outlinePadding));
+                other.outlinePadding == outlinePadding) &&
+            (identical(other.outlineWidth, outlineWidth) ||
+                other.outlineWidth == outlineWidth));
   }
 
   @JsonKey(ignore: true)
@@ -410,7 +429,8 @@ class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
       titleFont,
       mainFont,
       outline,
-      outlinePadding);
+      outlinePadding,
+      outlineWidth);
 
   @JsonKey(ignore: true)
   @override
@@ -443,7 +463,8 @@ abstract class _ChoiceNodeDesignPreset implements ChoiceNodeDesignPreset {
       final String titleFont,
       final String mainFont,
       final Outline outline,
-      final double outlinePadding}) = _$_ChoiceNodeDesignPreset;
+      final double outlinePadding,
+      final double outlineWidth}) = _$_ChoiceNodeDesignPreset;
 
   factory _ChoiceNodeDesignPreset.fromJson(Map<String, dynamic> json) =
       _$_ChoiceNodeDesignPreset.fromJson;
@@ -478,6 +499,8 @@ abstract class _ChoiceNodeDesignPreset implements ChoiceNodeDesignPreset {
   Outline get outline;
   @override
   double get outlinePadding;
+  @override
+  double get outlineWidth;
   @override
   @JsonKey(ignore: true)
   _$$_ChoiceNodeDesignPresetCopyWith<_$_ChoiceNodeDesignPreset> get copyWith =>

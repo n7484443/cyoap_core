@@ -25,6 +25,7 @@ _$_ChoiceNodeDesignPreset _$$_ChoiceNodeDesignPresetFromJson(
       outline: $enumDecodeNullable(_$OutlineEnumMap, json['outline']) ??
           Outline.solid,
       outlinePadding: (json['outlinePadding'] as num?)?.toDouble() ?? 0.0,
+      outlineWidth: (json['outlineWidth'] as num?)?.toDouble() ?? 2.0,
     );
 
 Map<String, dynamic> _$$_ChoiceNodeDesignPresetToJson(
@@ -45,6 +46,7 @@ Map<String, dynamic> _$$_ChoiceNodeDesignPresetToJson(
       'mainFont': instance.mainFont,
       'outline': _$OutlineEnumMap[instance.outline]!,
       'outlinePadding': instance.outlinePadding,
+      'outlineWidth': instance.outlineWidth,
     };
 
 const _$OutlineEnumMap = {
