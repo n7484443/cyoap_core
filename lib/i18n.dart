@@ -9,7 +9,8 @@ extension Localization on String {
           "fill" : "fill",
           "pattern" : "pattern",
           "stretch" : "stretch",
-          
+
+          "none": "none",
           "solid": "solid",
           "dotted": "dotted",
         },
@@ -20,7 +21,8 @@ extension Localization on String {
           "fill" : "채움",
           "pattern" : "패턴",
           "stretch" : "늘리기",
-          
+
+          "none": "없음",
           "solid": "실선",
           "dotted": "점선",
         },

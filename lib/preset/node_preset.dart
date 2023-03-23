@@ -5,6 +5,7 @@ part 'node_preset.freezed.dart';
 part 'node_preset.g.dart';
 
 enum Outline {
+  none,
   solid,
   dotted;
 
