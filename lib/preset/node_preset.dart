@@ -33,6 +33,7 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
     @Default("notoSans") String titleFont,
     @Default("notoSans") String mainFont,
     @Default(Outline.solid) Outline outline,
+    @Default(0.0) double outlinePadding,
   }) = _ChoiceNodeDesignPreset;
 
   factory ChoiceNodeDesignPreset.fromJson(Map<String, dynamic> json) =>
