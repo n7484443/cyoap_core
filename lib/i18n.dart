@@ -13,6 +13,7 @@ extension Localization on String {
           "none": "none",
           "solid": "solid",
           "dotted": "dotted",
+          "dashed": "dashed",
         },
         "ko": {
           "choice" : "선택지",
@@ -25,6 +26,7 @@ extension Localization on String {
           "none": "없음",
           "solid": "실선",
           "dotted": "점선",
+          "dashed": "파선",
         },
       };
 

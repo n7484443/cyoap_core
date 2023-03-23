@@ -7,7 +7,8 @@ part 'node_preset.g.dart';
 enum Outline {
   none,
   solid,
-  dotted;
+  dotted,
+  dashed;
 
   @override
   String toString() => name.i18n;

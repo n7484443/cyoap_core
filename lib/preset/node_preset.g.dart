@@ -53,4 +53,5 @@ const _$OutlineEnumMap = {
   Outline.none: 'none',
   Outline.solid: 'solid',
   Outline.dotted: 'dotted',
+  Outline.dashed: 'dashed',
 };
