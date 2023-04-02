@@ -8,6 +8,7 @@ enum FunctionListEnum {
   minus(2, displayWithColor: false),
   mul(2, displayWithColor: false),
   div(2, displayWithColor: false),
+  mod(2, displayWithColor: false),
   equal(2, displayWithColor: false),
   notEqual(2, displayWithColor: false),
   bigger(2, displayWithColor: false),
@@ -66,6 +67,7 @@ class Functions {
     functionUnspecifiedFunction[FunctionListEnum.minus] = funcMinus;
     functionUnspecifiedFunction[FunctionListEnum.mul] = funcMulti;
     functionUnspecifiedFunction[FunctionListEnum.div] = funcDiv;
+    functionUnspecifiedFunction[FunctionListEnum.mod] = funcMod;
     functionUnspecifiedFunction[FunctionListEnum.equal] = funcEqual;
     functionUnspecifiedFunction[FunctionListEnum.notEqual] = funcNotEqual;
     functionUnspecifiedFunction[FunctionListEnum.bigger] = funcBigger;
@@ -213,6 +215,15 @@ class Functions {
   ValueType funcDiv(List<ValueType> input) {
     if (input[0].type.isInt && input[1].type.isInt) {
       return ValueType.int(input[0].dataUnzip ~/ input[1].dataUnzip);
+    } else if (input[0].type.isNum && input[1].type.isNum) {
+      return ValueType.double(input[0].dataUnzip / input[1].dataUnzip);
+    }
+    return const ValueType.nulls();
+  }
+
+  ValueType funcMod(List<ValueType> input) {
+    if (input[0].type.isInt && input[1].type.isInt) {
+      return ValueType.int(input[0].dataUnzip % input[1].dataUnzip);
     } else if (input[0].type.isNum && input[1].type.isNum) {
       return ValueType.double(input[0].dataUnzip / input[1].dataUnzip);
     }

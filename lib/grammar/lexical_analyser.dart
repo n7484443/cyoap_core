@@ -71,6 +71,7 @@ class LexicalAnalyser {
         case '-':
         case '+':
         case '*':
+        case '%':
         case '<':
         case '>':
           addToken();
@@ -206,6 +207,9 @@ class LexicalAnalyser {
       } else if (token.dataString == "/") {
         tokenOutput
             .add(Token(AnalyserConst.functionUnspecified, dataString: "div"));
+      } else if (token.dataString == "%") {
+        tokenOutput
+            .add(Token(AnalyserConst.functionUnspecified, dataString: "mod"));
       } else if (token.dataString == "==") {
         tokenOutput
             .add(Token(AnalyserConst.functionUnspecified, dataString: "equal"));

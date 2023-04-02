@@ -15,6 +15,7 @@ void main() {
     let numberTest3 = 6 - 5.5
     let numberTest4 = 6 * 3
     let numberTest5 = 6 / 3
+    let numberTest6 = 7 % 3
     """;
     Analyser().run(Analyser().analyseMultiLine(strTest));
     expect(ins.getValueType('numberTest0')?.dataUnzip, closeTo(-5.5, epsilon));
@@ -23,6 +24,32 @@ void main() {
     expect(ins.getValueType('numberTest3')?.dataUnzip, closeTo(0.5, epsilon));
     expect(ins.getValueType('numberTest4')?.dataUnzip, 18);
     expect(ins.getValueType('numberTest5')?.dataUnzip, 2);
+    expect(ins.getValueType('numberTest6')?.dataUnzip, 1);
+  });
+  test('bitTest', () {
+    //int a = 0b00001011
+    //int b = 0b00000110
+    //a and b = 0b00000010 = 2
+    //a or b = 0b00001111 = 15
+    //a xor b = 0b00001101 = 13
+    //a not = 0b11110100 = ~11
+    //a left shift 1 = 0b00010110 = 22
+    //a right shift 1 = 0b00000101 = 5
+    String strTest = """
+    let bitTest0 = 11 & 6
+    let bitTest1 = 11 | 6
+    let bitTest2 = 11 ^ 6
+    let bitTest3 = ~11
+    let bitTest4 = 11 << 1
+    let bitTest5 = 11 >> 1
+    """;
+    Analyser().run(Analyser().analyseMultiLine(strTest));
+    expect(ins.getValueType('bitTest0')?.dataUnzip, 2);
+    expect(ins.getValueType('bitTest1')?.dataUnzip, 15);
+    expect(ins.getValueType('bitTest2')?.dataUnzip, 13);
+    expect(ins.getValueType('bitTest3')?.dataUnzip, ~11);
+    expect(ins.getValueType('bitTest4')?.dataUnzip, 22);
+    expect(ins.getValueType('bitTest5')?.dataUnzip, 5);
   });
   test('boolTest', () {
     String strTest = """                
