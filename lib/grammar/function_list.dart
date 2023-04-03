@@ -15,6 +15,12 @@ enum FunctionListEnum {
   smaller(2, displayWithColor: false),
   biggerEqual(2, displayWithColor: false),
   smallerEqual(2, displayWithColor: false),
+  andBit(2, displayWithColor: false),
+  orBit(2, displayWithColor: false),
+  xorBit(2, displayWithColor: false),
+  notBit(1, displayWithColor: false),
+  shiftLeftBit(2, displayWithColor: false),
+  shiftRightBit(2, displayWithColor: false),
   floor(1),
   round(1),
   ceil(1),
@@ -75,6 +81,15 @@ class Functions {
     functionUnspecifiedFunction[FunctionListEnum.biggerEqual] = funcBiggerEqual;
     functionUnspecifiedFunction[FunctionListEnum.smallerEqual] =
         funcSmallerEqual;
+
+    functionUnspecifiedFunction[FunctionListEnum.andBit] = funcAndBit;
+    functionUnspecifiedFunction[FunctionListEnum.orBit] = funcOrBit;
+    functionUnspecifiedFunction[FunctionListEnum.xorBit] = funcXorBit;
+    functionUnspecifiedFunction[FunctionListEnum.notBit] = funcNotBit;
+    functionUnspecifiedFunction[FunctionListEnum.shiftLeftBit] =
+        funcShiftLeftBit;
+    functionUnspecifiedFunction[FunctionListEnum.shiftRightBit] =
+        funcShiftRightBit;
 
     functionValueType[FunctionListEnum.floor] = funcFloor;
     functionValueType[FunctionListEnum.round] = funcRound;
@@ -262,6 +277,24 @@ class Functions {
 
   ValueType funcSmallerEqual(List<ValueType> input) =>
       ValueType.bool(!funcBigger(input).dataUnzip);
+
+  ValueType funcAndBit(List<ValueType> input) =>
+      ValueType.int(input[0].dataUnzip & input[1].dataUnzip);
+
+  ValueType funcOrBit(List<ValueType> input) =>
+      ValueType.int(input[0].dataUnzip | input[1].dataUnzip);
+
+  ValueType funcXorBit(List<ValueType> input) =>
+      ValueType.int(input[0].dataUnzip ^ input[1].dataUnzip);
+
+  ValueType funcNotBit(List<ValueType> input) =>
+      ValueType.int(~input[0].dataUnzip);
+
+  ValueType funcShiftLeftBit(List<ValueType> input) =>
+      ValueType.int(input[0].dataUnzip << input[1].dataUnzip);
+
+  ValueType funcShiftRightBit(List<ValueType> input) =>
+      ValueType.int(input[0].dataUnzip >> input[1].dataUnzip);
 
   ValueType funcRandom(List<ValueType> input) {
     int? seed = input.length == 1 ? null : input.last.dataUnzip as int;

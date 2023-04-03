@@ -25,7 +25,7 @@ class SemanticAnalyser {
         print("$token $stack");
       }
       switch (token.type) {
-        case AnalyserConst.functionUnspecified:
+        case AnalyserConst.functionCenter:
           RecursiveFunction sub = RecursiveFunction(
               ValueType.string(token.data),
               functionUnspecified: true);

@@ -23,7 +23,8 @@ enum AnalyserConst {
   /// 지역 변수 설정, var
   variableVar,
 
-  functionUnspecified,
+  functionFront,
+  functionCenter,
   function,
 
   /// (

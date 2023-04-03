@@ -17,7 +17,7 @@ class LexicalAnalyser {
         } else if (tokenAdded.dataString == 'var') {
           tokenAdded.type = AnalyserConst.variableVar;
         } else if (tokenAdded.dataString == 'in') {
-          tokenAdded.type = AnalyserConst.functionUnspecified;
+          tokenAdded.type = AnalyserConst.functionCenter;
           tokenAdded.dataString = 'in';
         } else if (tokenAdded.dataString == 'break') {
           tokenAdded.type = AnalyserConst.keywordBreak;
@@ -28,8 +28,8 @@ class LexicalAnalyser {
             var split = tokenAdded.dataString.split("..");
             tokenList.add(Token(AnalyserConst.functionStart));
             tokenList.add(Token(AnalyserConst.ints, dataString: split[0]));
-            tokenList.add(
-                Token(AnalyserConst.functionUnspecified, dataString: "to"));
+            tokenList
+                .add(Token(AnalyserConst.functionCenter, dataString: "to"));
             tokenList.add(Token(AnalyserConst.ints, dataString: split[1]));
             tokenList.add(Token(AnalyserConst.functionEnd));
             return;
@@ -64,38 +64,52 @@ class LexicalAnalyser {
           } else {
             isCommitLine = true;
             addToken();
-            tokenAdded =
-                Token(AnalyserConst.functionUnspecified, dataString: c);
+            tokenAdded = Token(AnalyserConst.functionCenter, dataString: c);
           }
           break;
         case '-':
         case '+':
         case '*':
         case '%':
+        case '&':
+        case '|':
+        case '^':
+          addToken();
+          tokenAdded = Token(AnalyserConst.functionCenter, dataString: c);
+          break;
         case '<':
         case '>':
-          addToken();
-          tokenAdded = Token(AnalyserConst.functionUnspecified, dataString: c);
+          if (tokenAdded != null &&
+              tokenAdded.type == AnalyserConst.functionCenter) {
+            tokenAdded.addUnitData(c);
+          } else {
+            addToken();
+            tokenAdded = Token(AnalyserConst.functionCenter, dataString: c);
+          }
           break;
+        case '~':
+          addToken();
+          tokenAdded = Token(AnalyserConst.functionFront, dataString: c);
+          break;
+
         case '=':
           if (tokenAdded != null &&
-              tokenAdded.type == AnalyserConst.functionUnspecified) {
+              tokenAdded.type == AnalyserConst.functionCenter) {
             tokenAdded.addUnitData(c);
             if (tokenAdded.dataString == '+=' ||
                 tokenAdded.dataString == '-=' ||
                 tokenAdded.dataString == '*=' ||
                 tokenAdded.dataString == '/=') {
-              tokenList.add(
-                  Token(AnalyserConst.functionUnspecified, dataString: '='));
+              tokenList
+                  .add(Token(AnalyserConst.functionCenter, dataString: '='));
               tokenList.add(tokenList[tokenList.length - 2]);
-              tokenList.add(Token(AnalyserConst.functionUnspecified,
+              tokenList.add(Token(AnalyserConst.functionCenter,
                   dataString: tokenAdded.dataString.replaceAll("=", "")));
               tokenAdded = null;
             }
           } else {
             addToken();
-            tokenAdded =
-                Token(AnalyserConst.functionUnspecified, dataString: c);
+            tokenAdded = Token(AnalyserConst.functionCenter, dataString: c);
           }
           break;
         case '\'':
@@ -154,8 +168,8 @@ class LexicalAnalyser {
         default:
           if (tokenAdded == null) {
             tokenAdded = Token(AnalyserConst.unspecified, dataString: c);
-          } else if (tokenAdded.type == AnalyserConst.functionUnspecified) {
-            if (tokenList.last.type == AnalyserConst.functionUnspecified &&
+          } else if (tokenAdded.type == AnalyserConst.functionCenter) {
+            if (tokenList.last.type == AnalyserConst.functionCenter &&
                 (tokenAdded.dataString == '+' ||
                     tokenAdded.dataString == '-')) {
               tokenAdded.type = AnalyserConst.unspecified;
@@ -185,46 +199,61 @@ class LexicalAnalyser {
         check = 2;
       } else if (token.dataString == "=") {
         if (check == 0) {
-          tokenOutput.add(Token(AnalyserConst.functionUnspecified,
-              dataString: "setVariable"));
-        } else if (check == 1) {
           tokenOutput.add(
-              Token(AnalyserConst.functionUnspecified, dataString: "setLocal"));
+              Token(AnalyserConst.functionCenter, dataString: "setVariable"));
+        } else if (check == 1) {
+          tokenOutput
+              .add(Token(AnalyserConst.functionCenter, dataString: "setLocal"));
         } else if (check == 2) {
-          tokenOutput.add(Token(AnalyserConst.functionUnspecified,
-              dataString: "setGlobal"));
+          tokenOutput.add(
+              Token(AnalyserConst.functionCenter, dataString: "setGlobal"));
         }
         check = 0;
       } else if (token.dataString == "+") {
         tokenOutput
-            .add(Token(AnalyserConst.functionUnspecified, dataString: "plus"));
+            .add(Token(AnalyserConst.functionCenter, dataString: "plus"));
       } else if (token.dataString == "-") {
         tokenOutput
-            .add(Token(AnalyserConst.functionUnspecified, dataString: "minus"));
+            .add(Token(AnalyserConst.functionCenter, dataString: "minus"));
       } else if (token.dataString == "*") {
-        tokenOutput
-            .add(Token(AnalyserConst.functionUnspecified, dataString: "mul"));
+        tokenOutput.add(Token(AnalyserConst.functionCenter, dataString: "mul"));
       } else if (token.dataString == "/") {
-        tokenOutput
-            .add(Token(AnalyserConst.functionUnspecified, dataString: "div"));
+        tokenOutput.add(Token(AnalyserConst.functionCenter, dataString: "div"));
       } else if (token.dataString == "%") {
+        tokenOutput.add(Token(AnalyserConst.functionCenter, dataString: "mod"));
+      } else if (token.dataString == "&") {
         tokenOutput
-            .add(Token(AnalyserConst.functionUnspecified, dataString: "mod"));
+            .add(Token(AnalyserConst.functionCenter, dataString: "andBit"));
+      } else if (token.dataString == "|") {
+        tokenOutput
+            .add(Token(AnalyserConst.functionCenter, dataString: "orBit"));
+      } else if (token.dataString == "^") {
+        tokenOutput
+            .add(Token(AnalyserConst.functionCenter, dataString: "xorBit"));
       } else if (token.dataString == "==") {
         tokenOutput
-            .add(Token(AnalyserConst.functionUnspecified, dataString: "equal"));
+            .add(Token(AnalyserConst.functionCenter, dataString: "equal"));
       } else if (token.dataString == ">") {
-        tokenOutput.add(
-            Token(AnalyserConst.functionUnspecified, dataString: "bigger"));
+        tokenOutput
+            .add(Token(AnalyserConst.functionCenter, dataString: "bigger"));
       } else if (token.dataString == ">=") {
-        tokenOutput.add(Token(AnalyserConst.functionUnspecified,
-            dataString: "biggerEqual"));
-      } else if (token.dataString == "<") {
         tokenOutput.add(
-            Token(AnalyserConst.functionUnspecified, dataString: "smaller"));
+            Token(AnalyserConst.functionCenter, dataString: "biggerEqual"));
+      } else if (token.dataString == "<") {
+        tokenOutput
+            .add(Token(AnalyserConst.functionCenter, dataString: "smaller"));
       } else if (token.dataString == "<=") {
-        tokenOutput.add(Token(AnalyserConst.functionUnspecified,
-            dataString: "smallerEqual"));
+        tokenOutput.add(
+            Token(AnalyserConst.functionCenter, dataString: "smallerEqual"));
+      } else if (token.dataString == "<<") {
+        tokenOutput.add(
+            Token(AnalyserConst.functionCenter, dataString: "shiftLeftBit"));
+      } else if (token.dataString == ">>") {
+        tokenOutput.add(
+            Token(AnalyserConst.functionCenter, dataString: "shiftRightBit"));
+      } else if (token.dataString == "~") {
+        tokenOutput.add(
+            Token(AnalyserConst.functionFront, dataString: "notBit"));
       } else {
         tokenOutput.add(token);
       }
