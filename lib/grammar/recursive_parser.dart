@@ -28,9 +28,15 @@ abstract class RecursiveUnit {
   List<String> toByteCode();
 }
 
+enum FunctionType{
+  defaultFunction,
+  infixFunction, // front
+  prefixFunction, //middle
+}
+
 class RecursiveFunction extends RecursiveUnit {
-  bool functionUnspecified;
-  RecursiveFunction(super.body, {this.functionUnspecified = false});
+  FunctionType functionType;
+  RecursiveFunction(super.body, {this.functionType = FunctionType.defaultFunction});
 
   List<RecursiveUnit> childNode = List.empty(growable: true);
 

@@ -42,6 +42,7 @@ void main() {
     let bitTest3 = ~11
     let bitTest4 = 11 << 1
     let bitTest5 = 11 >> 1
+    let bitTest6 = ~~(3+8)
     """;
     Analyser().run(Analyser().analyseMultiLine(strTest));
     expect(ins.getValueType('bitTest0')?.dataUnzip, 2);
@@ -50,6 +51,7 @@ void main() {
     expect(ins.getValueType('bitTest3')?.dataUnzip, ~11);
     expect(ins.getValueType('bitTest4')?.dataUnzip, 22);
     expect(ins.getValueType('bitTest5')?.dataUnzip, 5);
+    expect(ins.getValueType('bitTest6')?.dataUnzip, ~~11);
   });
   test('boolTest', () {
     String strTest = """                

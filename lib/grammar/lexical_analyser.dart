@@ -57,7 +57,7 @@ class LexicalAnalyser {
     for (int i = 0; i < line.length; i++) {
       var c = line[i];
       if (isStringInputSingle) {
-        if(c == "'"){
+        if (c == "'") {
           isStringInputSingle = false;
           tokenList.add(tokenAdded!);
           tokenAdded = null;
@@ -65,8 +65,8 @@ class LexicalAnalyser {
         }
         tokenAdded!.addUnitData(c);
         continue;
-      }else if(isStringInputDouble){
-        if(c == '"'){
+      } else if (isStringInputDouble) {
+        if (c == '"') {
           isStringInputDouble = false;
           tokenList.add(tokenAdded!);
           tokenAdded = null;
@@ -181,6 +181,9 @@ class LexicalAnalyser {
               addToken();
               tokenAdded = Token(AnalyserConst.unspecified, dataString: c);
             }
+          } else if (tokenAdded.type == AnalyserConst.functionFront) {
+            addToken();
+            tokenAdded = Token(AnalyserConst.unspecified, dataString: c);
           } else {
             tokenAdded.addUnitData(c);
           }
@@ -255,8 +258,8 @@ class LexicalAnalyser {
         tokenOutput.add(
             Token(AnalyserConst.functionCenter, dataString: "shiftRightBit"));
       } else if (token.dataString == "~") {
-        tokenOutput.add(
-            Token(AnalyserConst.functionFront, dataString: "notBit"));
+        tokenOutput
+            .add(Token(AnalyserConst.functionFront, dataString: "notBit"));
       } else {
         tokenOutput.add(token);
       }

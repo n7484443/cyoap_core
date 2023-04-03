@@ -25,15 +25,21 @@ class SemanticAnalyser {
         print("$token $stack");
       }
       switch (token.type) {
+        case AnalyserConst.functionFront:
+          RecursiveFunction sub = RecursiveFunction(
+              ValueType.string(token.data),
+              functionType: FunctionType.prefixFunction);
+          stack.add(sub);
+          break;
         case AnalyserConst.functionCenter:
           RecursiveFunction sub = RecursiveFunction(
               ValueType.string(token.data),
-              functionUnspecified: true);
+              functionType: FunctionType.prefixFunction);
           var deleted = stack.removeLast();
           if (token.data == "setLocal" ||
               token.data == "setGlobal" ||
               token.data == "setVariable") {
-            sub.functionUnspecified = false;
+            sub.functionType = FunctionType.defaultFunction;
             sub.add(RecursiveData(deleted.child[0].body));
           } else {
             sub.add(deleted);
@@ -106,7 +112,8 @@ class SemanticAnalyser {
           var last = stack.last;
           var sub = RecursiveData(getValueTypeFromDynamicInput(token.data));
           stack.add(sub);
-          if (last is RecursiveFunction && last.functionUnspecified) {
+          if (last is RecursiveFunction &&
+              last.functionType != FunctionType.defaultFunction) {
             var last = stack.removeLast();
             stack.last.add(last);
           }
