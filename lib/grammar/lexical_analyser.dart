@@ -6,7 +6,8 @@ class LexicalAnalyser {
     어휘분석기. 토큰으로 변환한다.
      */
   List<Token> analyse(String input) {
-    bool isStringInput = false;
+    bool isStringInputSingle = false;
+    bool isStringInputDouble = false;
     Token? tokenAdded;
     List<Token> tokenList = List.empty(growable: true);
 
@@ -55,9 +56,28 @@ class LexicalAnalyser {
     var line = input.trim();
     for (int i = 0; i < line.length; i++) {
       var c = line[i];
+      if (isStringInputSingle) {
+        if(c == "'"){
+          isStringInputSingle = false;
+          tokenList.add(tokenAdded!);
+          tokenAdded = null;
+          continue;
+        }
+        tokenAdded!.addUnitData(c);
+        continue;
+      }else if(isStringInputDouble){
+        if(c == '"'){
+          isStringInputDouble = false;
+          tokenList.add(tokenAdded!);
+          tokenAdded = null;
+          continue;
+        }
+        tokenAdded!.addUnitData(c);
+        continue;
+      }
       switch (c) {
-        case '-':
         case '+':
+        case '-':
         case '*':
         case '/':
         case '%':
@@ -102,16 +122,13 @@ class LexicalAnalyser {
             tokenAdded = Token(AnalyserConst.functionCenter, dataString: c);
           }
           break;
-        case '\'':
+        case "'":
+          tokenAdded = Token(AnalyserConst.strings);
+          isStringInputSingle = true;
+          break;
         case '"':
-          if (isStringInput) {
-            tokenList.add(tokenAdded!);
-            tokenAdded = null;
-          } else {
-            tokenAdded = Token(AnalyserConst.strings);
-          }
-          isStringInput = !isStringInput;
-
+          tokenAdded = Token(AnalyserConst.strings);
+          isStringInputDouble = true;
           break;
         case '(':
           if (tokenAdded != null) {
@@ -148,12 +165,8 @@ class LexicalAnalyser {
           tokenList.add(Token(AnalyserConst.blockEnd));
           break;
         case ' ':
-          if (isStringInput) {
-            tokenAdded!.addUnitData(c);
-          } else {
-            addToken();
-            tokenAdded = null;
-          }
+          addToken();
+          tokenAdded = null;
           break;
         default:
           if (tokenAdded == null) {

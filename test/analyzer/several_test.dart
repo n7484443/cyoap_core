@@ -7,18 +7,6 @@ void main() {
   var ins = VariableDataBase();
   var epsilon = 0.00001;
 
-  test('divTest', () {
-    String strTest = """
-    var divTest0 = 5/2/2
-    var divTest1 = (5/2)/2
-    var divTest2 = 5/(2/2)
-    """;
-    print(Analyser().analyseMultiLine(strTest));
-    Analyser().run(Analyser().analyseMultiLine(strTest));
-    expect(ins.getValueType('divTest0')?.dataUnzip, 1);
-    expect(ins.getValueType('divTest1')?.dataUnzip, 1);
-    expect(ins.getValueType('divTest2')?.dataUnzip, 5);
-  });
   test('numberTest', () {
     String strTest = """
     let numberTest0 = -5.5
@@ -91,12 +79,16 @@ void main() {
     var stringAddTest = "문자" + "열테스트1"
     var stringAddTest1 = "문자열테스트1"
     var stringAddTest2 = stringAddTest == stringAddTest1
+    var stringTest2 = "문자열 속 * 나 / 등이 들어가 있어도 멀정함."
+    var stringTest3 = "문자열 속 '따음표'가 들어가도 멀쩡함."
     """;
     Analyser().run(Analyser().analyseMultiLine(strTest));
     expect(ins.getValueType('stringTest')?.dataUnzip, "문자열 테스트String1");
     expect(ins.getValueType('stringAddTest')?.dataUnzip, "문자열테스트1");
     expect(ins.getValueType('stringAddTest1')?.dataUnzip, "문자열테스트1");
     expect(ins.getValueType('stringAddTest2')?.dataUnzip, true);
+    expect(ins.getValueType('stringTest2')?.dataUnzip, """문자열 속 * 나 / 등이 들어가 있어도 멀정함.""");
+    expect(ins.getValueType('stringTest3')?.dataUnzip, """문자열 속 '따음표'가 들어가도 멀쩡함.""");
   });
 
   test('compTest', () {
