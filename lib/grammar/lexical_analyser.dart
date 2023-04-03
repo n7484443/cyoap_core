@@ -52,24 +52,14 @@ class LexicalAnalyser {
       }
     }
 
-    var isCommitLine = false;
     var line = input.trim();
     for (int i = 0; i < line.length; i++) {
       var c = line[i];
       switch (c) {
-        case '/':
-          if (isCommitLine) {
-            tokenAdded = null;
-            break;
-          } else {
-            isCommitLine = true;
-            addToken();
-            tokenAdded = Token(AnalyserConst.functionCenter, dataString: c);
-          }
-          break;
         case '-':
         case '+':
         case '*':
+        case '/':
         case '%':
         case '&':
         case '|':

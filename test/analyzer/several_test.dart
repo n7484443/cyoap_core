@@ -7,6 +7,18 @@ void main() {
   var ins = VariableDataBase();
   var epsilon = 0.00001;
 
+  test('divTest', () {
+    String strTest = """
+    var divTest0 = 5/2/2
+    var divTest1 = (5/2)/2
+    var divTest2 = 5/(2/2)
+    """;
+    print(Analyser().analyseMultiLine(strTest));
+    Analyser().run(Analyser().analyseMultiLine(strTest));
+    expect(ins.getValueType('divTest0')?.dataUnzip, 1);
+    expect(ins.getValueType('divTest1')?.dataUnzip, 1);
+    expect(ins.getValueType('divTest2')?.dataUnzip, 5);
+  });
   test('numberTest', () {
     String strTest = """
     let numberTest0 = -5.5
