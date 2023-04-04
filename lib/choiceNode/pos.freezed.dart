@@ -90,7 +90,7 @@ class __$$_PosCopyWithImpl<$Res> extends _$PosCopyWithImpl<$Res, _$_Pos>
 /// @nodoc
 @JsonSerializable()
 class _$_Pos extends _Pos {
-  _$_Pos({final List<int> data = const []})
+  const _$_Pos({final List<int> data = const []})
       : _data = data,
         super._();
 
@@ -138,8 +138,8 @@ class _$_Pos extends _Pos {
 }
 
 abstract class _Pos extends Pos {
-  factory _Pos({final List<int> data}) = _$_Pos;
-  _Pos._() : super._();
+  const factory _Pos({final List<int> data}) = _$_Pos;
+  const _Pos._() : super._();
 
   factory _Pos.fromJson(Map<String, dynamic> json) = _$_Pos.fromJson;
 

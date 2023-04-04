@@ -7,7 +7,7 @@ part 'pos.g.dart';
 
 @freezed
 class Pos with _$Pos {
-  factory Pos({@Default([]) List<int> data}) = _Pos;
+  const factory Pos({@Default([]) List<int> data}) = _Pos;
 
   factory Pos.fromJson(Map<String, dynamic> json) => _$PosFromJson(json);
 
