@@ -11,7 +11,7 @@ class Pos with _$Pos {
 
   factory Pos.fromJson(Map<String, dynamic> json) => _$PosFromJson(json);
 
-  Pos._();
+  const Pos._();
 
   bool get isValid => data.every((element) => element >= 0);
 
