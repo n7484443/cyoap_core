@@ -177,9 +177,9 @@ class RecursiveFunction extends RecursiveUnit {
         output.addAll(e.toByteCode());
       }
       if (funcEnum.hasMultipleArgument) {
-        return [...output, "${body.data} ${child.length}"];
+        return [...output, "${funcEnum.name} ${child.length}"];
       }
-      return [...output, body.data];
+      return [...output, funcEnum.name];
     }
     return [];
   }
