@@ -89,10 +89,13 @@ class RecursiveFunction extends RecursiveUnit {
       ];
     }
     if (body.type.isString && body.data == "for") {
-      var variable = child[0].child[0].child[0].body.dataUnzip;
-      var array = child[0].child[1].toByteCode();
+      var leftSide = child[0];
+      var variable = leftSide.child[0].child[0].body.dataUnzip;
+      var array = leftSide.child[1].toByteCode();
       var arrayLength = (ValueType.array(array.first).dataUnzip).length;
-      var loopCode = child[1].toByteCode();
+
+      var rightSide = child[1];
+      var loopCode = rightSide.toByteCode();
       var loopVariable = "__loop_$hashCode";
       var arrayVariable = "__array_$hashCode";
       var arrayLengthVariable = "__array_length_$hashCode";

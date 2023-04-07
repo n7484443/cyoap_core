@@ -215,52 +215,88 @@ class LexicalAnalyser {
               Token(AnalyserConst.functionCenter, dataString: "setGlobal"));
         }
         check = 0;
-      } else if (token.dataString == "+") {
-        tokenOutput
-            .add(Token(AnalyserConst.functionCenter, dataString: "plus"));
-      } else if (token.dataString == "-") {
-        tokenOutput
-            .add(Token(AnalyserConst.functionCenter, dataString: "minus"));
-      } else if (token.dataString == "*") {
-        tokenOutput.add(Token(AnalyserConst.functionCenter, dataString: "mul"));
-      } else if (token.dataString == "/") {
-        tokenOutput.add(Token(AnalyserConst.functionCenter, dataString: "div"));
-      } else if (token.dataString == "%") {
-        tokenOutput.add(Token(AnalyserConst.functionCenter, dataString: "mod"));
-      } else if (token.dataString == "&") {
-        tokenOutput
-            .add(Token(AnalyserConst.functionCenter, dataString: "andBit"));
-      } else if (token.dataString == "|") {
-        tokenOutput
-            .add(Token(AnalyserConst.functionCenter, dataString: "orBit"));
-      } else if (token.dataString == "^") {
-        tokenOutput
-            .add(Token(AnalyserConst.functionCenter, dataString: "xorBit"));
-      } else if (token.dataString == "==") {
-        tokenOutput
-            .add(Token(AnalyserConst.functionCenter, dataString: "equal"));
-      } else if (token.dataString == ">") {
-        tokenOutput
-            .add(Token(AnalyserConst.functionCenter, dataString: "bigger"));
-      } else if (token.dataString == ">=") {
-        tokenOutput.add(
-            Token(AnalyserConst.functionCenter, dataString: "biggerEqual"));
-      } else if (token.dataString == "<") {
-        tokenOutput
-            .add(Token(AnalyserConst.functionCenter, dataString: "smaller"));
-      } else if (token.dataString == "<=") {
-        tokenOutput.add(
-            Token(AnalyserConst.functionCenter, dataString: "smallerEqual"));
-      } else if (token.dataString == "<<") {
-        tokenOutput.add(
-            Token(AnalyserConst.functionCenter, dataString: "shiftLeftBit"));
-      } else if (token.dataString == ">>") {
-        tokenOutput.add(
-            Token(AnalyserConst.functionCenter, dataString: "shiftRightBit"));
       } else if (token.dataString == "~") {
         tokenOutput
             .add(Token(AnalyserConst.functionFront, dataString: "notBit"));
-      } else {
+      } else if (token.type == AnalyserConst.functionCenter) {
+        switch (token.dataString) {
+          case "=":
+            if (check == 0) {
+              tokenOutput.add(
+                  Token(AnalyserConst.functionCenter, dataString: "setVariable"));
+            } else if (check == 1) {
+              tokenOutput
+                  .add(Token(AnalyserConst.functionCenter, dataString: "setLocal"));
+            } else if (check == 2) {
+              tokenOutput.add(
+                  Token(AnalyserConst.functionCenter, dataString: "setGlobal"));
+            }
+            check = 0;
+            break;
+          case "+":
+            tokenOutput
+                .add(Token(AnalyserConst.functionCenter, dataString: "plus"));
+            break;
+          case "-":
+            tokenOutput
+                .add(Token(AnalyserConst.functionCenter, dataString: "minus"));
+            break;
+          case "*":
+            tokenOutput
+                .add(Token(AnalyserConst.functionCenter, dataString: "mul"));
+            break;
+          case "/":
+            tokenOutput
+                .add(Token(AnalyserConst.functionCenter, dataString: "div"));
+            break;
+          case "%":
+            tokenOutput
+                .add(Token(AnalyserConst.functionCenter, dataString: "mod"));
+            break;
+          case "&":
+            tokenOutput
+                .add(Token(AnalyserConst.functionCenter, dataString: "andBit"));
+            break;
+          case "|":
+            tokenOutput
+                .add(Token(AnalyserConst.functionCenter, dataString: "orBit"));
+            break;
+          case "^":
+            tokenOutput
+                .add(Token(AnalyserConst.functionCenter, dataString: "xorBit"));
+            break;
+          case "==":
+            tokenOutput
+                .add(Token(AnalyserConst.functionCenter, dataString: "equal"));
+            break;
+          case ">":
+            tokenOutput
+                .add(Token(AnalyserConst.functionCenter, dataString: "bigger"));
+            break;
+          case ">=":
+            tokenOutput
+                .add(Token(AnalyserConst.functionCenter, dataString: "biggerEqual"));
+            break;
+          case "<":
+            tokenOutput
+                .add(Token(AnalyserConst.functionCenter, dataString: "smaller"));
+            break;
+          case "<=":
+            tokenOutput
+                .add(Token(AnalyserConst.functionCenter, dataString: "smallerEqual"));
+            break;
+          case "<<":
+            tokenOutput
+                .add(Token(AnalyserConst.functionCenter, dataString: "shiftLeftBit"));
+            break;
+          case ">>":
+            tokenOutput
+                .add(Token(AnalyserConst.functionCenter, dataString: "shiftRightBit"));
+            break;
+          default:
+            tokenOutput.add(token);
+        }
+      }else {
         tokenOutput.add(token);
       }
     }
