@@ -4,6 +4,7 @@ library cyoap_core;
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:cyoap_core/grammar/analyser.dart';
 import 'package:cyoap_core/playable_platform.dart';
 import 'package:cyoap_core/variable_db.dart';
 import 'package:js/js.dart';
@@ -42,6 +43,8 @@ void main() {
   _getLinePresetList = allowInterop(_getLinePresetListInternal);
 
   _getLineOption = allowInterop(_getLineOptionInternal);
+
+  _getErrorLog = allowInterop(_getErrorLogInternal);
 }
 
 @JS('loadPlatform')
@@ -259,4 +262,12 @@ external set _setSelectedPos(void Function(String json) f);
 @JS()
 void _setSelectedPosInternal(String json) {
   platform.setSelectedPosInternal(json);
+}
+
+@JS('getErrorLog')
+external set _getErrorLog(List<String> Function() f);
+
+@JS()
+List<String> _getErrorLogInternal() {
+  return Analyser().errorList;
 }
