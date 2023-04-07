@@ -178,7 +178,7 @@ class SemanticAnalyser {
         }
         continue;
       }
-      if (pointer.body.data == "equal" && pointer.child.length == 2) {
+      if (pointer.body.data == "==" && pointer.child.length == 2) {
         var replace = pointer.parent;
         if (replace != null) {
           var left = pointer.child[0];

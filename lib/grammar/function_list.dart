@@ -4,23 +4,23 @@ import '/variable_db.dart';
 import 'value_type.dart';
 
 enum FunctionListEnum {
-  plus(2, displayWithColor: false),
-  minus(2, displayWithColor: false),
-  mul(2, displayWithColor: false),
-  div(2, displayWithColor: false),
-  mod(2, displayWithColor: false),
-  equal(2, displayWithColor: false),
-  notEqual(2, displayWithColor: false),
-  bigger(2, displayWithColor: false),
-  smaller(2, displayWithColor: false),
-  biggerEqual(2, displayWithColor: false),
-  smallerEqual(2, displayWithColor: false),
-  andBit(2, displayWithColor: false),
-  orBit(2, displayWithColor: false),
-  xorBit(2, displayWithColor: false),
-  notBit(1, displayWithColor: false),
-  shiftLeftBit(2, displayWithColor: false),
-  shiftRightBit(2, displayWithColor: false),
+  plus(2, displayWithColor: false, customName: '+'),
+  minus(2, displayWithColor: false, customName: '-'),
+  mul(2, displayWithColor: false, customName: '*'),
+  div(2, displayWithColor: false, customName: '/'),
+  mod(2, displayWithColor: false, customName: '%'),
+  equal(2, displayWithColor: false, customName: '=='),
+  notEqual(2, displayWithColor: false, customName: '!='),
+  bigger(2, displayWithColor: false, customName: '>'),
+  smaller(2, displayWithColor: false, customName: '<'),
+  biggerEqual(2, displayWithColor: false, customName: '>='),
+  smallerEqual(2, displayWithColor: false, customName: '<='),
+  andBit(2, displayWithColor: false, customName: '&'),
+  orBit(2, displayWithColor: false, customName: '|'),
+  xorBit(2, displayWithColor: false, customName: '^'),
+  notBit(1, displayWithColor: false, customName: '~'),
+  shiftLeftBit(2, displayWithColor: false, customName: '<<'),
+  shiftRightBit(2, displayWithColor: false, customName: '>>'),
   floor(1),
   round(1),
   ceil(1),
@@ -44,7 +44,8 @@ enum FunctionListEnum {
       this.hasMultipleArgument = false,
       this.hasSeedInput = false,
       this.displayWithColor = true,
-      this.functionName});
+      this.functionName,
+      this.customName});
 
   final int argumentLength;
   final bool hasOutput;
@@ -52,9 +53,11 @@ enum FunctionListEnum {
   final bool hasSeedInput;
   final bool displayWithColor;
   final String? functionName;
+  final String? customName;
 
   static FunctionListEnum getFunctionListEnum(String name) {
-    return FunctionListEnum.values.firstWhere((element) => element.name == name,
+    return FunctionListEnum.values.firstWhere(
+        (element) => element.name == name || element.customName == name,
         orElse: () {
       print("unfounded function $name");
       return none;
