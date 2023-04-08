@@ -6,6 +6,8 @@ import 'dart:convert';
 
 import 'package:cyoap_core/grammar/analyser.dart';
 import 'package:cyoap_core/playable_platform.dart';
+import 'package:cyoap_core/preset/line_preset.dart';
+import 'package:cyoap_core/preset/node_preset.dart';
 import 'package:cyoap_core/variable_db.dart';
 import 'package:js/js.dart';
 
@@ -45,6 +47,9 @@ void main() {
   _getLineOption = allowInterop(_getLineOptionInternal);
 
   _getErrorLog = allowInterop(_getErrorLogInternal);
+
+  _getNodeDefaultPreset = allowInterop(_getNodeDefaultPresetInternal);
+  _getLineDefaultPreset = allowInterop(_getLineDefaultPresetInternal);
 }
 
 @JS('loadPlatform')
@@ -270,4 +275,21 @@ external set _getErrorLog(List<String> Function() f);
 @JS()
 List<String> _getErrorLogInternal() {
   return Analyser().errorList;
+}
+
+
+@JS('getNodeDefaultPreset')
+external set _getNodeDefaultPreset(String Function() f);
+
+@JS()
+String _getNodeDefaultPresetInternal() {
+  return jsonEncode(ChoiceNodeDesignPreset(name: 'default').toJson());
+}
+
+@JS('getLineDefaultPreset')
+external set _getLineDefaultPreset(String Function() f);
+
+@JS()
+String _getLineDefaultPresetInternal() {
+  return jsonEncode(ChoiceLineDesignPreset(name: 'default').toJson());
 }
