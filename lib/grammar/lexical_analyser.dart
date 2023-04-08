@@ -28,10 +28,18 @@ class LexicalAnalyser {
           if (tokenAdded.dataString.contains("..")) {
             var split = tokenAdded.dataString.split("..");
             tokenList.add(Token(AnalyserConst.functionStart));
-            tokenList.add(Token(AnalyserConst.ints, dataString: split[0]));
+            if(isStringDouble(split[0])){
+              tokenList.add(Token(AnalyserConst.ints, dataString: split[0]));
+            }else{
+              tokenList.add(Token(AnalyserConst.variableName, dataString: split[0]));
+            }
             tokenList
                 .add(Token(AnalyserConst.functionCenter, dataString: "to"));
-            tokenList.add(Token(AnalyserConst.ints, dataString: split[1]));
+            if(isStringDouble(split[1])){
+              tokenList.add(Token(AnalyserConst.ints, dataString: split[1]));
+            }else{
+              tokenList.add(Token(AnalyserConst.variableName, dataString: split[1]));
+            }
             tokenList.add(Token(AnalyserConst.functionEnd));
             return;
           } else if (isStringDouble(tokenAdded.dataString)) {

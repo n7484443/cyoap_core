@@ -10,6 +10,7 @@ enum DataType {
   arrays("array");
 
   final String name;
+
   const DataType(this.name);
 }
 
@@ -32,7 +33,7 @@ ValueType getValueTypeFromStringInput(String input) {
     return ValueType.string(input.substring(1, input.length - 1));
   }
   if (input.startsWith('[') && input.endsWith(']')) {
-    return ValueType.array(input);
+    return ValueType(input, DataType.arrays);
   }
   if (input == "true" || input == "false") {
     return ValueType(input, DataType.bools);
@@ -75,7 +76,7 @@ ValueType getValueTypeFromDynamicInput(dynamic input) {
     return ValueType.double(input);
   }
   if (input is List) {
-    return ValueType.array(input.toString());
+    return ValueType.array(input);
   }
   return ValueType.string(input.toString());
 }
@@ -95,7 +96,9 @@ class ValueType {
       : data = data.toString(),
         type = DataType.doubles;
 
-  ValueType.array(this.data) : type = DataType.arrays;
+  ValueType.array(List list)
+      : data = list.toString(),
+        type = DataType.arrays;
 
   const ValueType.nulls()
       : data = "",

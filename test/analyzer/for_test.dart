@@ -26,6 +26,32 @@ void main(){
     Analyser().run(Analyser().analyseMultiLine(strTest));
     expect(ins.getValueType('for_test_1')?.dataUnzip, 45);
   });
+  test('forTest2', () {
+    var ins = VariableDataBase();
+    String strTest = """
+    var for_test_output_2 = 0
+    var for_test_2 = 10
+    for(i in 0..for_test_2)
+    {
+      for_test_output_2 += i
+    }
+    """;
+    Analyser().run(Analyser().analyseMultiLine(strTest));
+    expect(ins.getValueType('for_test_output_2')?.dataUnzip, 45);
+  });
+  test('forTest3', () {
+    var ins = VariableDataBase();
+    String strTest = """
+    var min = 1
+    var max = 4
+    var for_test_output_3 = 1
+    for(i in min..max){
+        for_test_output_3 *= i
+    }
+    """;
+    Analyser().run(Analyser().analyseMultiLine(strTest));
+    expect(ins.getValueType('for_test_output_3')?.dataUnzip, 6);
+  });
   test('forBreakTest', () {
     var ins = VariableDataBase();
     String strTest = """

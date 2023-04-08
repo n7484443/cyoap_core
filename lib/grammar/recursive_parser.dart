@@ -92,7 +92,6 @@ class RecursiveFunction extends RecursiveUnit {
       var leftSide = child[0];
       var variable = leftSide.child[0].child[0].body.dataUnzip;
       var array = leftSide.child[1].toByteCode();
-      var arrayLength = (ValueType.array(array.first).dataUnzip).length;
 
       var rightSide = child[1];
       var loopCode = rightSide.toByteCode();
@@ -103,12 +102,17 @@ class RecursiveFunction extends RecursiveUnit {
         'push "$loopVariable"',
         "push 0",
         "setLocal",
+
         'push "$arrayVariable"',
-        "push ${array.first}",
+        ...array,
         "setLocal",
+
         'push "$arrayLengthVariable"',
-        "push $arrayLength",
+        'push "$arrayVariable"',
+        "loadVariable",
+        'length',
         "setLocal",
+
         'push "$variable"',
         'push "$arrayVariable"',
         "loadVariable",
@@ -163,11 +167,13 @@ class RecursiveFunction extends RecursiveUnit {
       return output;
     }
     if (body.type.isString && body.data == "to") {
-      var rangeStart = child[0].body.dataUnzip as int;
-      var rangeEnd = child[1].body.dataUnzip as int;
-      var range = rangeEnd - rangeStart;
-      var data = List.generate(range, (index) => rangeStart + index);
-      List<String> output = ["[${data.join(",")}]"];
+      var rangeStart = child[0].toByteCode();
+      var rangeEnd = child[1].toByteCode();
+      List<String> output = [
+        ...rangeStart,
+        ...rangeEnd,
+        "list"
+      ];
       return output;
     }
     if (Analyser().functionList.hasFunction(body.data)) {

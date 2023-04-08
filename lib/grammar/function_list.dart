@@ -32,6 +32,7 @@ enum FunctionListEnum {
   isVisible(1),
   loadVariable(1, displayWithColor: false),
   loadArray(2, displayWithColor: false),
+  length(1),
   returnCondition(1, displayWithColor: false),
   setLocal(2, hasOutput: false, functionName: 'var'),
   setGlobal(2, hasOutput: false, functionName: 'let'),
@@ -113,6 +114,13 @@ class Functions {
       var array = input[0].dataUnzip as List;
       var pos = input[1].dataUnzip as int;
       return ValueType.int(array[pos]);
+    };
+    functionValueType[FunctionListEnum.length] = (input) {
+      var array = input[0].dataUnzip;
+      if(array is List){
+        return ValueType.int(array.length);
+      }
+      return ValueType.int(1);
     };
     functionValueType[FunctionListEnum.returnCondition] = (input) => input[0];
 
