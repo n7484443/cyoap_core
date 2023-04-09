@@ -28,7 +28,7 @@ abstract class RecursiveUnit {
   List<String> toByteCode();
 }
 
-enum FunctionType{
+enum FunctionType {
   defaultFunction,
   infixFunction, // front
   prefixFunction, //middle
@@ -36,7 +36,9 @@ enum FunctionType{
 
 class RecursiveFunction extends RecursiveUnit {
   FunctionType functionType;
-  RecursiveFunction(super.body, {this.functionType = FunctionType.defaultFunction});
+
+  RecursiveFunction(super.body,
+      {this.functionType = FunctionType.defaultFunction});
 
   List<RecursiveUnit> childNode = List.empty(growable: true);
 
@@ -59,12 +61,7 @@ class RecursiveFunction extends RecursiveUnit {
   List<String> toByteCode() {
     if (body.data.isEmpty) return [];
     if (body.type.isString && body.data == "doLines") {
-      List<String> list = [];
-      for (var e in child) {
-        var out = e.toByteCode();
-        list.addAll(out);
-      }
-      return list;
+      return child.expand((e) => e.toByteCode()).toList();
     }
     if (body.type.isString && body.data == "returnCondition") {
       return [...child[0].toByteCode(), "return"];
@@ -102,17 +99,14 @@ class RecursiveFunction extends RecursiveUnit {
         'push "$loopVariable"',
         "push 0",
         "setLocal",
-
         'push "$arrayVariable"',
         ...array,
         "setLocal",
-
         'push "$arrayLengthVariable"',
         'push "$arrayVariable"',
         "loadVariable",
         'length',
         "setLocal",
-
         'push "$variable"',
         'push "$arrayVariable"',
         "loadVariable",
@@ -155,7 +149,7 @@ class RecursiveFunction extends RecursiveUnit {
           loopData.add(loopCode[i]);
         }
       }
-      List<String> output = [
+      return [
         ...setup,
         ...check,
         "if_goto ${updateFromList.length + loopData.length + update.length + 1}",
@@ -164,24 +158,15 @@ class RecursiveFunction extends RecursiveUnit {
         ...update,
         "goto -${check.length + 1 + update.length + loopData.length + updateFromList.length + 1}"
       ];
-      return output;
     }
     if (body.type.isString && body.data == "to") {
       var rangeStart = child[0].toByteCode();
       var rangeEnd = child[1].toByteCode();
-      List<String> output = [
-        ...rangeStart,
-        ...rangeEnd,
-        "list"
-      ];
-      return output;
+      return [...rangeStart, ...rangeEnd, "list"];
     }
     if (Analyser().functionList.hasFunction(body.data)) {
       var funcEnum = FunctionListEnum.getFunctionListEnum(body.data);
-      List<String> output = [];
-      for (var e in child) {
-        output.addAll(e.toByteCode());
-      }
+      List<String> output = child.expand((e) => e.toByteCode()).toList();
       if (funcEnum.hasMultipleArgument) {
         return [...output, "${funcEnum.name} ${child.length}"];
       }
