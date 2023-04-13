@@ -47,6 +47,18 @@ void main() {
             .toList(),
         [0, 1, 2, 3]);
   });
+  test('arrayTest1', () {
+    var ins = VariableDataBase();
+    String strTest = """
+    var arrayTest1_0 = [1+2, 3*4, 5/6, 7-8]
+    """;
+    Analyser().run(Analyser().analyseMultiLine(strTest));
+    expect(
+        (ins.getValueType('arrayTest1_0')?.dataUnzip as List<ValueType>)
+            .map((e) => e.dataUnzip)
+            .toList(),
+        [3, 12, 0, -1]);
+  });
   test('arraySettingTest0', () {
     var ins = VariableDataBase();
     String strTest = """
