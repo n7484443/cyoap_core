@@ -162,7 +162,7 @@ class RecursiveFunction extends RecursiveUnit {
     if (body.type.isString && body.data == "to") {
       var rangeStart = child[0].toByteCode();
       var rangeEnd = child[1].toByteCode();
-      return [...rangeStart, ...rangeEnd, "list"];
+      return [...rangeStart, ...rangeEnd, "createRange"];
     }
     if (Analyser().functionList.hasFunction(body.data)) {
       var funcEnum = FunctionListEnum.getFunctionListEnum(body.data);

@@ -112,14 +112,6 @@ class Analyser {
           }
         } else if (opCode == "goto") {
           line += int.parse(argument!);
-        } else if (opCode == "list"){
-          var end = stack.removeLast();
-          var start = stack.removeLast();
-          List<int> array = [];
-          for(int i = start.dataUnzip; i < end.dataUnzip; i++){
-            array.add(i);
-          }
-          stack.add(ValueType.array(array));
         } else {
           var funcEnum = FunctionListEnum.getFunctionListEnum(opCode);
           var func = functionList.getFunction(funcEnum);

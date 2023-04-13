@@ -48,6 +48,12 @@ enum AnalyserConst {
   /// }
   blockEnd,
 
+  /// [
+  listStart,
+
+  /// ]
+  listEnd,
+
   /// ;
   lineEnd,
 

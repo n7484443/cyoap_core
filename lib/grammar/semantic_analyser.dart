@@ -89,7 +89,15 @@ class SemanticAnalyser {
           stack.add(sub);
           break;
         case AnalyserConst.functionComma:
+          do {
+            var last = stack.removeLast();
+            stack.last.add(last);
+          } while (stack.last.body.data != "bracket");
+          break;
         case AnalyserConst.functionEnd:
+          if(pos > 0 && tokens[pos - 1].type == AnalyserConst.functionStart){
+            break;
+          }
           do {
             var last = stack.removeLast();
             stack.last.add(last);

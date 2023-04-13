@@ -113,16 +113,39 @@ class ValueType {
   dynamic get dataUnzip {
     if (data.isEmpty) return null;
     if (type == DataType.ints) return int.parse(data);
-    if (type == DataType.bools) return data == "true";
+    if (type == DataType.bools) return data.trim() == "true";
     if (type == DataType.doubles) return double.parse(data);
     if (type == DataType.arrays) {
-      return data
-          .substring(1, data.length - 1)
-          .split(",")
-          .map((e) => int.parse(e))
-          .toList();
+      if (data.substring(1, data.length - 1).isEmpty) {
+        return [];
+      }
+      return getList(data);
     }
     return data;
+  }
+
+  List<ValueType> getList(String input){
+    var str = input.substring(1, input.length - 1).trim();
+    List<ValueType> list = [];
+    int stack = 0;
+    var char = '';
+    for(var ch in str.split('')){
+      if(ch == ',' && stack == 0){
+        list.add(getValueTypeFromStringInput(char.trim()));
+        char = '';
+        continue;
+      }
+      char += ch;
+      if(ch == '['){
+        stack += 1;
+      }else if(ch == ']'){
+        stack -= 1;
+      }
+    }
+    if(char.isNotEmpty){
+      list.add(getValueTypeFromStringInput(char.trim()));
+    }
+    return list;
   }
 
   @override

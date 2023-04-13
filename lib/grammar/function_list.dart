@@ -33,6 +33,8 @@ enum FunctionListEnum {
   loadVariable(1, displayWithColor: false),
   loadArray(2, displayWithColor: false),
   length(1),
+  createList(0, hasMultipleArgument: true),
+  createRange(2),
   returnCondition(1, displayWithColor: false),
   setLocal(2, hasOutput: false, functionName: 'var'),
   setGlobal(2, hasOutput: false, functionName: 'let'),
@@ -111,9 +113,9 @@ class Functions {
         VariableDataBase().getValueType(input[0].dataUnzip) ??
         const ValueType.nulls();
     functionValueType[FunctionListEnum.loadArray] = (input) {
-      var array = input[0].dataUnzip as List;
+      var array = input[0].dataUnzip as List<ValueType>;
       var pos = input[1].dataUnzip as int;
-      return ValueType.int(array[pos]);
+      return array[pos];
     };
     functionValueType[FunctionListEnum.length] = (input) {
       var array = input[0].dataUnzip;
@@ -121,6 +123,19 @@ class Functions {
         return ValueType.int(array.length);
       }
       return ValueType.int(1);
+    };
+    functionValueType[FunctionListEnum.createList] = (input) {
+      var list = [];
+      for(var i in input){
+        list.add(i.dataUnzip);
+      }
+      return ValueType.array(list);
+    };
+    functionValueType[FunctionListEnum.createRange] = (input) {
+      var start = input[0].dataUnzip;
+      var end = input[1].dataUnzip;
+      var list = List.generate(end - start, (index) => index + start);
+      return ValueType.array(list);
     };
     functionValueType[FunctionListEnum.returnCondition] = (input) => input[0];
 
@@ -263,7 +278,7 @@ class Functions {
       return ValueType.bool(
           (input[0].dataUnzip - input[1].dataUnzip as num).abs() <= epsilon);
     }
-    return ValueType.bool(input[0].data == input[1].data);
+    return ValueType.bool(input[0].dataUnzip == input[1].dataUnzip);
   }
 
   ValueType funcNotEqual(List<ValueType> input) =>

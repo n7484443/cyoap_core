@@ -28,17 +28,19 @@ class LexicalAnalyser {
           if (tokenAdded.dataString.contains("..")) {
             var split = tokenAdded.dataString.split("..");
             tokenList.add(Token(AnalyserConst.functionStart));
-            if(isStringDouble(split[0])){
+            if (isStringDouble(split[0])) {
               tokenList.add(Token(AnalyserConst.ints, dataString: split[0]));
-            }else{
-              tokenList.add(Token(AnalyserConst.variableName, dataString: split[0]));
+            } else {
+              tokenList
+                  .add(Token(AnalyserConst.variableName, dataString: split[0]));
             }
             tokenList
                 .add(Token(AnalyserConst.functionCenter, dataString: "to"));
-            if(isStringDouble(split[1])){
+            if (isStringDouble(split[1])) {
               tokenList.add(Token(AnalyserConst.ints, dataString: split[1]));
-            }else{
-              tokenList.add(Token(AnalyserConst.variableName, dataString: split[1]));
+            } else {
+              tokenList
+                  .add(Token(AnalyserConst.variableName, dataString: split[1]));
             }
             tokenList.add(Token(AnalyserConst.functionEnd));
             return;
@@ -176,6 +178,16 @@ class LexicalAnalyser {
           addToken();
           tokenAdded = null;
           break;
+        case '[':
+          addToken();
+          tokenAdded = null;
+          tokenList.add(Token(AnalyserConst.listStart));
+          break;
+        case ']':
+          addToken();
+          tokenAdded = null;
+          tokenList.add(Token(AnalyserConst.listEnd));
+          break;
         default:
           if (tokenAdded == null) {
             tokenAdded = Token(AnalyserConst.unspecified, dataString: c);
@@ -223,6 +235,12 @@ class LexicalAnalyser {
               Token(AnalyserConst.functionCenter, dataString: "setGlobal"));
         }
         check = 0;
+      } else if (token.type == AnalyserConst.listStart) {
+        tokenOutput
+            .add(Token(AnalyserConst.function, dataString: "createList"));
+        tokenOutput.add(Token(AnalyserConst.functionStart));
+      } else if (token.type == AnalyserConst.listEnd) {
+        tokenOutput.add(Token(AnalyserConst.functionEnd));
       } else {
         tokenOutput.add(token);
       }
