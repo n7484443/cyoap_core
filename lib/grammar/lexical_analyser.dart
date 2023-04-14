@@ -4,50 +4,61 @@ import 'token.dart';
 class LexicalAnalyser {
   void addToken(List<Token> tokenList, Token? tokenAdded) {
     if (tokenAdded != null) {
-      if (tokenAdded.dataString == 'let') {
-        tokenAdded.type = AnalyserConst.variableLet;
-      } else if (tokenAdded.dataString == 'var') {
-        tokenAdded.type = AnalyserConst.variableVar;
-      } else if (tokenAdded.dataString == 'in') {
-        tokenAdded.type = AnalyserConst.functionCenter;
-        tokenAdded.dataString = 'in';
-      } else if (tokenAdded.dataString == 'break') {
-        tokenAdded.type = AnalyserConst.keywordBreak;
-      } else if (tokenAdded.dataString == 'continue') {
-        tokenAdded.type = AnalyserConst.keywordContinue;
-      } else if (tokenAdded.type == AnalyserConst.unspecified) {
-        if (tokenAdded.dataString.contains("..")) {
-          var split = tokenAdded.dataString.split("..");
-          tokenList.add(Token(AnalyserConst.functionStart));
-          if (isStringDouble(split[0])) {
-            tokenList.add(Token(AnalyserConst.ints, dataString: split[0]));
-          } else {
-            tokenList
-                .add(Token(AnalyserConst.variableName, dataString: split[0]));
-          }
-          tokenList.add(Token(AnalyserConst.functionCenter, dataString: "to"));
-          if (isStringDouble(split[1])) {
-            tokenList.add(Token(AnalyserConst.ints, dataString: split[1]));
-          } else {
-            tokenList
-                .add(Token(AnalyserConst.variableName, dataString: split[1]));
-          }
-          tokenList.add(Token(AnalyserConst.functionEnd));
-          return;
-        } else if (isStringDouble(tokenAdded.dataString)) {
-          if (tokenAdded.dataString.contains('.')) {
-            tokenAdded.type = AnalyserConst.doubles;
-          } else {
-            tokenAdded.type = AnalyserConst.ints;
-          }
-        } else if (tokenAdded.dataString == "true" ||
-            tokenAdded.dataString == "false") {
+      switch (tokenAdded.dataString) {
+        case 'let':
+          tokenAdded.type = AnalyserConst.variableLet;
+          break;
+        case 'var':
+          tokenAdded.type = AnalyserConst.variableVar;
+          break;
+        case 'in':
+          tokenAdded.type = AnalyserConst.functionCenter;
+          break;
+        case 'break':
+          tokenAdded.type = AnalyserConst.keywordBreak;
+          break;
+        case 'continue':
+          tokenAdded.type = AnalyserConst.keywordContinue;
+          break;
+        case 'true':
+        case 'false':
           tokenAdded.type = AnalyserConst.bools;
-        } else if (tokenAdded.dataString == "else") {
+          break;
+        case 'else':
           tokenAdded.type = AnalyserConst.functionElse;
-        } else {
-          tokenAdded.type = AnalyserConst.variableName;
-        }
+          break;
+        default:
+          if (tokenAdded.type == AnalyserConst.unspecified) {
+            if (tokenAdded.dataString.contains("..")) {
+              var split = tokenAdded.dataString.split("..");
+              tokenList.add(Token(AnalyserConst.functionStart));
+              if (isStringDouble(split[0])) {
+                tokenList.add(Token(AnalyserConst.ints, dataString: split[0]));
+              } else {
+                tokenList.add(
+                    Token(AnalyserConst.variableName, dataString: split[0]));
+              }
+              tokenList
+                  .add(Token(AnalyserConst.functionCenter, dataString: "to"));
+              if (isStringDouble(split[1])) {
+                tokenList.add(Token(AnalyserConst.ints, dataString: split[1]));
+              } else {
+                tokenList.add(
+                    Token(AnalyserConst.variableName, dataString: split[1]));
+              }
+              tokenList.add(Token(AnalyserConst.functionEnd));
+              return;
+            } else if (isStringDouble(tokenAdded.dataString)) {
+              if (tokenAdded.dataString.contains('.')) {
+                tokenAdded.type = AnalyserConst.doubles;
+              } else {
+                tokenAdded.type = AnalyserConst.ints;
+              }
+            } else {
+              tokenAdded.type = AnalyserConst.variableName;
+            }
+          }
+          break;
       }
       tokenList.add(tokenAdded);
     }
