@@ -36,18 +36,18 @@ class SemanticAnalyser {
               functionType: FunctionType.defaultFunction);
           var list = <RecursiveUnit>[];
           var length = 10;
-          if(token.type == AnalyserConst.functionFront){
+          if (token.type == AnalyserConst.functionFront) {
             length = 1;
-          }else if(token.type == AnalyserConst.functionCenter){
-            if(token.data == "setListElement"){
+          } else if (token.type == AnalyserConst.functionCenter) {
+            if (token.data == "setListElement") {
               length = 3;
-            }else{
+            } else {
               length = 2;
             }
           }
           for (int i = 0; i < length; i++) {
             var removed = stack.removeLast();
-            if(removed.body.data == "function_end") {
+            if (removed.body.data == "function_end") {
               break;
             }
             list.add(removed);
@@ -96,10 +96,13 @@ class SemanticAnalyser {
           }
           break;
         default:
-          if (stack.isNotEmpty && stack.last is RecursiveFunction &&
-              (stack.last as RecursiveFunction).functionType == FunctionType.prefixFunction) {
-            stack.last.add(RecursiveData(getValueTypeFromDynamicInput(token.data)));
-          }else{
+          if (stack.isNotEmpty &&
+              stack.last is RecursiveFunction &&
+              (stack.last as RecursiveFunction).functionType ==
+                  FunctionType.prefixFunction) {
+            stack.last
+                .add(RecursiveData(getValueTypeFromDynamicInput(token.data)));
+          } else {
             stack.add(RecursiveData(getValueTypeFromDynamicInput(token.data)));
           }
           break;

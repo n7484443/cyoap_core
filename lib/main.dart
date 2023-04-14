@@ -198,10 +198,10 @@ List<String> _getValueListInternal() {
   for (var key in VariableDataBase().varMapGlobal.keys) {
     var wrapper = VariableDataBase().getValueTypeWrapper(key)!;
     if (wrapper.visible) {
-      if(wrapper.displayName.isEmpty){
+      if (wrapper.displayName.isEmpty) {
         list.add("$key : ${wrapper.valueType.dataUnzip}");
-      }else{
-        list.add("${wrapper.displayName } : ${wrapper.valueType.dataUnzip}");
+      } else {
+        list.add("${wrapper.displayName} : ${wrapper.valueType.dataUnzip}");
       }
     }
   }
@@ -276,7 +276,6 @@ external set _getErrorLog(List<String> Function() f);
 List<String> _getErrorLogInternal() {
   return Analyser().errorList;
 }
-
 
 @JS('getNodeDefaultPreset')
 external set _getNodeDefaultPreset(String Function() f);

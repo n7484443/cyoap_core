@@ -13,7 +13,6 @@ import 'recursive_status.dart';
 import 'selectable_status.dart';
 
 part 'choice_node.freezed.dart';
-
 part 'choice_node.g.dart';
 
 enum ChoiceNodeMode {
@@ -82,7 +81,7 @@ class ChoiceNode extends Choice {
 
   String get contentsString => _currentContentsString;
   String get contentsOriginalString => _contentsString;
-  set contentsString(String str){
+  set contentsString(String str) {
     _contentsString = str;
     updateCurrentContentsString();
   }

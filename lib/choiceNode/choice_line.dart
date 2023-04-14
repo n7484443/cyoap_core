@@ -1,16 +1,14 @@
 import 'package:cyoap_core/choiceNode/selectable_status.dart';
 import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/variable_db.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'choice.dart';
 import 'choice_node.dart';
 import 'recursive_status.dart';
 
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'choice_line.g.dart';
-
 part 'choice_line.freezed.dart';
+part 'choice_line.g.dart';
 
 @freezed
 class ChoiceLineOption with _$ChoiceLineOption {
@@ -73,7 +71,8 @@ class ChoiceLine extends Choice {
   void generateParser() {
     recursiveStatus.executeCodeString = '$valName += 1';
     if (isNeedToCheck()) {
-      recursiveStatus.conditionClickableString = '$valName < ${choiceLineOption.maxSelect}';
+      recursiveStatus.conditionClickableString =
+          '$valName < ${choiceLineOption.maxSelect}';
     } else {
       recursiveStatus.conditionClickableString = 'true';
     }

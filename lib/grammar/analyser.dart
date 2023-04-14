@@ -43,7 +43,8 @@ class Analyser {
         if (tokenList.last.type == AnalyserConst.functionElse) {
           continue;
         }
-        if (out.isNotEmpty && (out.first.data == "if" || out.first.data == "for")) {
+        if (out.isNotEmpty &&
+            (out.first.data == "if" || out.first.data == "for")) {
           continue;
         }
       }

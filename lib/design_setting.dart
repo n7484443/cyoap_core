@@ -4,7 +4,6 @@ import 'package:cyoap_core/preset/node_preset.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'design_setting.freezed.dart';
-
 part 'design_setting.g.dart';
 
 enum ImageAttribute {

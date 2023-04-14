@@ -250,7 +250,7 @@ class LexicalAnalyser {
       } else if (token.type == AnalyserConst.variableLet) {
         check = 2;
       } else if (token.dataString == "=") {
-        switch(check){
+        switch (check) {
           case 0:
             tokenOutput.last = Token(AnalyserConst.loadAddress,
                 dataString: tokenOutput.last.dataString);
@@ -260,8 +260,8 @@ class LexicalAnalyser {
           case 1:
             tokenOutput.last = Token(AnalyserConst.loadAddress,
                 dataString: tokenOutput.last.dataString);
-            tokenOutput
-                .add(Token(AnalyserConst.functionCenter, dataString: "setLocal"));
+            tokenOutput.add(
+                Token(AnalyserConst.functionCenter, dataString: "setLocal"));
             break;
           case 2:
             tokenOutput.last = Token(AnalyserConst.loadAddress,
@@ -270,11 +270,11 @@ class LexicalAnalyser {
                 Token(AnalyserConst.functionCenter, dataString: "setGlobal"));
             break;
           case 3:
-            var index = tokenOutput
-                .lastIndexWhere((element) => element.dataString == "createList");
+            var index = tokenOutput.lastIndexWhere(
+                (element) => element.dataString == "createList");
             tokenOutput[index - 1].type = AnalyserConst.loadAddress;
-            tokenOutput[index] =
-                Token(AnalyserConst.functionCenter, dataString: "setListElement");
+            tokenOutput[index] = Token(AnalyserConst.functionCenter,
+                dataString: "setListElement");
             break;
         }
         check = 0;

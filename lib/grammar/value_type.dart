@@ -124,25 +124,25 @@ class ValueType {
     return data;
   }
 
-  List<ValueType> getList(String input){
+  List<ValueType> getList(String input) {
     var str = input.substring(1, input.length - 1).trim();
     List<ValueType> list = [];
     int stack = 0;
     var char = '';
-    for(var ch in str.split('')){
-      if(ch == ',' && stack == 0){
+    for (var ch in str.split('')) {
+      if (ch == ',' && stack == 0) {
         list.add(getValueTypeFromStringInput(char.trim()));
         char = '';
         continue;
       }
       char += ch;
-      if(ch == '['){
+      if (ch == '[') {
         stack += 1;
-      }else if(ch == ']'){
+      } else if (ch == ']') {
         stack -= 1;
       }
     }
-    if(char.isNotEmpty){
+    if (char.isNotEmpty) {
       list.add(getValueTypeFromStringInput(char.trim()));
     }
     return list;

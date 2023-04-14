@@ -63,9 +63,9 @@ enum FunctionListEnum {
     return FunctionListEnum.values.firstWhere(
         (element) => element.name == name || element.customName == name,
         orElse: () {
-          if(name != 'if' && name != 'for') {
-            print("unfounded function $name");
-          }
+      if (name != 'if' && name != 'for') {
+        print("unfounded function $name");
+      }
       return none;
     });
   }

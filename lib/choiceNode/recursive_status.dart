@@ -47,14 +47,14 @@ class RecursiveStatus {
   bool analyseVisible(String errorName, {int? seedInput}) {
     var out = Analyser()
         .run(conditionVisibleCode, pos: errorName, seedInput: seedInput);
-    if(out is bool) return out;
-    return  true;
+    if (out is bool) return out;
+    return true;
   }
 
   bool analyseClickable(String errorName, {int? seedInput}) {
     var out = Analyser()
         .run(conditionClickableCode, pos: errorName, seedInput: seedInput);
-    if(out is bool) return out;
+    if (out is bool) return out;
     return true;
   }
 
@@ -63,6 +63,8 @@ class RecursiveStatus {
   }
 
   String executeText(String errorName, int num, {int? seedInput}) {
-    return Analyser().run(textCode[num], pos: errorName, seedInput: seedInput).toString();
+    return Analyser()
+        .run(textCode[num], pos: errorName, seedInput: seedInput)
+        .toString();
   }
 }
