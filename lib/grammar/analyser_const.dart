@@ -23,6 +23,8 @@ enum AnalyserConst {
   /// 지역 변수 설정, var
   variableVar,
 
+  loadAddress,
+
   functionFront,
   functionCenter,
   function,
@@ -33,11 +35,11 @@ enum AnalyserConst {
   /// )
   functionEnd,
 
+  /// |
+  functionEndMarker,
+
   /// ,
   functionComma,
-
-  /// if
-  functionIf,
 
   /// else
   functionElse,
@@ -56,9 +58,6 @@ enum AnalyserConst {
 
   /// ;
   lineEnd,
-
-  /// for
-  functionFor,
 
   ///break
   keywordBreak,

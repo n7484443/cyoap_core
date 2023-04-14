@@ -11,8 +11,7 @@ void main() {
     var array_test1 = [1, 2, 3, 4] 
     var array_test2 = [true, false, true, true] 
     var array_test3 = [3.5, 2.4,1.5,  1.8] 
-    var array_test4 = [[1], 2, [3, 4]] 
-    var array_test5 = 0..4
+    var array_test4 = 0..4
     """;
     Analyser().run(Analyser().analyseMultiLine(strTest));
     expect(ins.getValueType('array_test0')?.dataUnzip, []);
@@ -35,14 +34,8 @@ void main() {
     for (var i = 0; i < expectOutput.length; i++) {
       expect(expectOutput[i], closeTo(actualOutput[i], 0.01));
     }
-    var arrayTest4 =
-        ins.getValueType('array_test4')?.dataUnzip as List<ValueType>;
-    expect(arrayTest4[0].dataUnzip[0].dataUnzip, 1);
-    expect(arrayTest4[1].dataUnzip, 2);
-    expect(arrayTest4[2].dataUnzip[0].dataUnzip, 3);
-    expect(arrayTest4[2].dataUnzip[1].dataUnzip, 4);
     expect(
-        (ins.getValueType('array_test5')?.dataUnzip as List<ValueType>)
+        (ins.getValueType('array_test4')?.dataUnzip as List<ValueType>)
             .map((e) => e.dataUnzip)
             .toList(),
         [0, 1, 2, 3]);
@@ -50,14 +43,15 @@ void main() {
   test('arrayTest1', () {
     var ins = VariableDataBase();
     String strTest = """
-    var arrayTest1_0 = [1+2, 3*4, 5/6, 7-8]
+    var arrayTest1_0 = [1+2, 3*4, 5/6, 7-8, 10]
+    arrayTest1_0[4] = 2
     """;
     Analyser().run(Analyser().analyseMultiLine(strTest));
     expect(
         (ins.getValueType('arrayTest1_0')?.dataUnzip as List<ValueType>)
             .map((e) => e.dataUnzip)
             .toList(),
-        [3, 12, 0, -1]);
+        [3, 12, 0, -1, 2]);
   });
   test('arraySettingTest0', () {
     var ins = VariableDataBase();

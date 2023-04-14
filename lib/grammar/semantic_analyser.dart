@@ -13,36 +13,47 @@ class SemanticAnalyser {
     return input.body.data != "if" && input.body.data != "for";
   }
 
-  ///-1:block end
   void abstractSyntaxTreeAnalyse(RecursiveUnit mother, List<Token> tokens) {
     List<RecursiveUnit> stack = [mother];
     if (Option().isDebugMode && Option().enableToken) {
       print(tokens);
     }
+
     for (var pos = 0; pos < tokens.length; pos++) {
       var token = tokens[pos];
       if (Option().isDebugMode && Option().enableRecursiveStack) {
         print("$token $stack");
       }
       switch (token.type) {
-        case AnalyserConst.functionFront:
-          RecursiveFunction sub = RecursiveFunction(
-              ValueType.string(token.data),
-              functionType: FunctionType.prefixFunction);
-          stack.add(sub);
+        case AnalyserConst.functionEndMarker:
+          stack.add(RecursiveData(ValueType.string("function_end")));
           break;
+        case AnalyserConst.functionFront:
+        case AnalyserConst.function:
         case AnalyserConst.functionCenter:
           RecursiveFunction sub = RecursiveFunction(
               ValueType.string(token.data),
-              functionType: FunctionType.prefixFunction);
-          var deleted = stack.removeLast();
-          if (token.data == "setLocal" ||
-              token.data == "setGlobal" ||
-              token.data == "setVariable") {
-            sub.functionType = FunctionType.defaultFunction;
-            sub.add(RecursiveData(deleted.child[0].body));
-          } else {
-            sub.add(deleted);
+              functionType: FunctionType.defaultFunction);
+          var list = <RecursiveUnit>[];
+          var length = 10;
+          if(token.type == AnalyserConst.functionFront){
+            length = 1;
+          }else if(token.type == AnalyserConst.functionCenter){
+            if(token.data == "setListElement"){
+              length = 3;
+            }else{
+              length = 2;
+            }
+          }
+          for (int i = 0; i < length; i++) {
+            var removed = stack.removeLast();
+            if(removed.body.data == "function_end") {
+              break;
+            }
+            list.add(removed);
+          }
+          for (var i in list.reversed) {
+            sub.add(i);
           }
           stack.add(sub);
           break;
@@ -68,46 +79,14 @@ class SemanticAnalyser {
           break;
         case AnalyserConst.functionElse:
           break;
-        case AnalyserConst.functionIf:
-          RecursiveFunction sub =
-              RecursiveFunction(const ValueType.string("if"));
-          stack.add(sub);
-          break;
-        case AnalyserConst.functionFor:
-          RecursiveFunction sub =
-              RecursiveFunction(const ValueType.string("for"));
-          stack.add(sub);
-          break;
-        case AnalyserConst.function:
-          RecursiveFunction sub =
-              RecursiveFunction(ValueType.string(token.data));
-          stack.add(sub);
-          break;
-        case AnalyserConst.functionStart:
-          RecursiveFunction sub =
-              RecursiveFunction(ValueType.string("bracket"));
-          stack.add(sub);
-          break;
-        case AnalyserConst.functionComma:
-          do {
-            var last = stack.removeLast();
-            stack.last.add(last);
-          } while (stack.last.body.data != "bracket");
-          break;
-        case AnalyserConst.functionEnd:
-          if(pos > 0 && tokens[pos - 1].type == AnalyserConst.functionStart){
-            break;
-          }
-          do {
-            var last = stack.removeLast();
-            stack.last.add(last);
-          } while (stack.last.body.data != "bracket");
-          break;
         case AnalyserConst.variableName:
           RecursiveUnit out =
               RecursiveFunction(const ValueType.string("loadVariable"));
           out.add(RecursiveData(ValueType.string(token.dataString)));
           stack.add(out);
+          break;
+        case AnalyserConst.loadAddress:
+          stack.add(RecursiveData(ValueType.string(token.dataString)));
           break;
         case AnalyserConst.lineEnd:
           while (stack.last.body.data != "doLines" &&
@@ -117,20 +96,18 @@ class SemanticAnalyser {
           }
           break;
         default:
-          var last = stack.last;
-          var sub = RecursiveData(getValueTypeFromDynamicInput(token.data));
-          stack.add(sub);
-          if (last is RecursiveFunction &&
-              last.functionType != FunctionType.defaultFunction) {
-            var last = stack.removeLast();
-            stack.last.add(last);
+          if (stack.isNotEmpty && stack.last is RecursiveFunction &&
+              (stack.last as RecursiveFunction).functionType == FunctionType.prefixFunction) {
+            stack.last.add(RecursiveData(getValueTypeFromDynamicInput(token.data)));
+          }else{
+            stack.add(RecursiveData(getValueTypeFromDynamicInput(token.data)));
           }
           break;
       }
     }
-    while (stack.length != 1) {
+    while (stack.length > 1) {
       var last = stack.removeLast();
-      stack.first.add(last);
+      stack.last.add(last);
     }
   }
 

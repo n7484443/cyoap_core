@@ -141,7 +141,8 @@ class LexicalAnalyser {
           break;
         case '~':
           addToken(tokenList, tokenAdded);
-          tokenAdded = Token(AnalyserConst.functionFront, dataString: c);
+          tokenAdded = null;
+          tokenList.add(Token(AnalyserConst.functionFront, dataString: c));
           break;
 
         case '=':
@@ -174,13 +175,7 @@ class LexicalAnalyser {
           break;
         case '(':
           if (tokenAdded != null) {
-            if (tokenAdded.dataString == "if") {
-              tokenAdded.type = AnalyserConst.functionIf;
-            } else if (tokenAdded.dataString == "for") {
-              tokenAdded.type = AnalyserConst.functionFor;
-            } else {
-              tokenAdded.type = AnalyserConst.function;
-            }
+            tokenAdded.type = AnalyserConst.function;
             tokenList.add(tokenAdded);
             tokenAdded = null;
           }
@@ -243,7 +238,6 @@ class LexicalAnalyser {
       }
     }
     addToken(tokenList, tokenAdded);
-
     return tokenList;
   }
 
@@ -256,15 +250,32 @@ class LexicalAnalyser {
       } else if (token.type == AnalyserConst.variableLet) {
         check = 2;
       } else if (token.dataString == "=") {
-        if (check == 0) {
-          tokenOutput.add(
-              Token(AnalyserConst.functionCenter, dataString: "setVariable"));
-        } else if (check == 1) {
-          tokenOutput
-              .add(Token(AnalyserConst.functionCenter, dataString: "setLocal"));
-        } else if (check == 2) {
-          tokenOutput.add(
-              Token(AnalyserConst.functionCenter, dataString: "setGlobal"));
+        switch(check){
+          case 0:
+            tokenOutput.last = Token(AnalyserConst.loadAddress,
+                dataString: tokenOutput.last.dataString);
+            tokenOutput.add(
+                Token(AnalyserConst.functionCenter, dataString: "setVariable"));
+            break;
+          case 1:
+            tokenOutput.last = Token(AnalyserConst.loadAddress,
+                dataString: tokenOutput.last.dataString);
+            tokenOutput
+                .add(Token(AnalyserConst.functionCenter, dataString: "setLocal"));
+            break;
+          case 2:
+            tokenOutput.last = Token(AnalyserConst.loadAddress,
+                dataString: tokenOutput.last.dataString);
+            tokenOutput.add(
+                Token(AnalyserConst.functionCenter, dataString: "setGlobal"));
+            break;
+          case 3:
+            var index = tokenOutput
+                .lastIndexWhere((element) => element.dataString == "createList");
+            tokenOutput[index - 1].type = AnalyserConst.loadAddress;
+            tokenOutput[index] =
+                Token(AnalyserConst.functionCenter, dataString: "setListElement");
+            break;
         }
         check = 0;
       } else if (token.type == AnalyserConst.listStart) {
@@ -273,12 +284,100 @@ class LexicalAnalyser {
         tokenOutput.add(Token(AnalyserConst.functionStart));
       } else if (token.type == AnalyserConst.listEnd) {
         tokenOutput.add(Token(AnalyserConst.functionEnd));
+        check = 3;
+      } else if (token.type == AnalyserConst.lineEnd) {
+        check = 0;
+        tokenOutput.add(token);
       } else {
         tokenOutput.add(token);
       }
     }
-
     return tokenOutput;
+  }
+
+  List<Token> infixToPostFix(List<Token> tokens) {
+    var tokenOutput = List<Token>.empty(growable: true);
+    var stack = List<Token>.empty(growable: true);
+    for (var token in tokens) {
+      switch (token.type) {
+        case AnalyserConst.function:
+          stack.add(token);
+          tokenOutput.add(Token(AnalyserConst.functionEndMarker));
+          break;
+        case AnalyserConst.functionFront:
+          stack.add(token);
+          break;
+        case AnalyserConst.functionCenter:
+          while (stack.isNotEmpty &&
+              stack.last.type != AnalyserConst.functionStart &&
+              stack.last.type != AnalyserConst.functionFront &&
+              precedence(stack.last) < precedence(token)) {
+            tokenOutput.add(stack.removeLast());
+          }
+          stack.add(token);
+          break;
+        case AnalyserConst.functionComma:
+          while (stack.last.type != AnalyserConst.functionStart) {
+            tokenOutput.add(stack.removeLast());
+          }
+          break;
+        case AnalyserConst.functionStart:
+          stack.add(token);
+          break;
+        case AnalyserConst.functionEnd:
+          while (stack.last.type != AnalyserConst.functionStart) {
+            tokenOutput.add(stack.removeLast());
+          }
+          stack.removeLast();
+          if (stack.isNotEmpty && stack.last.type == AnalyserConst.function) {
+            tokenOutput.add(stack.removeLast());
+          }
+          break;
+        case AnalyserConst.blockEnd:
+        case AnalyserConst.lineEnd:
+          while (stack.isNotEmpty) {
+            tokenOutput.add(stack.removeLast());
+          }
+          tokenOutput.add(token);
+          break;
+        default:
+          tokenOutput.add(token);
+          break;
+      }
+    }
+    while (stack.isNotEmpty) {
+      tokenOutput.add(stack.removeLast());
+    }
+    return tokenOutput;
+  }
+
+  int precedence(Token token) {
+    switch (token.data) {
+      case "*":
+      case "/":
+        return 2;
+      case "+":
+      case "-":
+        return 3;
+      case "<<":
+      case ">>":
+        return 4;
+      case "<":
+      case ">":
+      case "<=":
+      case ">=":
+        return 5;
+      case "==":
+      case "!=":
+        return 6;
+      case "&":
+        return 7;
+      case "^":
+        return 8;
+      case "|":
+        return 9;
+    }
+    return 10;
   }
 
   bool isStringDouble(String s) {

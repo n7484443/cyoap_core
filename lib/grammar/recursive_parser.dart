@@ -30,8 +30,7 @@ abstract class RecursiveUnit {
 
 enum FunctionType {
   defaultFunction,
-  infixFunction, // front
-  prefixFunction, //middle
+  prefixFunction, //front
 }
 
 class RecursiveFunction extends RecursiveUnit {

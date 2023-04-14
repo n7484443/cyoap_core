@@ -43,16 +43,14 @@ class Analyser {
         if (tokenList.last.type == AnalyserConst.functionElse) {
           continue;
         }
-        if (out.isNotEmpty && out.first.type == AnalyserConst.functionIf) {
-          continue;
-        }
-        if (out.isNotEmpty && out.first.type == AnalyserConst.functionFor) {
+        if (out.isNotEmpty && (out.first.data == "if" || out.first.data == "for")) {
           continue;
         }
       }
       tokenList.add(Token(AnalyserConst.lineEnd));
     }
     tokenList = lexicalAnalyser.changeToFunction(tokenList);
+    tokenList = lexicalAnalyser.infixToPostFix(tokenList);
     return tokenList;
   }
 

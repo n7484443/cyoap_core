@@ -32,6 +32,7 @@ enum FunctionListEnum {
   isVisible(1),
   loadVariable(1, displayWithColor: false),
   loadArray(2, displayWithColor: false),
+  setListElement(3, displayWithColor: false),
   length(1),
   createList(0, hasMultipleArgument: true),
   createRange(2),
@@ -62,40 +63,36 @@ enum FunctionListEnum {
     return FunctionListEnum.values.firstWhere(
         (element) => element.name == name || element.customName == name,
         orElse: () {
-      print("unfounded function $name");
+          if(name != 'if' && name != 'for') {
+            print("unfounded function $name");
+          }
       return none;
     });
   }
 }
 
 class Functions {
-  Map<FunctionListEnum, ValueType Function(List<ValueType> input)>
-      functionUnspecifiedFunction = {};
-
   Map<FunctionListEnum, Function(List<ValueType> input)> functionValueType = {};
 
   void init() {
-    functionUnspecifiedFunction[FunctionListEnum.plus] = funcPlus;
-    functionUnspecifiedFunction[FunctionListEnum.minus] = funcMinus;
-    functionUnspecifiedFunction[FunctionListEnum.mul] = funcMulti;
-    functionUnspecifiedFunction[FunctionListEnum.div] = funcDiv;
-    functionUnspecifiedFunction[FunctionListEnum.mod] = funcMod;
-    functionUnspecifiedFunction[FunctionListEnum.equal] = funcEqual;
-    functionUnspecifiedFunction[FunctionListEnum.notEqual] = funcNotEqual;
-    functionUnspecifiedFunction[FunctionListEnum.bigger] = funcBigger;
-    functionUnspecifiedFunction[FunctionListEnum.smaller] = funcSmaller;
-    functionUnspecifiedFunction[FunctionListEnum.biggerEqual] = funcBiggerEqual;
-    functionUnspecifiedFunction[FunctionListEnum.smallerEqual] =
-        funcSmallerEqual;
+    functionValueType[FunctionListEnum.plus] = funcPlus;
+    functionValueType[FunctionListEnum.minus] = funcMinus;
+    functionValueType[FunctionListEnum.mul] = funcMulti;
+    functionValueType[FunctionListEnum.div] = funcDiv;
+    functionValueType[FunctionListEnum.mod] = funcMod;
+    functionValueType[FunctionListEnum.equal] = funcEqual;
+    functionValueType[FunctionListEnum.notEqual] = funcNotEqual;
+    functionValueType[FunctionListEnum.bigger] = funcBigger;
+    functionValueType[FunctionListEnum.smaller] = funcSmaller;
+    functionValueType[FunctionListEnum.biggerEqual] = funcBiggerEqual;
+    functionValueType[FunctionListEnum.smallerEqual] = funcSmallerEqual;
 
-    functionUnspecifiedFunction[FunctionListEnum.andBit] = funcAndBit;
-    functionUnspecifiedFunction[FunctionListEnum.orBit] = funcOrBit;
-    functionUnspecifiedFunction[FunctionListEnum.xorBit] = funcXorBit;
-    functionUnspecifiedFunction[FunctionListEnum.notBit] = funcNotBit;
-    functionUnspecifiedFunction[FunctionListEnum.shiftLeftBit] =
-        funcShiftLeftBit;
-    functionUnspecifiedFunction[FunctionListEnum.shiftRightBit] =
-        funcShiftRightBit;
+    functionValueType[FunctionListEnum.andBit] = funcAndBit;
+    functionValueType[FunctionListEnum.orBit] = funcOrBit;
+    functionValueType[FunctionListEnum.xorBit] = funcXorBit;
+    functionValueType[FunctionListEnum.notBit] = funcNotBit;
+    functionValueType[FunctionListEnum.shiftLeftBit] = funcShiftLeftBit;
+    functionValueType[FunctionListEnum.shiftRightBit] = funcShiftRightBit;
 
     functionValueType[FunctionListEnum.floor] = funcFloor;
     functionValueType[FunctionListEnum.round] = funcRound;
@@ -117,16 +114,24 @@ class Functions {
       var pos = input[1].dataUnzip as int;
       return array[pos];
     };
+    functionValueType[FunctionListEnum.setListElement] = (input) {
+      var name = input[0].dataUnzip as String;
+      var pos = input[1].dataUnzip as int;
+      var array = VariableDataBase().getValueType(name)?.dataUnzip as List;
+      array[pos] = input[2];
+      VariableDataBase()
+          .setValue(name, ValueTypeWrapper(ValueType.array(array)));
+    };
     functionValueType[FunctionListEnum.length] = (input) {
       var array = input[0].dataUnzip;
-      if(array is List){
+      if (array is List) {
         return ValueType.int(array.length);
       }
       return ValueType.int(1);
     };
     functionValueType[FunctionListEnum.createList] = (input) {
       var list = [];
-      for(var i in input){
+      for (var i in input) {
         list.add(i.dataUnzip);
       }
       return ValueType.array(list);
@@ -173,12 +178,7 @@ class Functions {
   }
 
   Function? getFunction(FunctionListEnum enumData) {
-    return functionUnspecifiedFunction[enumData] ?? functionValueType[enumData];
-  }
-
-  bool isUnspecifiedFunction(String name) {
-    var enumData = FunctionListEnum.getFunctionListEnum(name);
-    return functionUnspecifiedFunction[enumData] != null;
+    return functionValueType[enumData];
   }
 
   bool hasFunction(String name) {
@@ -187,15 +187,10 @@ class Functions {
 
   Function(List<ValueType> input)? getFunctionValueType(String name) {
     var enumData = FunctionListEnum.getFunctionListEnum(name);
-    return functionUnspecifiedFunction[enumData] ?? functionValueType[enumData];
+    return functionValueType[enumData];
   }
 
   FunctionListEnum getFunctionName(Function function) {
-    for (var key in functionUnspecifiedFunction.keys) {
-      if (functionUnspecifiedFunction[key] == function) {
-        return key;
-      }
-    }
     for (var key in functionValueType.keys) {
       if (functionValueType[key] == function) {
         return key;
