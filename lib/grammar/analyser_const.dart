@@ -64,5 +64,10 @@ enum AnalyserConst {
   keywordBreak,
 
   ///break
-  keywordContinue,
+  keywordContinue;
+
+  @override
+  String toString() {
+    return name;
+  }
 }
