@@ -45,6 +45,8 @@ void main() {
     String strTest = """
     var arrayTest1_0 = [1+2, 3*4, 5/6, 7-8, 10]
     arrayTest1_0[4] = 2
+    var arrayTest1_1 = arrayTest1_0[0]
+    var arrayTest1_2 = arrayTest1_0[4]
     """;
     Analyser().run(Analyser().analyseMultiLine(strTest));
     expect(
@@ -52,6 +54,8 @@ void main() {
             .map((e) => e.dataUnzip)
             .toList(),
         [3, 12, 0, -1, 2]);
+    expect(ins.getValueType('arrayTest1_1')?.dataUnzip, 3);
+    expect(ins.getValueType('arrayTest1_2')?.dataUnzip, 2);
   });
   test('arraySettingTest0', () {
     var ins = VariableDataBase();

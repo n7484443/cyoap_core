@@ -244,7 +244,8 @@ class LexicalAnalyser {
   List<Token> changeToFunction(List<Token> tokenList) {
     var tokenOutput = List<Token>.empty(growable: true);
     var check = 0;
-    for (var token in tokenList) {
+    for (var i = 0; i < tokenList.length; i++) {
+      var token = tokenList[i];
       if (token.type == AnalyserConst.variableVar) {
         check = 1;
       } else if (token.type == AnalyserConst.variableLet) {
@@ -270,8 +271,8 @@ class LexicalAnalyser {
                 Token(AnalyserConst.functionCenter, dataString: "setGlobal"));
             break;
           case 3:
-            var index = tokenOutput.lastIndexWhere(
-                (element) => element.dataString == "createList");
+            var index = tokenOutput
+                .lastIndexWhere((element) => element.dataString == "loadArray");
             tokenOutput[index - 1].type = AnalyserConst.loadAddress;
             tokenOutput[index] = Token(AnalyserConst.functionCenter,
                 dataString: "setListElement");
@@ -279,8 +280,13 @@ class LexicalAnalyser {
         }
         check = 0;
       } else if (token.type == AnalyserConst.listStart) {
-        tokenOutput
-            .add(Token(AnalyserConst.function, dataString: "createList"));
+        if (i > 0 && tokenList[i - 1].type == AnalyserConst.variableName) {
+          tokenOutput.add(
+              Token(AnalyserConst.functionCenter, dataString: "loadArray"));
+        } else {
+          tokenOutput
+              .add(Token(AnalyserConst.function, dataString: "createList"));
+        }
         tokenOutput.add(Token(AnalyserConst.functionStart));
       } else if (token.type == AnalyserConst.listEnd) {
         tokenOutput.add(Token(AnalyserConst.functionEnd));
