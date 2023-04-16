@@ -21,6 +21,10 @@ class Pos with _$Pos {
 
   int get length => data.length;
 
+  bool get isEmpty => data.isEmpty;
+
+  bool get isNotEmpty => data.isNotEmpty;
+
   Pos addLast(int last) {
     return Pos(data: [...data, last]);
   }
