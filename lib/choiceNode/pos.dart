@@ -32,6 +32,10 @@ class Pos with _$Pos {
   Pos removeLast() {
     return Pos(data: [...data]..removeLast());
   }
+  
+  Pos removeFirst() {
+    return Pos(data: [...data]..removeAt(0));
+  }
 
   bool equalExceptLast(Pos other) {
     if (data.length != other.data.length) return false;
