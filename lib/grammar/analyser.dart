@@ -55,6 +55,11 @@ class Analyser {
     return tokenList;
   }
 
+  RecursiveUnit? toAst(String? codeInput, {String pos = ""}) {
+    if (codeInput == null || codeInput.trim().isEmpty) return null;
+    return semanticAnalyser.analyseLines(toTokenList(codeInput));
+  }
+
   List<String> toByteCode(RecursiveUnit input) {
     //input 을 받아서 bytecode로 변환, if는 goto문으로 작성.
     return input.toByteCode().where((e) => e.isNotEmpty).toList();
