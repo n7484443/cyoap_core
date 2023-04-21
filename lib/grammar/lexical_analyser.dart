@@ -174,11 +174,15 @@ class LexicalAnalyser {
           isStringInputDouble = true;
           break;
         case '(':
-          if (tokenAdded != null) {
-            tokenAdded.type = AnalyserConst.function;
-            tokenList.add(tokenAdded);
-            tokenAdded = null;
+          if(tokenAdded == null){
+            tokenList.add(Token(AnalyserConst.functionStart));
+            break;
           }
+          if (tokenAdded.type == AnalyserConst.unspecified) {
+            tokenAdded.type = AnalyserConst.function;
+          }
+          tokenList.add(tokenAdded);
+          tokenAdded = null;
           tokenList.add(Token(AnalyserConst.functionStart));
           break;
         case ')':

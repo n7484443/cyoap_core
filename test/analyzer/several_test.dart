@@ -197,4 +197,5 @@ void main() {
     var out = Analyser().run(Analyser().analyseSingleLine(strTest1));
     expect(out, true);
   });
+
 }
