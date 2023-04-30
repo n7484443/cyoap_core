@@ -48,4 +48,11 @@ class Pos with _$Pos {
     }
     return true;
   }
+
+  bool isParent(Pos other){
+    if(data.length < other.length){
+      return false;
+    }
+    return contain(other);
+  }
 }
