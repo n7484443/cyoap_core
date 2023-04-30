@@ -50,7 +50,7 @@ class Pos with _$Pos {
   }
 
   bool isParent(Pos other){
-    if(data.length < other.length){
+    if(data.length > other.length){
       return false;
     }
     return contain(other);
