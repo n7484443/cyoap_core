@@ -31,6 +31,9 @@ class VariableDataBase {
   }
 
   void setValue(String name, ValueTypeWrapper value, {bool? isGlobal}) {
+    if(name != name.replaceAll(" ", "")){
+      setValue(name.replaceAll(" ", ""), value, isGlobal: isGlobal);
+    }
     var trim = name.trim();
     if (isGlobal == null) {
       if (varMapLocal.containsKey(name)) {
