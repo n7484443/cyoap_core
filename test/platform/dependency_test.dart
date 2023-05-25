@@ -50,4 +50,45 @@ void main() {
     expect(choiceNode1.selectableStatus, SelectableStatus.hide);
     expect(choiceNode2.selectableStatus, SelectableStatus.closed);
   });
+
+  test('forced_uncheck0', () {
+    var platform = PlayablePlatform();
+    var lineSetting0 = ChoiceLine(0);
+    lineSetting0.generateParser();
+    platform.lineSettings.add(lineSetting0);
+    var choiceNode0 = ChoiceNode.empty()..title = "testNode0";
+    var choiceNode1 = ChoiceNode.empty()..title = "testNode1"..recursiveStatus.conditionClickableString = "testNode0";
+    choiceNode0.generateParser();
+    choiceNode1.generateParser();
+    lineSetting0.addChildren(choiceNode0);
+    lineSetting0.addChildren(choiceNode1);
+
+    expect(choiceNode0.select, 0);
+    expect(choiceNode1.select, 0);
+    expect(choiceNode0.select, 0);
+    expect(choiceNode0.selectableStatus, SelectableStatus.open);
+    expect(choiceNode1.select, 0);
+    expect(choiceNode1.selectableStatus, SelectableStatus.closed);
+
+    choiceNode0.selectNode(0);
+    platform.updateStatusAll();
+    expect(choiceNode0.select, 1);
+    expect(choiceNode0.selectableStatus, SelectableStatus.open);
+    expect(choiceNode1.select, 0);
+    expect(choiceNode1.selectableStatus, SelectableStatus.open);
+
+    choiceNode1.selectNode(0);
+    platform.updateStatusAll();
+    expect(choiceNode0.select, 1);
+    expect(choiceNode0.selectableStatus, SelectableStatus.open);
+    expect(choiceNode1.select, 1);
+    expect(choiceNode1.selectableStatus, SelectableStatus.open);
+
+    choiceNode0.selectNode(0);
+    platform.updateStatusAll();
+    expect(choiceNode0.select, 0);
+    expect(choiceNode0.selectableStatus, SelectableStatus.open);
+    expect(choiceNode1.select, 0);
+    expect(choiceNode1.selectableStatus, SelectableStatus.closed);
+  });
 }
