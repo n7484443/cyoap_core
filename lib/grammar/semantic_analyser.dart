@@ -219,10 +219,12 @@ class SemanticAnalyser {
     return output;
   }
 
-  RecursiveUnit? analyseLines(List<Token> analysedData) {
+  RecursiveUnit? analyseLines(List<Token> analysedData, {optimize: true}) {
     if (analysedData.isEmpty) return null;
     RecursiveUnit mother = RecursiveFunction(const ValueType.string("doLines"));
-    abstractSyntaxTreeAnalyse(mother, analysedData);
+    if(optimize){
+      abstractSyntaxTreeAnalyse(mother, analysedData);
+    }
     return optimizeTree(mother);
   }
 

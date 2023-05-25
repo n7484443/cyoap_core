@@ -57,7 +57,7 @@ class Analyser {
 
   RecursiveUnit? toAst(String? codeInput, {String pos = ""}) {
     if (codeInput == null || codeInput.trim().isEmpty) return null;
-    return semanticAnalyser.analyseLines(toTokenList(codeInput));
+    return semanticAnalyser.analyseLines(toTokenList(codeInput), optimize: false);
   }
 
   List<String> toByteCode(RecursiveUnit input) {
