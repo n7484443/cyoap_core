@@ -19,8 +19,6 @@ abstract class Choice {
     }
   }
 
-  void initValueTypeWrapper();
-
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = {
       'width': width,
@@ -46,17 +44,6 @@ abstract class Choice {
 
   bool isExecutable() {
     return true;
-  }
-
-  bool execute() {
-    var out = false;
-    if (isExecutable()) {
-      recursiveStatus.execute(errorName);
-      for (var child in children) {
-        out |= child.execute();
-      }
-    }
-    return out;
   }
 
   Pos get pos {

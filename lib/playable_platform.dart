@@ -6,7 +6,6 @@ import 'package:cyoap_core/choiceNode/choice_node.dart';
 import 'package:cyoap_core/choiceNode/pos.dart';
 import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/variable_db.dart';
-import 'package:tuple/tuple.dart';
 
 import 'design_setting.dart';
 
@@ -15,25 +14,25 @@ const int nonPositioned = -1;
 class PlayablePlatform {
   String? stringImageName;
   List<ChoiceLine> lineSettings = List.empty(growable: true);
-  List<Tuple2<String, ValueTypeWrapper>> _globalSetting = [];
+  List<(String, ValueTypeWrapper)> _globalSetting = [];
 
-  List<Tuple2<String, ValueTypeWrapper>> get globalSetting => _globalSetting;
+  List<(String, ValueTypeWrapper)> get globalSetting => _globalSetting;
 
   PlatformDesignSetting designSetting = PlatformDesignSetting();
 
   PlayablePlatform();
 
   void addGlobalSetting(String name, ValueTypeWrapper wrapper) {
-    int pos = _globalSetting.indexWhere((element) => element.item1 == name);
+    int pos = _globalSetting.indexWhere((element) => element.$1 == name);
     if (pos == -1) {
-      _globalSetting.add(Tuple2(name, wrapper));
+      _globalSetting.add((name, wrapper));
     } else {
-      _globalSetting[pos] = Tuple2(name, wrapper);
+      _globalSetting[pos] = (name, wrapper);
     }
   }
 
   void removeGlobalSetting(String name) {
-    _globalSetting.removeWhere((element) => element.item1 == name);
+    _globalSetting.removeWhere((element) => element.$1 == name);
   }
 
   void clearGlobalSetting() {
@@ -41,11 +40,11 @@ class PlayablePlatform {
   }
 
   ValueTypeWrapper? getGlobalSetting(String name) {
-    int pos = _globalSetting.indexWhere((element) => element.item1 == name);
+    int pos = _globalSetting.indexWhere((element) => element.$1 == name);
     if (pos == -1) {
       return null;
     } else {
-      return _globalSetting[pos].item2;
+      return _globalSetting[pos].$2;
     }
   }
 
@@ -55,13 +54,13 @@ class PlayablePlatform {
     if (json['globalSetting'] is Map) {
       _globalSetting = (json['globalSetting'] as Map)
           .keys
-          .map((name) => Tuple2(name as String,
+          .map((name) => (name as String,
               ValueTypeWrapper.fromJson(json['globalSetting'][name])))
           .toList();
     } else {
       _globalSetting =
           (json['globalSetting'] as List).map((e) => e as List).map((entity) {
-        return Tuple2(
+        return (
             entity[0] as String, ValueTypeWrapper.fromJson(entity[1]));
       }).toList();
     }
@@ -98,12 +97,10 @@ class PlayablePlatform {
   void updateStatusAll({int startLine = 0}) {
     VariableDataBase().clear();
     for (var element in _globalSetting) {
-      VariableDataBase().varMapGlobal[element.item1] = element.item2;
+      VariableDataBase().varMapGlobal[element.$1] = element.$2;
     }
     for (var i = startLine; i < lineSettings.length; i++) {
       var lineSetting = lineSettings[i];
-      lineSetting.initValueTypeWrapper();
-      lineSetting.execute();
       lineSetting.updateStatus();
       VariableDataBase().clearLocalVariable();
     }
@@ -115,18 +112,18 @@ class PlayablePlatform {
     }
   }
 
-  List<Tuple2<Pos, int>> get selectedPos {
-    List<Tuple2<Pos, int>> selectedPos = [];
+  List<(Pos, int)> get selectedPos {
+    List<(Pos, int)> selectedPos = [];
     for (var line in lineSettings) {
       for (var choice in line.children) {
         (choice as ChoiceNode).doAllChild((node) {
           if (node.isExecutable() &&
               node.isSelectableMode &&
               !node.choiceNodeOption.hideAsResult) {
-            selectedPos.add(Tuple2(node.pos, node.select));
+            selectedPos.add((node.pos, node.select));
           } else if (node.choiceNodeMode == ChoiceNodeMode.unSelectableMode &&
               node.choiceNodeOption.showAsResult) {
-            selectedPos.add(Tuple2(node.pos, node.select));
+            selectedPos.add((node.pos, node.select));
           }
         });
       }
@@ -146,7 +143,7 @@ class PlayablePlatform {
 
   String getSelectedPosInternal() {
     return jsonEncode(selectedPos
-        .map((e) => {'pos': e.item1.data, 'select': e.item2})
+        .map((e) => {'pos': e.$1.data, 'select': e.$2})
         .toList());
   }
 }

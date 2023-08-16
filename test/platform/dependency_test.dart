@@ -62,6 +62,7 @@ void main() {
     choiceNode1.generateParser();
     lineSetting0.addChildren(choiceNode0);
     lineSetting0.addChildren(choiceNode1);
+    platform.updateStatusAll();
 
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 0);

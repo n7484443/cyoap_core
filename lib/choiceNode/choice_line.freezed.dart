@@ -21,6 +21,7 @@ ChoiceLineOption _$ChoiceLineOptionFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ChoiceLineOption {
   int get maxSelect => throw _privateConstructorUsedError;
+  bool get enableCancelFeature => throw _privateConstructorUsedError;
   String get presetName => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
 
@@ -36,7 +37,11 @@ abstract class $ChoiceLineOptionCopyWith<$Res> {
           ChoiceLineOption value, $Res Function(ChoiceLineOption) then) =
       _$ChoiceLineOptionCopyWithImpl<$Res, ChoiceLineOption>;
   @useResult
-  $Res call({int maxSelect, String presetName, String? name});
+  $Res call(
+      {int maxSelect,
+      bool enableCancelFeature,
+      String presetName,
+      String? name});
 }
 
 /// @nodoc
@@ -53,6 +58,7 @@ class _$ChoiceLineOptionCopyWithImpl<$Res, $Val extends ChoiceLineOption>
   @override
   $Res call({
     Object? maxSelect = null,
+    Object? enableCancelFeature = null,
     Object? presetName = null,
     Object? name = freezed,
   }) {
@@ -61,6 +67,10 @@ class _$ChoiceLineOptionCopyWithImpl<$Res, $Val extends ChoiceLineOption>
           ? _value.maxSelect
           : maxSelect // ignore: cast_nullable_to_non_nullable
               as int,
+      enableCancelFeature: null == enableCancelFeature
+          ? _value.enableCancelFeature
+          : enableCancelFeature // ignore: cast_nullable_to_non_nullable
+              as bool,
       presetName: null == presetName
           ? _value.presetName
           : presetName // ignore: cast_nullable_to_non_nullable
@@ -81,7 +91,11 @@ abstract class _$$_ChoiceLineOptionCopyWith<$Res>
       __$$_ChoiceLineOptionCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int maxSelect, String presetName, String? name});
+  $Res call(
+      {int maxSelect,
+      bool enableCancelFeature,
+      String presetName,
+      String? name});
 }
 
 /// @nodoc
@@ -96,6 +110,7 @@ class __$$_ChoiceLineOptionCopyWithImpl<$Res>
   @override
   $Res call({
     Object? maxSelect = null,
+    Object? enableCancelFeature = null,
     Object? presetName = null,
     Object? name = freezed,
   }) {
@@ -104,6 +119,10 @@ class __$$_ChoiceLineOptionCopyWithImpl<$Res>
           ? _value.maxSelect
           : maxSelect // ignore: cast_nullable_to_non_nullable
               as int,
+      enableCancelFeature: null == enableCancelFeature
+          ? _value.enableCancelFeature
+          : enableCancelFeature // ignore: cast_nullable_to_non_nullable
+              as bool,
       presetName: null == presetName
           ? _value.presetName
           : presetName // ignore: cast_nullable_to_non_nullable
@@ -121,7 +140,10 @@ class __$$_ChoiceLineOptionCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_ChoiceLineOption implements _ChoiceLineOption {
   const _$_ChoiceLineOption(
-      {this.maxSelect = -1, this.presetName = 'default', this.name});
+      {this.maxSelect = -1,
+      this.enableCancelFeature = true,
+      this.presetName = 'default',
+      this.name});
 
   factory _$_ChoiceLineOption.fromJson(Map<String, dynamic> json) =>
       _$$_ChoiceLineOptionFromJson(json);
@@ -131,13 +153,16 @@ class _$_ChoiceLineOption implements _ChoiceLineOption {
   final int maxSelect;
   @override
   @JsonKey()
+  final bool enableCancelFeature;
+  @override
+  @JsonKey()
   final String presetName;
   @override
   final String? name;
 
   @override
   String toString() {
-    return 'ChoiceLineOption(maxSelect: $maxSelect, presetName: $presetName, name: $name)';
+    return 'ChoiceLineOption(maxSelect: $maxSelect, enableCancelFeature: $enableCancelFeature, presetName: $presetName, name: $name)';
   }
 
   @override
@@ -147,6 +172,8 @@ class _$_ChoiceLineOption implements _ChoiceLineOption {
             other is _$_ChoiceLineOption &&
             (identical(other.maxSelect, maxSelect) ||
                 other.maxSelect == maxSelect) &&
+            (identical(other.enableCancelFeature, enableCancelFeature) ||
+                other.enableCancelFeature == enableCancelFeature) &&
             (identical(other.presetName, presetName) ||
                 other.presetName == presetName) &&
             (identical(other.name, name) || other.name == name));
@@ -154,7 +181,8 @@ class _$_ChoiceLineOption implements _ChoiceLineOption {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, maxSelect, presetName, name);
+  int get hashCode => Object.hash(
+      runtimeType, maxSelect, enableCancelFeature, presetName, name);
 
   @JsonKey(ignore: true)
   @override
@@ -173,6 +201,7 @@ class _$_ChoiceLineOption implements _ChoiceLineOption {
 abstract class _ChoiceLineOption implements ChoiceLineOption {
   const factory _ChoiceLineOption(
       {final int maxSelect,
+      final bool enableCancelFeature,
       final String presetName,
       final String? name}) = _$_ChoiceLineOption;
 
@@ -181,6 +210,8 @@ abstract class _ChoiceLineOption implements ChoiceLineOption {
 
   @override
   int get maxSelect;
+  @override
+  bool get enableCancelFeature;
   @override
   String get presetName;
   @override

@@ -9,6 +9,7 @@ part of 'choice_line.dart';
 _$_ChoiceLineOption _$$_ChoiceLineOptionFromJson(Map<String, dynamic> json) =>
     _$_ChoiceLineOption(
       maxSelect: json['maxSelect'] as int? ?? -1,
+      enableCancelFeature: json['enableCancelFeature'] as bool? ?? true,
       presetName: json['presetName'] as String? ?? 'default',
       name: json['name'] as String?,
     );
@@ -16,6 +17,7 @@ _$_ChoiceLineOption _$$_ChoiceLineOptionFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_ChoiceLineOptionToJson(_$_ChoiceLineOption instance) =>
     <String, dynamic>{
       'maxSelect': instance.maxSelect,
+      'enableCancelFeature': instance.enableCancelFeature,
       'presetName': instance.presetName,
       'name': instance.name,
     };

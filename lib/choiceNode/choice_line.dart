@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:cyoap_core/choiceNode/selectable_status.dart';
 import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/variable_db.dart';
@@ -8,6 +10,7 @@ import 'choice_node.dart';
 import 'recursive_status.dart';
 
 part 'choice_line.freezed.dart';
+
 part 'choice_line.g.dart';
 
 @freezed
@@ -15,6 +18,7 @@ class ChoiceLineOption with _$ChoiceLineOption {
   @JsonSerializable(explicitToJson: true)
   const factory ChoiceLineOption({
     @Default(-1) int maxSelect,
+    @Default(true) bool enableCancelFeature,
     @Default('default') String presetName,
     String? name,
   }) = _ChoiceLineOption;
@@ -84,41 +88,6 @@ class ChoiceLine extends Choice {
   }
 
   @override
-  void initValueTypeWrapper() {
-    if (isNeedToCheck()) {
-      VariableDataBase().setValue(valName, ValueTypeWrapper(ValueType.int(0)),
-          isGlobal: true);
-    } else {
-      VariableDataBase().deleteValue(valName);
-    }
-
-    for (var node in children) {
-      node.initValueTypeWrapper();
-    }
-  }
-
-  @override
-  bool execute() {
-    Map<String, ValueTypeWrapper> db = VariableDataBase()
-        .varMapGlobal
-        .map((key, value) => MapEntry(key, value.copyWith()));
-    while (true) {
-      var out = false;
-      for (var node in children) {
-        out |= node.execute();
-        if (node.isExecutable() && node.isSelectableMode) {
-          recursiveStatus.execute(errorName);
-        }
-      }
-      if (!out) {
-        return false;
-      }
-      VariableDataBase().varMapGlobal =
-          db.map((key, value) => MapEntry(key, value.copyWith()));
-    }
-  }
-
-  @override
   String get errorName => "${pos.data.toString()} $valName";
 
   @override
@@ -136,11 +105,89 @@ class ChoiceLine extends Choice {
     } else {
       selectableStatus = SelectableStatus.hide;
     }
-    List<Choice> list = [...children];
-    while (list.isNotEmpty) {
-      var check = list.removeAt(0);
-      check.updateStatus();
-      list.addAll(check.children);
+    _sortAndProcessNodesByDepth();
+  }
+
+  bool _checkCondition(List<ChoiceNode> nodes, {firstLine = false, required enableCancelFeature}) {
+    var needUpdate = false;
+    for (var n in nodes) {
+      if(!enableCancelFeature && n.select > 0){
+        continue;
+      }
+      needUpdate |= n.checkCondition();
+    }
+    if (!needUpdate &&
+        firstLine &&
+        !recursiveStatus.analyseClickable(errorName)) {
+      for (var n in nodes) {
+        if (n.select == 0 && n.isSelectableMode) {
+          n.selectableStatus = SelectableStatus.closed;
+        }
+      }
+      return false;
+    }
+    return needUpdate;
+  }
+
+  void _updateSelectionStatus(List<ChoiceNode> nodes, {firstLine = false}) {
+    for (var n in nodes) {
+      n.updateSelectionStatus();
+      if (n.select > 0 && firstLine) {
+        recursiveStatus.execute(errorName);
+      }
+    }
+  }
+
+  void _executeNodes(List<ChoiceNode> nodes) {
+    for (var n in nodes) {
+      n.execute();
+    }
+  }
+
+  void _processSelectionUntilStable(List<ChoiceNode> nodes,
+      {firstLine = false, enableCancelFeature = true}) {
+    if (isNeedToCheck()) {
+      VariableDataBase().setValue(valName, ValueTypeWrapper(ValueType.int(0)),
+          isGlobal: true);
+    } else {
+      VariableDataBase().deleteValue(valName);
+    }
+    Map<String, ValueTypeWrapper> db = VariableDataBase()
+        .varMapGlobal
+        .map((key, value) => MapEntry(key, value.copyWith()));
+    while (true) {
+      _executeNodes(nodes);
+      _updateSelectionStatus(nodes, firstLine: firstLine);
+      if (!_checkCondition(nodes, firstLine: firstLine, enableCancelFeature: enableCancelFeature)) {
+        break;
+      }
+      VariableDataBase().varMapGlobal =
+          db.map((key, value) => MapEntry(key, value.copyWith()));
+    }
+  }
+
+  void _sortAndProcessNodesByDepth() {
+    //sort by depth using BFS
+    var sortedNodeByDepth = List<List<ChoiceNode>>.empty(growable: true);
+    var queue = Queue<(ChoiceNode, int)>();
+    for (var node in children) {
+      queue.add((node as ChoiceNode, 0));
+    }
+    while (queue.isNotEmpty) {
+      var (node, depth) = queue.removeFirst();
+      if (sortedNodeByDepth.length <= depth) {
+        sortedNodeByDepth.add(List.empty(growable: true));
+      }
+      sortedNodeByDepth[depth].add(node);
+      for (var child in node.children) {
+        queue.add((child as ChoiceNode, depth + 1));
+      }
+    }
+
+    //process
+    for (var depth = 0; depth < sortedNodeByDepth.length; depth++) {
+      _processSelectionUntilStable(sortedNodeByDepth[depth],
+          firstLine: depth == 0, enableCancelFeature: choiceLineOption.enableCancelFeature);
     }
   }
 }

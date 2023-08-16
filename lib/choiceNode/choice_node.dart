@@ -13,6 +13,7 @@ import 'recursive_status.dart';
 import 'selectable_status.dart';
 
 part 'choice_node.freezed.dart';
+
 part 'choice_node.g.dart';
 
 enum ChoiceNodeMode {
@@ -80,7 +81,9 @@ class ChoiceNode extends Choice {
   }
 
   String get contentsString => _currentContentsString;
+
   String get contentsOriginalString => _contentsString;
+
   set contentsString(String str) {
     _contentsString = str;
     updateCurrentContentsString();
@@ -160,28 +163,6 @@ class ChoiceNode extends Choice {
     }
   }
 
-  @override
-  bool execute() {
-    var out = false;
-    if (isExecutable()) {
-      if (!recursiveStatus.analyseClickable(errorName, seedInput: seed)) {
-        selectableStatus = SelectableStatus.closed;
-        select = 0;
-        return true;
-      }
-      if (!recursiveStatus.analyseVisible(errorName, seedInput: seed)) {
-        selectableStatus = SelectableStatus.hide;
-        select = 0;
-        return true;
-      }
-      recursiveStatus.execute(errorName, seedInput: seed);
-      for (var child in children) {
-        out |= child.execute();
-      }
-    }
-    return out;
-  }
-
   void selectNode(int n, {bool disableCheck = false}) {
     if (disableCheck || (canDisableSelect(n) || checkParentClickable())) {
       switch (choiceNodeMode) {
@@ -203,7 +184,7 @@ class ChoiceNode extends Choice {
         case ChoiceNodeMode.unSelectableMode:
           break;
         default:
-          select = select == 1 ? 0 : 1;
+          select = 1 - select;
           break;
       }
       seed = Random().nextInt(seedMax);
@@ -223,27 +204,6 @@ class ChoiceNode extends Choice {
         return true;
       default:
         return selectableStatus.isOpen() && select > 0;
-    }
-  }
-
-  @override
-  void initValueTypeWrapper() {
-    var titleWhitespaceRemoved = title.replaceAll(" ", "");
-    VariableDataBase().setValue(titleWhitespaceRemoved,
-        ValueTypeWrapper(ValueType.bool(isExecutable())),
-        isGlobal: true);
-    if (choiceNodeMode == ChoiceNodeMode.randomMode) {
-      VariableDataBase().setValue('$titleWhitespaceRemoved:random',
-          ValueTypeWrapper(ValueType.int(random)),
-          isGlobal: true);
-    }
-    if (choiceNodeMode == ChoiceNodeMode.multiSelect) {
-      VariableDataBase().setValue('$titleWhitespaceRemoved:multi',
-          ValueTypeWrapper(ValueType.int(select)),
-          isGlobal: true);
-    }
-    for (var child in children) {
-      child.initValueTypeWrapper();
     }
   }
 
@@ -304,39 +264,71 @@ class ChoiceNode extends Choice {
   }
 
   @override
-  void updateStatus() {
+  void updateStatus() {}
+
+  void updateSelectionStatus() {
+    var titleWhitespaceRemoved = title.replaceAll(" ", "");
+    VariableDataBase().setValue(titleWhitespaceRemoved,
+        ValueTypeWrapper(ValueType.bool(isExecutable())),
+        isGlobal: true);
+    if (choiceNodeMode == ChoiceNodeMode.randomMode) {
+      VariableDataBase().setValue('$titleWhitespaceRemoved:random',
+          ValueTypeWrapper(ValueType.int(random)),
+          isGlobal: true);
+    }
+    if (choiceNodeMode == ChoiceNodeMode.multiSelect) {
+      VariableDataBase().setValue('$titleWhitespaceRemoved:multi',
+          ValueTypeWrapper(ValueType.int(select)),
+          isGlobal: true);
+    }
+  }
+
+  void execute() {
+    if(!isExecutable()){
+      return;
+    }
+    recursiveStatus.execute(errorName, seedInput: seed);
+  }
+
+  bool checkCondition() {
+    var beforeStatus = selectableStatus;
+    var beforeSelect = select;
     updateCurrentContentsString();
-    if (select > 0 && parent!.isExecutable()) {
-      selectableStatus = SelectableStatus.open;
-      return;
-    }
-    if (!recursiveStatus.analyseVisible(errorName, seedInput: seed)) {
-      selectableStatus = SelectableStatus.hide;
-      return;
-    }
-    selectableStatus = SelectableStatus.open;
-    if (parent == null) {
-      return;
-    }
     if (parent is ChoiceLine) {
-      if (select != 0) {
-        return;
-      }
-      if (!parent!.recursiveStatus
-              .analyseClickable(parent!.errorName, seedInput: seed) &&
-          choiceNodeMode != ChoiceNodeMode.unSelectableMode) {
+      if (select == 0 &&
+          isSelectableMode &&
+          !parent!.recursiveStatus.analyseClickable(errorName)) {
         selectableStatus = SelectableStatus.closed;
-      } else if (!recursiveStatus.analyseClickable(errorName,
-          seedInput: seed)) {
-        selectableStatus = SelectableStatus.closed;
-      }
-    } else {
-      if (!parent!.isExecutable()) {
-        select = 0;
-      } else if (!recursiveStatus.analyseClickable(errorName,
-          seedInput: seed)) {
-        selectableStatus = SelectableStatus.closed;
+        return !(beforeStatus == selectableStatus && beforeSelect == select);
       }
     }
+    var click = recursiveStatus.analyseClickable(errorName, seedInput: seed);
+    var visible = recursiveStatus.analyseVisible(errorName, seedInput: seed);
+    if (click && visible) {
+      selectableStatus = SelectableStatus.open;
+    } else if (!visible) {
+      selectableStatus = SelectableStatus.hide;
+      select = 0;
+    } else if (!click) {
+      selectableStatus = SelectableStatus.closed;
+      select = 0;
+    }
+
+    if (parent is ChoiceNode) {
+      ChoiceNode parent = this.parent as ChoiceNode;
+      if (!parent.selectableStatus.isOpen()){
+        selectableStatus = parent.selectableStatus;
+        select = 0;
+      }else if (parent.select == 0 && parent.isSelectableMode){
+        selectableStatus = SelectableStatus.closed;
+        select = 0;
+      }
+
+      if (select > 0 && parent.select == 0) {
+        selectableStatus = SelectableStatus.closed;
+        select = 0;
+      }
+    }
+    return !(beforeStatus == selectableStatus && beforeSelect == select);
   }
 }

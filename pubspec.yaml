@@ -1,6 +1,6 @@
 name: cyoap_core
 description: CYOAP Project's core library
-version: 3.0.0
+version: 3.1.0
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -10,7 +10,6 @@ dependencies:
   json_annotation: any
   js: any
   meta: any
-  tuple: ^2.0.0
 
 dev_dependencies:
   freezed: ^2.2.0
