@@ -156,8 +156,8 @@ class ChoiceLine extends Choice {
         .varMapGlobal
         .map((key, value) => MapEntry(key, value.copyWith()));
     while (true) {
-      _executeNodes(nodes);
       _updateSelectionStatus(nodes, firstLine: firstLine);
+      _executeNodes(nodes);
       if (!_checkCondition(nodes, firstLine: firstLine, enableCancelFeature: enableCancelFeature)) {
         break;
       }

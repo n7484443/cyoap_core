@@ -2,7 +2,6 @@ import 'package:cyoap_core/choiceNode/choice_line.dart';
 import 'package:cyoap_core/choiceNode/choice_node.dart';
 import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/playable_platform.dart';
-import 'package:cyoap_core/variable_db.dart';
 import 'package:test/test.dart';
 
 void printStatus(List<ChoiceNode> choiceNode) {
@@ -55,5 +54,41 @@ void main() {
     choiceNode1_0.selectNode(0);
     platform.updateStatusAll();
     expect(choiceNode1_0.contentsString, "a initial b");
+  });
+
+  test('main replacement test 2', () {
+    var platform = PlayablePlatform();
+    platform.addGlobalSetting(
+        'content', ValueTypeWrapper(ValueType.string("initial")));
+    platform.addGlobalSetting(
+        'c', ValueTypeWrapper(ValueType.string("0")));
+    var lineSetting0 = ChoiceLine(0);
+    var choiceNode0 = ChoiceNode.empty()
+      ..title = "테스트용"
+      ..contentsString = "{{content}}"
+      ..choiceNodeMode = ChoiceNodeMode.multiSelect
+      ..maximumStatus = 12;
+    choiceNode0.recursiveStatus.executeCodeString = """
+    c = 테스트용:multi
+    if(테스트용:multi < 10){
+      content = "a"
+    }else{
+      content = "b"
+    }
+    """;
+    lineSetting0.addChildren(choiceNode0);
+    lineSetting0.generateParser();
+    platform.lineSettings.add(lineSetting0);
+
+    platform.updateStatusAll();
+    for (int i = 0; i < 10; i++) {
+      choiceNode0.selectNode(1);
+      platform.updateStatusAll();
+      if (i < 9) {
+        expect(choiceNode0.contentsString, "a");
+      } else {
+        expect(choiceNode0.contentsString, "b");
+      }
+    }
   });
 }
