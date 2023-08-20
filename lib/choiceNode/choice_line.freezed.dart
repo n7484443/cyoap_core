@@ -141,7 +141,7 @@ class __$$_ChoiceLineOptionCopyWithImpl<$Res>
 class _$_ChoiceLineOption implements _ChoiceLineOption {
   const _$_ChoiceLineOption(
       {this.maxSelect = -1,
-      this.enableCancelFeature = true,
+      this.enableCancelFeature = false,
       this.presetName = 'default',
       this.name});
 

@@ -18,7 +18,7 @@ class ChoiceLineOption with _$ChoiceLineOption {
   @JsonSerializable(explicitToJson: true)
   const factory ChoiceLineOption({
     @Default(-1) int maxSelect,
-    @Default(true) bool enableCancelFeature,
+    @Default(false) bool enableCancelFeature,
     @Default('default') String presetName,
     String? name,
   }) = _ChoiceLineOption;
