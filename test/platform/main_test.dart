@@ -16,7 +16,7 @@ void main() {
     var platform = PlayablePlatform();
     platform.addGlobalSetting(
         'test', ValueTypeWrapper(ValueType.string("initial")));
-    var lineSetting0 = ChoiceLine(0);
+    var lineSetting0 = ChoiceLine(0, choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
     var choiceNode0 = ChoiceNode.empty()..title = "testNode0";
     choiceNode0.recursiveStatus.executeCodeString = "test = 0";
     var choiceNode1 = ChoiceNode.empty()..title = "testNode1";
@@ -25,7 +25,7 @@ void main() {
     lineSetting0.addChildren(choiceNode1);
     lineSetting0.generateParser();
 
-    var lineSetting1 = ChoiceLine(1);
+    var lineSetting1 = ChoiceLine(1, choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
     var choiceNode1_0 = ChoiceNode(
         title: "testNode 1_0", contents: "a {{test}} b", imageString: '');
     choiceNode1_0.recursiveStatus.executeCodeString = "test = 'self'";
@@ -62,7 +62,7 @@ void main() {
         'content', ValueTypeWrapper(ValueType.string("initial")));
     platform.addGlobalSetting(
         'c', ValueTypeWrapper(ValueType.string("0")));
-    var lineSetting0 = ChoiceLine(0);
+    var lineSetting0 = ChoiceLine(0, choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
     var choiceNode0 = ChoiceNode.empty()
       ..title = "테스트용"
       ..contentsString = "{{content}}"

@@ -14,7 +14,7 @@ void main() {
   test('dependency_test_0', () {
     var platform = PlayablePlatform();
     var lineSetting0 = ChoiceLine(0);
-    var lineSetting1 = ChoiceLine(0);
+    var lineSetting1 = ChoiceLine(0, choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
     lineSetting0.generateParser();
     platform.lineSettings.add(lineSetting0);
     lineSetting1.generateParser();
@@ -53,7 +53,7 @@ void main() {
 
   test('forced_uncheck0', () {
     var platform = PlayablePlatform();
-    var lineSetting0 = ChoiceLine(0);
+    var lineSetting0 = ChoiceLine(0, choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
     lineSetting0.generateParser();
     platform.lineSettings.add(lineSetting0);
     var choiceNode0 = ChoiceNode.empty()..title = "testNode0";

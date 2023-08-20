@@ -3,13 +3,12 @@ import 'package:cyoap_core/choiceNode/choice_node.dart';
 import 'package:cyoap_core/choiceNode/selectable_status.dart';
 import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/playable_platform.dart';
-import 'package:cyoap_core/variable_db.dart';
 import 'package:test/test.dart';
 
 void main() {
   test('nestedTest', () {
     var platform = PlayablePlatform();
-    platform.lineSettings.add(ChoiceLine(0));
+    platform.lineSettings.add(ChoiceLine(0, choiceLineOption: ChoiceLineOption(enableCancelFeature: true)));
     var parent = ChoiceNode.empty()..title = "parent";
     var child = ChoiceNode.empty()..title = "child";
     parent.addChildren(child);
