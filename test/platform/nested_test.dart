@@ -115,4 +115,62 @@ void main() {
     expect(child0.selectableStatus, SelectableStatus.open);
     expect(child1.selectableStatus, SelectableStatus.closed);
   });
+
+
+  test('test State Propagation From Parent To Child', () {
+    var platform = PlayablePlatform();
+    var line = ChoiceLine(0)
+      ..choiceLineOption = ChoiceLineOption(enableCancelFeature: false);
+    var parent = ChoiceNode.empty()
+      ..title = "parent"
+      ..recursiveStatus.conditionVisibleString = "a"
+      ..recursiveStatus.conditionClickableString = "b";
+    var child0 = ChoiceNode.empty()
+      ..title = "child0"
+      ..recursiveStatus.conditionClickableString = "parent";
+    var child1 = ChoiceNode.empty()
+      ..title = "child1"
+      ..recursiveStatus.conditionVisibleString = "parent";
+    parent.generateParser();
+    child0.generateParser();
+    child1.generateParser();
+    parent.addChildren(child0);
+    parent.addChildren(child1);
+    line.addChildren(parent);
+    platform.lineSettings.add(line);
+
+    platform.addGlobalSetting("a", ValueTypeWrapper(ValueType.bool(false)));
+    platform.addGlobalSetting("b", ValueTypeWrapper(ValueType.bool(false)));
+    platform.updateStatusAll();
+    expect((parent.select, parent.selectableStatus), (0, SelectableStatus.hide));
+    expect((child0.select, child0.selectableStatus), (0, SelectableStatus.hide));
+    expect((child1.select, child1.selectableStatus), (0, SelectableStatus.hide));
+
+    platform.addGlobalSetting("a", ValueTypeWrapper(ValueType.bool(true)));
+    platform.addGlobalSetting("b", ValueTypeWrapper(ValueType.bool(false)));
+    platform.updateStatusAll();
+    expect((parent.select, parent.selectableStatus), (0, SelectableStatus.closed));
+    expect((child0.select, child0.selectableStatus), (0, SelectableStatus.closed));
+    expect((child1.select, child1.selectableStatus), (0, SelectableStatus.hide));
+
+    platform.addGlobalSetting("a", ValueTypeWrapper(ValueType.bool(false)));
+    platform.addGlobalSetting("b", ValueTypeWrapper(ValueType.bool(true)));
+    platform.updateStatusAll();
+    expect((parent.select, parent.selectableStatus), (0, SelectableStatus.hide));
+    expect((child0.select, child0.selectableStatus), (0, SelectableStatus.hide));
+    expect((child1.select, child1.selectableStatus), (0, SelectableStatus.hide));
+
+    platform.addGlobalSetting("a", ValueTypeWrapper(ValueType.bool(true)));
+    platform.addGlobalSetting("b", ValueTypeWrapper(ValueType.bool(true)));
+    platform.updateStatusAll();
+    expect((parent.select, parent.selectableStatus), (0, SelectableStatus.open));
+    expect((child0.select, child0.selectableStatus), (0, SelectableStatus.closed));
+    expect((child1.select, child1.selectableStatus), (0, SelectableStatus.hide));
+
+    parent.selectNode(0);
+    platform.updateStatusAll();
+    expect((parent.select, parent.selectableStatus), (1, SelectableStatus.open));
+    expect((child0.select, child0.selectableStatus), (0, SelectableStatus.open));
+    expect((child1.select, child1.selectableStatus), (0, SelectableStatus.open));
+  });
 }

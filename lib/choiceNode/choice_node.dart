@@ -316,10 +316,15 @@ class ChoiceNode extends Choice {
 
     if (parent is ChoiceNode) {
       ChoiceNode parent = this.parent as ChoiceNode;
-      if (!parent.selectableStatus.isOpen()){
-        selectableStatus = parent.selectableStatus;
+      if (parent.selectableStatus == SelectableStatus.hide) {
+        selectableStatus = SelectableStatus.hide;
         select = 0;
-      }else if (parent.select == 0 && parent.isSelectableMode){
+      }else if (parent.selectableStatus == SelectableStatus.closed) {
+        if(selectableStatus != SelectableStatus.hide){
+          selectableStatus = parent.selectableStatus;
+        }
+        select = 0;
+      }else if (parent.select == 0 && parent.isSelectableMode && selectableStatus == SelectableStatus.open){
         selectableStatus = SelectableStatus.closed;
         select = 0;
       }
