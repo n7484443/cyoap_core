@@ -11,6 +11,7 @@ _$_OutlineOption _$$_OutlineOptionFromJson(Map<String, dynamic> json) =>
       outlineType:
           $enumDecodeNullable(_$OutlineTypeEnumMap, json['outlineType']) ??
               OutlineType.solid,
+      outlineSelectColor: json['outlineSelectColor'] as int? ?? 0xFF40C4FF,
       outlinePadding: (json['outlinePadding'] as num?)?.toDouble() ?? 4.0,
       outlineWidth: (json['outlineWidth'] as num?)?.toDouble() ?? 2.0,
     );
@@ -18,6 +19,7 @@ _$_OutlineOption _$$_OutlineOptionFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_OutlineOptionToJson(_$_OutlineOption instance) =>
     <String, dynamic>{
       'outlineType': _$OutlineTypeEnumMap[instance.outlineType]!,
+      'outlineSelectColor': instance.outlineSelectColor,
       'outlinePadding': instance.outlinePadding,
       'outlineWidth': instance.outlineWidth,
     };
