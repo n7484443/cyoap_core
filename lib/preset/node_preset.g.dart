@@ -62,6 +62,7 @@ _$_SelectColorOption _$$_SelectColorOptionFromJson(Map<String, dynamic> json) =>
       selectColorType: $enumDecodeNullable(
               _$SelectColorTypeEnumMap, json['selectColorType']) ??
           SelectColorType.solid,
+      selectColor: json['selectColor'] as int? ?? 0xFF40C4FF,
       gradientType:
           $enumDecodeNullable(_$GradientTypeEnumMap, json['gradientType']) ??
               GradientType.linear,
@@ -78,6 +79,7 @@ Map<String, dynamic> _$$_SelectColorOptionToJson(
         _$_SelectColorOption instance) =>
     <String, dynamic>{
       'selectColorType': _$SelectColorTypeEnumMap[instance.selectColorType]!,
+      'selectColor': instance.selectColor,
       'gradientType': _$GradientTypeEnumMap[instance.gradientType]!,
       'gradientData': instance.gradientData,
     };
@@ -105,7 +107,6 @@ _$_ChoiceNodeDesignPreset _$$_ChoiceNodeDesignPresetFromJson(
       hideTitle: json['hideTitle'] as bool? ?? false,
       imagePosition: json['imagePosition'] as int? ?? 0,
       colorNode: json['colorNode'] as int? ?? 0xFFFFFFFF,
-      colorSelectNode: json['colorSelectNode'] as int? ?? 0xFF40C4FF,
       colorTitle: json['colorTitle'] as int? ?? 0xFF000000,
       titleFont: json['titleFont'] as String? ?? "notoSans",
       mainFont: json['mainFont'] as String? ?? "notoSans",
@@ -131,7 +132,6 @@ Map<String, dynamic> _$$_ChoiceNodeDesignPresetToJson(
       'hideTitle': instance.hideTitle,
       'imagePosition': instance.imagePosition,
       'colorNode': instance.colorNode,
-      'colorSelectNode': instance.colorSelectNode,
       'colorTitle': instance.colorTitle,
       'titleFont': instance.titleFont,
       'mainFont': instance.mainFont,

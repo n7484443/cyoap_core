@@ -60,6 +60,7 @@ class GradientData with _$GradientData {
 class SelectColorOption with _$SelectColorOption {
   const factory SelectColorOption({
     @Default(SelectColorType.solid) SelectColorType selectColorType,
+    @Default(0xFF40C4FF) int? selectColor,
     @Default(GradientType.linear) GradientType gradientType,
     @Default([GradientData(gradientPos: (0, 0)), GradientData(gradientPos: (1, 1))]) List<GradientData> gradientData,
   }) = _SelectColorOption;
@@ -81,7 +82,6 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
     @Default(false) bool hideTitle,
     @Default(0) int imagePosition, //0:default, 1:image-right 2:image-left
     @Default(0xFFFFFFFF) int colorNode,
-    @Default(0xFF40C4FF) int colorSelectNode,
     @Default(0xFF000000) int colorTitle,
     @Default("notoSans") String titleFont,
     @Default("notoSans") String mainFont,

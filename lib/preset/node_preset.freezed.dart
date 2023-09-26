@@ -360,6 +360,7 @@ SelectColorOption _$SelectColorOptionFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SelectColorOption {
   SelectColorType get selectColorType => throw _privateConstructorUsedError;
+  int? get selectColor => throw _privateConstructorUsedError;
   GradientType get gradientType => throw _privateConstructorUsedError;
   List<GradientData> get gradientData => throw _privateConstructorUsedError;
 
@@ -377,6 +378,7 @@ abstract class $SelectColorOptionCopyWith<$Res> {
   @useResult
   $Res call(
       {SelectColorType selectColorType,
+      int? selectColor,
       GradientType gradientType,
       List<GradientData> gradientData});
 }
@@ -395,6 +397,7 @@ class _$SelectColorOptionCopyWithImpl<$Res, $Val extends SelectColorOption>
   @override
   $Res call({
     Object? selectColorType = null,
+    Object? selectColor = freezed,
     Object? gradientType = null,
     Object? gradientData = null,
   }) {
@@ -403,6 +406,10 @@ class _$SelectColorOptionCopyWithImpl<$Res, $Val extends SelectColorOption>
           ? _value.selectColorType
           : selectColorType // ignore: cast_nullable_to_non_nullable
               as SelectColorType,
+      selectColor: freezed == selectColor
+          ? _value.selectColor
+          : selectColor // ignore: cast_nullable_to_non_nullable
+              as int?,
       gradientType: null == gradientType
           ? _value.gradientType
           : gradientType // ignore: cast_nullable_to_non_nullable
@@ -425,6 +432,7 @@ abstract class _$$_SelectColorOptionCopyWith<$Res>
   @useResult
   $Res call(
       {SelectColorType selectColorType,
+      int? selectColor,
       GradientType gradientType,
       List<GradientData> gradientData});
 }
@@ -441,6 +449,7 @@ class __$$_SelectColorOptionCopyWithImpl<$Res>
   @override
   $Res call({
     Object? selectColorType = null,
+    Object? selectColor = freezed,
     Object? gradientType = null,
     Object? gradientData = null,
   }) {
@@ -449,6 +458,10 @@ class __$$_SelectColorOptionCopyWithImpl<$Res>
           ? _value.selectColorType
           : selectColorType // ignore: cast_nullable_to_non_nullable
               as SelectColorType,
+      selectColor: freezed == selectColor
+          ? _value.selectColor
+          : selectColor // ignore: cast_nullable_to_non_nullable
+              as int?,
       gradientType: null == gradientType
           ? _value.gradientType
           : gradientType // ignore: cast_nullable_to_non_nullable
@@ -466,6 +479,7 @@ class __$$_SelectColorOptionCopyWithImpl<$Res>
 class _$_SelectColorOption implements _SelectColorOption {
   const _$_SelectColorOption(
       {this.selectColorType = SelectColorType.solid,
+      this.selectColor = 0xFF40C4FF,
       this.gradientType = GradientType.linear,
       final List<GradientData> gradientData = const [
         GradientData(gradientPos: (0, 0)),
@@ -481,6 +495,9 @@ class _$_SelectColorOption implements _SelectColorOption {
   final SelectColorType selectColorType;
   @override
   @JsonKey()
+  final int? selectColor;
+  @override
+  @JsonKey()
   final GradientType gradientType;
   final List<GradientData> _gradientData;
   @override
@@ -493,7 +510,7 @@ class _$_SelectColorOption implements _SelectColorOption {
 
   @override
   String toString() {
-    return 'SelectColorOption(selectColorType: $selectColorType, gradientType: $gradientType, gradientData: $gradientData)';
+    return 'SelectColorOption(selectColorType: $selectColorType, selectColor: $selectColor, gradientType: $gradientType, gradientData: $gradientData)';
   }
 
   @override
@@ -503,6 +520,8 @@ class _$_SelectColorOption implements _SelectColorOption {
             other is _$_SelectColorOption &&
             (identical(other.selectColorType, selectColorType) ||
                 other.selectColorType == selectColorType) &&
+            (identical(other.selectColor, selectColor) ||
+                other.selectColor == selectColor) &&
             (identical(other.gradientType, gradientType) ||
                 other.gradientType == gradientType) &&
             const DeepCollectionEquality()
@@ -511,8 +530,8 @@ class _$_SelectColorOption implements _SelectColorOption {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, selectColorType, gradientType,
-      const DeepCollectionEquality().hash(_gradientData));
+  int get hashCode => Object.hash(runtimeType, selectColorType, selectColor,
+      gradientType, const DeepCollectionEquality().hash(_gradientData));
 
   @JsonKey(ignore: true)
   @override
@@ -532,6 +551,7 @@ class _$_SelectColorOption implements _SelectColorOption {
 abstract class _SelectColorOption implements SelectColorOption {
   const factory _SelectColorOption(
       {final SelectColorType selectColorType,
+      final int? selectColor,
       final GradientType gradientType,
       final List<GradientData> gradientData}) = _$_SelectColorOption;
 
@@ -540,6 +560,8 @@ abstract class _SelectColorOption implements SelectColorOption {
 
   @override
   SelectColorType get selectColorType;
+  @override
+  int? get selectColor;
   @override
   GradientType get gradientType;
   @override
@@ -568,7 +590,6 @@ mixin _$ChoiceNodeDesignPreset {
   int get imagePosition =>
       throw _privateConstructorUsedError; //0:default, 1:image-right 2:image-left
   int get colorNode => throw _privateConstructorUsedError;
-  int get colorSelectNode => throw _privateConstructorUsedError;
   int get colorTitle => throw _privateConstructorUsedError;
   String get titleFont => throw _privateConstructorUsedError;
   String get mainFont => throw _privateConstructorUsedError;
@@ -597,7 +618,6 @@ abstract class $ChoiceNodeDesignPresetCopyWith<$Res> {
       bool hideTitle,
       int imagePosition,
       int colorNode,
-      int colorSelectNode,
       int colorTitle,
       String titleFont,
       String mainFont,
@@ -631,7 +651,6 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
     Object? hideTitle = null,
     Object? imagePosition = null,
     Object? colorNode = null,
-    Object? colorSelectNode = null,
     Object? colorTitle = null,
     Object? titleFont = null,
     Object? mainFont = null,
@@ -674,10 +693,6 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
       colorNode: null == colorNode
           ? _value.colorNode
           : colorNode // ignore: cast_nullable_to_non_nullable
-              as int,
-      colorSelectNode: null == colorSelectNode
-          ? _value.colorSelectNode
-          : colorSelectNode // ignore: cast_nullable_to_non_nullable
               as int,
       colorTitle: null == colorTitle
           ? _value.colorTitle
@@ -737,7 +752,6 @@ abstract class _$$_ChoiceNodeDesignPresetCopyWith<$Res>
       bool hideTitle,
       int imagePosition,
       int colorNode,
-      int colorSelectNode,
       int colorTitle,
       String titleFont,
       String mainFont,
@@ -771,7 +785,6 @@ class __$$_ChoiceNodeDesignPresetCopyWithImpl<$Res>
     Object? hideTitle = null,
     Object? imagePosition = null,
     Object? colorNode = null,
-    Object? colorSelectNode = null,
     Object? colorTitle = null,
     Object? titleFont = null,
     Object? mainFont = null,
@@ -815,10 +828,6 @@ class __$$_ChoiceNodeDesignPresetCopyWithImpl<$Res>
           ? _value.colorNode
           : colorNode // ignore: cast_nullable_to_non_nullable
               as int,
-      colorSelectNode: null == colorSelectNode
-          ? _value.colorSelectNode
-          : colorSelectNode // ignore: cast_nullable_to_non_nullable
-              as int,
       colorTitle: null == colorTitle
           ? _value.colorTitle
           : colorTitle // ignore: cast_nullable_to_non_nullable
@@ -857,7 +866,6 @@ class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
       this.hideTitle = false,
       this.imagePosition = 0,
       this.colorNode = 0xFFFFFFFF,
-      this.colorSelectNode = 0xFF40C4FF,
       this.colorTitle = 0xFF000000,
       this.titleFont = "notoSans",
       this.mainFont = "notoSans",
@@ -897,9 +905,6 @@ class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
   final int colorNode;
   @override
   @JsonKey()
-  final int colorSelectNode;
-  @override
-  @JsonKey()
   final int colorTitle;
   @override
   @JsonKey()
@@ -916,7 +921,7 @@ class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
 
   @override
   String toString() {
-    return 'ChoiceNodeDesignPreset(name: $name, titlePosition: $titlePosition, elevation: $elevation, round: $round, padding: $padding, maximizingImage: $maximizingImage, hideTitle: $hideTitle, imagePosition: $imagePosition, colorNode: $colorNode, colorSelectNode: $colorSelectNode, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont, outlineOption: $outlineOption, selectColorOption: $selectColorOption)';
+    return 'ChoiceNodeDesignPreset(name: $name, titlePosition: $titlePosition, elevation: $elevation, round: $round, padding: $padding, maximizingImage: $maximizingImage, hideTitle: $hideTitle, imagePosition: $imagePosition, colorNode: $colorNode, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont, outlineOption: $outlineOption, selectColorOption: $selectColorOption)';
   }
 
   @override
@@ -939,8 +944,6 @@ class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
                 other.imagePosition == imagePosition) &&
             (identical(other.colorNode, colorNode) ||
                 other.colorNode == colorNode) &&
-            (identical(other.colorSelectNode, colorSelectNode) ||
-                other.colorSelectNode == colorSelectNode) &&
             (identical(other.colorTitle, colorTitle) ||
                 other.colorTitle == colorTitle) &&
             (identical(other.titleFont, titleFont) ||
@@ -966,7 +969,6 @@ class _$_ChoiceNodeDesignPreset implements _ChoiceNodeDesignPreset {
       hideTitle,
       imagePosition,
       colorNode,
-      colorSelectNode,
       colorTitle,
       titleFont,
       mainFont,
@@ -999,7 +1001,6 @@ abstract class _ChoiceNodeDesignPreset implements ChoiceNodeDesignPreset {
       final bool hideTitle,
       final int imagePosition,
       final int colorNode,
-      final int colorSelectNode,
       final int colorTitle,
       final String titleFont,
       final String mainFont,
@@ -1027,8 +1028,6 @@ abstract class _ChoiceNodeDesignPreset implements ChoiceNodeDesignPreset {
   int get imagePosition;
   @override //0:default, 1:image-right 2:image-left
   int get colorNode;
-  @override
-  int get colorSelectNode;
   @override
   int get colorTitle;
   @override
