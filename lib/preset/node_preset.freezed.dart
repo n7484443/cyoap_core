@@ -119,7 +119,8 @@ class __$$_OutlineOptionCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_OutlineOption implements _OutlineOption {
   const _$_OutlineOption(
       {this.outlineType = OutlineType.solid,
@@ -289,7 +290,8 @@ class __$$_GradientDataCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_GradientData implements _GradientData {
   const _$_GradientData({this.gradientPos = const (0, 0), this.color = null});
 
@@ -475,7 +477,8 @@ class __$$_SelectColorOptionCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_SelectColorOption implements _SelectColorOption {
   const _$_SelectColorOption(
       {this.selectColorType = SelectColorType.solid,

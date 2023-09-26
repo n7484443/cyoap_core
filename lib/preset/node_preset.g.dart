@@ -81,7 +81,7 @@ Map<String, dynamic> _$$_SelectColorOptionToJson(
       'selectColorType': _$SelectColorTypeEnumMap[instance.selectColorType]!,
       'selectColor': instance.selectColor,
       'gradientType': _$GradientTypeEnumMap[instance.gradientType]!,
-      'gradientData': instance.gradientData,
+      'gradientData': instance.gradientData.map((e) => e.toJson()).toList(),
     };
 
 const _$SelectColorTypeEnumMap = {

@@ -19,6 +19,7 @@ enum OutlineType {
 
 @freezed
 class OutlineOption with _$OutlineOption {
+  @JsonSerializable(explicitToJson: true)
   const factory OutlineOption({
     @Default(OutlineType.solid) OutlineType outlineType,
     @Default(4.0) double outlinePadding,
@@ -47,6 +48,7 @@ enum GradientType {
 
 @freezed
 class GradientData with _$GradientData {
+  @JsonSerializable(explicitToJson: true)
   const factory GradientData({
     @Default((0, 0)) (double, double) gradientPos,
     @Default(null) int? color,
@@ -58,6 +60,7 @@ class GradientData with _$GradientData {
 
 @freezed
 class SelectColorOption with _$SelectColorOption {
+  @JsonSerializable(explicitToJson: true)
   const factory SelectColorOption({
     @Default(SelectColorType.solid) SelectColorType selectColorType,
     @Default(0xFF40C4FF) int? selectColor,
