@@ -2,9 +2,10 @@ import 'package:cyoap_core/i18n.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'node_preset.freezed.dart';
+
 part 'node_preset.g.dart';
 
-enum Outline {
+enum OutlineType {
   none,
   solid,
   dotted,
@@ -13,7 +14,58 @@ enum Outline {
   @override
   String toString() => name.i18n;
 
-  const Outline();
+  const OutlineType();
+}
+
+@freezed
+class OutlineOption with _$OutlineOption {
+  const factory OutlineOption({
+    @Default(OutlineType.solid) OutlineType outlineType,
+    @Default(4.0) double outlinePadding,
+    @Default(2.0) double outlineWidth,
+  }) = _OutlineOption;
+
+  factory OutlineOption.fromJson(Map<String, dynamic> json) =>
+      _$OutlineOptionFromJson(json);
+}
+
+enum SelectColorType {
+  solid,
+  gradient;
+
+  @override
+  String toString() => name.i18n;
+
+  const SelectColorType();
+}
+
+enum GradientType {
+  linear,
+  radial,
+  sweep,
+}
+
+@freezed
+class GradientData with _$GradientData {
+  const factory GradientData({
+    @Default((0, 0)) (double, double) gradientPos,
+    @Default(null) int? color,
+  }) = _GradientData;
+
+  factory GradientData.fromJson(Map<String, dynamic> json) =>
+      _$GradientDataFromJson(json);
+}
+
+@freezed
+class SelectColorOption with _$SelectColorOption {
+  const factory SelectColorOption({
+    @Default(SelectColorType.solid) SelectColorType selectColorType,
+    @Default(GradientType.linear) GradientType gradientType,
+    @Default([GradientData(gradientPos: (0, 0)), GradientData(gradientPos: (1, 1))]) List<GradientData> gradientData,
+  }) = _SelectColorOption;
+
+  factory SelectColorOption.fromJson(Map<String, dynamic> json) =>
+      _$SelectColorOptionFromJson(json);
 }
 
 @freezed
@@ -33,9 +85,8 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
     @Default(0xFF000000) int colorTitle,
     @Default("notoSans") String titleFont,
     @Default("notoSans") String mainFont,
-    @Default(Outline.solid) Outline outline,
-    @Default(4.0) double outlinePadding,
-    @Default(2.0) double outlineWidth,
+    @Default(OutlineOption()) OutlineOption outlineOption,
+    @Default(SelectColorOption()) SelectColorOption selectColorOption,
   }) = _ChoiceNodeDesignPreset;
 
   factory ChoiceNodeDesignPreset.fromJson(Map<String, dynamic> json) =>
