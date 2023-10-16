@@ -63,6 +63,7 @@ class GradientData with _$GradientData {
 class SelectColorOption with _$SelectColorOption {
   @JsonSerializable(explicitToJson: true)
   const factory SelectColorOption({
+    @Default(false) bool enable,
     @Default(SelectColorType.solid) SelectColorType selectColorType,
     @Default(0xFF40C4FF) int? selectColor,
     @Default(GradientType.linear) GradientType gradientType,

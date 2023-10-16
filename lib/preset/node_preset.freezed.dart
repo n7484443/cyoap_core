@@ -387,6 +387,7 @@ SelectColorOption _$SelectColorOptionFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SelectColorOption {
+  bool get enable => throw _privateConstructorUsedError;
   SelectColorType get selectColorType => throw _privateConstructorUsedError;
   int? get selectColor => throw _privateConstructorUsedError;
   GradientType get gradientType => throw _privateConstructorUsedError;
@@ -405,7 +406,8 @@ abstract class $SelectColorOptionCopyWith<$Res> {
       _$SelectColorOptionCopyWithImpl<$Res, SelectColorOption>;
   @useResult
   $Res call(
-      {SelectColorType selectColorType,
+      {bool enable,
+      SelectColorType selectColorType,
       int? selectColor,
       GradientType gradientType,
       List<GradientData> gradientData});
@@ -424,12 +426,17 @@ class _$SelectColorOptionCopyWithImpl<$Res, $Val extends SelectColorOption>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? enable = null,
     Object? selectColorType = null,
     Object? selectColor = freezed,
     Object? gradientType = null,
     Object? gradientData = null,
   }) {
     return _then(_value.copyWith(
+      enable: null == enable
+          ? _value.enable
+          : enable // ignore: cast_nullable_to_non_nullable
+              as bool,
       selectColorType: null == selectColorType
           ? _value.selectColorType
           : selectColorType // ignore: cast_nullable_to_non_nullable
@@ -459,7 +466,8 @@ abstract class _$$_SelectColorOptionCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {SelectColorType selectColorType,
+      {bool enable,
+      SelectColorType selectColorType,
       int? selectColor,
       GradientType gradientType,
       List<GradientData> gradientData});
@@ -476,12 +484,17 @@ class __$$_SelectColorOptionCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? enable = null,
     Object? selectColorType = null,
     Object? selectColor = freezed,
     Object? gradientType = null,
     Object? gradientData = null,
   }) {
     return _then(_$_SelectColorOption(
+      enable: null == enable
+          ? _value.enable
+          : enable // ignore: cast_nullable_to_non_nullable
+              as bool,
       selectColorType: null == selectColorType
           ? _value.selectColorType
           : selectColorType // ignore: cast_nullable_to_non_nullable
@@ -507,7 +520,8 @@ class __$$_SelectColorOptionCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_SelectColorOption implements _SelectColorOption {
   const _$_SelectColorOption(
-      {this.selectColorType = SelectColorType.solid,
+      {this.enable = false,
+      this.selectColorType = SelectColorType.solid,
       this.selectColor = 0xFF40C4FF,
       this.gradientType = GradientType.linear,
       final List<GradientData> gradientData = const [
@@ -519,6 +533,9 @@ class _$_SelectColorOption implements _SelectColorOption {
   factory _$_SelectColorOption.fromJson(Map<String, dynamic> json) =>
       _$$_SelectColorOptionFromJson(json);
 
+  @override
+  @JsonKey()
+  final bool enable;
   @override
   @JsonKey()
   final SelectColorType selectColorType;
@@ -539,7 +556,7 @@ class _$_SelectColorOption implements _SelectColorOption {
 
   @override
   String toString() {
-    return 'SelectColorOption(selectColorType: $selectColorType, selectColor: $selectColor, gradientType: $gradientType, gradientData: $gradientData)';
+    return 'SelectColorOption(enable: $enable, selectColorType: $selectColorType, selectColor: $selectColor, gradientType: $gradientType, gradientData: $gradientData)';
   }
 
   @override
@@ -547,6 +564,7 @@ class _$_SelectColorOption implements _SelectColorOption {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SelectColorOption &&
+            (identical(other.enable, enable) || other.enable == enable) &&
             (identical(other.selectColorType, selectColorType) ||
                 other.selectColorType == selectColorType) &&
             (identical(other.selectColor, selectColor) ||
@@ -559,8 +577,13 @@ class _$_SelectColorOption implements _SelectColorOption {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, selectColorType, selectColor,
-      gradientType, const DeepCollectionEquality().hash(_gradientData));
+  int get hashCode => Object.hash(
+      runtimeType,
+      enable,
+      selectColorType,
+      selectColor,
+      gradientType,
+      const DeepCollectionEquality().hash(_gradientData));
 
   @JsonKey(ignore: true)
   @override
@@ -579,7 +602,8 @@ class _$_SelectColorOption implements _SelectColorOption {
 
 abstract class _SelectColorOption implements SelectColorOption {
   const factory _SelectColorOption(
-      {final SelectColorType selectColorType,
+      {final bool enable,
+      final SelectColorType selectColorType,
       final int? selectColor,
       final GradientType gradientType,
       final List<GradientData> gradientData}) = _$_SelectColorOption;
@@ -587,6 +611,8 @@ abstract class _SelectColorOption implements SelectColorOption {
   factory _SelectColorOption.fromJson(Map<String, dynamic> json) =
       _$_SelectColorOption.fromJson;
 
+  @override
+  bool get enable;
   @override
   SelectColorType get selectColorType;
   @override

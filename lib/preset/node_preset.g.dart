@@ -61,6 +61,7 @@ $Rec _$recordConvert<$Rec>(
 
 _$_SelectColorOption _$$_SelectColorOptionFromJson(Map<String, dynamic> json) =>
     _$_SelectColorOption(
+      enable: json['enable'] as bool? ?? false,
       selectColorType: $enumDecodeNullable(
               _$SelectColorTypeEnumMap, json['selectColorType']) ??
           SelectColorType.solid,
@@ -80,6 +81,7 @@ _$_SelectColorOption _$$_SelectColorOptionFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_SelectColorOptionToJson(
         _$_SelectColorOption instance) =>
     <String, dynamic>{
+      'enable': instance.enable,
       'selectColorType': _$SelectColorTypeEnumMap[instance.selectColorType]!,
       'selectColor': instance.selectColor,
       'gradientType': _$GradientTypeEnumMap[instance.gradientType]!,
