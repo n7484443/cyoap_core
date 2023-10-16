@@ -29,6 +29,8 @@ enum FunctionListEnum {
   not(1),
   random(1, hasSeedInput: true),
   exist(1),
+  max(2),
+  min(2),
   isVisible(1),
   loadVariable(1, displayWithColor: false),
   loadArray(2, displayWithColor: false),
@@ -103,6 +105,22 @@ class Functions {
     functionValueType[FunctionListEnum.random] = funcRandom;
     functionValueType[FunctionListEnum.exist] = (input) =>
         ValueType.bool(VariableDataBase().hasValue(input[0].dataUnzip));
+    functionValueType[FunctionListEnum.max] = (input) {
+      if(input[0].type.isInt && input[1].type.isInt) {
+        return ValueType.int(input[0].dataUnzip > input[1].dataUnzip
+            ? input[0].dataUnzip
+            : input[1].dataUnzip);
+      }
+      return ValueType.double(max(input[0].dataUnzip, input[1].dataUnzip));
+    };
+    functionValueType[FunctionListEnum.min] = (input) {
+      if(input[0].type.isInt && input[1].type.isInt) {
+        return ValueType.int(input[0].dataUnzip < input[1].dataUnzip
+            ? input[0].dataUnzip
+            : input[1].dataUnzip);
+      }
+      return ValueType.double(min(input[0].dataUnzip, input[1].dataUnzip));
+    };
     functionValueType[FunctionListEnum.isVisible] = (input) => ValueType.bool(
         VariableDataBase().getValueTypeWrapper(input[0].dataUnzip)?.visible ??
             false);
