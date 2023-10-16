@@ -389,7 +389,7 @@ SelectColorOption _$SelectColorOptionFromJson(Map<String, dynamic> json) {
 mixin _$SelectColorOption {
   bool get enable => throw _privateConstructorUsedError;
   SelectColorType get selectColorType => throw _privateConstructorUsedError;
-  int? get selectColor => throw _privateConstructorUsedError;
+  int get selectColor => throw _privateConstructorUsedError;
   GradientType get gradientType => throw _privateConstructorUsedError;
   List<GradientData> get gradientData => throw _privateConstructorUsedError;
 
@@ -408,7 +408,7 @@ abstract class $SelectColorOptionCopyWith<$Res> {
   $Res call(
       {bool enable,
       SelectColorType selectColorType,
-      int? selectColor,
+      int selectColor,
       GradientType gradientType,
       List<GradientData> gradientData});
 }
@@ -428,7 +428,7 @@ class _$SelectColorOptionCopyWithImpl<$Res, $Val extends SelectColorOption>
   $Res call({
     Object? enable = null,
     Object? selectColorType = null,
-    Object? selectColor = freezed,
+    Object? selectColor = null,
     Object? gradientType = null,
     Object? gradientData = null,
   }) {
@@ -441,10 +441,10 @@ class _$SelectColorOptionCopyWithImpl<$Res, $Val extends SelectColorOption>
           ? _value.selectColorType
           : selectColorType // ignore: cast_nullable_to_non_nullable
               as SelectColorType,
-      selectColor: freezed == selectColor
+      selectColor: null == selectColor
           ? _value.selectColor
           : selectColor // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       gradientType: null == gradientType
           ? _value.gradientType
           : gradientType // ignore: cast_nullable_to_non_nullable
@@ -468,7 +468,7 @@ abstract class _$$_SelectColorOptionCopyWith<$Res>
   $Res call(
       {bool enable,
       SelectColorType selectColorType,
-      int? selectColor,
+      int selectColor,
       GradientType gradientType,
       List<GradientData> gradientData});
 }
@@ -486,7 +486,7 @@ class __$$_SelectColorOptionCopyWithImpl<$Res>
   $Res call({
     Object? enable = null,
     Object? selectColorType = null,
-    Object? selectColor = freezed,
+    Object? selectColor = null,
     Object? gradientType = null,
     Object? gradientData = null,
   }) {
@@ -499,10 +499,10 @@ class __$$_SelectColorOptionCopyWithImpl<$Res>
           ? _value.selectColorType
           : selectColorType // ignore: cast_nullable_to_non_nullable
               as SelectColorType,
-      selectColor: freezed == selectColor
+      selectColor: null == selectColor
           ? _value.selectColor
           : selectColor // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       gradientType: null == gradientType
           ? _value.gradientType
           : gradientType // ignore: cast_nullable_to_non_nullable
@@ -541,7 +541,7 @@ class _$_SelectColorOption implements _SelectColorOption {
   final SelectColorType selectColorType;
   @override
   @JsonKey()
-  final int? selectColor;
+  final int selectColor;
   @override
   @JsonKey()
   final GradientType gradientType;
@@ -604,7 +604,7 @@ abstract class _SelectColorOption implements SelectColorOption {
   const factory _SelectColorOption(
       {final bool enable,
       final SelectColorType selectColorType,
-      final int? selectColor,
+      final int selectColor,
       final GradientType gradientType,
       final List<GradientData> gradientData}) = _$_SelectColorOption;
 
@@ -616,7 +616,7 @@ abstract class _SelectColorOption implements SelectColorOption {
   @override
   SelectColorType get selectColorType;
   @override
-  int? get selectColor;
+  int get selectColor;
   @override
   GradientType get gradientType;
   @override

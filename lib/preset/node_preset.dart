@@ -65,7 +65,7 @@ class SelectColorOption with _$SelectColorOption {
   const factory SelectColorOption({
     @Default(false) bool enable,
     @Default(SelectColorType.solid) SelectColorType selectColorType,
-    @Default(0xFF40C4FF) int? selectColor,
+    @Default(0xFF40C4FF) int selectColor,
     @Default(GradientType.linear) GradientType gradientType,
     @Default([GradientData(gradientPos: (0, 0)), GradientData(gradientPos: (1, 1))]) List<GradientData> gradientData,
   }) = _SelectColorOption;
