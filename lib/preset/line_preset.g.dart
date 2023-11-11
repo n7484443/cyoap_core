@@ -6,17 +6,17 @@ part of 'line_preset.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ChoiceLineDesignPreset _$$_ChoiceLineDesignPresetFromJson(
+_$ChoiceLineDesignPresetImpl _$$ChoiceLineDesignPresetImplFromJson(
         Map<String, dynamic> json) =>
-    _$_ChoiceLineDesignPreset(
+    _$ChoiceLineDesignPresetImpl(
       name: json['name'] as String,
       backgroundColor: json['background_color'] as int?,
       backgroundImageString: json['background_image_string'] as String?,
       alwaysVisibleLine: json['always_visible_line'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$_ChoiceLineDesignPresetToJson(
-        _$_ChoiceLineDesignPreset instance) =>
+Map<String, dynamic> _$$ChoiceLineDesignPresetImplToJson(
+        _$ChoiceLineDesignPresetImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
       'background_color': instance.backgroundColor,

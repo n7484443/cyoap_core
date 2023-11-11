@@ -59,18 +59,18 @@ class _$PosCopyWithImpl<$Res, $Val extends Pos> implements $PosCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_PosCopyWith<$Res> implements $PosCopyWith<$Res> {
-  factory _$$_PosCopyWith(_$_Pos value, $Res Function(_$_Pos) then) =
-      __$$_PosCopyWithImpl<$Res>;
+abstract class _$$PosImplCopyWith<$Res> implements $PosCopyWith<$Res> {
+  factory _$$PosImplCopyWith(_$PosImpl value, $Res Function(_$PosImpl) then) =
+      __$$PosImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<int> data});
 }
 
 /// @nodoc
-class __$$_PosCopyWithImpl<$Res> extends _$PosCopyWithImpl<$Res, _$_Pos>
-    implements _$$_PosCopyWith<$Res> {
-  __$$_PosCopyWithImpl(_$_Pos _value, $Res Function(_$_Pos) _then)
+class __$$PosImplCopyWithImpl<$Res> extends _$PosCopyWithImpl<$Res, _$PosImpl>
+    implements _$$PosImplCopyWith<$Res> {
+  __$$PosImplCopyWithImpl(_$PosImpl _value, $Res Function(_$PosImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -78,7 +78,7 @@ class __$$_PosCopyWithImpl<$Res> extends _$PosCopyWithImpl<$Res, _$_Pos>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$_Pos(
+    return _then(_$PosImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -89,12 +89,13 @@ class __$$_PosCopyWithImpl<$Res> extends _$PosCopyWithImpl<$Res, _$_Pos>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Pos extends _Pos {
-  const _$_Pos({final List<int> data = const []})
+class _$PosImpl extends _Pos {
+  const _$PosImpl({final List<int> data = const []})
       : _data = data,
         super._();
 
-  factory _$_Pos.fromJson(Map<String, dynamic> json) => _$$_PosFromJson(json);
+  factory _$PosImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PosImplFromJson(json);
 
   final List<int> _data;
   @override
@@ -114,7 +115,7 @@ class _$_Pos extends _Pos {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Pos &&
+            other is _$PosImpl &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
@@ -126,26 +127,27 @@ class _$_Pos extends _Pos {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PosCopyWith<_$_Pos> get copyWith =>
-      __$$_PosCopyWithImpl<_$_Pos>(this, _$identity);
+  _$$PosImplCopyWith<_$PosImpl> get copyWith =>
+      __$$PosImplCopyWithImpl<_$PosImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PosToJson(
+    return _$$PosImplToJson(
       this,
     );
   }
 }
 
 abstract class _Pos extends Pos {
-  const factory _Pos({final List<int> data}) = _$_Pos;
+  const factory _Pos({final List<int> data}) = _$PosImpl;
   const _Pos._() : super._();
 
-  factory _Pos.fromJson(Map<String, dynamic> json) = _$_Pos.fromJson;
+  factory _Pos.fromJson(Map<String, dynamic> json) = _$PosImpl.fromJson;
 
   @override
   List<int> get data;
   @override
   @JsonKey(ignore: true)
-  _$$_PosCopyWith<_$_Pos> get copyWith => throw _privateConstructorUsedError;
+  _$$PosImplCopyWith<_$PosImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

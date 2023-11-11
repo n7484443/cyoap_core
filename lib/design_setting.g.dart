@@ -6,9 +6,9 @@ part of 'design_setting.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PlatformDesignSetting _$$_PlatformDesignSettingFromJson(
+_$PlatformDesignSettingImpl _$$PlatformDesignSettingImplFromJson(
         Map<String, dynamic> json) =>
-    _$_PlatformDesignSetting(
+    _$PlatformDesignSettingImpl(
       variableFont: json['variableFont'] as String? ?? "notoSans",
       backgroundImage: json['backgroundImage'] as String?,
       backgroundColor: json['backgroundColor'] as int?,
@@ -28,8 +28,8 @@ _$_PlatformDesignSetting _$$_PlatformDesignSettingFromJson(
       marginVertical: (json['marginVertical'] as num?)?.toDouble() ?? 12.0,
     );
 
-Map<String, dynamic> _$$_PlatformDesignSettingToJson(
-        _$_PlatformDesignSetting instance) =>
+Map<String, dynamic> _$$PlatformDesignSettingImplToJson(
+        _$PlatformDesignSettingImpl instance) =>
     <String, dynamic>{
       'variableFont': instance.variableFont,
       'backgroundImage': instance.backgroundImage,

@@ -109,11 +109,12 @@ class _$PlatformDesignSettingCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_PlatformDesignSettingCopyWith<$Res>
+abstract class _$$PlatformDesignSettingImplCopyWith<$Res>
     implements $PlatformDesignSettingCopyWith<$Res> {
-  factory _$$_PlatformDesignSettingCopyWith(_$_PlatformDesignSetting value,
-          $Res Function(_$_PlatformDesignSetting) then) =
-      __$$_PlatformDesignSettingCopyWithImpl<$Res>;
+  factory _$$PlatformDesignSettingImplCopyWith(
+          _$PlatformDesignSettingImpl value,
+          $Res Function(_$PlatformDesignSettingImpl) then) =
+      __$$PlatformDesignSettingImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -127,11 +128,12 @@ abstract class _$$_PlatformDesignSettingCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PlatformDesignSettingCopyWithImpl<$Res>
-    extends _$PlatformDesignSettingCopyWithImpl<$Res, _$_PlatformDesignSetting>
-    implements _$$_PlatformDesignSettingCopyWith<$Res> {
-  __$$_PlatformDesignSettingCopyWithImpl(_$_PlatformDesignSetting _value,
-      $Res Function(_$_PlatformDesignSetting) _then)
+class __$$PlatformDesignSettingImplCopyWithImpl<$Res>
+    extends _$PlatformDesignSettingCopyWithImpl<$Res,
+        _$PlatformDesignSettingImpl>
+    implements _$$PlatformDesignSettingImplCopyWith<$Res> {
+  __$$PlatformDesignSettingImplCopyWithImpl(_$PlatformDesignSettingImpl _value,
+      $Res Function(_$PlatformDesignSettingImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -145,7 +147,7 @@ class __$$_PlatformDesignSettingCopyWithImpl<$Res>
     Object? choiceNodePresetList = null,
     Object? marginVertical = null,
   }) {
-    return _then(_$_PlatformDesignSetting(
+    return _then(_$PlatformDesignSettingImpl(
       variableFont: null == variableFont
           ? _value.variableFont
           : variableFont // ignore: cast_nullable_to_non_nullable
@@ -181,8 +183,8 @@ class __$$_PlatformDesignSettingCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_PlatformDesignSetting implements _PlatformDesignSetting {
-  _$_PlatformDesignSetting(
+class _$PlatformDesignSettingImpl implements _PlatformDesignSetting {
+  _$PlatformDesignSettingImpl(
       {this.variableFont = "notoSans",
       this.backgroundImage,
       this.backgroundColor,
@@ -197,8 +199,8 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
       : _choiceLinePresetList = choiceLinePresetList,
         _choiceNodePresetList = choiceNodePresetList;
 
-  factory _$_PlatformDesignSetting.fromJson(Map<String, dynamic> json) =>
-      _$$_PlatformDesignSettingFromJson(json);
+  factory _$PlatformDesignSettingImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PlatformDesignSettingImplFromJson(json);
 
   @override
   @JsonKey()
@@ -243,7 +245,7 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PlatformDesignSetting &&
+            other is _$PlatformDesignSettingImpl &&
             (identical(other.variableFont, variableFont) ||
                 other.variableFont == variableFont) &&
             (identical(other.backgroundImage, backgroundImage) ||
@@ -275,13 +277,13 @@ class _$_PlatformDesignSetting implements _PlatformDesignSetting {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PlatformDesignSettingCopyWith<_$_PlatformDesignSetting> get copyWith =>
-      __$$_PlatformDesignSettingCopyWithImpl<_$_PlatformDesignSetting>(
-          this, _$identity);
+  _$$PlatformDesignSettingImplCopyWith<_$PlatformDesignSettingImpl>
+      get copyWith => __$$PlatformDesignSettingImplCopyWithImpl<
+          _$PlatformDesignSettingImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PlatformDesignSettingToJson(
+    return _$$PlatformDesignSettingImplToJson(
       this,
     );
   }
@@ -295,10 +297,10 @@ abstract class _PlatformDesignSetting implements PlatformDesignSetting {
       final ImageAttribute backgroundAttribute,
       final List<ChoiceLineDesignPreset> choiceLinePresetList,
       final List<ChoiceNodeDesignPreset> choiceNodePresetList,
-      final double marginVertical}) = _$_PlatformDesignSetting;
+      final double marginVertical}) = _$PlatformDesignSettingImpl;
 
   factory _PlatformDesignSetting.fromJson(Map<String, dynamic> json) =
-      _$_PlatformDesignSetting.fromJson;
+      _$PlatformDesignSettingImpl.fromJson;
 
   @override
   String get variableFont;
@@ -316,6 +318,6 @@ abstract class _PlatformDesignSetting implements PlatformDesignSetting {
   double get marginVertical;
   @override
   @JsonKey(ignore: true)
-  _$$_PlatformDesignSettingCopyWith<_$_PlatformDesignSetting> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$PlatformDesignSettingImplCopyWith<_$PlatformDesignSettingImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

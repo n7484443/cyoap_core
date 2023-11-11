@@ -84,11 +84,11 @@ class _$ChoiceLineOptionCopyWithImpl<$Res, $Val extends ChoiceLineOption>
 }
 
 /// @nodoc
-abstract class _$$_ChoiceLineOptionCopyWith<$Res>
+abstract class _$$ChoiceLineOptionImplCopyWith<$Res>
     implements $ChoiceLineOptionCopyWith<$Res> {
-  factory _$$_ChoiceLineOptionCopyWith(
-          _$_ChoiceLineOption value, $Res Function(_$_ChoiceLineOption) then) =
-      __$$_ChoiceLineOptionCopyWithImpl<$Res>;
+  factory _$$ChoiceLineOptionImplCopyWith(_$ChoiceLineOptionImpl value,
+          $Res Function(_$ChoiceLineOptionImpl) then) =
+      __$$ChoiceLineOptionImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -99,11 +99,11 @@ abstract class _$$_ChoiceLineOptionCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ChoiceLineOptionCopyWithImpl<$Res>
-    extends _$ChoiceLineOptionCopyWithImpl<$Res, _$_ChoiceLineOption>
-    implements _$$_ChoiceLineOptionCopyWith<$Res> {
-  __$$_ChoiceLineOptionCopyWithImpl(
-      _$_ChoiceLineOption _value, $Res Function(_$_ChoiceLineOption) _then)
+class __$$ChoiceLineOptionImplCopyWithImpl<$Res>
+    extends _$ChoiceLineOptionCopyWithImpl<$Res, _$ChoiceLineOptionImpl>
+    implements _$$ChoiceLineOptionImplCopyWith<$Res> {
+  __$$ChoiceLineOptionImplCopyWithImpl(_$ChoiceLineOptionImpl _value,
+      $Res Function(_$ChoiceLineOptionImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -114,7 +114,7 @@ class __$$_ChoiceLineOptionCopyWithImpl<$Res>
     Object? presetName = null,
     Object? name = freezed,
   }) {
-    return _then(_$_ChoiceLineOption(
+    return _then(_$ChoiceLineOptionImpl(
       maxSelect: null == maxSelect
           ? _value.maxSelect
           : maxSelect // ignore: cast_nullable_to_non_nullable
@@ -138,15 +138,15 @@ class __$$_ChoiceLineOptionCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_ChoiceLineOption implements _ChoiceLineOption {
-  const _$_ChoiceLineOption(
+class _$ChoiceLineOptionImpl implements _ChoiceLineOption {
+  const _$ChoiceLineOptionImpl(
       {this.maxSelect = -1,
       this.enableCancelFeature = false,
       this.presetName = 'default',
       this.name});
 
-  factory _$_ChoiceLineOption.fromJson(Map<String, dynamic> json) =>
-      _$$_ChoiceLineOptionFromJson(json);
+  factory _$ChoiceLineOptionImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChoiceLineOptionImplFromJson(json);
 
   @override
   @JsonKey()
@@ -169,7 +169,7 @@ class _$_ChoiceLineOption implements _ChoiceLineOption {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChoiceLineOption &&
+            other is _$ChoiceLineOptionImpl &&
             (identical(other.maxSelect, maxSelect) ||
                 other.maxSelect == maxSelect) &&
             (identical(other.enableCancelFeature, enableCancelFeature) ||
@@ -187,12 +187,13 @@ class _$_ChoiceLineOption implements _ChoiceLineOption {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChoiceLineOptionCopyWith<_$_ChoiceLineOption> get copyWith =>
-      __$$_ChoiceLineOptionCopyWithImpl<_$_ChoiceLineOption>(this, _$identity);
+  _$$ChoiceLineOptionImplCopyWith<_$ChoiceLineOptionImpl> get copyWith =>
+      __$$ChoiceLineOptionImplCopyWithImpl<_$ChoiceLineOptionImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChoiceLineOptionToJson(
+    return _$$ChoiceLineOptionImplToJson(
       this,
     );
   }
@@ -203,10 +204,10 @@ abstract class _ChoiceLineOption implements ChoiceLineOption {
       {final int maxSelect,
       final bool enableCancelFeature,
       final String presetName,
-      final String? name}) = _$_ChoiceLineOption;
+      final String? name}) = _$ChoiceLineOptionImpl;
 
   factory _ChoiceLineOption.fromJson(Map<String, dynamic> json) =
-      _$_ChoiceLineOption.fromJson;
+      _$ChoiceLineOptionImpl.fromJson;
 
   @override
   int get maxSelect;
@@ -218,6 +219,6 @@ abstract class _ChoiceLineOption implements ChoiceLineOption {
   String? get name;
   @override
   @JsonKey(ignore: true)
-  _$$_ChoiceLineOptionCopyWith<_$_ChoiceLineOption> get copyWith =>
+  _$$ChoiceLineOptionImplCopyWith<_$ChoiceLineOptionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

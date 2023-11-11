@@ -91,11 +91,11 @@ class _$ChoiceNodeOptionCopyWithImpl<$Res, $Val extends ChoiceNodeOption>
 }
 
 /// @nodoc
-abstract class _$$_ChoiceNodeDesignCopyWith<$Res>
+abstract class _$$ChoiceNodeDesignImplCopyWith<$Res>
     implements $ChoiceNodeOptionCopyWith<$Res> {
-  factory _$$_ChoiceNodeDesignCopyWith(
-          _$_ChoiceNodeDesign value, $Res Function(_$_ChoiceNodeDesign) then) =
-      __$$_ChoiceNodeDesignCopyWithImpl<$Res>;
+  factory _$$ChoiceNodeDesignImplCopyWith(_$ChoiceNodeDesignImpl value,
+          $Res Function(_$ChoiceNodeDesignImpl) then) =
+      __$$ChoiceNodeDesignImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -107,11 +107,11 @@ abstract class _$$_ChoiceNodeDesignCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ChoiceNodeDesignCopyWithImpl<$Res>
-    extends _$ChoiceNodeOptionCopyWithImpl<$Res, _$_ChoiceNodeDesign>
-    implements _$$_ChoiceNodeDesignCopyWith<$Res> {
-  __$$_ChoiceNodeDesignCopyWithImpl(
-      _$_ChoiceNodeDesign _value, $Res Function(_$_ChoiceNodeDesign) _then)
+class __$$ChoiceNodeDesignImplCopyWithImpl<$Res>
+    extends _$ChoiceNodeOptionCopyWithImpl<$Res, _$ChoiceNodeDesignImpl>
+    implements _$$ChoiceNodeDesignImplCopyWith<$Res> {
+  __$$ChoiceNodeDesignImplCopyWithImpl(_$ChoiceNodeDesignImpl _value,
+      $Res Function(_$ChoiceNodeDesignImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -123,7 +123,7 @@ class __$$_ChoiceNodeDesignCopyWithImpl<$Res>
     Object? showAsSlider = null,
     Object? presetName = null,
   }) {
-    return _then(_$_ChoiceNodeDesign(
+    return _then(_$ChoiceNodeDesignImpl(
       isOccupySpace: null == isOccupySpace
           ? _value.isOccupySpace
           : isOccupySpace // ignore: cast_nullable_to_non_nullable
@@ -151,16 +151,16 @@ class __$$_ChoiceNodeDesignCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
-  _$_ChoiceNodeDesign(
+class _$ChoiceNodeDesignImpl implements _ChoiceNodeDesign {
+  _$ChoiceNodeDesignImpl(
       {this.isOccupySpace = false,
       this.hideAsResult = false,
       this.showAsResult = false,
       this.showAsSlider = false,
       this.presetName = 'default'});
 
-  factory _$_ChoiceNodeDesign.fromJson(Map<String, dynamic> json) =>
-      _$$_ChoiceNodeDesignFromJson(json);
+  factory _$ChoiceNodeDesignImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChoiceNodeDesignImplFromJson(json);
 
   @override
   @JsonKey()
@@ -187,7 +187,7 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChoiceNodeDesign &&
+            other is _$ChoiceNodeDesignImpl &&
             (identical(other.isOccupySpace, isOccupySpace) ||
                 other.isOccupySpace == isOccupySpace) &&
             (identical(other.hideAsResult, hideAsResult) ||
@@ -208,12 +208,13 @@ class _$_ChoiceNodeDesign implements _ChoiceNodeDesign {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChoiceNodeDesignCopyWith<_$_ChoiceNodeDesign> get copyWith =>
-      __$$_ChoiceNodeDesignCopyWithImpl<_$_ChoiceNodeDesign>(this, _$identity);
+  _$$ChoiceNodeDesignImplCopyWith<_$ChoiceNodeDesignImpl> get copyWith =>
+      __$$ChoiceNodeDesignImplCopyWithImpl<_$ChoiceNodeDesignImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChoiceNodeDesignToJson(
+    return _$$ChoiceNodeDesignImplToJson(
       this,
     );
   }
@@ -225,10 +226,10 @@ abstract class _ChoiceNodeDesign implements ChoiceNodeOption {
       final bool hideAsResult,
       final bool showAsResult,
       final bool showAsSlider,
-      final String presetName}) = _$_ChoiceNodeDesign;
+      final String presetName}) = _$ChoiceNodeDesignImpl;
 
   factory _ChoiceNodeDesign.fromJson(Map<String, dynamic> json) =
-      _$_ChoiceNodeDesign.fromJson;
+      _$ChoiceNodeDesignImpl.fromJson;
 
   @override
   bool get isOccupySpace;
@@ -242,6 +243,6 @@ abstract class _ChoiceNodeDesign implements ChoiceNodeOption {
   String get presetName;
   @override
   @JsonKey(ignore: true)
-  _$$_ChoiceNodeDesignCopyWith<_$_ChoiceNodeDesign> get copyWith =>
+  _$$ChoiceNodeDesignImplCopyWith<_$ChoiceNodeDesignImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

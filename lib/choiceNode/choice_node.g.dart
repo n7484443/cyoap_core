@@ -6,8 +6,9 @@ part of 'choice_node.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ChoiceNodeDesign _$$_ChoiceNodeDesignFromJson(Map<String, dynamic> json) =>
-    _$_ChoiceNodeDesign(
+_$ChoiceNodeDesignImpl _$$ChoiceNodeDesignImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ChoiceNodeDesignImpl(
       isOccupySpace: json['isOccupySpace'] as bool? ?? false,
       hideAsResult: json['hideAsResult'] as bool? ?? false,
       showAsResult: json['showAsResult'] as bool? ?? false,
@@ -15,7 +16,8 @@ _$_ChoiceNodeDesign _$$_ChoiceNodeDesignFromJson(Map<String, dynamic> json) =>
       presetName: json['presetName'] as String? ?? 'default',
     );
 
-Map<String, dynamic> _$$_ChoiceNodeDesignToJson(_$_ChoiceNodeDesign instance) =>
+Map<String, dynamic> _$$ChoiceNodeDesignImplToJson(
+        _$ChoiceNodeDesignImpl instance) =>
     <String, dynamic>{
       'isOccupySpace': instance.isOccupySpace,
       'hideAsResult': instance.hideAsResult,

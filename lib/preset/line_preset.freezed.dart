@@ -86,11 +86,12 @@ class _$ChoiceLineDesignPresetCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_ChoiceLineDesignPresetCopyWith<$Res>
+abstract class _$$ChoiceLineDesignPresetImplCopyWith<$Res>
     implements $ChoiceLineDesignPresetCopyWith<$Res> {
-  factory _$$_ChoiceLineDesignPresetCopyWith(_$_ChoiceLineDesignPreset value,
-          $Res Function(_$_ChoiceLineDesignPreset) then) =
-      __$$_ChoiceLineDesignPresetCopyWithImpl<$Res>;
+  factory _$$ChoiceLineDesignPresetImplCopyWith(
+          _$ChoiceLineDesignPresetImpl value,
+          $Res Function(_$ChoiceLineDesignPresetImpl) then) =
+      __$$ChoiceLineDesignPresetImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -101,12 +102,13 @@ abstract class _$$_ChoiceLineDesignPresetCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ChoiceLineDesignPresetCopyWithImpl<$Res>
+class __$$ChoiceLineDesignPresetImplCopyWithImpl<$Res>
     extends _$ChoiceLineDesignPresetCopyWithImpl<$Res,
-        _$_ChoiceLineDesignPreset>
-    implements _$$_ChoiceLineDesignPresetCopyWith<$Res> {
-  __$$_ChoiceLineDesignPresetCopyWithImpl(_$_ChoiceLineDesignPreset _value,
-      $Res Function(_$_ChoiceLineDesignPreset) _then)
+        _$ChoiceLineDesignPresetImpl>
+    implements _$$ChoiceLineDesignPresetImplCopyWith<$Res> {
+  __$$ChoiceLineDesignPresetImplCopyWithImpl(
+      _$ChoiceLineDesignPresetImpl _value,
+      $Res Function(_$ChoiceLineDesignPresetImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -117,7 +119,7 @@ class __$$_ChoiceLineDesignPresetCopyWithImpl<$Res>
     Object? backgroundImageString = freezed,
     Object? alwaysVisibleLine = null,
   }) {
-    return _then(_$_ChoiceLineDesignPreset(
+    return _then(_$ChoiceLineDesignPresetImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -141,15 +143,15 @@ class __$$_ChoiceLineDesignPresetCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
-class _$_ChoiceLineDesignPreset implements _ChoiceLineDesignPreset {
-  const _$_ChoiceLineDesignPreset(
+class _$ChoiceLineDesignPresetImpl implements _ChoiceLineDesignPreset {
+  const _$ChoiceLineDesignPresetImpl(
       {required this.name,
       this.backgroundColor,
       this.backgroundImageString,
       this.alwaysVisibleLine = false});
 
-  factory _$_ChoiceLineDesignPreset.fromJson(Map<String, dynamic> json) =>
-      _$$_ChoiceLineDesignPresetFromJson(json);
+  factory _$ChoiceLineDesignPresetImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChoiceLineDesignPresetImplFromJson(json);
 
   @override
   final String name;
@@ -170,7 +172,7 @@ class _$_ChoiceLineDesignPreset implements _ChoiceLineDesignPreset {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChoiceLineDesignPreset &&
+            other is _$ChoiceLineDesignPresetImpl &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.backgroundColor, backgroundColor) ||
                 other.backgroundColor == backgroundColor) &&
@@ -188,13 +190,13 @@ class _$_ChoiceLineDesignPreset implements _ChoiceLineDesignPreset {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChoiceLineDesignPresetCopyWith<_$_ChoiceLineDesignPreset> get copyWith =>
-      __$$_ChoiceLineDesignPresetCopyWithImpl<_$_ChoiceLineDesignPreset>(
-          this, _$identity);
+  _$$ChoiceLineDesignPresetImplCopyWith<_$ChoiceLineDesignPresetImpl>
+      get copyWith => __$$ChoiceLineDesignPresetImplCopyWithImpl<
+          _$ChoiceLineDesignPresetImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChoiceLineDesignPresetToJson(
+    return _$$ChoiceLineDesignPresetImplToJson(
       this,
     );
   }
@@ -205,10 +207,10 @@ abstract class _ChoiceLineDesignPreset implements ChoiceLineDesignPreset {
       {required final String name,
       final int? backgroundColor,
       final String? backgroundImageString,
-      final bool alwaysVisibleLine}) = _$_ChoiceLineDesignPreset;
+      final bool alwaysVisibleLine}) = _$ChoiceLineDesignPresetImpl;
 
   factory _ChoiceLineDesignPreset.fromJson(Map<String, dynamic> json) =
-      _$_ChoiceLineDesignPreset.fromJson;
+      _$ChoiceLineDesignPresetImpl.fromJson;
 
   @override
   String get name;
@@ -220,6 +222,6 @@ abstract class _ChoiceLineDesignPreset implements ChoiceLineDesignPreset {
   bool get alwaysVisibleLine;
   @override
   @JsonKey(ignore: true)
-  _$$_ChoiceLineDesignPresetCopyWith<_$_ChoiceLineDesignPreset> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ChoiceLineDesignPresetImplCopyWith<_$ChoiceLineDesignPresetImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

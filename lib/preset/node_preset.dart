@@ -52,7 +52,7 @@ class GradientData with _$GradientData {
   @JsonSerializable(explicitToJson: true)
   const factory GradientData({
     @Default((0, 0)) (double, double) gradientPos,
-    @Default(null) int? color,
+    @Default(0) int color,
   }) = _GradientData;
 
   factory GradientData.fromJson(Map<String, dynamic> json) =>
