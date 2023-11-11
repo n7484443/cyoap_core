@@ -51,8 +51,8 @@ enum GradientType {
 class GradientData with _$GradientData {
   @JsonSerializable(explicitToJson: true)
   const factory GradientData({
-    @Default((0, 0)) (double, double) gradientPos,
-    @Default(0) int color,
+    @Default((0.5, 0.5)) (double, double) gradientPos,
+    @Default(0xFFFFFFFF) int color,
   }) = _GradientData;
 
   factory GradientData.fromJson(Map<String, dynamic> json) =>

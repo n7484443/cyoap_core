@@ -332,7 +332,8 @@ class __$$GradientDataImplCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$GradientDataImpl implements _GradientData {
-  const _$GradientDataImpl({this.gradientPos = const (0, 0), this.color = 0});
+  const _$GradientDataImpl(
+      {this.gradientPos = const (0.5, 0.5), this.color = 0xFFFFFFFF});
 
   factory _$GradientDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$GradientDataImplFromJson(json);

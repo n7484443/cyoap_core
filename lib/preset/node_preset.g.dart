@@ -42,8 +42,8 @@ _$GradientDataImpl _$$GradientDataImplFromJson(Map json) => _$GradientDataImpl(
               ($jsonValue[r'$2'] as num).toDouble(),
             ),
           ) ??
-          (0, 0),
-      color: json['color'] as int? ?? 0,
+          (0.5, 0.5),
+      color: json['color'] as int? ?? 0xFFFFFFFF,
     );
 
 Map<String, dynamic> _$$GradientDataImplToJson(_$GradientDataImpl instance) =>
