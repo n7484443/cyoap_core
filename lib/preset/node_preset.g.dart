@@ -114,10 +114,10 @@ _$ChoiceNodeDesignPresetImpl _$$ChoiceNodeDesignPresetImplFromJson(Map json) =>
           ? const OutlineOption()
           : OutlineOption.fromJson(
               Map<String, dynamic>.from(json['outlineOption'] as Map)),
-      colorNode: json['colorNode'] == null
+      defaultColorOption: json['defaultColorOption'] == null
           ? const ColorOption()
           : ColorOption.fromJson(
-              Map<String, dynamic>.from(json['colorNode'] as Map)),
+              Map<String, dynamic>.from(json['defaultColorOption'] as Map)),
       selectColorEnable: json['selectColorEnable'] as bool? ?? false,
       selectColorOption: json['selectColorOption'] == null
           ? const ColorOption()
@@ -140,7 +140,7 @@ Map<String, dynamic> _$$ChoiceNodeDesignPresetImplToJson(
       'titleFont': instance.titleFont,
       'mainFont': instance.mainFont,
       'outlineOption': instance.outlineOption.toJson(),
-      'colorNode': instance.colorNode.toJson(),
+      'defaultColorOption': instance.defaultColorOption.toJson(),
       'selectColorEnable': instance.selectColorEnable,
       'selectColorOption': instance.selectColorOption.toJson(),
     };
