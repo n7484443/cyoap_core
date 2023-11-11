@@ -22,7 +22,7 @@ class OutlineOption with _$OutlineOption {
   @JsonSerializable(explicitToJson: true)
   const factory OutlineOption({
     @Default(OutlineType.solid) OutlineType outlineType,
-    @Default(0xFF40C4FF) int outlineSelectColor,
+    @Default(ColorOption()) ColorOption outlineColor,
     @Default(4.0) double outlinePadding,
     @Default(2.0) double outlineWidth,
   }) = _OutlineOption;

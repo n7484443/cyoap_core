@@ -21,7 +21,7 @@ OutlineOption _$OutlineOptionFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$OutlineOption {
   OutlineType get outlineType => throw _privateConstructorUsedError;
-  int get outlineSelectColor => throw _privateConstructorUsedError;
+  ColorOption get outlineColor => throw _privateConstructorUsedError;
   double get outlinePadding => throw _privateConstructorUsedError;
   double get outlineWidth => throw _privateConstructorUsedError;
 
@@ -39,9 +39,11 @@ abstract class $OutlineOptionCopyWith<$Res> {
   @useResult
   $Res call(
       {OutlineType outlineType,
-      int outlineSelectColor,
+      ColorOption outlineColor,
       double outlinePadding,
       double outlineWidth});
+
+  $ColorOptionCopyWith<$Res> get outlineColor;
 }
 
 /// @nodoc
@@ -58,7 +60,7 @@ class _$OutlineOptionCopyWithImpl<$Res, $Val extends OutlineOption>
   @override
   $Res call({
     Object? outlineType = null,
-    Object? outlineSelectColor = null,
+    Object? outlineColor = null,
     Object? outlinePadding = null,
     Object? outlineWidth = null,
   }) {
@@ -67,10 +69,10 @@ class _$OutlineOptionCopyWithImpl<$Res, $Val extends OutlineOption>
           ? _value.outlineType
           : outlineType // ignore: cast_nullable_to_non_nullable
               as OutlineType,
-      outlineSelectColor: null == outlineSelectColor
-          ? _value.outlineSelectColor
-          : outlineSelectColor // ignore: cast_nullable_to_non_nullable
-              as int,
+      outlineColor: null == outlineColor
+          ? _value.outlineColor
+          : outlineColor // ignore: cast_nullable_to_non_nullable
+              as ColorOption,
       outlinePadding: null == outlinePadding
           ? _value.outlinePadding
           : outlinePadding // ignore: cast_nullable_to_non_nullable
@@ -80,6 +82,14 @@ class _$OutlineOptionCopyWithImpl<$Res, $Val extends OutlineOption>
           : outlineWidth // ignore: cast_nullable_to_non_nullable
               as double,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ColorOptionCopyWith<$Res> get outlineColor {
+    return $ColorOptionCopyWith<$Res>(_value.outlineColor, (value) {
+      return _then(_value.copyWith(outlineColor: value) as $Val);
+    });
   }
 }
 
@@ -93,9 +103,12 @@ abstract class _$$OutlineOptionImplCopyWith<$Res>
   @useResult
   $Res call(
       {OutlineType outlineType,
-      int outlineSelectColor,
+      ColorOption outlineColor,
       double outlinePadding,
       double outlineWidth});
+
+  @override
+  $ColorOptionCopyWith<$Res> get outlineColor;
 }
 
 /// @nodoc
@@ -110,7 +123,7 @@ class __$$OutlineOptionImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? outlineType = null,
-    Object? outlineSelectColor = null,
+    Object? outlineColor = null,
     Object? outlinePadding = null,
     Object? outlineWidth = null,
   }) {
@@ -119,10 +132,10 @@ class __$$OutlineOptionImplCopyWithImpl<$Res>
           ? _value.outlineType
           : outlineType // ignore: cast_nullable_to_non_nullable
               as OutlineType,
-      outlineSelectColor: null == outlineSelectColor
-          ? _value.outlineSelectColor
-          : outlineSelectColor // ignore: cast_nullable_to_non_nullable
-              as int,
+      outlineColor: null == outlineColor
+          ? _value.outlineColor
+          : outlineColor // ignore: cast_nullable_to_non_nullable
+              as ColorOption,
       outlinePadding: null == outlinePadding
           ? _value.outlinePadding
           : outlinePadding // ignore: cast_nullable_to_non_nullable
@@ -141,7 +154,7 @@ class __$$OutlineOptionImplCopyWithImpl<$Res>
 class _$OutlineOptionImpl implements _OutlineOption {
   const _$OutlineOptionImpl(
       {this.outlineType = OutlineType.solid,
-      this.outlineSelectColor = 0xFF40C4FF,
+      this.outlineColor = const ColorOption(),
       this.outlinePadding = 4.0,
       this.outlineWidth = 2.0});
 
@@ -153,7 +166,7 @@ class _$OutlineOptionImpl implements _OutlineOption {
   final OutlineType outlineType;
   @override
   @JsonKey()
-  final int outlineSelectColor;
+  final ColorOption outlineColor;
   @override
   @JsonKey()
   final double outlinePadding;
@@ -163,7 +176,7 @@ class _$OutlineOptionImpl implements _OutlineOption {
 
   @override
   String toString() {
-    return 'OutlineOption(outlineType: $outlineType, outlineSelectColor: $outlineSelectColor, outlinePadding: $outlinePadding, outlineWidth: $outlineWidth)';
+    return 'OutlineOption(outlineType: $outlineType, outlineColor: $outlineColor, outlinePadding: $outlinePadding, outlineWidth: $outlineWidth)';
   }
 
   @override
@@ -173,8 +186,8 @@ class _$OutlineOptionImpl implements _OutlineOption {
             other is _$OutlineOptionImpl &&
             (identical(other.outlineType, outlineType) ||
                 other.outlineType == outlineType) &&
-            (identical(other.outlineSelectColor, outlineSelectColor) ||
-                other.outlineSelectColor == outlineSelectColor) &&
+            (identical(other.outlineColor, outlineColor) ||
+                other.outlineColor == outlineColor) &&
             (identical(other.outlinePadding, outlinePadding) ||
                 other.outlinePadding == outlinePadding) &&
             (identical(other.outlineWidth, outlineWidth) ||
@@ -183,8 +196,8 @@ class _$OutlineOptionImpl implements _OutlineOption {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, outlineType, outlineSelectColor,
-      outlinePadding, outlineWidth);
+  int get hashCode => Object.hash(
+      runtimeType, outlineType, outlineColor, outlinePadding, outlineWidth);
 
   @JsonKey(ignore: true)
   @override
@@ -203,7 +216,7 @@ class _$OutlineOptionImpl implements _OutlineOption {
 abstract class _OutlineOption implements OutlineOption {
   const factory _OutlineOption(
       {final OutlineType outlineType,
-      final int outlineSelectColor,
+      final ColorOption outlineColor,
       final double outlinePadding,
       final double outlineWidth}) = _$OutlineOptionImpl;
 
@@ -213,7 +226,7 @@ abstract class _OutlineOption implements OutlineOption {
   @override
   OutlineType get outlineType;
   @override
-  int get outlineSelectColor;
+  ColorOption get outlineColor;
   @override
   double get outlinePadding;
   @override
