@@ -58,6 +58,7 @@ class GradientData with _$GradientData {
   factory GradientData.fromJson(Map<String, dynamic> json) =>
       _$GradientDataFromJson(json);
 }
+
 @Freezed(makeCollectionsUnmodifiable: false)
 class ColorOption with _$ColorOption {
   @JsonSerializable(explicitToJson: true)
@@ -65,7 +66,9 @@ class ColorOption with _$ColorOption {
     @Default(ColorType.solid) ColorType colorType,
     @Default(0xFF40C4FF) int color,
     @Default(GradientType.linear) GradientType gradientType,
-    @Default([GradientData(gradientPos: (0, 0)), GradientData(gradientPos: (1, 1))]) List<GradientData> gradientData,
+    @Default(
+        [GradientData(gradientPos: (0, 0)), GradientData(gradientPos: (1, 1))])
+    List<GradientData> gradientData,
   }) = _ColorOption;
 
   factory ColorOption.fromJson(Map<String, dynamic> json) =>
@@ -88,7 +91,6 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
     @Default("notoSans") String titleFont,
     @Default("notoSans") String mainFont,
     @Default(OutlineOption()) OutlineOption outlineOption,
-
     @Default(ColorOption()) ColorOption defaultColorOption,
     @Default(false) bool selectColorEnable,
     @Default(ColorOption()) ColorOption selectColorOption,
