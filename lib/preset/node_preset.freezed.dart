@@ -382,42 +382,40 @@ abstract class _GradientData implements GradientData {
       throw _privateConstructorUsedError;
 }
 
-SelectColorOption _$SelectColorOptionFromJson(Map<String, dynamic> json) {
-  return _SelectColorOption.fromJson(json);
+ColorOption _$ColorOptionFromJson(Map<String, dynamic> json) {
+  return _ColorOption.fromJson(json);
 }
 
 /// @nodoc
-mixin _$SelectColorOption {
-  bool get enable => throw _privateConstructorUsedError;
-  SelectColorType get selectColorType => throw _privateConstructorUsedError;
-  int get selectColor => throw _privateConstructorUsedError;
+mixin _$ColorOption {
+  ColorType get colorType => throw _privateConstructorUsedError;
+  int get color => throw _privateConstructorUsedError;
   GradientType get gradientType => throw _privateConstructorUsedError;
   List<GradientData> get gradientData => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SelectColorOptionCopyWith<SelectColorOption> get copyWith =>
+  $ColorOptionCopyWith<ColorOption> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SelectColorOptionCopyWith<$Res> {
-  factory $SelectColorOptionCopyWith(
-          SelectColorOption value, $Res Function(SelectColorOption) then) =
-      _$SelectColorOptionCopyWithImpl<$Res, SelectColorOption>;
+abstract class $ColorOptionCopyWith<$Res> {
+  factory $ColorOptionCopyWith(
+          ColorOption value, $Res Function(ColorOption) then) =
+      _$ColorOptionCopyWithImpl<$Res, ColorOption>;
   @useResult
   $Res call(
-      {bool enable,
-      SelectColorType selectColorType,
-      int selectColor,
+      {ColorType colorType,
+      int color,
       GradientType gradientType,
       List<GradientData> gradientData});
 }
 
 /// @nodoc
-class _$SelectColorOptionCopyWithImpl<$Res, $Val extends SelectColorOption>
-    implements $SelectColorOptionCopyWith<$Res> {
-  _$SelectColorOptionCopyWithImpl(this._value, this._then);
+class _$ColorOptionCopyWithImpl<$Res, $Val extends ColorOption>
+    implements $ColorOptionCopyWith<$Res> {
+  _$ColorOptionCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -427,24 +425,19 @@ class _$SelectColorOptionCopyWithImpl<$Res, $Val extends SelectColorOption>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? enable = null,
-    Object? selectColorType = null,
-    Object? selectColor = null,
+    Object? colorType = null,
+    Object? color = null,
     Object? gradientType = null,
     Object? gradientData = null,
   }) {
     return _then(_value.copyWith(
-      enable: null == enable
-          ? _value.enable
-          : enable // ignore: cast_nullable_to_non_nullable
-              as bool,
-      selectColorType: null == selectColorType
-          ? _value.selectColorType
-          : selectColorType // ignore: cast_nullable_to_non_nullable
-              as SelectColorType,
-      selectColor: null == selectColor
-          ? _value.selectColor
-          : selectColor // ignore: cast_nullable_to_non_nullable
+      colorType: null == colorType
+          ? _value.colorType
+          : colorType // ignore: cast_nullable_to_non_nullable
+              as ColorType,
+      color: null == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
               as int,
       gradientType: null == gradientType
           ? _value.gradientType
@@ -459,50 +452,44 @@ class _$SelectColorOptionCopyWithImpl<$Res, $Val extends SelectColorOption>
 }
 
 /// @nodoc
-abstract class _$$SelectColorOptionImplCopyWith<$Res>
-    implements $SelectColorOptionCopyWith<$Res> {
-  factory _$$SelectColorOptionImplCopyWith(_$SelectColorOptionImpl value,
-          $Res Function(_$SelectColorOptionImpl) then) =
-      __$$SelectColorOptionImplCopyWithImpl<$Res>;
+abstract class _$$ColorOptionImplCopyWith<$Res>
+    implements $ColorOptionCopyWith<$Res> {
+  factory _$$ColorOptionImplCopyWith(
+          _$ColorOptionImpl value, $Res Function(_$ColorOptionImpl) then) =
+      __$$ColorOptionImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {bool enable,
-      SelectColorType selectColorType,
-      int selectColor,
+      {ColorType colorType,
+      int color,
       GradientType gradientType,
       List<GradientData> gradientData});
 }
 
 /// @nodoc
-class __$$SelectColorOptionImplCopyWithImpl<$Res>
-    extends _$SelectColorOptionCopyWithImpl<$Res, _$SelectColorOptionImpl>
-    implements _$$SelectColorOptionImplCopyWith<$Res> {
-  __$$SelectColorOptionImplCopyWithImpl(_$SelectColorOptionImpl _value,
-      $Res Function(_$SelectColorOptionImpl) _then)
+class __$$ColorOptionImplCopyWithImpl<$Res>
+    extends _$ColorOptionCopyWithImpl<$Res, _$ColorOptionImpl>
+    implements _$$ColorOptionImplCopyWith<$Res> {
+  __$$ColorOptionImplCopyWithImpl(
+      _$ColorOptionImpl _value, $Res Function(_$ColorOptionImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? enable = null,
-    Object? selectColorType = null,
-    Object? selectColor = null,
+    Object? colorType = null,
+    Object? color = null,
     Object? gradientType = null,
     Object? gradientData = null,
   }) {
-    return _then(_$SelectColorOptionImpl(
-      enable: null == enable
-          ? _value.enable
-          : enable // ignore: cast_nullable_to_non_nullable
-              as bool,
-      selectColorType: null == selectColorType
-          ? _value.selectColorType
-          : selectColorType // ignore: cast_nullable_to_non_nullable
-              as SelectColorType,
-      selectColor: null == selectColor
-          ? _value.selectColor
-          : selectColor // ignore: cast_nullable_to_non_nullable
+    return _then(_$ColorOptionImpl(
+      colorType: null == colorType
+          ? _value.colorType
+          : colorType // ignore: cast_nullable_to_non_nullable
+              as ColorType,
+      color: null == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
               as int,
       gradientType: null == gradientType
           ? _value.gradientType
@@ -519,29 +506,25 @@ class __$$SelectColorOptionImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$SelectColorOptionImpl implements _SelectColorOption {
-  const _$SelectColorOptionImpl(
-      {this.enable = false,
-      this.selectColorType = SelectColorType.solid,
-      this.selectColor = 0xFF40C4FF,
+class _$ColorOptionImpl implements _ColorOption {
+  const _$ColorOptionImpl(
+      {this.colorType = ColorType.solid,
+      this.color = 0xFF40C4FF,
       this.gradientType = GradientType.linear,
       this.gradientData = const [
         GradientData(gradientPos: (0, 0)),
         GradientData(gradientPos: (1, 1))
       ]});
 
-  factory _$SelectColorOptionImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SelectColorOptionImplFromJson(json);
+  factory _$ColorOptionImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ColorOptionImplFromJson(json);
 
   @override
   @JsonKey()
-  final bool enable;
+  final ColorType colorType;
   @override
   @JsonKey()
-  final SelectColorType selectColorType;
-  @override
-  @JsonKey()
-  final int selectColor;
+  final int color;
   @override
   @JsonKey()
   final GradientType gradientType;
@@ -551,19 +534,17 @@ class _$SelectColorOptionImpl implements _SelectColorOption {
 
   @override
   String toString() {
-    return 'SelectColorOption(enable: $enable, selectColorType: $selectColorType, selectColor: $selectColor, gradientType: $gradientType, gradientData: $gradientData)';
+    return 'ColorOption(colorType: $colorType, color: $color, gradientType: $gradientType, gradientData: $gradientData)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SelectColorOptionImpl &&
-            (identical(other.enable, enable) || other.enable == enable) &&
-            (identical(other.selectColorType, selectColorType) ||
-                other.selectColorType == selectColorType) &&
-            (identical(other.selectColor, selectColor) ||
-                other.selectColor == selectColor) &&
+            other is _$ColorOptionImpl &&
+            (identical(other.colorType, colorType) ||
+                other.colorType == colorType) &&
+            (identical(other.color, color) || other.color == color) &&
             (identical(other.gradientType, gradientType) ||
                 other.gradientType == gradientType) &&
             const DeepCollectionEquality()
@@ -572,53 +553,44 @@ class _$SelectColorOptionImpl implements _SelectColorOption {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      enable,
-      selectColorType,
-      selectColor,
-      gradientType,
+  int get hashCode => Object.hash(runtimeType, colorType, color, gradientType,
       const DeepCollectionEquality().hash(gradientData));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SelectColorOptionImplCopyWith<_$SelectColorOptionImpl> get copyWith =>
-      __$$SelectColorOptionImplCopyWithImpl<_$SelectColorOptionImpl>(
-          this, _$identity);
+  _$$ColorOptionImplCopyWith<_$ColorOptionImpl> get copyWith =>
+      __$$ColorOptionImplCopyWithImpl<_$ColorOptionImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SelectColorOptionImplToJson(
+    return _$$ColorOptionImplToJson(
       this,
     );
   }
 }
 
-abstract class _SelectColorOption implements SelectColorOption {
-  const factory _SelectColorOption(
-      {final bool enable,
-      final SelectColorType selectColorType,
-      final int selectColor,
+abstract class _ColorOption implements ColorOption {
+  const factory _ColorOption(
+      {final ColorType colorType,
+      final int color,
       final GradientType gradientType,
-      final List<GradientData> gradientData}) = _$SelectColorOptionImpl;
+      final List<GradientData> gradientData}) = _$ColorOptionImpl;
 
-  factory _SelectColorOption.fromJson(Map<String, dynamic> json) =
-      _$SelectColorOptionImpl.fromJson;
+  factory _ColorOption.fromJson(Map<String, dynamic> json) =
+      _$ColorOptionImpl.fromJson;
 
   @override
-  bool get enable;
+  ColorType get colorType;
   @override
-  SelectColorType get selectColorType;
-  @override
-  int get selectColor;
+  int get color;
   @override
   GradientType get gradientType;
   @override
   List<GradientData> get gradientData;
   @override
   @JsonKey(ignore: true)
-  _$$SelectColorOptionImplCopyWith<_$SelectColorOptionImpl> get copyWith =>
+  _$$ColorOptionImplCopyWith<_$ColorOptionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -639,12 +611,13 @@ mixin _$ChoiceNodeDesignPreset {
   bool get hideTitle => throw _privateConstructorUsedError;
   int get imagePosition =>
       throw _privateConstructorUsedError; //0:default, 1:image-right 2:image-left
-  int get colorNode => throw _privateConstructorUsedError;
   int get colorTitle => throw _privateConstructorUsedError;
   String get titleFont => throw _privateConstructorUsedError;
   String get mainFont => throw _privateConstructorUsedError;
   OutlineOption get outlineOption => throw _privateConstructorUsedError;
-  SelectColorOption get selectColorOption => throw _privateConstructorUsedError;
+  ColorOption get colorNode => throw _privateConstructorUsedError;
+  bool get selectColorEnable => throw _privateConstructorUsedError;
+  ColorOption get selectColorOption => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -667,15 +640,17 @@ abstract class $ChoiceNodeDesignPresetCopyWith<$Res> {
       bool maximizingImage,
       bool hideTitle,
       int imagePosition,
-      int colorNode,
       int colorTitle,
       String titleFont,
       String mainFont,
       OutlineOption outlineOption,
-      SelectColorOption selectColorOption});
+      ColorOption colorNode,
+      bool selectColorEnable,
+      ColorOption selectColorOption});
 
   $OutlineOptionCopyWith<$Res> get outlineOption;
-  $SelectColorOptionCopyWith<$Res> get selectColorOption;
+  $ColorOptionCopyWith<$Res> get colorNode;
+  $ColorOptionCopyWith<$Res> get selectColorOption;
 }
 
 /// @nodoc
@@ -700,11 +675,12 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
     Object? maximizingImage = null,
     Object? hideTitle = null,
     Object? imagePosition = null,
-    Object? colorNode = null,
     Object? colorTitle = null,
     Object? titleFont = null,
     Object? mainFont = null,
     Object? outlineOption = null,
+    Object? colorNode = null,
+    Object? selectColorEnable = null,
     Object? selectColorOption = null,
   }) {
     return _then(_value.copyWith(
@@ -740,10 +716,6 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
           ? _value.imagePosition
           : imagePosition // ignore: cast_nullable_to_non_nullable
               as int,
-      colorNode: null == colorNode
-          ? _value.colorNode
-          : colorNode // ignore: cast_nullable_to_non_nullable
-              as int,
       colorTitle: null == colorTitle
           ? _value.colorTitle
           : colorTitle // ignore: cast_nullable_to_non_nullable
@@ -760,10 +732,18 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
           ? _value.outlineOption
           : outlineOption // ignore: cast_nullable_to_non_nullable
               as OutlineOption,
+      colorNode: null == colorNode
+          ? _value.colorNode
+          : colorNode // ignore: cast_nullable_to_non_nullable
+              as ColorOption,
+      selectColorEnable: null == selectColorEnable
+          ? _value.selectColorEnable
+          : selectColorEnable // ignore: cast_nullable_to_non_nullable
+              as bool,
       selectColorOption: null == selectColorOption
           ? _value.selectColorOption
           : selectColorOption // ignore: cast_nullable_to_non_nullable
-              as SelectColorOption,
+              as ColorOption,
     ) as $Val);
   }
 
@@ -777,8 +757,16 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $SelectColorOptionCopyWith<$Res> get selectColorOption {
-    return $SelectColorOptionCopyWith<$Res>(_value.selectColorOption, (value) {
+  $ColorOptionCopyWith<$Res> get colorNode {
+    return $ColorOptionCopyWith<$Res>(_value.colorNode, (value) {
+      return _then(_value.copyWith(colorNode: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ColorOptionCopyWith<$Res> get selectColorOption {
+    return $ColorOptionCopyWith<$Res>(_value.selectColorOption, (value) {
       return _then(_value.copyWith(selectColorOption: value) as $Val);
     });
   }
@@ -802,17 +790,20 @@ abstract class _$$ChoiceNodeDesignPresetImplCopyWith<$Res>
       bool maximizingImage,
       bool hideTitle,
       int imagePosition,
-      int colorNode,
       int colorTitle,
       String titleFont,
       String mainFont,
       OutlineOption outlineOption,
-      SelectColorOption selectColorOption});
+      ColorOption colorNode,
+      bool selectColorEnable,
+      ColorOption selectColorOption});
 
   @override
   $OutlineOptionCopyWith<$Res> get outlineOption;
   @override
-  $SelectColorOptionCopyWith<$Res> get selectColorOption;
+  $ColorOptionCopyWith<$Res> get colorNode;
+  @override
+  $ColorOptionCopyWith<$Res> get selectColorOption;
 }
 
 /// @nodoc
@@ -836,11 +827,12 @@ class __$$ChoiceNodeDesignPresetImplCopyWithImpl<$Res>
     Object? maximizingImage = null,
     Object? hideTitle = null,
     Object? imagePosition = null,
-    Object? colorNode = null,
     Object? colorTitle = null,
     Object? titleFont = null,
     Object? mainFont = null,
     Object? outlineOption = null,
+    Object? colorNode = null,
+    Object? selectColorEnable = null,
     Object? selectColorOption = null,
   }) {
     return _then(_$ChoiceNodeDesignPresetImpl(
@@ -876,10 +868,6 @@ class __$$ChoiceNodeDesignPresetImplCopyWithImpl<$Res>
           ? _value.imagePosition
           : imagePosition // ignore: cast_nullable_to_non_nullable
               as int,
-      colorNode: null == colorNode
-          ? _value.colorNode
-          : colorNode // ignore: cast_nullable_to_non_nullable
-              as int,
       colorTitle: null == colorTitle
           ? _value.colorTitle
           : colorTitle // ignore: cast_nullable_to_non_nullable
@@ -896,10 +884,18 @@ class __$$ChoiceNodeDesignPresetImplCopyWithImpl<$Res>
           ? _value.outlineOption
           : outlineOption // ignore: cast_nullable_to_non_nullable
               as OutlineOption,
+      colorNode: null == colorNode
+          ? _value.colorNode
+          : colorNode // ignore: cast_nullable_to_non_nullable
+              as ColorOption,
+      selectColorEnable: null == selectColorEnable
+          ? _value.selectColorEnable
+          : selectColorEnable // ignore: cast_nullable_to_non_nullable
+              as bool,
       selectColorOption: null == selectColorOption
           ? _value.selectColorOption
           : selectColorOption // ignore: cast_nullable_to_non_nullable
-              as SelectColorOption,
+              as ColorOption,
     ));
   }
 }
@@ -917,12 +913,13 @@ class _$ChoiceNodeDesignPresetImpl implements _ChoiceNodeDesignPreset {
       this.maximizingImage = false,
       this.hideTitle = false,
       this.imagePosition = 0,
-      this.colorNode = 0xFFFFFFFF,
       this.colorTitle = 0xFF000000,
       this.titleFont = "notoSans",
       this.mainFont = "notoSans",
       this.outlineOption = const OutlineOption(),
-      this.selectColorOption = const SelectColorOption()});
+      this.colorNode = const ColorOption(),
+      this.selectColorEnable = false,
+      this.selectColorOption = const ColorOption()});
 
   factory _$ChoiceNodeDesignPresetImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChoiceNodeDesignPresetImplFromJson(json);
@@ -954,9 +951,6 @@ class _$ChoiceNodeDesignPresetImpl implements _ChoiceNodeDesignPreset {
 //0:default, 1:image-right 2:image-left
   @override
   @JsonKey()
-  final int colorNode;
-  @override
-  @JsonKey()
   final int colorTitle;
   @override
   @JsonKey()
@@ -969,11 +963,17 @@ class _$ChoiceNodeDesignPresetImpl implements _ChoiceNodeDesignPreset {
   final OutlineOption outlineOption;
   @override
   @JsonKey()
-  final SelectColorOption selectColorOption;
+  final ColorOption colorNode;
+  @override
+  @JsonKey()
+  final bool selectColorEnable;
+  @override
+  @JsonKey()
+  final ColorOption selectColorOption;
 
   @override
   String toString() {
-    return 'ChoiceNodeDesignPreset(name: $name, titlePosition: $titlePosition, elevation: $elevation, round: $round, padding: $padding, maximizingImage: $maximizingImage, hideTitle: $hideTitle, imagePosition: $imagePosition, colorNode: $colorNode, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont, outlineOption: $outlineOption, selectColorOption: $selectColorOption)';
+    return 'ChoiceNodeDesignPreset(name: $name, titlePosition: $titlePosition, elevation: $elevation, round: $round, padding: $padding, maximizingImage: $maximizingImage, hideTitle: $hideTitle, imagePosition: $imagePosition, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont, outlineOption: $outlineOption, colorNode: $colorNode, selectColorEnable: $selectColorEnable, selectColorOption: $selectColorOption)';
   }
 
   @override
@@ -994,8 +994,6 @@ class _$ChoiceNodeDesignPresetImpl implements _ChoiceNodeDesignPreset {
                 other.hideTitle == hideTitle) &&
             (identical(other.imagePosition, imagePosition) ||
                 other.imagePosition == imagePosition) &&
-            (identical(other.colorNode, colorNode) ||
-                other.colorNode == colorNode) &&
             (identical(other.colorTitle, colorTitle) ||
                 other.colorTitle == colorTitle) &&
             (identical(other.titleFont, titleFont) ||
@@ -1004,6 +1002,10 @@ class _$ChoiceNodeDesignPresetImpl implements _ChoiceNodeDesignPreset {
                 other.mainFont == mainFont) &&
             (identical(other.outlineOption, outlineOption) ||
                 other.outlineOption == outlineOption) &&
+            (identical(other.colorNode, colorNode) ||
+                other.colorNode == colorNode) &&
+            (identical(other.selectColorEnable, selectColorEnable) ||
+                other.selectColorEnable == selectColorEnable) &&
             (identical(other.selectColorOption, selectColorOption) ||
                 other.selectColorOption == selectColorOption));
   }
@@ -1020,11 +1022,12 @@ class _$ChoiceNodeDesignPresetImpl implements _ChoiceNodeDesignPreset {
       maximizingImage,
       hideTitle,
       imagePosition,
-      colorNode,
       colorTitle,
       titleFont,
       mainFont,
       outlineOption,
+      colorNode,
+      selectColorEnable,
       selectColorOption);
 
   @JsonKey(ignore: true)
@@ -1044,21 +1047,21 @@ class _$ChoiceNodeDesignPresetImpl implements _ChoiceNodeDesignPreset {
 
 abstract class _ChoiceNodeDesignPreset implements ChoiceNodeDesignPreset {
   const factory _ChoiceNodeDesignPreset(
-          {required final String name,
-          final bool titlePosition,
-          final double elevation,
-          final double round,
-          final double padding,
-          final bool maximizingImage,
-          final bool hideTitle,
-          final int imagePosition,
-          final int colorNode,
-          final int colorTitle,
-          final String titleFont,
-          final String mainFont,
-          final OutlineOption outlineOption,
-          final SelectColorOption selectColorOption}) =
-      _$ChoiceNodeDesignPresetImpl;
+      {required final String name,
+      final bool titlePosition,
+      final double elevation,
+      final double round,
+      final double padding,
+      final bool maximizingImage,
+      final bool hideTitle,
+      final int imagePosition,
+      final int colorTitle,
+      final String titleFont,
+      final String mainFont,
+      final OutlineOption outlineOption,
+      final ColorOption colorNode,
+      final bool selectColorEnable,
+      final ColorOption selectColorOption}) = _$ChoiceNodeDesignPresetImpl;
 
   factory _ChoiceNodeDesignPreset.fromJson(Map<String, dynamic> json) =
       _$ChoiceNodeDesignPresetImpl.fromJson;
@@ -1080,8 +1083,6 @@ abstract class _ChoiceNodeDesignPreset implements ChoiceNodeDesignPreset {
   @override
   int get imagePosition;
   @override //0:default, 1:image-right 2:image-left
-  int get colorNode;
-  @override
   int get colorTitle;
   @override
   String get titleFont;
@@ -1090,7 +1091,11 @@ abstract class _ChoiceNodeDesignPreset implements ChoiceNodeDesignPreset {
   @override
   OutlineOption get outlineOption;
   @override
-  SelectColorOption get selectColorOption;
+  ColorOption get colorNode;
+  @override
+  bool get selectColorEnable;
+  @override
+  ColorOption get selectColorOption;
   @override
   @JsonKey(ignore: true)
   _$$ChoiceNodeDesignPresetImplCopyWith<_$ChoiceNodeDesignPresetImpl>

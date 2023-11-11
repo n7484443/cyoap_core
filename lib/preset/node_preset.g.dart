@@ -59,14 +59,11 @@ $Rec _$recordConvert<$Rec>(
 ) =>
     convert(value as Map<String, dynamic>);
 
-_$SelectColorOptionImpl _$$SelectColorOptionImplFromJson(
-        Map<String, dynamic> json) =>
-    _$SelectColorOptionImpl(
-      enable: json['enable'] as bool? ?? false,
-      selectColorType: $enumDecodeNullable(
-              _$SelectColorTypeEnumMap, json['selectColorType']) ??
-          SelectColorType.solid,
-      selectColor: json['selectColor'] as int? ?? 0xFF40C4FF,
+_$ColorOptionImpl _$$ColorOptionImplFromJson(Map<String, dynamic> json) =>
+    _$ColorOptionImpl(
+      colorType: $enumDecodeNullable(_$ColorTypeEnumMap, json['colorType']) ??
+          ColorType.solid,
+      color: json['color'] as int? ?? 0xFF40C4FF,
       gradientType:
           $enumDecodeNullable(_$GradientTypeEnumMap, json['gradientType']) ??
               GradientType.linear,
@@ -79,19 +76,17 @@ _$SelectColorOptionImpl _$$SelectColorOptionImplFromJson(
           ],
     );
 
-Map<String, dynamic> _$$SelectColorOptionImplToJson(
-        _$SelectColorOptionImpl instance) =>
+Map<String, dynamic> _$$ColorOptionImplToJson(_$ColorOptionImpl instance) =>
     <String, dynamic>{
-      'enable': instance.enable,
-      'selectColorType': _$SelectColorTypeEnumMap[instance.selectColorType]!,
-      'selectColor': instance.selectColor,
+      'colorType': _$ColorTypeEnumMap[instance.colorType]!,
+      'color': instance.color,
       'gradientType': _$GradientTypeEnumMap[instance.gradientType]!,
       'gradientData': instance.gradientData.map((e) => e.toJson()).toList(),
     };
 
-const _$SelectColorTypeEnumMap = {
-  SelectColorType.solid: 'solid',
-  SelectColorType.gradient: 'gradient',
+const _$ColorTypeEnumMap = {
+  ColorType.solid: 'solid',
+  ColorType.gradient: 'gradient',
 };
 
 const _$GradientTypeEnumMap = {
@@ -111,7 +106,6 @@ _$ChoiceNodeDesignPresetImpl _$$ChoiceNodeDesignPresetImplFromJson(
       maximizingImage: json['maximizingImage'] as bool? ?? false,
       hideTitle: json['hideTitle'] as bool? ?? false,
       imagePosition: json['imagePosition'] as int? ?? 0,
-      colorNode: json['colorNode'] as int? ?? 0xFFFFFFFF,
       colorTitle: json['colorTitle'] as int? ?? 0xFF000000,
       titleFont: json['titleFont'] as String? ?? "notoSans",
       mainFont: json['mainFont'] as String? ?? "notoSans",
@@ -119,9 +113,13 @@ _$ChoiceNodeDesignPresetImpl _$$ChoiceNodeDesignPresetImplFromJson(
           ? const OutlineOption()
           : OutlineOption.fromJson(
               json['outlineOption'] as Map<String, dynamic>),
+      colorNode: json['colorNode'] == null
+          ? const ColorOption()
+          : ColorOption.fromJson(json['colorNode'] as Map<String, dynamic>),
+      selectColorEnable: json['selectColorEnable'] as bool? ?? false,
       selectColorOption: json['selectColorOption'] == null
-          ? const SelectColorOption()
-          : SelectColorOption.fromJson(
+          ? const ColorOption()
+          : ColorOption.fromJson(
               json['selectColorOption'] as Map<String, dynamic>),
     );
 
@@ -136,10 +134,11 @@ Map<String, dynamic> _$$ChoiceNodeDesignPresetImplToJson(
       'maximizingImage': instance.maximizingImage,
       'hideTitle': instance.hideTitle,
       'imagePosition': instance.imagePosition,
-      'colorNode': instance.colorNode,
       'colorTitle': instance.colorTitle,
       'titleFont': instance.titleFont,
       'mainFont': instance.mainFont,
       'outlineOption': instance.outlineOption.toJson(),
+      'colorNode': instance.colorNode.toJson(),
+      'selectColorEnable': instance.selectColorEnable,
       'selectColorOption': instance.selectColorOption.toJson(),
     };

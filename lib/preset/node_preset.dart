@@ -31,14 +31,14 @@ class OutlineOption with _$OutlineOption {
       _$OutlineOptionFromJson(json);
 }
 
-enum SelectColorType {
+enum ColorType {
   solid,
   gradient;
 
   @override
   String toString() => name.i18n;
 
-  const SelectColorType();
+  const ColorType();
 }
 
 enum GradientType {
@@ -58,20 +58,18 @@ class GradientData with _$GradientData {
   factory GradientData.fromJson(Map<String, dynamic> json) =>
       _$GradientDataFromJson(json);
 }
-
 @Freezed(makeCollectionsUnmodifiable: false)
-class SelectColorOption with _$SelectColorOption {
+class ColorOption with _$ColorOption {
   @JsonSerializable(explicitToJson: true)
-  const factory SelectColorOption({
-    @Default(false) bool enable,
-    @Default(SelectColorType.solid) SelectColorType selectColorType,
-    @Default(0xFF40C4FF) int selectColor,
+  const factory ColorOption({
+    @Default(ColorType.solid) ColorType colorType,
+    @Default(0xFF40C4FF) int color,
     @Default(GradientType.linear) GradientType gradientType,
     @Default([GradientData(gradientPos: (0, 0)), GradientData(gradientPos: (1, 1))]) List<GradientData> gradientData,
-  }) = _SelectColorOption;
+  }) = _ColorOption;
 
-  factory SelectColorOption.fromJson(Map<String, dynamic> json) =>
-      _$SelectColorOptionFromJson(json);
+  factory ColorOption.fromJson(Map<String, dynamic> json) =>
+      _$ColorOptionFromJson(json);
 }
 
 @freezed
@@ -86,12 +84,14 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
     @Default(false) bool maximizingImage, //true: 80%, false: 50%
     @Default(false) bool hideTitle,
     @Default(0) int imagePosition, //0:default, 1:image-right 2:image-left
-    @Default(0xFFFFFFFF) int colorNode,
     @Default(0xFF000000) int colorTitle,
     @Default("notoSans") String titleFont,
     @Default("notoSans") String mainFont,
     @Default(OutlineOption()) OutlineOption outlineOption,
-    @Default(SelectColorOption()) SelectColorOption selectColorOption,
+
+    @Default(ColorOption()) ColorOption colorNode,
+    @Default(false) bool selectColorEnable,
+    @Default(ColorOption()) ColorOption selectColorOption,
   }) = _ChoiceNodeDesignPreset;
 
   factory ChoiceNodeDesignPreset.fromJson(Map<String, dynamic> json) =>
