@@ -6,8 +6,7 @@ part of 'choice_line.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ChoiceLineOptionImpl _$$ChoiceLineOptionImplFromJson(
-        Map<String, dynamic> json) =>
+_$ChoiceLineOptionImpl _$$ChoiceLineOptionImplFromJson(Map json) =>
     _$ChoiceLineOptionImpl(
       maxSelect: json['maxSelect'] as int? ?? -1,
       enableCancelFeature: json['enableCancelFeature'] as bool? ?? false,

@@ -6,14 +6,15 @@ part of 'node_preset.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$OutlineOptionImpl _$$OutlineOptionImplFromJson(Map<String, dynamic> json) =>
+_$OutlineOptionImpl _$$OutlineOptionImplFromJson(Map json) =>
     _$OutlineOptionImpl(
       outlineType:
           $enumDecodeNullable(_$OutlineTypeEnumMap, json['outlineType']) ??
               OutlineType.solid,
       outlineColor: json['outlineColor'] == null
           ? const ColorOption()
-          : ColorOption.fromJson(json['outlineColor'] as Map<String, dynamic>),
+          : ColorOption.fromJson(
+              Map<String, dynamic>.from(json['outlineColor'] as Map)),
       outlinePadding: (json['outlinePadding'] as num?)?.toDouble() ?? 4.0,
       outlineWidth: (json['outlineWidth'] as num?)?.toDouble() ?? 2.0,
     );
@@ -33,9 +34,8 @@ const _$OutlineTypeEnumMap = {
   OutlineType.dashed: 'dashed',
 };
 
-_$GradientDataImpl _$$GradientDataImplFromJson(Map<String, dynamic> json) =>
-    _$GradientDataImpl(
-      gradientPos: _$recordConvert(
+_$GradientDataImpl _$$GradientDataImplFromJson(Map json) => _$GradientDataImpl(
+      gradientPos: _$recordConvertAny(
             json['gradientPos'],
             ($jsonValue) => (
               ($jsonValue[r'$1'] as num).toDouble(),
@@ -55,14 +55,13 @@ Map<String, dynamic> _$$GradientDataImplToJson(_$GradientDataImpl instance) =>
       'color': instance.color,
     };
 
-$Rec _$recordConvert<$Rec>(
+$Rec _$recordConvertAny<$Rec>(
   Object? value,
   $Rec Function(Map) convert,
 ) =>
-    convert(value as Map<String, dynamic>);
+    convert(value as Map);
 
-_$ColorOptionImpl _$$ColorOptionImplFromJson(Map<String, dynamic> json) =>
-    _$ColorOptionImpl(
+_$ColorOptionImpl _$$ColorOptionImplFromJson(Map json) => _$ColorOptionImpl(
       colorType: $enumDecodeNullable(_$ColorTypeEnumMap, json['colorType']) ??
           ColorType.solid,
       color: json['color'] as int? ?? 0xFF40C4FF,
@@ -70,7 +69,8 @@ _$ColorOptionImpl _$$ColorOptionImplFromJson(Map<String, dynamic> json) =>
           $enumDecodeNullable(_$GradientTypeEnumMap, json['gradientType']) ??
               GradientType.linear,
       gradientData: (json['gradientData'] as List<dynamic>?)
-              ?.map((e) => GradientData.fromJson(e as Map<String, dynamic>))
+              ?.map((e) =>
+                  GradientData.fromJson(Map<String, dynamic>.from(e as Map)))
               .toList() ??
           const [
             GradientData(gradientPos: (0, 0)),
@@ -97,8 +97,7 @@ const _$GradientTypeEnumMap = {
   GradientType.sweep: 'sweep',
 };
 
-_$ChoiceNodeDesignPresetImpl _$$ChoiceNodeDesignPresetImplFromJson(
-        Map<String, dynamic> json) =>
+_$ChoiceNodeDesignPresetImpl _$$ChoiceNodeDesignPresetImplFromJson(Map json) =>
     _$ChoiceNodeDesignPresetImpl(
       name: json['name'] as String,
       titlePosition: json['titlePosition'] as bool? ?? true,
@@ -114,15 +113,16 @@ _$ChoiceNodeDesignPresetImpl _$$ChoiceNodeDesignPresetImplFromJson(
       outlineOption: json['outlineOption'] == null
           ? const OutlineOption()
           : OutlineOption.fromJson(
-              json['outlineOption'] as Map<String, dynamic>),
+              Map<String, dynamic>.from(json['outlineOption'] as Map)),
       colorNode: json['colorNode'] == null
           ? const ColorOption()
-          : ColorOption.fromJson(json['colorNode'] as Map<String, dynamic>),
+          : ColorOption.fromJson(
+              Map<String, dynamic>.from(json['colorNode'] as Map)),
       selectColorEnable: json['selectColorEnable'] as bool? ?? false,
       selectColorOption: json['selectColorOption'] == null
           ? const ColorOption()
           : ColorOption.fromJson(
-              json['selectColorOption'] as Map<String, dynamic>),
+              Map<String, dynamic>.from(json['selectColorOption'] as Map)),
     );
 
 Map<String, dynamic> _$$ChoiceNodeDesignPresetImplToJson(

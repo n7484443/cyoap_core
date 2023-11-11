@@ -6,7 +6,7 @@ part of 'pos.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PosImpl _$$PosImplFromJson(Map<String, dynamic> json) => _$PosImpl(
+_$PosImpl _$$PosImplFromJson(Map json) => _$PosImpl(
       data: (json['data'] as List<dynamic>?)?.map((e) => e as int).toList() ??
           const [],
     );

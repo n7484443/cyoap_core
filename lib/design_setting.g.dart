@@ -6,8 +6,7 @@ part of 'design_setting.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PlatformDesignSettingImpl _$$PlatformDesignSettingImplFromJson(
-        Map<String, dynamic> json) =>
+_$PlatformDesignSettingImpl _$$PlatformDesignSettingImplFromJson(Map json) =>
     _$PlatformDesignSettingImpl(
       variableFont: json['variableFont'] as String? ?? "notoSans",
       backgroundImage: json['backgroundImage'] as String?,
@@ -16,13 +15,13 @@ _$PlatformDesignSettingImpl _$$PlatformDesignSettingImplFromJson(
               _$ImageAttributeEnumMap, json['backgroundAttribute']) ??
           ImageAttribute.fit,
       choiceLinePresetList: (json['choiceLinePresetList'] as List<dynamic>?)
-              ?.map((e) =>
-                  ChoiceLineDesignPreset.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => ChoiceLineDesignPreset.fromJson(
+                  Map<String, dynamic>.from(e as Map)))
               .toList() ??
           const [ChoiceLineDesignPreset(name: 'default')],
       choiceNodePresetList: (json['choiceNodePresetList'] as List<dynamic>?)
-              ?.map((e) =>
-                  ChoiceNodeDesignPreset.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => ChoiceNodeDesignPreset.fromJson(
+                  Map<String, dynamic>.from(e as Map)))
               .toList() ??
           const [ChoiceNodeDesignPreset(name: 'default')],
       marginVertical: (json['marginVertical'] as num?)?.toDouble() ?? 12.0,

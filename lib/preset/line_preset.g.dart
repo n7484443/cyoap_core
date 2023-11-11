@@ -6,8 +6,7 @@ part of 'line_preset.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ChoiceLineDesignPresetImpl _$$ChoiceLineDesignPresetImplFromJson(
-        Map<String, dynamic> json) =>
+_$ChoiceLineDesignPresetImpl _$$ChoiceLineDesignPresetImplFromJson(Map json) =>
     _$ChoiceLineDesignPresetImpl(
       name: json['name'] as String,
       backgroundColor: json['background_color'] as int?,

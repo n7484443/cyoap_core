@@ -6,8 +6,7 @@ part of 'recursive_status.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-RecursiveStatus _$RecursiveStatusFromJson(Map<String, dynamic> json) =>
-    RecursiveStatus(
+RecursiveStatus _$RecursiveStatusFromJson(Map json) => RecursiveStatus(
       conditionClickableString: json['conditionClickableString'] as String?,
       conditionVisibleString: json['conditionVisibleString'] as String?,
       executeCodeString: json['executeCodeString'] as String?,
