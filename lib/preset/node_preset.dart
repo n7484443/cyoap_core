@@ -59,7 +59,7 @@ class GradientData with _$GradientData {
       _$GradientDataFromJson(json);
 }
 
-@freezed
+@Freezed(makeCollectionsUnmodifiable: false)
 class SelectColorOption with _$SelectColorOption {
   @JsonSerializable(explicitToJson: true)
   const factory SelectColorOption({

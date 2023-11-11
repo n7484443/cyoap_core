@@ -509,7 +509,7 @@ class __$$SelectColorOptionImplCopyWithImpl<$Res>
           : gradientType // ignore: cast_nullable_to_non_nullable
               as GradientType,
       gradientData: null == gradientData
-          ? _value._gradientData
+          ? _value.gradientData
           : gradientData // ignore: cast_nullable_to_non_nullable
               as List<GradientData>,
     ));
@@ -525,11 +525,10 @@ class _$SelectColorOptionImpl implements _SelectColorOption {
       this.selectColorType = SelectColorType.solid,
       this.selectColor = 0xFF40C4FF,
       this.gradientType = GradientType.linear,
-      final List<GradientData> gradientData = const [
+      this.gradientData = const [
         GradientData(gradientPos: (0, 0)),
         GradientData(gradientPos: (1, 1))
-      ]})
-      : _gradientData = gradientData;
+      ]});
 
   factory _$SelectColorOptionImpl.fromJson(Map<String, dynamic> json) =>
       _$$SelectColorOptionImplFromJson(json);
@@ -546,14 +545,9 @@ class _$SelectColorOptionImpl implements _SelectColorOption {
   @override
   @JsonKey()
   final GradientType gradientType;
-  final List<GradientData> _gradientData;
   @override
   @JsonKey()
-  List<GradientData> get gradientData {
-    if (_gradientData is EqualUnmodifiableListView) return _gradientData;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_gradientData);
-  }
+  final List<GradientData> gradientData;
 
   @override
   String toString() {
@@ -573,7 +567,7 @@ class _$SelectColorOptionImpl implements _SelectColorOption {
             (identical(other.gradientType, gradientType) ||
                 other.gradientType == gradientType) &&
             const DeepCollectionEquality()
-                .equals(other._gradientData, _gradientData));
+                .equals(other.gradientData, gradientData));
   }
 
   @JsonKey(ignore: true)
@@ -584,7 +578,7 @@ class _$SelectColorOptionImpl implements _SelectColorOption {
       selectColorType,
       selectColor,
       gradientType,
-      const DeepCollectionEquality().hash(_gradientData));
+      const DeepCollectionEquality().hash(gradientData));
 
   @JsonKey(ignore: true)
   @override
