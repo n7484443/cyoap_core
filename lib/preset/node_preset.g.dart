@@ -114,7 +114,7 @@ _$ChoiceNodeDesignPresetImpl _$$ChoiceNodeDesignPresetImplFromJson(Map json) =>
           ? const OutlineOption()
           : OutlineOption.fromJson(
               Map<String, dynamic>.from(json['defaultOutlineOption'] as Map)),
-      selectLineEnable: json['selectLineEnable'] as bool? ?? false,
+      selectOutlineEnable: json['selectOutlineEnable'] as bool? ?? false,
       selectOutlineOption: json['selectOutlineOption'] == null
           ? const OutlineOption()
           : OutlineOption.fromJson(
@@ -145,7 +145,7 @@ Map<String, dynamic> _$$ChoiceNodeDesignPresetImplToJson(
       'titleFont': instance.titleFont,
       'mainFont': instance.mainFont,
       'defaultOutlineOption': instance.defaultOutlineOption.toJson(),
-      'selectLineEnable': instance.selectLineEnable,
+      'selectOutlineEnable': instance.selectOutlineEnable,
       'selectOutlineOption': instance.selectOutlineOption.toJson(),
       'defaultColorOption': instance.defaultColorOption.toJson(),
       'selectColorEnable': instance.selectColorEnable,

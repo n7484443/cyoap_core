@@ -629,7 +629,7 @@ mixin _$ChoiceNodeDesignPreset {
   String get titleFont => throw _privateConstructorUsedError;
   String get mainFont => throw _privateConstructorUsedError;
   OutlineOption get defaultOutlineOption => throw _privateConstructorUsedError;
-  bool get selectLineEnable => throw _privateConstructorUsedError;
+  bool get selectOutlineEnable => throw _privateConstructorUsedError;
   OutlineOption get selectOutlineOption => throw _privateConstructorUsedError;
   ColorOption get defaultColorOption => throw _privateConstructorUsedError;
   bool get selectColorEnable => throw _privateConstructorUsedError;
@@ -660,7 +660,7 @@ abstract class $ChoiceNodeDesignPresetCopyWith<$Res> {
       String titleFont,
       String mainFont,
       OutlineOption defaultOutlineOption,
-      bool selectLineEnable,
+      bool selectOutlineEnable,
       OutlineOption selectOutlineOption,
       ColorOption defaultColorOption,
       bool selectColorEnable,
@@ -698,7 +698,7 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
     Object? titleFont = null,
     Object? mainFont = null,
     Object? defaultOutlineOption = null,
-    Object? selectLineEnable = null,
+    Object? selectOutlineEnable = null,
     Object? selectOutlineOption = null,
     Object? defaultColorOption = null,
     Object? selectColorEnable = null,
@@ -753,9 +753,9 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
           ? _value.defaultOutlineOption
           : defaultOutlineOption // ignore: cast_nullable_to_non_nullable
               as OutlineOption,
-      selectLineEnable: null == selectLineEnable
-          ? _value.selectLineEnable
-          : selectLineEnable // ignore: cast_nullable_to_non_nullable
+      selectOutlineEnable: null == selectOutlineEnable
+          ? _value.selectOutlineEnable
+          : selectOutlineEnable // ignore: cast_nullable_to_non_nullable
               as bool,
       selectOutlineOption: null == selectOutlineOption
           ? _value.selectOutlineOption
@@ -831,7 +831,7 @@ abstract class _$$ChoiceNodeDesignPresetImplCopyWith<$Res>
       String titleFont,
       String mainFont,
       OutlineOption defaultOutlineOption,
-      bool selectLineEnable,
+      bool selectOutlineEnable,
       OutlineOption selectOutlineOption,
       ColorOption defaultColorOption,
       bool selectColorEnable,
@@ -872,7 +872,7 @@ class __$$ChoiceNodeDesignPresetImplCopyWithImpl<$Res>
     Object? titleFont = null,
     Object? mainFont = null,
     Object? defaultOutlineOption = null,
-    Object? selectLineEnable = null,
+    Object? selectOutlineEnable = null,
     Object? selectOutlineOption = null,
     Object? defaultColorOption = null,
     Object? selectColorEnable = null,
@@ -927,9 +927,9 @@ class __$$ChoiceNodeDesignPresetImplCopyWithImpl<$Res>
           ? _value.defaultOutlineOption
           : defaultOutlineOption // ignore: cast_nullable_to_non_nullable
               as OutlineOption,
-      selectLineEnable: null == selectLineEnable
-          ? _value.selectLineEnable
-          : selectLineEnable // ignore: cast_nullable_to_non_nullable
+      selectOutlineEnable: null == selectOutlineEnable
+          ? _value.selectOutlineEnable
+          : selectOutlineEnable // ignore: cast_nullable_to_non_nullable
               as bool,
       selectOutlineOption: null == selectOutlineOption
           ? _value.selectOutlineOption
@@ -968,7 +968,7 @@ class _$ChoiceNodeDesignPresetImpl implements _ChoiceNodeDesignPreset {
       this.titleFont = "notoSans",
       this.mainFont = "notoSans",
       this.defaultOutlineOption = const OutlineOption(),
-      this.selectLineEnable = false,
+      this.selectOutlineEnable = false,
       this.selectOutlineOption = const OutlineOption(),
       this.defaultColorOption = const ColorOption(),
       this.selectColorEnable = false,
@@ -1016,7 +1016,7 @@ class _$ChoiceNodeDesignPresetImpl implements _ChoiceNodeDesignPreset {
   final OutlineOption defaultOutlineOption;
   @override
   @JsonKey()
-  final bool selectLineEnable;
+  final bool selectOutlineEnable;
   @override
   @JsonKey()
   final OutlineOption selectOutlineOption;
@@ -1032,7 +1032,7 @@ class _$ChoiceNodeDesignPresetImpl implements _ChoiceNodeDesignPreset {
 
   @override
   String toString() {
-    return 'ChoiceNodeDesignPreset(name: $name, titlePosition: $titlePosition, elevation: $elevation, round: $round, padding: $padding, maximizingImage: $maximizingImage, hideTitle: $hideTitle, imagePosition: $imagePosition, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont, defaultOutlineOption: $defaultOutlineOption, selectLineEnable: $selectLineEnable, selectOutlineOption: $selectOutlineOption, defaultColorOption: $defaultColorOption, selectColorEnable: $selectColorEnable, selectColorOption: $selectColorOption)';
+    return 'ChoiceNodeDesignPreset(name: $name, titlePosition: $titlePosition, elevation: $elevation, round: $round, padding: $padding, maximizingImage: $maximizingImage, hideTitle: $hideTitle, imagePosition: $imagePosition, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont, defaultOutlineOption: $defaultOutlineOption, selectOutlineEnable: $selectOutlineEnable, selectOutlineOption: $selectOutlineOption, defaultColorOption: $defaultColorOption, selectColorEnable: $selectColorEnable, selectColorOption: $selectColorOption)';
   }
 
   @override
@@ -1061,8 +1061,8 @@ class _$ChoiceNodeDesignPresetImpl implements _ChoiceNodeDesignPreset {
                 other.mainFont == mainFont) &&
             (identical(other.defaultOutlineOption, defaultOutlineOption) ||
                 other.defaultOutlineOption == defaultOutlineOption) &&
-            (identical(other.selectLineEnable, selectLineEnable) ||
-                other.selectLineEnable == selectLineEnable) &&
+            (identical(other.selectOutlineEnable, selectOutlineEnable) ||
+                other.selectOutlineEnable == selectOutlineEnable) &&
             (identical(other.selectOutlineOption, selectOutlineOption) ||
                 other.selectOutlineOption == selectOutlineOption) &&
             (identical(other.defaultColorOption, defaultColorOption) ||
@@ -1089,7 +1089,7 @@ class _$ChoiceNodeDesignPresetImpl implements _ChoiceNodeDesignPreset {
       titleFont,
       mainFont,
       defaultOutlineOption,
-      selectLineEnable,
+      selectOutlineEnable,
       selectOutlineOption,
       defaultColorOption,
       selectColorEnable,
@@ -1124,7 +1124,7 @@ abstract class _ChoiceNodeDesignPreset implements ChoiceNodeDesignPreset {
       final String titleFont,
       final String mainFont,
       final OutlineOption defaultOutlineOption,
-      final bool selectLineEnable,
+      final bool selectOutlineEnable,
       final OutlineOption selectOutlineOption,
       final ColorOption defaultColorOption,
       final bool selectColorEnable,
@@ -1158,7 +1158,7 @@ abstract class _ChoiceNodeDesignPreset implements ChoiceNodeDesignPreset {
   @override
   OutlineOption get defaultOutlineOption;
   @override
-  bool get selectLineEnable;
+  bool get selectOutlineEnable;
   @override
   OutlineOption get selectOutlineOption;
   @override

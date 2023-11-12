@@ -91,7 +91,7 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
     @Default("notoSans") String titleFont,
     @Default("notoSans") String mainFont,
     @Default(OutlineOption()) OutlineOption defaultOutlineOption,
-    @Default(false) bool selectLineEnable,
+    @Default(false) bool selectOutlineEnable,
     @Default(OutlineOption()) OutlineOption selectOutlineOption,
     @Default(ColorOption()) ColorOption defaultColorOption,
     @Default(false) bool selectColorEnable,
