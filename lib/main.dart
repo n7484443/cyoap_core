@@ -195,11 +195,11 @@ external set _getValueList(List<String> Function() f);
 @JS()
 List<String> _getValueListInternal() {
   var list = <String>[];
-  for (var key in VariableDataBase().varMapGlobal.keys) {
-    var wrapper = VariableDataBase().getValueTypeWrapper(key)!;
+  for (var name in VariableDataBase().visibleOrder) {
+    var wrapper = VariableDataBase().getValueTypeWrapper(name)!;
     if (wrapper.visible) {
       if (wrapper.displayName.isEmpty) {
-        list.add("$key : ${wrapper.valueType.dataUnzip}");
+        list.add("$name : ${wrapper.valueType.dataUnzip}");
       } else {
         list.add("${wrapper.displayName} : ${wrapper.valueType.dataUnzip}");
       }
