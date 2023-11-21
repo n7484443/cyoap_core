@@ -15,7 +15,6 @@ class PlayablePlatform {
   String? stringImageName;
   List<ChoiceLine> lineSettings = List.empty(growable: true);
   List<(String, ValueTypeWrapper)> _globalSetting = [];
-
   List<(String, ValueTypeWrapper)> get globalSetting => _globalSetting;
 
   PlatformDesignSetting designSetting = PlatformDesignSetting();

@@ -108,10 +108,11 @@ class ChoiceLine extends Choice {
     _sortAndProcessNodesByDepth();
   }
 
-  bool _checkCondition(List<ChoiceNode> nodes, {firstLine = false, required enableCancelFeature}) {
+  bool _checkCondition(List<ChoiceNode> nodes,
+      {firstLine = false, required enableCancelFeature}) {
     var needUpdate = false;
     for (var n in nodes) {
-      if(!enableCancelFeature && n.select > 0){
+      if (!enableCancelFeature && n.select > 0) {
         continue;
       }
       needUpdate |= n.checkCondition();
@@ -148,7 +149,7 @@ class ChoiceLine extends Choice {
       {firstLine = false, enableCancelFeature = true}) {
     if (isNeedToCheck()) {
       VariableDataBase().setValue(valName, ValueTypeWrapper(ValueType.int(0)),
-          isGlobal: true);
+          ValueTypeLocation.global);
     } else {
       VariableDataBase().deleteValue(valName);
     }
@@ -158,7 +159,8 @@ class ChoiceLine extends Choice {
     while (true) {
       _updateSelectionStatus(nodes, firstLine: firstLine);
       _executeNodes(nodes);
-      if (!_checkCondition(nodes, firstLine: firstLine, enableCancelFeature: enableCancelFeature)) {
+      if (!_checkCondition(nodes,
+          firstLine: firstLine, enableCancelFeature: enableCancelFeature)) {
         break;
       }
       VariableDataBase().varMapGlobal =
@@ -187,7 +189,8 @@ class ChoiceLine extends Choice {
     //process
     for (var depth = 0; depth < sortedNodeByDepth.length; depth++) {
       _processSelectionUntilStable(sortedNodeByDepth[depth],
-          firstLine: depth == 0, enableCancelFeature: choiceLineOption.enableCancelFeature);
+          firstLine: depth == 0,
+          enableCancelFeature: choiceLineOption.enableCancelFeature);
     }
   }
 }

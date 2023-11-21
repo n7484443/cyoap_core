@@ -138,7 +138,7 @@ class Functions {
       var array = VariableDataBase().getValueType(name)?.dataUnzip as List;
       array[pos] = input[2];
       VariableDataBase()
-          .setValue(name, ValueTypeWrapper(ValueType.array(array)));
+          .setValue(name, ValueTypeWrapper(ValueType.array(array)), ValueTypeLocation.auto);
     };
     functionValueType[FunctionListEnum.length] = (input) {
       var array = input[0].dataUnzip;
@@ -165,19 +165,19 @@ class Functions {
     functionValueType[FunctionListEnum.setLocal] = (input) {
       var varName = input[0].dataUnzip as String;
       VariableDataBase()
-          .setValue(varName, ValueTypeWrapper(input[1]), isGlobal: false);
+          .setValue(varName, ValueTypeWrapper(input[1]), ValueTypeLocation.local);
     };
     functionValueType[FunctionListEnum.setGlobal] = (input) {
       var varName = input[0].dataUnzip as String;
       VariableDataBase()
-          .setValue(varName, ValueTypeWrapper(input[1]), isGlobal: true);
+          .setValue(varName, ValueTypeWrapper(input[1]), ValueTypeLocation.global);
     };
     functionValueType[FunctionListEnum.setVariable] = (input) {
       var varName = input[0].dataUnzip as String;
       var original = VariableDataBase().getValueTypeWrapper(varName);
       if (original != null) {
         var copy = original.copyWith(valueType: input[1]);
-        VariableDataBase().setValue(varName, copy);
+        VariableDataBase().setValue(varName, copy, ValueTypeLocation.auto);
       }
     };
     functionValueType[FunctionListEnum.setVisible] = (input) {
@@ -185,7 +185,7 @@ class Functions {
       var value = input[1].dataUnzip as bool;
       var original = VariableDataBase().getValueTypeWrapper(varName);
       if (original != null) {
-        VariableDataBase().setValue(varName, original.copyWith(visible: value));
+        VariableDataBase().setValue(varName, original.copyWith(visible: value), ValueTypeLocation.auto);
       }
     };
   }

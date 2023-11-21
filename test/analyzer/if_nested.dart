@@ -45,40 +45,40 @@ void main() {
     """;
     var code = Analyser().analyseMultiLine(strTest);
 
-    ins.setValue('nested_test0_input0', ValueTypeWrapper(ValueType.int(0)), isGlobal: false);
-    ins.setValue('nested_test0_input1', ValueTypeWrapper(ValueType.int(0)), isGlobal: false);
+    ins.setValue('nested_test0_input0', ValueTypeWrapper(ValueType.int(0)), ValueTypeLocation.local);
+    ins.setValue('nested_test0_input1', ValueTypeWrapper(ValueType.int(0)), ValueTypeLocation.local);
     expectMultiple(code, {
       'nested_test0_0': 0,
       'nested_test0_1': 1,
       'nested_test0_input1': 0,
     });
 
-    ins.setValue('nested_test0_input0', ValueTypeWrapper(ValueType.int(1)), isGlobal: false);
-    ins.setValue('nested_test0_input1', ValueTypeWrapper(ValueType.int(0)), isGlobal: false);
+    ins.setValue('nested_test0_input0', ValueTypeWrapper(ValueType.int(1)), ValueTypeLocation.local);
+    ins.setValue('nested_test0_input1', ValueTypeWrapper(ValueType.int(0)), ValueTypeLocation.local);
     expectMultiple(code, {
       'nested_test0_0': -10,
       'nested_test0_1': 1,
       'nested_test0_input1': 1,
     });
 
-    ins.setValue('nested_test0_input0', ValueTypeWrapper(ValueType.int(2)), isGlobal: false);
-    ins.setValue('nested_test0_input1', ValueTypeWrapper(ValueType.int(0)), isGlobal: false);
+    ins.setValue('nested_test0_input0', ValueTypeWrapper(ValueType.int(2)), ValueTypeLocation.local);
+    ins.setValue('nested_test0_input1', ValueTypeWrapper(ValueType.int(0)), ValueTypeLocation.local);
     expectMultiple(code, {
       'nested_test0_0': -25,
       'nested_test0_1': 1,
       'nested_test0_input1': 2,
     });
 
-    ins.setValue('nested_test0_input0', ValueTypeWrapper(ValueType.int(3)), isGlobal: false);
-    ins.setValue('nested_test0_input1', ValueTypeWrapper(ValueType.int(0)), isGlobal: false);
+    ins.setValue('nested_test0_input0', ValueTypeWrapper(ValueType.int(3)), ValueTypeLocation.local);
+    ins.setValue('nested_test0_input1', ValueTypeWrapper(ValueType.int(0)), ValueTypeLocation.local);
     expectMultiple(code, {
       'nested_test0_0': -60,
       'nested_test0_1': 1,
       'nested_test0_input1': 3,
     });
 
-    ins.setValue('nested_test0_input0', ValueTypeWrapper(ValueType.int(4)), isGlobal: false);
-    ins.setValue('nested_test0_input1', ValueTypeWrapper(ValueType.int(0)), isGlobal: false);
+    ins.setValue('nested_test0_input0', ValueTypeWrapper(ValueType.int(4)), ValueTypeLocation.local);
+    ins.setValue('nested_test0_input1', ValueTypeWrapper(ValueType.int(0)), ValueTypeLocation.local);
     expectMultiple(code, {
       'nested_test0_0': -85,
       'nested_test0_1': 1,

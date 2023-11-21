@@ -9,7 +9,7 @@ void expectMultiple(List<String> code, Map<String, dynamic> output,
     for (var key in input.keys) {
       VariableDataBase().setValue(
           key, ValueTypeWrapper(getValueTypeFromDynamicInput(input[key])),
-          isGlobal: false);
+          ValueTypeLocation.local);
     }
   }
   Analyser().run(code);

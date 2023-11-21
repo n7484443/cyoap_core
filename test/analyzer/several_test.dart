@@ -89,8 +89,10 @@ void main() {
     expect(ins.getValueType('stringAddTest')?.dataUnzip, "문자열테스트1");
     expect(ins.getValueType('stringAddTest1')?.dataUnzip, "문자열테스트1");
     expect(ins.getValueType('stringAddTest2')?.dataUnzip, true);
-    expect(ins.getValueType('stringTest2')?.dataUnzip, """문자열 속 * 나 / 등이 들어가 있어도 멀정함.""");
-    expect(ins.getValueType('stringTest3')?.dataUnzip, """문자열 속 '따음표'가 들어가도 멀쩡함.""");
+    expect(ins.getValueType('stringTest2')?.dataUnzip,
+        """문자열 속 * 나 / 등이 들어가 있어도 멀정함.""");
+    expect(ins.getValueType('stringTest3')?.dataUnzip,
+        """문자열 속 '따음표'가 들어가도 멀쩡함.""");
   });
 
   test('compTest', () {
@@ -115,7 +117,6 @@ void main() {
     expect(ins.getValueType('test_alpha')?.dataUnzip, 4);
     expect(ins.getValueType('test_beta')?.dataUnzip, -4);
   });
-
 
   test('multiple Test', () {
     String strTest = """
@@ -190,12 +191,10 @@ void main() {
   });
 
   test('nodeTest', () {
-    VariableDataBase().setValue(
-        "테스트용:random", ValueTypeWrapper(ValueType.int(3)),
-        isGlobal: true);
+    VariableDataBase().setValue("테스트용:random",
+        ValueTypeWrapper(ValueType.int(3)), ValueTypeLocation.global);
     String strTest1 = "테스트용:random == 3";
     var out = Analyser().run(Analyser().analyseSingleLine(strTest1));
     expect(out, true);
   });
-
 }

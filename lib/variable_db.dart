@@ -3,6 +3,8 @@ import 'grammar/value_type.dart';
 typedef VariableChangeCallback = void Function();
 typedef CheckListChangeCallback = void Function();
 
+enum ValueTypeLocation { global, local, auto }
+
 class VariableDataBase {
   static final VariableDataBase _instance = VariableDataBase._init();
 
@@ -14,6 +16,7 @@ class VariableDataBase {
 
   var varMapGlobal = <String, ValueTypeWrapper>{};
   var varMapLocal = <String, ValueTypeWrapper>{};
+  var visibleOrder = <String>[];
 
   VariableChangeCallback? variableChangeCallback;
   CheckListChangeCallback? checkListChangeCallback;
@@ -30,23 +33,27 @@ class VariableDataBase {
     }
   }
 
-  void setValue(String name, ValueTypeWrapper value, {bool? isGlobal}) {
-    if(name != name.replaceAll(" ", "")){
-      setValue(name.replaceAll(" ", ""), value, isGlobal: isGlobal);
+  void setValue(
+      String name, ValueTypeWrapper value, ValueTypeLocation location) {
+    var trim = name.replaceAll(" ", "");
+    if (value.visible && !visibleOrder.contains(name) && location == ValueTypeLocation.global){
+      visibleOrder.add(name);
     }
-    var trim = name.trim();
-    if (isGlobal == null) {
-      if (varMapLocal.containsKey(name)) {
-        varMapLocal[trim] = value;
-      } else if (varMapGlobal.containsKey(name)) {
+    switch (location) {
+      case ValueTypeLocation.global:
         varMapGlobal[trim] = value;
-      }
-    } else if (isGlobal) {
-      varMapGlobal[trim] = value;
-    } else {
-      varMapLocal[trim] = value;
+        break;
+      case ValueTypeLocation.local:
+        varMapLocal[trim] = value;
+        break;
+      case ValueTypeLocation.auto:
+        if (varMapLocal.containsKey(name)) {
+          varMapLocal[trim] = value;
+        } else if (varMapGlobal.containsKey(name)) {
+          varMapGlobal[trim] = value;
+        }
+        break;
     }
-
     updateVariableTiles();
   }
 
@@ -86,6 +93,7 @@ class VariableDataBase {
   void clear() {
     varMapGlobal.clear();
     varMapLocal.clear();
+    visibleOrder.clear();
     updateVariableTiles();
     updateCheckList();
   }

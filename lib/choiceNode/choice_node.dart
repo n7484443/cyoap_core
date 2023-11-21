@@ -268,23 +268,22 @@ class ChoiceNode extends Choice {
 
   void updateSelectionStatus() {
     var titleWhitespaceRemoved = title.replaceAll(" ", "");
-    VariableDataBase().setValue(titleWhitespaceRemoved,
+    VariableDataBase().setValue(
+        titleWhitespaceRemoved,
         ValueTypeWrapper(ValueType.bool(isExecutable())),
-        isGlobal: true);
+        ValueTypeLocation.global);
     if (choiceNodeMode == ChoiceNodeMode.randomMode) {
       VariableDataBase().setValue('$titleWhitespaceRemoved:random',
-          ValueTypeWrapper(ValueType.int(random)),
-          isGlobal: true);
+          ValueTypeWrapper(ValueType.int(random)), ValueTypeLocation.global);
     }
     if (choiceNodeMode == ChoiceNodeMode.multiSelect) {
       VariableDataBase().setValue('$titleWhitespaceRemoved:multi',
-          ValueTypeWrapper(ValueType.int(select)),
-          isGlobal: true);
+          ValueTypeWrapper(ValueType.int(select)), ValueTypeLocation.global);
     }
   }
 
   void execute() {
-    if(!isExecutable()){
+    if (!isExecutable()) {
       return;
     }
     recursiveStatus.execute(errorName, seedInput: seed);
@@ -319,12 +318,14 @@ class ChoiceNode extends Choice {
       if (parent.selectableStatus == SelectableStatus.hide) {
         selectableStatus = SelectableStatus.hide;
         select = 0;
-      }else if (parent.selectableStatus == SelectableStatus.closed) {
-        if(selectableStatus != SelectableStatus.hide){
+      } else if (parent.selectableStatus == SelectableStatus.closed) {
+        if (selectableStatus != SelectableStatus.hide) {
           selectableStatus = parent.selectableStatus;
         }
         select = 0;
-      }else if (parent.select == 0 && parent.isSelectableMode && selectableStatus == SelectableStatus.open){
+      } else if (parent.select == 0 &&
+          parent.isSelectableMode &&
+          selectableStatus == SelectableStatus.open) {
         selectableStatus = SelectableStatus.closed;
         select = 0;
       }
