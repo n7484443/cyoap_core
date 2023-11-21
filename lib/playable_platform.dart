@@ -96,7 +96,7 @@ class PlayablePlatform {
   void updateStatusAll({int startLine = 0}) {
     VariableDataBase().clear();
     for (var element in _globalSetting) {
-      VariableDataBase().varMapGlobal[element.$1] = element.$2;
+      VariableDataBase().setValue(element.$1, element.$2, ValueTypeLocation.global);
     }
     for (var i = startLine; i < lineSettings.length; i++) {
       var lineSetting = lineSettings[i];
