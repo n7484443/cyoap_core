@@ -22,7 +22,7 @@ ChoiceLineDesignPreset _$ChoiceLineDesignPresetFromJson(
 /// @nodoc
 mixin _$ChoiceLineDesignPreset {
   String get name => throw _privateConstructorUsedError;
-  int? get backgroundColor => throw _privateConstructorUsedError;
+  ColorOption get backgroundColorOption => throw _privateConstructorUsedError;
   String? get backgroundImageString => throw _privateConstructorUsedError;
   bool get alwaysVisibleLine => throw _privateConstructorUsedError;
 
@@ -40,9 +40,11 @@ abstract class $ChoiceLineDesignPresetCopyWith<$Res> {
   @useResult
   $Res call(
       {String name,
-      int? backgroundColor,
+      ColorOption backgroundColorOption,
       String? backgroundImageString,
       bool alwaysVisibleLine});
+
+  $ColorOptionCopyWith<$Res> get backgroundColorOption;
 }
 
 /// @nodoc
@@ -60,7 +62,7 @@ class _$ChoiceLineDesignPresetCopyWithImpl<$Res,
   @override
   $Res call({
     Object? name = null,
-    Object? backgroundColor = freezed,
+    Object? backgroundColorOption = null,
     Object? backgroundImageString = freezed,
     Object? alwaysVisibleLine = null,
   }) {
@@ -69,10 +71,10 @@ class _$ChoiceLineDesignPresetCopyWithImpl<$Res,
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      backgroundColor: freezed == backgroundColor
-          ? _value.backgroundColor
-          : backgroundColor // ignore: cast_nullable_to_non_nullable
-              as int?,
+      backgroundColorOption: null == backgroundColorOption
+          ? _value.backgroundColorOption
+          : backgroundColorOption // ignore: cast_nullable_to_non_nullable
+              as ColorOption,
       backgroundImageString: freezed == backgroundImageString
           ? _value.backgroundImageString
           : backgroundImageString // ignore: cast_nullable_to_non_nullable
@@ -82,6 +84,14 @@ class _$ChoiceLineDesignPresetCopyWithImpl<$Res,
           : alwaysVisibleLine // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ColorOptionCopyWith<$Res> get backgroundColorOption {
+    return $ColorOptionCopyWith<$Res>(_value.backgroundColorOption, (value) {
+      return _then(_value.copyWith(backgroundColorOption: value) as $Val);
+    });
   }
 }
 
@@ -96,9 +106,12 @@ abstract class _$$ChoiceLineDesignPresetImplCopyWith<$Res>
   @useResult
   $Res call(
       {String name,
-      int? backgroundColor,
+      ColorOption backgroundColorOption,
       String? backgroundImageString,
       bool alwaysVisibleLine});
+
+  @override
+  $ColorOptionCopyWith<$Res> get backgroundColorOption;
 }
 
 /// @nodoc
@@ -115,7 +128,7 @@ class __$$ChoiceLineDesignPresetImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? backgroundColor = freezed,
+    Object? backgroundColorOption = null,
     Object? backgroundImageString = freezed,
     Object? alwaysVisibleLine = null,
   }) {
@@ -124,10 +137,10 @@ class __$$ChoiceLineDesignPresetImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      backgroundColor: freezed == backgroundColor
-          ? _value.backgroundColor
-          : backgroundColor // ignore: cast_nullable_to_non_nullable
-              as int?,
+      backgroundColorOption: null == backgroundColorOption
+          ? _value.backgroundColorOption
+          : backgroundColorOption // ignore: cast_nullable_to_non_nullable
+              as ColorOption,
       backgroundImageString: freezed == backgroundImageString
           ? _value.backgroundImageString
           : backgroundImageString // ignore: cast_nullable_to_non_nullable
@@ -146,7 +159,7 @@ class __$$ChoiceLineDesignPresetImplCopyWithImpl<$Res>
 class _$ChoiceLineDesignPresetImpl implements _ChoiceLineDesignPreset {
   const _$ChoiceLineDesignPresetImpl(
       {required this.name,
-      this.backgroundColor,
+      this.backgroundColorOption = const ColorOption(),
       this.backgroundImageString,
       this.alwaysVisibleLine = false});
 
@@ -156,7 +169,8 @@ class _$ChoiceLineDesignPresetImpl implements _ChoiceLineDesignPreset {
   @override
   final String name;
   @override
-  final int? backgroundColor;
+  @JsonKey()
+  final ColorOption backgroundColorOption;
   @override
   final String? backgroundImageString;
   @override
@@ -165,7 +179,7 @@ class _$ChoiceLineDesignPresetImpl implements _ChoiceLineDesignPreset {
 
   @override
   String toString() {
-    return 'ChoiceLineDesignPreset(name: $name, backgroundColor: $backgroundColor, backgroundImageString: $backgroundImageString, alwaysVisibleLine: $alwaysVisibleLine)';
+    return 'ChoiceLineDesignPreset(name: $name, backgroundColorOption: $backgroundColorOption, backgroundImageString: $backgroundImageString, alwaysVisibleLine: $alwaysVisibleLine)';
   }
 
   @override
@@ -174,8 +188,8 @@ class _$ChoiceLineDesignPresetImpl implements _ChoiceLineDesignPreset {
         (other.runtimeType == runtimeType &&
             other is _$ChoiceLineDesignPresetImpl &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.backgroundColor, backgroundColor) ||
-                other.backgroundColor == backgroundColor) &&
+            (identical(other.backgroundColorOption, backgroundColorOption) ||
+                other.backgroundColorOption == backgroundColorOption) &&
             (identical(other.backgroundImageString, backgroundImageString) ||
                 other.backgroundImageString == backgroundImageString) &&
             (identical(other.alwaysVisibleLine, alwaysVisibleLine) ||
@@ -184,7 +198,7 @@ class _$ChoiceLineDesignPresetImpl implements _ChoiceLineDesignPreset {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, backgroundColor,
+  int get hashCode => Object.hash(runtimeType, name, backgroundColorOption,
       backgroundImageString, alwaysVisibleLine);
 
   @JsonKey(ignore: true)
@@ -205,7 +219,7 @@ class _$ChoiceLineDesignPresetImpl implements _ChoiceLineDesignPreset {
 abstract class _ChoiceLineDesignPreset implements ChoiceLineDesignPreset {
   const factory _ChoiceLineDesignPreset(
       {required final String name,
-      final int? backgroundColor,
+      final ColorOption backgroundColorOption,
       final String? backgroundImageString,
       final bool alwaysVisibleLine}) = _$ChoiceLineDesignPresetImpl;
 
@@ -215,7 +229,7 @@ abstract class _ChoiceLineDesignPreset implements ChoiceLineDesignPreset {
   @override
   String get name;
   @override
-  int? get backgroundColor;
+  ColorOption get backgroundColorOption;
   @override
   String? get backgroundImageString;
   @override

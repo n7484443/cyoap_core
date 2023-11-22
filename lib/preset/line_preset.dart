@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'node_preset.dart';
+
 part 'line_preset.freezed.dart';
 part 'line_preset.g.dart';
 
@@ -8,7 +10,7 @@ class ChoiceLineDesignPreset with _$ChoiceLineDesignPreset {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory ChoiceLineDesignPreset(
       {required String name,
-      int? backgroundColor,
+      @Default(ColorOption()) ColorOption backgroundColorOption,
       String? backgroundImageString,
       @Default(false) bool alwaysVisibleLine}) = _ChoiceLineDesignPreset;
 
