@@ -10,7 +10,10 @@ _$PlatformDesignSettingImpl _$$PlatformDesignSettingImplFromJson(Map json) =>
     _$PlatformDesignSettingImpl(
       variableFont: json['variableFont'] as String? ?? "notoSans",
       backgroundImage: json['backgroundImage'] as String?,
-      backgroundColor: json['backgroundColor'] as int?,
+      backgroundColorOption: json['backgroundColorOption'] == null
+          ? const ColorOption()
+          : ColorOption.fromJson(
+              Map<String, dynamic>.from(json['backgroundColorOption'] as Map)),
       backgroundAttribute: $enumDecodeNullable(
               _$ImageAttributeEnumMap, json['backgroundAttribute']) ??
           ImageAttribute.fit,
@@ -32,7 +35,7 @@ Map<String, dynamic> _$$PlatformDesignSettingImplToJson(
     <String, dynamic>{
       'variableFont': instance.variableFont,
       'backgroundImage': instance.backgroundImage,
-      'backgroundColor': instance.backgroundColor,
+      'backgroundColorOption': instance.backgroundColorOption.toJson(),
       'backgroundAttribute':
           _$ImageAttributeEnumMap[instance.backgroundAttribute]!,
       'choiceLinePresetList':

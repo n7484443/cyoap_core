@@ -23,7 +23,7 @@ PlatformDesignSetting _$PlatformDesignSettingFromJson(
 mixin _$PlatformDesignSetting {
   String get variableFont => throw _privateConstructorUsedError;
   String? get backgroundImage => throw _privateConstructorUsedError;
-  int? get backgroundColor => throw _privateConstructorUsedError;
+  ColorOption get backgroundColorOption => throw _privateConstructorUsedError;
   ImageAttribute get backgroundAttribute => throw _privateConstructorUsedError;
   List<ChoiceLineDesignPreset> get choiceLinePresetList =>
       throw _privateConstructorUsedError;
@@ -46,11 +46,13 @@ abstract class $PlatformDesignSettingCopyWith<$Res> {
   $Res call(
       {String variableFont,
       String? backgroundImage,
-      int? backgroundColor,
+      ColorOption backgroundColorOption,
       ImageAttribute backgroundAttribute,
       List<ChoiceLineDesignPreset> choiceLinePresetList,
       List<ChoiceNodeDesignPreset> choiceNodePresetList,
       double marginVertical});
+
+  $ColorOptionCopyWith<$Res> get backgroundColorOption;
 }
 
 /// @nodoc
@@ -69,7 +71,7 @@ class _$PlatformDesignSettingCopyWithImpl<$Res,
   $Res call({
     Object? variableFont = null,
     Object? backgroundImage = freezed,
-    Object? backgroundColor = freezed,
+    Object? backgroundColorOption = null,
     Object? backgroundAttribute = null,
     Object? choiceLinePresetList = null,
     Object? choiceNodePresetList = null,
@@ -84,10 +86,10 @@ class _$PlatformDesignSettingCopyWithImpl<$Res,
           ? _value.backgroundImage
           : backgroundImage // ignore: cast_nullable_to_non_nullable
               as String?,
-      backgroundColor: freezed == backgroundColor
-          ? _value.backgroundColor
-          : backgroundColor // ignore: cast_nullable_to_non_nullable
-              as int?,
+      backgroundColorOption: null == backgroundColorOption
+          ? _value.backgroundColorOption
+          : backgroundColorOption // ignore: cast_nullable_to_non_nullable
+              as ColorOption,
       backgroundAttribute: null == backgroundAttribute
           ? _value.backgroundAttribute
           : backgroundAttribute // ignore: cast_nullable_to_non_nullable
@@ -106,6 +108,14 @@ class _$PlatformDesignSettingCopyWithImpl<$Res,
               as double,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ColorOptionCopyWith<$Res> get backgroundColorOption {
+    return $ColorOptionCopyWith<$Res>(_value.backgroundColorOption, (value) {
+      return _then(_value.copyWith(backgroundColorOption: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -120,11 +130,14 @@ abstract class _$$PlatformDesignSettingImplCopyWith<$Res>
   $Res call(
       {String variableFont,
       String? backgroundImage,
-      int? backgroundColor,
+      ColorOption backgroundColorOption,
       ImageAttribute backgroundAttribute,
       List<ChoiceLineDesignPreset> choiceLinePresetList,
       List<ChoiceNodeDesignPreset> choiceNodePresetList,
       double marginVertical});
+
+  @override
+  $ColorOptionCopyWith<$Res> get backgroundColorOption;
 }
 
 /// @nodoc
@@ -141,7 +154,7 @@ class __$$PlatformDesignSettingImplCopyWithImpl<$Res>
   $Res call({
     Object? variableFont = null,
     Object? backgroundImage = freezed,
-    Object? backgroundColor = freezed,
+    Object? backgroundColorOption = null,
     Object? backgroundAttribute = null,
     Object? choiceLinePresetList = null,
     Object? choiceNodePresetList = null,
@@ -156,10 +169,10 @@ class __$$PlatformDesignSettingImplCopyWithImpl<$Res>
           ? _value.backgroundImage
           : backgroundImage // ignore: cast_nullable_to_non_nullable
               as String?,
-      backgroundColor: freezed == backgroundColor
-          ? _value.backgroundColor
-          : backgroundColor // ignore: cast_nullable_to_non_nullable
-              as int?,
+      backgroundColorOption: null == backgroundColorOption
+          ? _value.backgroundColorOption
+          : backgroundColorOption // ignore: cast_nullable_to_non_nullable
+              as ColorOption,
       backgroundAttribute: null == backgroundAttribute
           ? _value.backgroundAttribute
           : backgroundAttribute // ignore: cast_nullable_to_non_nullable
@@ -187,7 +200,7 @@ class _$PlatformDesignSettingImpl implements _PlatformDesignSetting {
   _$PlatformDesignSettingImpl(
       {this.variableFont = "notoSans",
       this.backgroundImage,
-      this.backgroundColor,
+      this.backgroundColorOption = const ColorOption(),
       this.backgroundAttribute = ImageAttribute.fit,
       final List<ChoiceLineDesignPreset> choiceLinePresetList = const [
         ChoiceLineDesignPreset(name: 'default')
@@ -208,7 +221,8 @@ class _$PlatformDesignSettingImpl implements _PlatformDesignSetting {
   @override
   final String? backgroundImage;
   @override
-  final int? backgroundColor;
+  @JsonKey()
+  final ColorOption backgroundColorOption;
   @override
   @JsonKey()
   final ImageAttribute backgroundAttribute;
@@ -238,7 +252,7 @@ class _$PlatformDesignSettingImpl implements _PlatformDesignSetting {
 
   @override
   String toString() {
-    return 'PlatformDesignSetting(variableFont: $variableFont, backgroundImage: $backgroundImage, backgroundColor: $backgroundColor, backgroundAttribute: $backgroundAttribute, choiceLinePresetList: $choiceLinePresetList, choiceNodePresetList: $choiceNodePresetList, marginVertical: $marginVertical)';
+    return 'PlatformDesignSetting(variableFont: $variableFont, backgroundImage: $backgroundImage, backgroundColorOption: $backgroundColorOption, backgroundAttribute: $backgroundAttribute, choiceLinePresetList: $choiceLinePresetList, choiceNodePresetList: $choiceNodePresetList, marginVertical: $marginVertical)';
   }
 
   @override
@@ -250,8 +264,8 @@ class _$PlatformDesignSettingImpl implements _PlatformDesignSetting {
                 other.variableFont == variableFont) &&
             (identical(other.backgroundImage, backgroundImage) ||
                 other.backgroundImage == backgroundImage) &&
-            (identical(other.backgroundColor, backgroundColor) ||
-                other.backgroundColor == backgroundColor) &&
+            (identical(other.backgroundColorOption, backgroundColorOption) ||
+                other.backgroundColorOption == backgroundColorOption) &&
             (identical(other.backgroundAttribute, backgroundAttribute) ||
                 other.backgroundAttribute == backgroundAttribute) &&
             const DeepCollectionEquality()
@@ -268,7 +282,7 @@ class _$PlatformDesignSettingImpl implements _PlatformDesignSetting {
       runtimeType,
       variableFont,
       backgroundImage,
-      backgroundColor,
+      backgroundColorOption,
       backgroundAttribute,
       const DeepCollectionEquality().hash(_choiceLinePresetList),
       const DeepCollectionEquality().hash(_choiceNodePresetList),
@@ -293,7 +307,7 @@ abstract class _PlatformDesignSetting implements PlatformDesignSetting {
   factory _PlatformDesignSetting(
       {final String variableFont,
       final String? backgroundImage,
-      final int? backgroundColor,
+      final ColorOption backgroundColorOption,
       final ImageAttribute backgroundAttribute,
       final List<ChoiceLineDesignPreset> choiceLinePresetList,
       final List<ChoiceNodeDesignPreset> choiceNodePresetList,
@@ -307,7 +321,7 @@ abstract class _PlatformDesignSetting implements PlatformDesignSetting {
   @override
   String? get backgroundImage;
   @override
-  int? get backgroundColor;
+  ColorOption get backgroundColorOption;
   @override
   ImageAttribute get backgroundAttribute;
   @override
