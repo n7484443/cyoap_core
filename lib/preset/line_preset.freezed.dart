@@ -159,7 +159,7 @@ class __$$ChoiceLineDesignPresetImplCopyWithImpl<$Res>
 class _$ChoiceLineDesignPresetImpl implements _ChoiceLineDesignPreset {
   const _$ChoiceLineDesignPresetImpl(
       {required this.name,
-      this.backgroundColorOption = const ColorOption(),
+      this.backgroundColorOption = const ColorOption(color: 0),
       this.backgroundImageString,
       this.alwaysVisibleLine = false});
 

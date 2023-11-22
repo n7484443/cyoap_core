@@ -10,7 +10,7 @@ _$ChoiceLineDesignPresetImpl _$$ChoiceLineDesignPresetImplFromJson(Map json) =>
     _$ChoiceLineDesignPresetImpl(
       name: json['name'] as String,
       backgroundColorOption: json['background_color_option'] == null
-          ? const ColorOption()
+          ? const ColorOption(color: 0)
           : ColorOption.fromJson(Map<String, dynamic>.from(
               json['background_color_option'] as Map)),
       backgroundImageString: json['background_image_string'] as String?,

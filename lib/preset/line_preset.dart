@@ -10,7 +10,7 @@ class ChoiceLineDesignPreset with _$ChoiceLineDesignPreset {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory ChoiceLineDesignPreset(
       {required String name,
-      @Default(ColorOption()) ColorOption backgroundColorOption,
+      @Default(ColorOption(color: 0)) ColorOption backgroundColorOption,
       String? backgroundImageString,
       @Default(false) bool alwaysVisibleLine}) = _ChoiceLineDesignPreset;
 
