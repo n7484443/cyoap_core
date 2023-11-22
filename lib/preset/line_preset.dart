@@ -7,7 +7,7 @@ part 'line_preset.g.dart';
 
 @freezed
 class ChoiceLineDesignPreset with _$ChoiceLineDesignPreset {
-  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
+  @JsonSerializable(explicitToJson: true)
   const factory ChoiceLineDesignPreset(
       {required String name,
       @Default(ColorOption(color: 0)) ColorOption backgroundColorOption,

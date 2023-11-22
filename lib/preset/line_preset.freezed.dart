@@ -155,7 +155,7 @@ class __$$ChoiceLineDesignPresetImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
+@JsonSerializable(explicitToJson: true)
 class _$ChoiceLineDesignPresetImpl implements _ChoiceLineDesignPreset {
   const _$ChoiceLineDesignPresetImpl(
       {required this.name,
