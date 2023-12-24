@@ -13,9 +13,6 @@ class ChoicePage extends Choice {
   void generateParser() {}
 
   @override
-  void initValueTypeWrapper() {}
-
-  @override
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = super.toJson();
     map.addAll({
