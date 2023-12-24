@@ -116,10 +116,10 @@ class ChoiceLine extends Choice {
     }
     if (!needUpdate &&
         firstLine &&
-        !recursiveStatus.analyseClickable(errorName)) {
+        !isOpen()) {
       for (var n in nodes) {
         if (n.select == 0 && n.isSelectableMode) {
-          n.selectableStatus = selectableStatus.copyWith(isOpen: true);
+          n.selectableStatus = selectableStatus.copyWith(isOpen: false);
         }
       }
       return false;
