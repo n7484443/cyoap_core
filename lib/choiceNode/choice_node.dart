@@ -161,14 +161,12 @@ class ChoiceNode extends Choice {
         select = select.clamp(0, maximumStatus);
         break;
       case ChoiceNodeMode.randomMode:
-        select = 1 - select;
-        if (select == 0) {
-          if (maximumStatus >= 0) {
-            random = Random(seed).nextInt(maximumStatus);
-          }
+        if (select == 0 && maximumStatus >= 0) {
+          random = Random(seed).nextInt(maximumStatus);
         } else {
           random = -1;
         }
+        select = 1 - select;
         break;
       case ChoiceNodeMode.unSelectableMode:
         break;
@@ -202,7 +200,7 @@ class ChoiceNode extends Choice {
     if (!isOpen()) return false;
     switch (choiceNodeMode) {
       case ChoiceNodeMode.unSelectableMode:
-        return selectableStatus.isHide;
+        return !isHide();
       case ChoiceNodeMode.onlyCode:
         return true;
       default:

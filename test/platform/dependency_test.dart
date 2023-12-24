@@ -36,18 +36,20 @@ void main() {
     expect(choiceNode0.select, 1);
     expect(choiceNode1.select, 1);
     expect(choiceNode2.select, 1);
-    expect(choiceNode0.selectableStatus.isOpen, true);
-    expect(choiceNode1.selectableStatus.isOpen, true);
-    expect(choiceNode2.selectableStatus.isOpen, true);
+    expect(choiceNode0.isOpen(), true);
+    expect(choiceNode1.isOpen(), true);
+    expect(choiceNode1.isHide(), false);
+    expect(choiceNode2.isOpen(), true);
     choiceNode0.selectNode(0);
     platform.updateStatusAll();
 
     expect(choiceNode0.select, 0);
-    expect(choiceNode1.select, 0);
+    expect(choiceNode1.select, 1);
     expect(choiceNode2.select, 0);
-    expect(choiceNode0.selectableStatus.isOpen, true);
-    expect(choiceNode1.selectableStatus.isHide, true);
-    expect(choiceNode2.selectableStatus.isOpen, false);
+    expect(choiceNode0.isOpen(), true);
+    expect(choiceNode1.isOpen(), true);
+    expect(choiceNode1.isHide(), true);
+    expect(choiceNode2.isOpen(), false);
   });
 
   test('forced_uncheck0', () {

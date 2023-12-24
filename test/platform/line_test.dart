@@ -25,28 +25,28 @@ void main() {
 
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 0);
-    expect(choiceNode0.selectableStatus.isOpen, true);
-    expect(choiceNode1.selectableStatus.isOpen, true);
-    expect(choiceNode2.selectableStatus.isOpen, true);
-    expect(lineSetting.selectableStatus.isOpen, true);
+    expect(choiceNode0.isOpen(), true);
+    expect(choiceNode1.isOpen(), true);
+    expect(choiceNode2.isOpen(), true);
+    expect(lineSetting.isOpen(), true);
     choiceNode0.selectNode(0);
     platform.updateStatusAll();
 
     expect(choiceNode0.select, 1);
     expect(choiceNode1.select, 0);
-    expect(choiceNode0.selectableStatus.isOpen, true);
-    expect(choiceNode1.selectableStatus.isOpen, false);
-    expect(choiceNode2.selectableStatus.isOpen, true);
-    expect(lineSetting.selectableStatus.isOpen, true);
+    expect(choiceNode0.isOpen(), true);
+    expect(choiceNode1.isOpen(), false);
+    expect(choiceNode2.isOpen(), true);
+    expect(lineSetting.isOpen(), true);
     choiceNode1.selectNode(0);
     platform.updateStatusAll();
 
     expect(choiceNode0.select, 1);
     expect(choiceNode1.select, 0);
-    expect(choiceNode0.selectableStatus.isOpen, true);
-    expect(choiceNode1.selectableStatus.isOpen, false);
-    expect(choiceNode2.selectableStatus.isOpen, true);
-    expect(lineSetting.selectableStatus.isOpen, true);
+    expect(choiceNode0.isOpen(), true);
+    expect(choiceNode1.isOpen(), false);
+    expect(choiceNode2.isOpen(), true);
+    expect(lineSetting.isOpen(), true);
     choiceNode0.selectNode(0);
     platform.updateStatusAll();
     choiceNode1.selectNode(0);
@@ -54,28 +54,28 @@ void main() {
 
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 1);
-    expect(choiceNode0.selectableStatus.isOpen, false);
-    expect(choiceNode1.selectableStatus.isOpen, true);
-    expect(choiceNode2.selectableStatus.isOpen, true);
-    expect(lineSetting.selectableStatus.isOpen, true);
+    expect(choiceNode0.isOpen(), false);
+    expect(choiceNode1.isOpen(), true);
+    expect(choiceNode2.isOpen(), true);
+    expect(lineSetting.isOpen(), true);
     choiceNode0.selectNode(0);
     platform.updateStatusAll();
 
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 1);
-    expect(choiceNode0.selectableStatus.isOpen, false);
-    expect(choiceNode1.selectableStatus.isOpen, true);
-    expect(choiceNode2.selectableStatus.isOpen, true);
-    expect(lineSetting.selectableStatus.isOpen, true);
+    expect(choiceNode0.isOpen(), false);
+    expect(choiceNode1.isOpen(), true);
+    expect(choiceNode2.isOpen(), true);
+    expect(lineSetting.isOpen(), true);
     choiceNode1.selectNode(0);
     platform.updateStatusAll();
 
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 0);
-    expect(choiceNode0.selectableStatus.isOpen, true);
-    expect(choiceNode1.selectableStatus.isOpen, true);
-    expect(choiceNode2.selectableStatus.isOpen, true);
-    expect(lineSetting.selectableStatus.isOpen, true);
+    expect(choiceNode0.isOpen(), true);
+    expect(choiceNode1.isOpen(), true);
+    expect(choiceNode2.isOpen(), true);
+    expect(lineSetting.isOpen(), true);
   });
 
   test('lineHideTest', () {
@@ -94,24 +94,27 @@ void main() {
 
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 0);
-    expect(lineSetting1.selectableStatus.isHide, true);
+
+    print(lineSetting1.recursiveStatus.analyseVisible("Asdf"));
+    print(lineSetting1.isHide());
+    expect(lineSetting1.isHide(), true);
     choiceNode0.selectNode(0);
     platform.updateStatusAll();
 
     expect(choiceNode0.select, 1);
     expect(choiceNode1.select, 0);
-    expect(lineSetting1.selectableStatus.isOpen, true);
+    expect(lineSetting1.isHide(), false);
     choiceNode1.selectNode(0);
     platform.updateStatusAll();
 
     expect(choiceNode0.select, 1);
     expect(choiceNode1.select, 1);
-    expect(lineSetting1.selectableStatus.isOpen, true);
+    expect(lineSetting1.isHide(), false);
     choiceNode0.selectNode(0);
     platform.updateStatusAll();
 
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 1);
-    expect(lineSetting1.selectableStatus.isHide, true);
+    expect(lineSetting1.isHide(), true);
   });
 }

@@ -91,11 +91,7 @@ class ChoiceLine extends Choice {
 
   @override
   void updateStatus() {
-    if (recursiveStatus.analyseVisible(errorName)) {
-      selectableStatus = selectableStatus.copyWith(isHide: true);
-    } else {
-      selectableStatus = selectableStatus.copyWith(isHide: false);
-    }
+    selectableStatus = selectableStatus.copyWith(isHide: !recursiveStatus.analyseVisible(errorName));
     _sortAndProcessNodesByDepth();
   }
 

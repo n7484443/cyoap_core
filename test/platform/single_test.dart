@@ -58,7 +58,6 @@ void main() {
 
 
     platform.lineSettings[0].addChildren(choiceNode);
-    //platform.lineSettings[0].addChildren(choiceNode2);
     choiceNode.generateParser();
 
     platform.addGlobalSetting('testInput', ValueTypeWrapper(ValueType.bool(false)));
