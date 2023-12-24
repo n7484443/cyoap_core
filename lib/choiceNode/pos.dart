@@ -57,13 +57,3 @@ class Pos with _$Pos {
     return contain(other);
   }
 }
-
-@freezed
-class Position with _$Position {
-  const factory Position(
-      {@Default(0) int x, @Default(0) int y, @Default(1) int w}) = _Position;
-
-  factory Position.fromJson(Map<String, dynamic> json) => _$PositionFromJson(json);
-
-  const Position._();
-}

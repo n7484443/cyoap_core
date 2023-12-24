@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:cyoap_core/choiceNode/pos.dart';
 import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/i18n.dart';
 import 'package:cyoap_core/option.dart';
@@ -58,7 +57,6 @@ class ChoiceNode extends Choice {
   int select = 0;
 
   int seed = Random().nextInt(seedMax);
-  Position position = Position();
 
   @override
   void generateParser() {
@@ -128,8 +126,7 @@ class ChoiceNode extends Choice {
             ? ChoiceNodeMode.defaultMode
             : ((json['isSelectable'] ?? true)
                 ? ChoiceNodeMode.values.byName(json['choiceNodeMode'])
-                : ChoiceNodeMode.unSelectableMode),
-        position = json['position'] == null ? Position() : Position.fromJson(json['position']) {
+                : ChoiceNodeMode.unSelectableMode){
     width = json['width'] ?? 2;
     currentPos = json['x'] ?? json['pos'];
     recursiveStatus = RecursiveStatus.fromJson(json);
@@ -149,7 +146,6 @@ class ChoiceNode extends Choice {
       'contentsString': _contentsString,
       'image': imageString,
       'choiceNodeMode': choiceNodeMode.name,
-      'position': position.toJson(),
     });
     map.addAll(choiceNodeOption.toJson());
     return map;
