@@ -95,6 +95,16 @@ class ChoiceLine extends Choice {
     _sortAndProcessNodesByDepth();
   }
 
+  @override
+  bool isHide(){
+    return selectableStatus.isHide;
+  }
+
+  @override
+  bool isOpen(){
+    return selectableStatus.isOpen;
+  }
+
   bool _checkCondition(List<ChoiceNode> nodes,
       {firstLine = false, required enableCancelFeature}) {
     var needUpdate = false;
