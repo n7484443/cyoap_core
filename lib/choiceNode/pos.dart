@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'pos.freezed.dart';
+
 part 'pos.g.dart';
 
 @freezed
@@ -32,7 +33,7 @@ class Pos with _$Pos {
   Pos removeLast() {
     return Pos(data: [...data]..removeLast());
   }
-  
+
   Pos removeFirst() {
     return Pos(data: [...data]..removeAt(0));
   }
@@ -49,10 +50,20 @@ class Pos with _$Pos {
     return true;
   }
 
-  bool isParent(Pos other){
-    if(data.length > other.length){
+  bool isParent(Pos other) {
+    if (data.length > other.length) {
       return false;
     }
     return contain(other);
   }
+}
+
+@freezed
+class Position with _$Position {
+  const factory Position(
+      {@Default(0) int x, @Default(0) int y, @Default(1) int w}) = _Position;
+
+  factory Position.fromJson(Map<String, dynamic> json) => _$PositionFromJson(json);
+
+  const Position._();
 }
