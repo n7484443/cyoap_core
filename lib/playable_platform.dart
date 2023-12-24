@@ -12,6 +12,7 @@ import 'design_setting.dart';
 const int nonPositioned = -1;
 
 class PlayablePlatform {
+  int fileVersion = 1;
   String? stringImageName;
   List<ChoiceLine> lineSettings = List.empty(growable: true);
   List<(String, ValueTypeWrapper)> _globalSetting = [];
@@ -49,7 +50,8 @@ class PlayablePlatform {
 
   PlayablePlatform.fromJson(Map<String, dynamic> json)
       : stringImageName = json['stringImageName'] ?? '',
-        designSetting = PlatformDesignSetting.fromJson(json) {
+        designSetting = PlatformDesignSetting.fromJson(json),
+        fileVersion = json['fileVersion'] ?? 0 {
     if (json['globalSetting'] is Map) {
       _globalSetting = (json['globalSetting'] as Map)
           .keys
