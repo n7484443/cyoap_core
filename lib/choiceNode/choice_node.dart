@@ -126,7 +126,7 @@ class ChoiceNode extends Choice {
             ? ChoiceNodeMode.defaultMode
             : ((json['isSelectable'] ?? true)
                 ? ChoiceNodeMode.values.byName(json['choiceNodeMode'])
-                : ChoiceNodeMode.unSelectableMode){
+                : ChoiceNodeMode.unSelectableMode) {
     width = json['width'] ?? 2;
     currentPos = json['x'] ?? json['pos'];
     recursiveStatus = RecursiveStatus.fromJson(json);
@@ -151,59 +151,72 @@ class ChoiceNode extends Choice {
     return map;
   }
 
-  bool canDisableSelect(int n) {
+  void selectNode(int n) {
+    if(!isOpen()){
+      return;
+    }
     switch (choiceNodeMode) {
       case ChoiceNodeMode.multiSelect:
-        return n < 0;
-      case ChoiceNodeMode.defaultMode:
+        select += n;
+        select = select.clamp(0, maximumStatus);
+        break;
       case ChoiceNodeMode.randomMode:
-        return select == 1;
-      default:
-        return false;
-    }
-  }
-
-  void selectNode(int n, {bool disableCheck = false}) {
-    if (disableCheck || (canDisableSelect(n) || checkParentClickable())) {
-      switch (choiceNodeMode) {
-        case ChoiceNodeMode.multiSelect:
-          select += n;
-          select = select.clamp(0, maximumStatus);
-          break;
-        case ChoiceNodeMode.randomMode:
-          if (select == 0) {
-            select = 1;
-            if (maximumStatus >= 0) {
-              random = Random(seed).nextInt(maximumStatus);
-            }
-          } else {
-            select = 0;
-            random = -1;
+        select = 1 - select;
+        if (select == 0) {
+          if (maximumStatus >= 0) {
+            random = Random(seed).nextInt(maximumStatus);
           }
-          break;
-        case ChoiceNodeMode.unSelectableMode:
-          break;
-        default:
-          select = 1 - select;
-          break;
-      }
-      seed = Random().nextInt(seedMax);
+        } else {
+          random = -1;
+        }
+        break;
+      case ChoiceNodeMode.unSelectableMode:
+        break;
+      default:
+        select = 1 - select;
+        break;
     }
+    seed = Random().nextInt(seedMax);
     if (Option().isDebugMode && Option().enableSelectLog) {
       print(
-          "$errorName $select $selectableStatus $choiceNodeMode ${canDisableSelect(n)} ${checkParentClickable()}");
+          "$errorName $select $selectableStatus $choiceNodeMode ${isOpen()}");
     }
   }
 
   @override
-  bool isExecutable() {
+  bool isOpen() {
+    if (parent == null) return true;
+    if (!parent!.isExecute()) return false;
     switch (choiceNodeMode) {
       case ChoiceNodeMode.unSelectableMode:
-        return selectableStatus.isOpen();
+        return true;
       case ChoiceNodeMode.onlyCode:
         return true;
       default:
-        return selectableStatus.isOpen() && select > 0;
+        return selectableStatus.isOpen;
+    }
+  }
+
+  @override
+  bool isExecute() {
+    if (!isOpen()) return false;
+    switch (choiceNodeMode) {
+      case ChoiceNodeMode.unSelectableMode:
+        return selectableStatus.isHide;
+      case ChoiceNodeMode.onlyCode:
+        return true;
+      default:
+        return select > 0;
+    }
+  }
+
+  @override
+  bool isHide() {
+    switch (choiceNodeMode) {
+      case ChoiceNodeMode.onlyCode:
+        return true;
+      default:
+        return super.isHide();
     }
   }
 
@@ -253,25 +266,17 @@ class ChoiceNode extends Choice {
   String get errorName => "${pos.data.toString()} $title";
 
   @override
-  bool checkParentClickable({bool first = true}) {
-    if (!selectableStatus.isOpen()) {
-      return false;
-    }
-    if (!first && !isExecutable()) {
-      return false;
-    }
-    return super.checkParentClickable();
-  }
-
-  @override
   void updateStatus() {}
 
   void updateSelectionStatus() {
     var titleWhitespaceRemoved = title.replaceAll(" ", "");
     VariableDataBase().setValue(
-        titleWhitespaceRemoved,
-        ValueTypeWrapper(ValueType.bool(isExecutable())),
-        ValueTypeLocation.global);
+      titleWhitespaceRemoved,
+      ValueTypeWrapper(
+        ValueType.bool(isExecute()),
+      ),
+      ValueTypeLocation.global,
+    );
     if (choiceNodeMode == ChoiceNodeMode.randomMode) {
       VariableDataBase().setValue('$titleWhitespaceRemoved:random',
           ValueTypeWrapper(ValueType.int(random)), ValueTypeLocation.global);
@@ -283,7 +288,7 @@ class ChoiceNode extends Choice {
   }
 
   void execute() {
-    if (!isExecutable()) {
+    if (!isExecute()) {
       return;
     }
     recursiveStatus.execute(errorName, seedInput: seed);
@@ -297,43 +302,15 @@ class ChoiceNode extends Choice {
       if (select == 0 &&
           isSelectableMode &&
           !parent!.recursiveStatus.analyseClickable(errorName)) {
-        selectableStatus = SelectableStatus.closed;
+        selectableStatus = selectableStatus.copyWith(isOpen: false);
         return !(beforeStatus == selectableStatus && beforeSelect == select);
       }
     }
     var click = recursiveStatus.analyseClickable(errorName, seedInput: seed);
     var visible = recursiveStatus.analyseVisible(errorName, seedInput: seed);
-    if (click && visible) {
-      selectableStatus = SelectableStatus.open;
-    } else if (!visible) {
-      selectableStatus = SelectableStatus.hide;
+    selectableStatus = SelectableStatus(isHide: !visible, isOpen: click);
+    if (!isExecute()) {
       select = 0;
-    } else if (!click) {
-      selectableStatus = SelectableStatus.closed;
-      select = 0;
-    }
-
-    if (parent is ChoiceNode) {
-      ChoiceNode parent = this.parent as ChoiceNode;
-      if (parent.selectableStatus == SelectableStatus.hide) {
-        selectableStatus = SelectableStatus.hide;
-        select = 0;
-      } else if (parent.selectableStatus == SelectableStatus.closed) {
-        if (selectableStatus != SelectableStatus.hide) {
-          selectableStatus = parent.selectableStatus;
-        }
-        select = 0;
-      } else if (parent.select == 0 &&
-          parent.isSelectableMode &&
-          selectableStatus == SelectableStatus.open) {
-        selectableStatus = SelectableStatus.closed;
-        select = 0;
-      }
-
-      if (select > 0 && parent.select == 0) {
-        selectableStatus = SelectableStatus.closed;
-        select = 0;
-      }
     }
     return !(beforeStatus == selectableStatus && beforeSelect == select);
   }

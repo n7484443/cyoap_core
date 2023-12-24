@@ -4,13 +4,13 @@ import 'selectable_status.dart';
 
 //실행은 ChoiceLine 단위로, 위에서 아래로 실행된다.
 //부모 Choice가 숨겨져 있거나 꺼져 있는 경우, 자식도 숨겨지거나 꺼진다.
-//같은 부모의 자식들은 동일 우선도로 규정하여, 앞의 Choice 가 뒤의 Choice 의 조건을 만족할 수 있고, 반대도 가능하다.
+//숨겨도 실행된다. 반대로 꺼지면 실행되지 않는다.
 //다른 부모의 자식들은 부모의 순서에 우선한다.
 //즉 너비 우선 탐색을 활용해야 할 듯 하다.
 //시작 전 ValueType 과 결과 ValueType을 저장해야 한다.
 
 abstract class Choice {
-  SelectableStatus selectableStatus = SelectableStatus.open;
+  SelectableStatus selectableStatus = SelectableStatus(isHide: false, isOpen: true);
 
   void generateParser() {
     recursiveStatus.compile(errorName);
@@ -40,10 +40,20 @@ abstract class Choice {
 
   bool get isSelectableMode => true;
 
-  bool get isHide => selectableStatus.isHide();
+  bool isOpen(){
+    if(parent == null) return true;
+    if(!parent!.isOpen()) return false;
+    return selectableStatus.isOpen;
+  }
 
-  bool isExecutable() {
-    return true;
+  bool isHide(){
+    if(parent == null) return false;
+    if(parent!.isHide()) return true;
+    return selectableStatus.isHide;
+  }
+
+  bool isExecute(){
+    return isOpen();
   }
 
   Pos get pos {
@@ -73,10 +83,6 @@ abstract class Choice {
   }
 
   String get errorName => pos.toString();
-
-  bool checkParentClickable({bool first = true}) {
-    return parent?.checkParentClickable(first: false) ?? true;
-  }
 
   void updateStatus();
 }

@@ -20,6 +20,9 @@ class PlayablePlatform {
 
   PlatformDesignSetting designSetting = PlatformDesignSetting();
 
+  List<List<String>> selectedChoiceOrder = [];
+
+
   PlayablePlatform();
 
   void addGlobalSetting(String name, ValueTypeWrapper wrapper) {
@@ -95,12 +98,12 @@ class PlayablePlatform {
     return lineSettings[y];
   }
 
-  void updateStatusAll({int startLine = 0}) {
+  void updateStatusAll() {
     VariableDataBase().clear();
     for (var element in _globalSetting) {
       VariableDataBase().setValue(element.$1, element.$2, ValueTypeLocation.global);
     }
-    for (var i = startLine; i < lineSettings.length; i++) {
+    for (var i = 0; i < lineSettings.length; i++) {
       var lineSetting = lineSettings[i];
       lineSetting.updateStatus();
       VariableDataBase().clearLocalVariable();
@@ -118,7 +121,7 @@ class PlayablePlatform {
     for (var line in lineSettings) {
       for (var choice in line.children) {
         (choice as ChoiceNode).doAllChild((node) {
-          if (node.isExecutable() &&
+          if (node.isOpen() &&
               node.isSelectableMode &&
               !node.choiceNodeOption.hideAsResult) {
             selectedPos.add((node.pos, node.select));
@@ -137,7 +140,7 @@ class PlayablePlatform {
     for (var data in jsonDecoded) {
       var pos = Pos(data: (data['pos'] as List).map((e) => e as int).toList());
       var select = data['select'] as int;
-      getChoiceNode(pos)?.selectNode(select, disableCheck: true);
+      getChoiceNode(pos)?.selectNode(select);
     }
     updateStatusAll();
   }

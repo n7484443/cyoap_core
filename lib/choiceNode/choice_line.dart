@@ -1,6 +1,5 @@
 import 'dart:collection';
 
-import 'package:cyoap_core/choiceNode/selectable_status.dart';
 import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/variable_db.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -91,19 +90,11 @@ class ChoiceLine extends Choice {
   String get errorName => "${pos.data.toString()} $valName";
 
   @override
-  bool checkParentClickable({bool first = false}) {
-    if (selectableStatus.isHide()) {
-      return false;
-    }
-    return true;
-  }
-
-  @override
   void updateStatus() {
     if (recursiveStatus.analyseVisible(errorName)) {
-      selectableStatus = SelectableStatus.open;
+      selectableStatus = selectableStatus.copyWith(isHide: true);
     } else {
-      selectableStatus = SelectableStatus.hide;
+      selectableStatus = selectableStatus.copyWith(isHide: false);
     }
     _sortAndProcessNodesByDepth();
   }
@@ -122,7 +113,7 @@ class ChoiceLine extends Choice {
         !recursiveStatus.analyseClickable(errorName)) {
       for (var n in nodes) {
         if (n.select == 0 && n.isSelectableMode) {
-          n.selectableStatus = SelectableStatus.closed;
+          n.selectableStatus = selectableStatus.copyWith(isOpen: true);
         }
       }
       return false;

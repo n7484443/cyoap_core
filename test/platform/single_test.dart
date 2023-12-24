@@ -17,12 +17,18 @@ void main() {
     platform.updateStatusAll();
 
     expect(ins.getValueType("testNode")?.dataUnzip, false);
+    expect(choiceNode.isOpen(), true);
+    expect(choiceNode.isExecute(), false);
     choiceNode.selectNode(0);
     platform.updateStatusAll();
     expect(ins.getValueType("testNode")?.dataUnzip, true);
+    expect(choiceNode.isOpen(), true);
+    expect(choiceNode.isExecute(), true);
     choiceNode.selectNode(0);
     platform.updateStatusAll();
     expect(ins.getValueType("testNode")?.dataUnzip, false);
+    expect(choiceNode.isOpen(), true);
+    expect(choiceNode.isExecute(), false);
   });
 
   test('defaultModeTest_nonSelectable', () {
@@ -66,8 +72,6 @@ void main() {
     platform.updateStatusAll();
     expect(ins.getValueType("testNode")?.dataUnzip, true);
     expect(ins.getValueType("point")?.dataUnzip, 1);
-
-
     //expect(ins.getValueType("testNode2")?.dataUnzip, true);
   });
 

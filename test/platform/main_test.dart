@@ -7,7 +7,7 @@ import 'package:test/test.dart';
 void printStatus(List<ChoiceNode> choiceNode) {
   for (var element in choiceNode) {
     print(
-        "${element.pos} ${element.select} ${element.selectableStatus} ${element.checkParentClickable()}");
+        "${element.pos} ${element.select} ${element.selectableStatus} ${element.isOpen()}");
   }
 }
 

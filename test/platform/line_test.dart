@@ -1,12 +1,11 @@
 import 'package:cyoap_core/choiceNode/choice_line.dart';
 import 'package:cyoap_core/choiceNode/choice_node.dart';
-import 'package:cyoap_core/choiceNode/selectable_status.dart';
 import 'package:cyoap_core/playable_platform.dart';
 import 'package:test/test.dart';
 
 void printStatus(List<ChoiceNode> choiceNode){
   for (var element in choiceNode) {
-    print("${element.pos} ${element.select} ${element.selectableStatus} ${element.checkParentClickable()}");
+    print("${element.pos} ${element.select} ${element.selectableStatus} ${element.isOpen()}");
   }
 }
 
@@ -26,28 +25,28 @@ void main() {
 
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 0);
-    expect(choiceNode0.selectableStatus, SelectableStatus.open);
-    expect(choiceNode1.selectableStatus, SelectableStatus.open);
-    expect(choiceNode2.selectableStatus, SelectableStatus.open);
-    expect(lineSetting.selectableStatus, SelectableStatus.open);
+    expect(choiceNode0.selectableStatus.isOpen, true);
+    expect(choiceNode1.selectableStatus.isOpen, true);
+    expect(choiceNode2.selectableStatus.isOpen, true);
+    expect(lineSetting.selectableStatus.isOpen, true);
     choiceNode0.selectNode(0);
     platform.updateStatusAll();
 
     expect(choiceNode0.select, 1);
     expect(choiceNode1.select, 0);
-    expect(choiceNode0.selectableStatus, SelectableStatus.open);
-    expect(choiceNode1.selectableStatus, SelectableStatus.closed);
-    expect(choiceNode2.selectableStatus, SelectableStatus.open);
-    expect(lineSetting.selectableStatus, SelectableStatus.open);
+    expect(choiceNode0.selectableStatus.isOpen, true);
+    expect(choiceNode1.selectableStatus.isOpen, false);
+    expect(choiceNode2.selectableStatus.isOpen, true);
+    expect(lineSetting.selectableStatus.isOpen, true);
     choiceNode1.selectNode(0);
     platform.updateStatusAll();
 
     expect(choiceNode0.select, 1);
     expect(choiceNode1.select, 0);
-    expect(choiceNode0.selectableStatus, SelectableStatus.open);
-    expect(choiceNode1.selectableStatus, SelectableStatus.closed);
-    expect(choiceNode2.selectableStatus, SelectableStatus.open);
-    expect(lineSetting.selectableStatus, SelectableStatus.open);
+    expect(choiceNode0.selectableStatus.isOpen, true);
+    expect(choiceNode1.selectableStatus.isOpen, false);
+    expect(choiceNode2.selectableStatus.isOpen, true);
+    expect(lineSetting.selectableStatus.isOpen, true);
     choiceNode0.selectNode(0);
     platform.updateStatusAll();
     choiceNode1.selectNode(0);
@@ -55,28 +54,28 @@ void main() {
 
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 1);
-    expect(choiceNode0.selectableStatus, SelectableStatus.closed);
-    expect(choiceNode1.selectableStatus, SelectableStatus.open);
-    expect(choiceNode2.selectableStatus, SelectableStatus.open);
-    expect(lineSetting.selectableStatus, SelectableStatus.open);
+    expect(choiceNode0.selectableStatus.isOpen, false);
+    expect(choiceNode1.selectableStatus.isOpen, true);
+    expect(choiceNode2.selectableStatus.isOpen, true);
+    expect(lineSetting.selectableStatus.isOpen, true);
     choiceNode0.selectNode(0);
     platform.updateStatusAll();
 
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 1);
-    expect(choiceNode0.selectableStatus, SelectableStatus.closed);
-    expect(choiceNode1.selectableStatus, SelectableStatus.open);
-    expect(choiceNode2.selectableStatus, SelectableStatus.open);
-    expect(lineSetting.selectableStatus, SelectableStatus.open);
+    expect(choiceNode0.selectableStatus.isOpen, false);
+    expect(choiceNode1.selectableStatus.isOpen, true);
+    expect(choiceNode2.selectableStatus.isOpen, true);
+    expect(lineSetting.selectableStatus.isOpen, true);
     choiceNode1.selectNode(0);
     platform.updateStatusAll();
 
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 0);
-    expect(choiceNode0.selectableStatus, SelectableStatus.open);
-    expect(choiceNode1.selectableStatus, SelectableStatus.open);
-    expect(choiceNode2.selectableStatus, SelectableStatus.open);
-    expect(lineSetting.selectableStatus, SelectableStatus.open);
+    expect(choiceNode0.selectableStatus.isOpen, true);
+    expect(choiceNode1.selectableStatus.isOpen, true);
+    expect(choiceNode2.selectableStatus.isOpen, true);
+    expect(lineSetting.selectableStatus.isOpen, true);
   });
 
   test('lineHideTest', () {
@@ -95,24 +94,24 @@ void main() {
 
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 0);
-    expect(lineSetting1.selectableStatus, SelectableStatus.hide);
+    expect(lineSetting1.selectableStatus.isHide, true);
     choiceNode0.selectNode(0);
     platform.updateStatusAll();
 
     expect(choiceNode0.select, 1);
     expect(choiceNode1.select, 0);
-    expect(lineSetting1.selectableStatus, SelectableStatus.open);
+    expect(lineSetting1.selectableStatus.isOpen, true);
     choiceNode1.selectNode(0);
     platform.updateStatusAll();
 
     expect(choiceNode0.select, 1);
     expect(choiceNode1.select, 1);
-    expect(lineSetting1.selectableStatus, SelectableStatus.open);
+    expect(lineSetting1.selectableStatus.isOpen, true);
     choiceNode0.selectNode(0);
     platform.updateStatusAll();
 
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 1);
-    expect(lineSetting1.selectableStatus, SelectableStatus.hide);
+    expect(lineSetting1.selectableStatus.isHide, true);
   });
 }
