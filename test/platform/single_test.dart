@@ -157,4 +157,22 @@ void main() {
     expect(ins.getValueType("testNode")?.dataUnzip, true);
     expect(choiceNode.select, 0);
   });
+
+  test('click and hide test', (){
+    var platform = PlayablePlatform();
+    platform.lineSettings.add(ChoiceLine(0));
+    var choiceNode = ChoiceNode.empty()..title = "testNode"..recursiveStatus.conditionVisibleString = "not(testNode)";
+    platform.lineSettings[0].addChildren(choiceNode);
+    choiceNode.generateParser();
+
+    platform.updateStatusAll();
+    expect(choiceNode.isOpen(), true);
+    expect(choiceNode.isHide(), false);
+
+    print("select");
+    choiceNode.selectNode(0);
+    platform.updateStatusAll();
+    expect(choiceNode.isOpen(), true);
+    expect(choiceNode.isHide(), true);
+  });
 }

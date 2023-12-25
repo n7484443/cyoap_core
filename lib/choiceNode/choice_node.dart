@@ -10,7 +10,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'choice.dart';
 import 'choice_line.dart';
 import 'recursive_status.dart';
-import 'selectable_status.dart';
 
 part 'choice_node.freezed.dart';
 
@@ -152,7 +151,7 @@ class ChoiceNode extends Choice {
   }
 
   void selectNode(int n) {
-    if(!isOpen()){
+    if (!isOpen()) {
       return;
     }
     switch (choiceNodeMode) {
@@ -176,8 +175,7 @@ class ChoiceNode extends Choice {
     }
     seed = Random().nextInt(seedMax);
     if (Option().isDebugMode && Option().enableSelectLog) {
-      print(
-          "$errorName $select $selectableStatus $choiceNodeMode ${isOpen()}");
+      print("$errorName $select $selectableStatus $choiceNodeMode ${isOpen()}");
     }
   }
 
@@ -292,8 +290,12 @@ class ChoiceNode extends Choice {
     recursiveStatus.execute(errorName, seedInput: seed);
   }
 
+  void checkHideCondition() {
+    selectableStatus = selectableStatus.copyWith(isHide: !recursiveStatus.analyseVisible(errorName, seedInput: seed));
+  }
+
   bool checkCondition() {
-    var beforeStatus = selectableStatus;
+    var beforeStatus = selectableStatus.isOpen;
     var beforeSelect = select;
     updateCurrentContentsString();
     if (parent is ChoiceLine) {
@@ -301,15 +303,15 @@ class ChoiceNode extends Choice {
           isSelectableMode &&
           !parent!.recursiveStatus.analyseClickable(errorName)) {
         selectableStatus = selectableStatus.copyWith(isOpen: false);
-        return !(beforeStatus == selectableStatus && beforeSelect == select);
+        return !(beforeStatus == selectableStatus.isOpen &&
+            beforeSelect == select);
       }
     }
     var click = recursiveStatus.analyseClickable(errorName, seedInput: seed);
-    var visible = recursiveStatus.analyseVisible(errorName, seedInput: seed);
-    selectableStatus = SelectableStatus(isHide: !visible, isOpen: click);
+    selectableStatus = selectableStatus.copyWith(isOpen: click);
     if (!isExecute()) {
       select = 0;
     }
-    return !(beforeStatus == selectableStatus && beforeSelect == select);
+    return !(beforeStatus == selectableStatus.isOpen && beforeSelect == select);
   }
 }

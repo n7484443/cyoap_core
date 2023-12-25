@@ -106,9 +106,11 @@ class ChoiceLine extends Choice {
   }
 
   bool _checkCondition(List<ChoiceNode> nodes,
-      {firstLine = false, required enableCancelFeature}) {
+      {firstLine = false, required bool enableCancelFeature}) {
     var needUpdate = false;
+
     for (var n in nodes) {
+      n.checkHideCondition();
       if (!enableCancelFeature && n.select > 0) {
         continue;
       }

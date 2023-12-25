@@ -26,6 +26,17 @@ extension DataTypeExtension on DataType {
   bool get isBool => this == DataType.bools;
 
   bool isNotIntOne(DataType other) => (isNum && other.isNum) && this != other;
+
+
+}
+
+DataType fromName(String name) {
+  for (var type in DataType.values) {
+    if (type.name == name) {
+      return type;
+    }
+  }
+  return DataType.strings;
 }
 
 ValueType getValueTypeFromStringInput(String input) {
@@ -104,6 +115,16 @@ class ValueType {
       : data = "",
         type = DataType.strings;
 
+  ValueType.fromJson(Map<String, dynamic> json)
+      : data = json['data'],
+        type = fromName(json['type']);
+
+  Map<String, dynamic> toJson() =>
+      {
+        'data': data,
+        'type': type.name,
+      };
+
   const ValueType.string(this.data) : type = DataType.strings;
 
   const ValueType.bool(bool data)
@@ -116,7 +137,9 @@ class ValueType {
     if (type == DataType.bools) return data.trim() == "true";
     if (type == DataType.doubles) return double.parse(data);
     if (type == DataType.arrays) {
-      if (data.substring(1, data.length - 1).isEmpty) {
+      if (data
+          .substring(1, data.length - 1)
+          .isEmpty) {
         return [];
       }
       return getList(data);
@@ -168,11 +191,10 @@ class ValueTypeWrapper {
     return '( $valueType | $visible )';
   }
 
-  ValueTypeWrapper copyWith(
-      {ValueType? valueType,
-      bool? visible,
-      String? displayName,
-      bool? isGlobal}) {
+  ValueTypeWrapper copyWith({ValueType? valueType,
+    bool? visible,
+    String? displayName,
+    bool? isGlobal}) {
     return ValueTypeWrapper(valueType ?? this.valueType,
         visible: visible ?? this.visible,
         displayName: displayName ?? this.displayName);
@@ -183,7 +205,8 @@ class ValueTypeWrapper {
         visible = json['visible'] ?? false,
         displayName = json['displayName'] ?? '';
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() =>
+      {
         'visible': visible,
         'valueType': valueType.dataUnzip,
         'displayName': displayName,

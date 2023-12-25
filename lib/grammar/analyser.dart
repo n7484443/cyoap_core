@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:cyoap_core/choiceNode/choice_node.dart';
@@ -137,7 +138,12 @@ class Analyser {
             argumentList.add(ValueType.int(seed));
             seed += 1;
           }
-          ValueType? out = func(argumentList);
+          ValueType? out;
+          if(funcEnum.communicateOutOfSandbox && functionList.needConvertJson){
+            out = ValueType.fromJson(func(jsonEncode(argumentList)));
+          }else{
+            out = func(argumentList);
+          }
           if (out != null) {
             stack.add(out);
           }
