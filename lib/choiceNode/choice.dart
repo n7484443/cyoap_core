@@ -41,14 +41,12 @@ abstract class Choice {
   bool get isSelectableMode => true;
 
   bool isOpen(){
-    if(parent == null) return true;
-    if(!parent!.isOpen()) return false;
+    if(parent != null && !parent!.isOpen()) return false;
     return selectableStatus.isOpen;
   }
 
   bool isHide(){
-    if(parent == null) return false;
-    if(parent!.isHide()) return true;
+    if(parent != null && parent!.isHide()) return true;
     return selectableStatus.isHide;
   }
 
@@ -85,4 +83,19 @@ abstract class Choice {
   String get errorName => pos.toString();
 
   void updateStatus();
+
+  void recursiveFunction(Function(Choice) function){
+    function(this);
+    for(var child in children){
+      child.recursiveFunction(function);
+    }
+  }
+
+  Choice? findChoice(Pos pos) {
+    if (pos.length == 1) return this;
+    var child = children[pos.data[1]];
+    return child.findChoice(pos.removeFirst());
+  }
+
+  void execute() {}
 }

@@ -34,6 +34,11 @@ void main() {
     parent.selectNode(0);
     platform.updateStatusAll();
     expect(parent.select, 0);
+    expect(parent.isExecute(), false);
+
+    parent.selectNode(0);
+    platform.updateStatusAll();
+    expect(parent.select, 1);
     expect(child.select, 0);
   });
 
@@ -47,11 +52,11 @@ void main() {
       ..recursiveStatus.executeCodeString = "test = 0";
     var child0 = ChoiceNode.empty()
       ..title = "child0"
-      ..recursiveStatus.conditionClickableString = "test < 1"
+      ..recursiveStatus.conditionClickableString = "or(child0, test < 1)"
       ..recursiveStatus.executeCodeString = "test += 1";
     var child1 = ChoiceNode.empty()
       ..title = "child1"
-      ..recursiveStatus.conditionClickableString = "test < 1"
+      ..recursiveStatus.conditionClickableString = "or(child1, test < 1)"
       ..recursiveStatus.executeCodeString = "test += 1";
     parent.generateParser();
     child0.generateParser();

@@ -1,7 +1,4 @@
-import 'dart:collection';
-
-import 'package:cyoap_core/grammar/value_type.dart';
-import 'package:cyoap_core/variable_db.dart';
+import 'package:cyoap_core/choiceNode/pos.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'choice.dart';
@@ -28,6 +25,7 @@ class ChoiceLineOption with _$ChoiceLineOption {
 
 class ChoiceLine extends Choice {
   ChoiceLineOption choiceLineOption;
+  List<Pos> selectOrder = List.empty(growable: true);
 
   ChoiceLine(int currentPos,
       {this.choiceLineOption = const ChoiceLineOption()}) {
@@ -91,105 +89,51 @@ class ChoiceLine extends Choice {
 
   @override
   void updateStatus() {
-    selectableStatus = selectableStatus.copyWith(isHide: !recursiveStatus.analyseVisible(errorName));
-    _sortAndProcessNodesByDepth();
+    var isHide = !recursiveStatus.analyseVisible(errorName);
+    var isOpen = recursiveStatus.analyseClickable(errorName);
+    selectableStatus = selectableStatus.copyWith(isHide: isHide, isOpen: isOpen);
   }
 
   @override
-  bool isHide(){
-    return selectableStatus.isHide;
+  bool isOpen() {
+    return true;
   }
 
   @override
-  bool isOpen(){
-    return selectableStatus.isOpen;
-  }
-
-  bool _checkCondition(List<ChoiceNode> nodes,
-      {firstLine = false, required bool enableCancelFeature}) {
-    var needUpdate = false;
-
-    for (var n in nodes) {
-      n.checkHideCondition();
-      if (!enableCancelFeature && n.select > 0) {
-        continue;
-      }
-      needUpdate |= n.checkCondition();
+  void execute(){
+    // 모든 node 의 선택 관련 변수들을 업데이트 ( null -> false )
+    for(var child in children){
+      child.recursiveFunction((current){
+        (current as ChoiceNode).updateNodeVariable();
+      });
     }
-    if (!needUpdate &&
-        firstLine &&
-        !isOpen()) {
-      for (var n in nodes) {
-        if (n.select == 0 && n.isSelectableMode) {
-          n.selectableStatus = selectableStatus.copyWith(isOpen: false);
-        }
-      }
-      return false;
+    // 선택 가능 여부 업데이트
+    _updateStatusAll(selectOrder.length);
+    // 선택 순서에 따른 실행 순서 업데이트
+    int order = 0;
+    while(order < selectOrder.length){
+      var pos = selectOrder[order];
+      var node = findChoice(pos) as ChoiceNode;
+      node.execute();
+      recursiveStatus.execute(errorName);
+      updateStatus();
+      _updateStatusAll(order + 1);
+      order++;
     }
-    return needUpdate;
-  }
-
-  void _updateSelectionStatus(List<ChoiceNode> nodes, {firstLine = false}) {
-    for (var n in nodes) {
-      n.updateSelectionStatus();
-      if (n.select > 0 && firstLine) {
-        recursiveStatus.execute(errorName);
-      }
+    // 결과에 따른 내용 변경
+    for(var child in children){
+      child.recursiveFunction((current){
+        (current as ChoiceNode).updateCurrentContentsString();
+      });
     }
   }
 
-  void _executeNodes(List<ChoiceNode> nodes) {
-    for (var n in nodes) {
-      n.execute();
-    }
-  }
-
-  void _processSelectionUntilStable(List<ChoiceNode> nodes,
-      {firstLine = false, enableCancelFeature = true}) {
-    if (isNeedToCheck()) {
-      VariableDataBase().setValue(valName, ValueTypeWrapper(ValueType.int(0)),
-          ValueTypeLocation.global);
-    } else {
-      VariableDataBase().deleteValue(valName);
-    }
-    Map<String, ValueTypeWrapper> db = VariableDataBase()
-        .varMapGlobal
-        .map((key, value) => MapEntry(key, value.copyWith()));
-    while (true) {
-      _updateSelectionStatus(nodes, firstLine: firstLine);
-      _executeNodes(nodes);
-      if (!_checkCondition(nodes,
-          firstLine: firstLine, enableCancelFeature: enableCancelFeature)) {
-        break;
-      }
-      VariableDataBase().varMapGlobal =
-          db.map((key, value) => MapEntry(key, value.copyWith()));
-    }
-  }
-
-  void _sortAndProcessNodesByDepth() {
-    //sort by depth using BFS
-    var sortedNodeByDepth = List<List<ChoiceNode>>.empty(growable: true);
-    var queue = Queue<(ChoiceNode, int)>();
-    for (var node in children) {
-      queue.add((node as ChoiceNode, 0));
-    }
-    while (queue.isNotEmpty) {
-      var (node, depth) = queue.removeFirst();
-      if (sortedNodeByDepth.length <= depth) {
-        sortedNodeByDepth.add(List.empty(growable: true));
-      }
-      sortedNodeByDepth[depth].add(node);
-      for (var child in node.children) {
-        queue.add((child as ChoiceNode, depth + 1));
-      }
-    }
-
-    //process
-    for (var depth = 0; depth < sortedNodeByDepth.length; depth++) {
-      _processSelectionUntilStable(sortedNodeByDepth[depth],
-          firstLine: depth == 0,
-          enableCancelFeature: choiceLineOption.enableCancelFeature);
+  void _updateStatusAll(int order){
+    updateStatus();
+    for(var child in children){
+      child.recursiveFunction((current){
+        (current as ChoiceNode).updateStatus(addOrder: selectOrder, order: order, lineCanAcceptMore: selectableStatus.isOpen);
+      });
     }
   }
 }

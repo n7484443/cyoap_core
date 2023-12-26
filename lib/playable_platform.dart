@@ -105,7 +105,11 @@ class PlayablePlatform {
     }
     for (var i = 0; i < lineSettings.length; i++) {
       var lineSetting = lineSettings[i];
-      lineSetting.updateStatus();
+      VariableDataBase().setValue(lineSetting.valName, ValueTypeWrapper(ValueType.int(0)), ValueTypeLocation.global);
+    }
+    for (var i = 0; i < lineSettings.length; i++) {
+      var lineSetting = lineSettings[i];
+      lineSetting.execute();
       VariableDataBase().clearLocalVariable();
     }
   }
@@ -120,7 +124,10 @@ class PlayablePlatform {
     List<(Pos, int)> selectedPos = [];
     for (var line in lineSettings) {
       for (var choice in line.children) {
-        (choice as ChoiceNode).doAllChild((node) {
+        (choice as ChoiceNode).recursiveFunction((node) {
+          if(node is! ChoiceNode){
+            return;
+          }
           if (node.isOpen() &&
               node.isSelectableMode &&
               !node.choiceNodeOption.hideAsResult) {

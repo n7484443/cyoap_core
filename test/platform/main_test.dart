@@ -49,9 +49,18 @@ void main() {
     platform.updateStatusAll();
     expect(choiceNode1_0.contentsString, "a self b");
 
+    choiceNode1_0.selectNode(0);
+    choiceNode0.selectNode(0);
+    platform.updateStatusAll();
+    print(lineSetting0.selectOrder);
+    expect(choiceNode1_0.contentsString, "a other b");
+
+    choiceNode0.selectNode(0);
+    platform.updateStatusAll();
+    expect(choiceNode1_0.contentsString, "a 0 b");
+
     choiceNode0.selectNode(0);
     choiceNode1.selectNode(0);
-    choiceNode1_0.selectNode(0);
     platform.updateStatusAll();
     expect(choiceNode1_0.contentsString, "a initial b");
   });

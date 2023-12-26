@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:cyoap_core/choiceNode/pos.dart';
+import 'package:cyoap_core/choiceNode/selectable_status.dart';
 import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/i18n.dart';
 import 'package:cyoap_core/option.dart';
@@ -62,20 +64,6 @@ class ChoiceNode extends Choice {
     recursiveStatus.compile(errorName, text: _contentsString);
     for (var child in children) {
       child.generateParser();
-    }
-  }
-
-  void updateCurrentContentsString() {
-    _currentContentsString = _contentsString;
-    for (int i = 0; i < recursiveStatus.textCode.length; i++) {
-      var match = textFinderAll.firstMatch(_currentContentsString);
-      if (match == null) {
-        break;
-      }
-      _currentContentsString = _currentContentsString.replaceRange(
-          match.start,
-          match.end,
-          recursiveStatus.executeText('error in text!', i, seedInput: seed));
     }
   }
 
@@ -154,6 +142,7 @@ class ChoiceNode extends Choice {
     if (!isOpen()) {
       return;
     }
+    var oldExecute = isExecute();
     switch (choiceNodeMode) {
       case ChoiceNodeMode.multiSelect:
         select += n;
@@ -177,10 +166,22 @@ class ChoiceNode extends Choice {
     if (Option().isDebugMode && Option().enableSelectLog) {
       print("$errorName $select $selectableStatus $choiceNodeMode ${isOpen()}");
     }
+
+    var newExecute = isExecute();
+    if(newExecute != oldExecute) {
+      Choice line = this;
+      while(line is! ChoiceLine){
+        line = line.parent!;
+      }
+      if(newExecute){
+        line.selectOrder.add(pos);
+      }else{
+        line.selectOrder.remove(pos);
+      }
+    }
   }
 
-  @override
-  bool isOpen() {
+  bool _isOpen(){
     if (parent == null) return true;
     if (!parent!.isExecute()) return false;
     switch (choiceNodeMode) {
@@ -191,6 +192,15 @@ class ChoiceNode extends Choice {
       default:
         return selectableStatus.isOpen;
     }
+  }
+
+  @override
+  bool isOpen() {
+    var out = _isOpen();
+    if(!out){
+      select = 0;
+    }
+    return out;
   }
 
   @override
@@ -214,23 +224,6 @@ class ChoiceNode extends Choice {
       default:
         return super.isHide();
     }
-  }
-
-  void doAllChild(void Function(ChoiceNode) choiceNodeFunc) {
-    choiceNodeFunc(this);
-    for (var child in children) {
-      (child as ChoiceNode).doAllChild(choiceNodeFunc);
-    }
-  }
-
-  ChoiceNode? getParentLast() {
-    ChoiceNode parent = this;
-    while (true) {
-      if (parent.parent == null) break;
-      if (parent.parent is! ChoiceNode) break;
-      parent = parent.parent as ChoiceNode;
-    }
-    return parent;
   }
 
   int getMaxSize(bool containSelf) {
@@ -262,9 +255,40 @@ class ChoiceNode extends Choice {
   String get errorName => "${pos.data.toString()} $title";
 
   @override
-  void updateStatus() {}
+  void updateStatus({List<Pos>? addOrder, int order = 0, bool lineCanAcceptMore = true}) {
+    var oldIsVisible = !isHide();
+    var hideStatus = !recursiveStatus.analyseVisible(errorName, seedInput: seed);
+    var openStatus = recursiveStatus.analyseClickable(errorName, seedInput: seed);
+    openStatus = openStatus && (isExecute() || lineCanAcceptMore);
+    selectableStatus = SelectableStatus(isHide: hideStatus, isOpen: openStatus);
+    var newIsVisible = !isHide();
+    if(choiceNodeMode == ChoiceNodeMode.unSelectableMode && oldIsVisible != newIsVisible){
+      if(newIsVisible){
+        addOrder!.insert(order, pos);
+      }else{
+        addOrder!.remove(pos);
+      }
+    }
 
-  void updateSelectionStatus() {
+    updateNodeVariable();
+  }
+
+
+  void updateCurrentContentsString() {
+    _currentContentsString = _contentsString;
+    for (int i = 0; i < recursiveStatus.textCode.length; i++) {
+      var match = textFinderAll.firstMatch(_currentContentsString);
+      if (match == null) {
+        break;
+      }
+      _currentContentsString = _currentContentsString.replaceRange(
+          match.start,
+          match.end,
+          recursiveStatus.executeText('error in text!', i, seedInput: seed));
+    }
+  }
+
+  void updateNodeVariable(){
     var titleWhitespaceRemoved = title.replaceAll(" ", "");
     VariableDataBase().setValue(
       titleWhitespaceRemoved,
@@ -283,35 +307,11 @@ class ChoiceNode extends Choice {
     }
   }
 
+  @override
   void execute() {
     if (!isExecute()) {
       return;
     }
     recursiveStatus.execute(errorName, seedInput: seed);
-  }
-
-  void checkHideCondition() {
-    selectableStatus = selectableStatus.copyWith(isHide: !recursiveStatus.analyseVisible(errorName, seedInput: seed));
-  }
-
-  bool checkCondition() {
-    var beforeStatus = selectableStatus.isOpen;
-    var beforeSelect = select;
-    updateCurrentContentsString();
-    if (parent is ChoiceLine) {
-      if (select == 0 &&
-          isSelectableMode &&
-          !parent!.recursiveStatus.analyseClickable(errorName)) {
-        selectableStatus = selectableStatus.copyWith(isOpen: false);
-        return !(beforeStatus == selectableStatus.isOpen &&
-            beforeSelect == select);
-      }
-    }
-    var click = recursiveStatus.analyseClickable(errorName, seedInput: seed);
-    selectableStatus = selectableStatus.copyWith(isOpen: click);
-    if (!isExecute()) {
-      select = 0;
-    }
-    return !(beforeStatus == selectableStatus.isOpen && beforeSelect == select);
   }
 }

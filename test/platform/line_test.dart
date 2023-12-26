@@ -94,9 +94,6 @@ void main() {
 
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 0);
-
-    print(!lineSetting1.recursiveStatus.analyseVisible("Asdf"));
-    print(lineSetting1.isHide());
     expect(lineSetting1.isHide(), true);
     choiceNode0.selectNode(0);
     platform.updateStatusAll();
