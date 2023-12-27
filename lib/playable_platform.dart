@@ -77,7 +77,7 @@ class PlayablePlatform {
     return getChoiceNode(pos);
   }
 
-  Choice? getGenerableParserAndPosition(Pos pos) {
+  Choice? getChoice(Pos pos) {
     if (pos.first >= lineSettings.length) return null;
     Choice child = lineSettings[pos.first];
     for (var i = 1; i < pos.length; i++) {
@@ -92,7 +92,7 @@ class PlayablePlatform {
   }
 
   ChoiceNode? getChoiceNode(Pos pos) {
-    return getGenerableParserAndPosition(pos) as ChoiceNode?;
+    return getChoice(pos) as ChoiceNode?;
   }
 
   ChoiceLine? getLineSetting(int y) {

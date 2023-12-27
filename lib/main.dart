@@ -5,7 +5,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:cyoap_core/grammar/analyser.dart';
-import 'package:cyoap_core/grammar/function_list.dart';
 import 'package:cyoap_core/playable_platform.dart';
 import 'package:cyoap_core/preset/line_preset.dart';
 import 'package:cyoap_core/preset/node_preset.dart';
@@ -51,8 +50,6 @@ void main() {
 
   _getNodeDefaultPreset = allowInterop(_getNodeDefaultPresetInternal);
   _getLineDefaultPreset = allowInterop(_getLineDefaultPresetInternal);
-
-  _addCommunicateOutOfSandboxFunction = allowInterop(_addCommunicateOutOfSandboxFunctionInternal);
 }
 
 @JS('loadPlatform')
@@ -109,9 +106,7 @@ external set _getChoiceStatus(String Function(List<dynamic> pos) f);
 @JS()
 String _getChoiceStatusInternal(List<dynamic> pos) {
   Pos innerPos = listToPos(pos);
-  return jsonEncode(platform
-      .getGenerableParserAndPosition(innerPos)
-      ?.selectableStatus.toJson());
+  return platform.getChoice(innerPos)?.selectableStatus.name ?? '';
 }
 
 @JS('getSize')
@@ -292,14 +287,4 @@ external set _getLineDefaultPreset(String Function() f);
 @JS()
 String _getLineDefaultPresetInternal() {
   return jsonEncode(ChoiceLineDesignPreset(name: 'default').toJson());
-}
-
-@JS('addCommunicateOutOfSandboxFunction')
-external set _addCommunicateOutOfSandboxFunction(Function(String name, Function(List<dynamic>) f) f);
-
-@JS()
-void _addCommunicateOutOfSandboxFunctionInternal(
-    String name, Function(List<dynamic>) f) {
-  var functionList = Analyser().functionList;
-  functionList.functionValueTypeOutOfSandbox[FunctionListEnum.getFunctionListEnum(name)] = f;
 }
