@@ -4,6 +4,7 @@ library cyoap_core;
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:cyoap_core/choiceNode/selectable_status.dart';
 import 'package:cyoap_core/grammar/analyser.dart';
 import 'package:cyoap_core/playable_platform.dart';
 import 'package:cyoap_core/preset/line_preset.dart';
@@ -101,12 +102,21 @@ int _getMaximumStatusInternal(List<dynamic> pos) {
 }
 
 @JS('getChoiceStatus')
-external set _getChoiceStatus(String Function(List<dynamic> pos) f);
+external set _getChoiceStatus(ExternalSelectableStatus Function(List<dynamic> pos) f);
 
 @JS()
-String _getChoiceStatusInternal(List<dynamic> pos) {
+ExternalSelectableStatus _getChoiceStatusInternal(List<dynamic> pos) {
   Pos innerPos = listToPos(pos);
-  return platform.getChoice(innerPos)?.selectableStatus.name ?? '';
+  var status = platform.getChoice(innerPos)?.selectableStatus ?? SelectableStatus();
+  return ExternalSelectableStatus(isHide: status.isHide, isOpen: status.isOpen);
+}
+
+@JS()
+@anonymous
+class ExternalSelectableStatus {
+  external bool get isHide;
+  external bool get isOpen;
+  external factory ExternalSelectableStatus({bool isHide, bool isOpen});
 }
 
 @JS('getSize')
