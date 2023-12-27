@@ -106,11 +106,7 @@ external set _getChoiceStatus(String Function(List<dynamic> pos) f);
 @JS()
 String _getChoiceStatusInternal(List<dynamic> pos) {
   Pos innerPos = listToPos(pos);
-  return platform
-          .getGenerableParserAndPosition(innerPos)
-          ?.selectableStatus
-          .name ??
-      '';
+  return platform.getChoice(innerPos)?.selectableStatus.name ?? '';
 }
 
 @JS('getSize')
