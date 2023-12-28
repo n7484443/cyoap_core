@@ -92,7 +92,9 @@ class PlayablePlatform {
   }
 
   ChoiceNode? getChoiceNode(Pos pos) {
-    return getChoice(pos) as ChoiceNode?;
+    var output = getChoice(pos);
+    if (output is ChoiceNode) return output;
+    return null;
   }
 
   ChoiceLine? getLineSetting(int y) {
