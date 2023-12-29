@@ -7,7 +7,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'choice.dart';
 import 'choice_node.dart';
-import 'recursive_status.dart';
+import 'conditional_code_handler.dart';
 
 part 'choice_line.freezed.dart';
 
@@ -33,7 +33,7 @@ class ChoiceLine extends Choice {
   ChoiceLine(int currentPos,
       {this.choiceLineOption = const ChoiceLineOption()}) {
     super.currentPos = currentPos;
-    recursiveStatus = RecursiveStatus();
+    conditionalCodeHandler = ConditionalCodeHandler();
   }
 
   @override
@@ -55,7 +55,11 @@ class ChoiceLine extends Choice {
         children.add(choiceNode);
       }
     }
-    recursiveStatus = RecursiveStatus.fromJson(json);
+    if(json.containsKey('conditionalCodeHandler')){
+      conditionalCodeHandler = ConditionalCodeHandler.fromJson(json['conditionalCodeHandler']);
+    }else{
+      conditionalCodeHandler = ConditionalCodeHandler.fromJson(json);
+    }
   }
 
   void addData(int x, ChoiceNode node) {
@@ -77,12 +81,12 @@ class ChoiceLine extends Choice {
 
   @override
   void generateParser() {
-    recursiveStatus.executeCodeString = '$valName += 1';
+    conditionalCodeHandler.executeCodeString = '$valName += 1';
     if (isNeedToCheck()) {
-      recursiveStatus.conditionClickableString =
+      conditionalCodeHandler.conditionClickableString =
           '$valName < ${choiceLineOption.maxSelect}';
     } else {
-      recursiveStatus.conditionClickableString = 'true';
+      conditionalCodeHandler.conditionClickableString = 'true';
     }
     super.generateParser();
   }
@@ -104,7 +108,7 @@ class ChoiceLine extends Choice {
 
   @override
   void updateStatus() {
-    if (recursiveStatus.analyseVisible(errorName)) {
+    if (conditionalCodeHandler.analyseVisible(errorName)) {
       selectableStatus = SelectableStatus.open;
     } else {
       selectableStatus = SelectableStatus.hide;
@@ -123,7 +127,7 @@ class ChoiceLine extends Choice {
     }
     if (!needUpdate &&
         firstLine &&
-        !recursiveStatus.analyseClickable(errorName)) {
+        !conditionalCodeHandler.analyseClickable(errorName)) {
       for (var n in nodes) {
         if (n.select == 0 && n.isSelectableMode) {
           n.selectableStatus = SelectableStatus.closed;
@@ -138,7 +142,7 @@ class ChoiceLine extends Choice {
     for (var n in nodes) {
       n.updateSelectionStatus();
       if (n.select > 0 && firstLine) {
-        recursiveStatus.execute(errorName);
+        conditionalCodeHandler.execute(errorName);
       }
     }
   }

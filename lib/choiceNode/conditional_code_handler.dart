@@ -1,13 +1,13 @@
 import 'package:cyoap_core/grammar/analyser.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'recursive_status.g.dart';
+part 'conditional_code_handler.g.dart';
 
 final RegExp textFinder = RegExp(r"\{\{(.*?)\}\}");
 final RegExp textFinderAll = RegExp(r"\{\{.*?\}\}");
 
 @JsonSerializable(explicitToJson: true)
-class RecursiveStatus {
+class ConditionalCodeHandler {
   @JsonKey(defaultValue: [])
   List<String> conditionClickableCode = [];
   @JsonKey(defaultValue: [])
@@ -21,16 +21,16 @@ class RecursiveStatus {
   String? conditionVisibleString;
   String? executeCodeString;
 
-  RecursiveStatus({
+  ConditionalCodeHandler({
     this.conditionClickableString,
     this.conditionVisibleString,
     this.executeCodeString,
   });
 
-  factory RecursiveStatus.fromJson(Map<String, dynamic> json) =>
-      _$RecursiveStatusFromJson(json);
+  factory ConditionalCodeHandler.fromJson(Map<String, dynamic> json) =>
+      _$ConditionalCodeHandlerFromJson(json);
 
-  Map<String, dynamic> toJson() => _$RecursiveStatusToJson(this);
+  Map<String, dynamic> toJson() => _$ConditionalCodeHandlerToJson(this);
 
   void compile(String pos, {String? text}) {
     conditionClickableCode =

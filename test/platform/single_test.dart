@@ -30,7 +30,7 @@ void main() {
     var platform = PlayablePlatform();
     platform.lineSettings.add(ChoiceLine(0));
     var choiceNode = ChoiceNode.empty()..title = "testNode";
-    choiceNode.recursiveStatus.conditionClickableString = "false";
+    choiceNode.conditionalCodeHandler.conditionClickableString = "false";
     platform.lineSettings[0].addChildren(choiceNode);
     choiceNode.generateParser();
     platform.updateStatusAll();
@@ -47,8 +47,8 @@ void main() {
     platform.lineSettings.add(ChoiceLine(0));
     var choiceNode = ChoiceNode.empty()..title = "testNode";
     choiceNode.choiceNodeMode = ChoiceNodeMode.unSelectableMode;
-    choiceNode.recursiveStatus.conditionVisibleString = "testInput";
-    choiceNode.recursiveStatus.executeCodeString = "point += 1";
+    choiceNode.conditionalCodeHandler.conditionVisibleString = "testInput";
+    choiceNode.conditionalCodeHandler.executeCodeString = "point += 1";
 
 
     platform.lineSettings[0].addChildren(choiceNode);

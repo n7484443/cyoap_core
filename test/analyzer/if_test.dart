@@ -87,49 +87,4 @@ void main(){
       'ifSpacedTest0_1': null,
     });
   });
-  /*
-  test('if_elseIfTest0', () {
-    var ins = VariableDataBase();
-    String strTest = """
-    if(if_elseIfTest0_input0){
-      var if_elseIfTest0_0 = true}
-    else if(if_elseIfTest0_input1)
-    {
-      var if_elseIfTest0_1 = true
-    }else{var if_elseIfTest0_2 = true}
-    """;
-    var code = Analyser().analyseMultiLine(strTest);
-
-    ins.setValue('if_elseIfTest0_input0', ValueTypeWrapper(ValueType.bool(false)), isGlobal: false);
-    ins.setValue('if_elseIfTest0_input1', ValueTypeWrapper(ValueType.bool(false)), isGlobal: false);
-    expectMultiple(code, {
-      'if_elseIfTest0_0': null,
-      'if_elseIfTest0_1': null,
-      'if_elseIfTest0_2': true,
-    });
-
-    ins.setValue('if_elseIfTest0_input0', ValueTypeWrapper(ValueType.bool(true)), isGlobal: false);
-    ins.setValue('if_elseIfTest0_input1', ValueTypeWrapper(ValueType.bool(false)), isGlobal: false);
-    expectMultiple(code, {
-      'if_elseIfTest0_0': true,
-      'if_elseIfTest0_1': null,
-      'if_elseIfTest0_2': null,
-    });
-
-    ins.setValue('if_elseIfTest0_input0', ValueTypeWrapper(ValueType.bool(false)), isGlobal: false);
-    ins.setValue('if_elseIfTest0_input1', ValueTypeWrapper(ValueType.bool(true)), isGlobal: false);
-    expectMultiple(code, {
-      'if_elseIfTest0_0': null,
-      'if_elseIfTest0_1': true,
-      'if_elseIfTest0_2': null,
-    });
-
-    ins.setValue('if_elseIfTest0_input0', ValueTypeWrapper(ValueType.bool(true)), isGlobal: false);
-    ins.setValue('if_elseIfTest0_input1', ValueTypeWrapper(ValueType.bool(true)), isGlobal: false);
-    expectMultiple(code, {
-      'if_elseIfTest0_0': true,
-      'if_elseIfTest0_1': null,
-      'if_elseIfTest0_2': null,
-    });
-  });*/
 }

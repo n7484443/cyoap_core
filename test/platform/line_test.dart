@@ -83,7 +83,7 @@ void main() {
     var platform = PlayablePlatform();
     platform.lineSettings.add(ChoiceLine(0));
     var lineSetting0 = ChoiceLine(0);
-    var lineSetting1 = ChoiceLine(1)..recursiveStatus.conditionVisibleString = "testNode0";
+    var lineSetting1 = ChoiceLine(1)..conditionalCodeHandler.conditionVisibleString = "testNode0";
     lineSetting1.generateParser();
     var choiceNode0 = ChoiceNode.empty()..title = "testNode0";
     var choiceNode1 = ChoiceNode.empty()..title = "testNode1";
