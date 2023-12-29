@@ -53,10 +53,10 @@ void main() {
 }
 
 @JS('loadPlatform')
-external set _loadPlatform(void Function(String, List<String>) f);
+external set _loadPlatform(void Function(String, List<dynamic>) f);
 
 @JS()
-void _loadPlatformInternal(String jsonPlatform, List<String> jsonLine) {
+void _loadPlatformInternal(String jsonPlatform, List<dynamic> jsonLine) {
   platform = PlayablePlatform.fromJson(jsonDecode(jsonPlatform));
   for(int i = 0; i < jsonLine.length; i++){
     platform.lineSettings.add(ChoiceLine.fromJson(jsonDecode(jsonLine[i]), i));
