@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'recursive_status.dart';
+part of 'conditional_code_handler.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-RecursiveStatus _$RecursiveStatusFromJson(Map json) => RecursiveStatus(
+ConditionalCodeHandler _$ConditionalCodeHandlerFromJson(Map json) =>
+    ConditionalCodeHandler(
       conditionClickableString: json['conditionClickableString'] as String?,
       conditionVisibleString: json['conditionVisibleString'] as String?,
       executeCodeString: json['executeCodeString'] as String?,
@@ -30,7 +31,8 @@ RecursiveStatus _$RecursiveStatusFromJson(Map json) => RecursiveStatus(
               .toList() ??
           [[]];
 
-Map<String, dynamic> _$RecursiveStatusToJson(RecursiveStatus instance) =>
+Map<String, dynamic> _$ConditionalCodeHandlerToJson(
+        ConditionalCodeHandler instance) =>
     <String, dynamic>{
       'conditionClickableCode': instance.conditionClickableCode,
       'conditionVisibleCode': instance.conditionVisibleCode,

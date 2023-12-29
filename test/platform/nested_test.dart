@@ -49,15 +49,15 @@ void main() {
     platform.addGlobalSetting("test", ValueTypeWrapper(ValueType.int(0)));
     var parent = ChoiceNode.empty()
       ..title = "parent"
-      ..recursiveStatus.executeCodeString = "test = 0";
+      ..conditionalCodeHandler.executeCodeString = "test = 0";
     var child0 = ChoiceNode.empty()
       ..title = "child0"
-      ..recursiveStatus.conditionClickableString = "or(child0, test < 1)"
-      ..recursiveStatus.executeCodeString = "test += 1";
+      ..conditionalCodeHandler.conditionClickableString = "or(child0, test < 1)"
+      ..conditionalCodeHandler.executeCodeString = "test += 1";
     var child1 = ChoiceNode.empty()
       ..title = "child1"
-      ..recursiveStatus.conditionClickableString = "or(child1, test < 1)"
-      ..recursiveStatus.executeCodeString = "test += 1";
+      ..conditionalCodeHandler.conditionClickableString = "or(child1, test < 1)"
+      ..conditionalCodeHandler.executeCodeString = "test += 1";
     parent.generateParser();
     child0.generateParser();
     child1.generateParser();
@@ -127,14 +127,14 @@ void main() {
       ..choiceLineOption = ChoiceLineOption(enableCancelFeature: false);
     var parent = ChoiceNode.empty()
       ..title = "parent"
-      ..recursiveStatus.conditionVisibleString = "a"
-      ..recursiveStatus.conditionClickableString = "b";
+      ..conditionalCodeHandler.conditionVisibleString = "a"
+      ..conditionalCodeHandler.conditionClickableString = "b";
     var child0 = ChoiceNode.empty()
       ..title = "child0"
-      ..recursiveStatus.conditionClickableString = "parent";
+      ..conditionalCodeHandler.conditionClickableString = "parent";
     var child1 = ChoiceNode.empty()
       ..title = "child1"
-      ..recursiveStatus.conditionVisibleString = "parent";
+      ..conditionalCodeHandler.conditionVisibleString = "parent";
     parent.generateParser();
     child0.generateParser();
     child1.generateParser();

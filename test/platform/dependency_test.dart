@@ -19,8 +19,8 @@ void main() {
     lineSetting1.generateParser();
     platform.lineSettings.add(lineSetting1);
     var choiceNode0 = ChoiceNode.empty()..title = "testNode0";
-    var choiceNode1 = ChoiceNode.empty()..title = "testNode1"..recursiveStatus.conditionVisibleString = "testNode0";
-    var choiceNode2 = ChoiceNode.empty()..title = "testNode2"..recursiveStatus.conditionClickableString = "testNode0";
+    var choiceNode1 = ChoiceNode.empty()..title = "testNode1"..conditionalCodeHandler.conditionVisibleString = "testNode0";
+    var choiceNode2 = ChoiceNode.empty()..title = "testNode2"..conditionalCodeHandler.conditionClickableString = "testNode0";
     choiceNode1.generateParser();
     choiceNode2.generateParser();
     platform.lineSettings[0].addChildren(choiceNode0);
@@ -58,7 +58,7 @@ void main() {
     lineSetting0.generateParser();
     platform.lineSettings.add(lineSetting0);
     var choiceNode0 = ChoiceNode.empty()..title = "testNode0";
-    var choiceNode1 = ChoiceNode.empty()..title = "testNode1"..recursiveStatus.conditionClickableString = "testNode0";
+    var choiceNode1 = ChoiceNode.empty()..title = "testNode1"..conditionalCodeHandler.conditionClickableString = "testNode0";
     choiceNode0.generateParser();
     choiceNode1.generateParser();
     lineSetting0.addChildren(choiceNode0);

@@ -11,7 +11,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'choice.dart';
 import 'choice_line.dart';
-import 'recursive_status.dart';
+import 'conditional_code_handler.dart';
 
 part 'choice_node.freezed.dart';
 
@@ -61,7 +61,7 @@ class ChoiceNode extends Choice {
 
   @override
   void generateParser() {
-    recursiveStatus.compile(errorName, text: _contentsString);
+    conditionalCodeHandler.compile(errorName, text: _contentsString);
     for (var child in children) {
       child.generateParser();
     }
@@ -79,17 +79,17 @@ class ChoiceNode extends Choice {
   @override
   bool get isSelectableMode =>
       choiceNodeMode != ChoiceNodeMode.unSelectableMode &&
-      choiceNodeMode != ChoiceNodeMode.onlyCode;
+          choiceNodeMode != ChoiceNodeMode.onlyCode;
 
   ChoiceNode(
       {int width = 1,
-      required this.title,
-      required contents,
-      this.imageString = ""})
+        required this.title,
+        required contents,
+        this.imageString = ""})
       : choiceNodeOption = ChoiceNodeOption(),
         _currentContentsString = contents,
         _contentsString = contents {
-    recursiveStatus = RecursiveStatus();
+    conditionalCodeHandler = ConditionalCodeHandler();
     super.width = width;
   }
 
@@ -99,7 +99,7 @@ class ChoiceNode extends Choice {
         _contentsString = '',
         _currentContentsString = '',
         choiceNodeOption = ChoiceNodeOption() {
-    recursiveStatus = RecursiveStatus();
+    conditionalCodeHandler = ConditionalCodeHandler();
   } //랜덤 문자로 제목 중복 방지
 
   ChoiceNode.fromJson(Map<String, dynamic> json)
@@ -112,10 +112,14 @@ class ChoiceNode extends Choice {
         choiceNodeMode = json['choiceNodeMode'] == null
             ? ChoiceNodeMode.defaultMode
             : ((json['isSelectable'] ?? true)
-                ? ChoiceNodeMode.values.byName(json['choiceNodeMode'])
-                : ChoiceNodeMode.unSelectableMode) {
+            ? ChoiceNodeMode.values.byName(json['choiceNodeMode'])
+            : ChoiceNodeMode.unSelectableMode) {
     width = json['width'] ?? 2;
-    recursiveStatus = RecursiveStatus.fromJson(json);
+    if(json.containsKey('conditionalCodeHandler')){
+      conditionalCodeHandler = ConditionalCodeHandler.fromJson(json['conditionalCodeHandler']);
+    }else{
+      conditionalCodeHandler = ConditionalCodeHandler.fromJson(json);
+    }
     if (json.containsKey('children')) {
       var list = json['children'];
       for(int i = 0; i < list.length; i++) {
@@ -260,8 +264,8 @@ class ChoiceNode extends Choice {
   @override
   void updateStatus({List<Pos>? addOrder, int order = 0, bool lineCanAcceptMore = true}) {
     var oldIsVisible = !isHide();
-    var hideStatus = !recursiveStatus.analyseVisible(errorName, seedInput: seed);
-    var openStatus = recursiveStatus.analyseClickable(errorName, seedInput: seed);
+    var hideStatus = !conditionalCodeHandler.analyseVisible(errorName, seedInput: seed);
+    var openStatus = conditionalCodeHandler.analyseClickable(errorName, seedInput: seed);
     openStatus = openStatus && (isExecute() || lineCanAcceptMore);
     selectableStatus = SelectableStatus(isHide: hideStatus, isOpen: openStatus);
     var newIsVisible = !isHide();
@@ -279,7 +283,7 @@ class ChoiceNode extends Choice {
 
   void updateCurrentContentsString() {
     _currentContentsString = _contentsString;
-    for (int i = 0; i < recursiveStatus.textCode.length; i++) {
+    for (int i = 0; i < conditionalCodeHandler.textCode.length; i++) {
       var match = textFinderAll.firstMatch(_currentContentsString);
       if (match == null) {
         break;
@@ -287,7 +291,7 @@ class ChoiceNode extends Choice {
       _currentContentsString = _currentContentsString.replaceRange(
           match.start,
           match.end,
-          recursiveStatus.executeText('error in text!', i, seedInput: seed));
+          conditionalCodeHandler.executeText('error in text!', i, seedInput: seed));
     }
   }
 
@@ -315,6 +319,6 @@ class ChoiceNode extends Choice {
     if (!isExecute()) {
       return;
     }
-    recursiveStatus.execute(errorName, seedInput: seed);
+    conditionalCodeHandler.execute(errorName, seedInput: seed);
   }
 }

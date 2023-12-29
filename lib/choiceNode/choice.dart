@@ -1,19 +1,17 @@
 import 'pos.dart';
-import 'recursive_status.dart';
+import 'conditional_code_handler.dart';
 import 'selectable_status.dart';
 
 //실행은 ChoiceLine 단위로, 위에서 아래로 실행된다.
 //부모 Choice가 숨겨져 있거나 꺼져 있는 경우, 자식도 숨겨지거나 꺼진다.
 //숨겨도 실행된다. 반대로 꺼지면 실행되지 않는다.
-//다른 부모의 자식들은 부모의 순서에 우선한다.
-//즉 너비 우선 탐색을 활용해야 할 듯 하다.
 //시작 전 ValueType 과 결과 ValueType을 저장해야 한다.
 
 abstract class Choice {
   SelectableStatus selectableStatus = SelectableStatus(isHide: false, isOpen: true);
 
   void generateParser() {
-    recursiveStatus.compile(errorName);
+    conditionalCodeHandler.compile(errorName);
     for (var child in children) {
       child.generateParser();
     }
@@ -23,9 +21,8 @@ abstract class Choice {
     Map<String, dynamic> map = {
       'width': width,
       'children': children,
+      'conditionalCodeHandler': conditionalCodeHandler.toJson(),
     };
-
-    map.addAll(recursiveStatus.toJson());
     return map;
   }
 
@@ -35,7 +32,7 @@ abstract class Choice {
   List<Choice> children = List.empty(growable: true);
 
   Choice? parent;
-  late RecursiveStatus recursiveStatus;
+  late ConditionalCodeHandler conditionalCodeHandler;
 
   bool get isSelectableMode => true;
 

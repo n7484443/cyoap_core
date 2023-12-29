@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'choice.dart';
 import 'choice_node.dart';
-import 'recursive_status.dart';
+import 'conditional_code_handler.dart';
 
 part 'choice_line.freezed.dart';
 
@@ -26,16 +26,19 @@ class ChoiceLineOption with _$ChoiceLineOption {
 class ChoiceLine extends Choice {
   ChoiceLineOption choiceLineOption;
   List<Pos> selectOrder = List.empty(growable: true);
+  late ConditionalCodeHandler conditionalCodeHandlerFinalize;
 
   ChoiceLine(int currentPos,
       {this.choiceLineOption = const ChoiceLineOption()}) {
     super.currentPos = currentPos;
-    recursiveStatus = RecursiveStatus();
+    conditionalCodeHandler = ConditionalCodeHandler();
+    conditionalCodeHandlerFinalize = ConditionalCodeHandler();
   }
 
   @override
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = super.toJson();
+    map['conditionalCodeHandlerFinalize'] = conditionalCodeHandlerFinalize.toJson();
     map.addAll(choiceLineOption.toJson());
     return map;
   }
@@ -52,7 +55,16 @@ class ChoiceLine extends Choice {
         children.add(choiceNode);
       }
     }
-    recursiveStatus = RecursiveStatus.fromJson(json);
+    if(json.containsKey('conditionalCodeHandler')){
+      conditionalCodeHandler = ConditionalCodeHandler.fromJson(json['conditionalCodeHandler']);
+    }else{
+      conditionalCodeHandler = ConditionalCodeHandler.fromJson(json);
+    }
+    if(json.containsKey('conditionalCodeHandlerFinalize')){
+      conditionalCodeHandlerFinalize = ConditionalCodeHandler.fromJson(json['conditionalCodeHandlerFinalize']);
+    }else{
+      conditionalCodeHandlerFinalize = ConditionalCodeHandler.fromJson(json);
+    }
   }
 
   void addData(int x, ChoiceNode node) {
@@ -74,12 +86,12 @@ class ChoiceLine extends Choice {
 
   @override
   void generateParser() {
-    recursiveStatus.executeCodeString = '$valName += 1';
+    conditionalCodeHandler.executeCodeString = '$valName += 1';
     if (isNeedToCheck()) {
-      recursiveStatus.conditionClickableString =
-          '$valName < ${choiceLineOption.maxSelect}';
+      conditionalCodeHandler.conditionClickableString =
+      '$valName < ${choiceLineOption.maxSelect}';
     } else {
-      recursiveStatus.conditionClickableString = 'true';
+      conditionalCodeHandler.conditionClickableString = 'true';
     }
     super.generateParser();
   }
@@ -93,8 +105,8 @@ class ChoiceLine extends Choice {
 
   @override
   void updateStatus() {
-    var isHide = !recursiveStatus.analyseVisible(errorName);
-    var isOpen = recursiveStatus.analyseClickable(errorName);
+    var isHide = !conditionalCodeHandler.analyseVisible(errorName);
+    var isOpen = conditionalCodeHandler.analyseClickable(errorName);
     selectableStatus = selectableStatus.copyWith(isHide: isHide, isOpen: isOpen);
   }
 
@@ -119,7 +131,7 @@ class ChoiceLine extends Choice {
       var pos = selectOrder[order];
       var node = findChoice(pos) as ChoiceNode;
       node.execute();
-      recursiveStatus.execute(errorName);
+      conditionalCodeHandler.execute(errorName);
       updateStatus();
       _updateStatusAll(order + 1);
       order++;
