@@ -29,16 +29,19 @@ class ChoiceLineOption with _$ChoiceLineOption {
 
 class ChoiceLine extends Choice {
   ChoiceLineOption choiceLineOption;
+  late ConditionalCodeHandler conditionalCodeHandlerFinalize;
 
   ChoiceLine(int currentPos,
       {this.choiceLineOption = const ChoiceLineOption()}) {
     super.currentPos = currentPos;
     conditionalCodeHandler = ConditionalCodeHandler();
+    conditionalCodeHandlerFinalize = ConditionalCodeHandler();
   }
 
   @override
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = super.toJson();
+    map['conditionalCodeHandlerFinalize'] = conditionalCodeHandlerFinalize.toJson();
     map.addAll(choiceLineOption.toJson());
     return map;
   }
@@ -59,6 +62,11 @@ class ChoiceLine extends Choice {
       conditionalCodeHandler = ConditionalCodeHandler.fromJson(json['conditionalCodeHandler']);
     }else{
       conditionalCodeHandler = ConditionalCodeHandler.fromJson(json);
+    }
+    if(json.containsKey('conditionalCodeHandlerFinalize')){
+      conditionalCodeHandlerFinalize = ConditionalCodeHandler.fromJson(json['conditionalCodeHandlerFinalize']);
+    }else{
+      conditionalCodeHandlerFinalize = ConditionalCodeHandler.fromJson(json);
     }
   }
 
