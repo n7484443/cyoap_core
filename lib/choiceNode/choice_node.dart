@@ -115,7 +115,6 @@ class ChoiceNode extends Choice {
                 ? ChoiceNodeMode.values.byName(json['choiceNodeMode'])
                 : ChoiceNodeMode.unSelectableMode) {
     width = json['width'] ?? 2;
-    currentPos = json['x'] ?? json['pos'];
     recursiveStatus = RecursiveStatus.fromJson(json);
     if (json.containsKey('children')) {
       var list = json['children'];
