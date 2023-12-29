@@ -47,9 +47,13 @@ class ChoiceLine extends Choice {
       : choiceLineOption = ChoiceLineOption.fromJson(json) {
     super.currentPos = json['y'] ?? json['pos'];
     if (json.containsKey('children')) {
-      children = (json['children'] as List)
-          .map((e) => ChoiceNode.fromJson(e)..parent = this)
-          .toList();
+      var list = json['children'];
+      for(int i = 0; i < list.length; i++) {
+        var choiceNode = ChoiceNode.fromJson(list[i]);
+        choiceNode.currentPos = i;
+        choiceNode.parent = this;
+        children.add(choiceNode);
+      }
     }
     recursiveStatus = RecursiveStatus.fromJson(json);
   }
