@@ -43,9 +43,9 @@ class ChoiceLine extends Choice {
     return map;
   }
 
-  ChoiceLine.fromJson(Map<String, dynamic> json)
+  ChoiceLine.fromJson(Map<String, dynamic> json, int currentPos)
       : choiceLineOption = ChoiceLineOption.fromJson(json) {
-    super.currentPos = json['y'] ?? json['pos'];
+    super.currentPos = currentPos;
     if (json.containsKey('children')) {
       var list = json['children'];
       for(int i = 0; i < list.length; i++) {
