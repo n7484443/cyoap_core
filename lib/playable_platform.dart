@@ -72,6 +72,16 @@ class PlayablePlatform {
     }
   }
 
+  void checkDataCorrect() {
+    for (int i = 0; i < lineSettings.length; i++) {
+      var line = lineSettings[i];
+      line.currentPos = i;
+      for (int x = 0; x < line.children.length; x++) {
+        line.children[x].currentPos = x;
+      }
+    }
+  }
+
   Choice? getNode(Pos pos) {
     if (pos.length == 1) return lineSettings[pos.first];
     return getChoiceNode(pos);

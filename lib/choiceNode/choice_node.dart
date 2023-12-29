@@ -118,9 +118,13 @@ class ChoiceNode extends Choice {
     currentPos = json['x'] ?? json['pos'];
     recursiveStatus = RecursiveStatus.fromJson(json);
     if (json.containsKey('children')) {
-      children = (json['children'] as List)
-          .map((e) => ChoiceNode.fromJson(e)..parent = this)
-          .toList();
+      var list = json['children'];
+      for(int i = 0; i < list.length; i++) {
+        var choiceNode = ChoiceNode.fromJson(list[i]);
+        choiceNode.currentPos = i;
+        choiceNode.parent = this;
+        children.add(choiceNode);
+      }
     }
   }
 

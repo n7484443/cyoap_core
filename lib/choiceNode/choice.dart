@@ -22,7 +22,6 @@ abstract class Choice {
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = {
       'width': width,
-      'pos': currentPos,
       'children': children,
     };
 
