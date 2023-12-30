@@ -93,6 +93,7 @@ class ChoiceLine extends Choice {
     } else {
       conditionalCodeHandler.conditionClickableString = 'true';
     }
+    conditionalCodeHandlerFinalize.compile(errorName);
     super.generateParser();
   }
 
@@ -136,6 +137,8 @@ class ChoiceLine extends Choice {
       _updateStatusAll(order + 1);
       order++;
     }
+    // 라인 마지막에 실행되는 코드 실행
+    conditionalCodeHandlerFinalize.execute(errorName);
     // 결과에 따른 내용 변경
     for(var child in children){
       child.recursiveFunction((current){
