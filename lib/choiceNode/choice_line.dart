@@ -63,7 +63,7 @@ class ChoiceLine extends Choice {
     if(json.containsKey('conditionalCodeHandlerFinalize')){
       conditionalCodeHandlerFinalize = ConditionalCodeHandler.fromJson(json['conditionalCodeHandlerFinalize']);
     }else{
-      conditionalCodeHandlerFinalize = ConditionalCodeHandler.fromJson(json);
+      conditionalCodeHandlerFinalize = ConditionalCodeHandler();
     }
   }
 
