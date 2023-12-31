@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'choice.dart';
 import 'choice_line.dart';
 
@@ -18,7 +16,7 @@ class ChoicePage with Choice {
   @override
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = {
-      'children': jsonEncode(children),
+      'children': children,
     };
     return map;
   }

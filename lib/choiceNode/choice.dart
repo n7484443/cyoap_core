@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'pos.dart';
 import 'conditional_code_handler.dart';
 import 'selectable_status.dart';
@@ -22,8 +20,8 @@ mixin Choice {
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = {
       'width': width,
-      'children': jsonEncode(children),
-      'conditionalCodeHandler': jsonEncode(conditionalCodeHandler),
+      'children': children,
+      'conditionalCodeHandler': conditionalCodeHandler,
     };
     return map;
   }
