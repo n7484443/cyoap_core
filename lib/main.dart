@@ -264,9 +264,7 @@ external set _getSelectedPos(String Function() f);
 
 @JS()
 String _getSelectedPosInternal() {
-  return jsonEncode(platform.selectedPos
-      .map((e) => {'pos': e.$1.data, 'select': e.$2})
-      .toList());
+  return platform.getSelectedPosInternal();
 }
 
 @JS('setSelectedPos')
@@ -274,13 +272,7 @@ external set _setSelectedPos(void Function(String json) f);
 
 @JS()
 void _setSelectedPosInternal(String json) {
-  var jsonDecoded = jsonDecode(json);
-  for (var data in jsonDecoded) {
-    var pos = Pos(data: (data['pos'] as List).map((e) => e as int).toList());
-    var select = data['select'] as int;
-    platform.getChoiceNode(pos)?.selectNode(select);
-  }
-  platform.updateStatus();
+  platform.setSelectedPosInternal(json);
 }
 
 @JS('getErrorLog')

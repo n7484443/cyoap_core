@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cyoap_core/choiceNode/choice.dart';
 import 'package:cyoap_core/choiceNode/choice_line.dart';
 import 'package:cyoap_core/choiceNode/choice_node.dart';
@@ -17,12 +19,12 @@ class PlayablePlatform {
   String? stringImageName;
   ChoicePage choicePage = ChoicePage(0);
   List<(String, ValueTypeWrapper)> _globalSetting = [];
+
   List<(String, ValueTypeWrapper)> get globalSetting => _globalSetting;
 
   PlatformDesignSetting designSetting = PlatformDesignSetting();
 
   List<List<String>> selectedChoiceOrder = [];
-
 
   PlayablePlatform();
 
@@ -59,14 +61,15 @@ class PlayablePlatform {
     if (json['globalSetting'] is Map) {
       _globalSetting = (json['globalSetting'] as Map)
           .keys
-          .map((name) => (name as String,
-              ValueTypeWrapper.fromJson(json['globalSetting'][name])))
+          .map((name) => (
+                name as String,
+                ValueTypeWrapper.fromJson(json['globalSetting'][name])
+              ))
           .toList();
     } else {
       _globalSetting =
           (json['globalSetting'] as List).map((e) => e as List).map((entity) {
-        return (
-            entity[0] as String, ValueTypeWrapper.fromJson(entity[1]));
+        return (entity[0] as String, ValueTypeWrapper.fromJson(entity[1]));
       }).toList();
     }
   }
@@ -114,7 +117,8 @@ class PlayablePlatform {
   void updateStatus() {
     VariableDataBase().clear();
     for (var element in _globalSetting) {
-      VariableDataBase().setValue(element.$1, element.$2, ValueTypeLocation.global);
+      VariableDataBase()
+          .setValue(element.$1, element.$2, ValueTypeLocation.global);
     }
     choicePage.updateStatus();
   }
@@ -128,7 +132,7 @@ class PlayablePlatform {
     for (var line in choicePage.choiceLines) {
       for (var choice in line.children) {
         (choice as ChoiceNode).recursiveFunction((node) {
-          if(node is! ChoiceNode){
+          if (node is! ChoiceNode) {
             return;
           }
           if (node.isOpen() &&
@@ -143,5 +147,20 @@ class PlayablePlatform {
       }
     }
     return selectedPos;
+  }
+
+  void setSelectedPosInternal(String json) {
+    var jsonDecoded = jsonDecode(json);
+    for (var data in jsonDecoded) {
+      var pos = Pos(data: (data['pos'] as List).map((e) => e as int).toList());
+      var select = data['select'] as int;
+      getChoiceNode(pos)?.selectNode(select);
+    }
+    updateStatus();
+  }
+
+  String getSelectedPosInternal() {
+    return jsonEncode(
+        selectedPos.map((e) => {'pos': e.$1.data, 'select': e.$2}).toList());
   }
 }
