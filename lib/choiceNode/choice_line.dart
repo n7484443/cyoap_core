@@ -23,7 +23,7 @@ class ChoiceLineOption with _$ChoiceLineOption {
       _$ChoiceLineOptionFromJson(json);
 }
 
-class ChoiceLine extends Choice {
+class ChoiceLine with Choice {
   List<ChoiceNode> get choiceNodes => children.cast<ChoiceNode>();
 
   ChoiceLineOption choiceLineOption;

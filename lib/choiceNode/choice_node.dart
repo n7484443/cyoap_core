@@ -44,7 +44,7 @@ const int defaultMaxSize = 12;
 
 const int seedMax = 1000000000;
 
-class ChoiceNode extends Choice {
+class ChoiceNode with Choice {
   ChoiceNodeOption choiceNodeOption;
   ChoiceNodeMode choiceNodeMode = ChoiceNodeMode.defaultMode;
 
