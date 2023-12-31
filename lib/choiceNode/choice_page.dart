@@ -3,7 +3,7 @@ import 'choice_line.dart';
 
 // TODO: page 시스템 구현
 class ChoicePage extends Choice {
-  List<ChoiceLine> lineSettings = List.empty(growable: true);
+  List<ChoiceLine> get choiceLines => children.cast<ChoiceLine>();
 
   ChoicePage(int page) {
     currentPos = page;

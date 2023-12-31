@@ -11,9 +11,9 @@ void main() {
   test('defaultModeTest', () {
     var ins = VariableDataBase();
     var platform = PlayablePlatform();
-    platform.choicePage.lineSettings.add(ChoiceLine(0));
+    platform.choicePage.choiceLines.add(ChoiceLine(0));
     var choiceNode = ChoiceNode.empty()..title = "testNode";
-    platform.choicePage.lineSettings[0].addChildren(choiceNode);
+    platform.choicePage.choiceLines[0].addChildren(choiceNode);
     platform.updateStatusAll();
 
     expect(ins.getValueType("testNode")?.dataUnzip, false);
@@ -34,10 +34,10 @@ void main() {
   test('defaultModeTest_nonSelectable', () {
     var ins = VariableDataBase();
     var platform = PlayablePlatform();
-    platform.choicePage.lineSettings.add(ChoiceLine(0));
+    platform.choicePage.choiceLines.add(ChoiceLine(0));
     var choiceNode = ChoiceNode.empty()..title = "testNode";
     choiceNode.conditionalCodeHandler.conditionClickableString = "false";
-    platform.choicePage.lineSettings[0].addChildren(choiceNode);
+    platform.choicePage.choiceLines[0].addChildren(choiceNode);
     choiceNode.generateParser();
     platform.updateStatusAll();
 
@@ -50,14 +50,14 @@ void main() {
   test('unSelectableModeTest', () {
     var ins = VariableDataBase();
     var platform = PlayablePlatform();
-    platform.choicePage.lineSettings.add(ChoiceLine(0));
+    platform.choicePage.choiceLines.add(ChoiceLine(0));
     var choiceNode = ChoiceNode.empty()..title = "testNode";
     choiceNode.choiceNodeMode = ChoiceNodeMode.unSelectableMode;
     choiceNode.conditionalCodeHandler.conditionVisibleString = "testInput";
     choiceNode.conditionalCodeHandler.executeCodeString = "point += 1";
 
 
-    platform.choicePage.lineSettings[0].addChildren(choiceNode);
+    platform.choicePage.choiceLines[0].addChildren(choiceNode);
     choiceNode.generateParser();
 
     platform.addGlobalSetting('testInput', ValueTypeWrapper(ValueType.bool(false)));
@@ -78,12 +78,12 @@ void main() {
     var ins = VariableDataBase();
     var seed = 10;
     var platform = PlayablePlatform();
-    platform.choicePage.lineSettings.add(ChoiceLine(0));
+    platform.choicePage.choiceLines.add(ChoiceLine(0));
     var choiceNode = ChoiceNode.empty()
       ..title = "testNode"
       ..choiceNodeMode = ChoiceNodeMode.randomMode
       ..maximumStatus = 10;
-    platform.choicePage.lineSettings[0].addChildren(choiceNode);
+    platform.choicePage.choiceLines[0].addChildren(choiceNode);
     platform.updateStatusAll();
     expect(ins.getValueType("testNode")?.dataUnzip, false);
     expect(ins.getValueType("testNode:random")?.dataUnzip, -1);
@@ -104,12 +104,12 @@ void main() {
   test('multiSelectTest', () {
     var ins = VariableDataBase();
     var platform = PlayablePlatform();
-    platform.choicePage.lineSettings.add(ChoiceLine(0));
+    platform.choicePage.choiceLines.add(ChoiceLine(0));
     var choiceNode = ChoiceNode.empty()
       ..title = "testNode"
       ..choiceNodeMode = ChoiceNodeMode.multiSelect
       ..maximumStatus = 2;
-    platform.choicePage.lineSettings[0].addChildren(choiceNode);
+    platform.choicePage.choiceLines[0].addChildren(choiceNode);
     platform.updateStatusAll();
 
     expect(ins.getValueType("testNode")?.dataUnzip, false);
@@ -144,9 +144,9 @@ void main() {
   test('defaultModeTest', () {
     var ins = VariableDataBase();
     var platform = PlayablePlatform();
-    platform.choicePage.lineSettings.add(ChoiceLine(0));
+    platform.choicePage.choiceLines.add(ChoiceLine(0));
     var choiceNode = ChoiceNode.empty()..title = "testNode"..choiceNodeMode=ChoiceNodeMode.unSelectableMode;
-    platform.choicePage.lineSettings[0].addChildren(choiceNode);
+    platform.choicePage.choiceLines[0].addChildren(choiceNode);
 
     platform.updateStatusAll();
     expect(ins.getValueType("testNode")?.dataUnzip, true);
@@ -160,9 +160,9 @@ void main() {
 
   test('click and hide test', (){
     var platform = PlayablePlatform();
-    platform.choicePage.lineSettings.add(ChoiceLine(0));
+    platform.choicePage.choiceLines.add(ChoiceLine(0));
     var choiceNode = ChoiceNode.empty()..title = "testNode"..conditionalCodeHandler.conditionVisibleString = "not(testNode)";
-    platform.choicePage.lineSettings[0].addChildren(choiceNode);
+    platform.choicePage.choiceLines[0].addChildren(choiceNode);
     choiceNode.generateParser();
 
     platform.updateStatusAll();

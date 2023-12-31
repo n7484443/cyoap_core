@@ -24,6 +24,8 @@ class ChoiceLineOption with _$ChoiceLineOption {
 }
 
 class ChoiceLine extends Choice {
+  List<ChoiceNode> get choiceNodes => children.cast<ChoiceNode>();
+
   ChoiceLineOption choiceLineOption;
   List<Pos> selectOrder = List.empty(growable: true);
   late ConditionalCodeHandler conditionalCodeHandlerFinalize;

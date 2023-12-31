@@ -32,8 +32,8 @@ void main() {
     lineSetting1.addChildren(choiceNode1_0);
     lineSetting1.generateParser();
 
-    platform.choicePage.lineSettings.add(lineSetting0);
-    platform.choicePage.lineSettings.add(lineSetting1);
+    platform.choicePage.choiceLines.add(lineSetting0);
+    platform.choicePage.choiceLines.add(lineSetting1);
     platform.updateStatusAll();
     expect(choiceNode1_0.contentsString, "a initial b");
 
@@ -87,7 +87,7 @@ void main() {
     """;
     lineSetting0.addChildren(choiceNode0);
     lineSetting0.generateParser();
-    platform.choicePage.lineSettings.add(lineSetting0);
+    platform.choicePage.choiceLines.add(lineSetting0);
 
     platform.updateStatusAll();
     for (int i = 0; i < 10; i++) {

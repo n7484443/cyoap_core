@@ -74,8 +74,8 @@ class PlayablePlatform {
   }
 
   void checkDataCorrect() {
-    for (int i = 0; i < choicePage.lineSettings.length; i++) {
-      var line = choicePage.lineSettings[i];
+    for (int i = 0; i < choicePage.choiceLines.length; i++) {
+      var line = choicePage.choiceLines[i];
       line.currentPos = i;
       for (int x = 0; x < line.children.length; x++) {
         line.children[x].currentPos = x;
@@ -84,13 +84,13 @@ class PlayablePlatform {
   }
 
   Choice? getNode(Pos pos) {
-    if (pos.length == 1) return choicePage.lineSettings[pos.first];
+    if (pos.length == 1) return choicePage.choiceLines[pos.first];
     return getChoiceNode(pos);
   }
 
   Choice? getChoice(Pos pos) {
-    if (pos.first >= choicePage.lineSettings.length) return null;
-    Choice child = choicePage.lineSettings[pos.first];
+    if (pos.first >= choicePage.choiceLines.length) return null;
+    Choice child = choicePage.choiceLines[pos.first];
     for (var i = 1; i < pos.length; i++) {
       if (child.children.length <= pos.data[i]) {
         return null;
@@ -109,8 +109,8 @@ class PlayablePlatform {
   }
 
   ChoiceLine? getLineSetting(int y) {
-    if (choicePage.lineSettings.length <= y) return null;
-    return choicePage.lineSettings[y];
+    if (choicePage.choiceLines.length <= y) return null;
+    return choicePage.choiceLines[y];
   }
 
   void updateStatusAll() {
@@ -118,26 +118,26 @@ class PlayablePlatform {
     for (var element in _globalSetting) {
       VariableDataBase().setValue(element.$1, element.$2, ValueTypeLocation.global);
     }
-    for (var i = 0; i < choicePage.lineSettings.length; i++) {
-      var lineSetting = choicePage.lineSettings[i];
+    for (var i = 0; i < choicePage.choiceLines.length; i++) {
+      var lineSetting = choicePage.choiceLines[i];
       VariableDataBase().setValue(lineSetting.valName, ValueTypeWrapper(ValueType.int(0)), ValueTypeLocation.global);
     }
-    for (var i = 0; i < choicePage.lineSettings.length; i++) {
-      var lineSetting = choicePage.lineSettings[i];
+    for (var i = 0; i < choicePage.choiceLines.length; i++) {
+      var lineSetting = choicePage.choiceLines[i];
       lineSetting.execute();
       VariableDataBase().clearLocalVariable();
     }
   }
 
   void generateRecursiveParser() {
-    for (var lineSetting in choicePage.lineSettings) {
+    for (var lineSetting in choicePage.choiceLines) {
       lineSetting.generateParser();
     }
   }
 
   List<(Pos, int)> get selectedPos {
     List<(Pos, int)> selectedPos = [];
-    for (var line in choicePage.lineSettings) {
+    for (var line in choicePage.choiceLines) {
       for (var choice in line.children) {
         (choice as ChoiceNode).recursiveFunction((node) {
           if(node is! ChoiceNode){
