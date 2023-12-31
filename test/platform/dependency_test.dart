@@ -12,12 +12,12 @@ void printStatus(List<ChoiceNode> choiceNode){
 void main() {
   test('dependency_test_0', () {
     var platform = PlayablePlatform();
-    var lineSetting0 = ChoiceLine(0);
-    var lineSetting1 = ChoiceLine(0, choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
+    var lineSetting0 = ChoiceLine();
+    var lineSetting1 = ChoiceLine(choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
     lineSetting0.generateParser();
-    platform.choicePage.choiceLines.add(lineSetting0);
+    platform.choicePage.addChildren(lineSetting0);
     lineSetting1.generateParser();
-    platform.choicePage.choiceLines.add(lineSetting1);
+    platform.choicePage.addChildren(lineSetting1);
     var choiceNode0 = ChoiceNode.empty()..title = "testNode0";
     var choiceNode1 = ChoiceNode.empty()..title = "testNode1"..conditionalCodeHandler.conditionVisibleString = "testNode0";
     var choiceNode2 = ChoiceNode.empty()..title = "testNode2"..conditionalCodeHandler.conditionClickableString = "testNode0";
@@ -54,9 +54,9 @@ void main() {
 
   test('forced_uncheck0', () {
     var platform = PlayablePlatform();
-    var lineSetting0 = ChoiceLine(0, choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
+    var lineSetting0 = ChoiceLine(choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
     lineSetting0.generateParser();
-    platform.choicePage.choiceLines.add(lineSetting0);
+    platform.choicePage.addChildren(lineSetting0);
     var choiceNode0 = ChoiceNode.empty()..title = "testNode0";
     var choiceNode1 = ChoiceNode.empty()..title = "testNode1"..conditionalCodeHandler.conditionClickableString = "testNode0";
     choiceNode0.generateParser();

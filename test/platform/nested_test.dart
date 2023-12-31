@@ -7,7 +7,7 @@ import 'package:test/test.dart';
 void main() {
   test('nestedTest', () {
     var platform = PlayablePlatform();
-    platform.choicePage.choiceLines.add(ChoiceLine(0, choiceLineOption: ChoiceLineOption(enableCancelFeature: true)));
+    platform.choicePage.addChildren(ChoiceLine(choiceLineOption: ChoiceLineOption(enableCancelFeature: true)));
     var parent = ChoiceNode.empty()..title = "parent";
     var child = ChoiceNode.empty()..title = "child";
     parent.addChildren(child);
@@ -44,7 +44,7 @@ void main() {
 
   test('nestedMultipleTest', () {
     var platform = PlayablePlatform();
-    var line = ChoiceLine(0)
+    var line = ChoiceLine()
       ..choiceLineOption = ChoiceLineOption(enableCancelFeature: false);
     platform.addGlobalSetting("test", ValueTypeWrapper(ValueType.int(0)));
     var parent = ChoiceNode.empty()
@@ -64,7 +64,7 @@ void main() {
     parent.addChildren(child0);
     parent.addChildren(child1);
     line.addChildren(parent);
-    platform.choicePage.choiceLines.add(line);
+    platform.choicePage.addChildren(line);
     platform.updateStatus();
 
     expect(parent.select, 0);
@@ -123,7 +123,7 @@ void main() {
 
   test('test State Propagation From Parent To Child', () {
     var platform = PlayablePlatform();
-    var line = ChoiceLine(0)
+    var line = ChoiceLine()
       ..choiceLineOption = ChoiceLineOption(enableCancelFeature: false);
     var parent = ChoiceNode.empty()
       ..title = "parent"
@@ -141,7 +141,7 @@ void main() {
     parent.addChildren(child0);
     parent.addChildren(child1);
     line.addChildren(parent);
-    platform.choicePage.choiceLines.add(line);
+    platform.choicePage.addChildren(line);
 
     platform.addGlobalSetting("a", ValueTypeWrapper(ValueType.bool(false)));
     platform.addGlobalSetting("b", ValueTypeWrapper(ValueType.bool(false)));

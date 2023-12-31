@@ -12,15 +12,15 @@ void printStatus(List<ChoiceNode> choiceNode){
 void main() {
   test('lineMaximumTest', () {
     var platform = PlayablePlatform();
-    var lineSetting = ChoiceLine(0, choiceLineOption: ChoiceLineOption(maxSelect: 1));
+    var lineSetting = ChoiceLine(choiceLineOption: ChoiceLineOption(maxSelect: 1));
     lineSetting.generateParser();
-    platform.choicePage.choiceLines.add(lineSetting);
+    platform.choicePage.addChildren(lineSetting);
     var choiceNode0 = ChoiceNode.empty()..title = "testNode0";
     var choiceNode1 = ChoiceNode.empty()..title = "testNode1";
     var choiceNode2 = ChoiceNode.empty()..title = "testNode2"..choiceNodeMode=ChoiceNodeMode.unSelectableMode;
-    platform.choicePage.choiceLines[0].addChildren(choiceNode0);
-    platform.choicePage.choiceLines[0].addChildren(choiceNode1);
-    platform.choicePage.choiceLines[0].addChildren(choiceNode2);
+    lineSetting.addChildren(choiceNode0);
+    lineSetting.addChildren(choiceNode1);
+    lineSetting.addChildren(choiceNode2);
     platform.updateStatus();
 
     expect(choiceNode0.select, 0);
@@ -80,14 +80,13 @@ void main() {
 
   test('lineHideTest', () {
     var platform = PlayablePlatform();
-    platform.choicePage.choiceLines.add(ChoiceLine(0));
-    var lineSetting0 = ChoiceLine(0);
-    var lineSetting1 = ChoiceLine(1)..conditionalCodeHandler.conditionVisibleString = "testNode0";
+    var lineSetting0 = ChoiceLine();
+    var lineSetting1 = ChoiceLine()..conditionalCodeHandler.conditionVisibleString = "testNode0";
     lineSetting1.generateParser();
     var choiceNode0 = ChoiceNode.empty()..title = "testNode0";
     var choiceNode1 = ChoiceNode.empty()..title = "testNode1";
-    platform.choicePage.choiceLines.add(lineSetting0);
-    platform.choicePage.choiceLines.add(lineSetting1);
+    platform.choicePage.addChildren(lineSetting0);
+    platform.choicePage.addChildren(lineSetting1);
     lineSetting0.addChildren(choiceNode0);
     lineSetting1.addChildren(choiceNode1);
     platform.updateStatus();

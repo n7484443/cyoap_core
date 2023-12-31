@@ -75,13 +75,7 @@ class PlayablePlatform {
   }
 
   void checkDataCorrect() {
-    for (int i = 0; i < choicePage.choiceLines.length; i++) {
-      var line = choicePage.choiceLines[i];
-      line.currentPos = i;
-      for (int x = 0; x < line.children.length; x++) {
-        line.children[x].currentPos = x;
-      }
-    }
+    choicePage.checkDataCorrect();
   }
 
   Choice? getChoice(Pos pos) {

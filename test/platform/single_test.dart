@@ -11,7 +11,7 @@ void main() {
   test('defaultModeTest', () {
     var ins = VariableDataBase();
     var platform = PlayablePlatform();
-    platform.choicePage.choiceLines.add(ChoiceLine(0));
+    platform.choicePage.addChildren(ChoiceLine());
     var choiceNode = ChoiceNode.empty()..title = "testNode";
     platform.choicePage.choiceLines[0].addChildren(choiceNode);
     platform.updateStatus();
@@ -34,7 +34,7 @@ void main() {
   test('defaultModeTest_nonSelectable', () {
     var ins = VariableDataBase();
     var platform = PlayablePlatform();
-    platform.choicePage.choiceLines.add(ChoiceLine(0));
+    platform.choicePage.addChildren(ChoiceLine());
     var choiceNode = ChoiceNode.empty()..title = "testNode";
     choiceNode.conditionalCodeHandler.conditionClickableString = "false";
     platform.choicePage.choiceLines[0].addChildren(choiceNode);
@@ -50,7 +50,7 @@ void main() {
   test('unSelectableModeTest', () {
     var ins = VariableDataBase();
     var platform = PlayablePlatform();
-    platform.choicePage.choiceLines.add(ChoiceLine(0));
+    platform.choicePage.addChildren(ChoiceLine());
     var choiceNode = ChoiceNode.empty()..title = "testNode";
     choiceNode.choiceNodeMode = ChoiceNodeMode.unSelectableMode;
     choiceNode.conditionalCodeHandler.conditionVisibleString = "testInput";
@@ -78,7 +78,7 @@ void main() {
     var ins = VariableDataBase();
     var seed = 10;
     var platform = PlayablePlatform();
-    platform.choicePage.choiceLines.add(ChoiceLine(0));
+    platform.choicePage.addChildren(ChoiceLine());
     var choiceNode = ChoiceNode.empty()
       ..title = "testNode"
       ..choiceNodeMode = ChoiceNodeMode.randomMode
@@ -104,7 +104,7 @@ void main() {
   test('multiSelectTest', () {
     var ins = VariableDataBase();
     var platform = PlayablePlatform();
-    platform.choicePage.choiceLines.add(ChoiceLine(0));
+    platform.choicePage.addChildren(ChoiceLine());
     var choiceNode = ChoiceNode.empty()
       ..title = "testNode"
       ..choiceNodeMode = ChoiceNodeMode.multiSelect
@@ -144,7 +144,7 @@ void main() {
   test('defaultModeTest', () {
     var ins = VariableDataBase();
     var platform = PlayablePlatform();
-    platform.choicePage.choiceLines.add(ChoiceLine(0));
+    platform.choicePage.addChildren(ChoiceLine());
     var choiceNode = ChoiceNode.empty()..title = "testNode"..choiceNodeMode=ChoiceNodeMode.unSelectableMode;
     platform.choicePage.choiceLines[0].addChildren(choiceNode);
 
@@ -160,7 +160,7 @@ void main() {
 
   test('click and hide test', (){
     var platform = PlayablePlatform();
-    platform.choicePage.choiceLines.add(ChoiceLine(0));
+    platform.choicePage.addChildren(ChoiceLine());
     var choiceNode = ChoiceNode.empty()..title = "testNode"..conditionalCodeHandler.conditionVisibleString = "not(testNode)";
     platform.choicePage.choiceLines[0].addChildren(choiceNode);
     choiceNode.generateParser();

@@ -30,9 +30,7 @@ class ChoiceLine with Choice {
   List<Pos> selectOrder = List.empty(growable: true);
   late ConditionalCodeHandler conditionalCodeHandlerFinalize;
 
-  ChoiceLine(int currentPos,
-      {this.choiceLineOption = const ChoiceLineOption()}) {
-    super.currentPos = currentPos;
+  ChoiceLine({this.choiceLineOption = const ChoiceLineOption()}) {
     conditionalCodeHandler = ConditionalCodeHandler();
     conditionalCodeHandlerFinalize = ConditionalCodeHandler();
   }
@@ -67,21 +65,6 @@ class ChoiceLine with Choice {
     }else{
       conditionalCodeHandlerFinalize = ConditionalCodeHandler();
     }
-  }
-
-  void addData(int x, ChoiceNode node) {
-    node.currentPos = x;
-    node.parent = this;
-    if (x > children.length) {
-      children.add(node);
-    } else {
-      children.insert(x, node);
-    }
-  }
-
-  ChoiceNode? getData(int x) {
-    if (children.length <= x) return null;
-    return children[x] as ChoiceNode?;
   }
 
   String get valName => 'lineSetting_$currentPos';
@@ -132,7 +115,7 @@ class ChoiceLine with Choice {
     int order = 0;
     while(order < selectOrder.length){
       var pos = selectOrder[order];
-      var node = findChoice(pos) as ChoiceNode;
+      var node = findRootParent().findChoice(pos) as ChoiceNode;
       node.execute();
       conditionalCodeHandler.execute(errorName);
       updateStatus();

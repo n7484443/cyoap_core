@@ -8,7 +8,8 @@ import 'selectable_status.dart';
 //시작 전 ValueType 과 결과 ValueType을 저장해야 한다.
 
 mixin Choice {
-  SelectableStatus selectableStatus = SelectableStatus(isHide: false, isOpen: true);
+  SelectableStatus selectableStatus =
+      SelectableStatus(isHide: false, isOpen: true);
 
   void generateParser() {
     conditionalCodeHandler.compile(errorName);
@@ -36,17 +37,17 @@ mixin Choice {
 
   bool get isSelectableMode => true;
 
-  bool isOpen(){
-    if(parent != null && !parent!.isOpen()) return false;
+  bool isOpen() {
+    if (parent != null && !parent!.isOpen()) return false;
     return selectableStatus.isOpen;
   }
 
-  bool isHide(){
-    if(parent != null && parent!.isHide()) return true;
+  bool isHide() {
+    if (parent != null && parent!.isHide()) return true;
     return selectableStatus.isHide;
   }
 
-  bool isExecute(){
+  bool isExecute() {
     return isOpen();
   }
 
@@ -80,9 +81,9 @@ mixin Choice {
 
   void updateStatus();
 
-  void recursiveFunction(Function(Choice) function){
+  void recursiveFunction(Function(Choice) function) {
     function(this);
-    for(var child in children){
+    for (var child in children) {
       child.recursiveFunction(function);
     }
   }
@@ -93,5 +94,26 @@ mixin Choice {
     return child.findChoice(pos.removeFirst());
   }
 
+  Choice findRootParent() {
+    if(parent == null) return this;
+    var root = parent!;
+    while (root.parent != null) {
+      root = root.parent!;
+    }
+    return root;
+  }
+
   void execute() {}
+
+
+  void checkDataCorrect() {
+    for (int i = 0; i < children.length; i++) {
+      var choice = children[i];
+      choice.currentPos = i;
+      for (int x = 0; x < choice.children.length; x++) {
+        choice.children[x].currentPos = x;
+        choice.children[x].parent = choice;
+      }
+    }
+  }
 }

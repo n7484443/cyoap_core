@@ -60,7 +60,7 @@ external set _loadPlatform(void Function(String, List<dynamic>) f);
 void _loadPlatformInternal(String jsonPlatform, List<dynamic> jsonLine) {
   platform = PlayablePlatform.fromJson(jsonDecode(jsonPlatform));
   for(int i = 0; i < jsonLine.length; i++){
-    platform.choicePage.choiceLines.add(ChoiceLine.fromJson(jsonDecode(jsonLine[i]), i));
+    platform.choicePage.addChildren(ChoiceLine.fromJson(jsonDecode(jsonLine[i]), i));
   }
   platform.updateStatus();
 }

@@ -16,7 +16,7 @@ void main() {
     var platform = PlayablePlatform();
     platform.addGlobalSetting(
         'test', ValueTypeWrapper(ValueType.string("initial")));
-    var lineSetting0 = ChoiceLine(0, choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
+    var lineSetting0 = ChoiceLine(choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
     var choiceNode0 = ChoiceNode.empty()..title = "testNode0";
     choiceNode0.conditionalCodeHandler.executeCodeString = "test = 0";
     var choiceNode1 = ChoiceNode.empty()..title = "testNode1";
@@ -25,15 +25,15 @@ void main() {
     lineSetting0.addChildren(choiceNode1);
     lineSetting0.generateParser();
 
-    var lineSetting1 = ChoiceLine(1, choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
+    var lineSetting1 = ChoiceLine(choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
     var choiceNode1_0 = ChoiceNode(
         title: "testNode 1_0", contents: "a {{test}} b", imageString: '');
     choiceNode1_0.conditionalCodeHandler.executeCodeString = "test = 'self'";
     lineSetting1.addChildren(choiceNode1_0);
     lineSetting1.generateParser();
 
-    platform.choicePage.choiceLines.add(lineSetting0);
-    platform.choicePage.choiceLines.add(lineSetting1);
+    platform.choicePage.addChildren(lineSetting0);
+    platform.choicePage.addChildren(lineSetting1);
     platform.updateStatus();
     expect(choiceNode1_0.contentsString, "a initial b");
 
@@ -71,7 +71,7 @@ void main() {
         'content', ValueTypeWrapper(ValueType.string("initial")));
     platform.addGlobalSetting(
         'c', ValueTypeWrapper(ValueType.string("0")));
-    var lineSetting0 = ChoiceLine(0, choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
+    var lineSetting0 = ChoiceLine(choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
     var choiceNode0 = ChoiceNode.empty()
       ..title = "테스트용"
       ..contentsString = "{{content}}"
@@ -87,7 +87,7 @@ void main() {
     """;
     lineSetting0.addChildren(choiceNode0);
     lineSetting0.generateParser();
-    platform.choicePage.choiceLines.add(lineSetting0);
+    platform.choicePage.addChildren(lineSetting0);
 
     platform.updateStatus();
     for (int i = 0; i < 10; i++) {
