@@ -59,8 +59,9 @@ external set _loadPlatform(void Function(String, List<dynamic>) f);
 @JS()
 void _loadPlatformInternal(String jsonPlatform, List<dynamic> jsonLine) {
   platform = PlayablePlatform.fromJson(jsonDecode(jsonPlatform));
-  for(int i = 0; i < jsonLine.length; i++){
-    platform.choicePage.addChildren(ChoiceLine.fromJson(jsonDecode(jsonLine[i]), i));
+  for (int i = 0; i < jsonLine.length; i++) {
+    platform.choicePage
+        .addChildren(ChoiceLine.fromJson(jsonDecode(jsonLine[i])));
   }
   platform.updateStatus();
 }
@@ -102,12 +103,14 @@ int _getMaximumStatusInternal(List<dynamic> pos) {
 }
 
 @JS('getChoiceStatus')
-external set _getChoiceStatus(ExternalSelectableStatus Function(List<dynamic> pos) f);
+external set _getChoiceStatus(
+    ExternalSelectableStatus Function(List<dynamic> pos) f);
 
 @JS()
 ExternalSelectableStatus _getChoiceStatusInternal(List<dynamic> pos) {
   Pos innerPos = listToPos(pos);
-  var status = platform.getChoice(innerPos)?.selectableStatus ?? SelectableStatus();
+  var status =
+      platform.getChoice(innerPos)?.selectableStatus ?? SelectableStatus();
   return ExternalSelectableStatus(isHide: status.isHide, isOpen: status.isOpen);
 }
 
@@ -115,7 +118,9 @@ ExternalSelectableStatus _getChoiceStatusInternal(List<dynamic> pos) {
 @anonymous
 class ExternalSelectableStatus {
   external bool get isHide;
+
   external bool get isOpen;
+
   external factory ExternalSelectableStatus({bool isHide, bool isOpen});
 }
 

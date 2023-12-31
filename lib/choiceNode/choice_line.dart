@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cyoap_core/choiceNode/pos.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -43,9 +45,8 @@ class ChoiceLine with Choice {
     return map;
   }
 
-  ChoiceLine.fromJson(Map<String, dynamic> json, int currentPos)
+  ChoiceLine.fromJson(Map<String, dynamic> json)
       : choiceLineOption = ChoiceLineOption.fromJson(json) {
-    super.currentPos = currentPos;
     if (json.containsKey('children')) {
       var list = json['children'];
       for(int i = 0; i < list.length; i++) {
@@ -139,5 +140,11 @@ class ChoiceLine with Choice {
         (current as ChoiceNode).updateStatus(addOrder: selectOrder, order: order, lineCanAcceptMore: selectableStatus.isOpen);
       });
     }
+  }
+
+  @override
+  Choice clone() {
+    var json = jsonDecode(jsonEncode(toJson()));
+    return ChoiceLine.fromJson(json);
   }
 }

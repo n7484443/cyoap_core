@@ -46,4 +46,8 @@ class ChoicePage with Choice {
     }
   }
 
+  @override
+  Choice clone() {
+    throw UnimplementedError();
+  }
 }

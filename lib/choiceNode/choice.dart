@@ -118,4 +118,6 @@ mixin Choice {
       }
     }
   }
+
+  Choice clone();
 }

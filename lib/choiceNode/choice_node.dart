@@ -255,6 +255,7 @@ class ChoiceNode with Choice {
     return out;
   }
 
+  @override
   ChoiceNode clone() {
     var json = jsonDecode(jsonEncode(toJson()));
     return ChoiceNode.fromJson(json);
