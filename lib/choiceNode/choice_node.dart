@@ -45,6 +45,8 @@ const int defaultMaxSize = 12;
 const int seedMax = 1000000000;
 
 class ChoiceNode with Choice {
+  List<ChoiceNode> get choiceNodes => children.cast<ChoiceNode>();
+
   ChoiceNodeOption choiceNodeOption;
   ChoiceNodeMode choiceNodeMode = ChoiceNodeMode.defaultMode;
 

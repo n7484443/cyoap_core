@@ -45,4 +45,5 @@ class ChoicePage with Choice {
       VariableDataBase().clearLocalVariable();
     }
   }
+
 }

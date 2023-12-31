@@ -12,10 +12,10 @@ import 'design_setting.dart';
 
 const int nonPositioned = -1;
 
-int fileVersion = 1;
+int fileVersion = 2;
 
 class PlayablePlatform {
-  int currentFileVersion = 1;
+  final int currentFileVersion;
   String? stringImageName;
   ChoicePage choicePage = ChoicePage(0);
   List<(String, ValueTypeWrapper)> _globalSetting = [];
@@ -26,7 +26,7 @@ class PlayablePlatform {
 
   List<List<String>> selectedChoiceOrder = [];
 
-  PlayablePlatform();
+  PlayablePlatform(): currentFileVersion = fileVersion;
 
   void addGlobalSetting(String name, ValueTypeWrapper wrapper) {
     int pos = _globalSetting.indexWhere((element) => element.$1 == name);
@@ -84,23 +84,9 @@ class PlayablePlatform {
     }
   }
 
-  Choice? getNode(Pos pos) {
-    if (pos.length == 1) return choicePage.choiceLines[pos.first];
-    return getChoiceNode(pos);
-  }
-
   Choice? getChoice(Pos pos) {
-    if (pos.first >= choicePage.choiceLines.length) return null;
-    Choice child = choicePage.choiceLines[pos.first];
-    for (var i = 1; i < pos.length; i++) {
-      if (child.children.length <= pos.data[i]) {
-        return null;
-      } else if (pos.data[i] < 0) {
-        return null;
-      }
-      child = child.children[pos.data[i]];
-    }
-    return child;
+    if (pos.length == 0) return null;
+    return choicePage.findChoice(pos);
   }
 
   ChoiceNode? getChoiceNode(Pos pos) {
@@ -109,9 +95,10 @@ class PlayablePlatform {
     return null;
   }
 
-  ChoiceLine? getLineSetting(int y) {
-    if (choicePage.choiceLines.length <= y) return null;
-    return choicePage.choiceLines[y];
+  ChoiceLine? getChoiceLine(Pos pos) {
+    var output = getChoice(pos);
+    if (output is ChoiceLine) return output;
+    return null;
   }
 
   void updateStatus() {

@@ -161,7 +161,7 @@ external set _childLength(int Function(List<dynamic> pos) f);
 @JS()
 int _childLengthInternal(List<dynamic> pos) {
   Pos innerPos = listToPos(pos);
-  return platform.getNode(innerPos)?.children.length ?? 0;
+  return platform.getChoice(innerPos)?.children.length ?? 0;
 }
 
 @JS('lineLength')
