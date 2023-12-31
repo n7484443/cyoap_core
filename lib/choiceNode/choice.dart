@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'pos.dart';
 import 'conditional_code_handler.dart';
 import 'selectable_status.dart';
@@ -20,8 +22,8 @@ abstract class Choice {
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = {
       'width': width,
-      'children': children,
-      'conditionalCodeHandler': conditionalCodeHandler.toJson(),
+      'children': jsonEncode(children),
+      'conditionalCodeHandler': jsonEncode(conditionalCodeHandler),
     };
     return map;
   }
