@@ -89,7 +89,9 @@ mixin Choice {
   }
 
   Choice? findChoice(Pos pos) {
+    if (pos.length == 0) return null;
     if (pos.length == 1) return this;
+    if (children.length <= pos.data[1]) return null;
     var child = children[pos.data[1]];
     return child.findChoice(pos.removeFirst());
   }
