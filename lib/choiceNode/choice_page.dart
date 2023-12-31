@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'choice.dart';
 import 'choice_line.dart';
 
@@ -16,7 +18,7 @@ class ChoicePage extends Choice {
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = super.toJson();
     map.addAll({
-      'lineSettings': lineSettings,
+      'lineSettings': jsonEncode(lineSettings),
     });
     return map;
   }
