@@ -56,4 +56,16 @@ class Pos with _$Pos {
     }
     return contain(other);
   }
+
+  static Pos lca(Pos A, Pos B){
+    var lca = Pos();
+    for(int i = 0; i < min(A.length, B.length); i++) {
+      if (A.data[i] == B.data[i]) {
+        lca = lca.addLast(A.data[i]);
+      } else {
+        break;
+      }
+    }
+    return lca;
+  }
 }
