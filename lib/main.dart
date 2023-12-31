@@ -60,7 +60,7 @@ external set _loadPlatform(void Function(String, List<dynamic>) f);
 void _loadPlatformInternal(String jsonPlatform, List<dynamic> jsonLine) {
   platform = PlayablePlatform.fromJson(jsonDecode(jsonPlatform));
   for(int i = 0; i < jsonLine.length; i++){
-    platform.lineSettings.add(ChoiceLine.fromJson(jsonDecode(jsonLine[i]), i));
+    platform.choicePage.lineSettings.add(ChoiceLine.fromJson(jsonDecode(jsonLine[i]), i));
   }
   platform.updateStatusAll();
 }
@@ -169,7 +169,7 @@ external set _lineLength(int Function() f);
 
 @JS()
 int _lineLengthInternal() {
-  return platform.lineSettings.length;
+  return platform.choicePage.lineSettings.length;
 }
 
 Pos listToPos(List<dynamic> pos) {
@@ -247,7 +247,7 @@ external set _getLineOption(String Function(int pos) f);
 
 @JS()
 String _getLineOptionInternal(int pos) {
-  var line = platform.lineSettings[pos];
+  var line = platform.choicePage.lineSettings[pos];
   return jsonEncode(line.choiceLineOption.toJson());
 }
 

@@ -14,13 +14,13 @@ void main() {
     var platform = PlayablePlatform();
     var lineSetting = ChoiceLine(0, choiceLineOption: ChoiceLineOption(maxSelect: 1));
     lineSetting.generateParser();
-    platform.lineSettings.add(lineSetting);
+    platform.choicePage.lineSettings.add(lineSetting);
     var choiceNode0 = ChoiceNode.empty()..title = "testNode0";
     var choiceNode1 = ChoiceNode.empty()..title = "testNode1";
     var choiceNode2 = ChoiceNode.empty()..title = "testNode2"..choiceNodeMode=ChoiceNodeMode.unSelectableMode;
-    platform.lineSettings[0].addChildren(choiceNode0);
-    platform.lineSettings[0].addChildren(choiceNode1);
-    platform.lineSettings[0].addChildren(choiceNode2);
+    platform.choicePage.lineSettings[0].addChildren(choiceNode0);
+    platform.choicePage.lineSettings[0].addChildren(choiceNode1);
+    platform.choicePage.lineSettings[0].addChildren(choiceNode2);
     platform.updateStatusAll();
 
     expect(choiceNode0.select, 0);
@@ -80,14 +80,14 @@ void main() {
 
   test('lineHideTest', () {
     var platform = PlayablePlatform();
-    platform.lineSettings.add(ChoiceLine(0));
+    platform.choicePage.lineSettings.add(ChoiceLine(0));
     var lineSetting0 = ChoiceLine(0);
     var lineSetting1 = ChoiceLine(1)..conditionalCodeHandler.conditionVisibleString = "testNode0";
     lineSetting1.generateParser();
     var choiceNode0 = ChoiceNode.empty()..title = "testNode0";
     var choiceNode1 = ChoiceNode.empty()..title = "testNode1";
-    platform.lineSettings.add(lineSetting0);
-    platform.lineSettings.add(lineSetting1);
+    platform.choicePage.lineSettings.add(lineSetting0);
+    platform.choicePage.lineSettings.add(lineSetting1);
     lineSetting0.addChildren(choiceNode0);
     lineSetting1.addChildren(choiceNode1);
     platform.updateStatusAll();

@@ -7,11 +7,11 @@ import 'package:test/test.dart';
 void main() {
   test('nestedTest', () {
     var platform = PlayablePlatform();
-    platform.lineSettings.add(ChoiceLine(0, choiceLineOption: ChoiceLineOption(enableCancelFeature: true)));
+    platform.choicePage.lineSettings.add(ChoiceLine(0, choiceLineOption: ChoiceLineOption(enableCancelFeature: true)));
     var parent = ChoiceNode.empty()..title = "parent";
     var child = ChoiceNode.empty()..title = "child";
     parent.addChildren(child);
-    platform.lineSettings[0].addChildren(parent);
+    platform.choicePage.lineSettings[0].addChildren(parent);
     platform.updateStatusAll();
     expect(parent.select, 0);
     expect(child.select, 0);
@@ -64,7 +64,7 @@ void main() {
     parent.addChildren(child0);
     parent.addChildren(child1);
     line.addChildren(parent);
-    platform.lineSettings.add(line);
+    platform.choicePage.lineSettings.add(line);
     platform.updateStatusAll();
 
     expect(parent.select, 0);
@@ -141,7 +141,7 @@ void main() {
     parent.addChildren(child0);
     parent.addChildren(child1);
     line.addChildren(parent);
-    platform.lineSettings.add(line);
+    platform.choicePage.lineSettings.add(line);
 
     platform.addGlobalSetting("a", ValueTypeWrapper(ValueType.bool(false)));
     platform.addGlobalSetting("b", ValueTypeWrapper(ValueType.bool(false)));
