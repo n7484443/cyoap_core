@@ -62,7 +62,7 @@ void _loadPlatformInternal(String jsonPlatform, List<dynamic> jsonLine) {
   for(int i = 0; i < jsonLine.length; i++){
     platform.choicePage.choiceLines.add(ChoiceLine.fromJson(jsonDecode(jsonLine[i]), i));
   }
-  platform.updateStatusAll();
+  platform.updateStatus();
 }
 
 @JS('getSelect')
@@ -192,7 +192,7 @@ external set _updatePlatform(void Function() f);
 
 @JS()
 void _updatePlatformInternal() {
-  platform.updateStatusAll();
+  platform.updateStatus();
 }
 
 @JS('getValueList')
@@ -264,7 +264,9 @@ external set _getSelectedPos(String Function() f);
 
 @JS()
 String _getSelectedPosInternal() {
-  return platform.getSelectedPosInternal();
+  return jsonEncode(platform.selectedPos
+      .map((e) => {'pos': e.$1.data, 'select': e.$2})
+      .toList());
 }
 
 @JS('setSelectedPos')
@@ -272,7 +274,13 @@ external set _setSelectedPos(void Function(String json) f);
 
 @JS()
 void _setSelectedPosInternal(String json) {
-  platform.setSelectedPosInternal(json);
+  var jsonDecoded = jsonDecode(json);
+  for (var data in jsonDecoded) {
+    var pos = Pos(data: (data['pos'] as List).map((e) => e as int).toList());
+    var select = data['select'] as int;
+    platform.getChoiceNode(pos)?.selectNode(select);
+  }
+  platform.updateStatus();
 }
 
 @JS('getErrorLog')

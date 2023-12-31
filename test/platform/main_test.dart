@@ -34,34 +34,34 @@ void main() {
 
     platform.choicePage.choiceLines.add(lineSetting0);
     platform.choicePage.choiceLines.add(lineSetting1);
-    platform.updateStatusAll();
+    platform.updateStatus();
     expect(choiceNode1_0.contentsString, "a initial b");
 
     choiceNode0.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
     expect(choiceNode1_0.contentsString, "a 0 b");
 
     choiceNode1.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
     expect(choiceNode1_0.contentsString, "a other b");
 
     choiceNode1_0.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
     expect(choiceNode1_0.contentsString, "a self b");
 
     choiceNode1_0.selectNode(0);
     choiceNode0.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
     print(lineSetting0.selectOrder);
     expect(choiceNode1_0.contentsString, "a other b");
 
     choiceNode0.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
     expect(choiceNode1_0.contentsString, "a 0 b");
 
     choiceNode0.selectNode(0);
     choiceNode1.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
     expect(choiceNode1_0.contentsString, "a initial b");
   });
 
@@ -89,10 +89,10 @@ void main() {
     lineSetting0.generateParser();
     platform.choicePage.choiceLines.add(lineSetting0);
 
-    platform.updateStatusAll();
+    platform.updateStatus();
     for (int i = 0; i < 10; i++) {
       choiceNode0.selectNode(1);
-      platform.updateStatusAll();
+      platform.updateStatus();
       if (i < 9) {
         expect(choiceNode0.contentsString, "a");
       } else {

@@ -14,18 +14,18 @@ void main() {
     platform.choicePage.choiceLines.add(ChoiceLine(0));
     var choiceNode = ChoiceNode.empty()..title = "testNode";
     platform.choicePage.choiceLines[0].addChildren(choiceNode);
-    platform.updateStatusAll();
+    platform.updateStatus();
 
     expect(ins.getValueType("testNode")?.dataUnzip, false);
     expect(choiceNode.isOpen(), true);
     expect(choiceNode.isExecute(), false);
     choiceNode.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
     expect(ins.getValueType("testNode")?.dataUnzip, true);
     expect(choiceNode.isOpen(), true);
     expect(choiceNode.isExecute(), true);
     choiceNode.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
     expect(ins.getValueType("testNode")?.dataUnzip, false);
     expect(choiceNode.isOpen(), true);
     expect(choiceNode.isExecute(), false);
@@ -39,11 +39,11 @@ void main() {
     choiceNode.conditionalCodeHandler.conditionClickableString = "false";
     platform.choicePage.choiceLines[0].addChildren(choiceNode);
     choiceNode.generateParser();
-    platform.updateStatusAll();
+    platform.updateStatus();
 
     expect(ins.getValueType("testNode")?.dataUnzip, false);
     choiceNode.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
     expect(ins.getValueType("testNode")?.dataUnzip, false);
   });
 
@@ -62,13 +62,13 @@ void main() {
 
     platform.addGlobalSetting('testInput', ValueTypeWrapper(ValueType.bool(false)));
     platform.addGlobalSetting('point', ValueTypeWrapper(ValueType.int(0)));
-    platform.updateStatusAll();
+    platform.updateStatus();
     expect(ins.getValueType("testNode")?.dataUnzip, false);
     expect(ins.getValueType("point")?.dataUnzip, 0);
 
     platform.addGlobalSetting('testInput', ValueTypeWrapper(ValueType.bool(true)));
     platform.addGlobalSetting('point', ValueTypeWrapper(ValueType.int(0)));
-    platform.updateStatusAll();
+    platform.updateStatus();
     expect(ins.getValueType("testNode")?.dataUnzip, true);
     expect(ins.getValueType("point")?.dataUnzip, 1);
     //expect(ins.getValueType("testNode2")?.dataUnzip, true);
@@ -84,19 +84,19 @@ void main() {
       ..choiceNodeMode = ChoiceNodeMode.randomMode
       ..maximumStatus = 10;
     platform.choicePage.choiceLines[0].addChildren(choiceNode);
-    platform.updateStatusAll();
+    platform.updateStatus();
     expect(ins.getValueType("testNode")?.dataUnzip, false);
     expect(ins.getValueType("testNode:random")?.dataUnzip, -1);
 
     choiceNode.seed = seed;
     choiceNode.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
     expect(ins.getValueType("testNode")?.dataUnzip, true);
     expect(ins.getValueType("testNode:random")?.dataUnzip,
         Random(seed).nextInt(10));
 
     choiceNode.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
     expect(ins.getValueType("testNode")?.dataUnzip, false);
     expect(ins.getValueType("testNode:random")?.dataUnzip, -1);
   });
@@ -110,33 +110,33 @@ void main() {
       ..choiceNodeMode = ChoiceNodeMode.multiSelect
       ..maximumStatus = 2;
     platform.choicePage.choiceLines[0].addChildren(choiceNode);
-    platform.updateStatusAll();
+    platform.updateStatus();
 
     expect(ins.getValueType("testNode")?.dataUnzip, false);
     expect(ins.getValueType("testNode:multi")?.dataUnzip, 0);
 
     choiceNode.selectNode(1);
-    platform.updateStatusAll();
+    platform.updateStatus();
     expect(ins.getValueType("testNode")?.dataUnzip, true);
     expect(ins.getValueType("testNode:multi")?.dataUnzip, 1);
 
     choiceNode.selectNode(1);
-    platform.updateStatusAll();
+    platform.updateStatus();
     expect(ins.getValueType("testNode")?.dataUnzip, true);
     expect(ins.getValueType("testNode:multi")?.dataUnzip, 2);
 
     choiceNode.selectNode(1);
-    platform.updateStatusAll();
+    platform.updateStatus();
     expect(ins.getValueType("testNode")?.dataUnzip, true);
     expect(ins.getValueType("testNode:multi")?.dataUnzip, 2);
 
     choiceNode.selectNode(-1);
-    platform.updateStatusAll();
+    platform.updateStatus();
     expect(ins.getValueType("testNode")?.dataUnzip, true);
     expect(ins.getValueType("testNode:multi")?.dataUnzip, 1);
 
     choiceNode.selectNode(-1);
-    platform.updateStatusAll();
+    platform.updateStatus();
     expect(ins.getValueType("testNode")?.dataUnzip, false);
     expect(ins.getValueType("testNode:multi")?.dataUnzip, 0);
   });
@@ -148,12 +148,12 @@ void main() {
     var choiceNode = ChoiceNode.empty()..title = "testNode"..choiceNodeMode=ChoiceNodeMode.unSelectableMode;
     platform.choicePage.choiceLines[0].addChildren(choiceNode);
 
-    platform.updateStatusAll();
+    platform.updateStatus();
     expect(ins.getValueType("testNode")?.dataUnzip, true);
     expect(choiceNode.select, 0);
 
     choiceNode.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
     expect(ins.getValueType("testNode")?.dataUnzip, true);
     expect(choiceNode.select, 0);
   });
@@ -165,13 +165,13 @@ void main() {
     platform.choicePage.choiceLines[0].addChildren(choiceNode);
     choiceNode.generateParser();
 
-    platform.updateStatusAll();
+    platform.updateStatus();
     print(choiceNode.selectableStatus);
     expect(choiceNode.isOpen(), true);
     expect(choiceNode.isHide(), false);
 
     choiceNode.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
     expect(choiceNode.isOpen(), true);
     expect(choiceNode.isHide(), true);
   });

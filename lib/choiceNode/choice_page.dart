@@ -1,3 +1,5 @@
+import '../grammar/value_type.dart';
+import '../variable_db.dart';
 import 'choice.dart';
 import 'choice_line.dart';
 
@@ -22,11 +24,25 @@ class ChoicePage with Choice {
   }
 
   @override
-  void generateParser() {}
+  void generateParser() {
+    for (var lineSetting in choiceLines) {
+      lineSetting.generateParser();
+    }
+  }
 
   @override
   bool get isSelectableMode => true;
 
   @override
-  void updateStatus() {}
+  void updateStatus() {
+    for (var i = 0; i < choiceLines.length; i++) {
+      var lineSetting = choiceLines[i];
+      VariableDataBase().setValue(lineSetting.valName, ValueTypeWrapper(ValueType.int(0)), ValueTypeLocation.global);
+    }
+    for (var i = 0; i < choiceLines.length; i++) {
+      var lineSetting = choiceLines[i];
+      lineSetting.execute();
+      VariableDataBase().clearLocalVariable();
+    }
+  }
 }

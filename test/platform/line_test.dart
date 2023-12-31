@@ -21,7 +21,7 @@ void main() {
     platform.choicePage.choiceLines[0].addChildren(choiceNode0);
     platform.choicePage.choiceLines[0].addChildren(choiceNode1);
     platform.choicePage.choiceLines[0].addChildren(choiceNode2);
-    platform.updateStatusAll();
+    platform.updateStatus();
 
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 0);
@@ -30,7 +30,7 @@ void main() {
     expect(choiceNode2.isOpen(), true);
     expect(lineSetting.isOpen(), true);
     choiceNode0.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
 
     expect(choiceNode0.select, 1);
     expect(choiceNode1.select, 0);
@@ -39,7 +39,7 @@ void main() {
     expect(choiceNode2.isOpen(), true);
     expect(lineSetting.isOpen(), true);
     choiceNode1.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
 
     expect(choiceNode0.select, 1);
     expect(choiceNode1.select, 0);
@@ -48,9 +48,9 @@ void main() {
     expect(choiceNode2.isOpen(), true);
     expect(lineSetting.isOpen(), true);
     choiceNode0.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
     choiceNode1.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
 
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 1);
@@ -59,7 +59,7 @@ void main() {
     expect(choiceNode2.isOpen(), true);
     expect(lineSetting.isOpen(), true);
     choiceNode0.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
 
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 1);
@@ -68,7 +68,7 @@ void main() {
     expect(choiceNode2.isOpen(), true);
     expect(lineSetting.isOpen(), true);
     choiceNode1.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
 
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 0);
@@ -90,25 +90,25 @@ void main() {
     platform.choicePage.choiceLines.add(lineSetting1);
     lineSetting0.addChildren(choiceNode0);
     lineSetting1.addChildren(choiceNode1);
-    platform.updateStatusAll();
+    platform.updateStatus();
 
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 0);
     expect(lineSetting1.isHide(), true);
     choiceNode0.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
 
     expect(choiceNode0.select, 1);
     expect(choiceNode1.select, 0);
     expect(lineSetting1.isHide(), false);
     choiceNode1.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
 
     expect(choiceNode0.select, 1);
     expect(choiceNode1.select, 1);
     expect(lineSetting1.isHide(), false);
     choiceNode0.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
 
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 1);

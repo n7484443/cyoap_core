@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:cyoap_core/choiceNode/choice.dart';
 import 'package:cyoap_core/choiceNode/choice_line.dart';
 import 'package:cyoap_core/choiceNode/choice_node.dart';
@@ -113,26 +111,16 @@ class PlayablePlatform {
     return choicePage.choiceLines[y];
   }
 
-  void updateStatusAll() {
+  void updateStatus() {
     VariableDataBase().clear();
     for (var element in _globalSetting) {
       VariableDataBase().setValue(element.$1, element.$2, ValueTypeLocation.global);
     }
-    for (var i = 0; i < choicePage.choiceLines.length; i++) {
-      var lineSetting = choicePage.choiceLines[i];
-      VariableDataBase().setValue(lineSetting.valName, ValueTypeWrapper(ValueType.int(0)), ValueTypeLocation.global);
-    }
-    for (var i = 0; i < choicePage.choiceLines.length; i++) {
-      var lineSetting = choicePage.choiceLines[i];
-      lineSetting.execute();
-      VariableDataBase().clearLocalVariable();
-    }
+    choicePage.updateStatus();
   }
 
   void generateRecursiveParser() {
-    for (var lineSetting in choicePage.choiceLines) {
-      lineSetting.generateParser();
-    }
+    choicePage.generateParser();
   }
 
   List<(Pos, int)> get selectedPos {
@@ -155,21 +143,5 @@ class PlayablePlatform {
       }
     }
     return selectedPos;
-  }
-
-  void setSelectedPosInternal(String json) {
-    var jsonDecoded = jsonDecode(json);
-    for (var data in jsonDecoded) {
-      var pos = Pos(data: (data['pos'] as List).map((e) => e as int).toList());
-      var select = data['select'] as int;
-      getChoiceNode(pos)?.selectNode(select);
-    }
-    updateStatusAll();
-  }
-
-  String getSelectedPosInternal() {
-    return jsonEncode(selectedPos
-        .map((e) => {'pos': e.$1.data, 'select': e.$2})
-        .toList());
   }
 }

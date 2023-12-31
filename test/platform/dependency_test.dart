@@ -26,11 +26,11 @@ void main() {
     platform.choicePage.choiceLines[0].addChildren(choiceNode0);
     platform.choicePage.choiceLines[1].addChildren(choiceNode1);
     platform.choicePage.choiceLines[1].addChildren(choiceNode2);
-    platform.updateStatusAll();
+    platform.updateStatus();
     choiceNode0.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
     choiceNode1.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
     choiceNode2.selectNode(0);
 
     expect(choiceNode0.select, 1);
@@ -41,7 +41,7 @@ void main() {
     expect(choiceNode1.isHide(), false);
     expect(choiceNode2.isOpen(), true);
     choiceNode0.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
 
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 1);
@@ -63,7 +63,7 @@ void main() {
     choiceNode1.generateParser();
     lineSetting0.addChildren(choiceNode0);
     lineSetting0.addChildren(choiceNode1);
-    platform.updateStatusAll();
+    platform.updateStatus();
 
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 0);
@@ -73,21 +73,21 @@ void main() {
     expect(choiceNode1.selectableStatus.isOpen, false);
 
     choiceNode0.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
     expect(choiceNode0.select, 1);
     expect(choiceNode0.selectableStatus.isOpen, true);
     expect(choiceNode1.select, 0);
     expect(choiceNode1.selectableStatus.isOpen, true);
 
     choiceNode1.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
     expect(choiceNode0.select, 1);
     expect(choiceNode0.selectableStatus.isOpen, true);
     expect(choiceNode1.select, 1);
     expect(choiceNode1.selectableStatus.isOpen, true);
 
     choiceNode0.selectNode(0);
-    platform.updateStatusAll();
+    platform.updateStatus();
     expect(choiceNode0.select, 0);
     expect(choiceNode0.selectableStatus.isOpen, true);
     expect(choiceNode1.select, 0);
