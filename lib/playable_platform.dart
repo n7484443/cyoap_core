@@ -78,21 +78,8 @@ class PlayablePlatform {
     choicePage.checkDataCorrect();
   }
 
-  Choice getChoice(Pos pos) {
-    var choice = choicePage.findChoice(pos);
-    if(choice != null) return choice;
-    Choice parent = choicePage;
-    for(int i = 1; i < pos.length; i++){
-      while(parent.children.length <= pos.data[i]){
-        if(i == 1){
-          parent.addChildren(ChoiceLine());
-        }else{
-          parent.addChildren(ChoiceNode.empty());
-        }
-      }
-      parent = parent.children[pos.data[i]];
-    }
-    return choicePage.findChoice(pos)!;
+  Choice? getChoice(Pos pos) {
+    return choicePage.findChoice(pos);
   }
 
   ChoiceNode? getChoiceNode(Pos pos) {
