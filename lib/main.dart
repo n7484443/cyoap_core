@@ -59,10 +59,15 @@ external set _loadPlatform(void Function(String, List<dynamic>) f);
 @JS()
 void _loadPlatformInternal(String jsonPlatform, List<dynamic> jsonLine) {
   platform = PlayablePlatform.fromJson(jsonDecode(jsonPlatform));
+  var list = List.filled(jsonLine.length, ChoiceLine());
+
+  platform.choicePage.children = list;
   for (int i = 0; i < jsonLine.length; i++) {
-    platform.choicePage
-        .addChildren(ChoiceLine.fromJson(jsonDecode(jsonLine[i])));
+    var choiceLine = ChoiceLine.fromJson(jsonDecode(jsonLine[i]));
+    list[choiceLine.currentPos] = choiceLine;
+    choiceLine.parent = platform.choicePage;
   }
+  platform.checkDataCorrect();
   platform.updateStatus();
 }
 
