@@ -64,7 +64,7 @@ void _loadPlatformInternal(String jsonPlatform, List<dynamic> jsonLine) {
   platform.choicePage.children = list;
   for (int i = 0; i < jsonLine.length; i++) {
     var choiceLine = ChoiceLine.fromJson(jsonDecode(jsonLine[i]));
-    list[choiceLine.currentPos] = choiceLine;
+    list[i] = choiceLine;
     choiceLine.parent = platform.choicePage;
   }
   platform.checkDataCorrect();
