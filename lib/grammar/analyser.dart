@@ -1,9 +1,8 @@
 import 'dart:convert';
 import 'dart:math';
-
 import 'package:cyoap_core/choiceNode/choice_node.dart';
-
 import '../option.dart';
+import 'ast.dart';
 import 'function_list.dart';
 import 'lexical_analyser.dart';
 import 'semantic_analyser.dart';
