@@ -4,6 +4,7 @@ import '/variable_db.dart';
 import 'value_type.dart';
 
 enum FunctionListEnum {
+  dup(1),
   plus(2, displayWithColor: false, customName: '+'),
   minus(2, displayWithColor: false, customName: '-'),
   mul(2, displayWithColor: false, customName: '*'),
@@ -48,12 +49,12 @@ enum FunctionListEnum {
 
   const FunctionListEnum(this.argumentLength,
       {this.hasOutput = true,
-        this.hasMultipleArgument = false,
-        this.hasSeedInput = false,
-        this.displayWithColor = true,
-        this.communicateOutOfSandbox = false,
-        this.functionName,
-        this.customName});
+      this.hasMultipleArgument = false,
+      this.hasSeedInput = false,
+      this.displayWithColor = true,
+      this.communicateOutOfSandbox = false,
+      this.functionName,
+      this.customName});
 
   final int argumentLength;
   final bool hasOutput;
@@ -66,193 +67,86 @@ enum FunctionListEnum {
 
   static FunctionListEnum getFunctionListEnum(String name) {
     return FunctionListEnum.values.firstWhere(
-            (element) => element.name == name || element.customName == name,
+        (element) => element.name == name || element.customName == name,
         orElse: () {
-          if (name != 'if' && name != 'for') {
-            print("unfounded function $name");
-          }
-          return none;
-        });
+      if (name != 'if' && name != 'for') {
+        print("unfounded function $name");
+      }
+      return none;
+    });
   }
 }
 
-class Functions {
-  Map<FunctionListEnum, Function(List<ValueType> input)> functionValueType = {};
-  Map<FunctionListEnum, Function(List<dynamic> input)> functionValueTypeOutOfSandbox = {};
-  bool needConvertJson = false;
+const epsilon = 1e-6;
 
-  void init() {
-    functionValueType[FunctionListEnum.plus] = funcPlus;
-    functionValueType[FunctionListEnum.minus] = funcMinus;
-    functionValueType[FunctionListEnum.mul] = funcMulti;
-    functionValueType[FunctionListEnum.div] = funcDiv;
-    functionValueType[FunctionListEnum.mod] = funcMod;
-    functionValueType[FunctionListEnum.equal] = funcEqual;
-    functionValueType[FunctionListEnum.notEqual] = funcNotEqual;
-    functionValueType[FunctionListEnum.bigger] = funcBigger;
-    functionValueType[FunctionListEnum.smaller] = funcSmaller;
-    functionValueType[FunctionListEnum.biggerEqual] = funcBiggerEqual;
-    functionValueType[FunctionListEnum.smallerEqual] = funcSmallerEqual;
+extension FunctionListEnumExtension on FunctionListEnum {
+  Function? get function {
+    switch (this) {
+      case FunctionListEnum.dup:
+        return funcDup;
+      case FunctionListEnum.plus:
+        return funcPlus;
+      case FunctionListEnum.minus:
+        return funcMinus;
+      case FunctionListEnum.mul:
+        return funcMulti;
+      case FunctionListEnum.div:
+        return funcDiv;
+      case FunctionListEnum.mod:
+        return funcMod;
 
-    functionValueType[FunctionListEnum.andBit] = funcAndBit;
-    functionValueType[FunctionListEnum.orBit] = funcOrBit;
-    functionValueType[FunctionListEnum.xorBit] = funcXorBit;
-    functionValueType[FunctionListEnum.notBit] = funcNotBit;
-    functionValueType[FunctionListEnum.shiftLeftBit] = funcShiftLeftBit;
-    functionValueType[FunctionListEnum.shiftRightBit] = funcShiftRightBit;
+      case FunctionListEnum.equal:
+        return funcEqual;
+      case FunctionListEnum.notEqual:
+        return funcNotEqual;
+      case FunctionListEnum.bigger:
+        return funcBigger;
+      case FunctionListEnum.smaller:
+        return funcSmaller;
+      case FunctionListEnum.biggerEqual:
+        return funcBiggerEqual;
+      case FunctionListEnum.smallerEqual:
+        return funcSmallerEqual;
 
-    functionValueType[FunctionListEnum.floor] = funcFloor;
-    functionValueType[FunctionListEnum.round] = funcRound;
-    functionValueType[FunctionListEnum.ceil] = funcCeil;
-    functionValueType[FunctionListEnum.and] = funcAnd;
-    functionValueType[FunctionListEnum.or] = funcOr;
-    functionValueType[FunctionListEnum.not] = funcNot;
-    functionValueType[FunctionListEnum.random] = funcRandom;
-    functionValueType[FunctionListEnum.exist] = (input) =>
-        ValueType.bool(VariableDataBase().hasValue(input[0].dataUnzip));
-    functionValueType[FunctionListEnum.max] = (input) {
-      if (input[0].type.isInt && input[1].type.isInt) {
-        return ValueType.int(input[0].dataUnzip > input[1].dataUnzip
-            ? input[0].dataUnzip
-            : input[1].dataUnzip);
-      }
-      return ValueType.double(max(input[0].dataUnzip, input[1].dataUnzip));
-    };
-    functionValueType[FunctionListEnum.min] = (input) {
-      if (input[0].type.isInt && input[1].type.isInt) {
-        return ValueType.int(input[0].dataUnzip < input[1].dataUnzip
-            ? input[0].dataUnzip
-            : input[1].dataUnzip);
-      }
-      return ValueType.double(min(input[0].dataUnzip, input[1].dataUnzip));
-    };
-    functionValueType[FunctionListEnum.isVisible] = (input) =>
-        ValueType.bool(
-            VariableDataBase()
-                .getValueTypeWrapper(input[0].dataUnzip)
-                ?.visible ??
-                false);
-    functionValueType[FunctionListEnum.loadVariable] = (input) =>
-    VariableDataBase().getValueType(input[0].dataUnzip) ??
-        const ValueType.nulls();
-    functionValueType[FunctionListEnum.loadArray] = (input) {
-      var array = input[0].dataUnzip as List<ValueType>;
-      var pos = input[1].dataUnzip as int;
-      return array[pos];
-    };
-    functionValueType[FunctionListEnum.setListElement] = (input) {
-      var name = input[0].dataUnzip as String;
-      var pos = input[1].dataUnzip as int;
-      var array = VariableDataBase()
-          .getValueType(name)
-          ?.dataUnzip as List;
-      array[pos] = input[2];
-      VariableDataBase()
-          .setValue(name, ValueTypeWrapper(ValueType.array(array)),
-          ValueTypeLocation.auto);
-    };
-    functionValueType[FunctionListEnum.length] = (input) {
-      var array = input[0].dataUnzip;
-      if (array is List) {
-        return ValueType.int(array.length);
-      }
-      return ValueType.int(1);
-    };
-    functionValueType[FunctionListEnum.createList] = (input) {
-      var list = [];
-      for (var i in input) {
-        list.add(i.dataUnzip);
-      }
-      return ValueType.array(list);
-    };
-    functionValueType[FunctionListEnum.createRange] = (input) {
-      var start = input[0].dataUnzip;
-      var end = input[1].dataUnzip;
-      var list = List.generate(end - start, (index) => index + start);
-      return ValueType.array(list);
-    };
-    functionValueType[FunctionListEnum.returnCondition] = (input) => input[0];
+      case FunctionListEnum.andBit:
+        return funcAndBit;
+      case FunctionListEnum.orBit:
+        return funcOrBit;
+      case FunctionListEnum.xorBit:
+        return funcXorBit;
+      case FunctionListEnum.notBit:
+        return funcNotBit;
+      case FunctionListEnum.shiftLeftBit:
+        return funcShiftLeftBit;
+      case FunctionListEnum.shiftRightBit:
+        return funcShiftRightBit;
 
-    functionValueType[FunctionListEnum.setLocal] = (input) {
-      var varName = input[0].dataUnzip as String;
-      VariableDataBase()
-          .setValue(
-          varName, ValueTypeWrapper(input[1]), ValueTypeLocation.local);
-    };
-    functionValueType[FunctionListEnum.setGlobal] = (input) {
-      var varName = input[0].dataUnzip as String;
-      VariableDataBase()
-          .setValue(
-          varName, ValueTypeWrapper(input[1]), ValueTypeLocation.global);
-    };
-    functionValueType[FunctionListEnum.setVariable] = (input) {
-      var varName = input[0].dataUnzip as String;
-      var original = VariableDataBase().getValueTypeWrapper(varName);
-      if (original != null) {
-        var copy = original.copyWith(valueType: input[1]);
-        VariableDataBase().setValue(varName, copy, ValueTypeLocation.auto);
-      }
-    };
-    functionValueType[FunctionListEnum.setVisible] = (input) {
-      var varName = input[0].dataUnzip as String;
-      var value = input[1].dataUnzip as bool;
-      var original = VariableDataBase().getValueTypeWrapper(varName);
-      if (original != null) {
-        VariableDataBase().setValue(
-            varName, original.copyWith(visible: value), ValueTypeLocation.auto);
-      }
-    };
-  }
+      case FunctionListEnum.floor:
+        return funcFloor;
+      case FunctionListEnum.round:
+        return funcRound;
+      case FunctionListEnum.ceil:
+        return funcCeil;
 
-  Function? getFunctionFromString(String name) {
-    var enumData = FunctionListEnum.getFunctionListEnum(name);
-    return getFunction(enumData);
-  }
-
-  Function? getFunction(FunctionListEnum enumData) {
-    return functionValueType[enumData] ?? functionValueTypeOutOfSandbox[enumData];
-  }
-
-  bool hasFunction(String name) {
-    return FunctionListEnum.getFunctionListEnum(name) != FunctionListEnum.none;
-  }
-
-  Function? getFunctionValueType(String name) {
-    var enumData = FunctionListEnum.getFunctionListEnum(name);
-    return getFunction(enumData);
-  }
-
-  FunctionListEnum getFunctionName(Function function) {
-    for (var key in functionValueType.keys) {
-      if (functionValueType[key] == function) {
-        return key;
-      }
-      if (functionValueTypeOutOfSandbox[key] == function) {
-        return key;
-      }
+      case FunctionListEnum.and:
+        return funcAnd;
+      case FunctionListEnum.or:
+        return funcOr;
+      case FunctionListEnum.not:
+        return funcNot;
+      case FunctionListEnum.random:
+        return funcRandom;
+      case FunctionListEnum.max:
+        return funcMax;
+      case FunctionListEnum.min:
+        return funcMin;
+      default:
+        return null;
     }
-    return FunctionListEnum.none;
   }
 
-  ValueType funcFloor(List<ValueType> input) {
-    if (input[0].type.isNum) {
-      return ValueType.int((input[0].dataUnzip).floor());
-    }
-    return const ValueType.nulls();
-  }
-
-  ValueType funcRound(List<ValueType> input) {
-    if (input[0].type.isNum) {
-      return ValueType.int((input[0].dataUnzip).round());
-    }
-    return const ValueType.nulls();
-  }
-
-  ValueType funcCeil(List<ValueType> input) {
-    if (input[0].type.isNum) {
-      return ValueType.int((input[0].dataUnzip).ceil());
-    }
-    return const ValueType.nulls();
+  List<ValueType> funcDup(List<ValueType> input) {
+    return [input[0], input[0]];
   }
 
   ValueType funcPlus(List<ValueType> input) {
@@ -300,8 +194,6 @@ class Functions {
     }
     return const ValueType.nulls();
   }
-
-  var epsilon = 0.000001;
 
   ValueType funcEqual(List<ValueType> input) {
     if (input[0].type.isNotIntOne(input[1].type)) {
@@ -352,13 +244,25 @@ class Functions {
   ValueType funcShiftRightBit(List<ValueType> input) =>
       ValueType.int(input[0].dataUnzip >> input[1].dataUnzip);
 
-  ValueType funcRandom(List<ValueType> input) {
-    int? seed = input.length == 1 ? null : input.last.dataUnzip as int;
-
-    if (input.first.type.isInt) {
-      return ValueType.int(Random(seed).nextInt(input[0].dataUnzip as int));
+  ValueType funcFloor(List<ValueType> input) {
+    if (input[0].type.isNum) {
+      return ValueType.int((input[0].dataUnzip).floor());
     }
-    return ValueType.bool(Random(seed).nextBool());
+    return const ValueType.nulls();
+  }
+
+  ValueType funcRound(List<ValueType> input) {
+    if (input[0].type.isNum) {
+      return ValueType.int((input[0].dataUnzip).round());
+    }
+    return const ValueType.nulls();
+  }
+
+  ValueType funcCeil(List<ValueType> input) {
+    if (input[0].type.isNum) {
+      return ValueType.int((input[0].dataUnzip).ceil());
+    }
+    return const ValueType.nulls();
   }
 
   ValueType funcAnd(List<ValueType> input) {
@@ -384,5 +288,121 @@ class Functions {
       return ValueType.bool(!input[0].dataUnzip);
     }
     return const ValueType.bool(false);
+  }
+
+  ValueType funcRandom(List<ValueType> input) {
+    int? seed = input.length == 1 ? null : input.last.dataUnzip as int;
+
+    if (input.first.type.isInt) {
+      return ValueType.int(Random(seed).nextInt(input[0].dataUnzip as int));
+    }
+    return ValueType.bool(Random(seed).nextBool());
+  }
+
+  ValueType funcMax(List<ValueType> input) {
+    if (input[0].type.isInt && input[1].type.isInt) {
+      return ValueType.int(input[0].dataUnzip > input[1].dataUnzip
+          ? input[0].dataUnzip
+          : input[1].dataUnzip);
+    }
+    return ValueType.double(max(input[0].dataUnzip, input[1].dataUnzip));
+  }
+
+  ValueType funcMin(List<ValueType> input) {
+    if (input[0].type.isInt && input[1].type.isInt) {
+      return ValueType.int(input[0].dataUnzip < input[1].dataUnzip
+          ? input[0].dataUnzip
+          : input[1].dataUnzip);
+    }
+    return ValueType.double(min(input[0].dataUnzip, input[1].dataUnzip));
+  }
+}
+
+class Functions {
+  Map<FunctionListEnum, Function(List<ValueType> input)> functionValueType = {};
+  Map<FunctionListEnum, Function(List<dynamic> input)>
+      functionValueTypeOutOfSandbox = {};
+  bool needConvertJson = false;
+
+  void init() {
+    functionValueType[FunctionListEnum.exist] = (input) =>
+        ValueType.bool(VariableDataBase().hasValue(input[0].dataUnzip));
+    functionValueType[FunctionListEnum.isVisible] = (input) => ValueType.bool(
+        VariableDataBase().getValueTypeWrapper(input[0].dataUnzip)?.visible ??
+            false);
+    functionValueType[FunctionListEnum.loadVariable] = (input) =>
+        VariableDataBase().getValueType(input[0].dataUnzip) ??
+        const ValueType.nulls();
+    functionValueType[FunctionListEnum.loadArray] = (input) {
+      var array = input[0].dataUnzip as List<ValueType>;
+      var pos = input[1].dataUnzip as int;
+      return array[pos];
+    };
+    functionValueType[FunctionListEnum.setListElement] = (input) {
+      var name = input[0].dataUnzip as String;
+      var pos = input[1].dataUnzip as int;
+      var array = VariableDataBase().getValueType(name)?.dataUnzip as List;
+      array[pos] = input[2];
+      VariableDataBase().setValue(name,
+          ValueTypeWrapper(ValueType.array(array)), ValueTypeLocation.auto);
+    };
+    functionValueType[FunctionListEnum.length] = (input) {
+      var array = input[0].dataUnzip;
+      if (array is List) {
+        return ValueType.int(array.length);
+      }
+      return ValueType.int(1);
+    };
+    functionValueType[FunctionListEnum.createList] = (input) {
+      var list = [];
+      for (var i in input) {
+        list.add(i.dataUnzip);
+      }
+      return ValueType.array(list);
+    };
+    functionValueType[FunctionListEnum.createRange] = (input) {
+      var start = input[0].dataUnzip;
+      var end = input[1].dataUnzip;
+      var list = List.generate(end - start, (index) => index + start);
+      return ValueType.array(list);
+    };
+    functionValueType[FunctionListEnum.returnCondition] = (input) => input[0];
+
+    functionValueType[FunctionListEnum.setLocal] = (input) {
+      var varName = input[0].dataUnzip as String;
+      VariableDataBase().setValue(
+          varName, ValueTypeWrapper(input[1]), ValueTypeLocation.local);
+    };
+    functionValueType[FunctionListEnum.setGlobal] = (input) {
+      var varName = input[0].dataUnzip as String;
+      VariableDataBase().setValue(
+          varName, ValueTypeWrapper(input[1]), ValueTypeLocation.global);
+    };
+    functionValueType[FunctionListEnum.setVariable] = (input) {
+      var varName = input[0].dataUnzip as String;
+      var original = VariableDataBase().getValueTypeWrapper(varName);
+      if (original != null) {
+        var copy = original.copyWith(valueType: input[1]);
+        VariableDataBase().setValue(varName, copy, ValueTypeLocation.auto);
+      }
+    };
+    functionValueType[FunctionListEnum.setVisible] = (input) {
+      var varName = input[0].dataUnzip as String;
+      var value = input[1].dataUnzip as bool;
+      var original = VariableDataBase().getValueTypeWrapper(varName);
+      if (original != null) {
+        VariableDataBase().setValue(
+            varName, original.copyWith(visible: value), ValueTypeLocation.auto);
+      }
+    };
+  }
+
+  Function? getFunction(FunctionListEnum enumData) {
+    return functionValueType[enumData] ??
+        functionValueTypeOutOfSandbox[enumData];
+  }
+
+  bool hasFunction(String name) {
+    return FunctionListEnum.getFunctionListEnum(name) != FunctionListEnum.none;
   }
 }

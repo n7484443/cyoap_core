@@ -4,12 +4,9 @@ import 'dart:math';
 import 'package:cyoap_core/choiceNode/choice_node.dart';
 
 import '../option.dart';
-import 'analyser_const.dart';
 import 'function_list.dart';
 import 'lexical_analyser.dart';
-import 'recursive_parser.dart';
 import 'semantic_analyser.dart';
-import 'token.dart';
 import 'value_type.dart';
 
 class Analyser {
@@ -28,60 +25,32 @@ class Analyser {
   SemanticAnalyser semanticAnalyser = SemanticAnalyser();
   Functions functionList = Functions();
 
-  List<Token> toTokenList(String codeInput) {
-    var codes = codeInput.split('\n');
-    var tokenList = List<Token>.empty(growable: true);
-    for (var code in codes) {
-      if (code.trim().isEmpty) {
-        continue;
-      }
-      var out = lexicalAnalyser.analyse(code.replaceAll(RegExp(r"//.*"), ""));
-      tokenList.addAll(out);
-      if (tokenList.isNotEmpty) {
-        if (tokenList.last.type == AnalyserConst.blockEnd) {
-          continue;
-        }
-        if (tokenList.last.type == AnalyserConst.functionElse) {
-          continue;
-        }
-        if (out.isNotEmpty &&
-            (out.first.data == "if" || out.first.data == "for")) {
-          continue;
-        }
-      }
-      tokenList.add(Token(AnalyserConst.lineEnd));
-    }
-    tokenList = lexicalAnalyser.changeToFunction(tokenList);
-    tokenList = lexicalAnalyser.infixToPostFix(tokenList);
-    return tokenList;
-  }
-
-  RecursiveUnit? toAst(String? codeInput, {String pos = ""}) {
+  AST? toAst(String? codeInput,
+      {String pos = "", required bool isCondition, isDebug = false}) {
     if (codeInput == null || codeInput.trim().isEmpty) return null;
-    return semanticAnalyser.analyseLines(toTokenList(codeInput), optimize: false);
+    var tokens =
+        lexicalAnalyser.analyse(codeInput, isCondition, isDebug: isDebug);
+    return semanticAnalyser.analyseLines(tokens, optimize: false);
   }
 
-  List<String> toByteCode(RecursiveUnit input) {
-    //input 을 받아서 bytecode로 변환, if는 goto문으로 작성.
-    return input.toByteCode().where((e) => e.isNotEmpty).toList();
-  }
-
-  List<String> analyseMultiLine(String? codeInput, {String pos = ""}) {
+  List<String> analyseMultiLine(String? codeInput,
+      {String pos = "", isDebug = false}) {
     if (codeInput == null || codeInput.trim().isEmpty) return [];
     try {
-      var out = semanticAnalyser.analyseLines(toTokenList(codeInput));
-      return toByteCode(out!);
+      var out = toAst(codeInput, isCondition: false, isDebug: isDebug)!;
+      return out.compile();
     } catch (e, stackTrace) {
       addError("$pos, $e", stackTrace);
     }
     return [];
   }
 
-  List<String> analyseSingleLine(String? codeInput, {String pos = ""}) {
+  List<String> analyseSingleLine(String? codeInput,
+      {String pos = "", isDebug = false}) {
     if (codeInput == null || codeInput.trim().isEmpty) return [];
     try {
-      var out = semanticAnalyser.analyseLine(toTokenList(codeInput));
-      return toByteCode(out!);
+      var out = toAst(codeInput, isCondition: true, isDebug: isDebug)!;
+      return out.compile();
     } catch (e, stackTrace) {
       addError("$pos, $e", stackTrace);
     }
@@ -98,6 +67,9 @@ class Analyser {
         if (Option().isDebugMode && Option().enableCode) {
           print("$line $stack $code");
         }
+        if (code.trim().isEmpty) {
+          continue;
+        }
         var spaceIndex = code.indexOf(" ");
         spaceIndex = spaceIndex == -1 ? code.length : spaceIndex;
         var opCode = code.substring(0, spaceIndex);
@@ -106,47 +78,56 @@ class Analyser {
             : null;
         if (opCode == "push") {
           stack.add(getValueTypeFromStringInput(argument!));
-        } else if (opCode == "return") {
+          continue;
+        }
+        if (opCode == "return") {
           var out = stack.removeLast().dataUnzip;
           return out;
-        } else if (opCode == "if_goto") {
-          if (stack.removeLast().dataUnzip as bool) {
-            continue;
-          } else {
-            line += int.parse(argument!);
+        }
+        if (opCode == "if_goto") {
+          if (!(stack.removeLast().dataUnzip as bool)) {
+            line = int.parse(argument!);
           }
-        } else if (opCode == "goto") {
-          line += int.parse(argument!);
+          continue;
+        }
+        if (opCode == "goto") {
+          line = int.parse(argument!);
+          continue;
+        }
+
+        var funcEnum = FunctionListEnum.getFunctionListEnum(opCode);
+        var func = funcEnum.function ?? functionList.getFunction(funcEnum);
+        if (func == null) {
+          addError("$pos, $opCode is not a function", StackTrace.current);
+          return null;
+        }
+        //기본적으로 funcEnum.argumentLength 개의 인자를 사용함. code[1] 가 존재시 인자의 개수로 사용
+        var argCount = funcEnum.argumentLength;
+        if (argument != null && funcEnum.hasMultipleArgument) {
+          argCount = int.parse(argument);
+        }
+        List<ValueType> argumentList = [];
+        for (int i = 0; i < argCount; i++) {
+          argumentList.add(stack.removeLast());
+        }
+        argumentList = argumentList.reversed.toList();
+        if (funcEnum.hasSeedInput) {
+          argumentList.add(ValueType.int(seed));
+          seed += 1;
+        }
+        Object? out;
+        if (funcEnum.communicateOutOfSandbox && functionList.needConvertJson) {
+          out = ValueType.fromJson(func(jsonEncode(argumentList)));
         } else {
-          var funcEnum = FunctionListEnum.getFunctionListEnum(opCode);
-          var func = functionList.getFunction(funcEnum);
-          if (func == null) {
-            addError("$pos, $opCode is not a function", StackTrace.current);
-            return null;
-          }
-          //기본적으로 funcEnum.argumentLength 개의 인자를 사용함. code[1] 가 존재시 인자의 개수로 사용
-          var argCount = funcEnum.argumentLength;
-          if (argument != null && funcEnum.hasMultipleArgument) {
-            argCount = int.parse(argument);
-          }
-          List<ValueType> argumentList = [];
-          for (int i = 0; i < argCount; i++) {
-            argumentList.add(stack.removeLast());
-          }
-          argumentList = argumentList.reversed.toList();
-          if (funcEnum.hasSeedInput) {
-            argumentList.add(ValueType.int(seed));
-            seed += 1;
-          }
-          ValueType? out;
-          if(funcEnum.communicateOutOfSandbox && functionList.needConvertJson){
-            out = ValueType.fromJson(func(jsonEncode(argumentList)));
-          }else{
-            out = func(argumentList);
-          }
-          if (out != null) {
-            stack.add(out);
-          }
+          out = func(argumentList);
+        }
+        if (out == null) {
+          continue;
+        }
+        if(out is List){
+          stack.addAll(out as List<ValueType>);
+        } else {
+          stack.add(out as ValueType);
         }
       }
     } catch (e, stackTrace) {

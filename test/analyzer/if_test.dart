@@ -1,9 +1,28 @@
 import 'package:cyoap_core/grammar/analyser.dart';
+import 'package:cyoap_core/grammar/value_type.dart';
+import 'package:cyoap_core/variable_db.dart';
 import 'package:test/test.dart';
 
 import 'analyzer_tool.dart';
 
 void main(){
+  test('ifTestInput', () {
+    var ins = VariableDataBase();
+    String strTest = """
+    if(if_test_input_0){
+      var if_test_output_0 = true
+    }else{
+      var if_test_output_0 = false
+    }
+    """;
+    ins.setValue("if_test_input_0", ValueTypeWrapper(ValueType.bool(true)), ValueTypeLocation.global);
+    Analyser().run(Analyser().analyseMultiLine(strTest));
+    expect(ins.getValueType("if_test_output_0")?.dataUnzip, true);
+
+    ins.setValue("if_test_input_0", ValueTypeWrapper(ValueType.bool(false)), ValueTypeLocation.global);
+    Analyser().run(Analyser().analyseMultiLine(strTest));
+    expect(ins.getValueType("if_test_output_0")?.dataUnzip, false);
+  });
   test('ifTest', () {
     String strTest = """
     if(true){
@@ -33,7 +52,7 @@ void main(){
         }
       }
     }else{
-      var ifNestedTest0_2 = true;
+      var ifNestedTest0_2 = true
     }
     """;
     var code = Analyser().analyseMultiLine(strTest);
@@ -59,7 +78,7 @@ void main(){
       }}
     else
     {
-      var ifNestedTest1_3 = true;
+      var ifNestedTest1_3 = true
     }
     """;
     var code = Analyser().analyseMultiLine(strTest);

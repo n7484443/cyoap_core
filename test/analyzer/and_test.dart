@@ -15,6 +15,8 @@ void main(){
     """;
     var code = Analyser().analyseMultiLine(strTest);
     expectMultiple(code, {
+      'and_test_alpha': true,
+      'and_test_beta': true,
       'and_test_1': true,
       'and_test_2': false,
       'and_test_3': false,

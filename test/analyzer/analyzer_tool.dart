@@ -14,6 +14,6 @@ void expectMultiple(List<String> code, Map<String, dynamic> output,
   }
   Analyser().run(code);
   for (var key in output.keys) {
-    expect(VariableDataBase().getValueType(key)?.dataUnzip, output[key]);
+    expect(VariableDataBase().getValueType(key)?.dataUnzip, output[key], reason: key);
   }
 }

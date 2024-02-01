@@ -13,6 +13,7 @@ void main() {
     var array_test3 = [3.5, 2.4,1.5,  1.8] 
     var array_test4 = 0..4
     """;
+    print(Analyser().analyseMultiLine(strTest));
     Analyser().run(Analyser().analyseMultiLine(strTest));
     expect(ins.getValueType('array_test0')?.dataUnzip, []);
     expect(

@@ -43,38 +43,21 @@ void main() {
       "optimize_bool_input_2": true,
       "optimize_bool_input_3": true,
     });
-
-    var expectedCode = [
-      'push "optimize_bool_input_0"',
-      'loadVariable', 'if_goto 4',
-      'push "optimize_bool_output_0"',
-      'push true',
-      'setLocal',
-      'goto 3',
-      'push "optimize_bool_output_0"',
-      'push false',
-      'setLocal',
-      'push "optimize_bool_input_1"',
-      'loadVariable',
-      'not',
-      'if_goto 4',
-      'push "optimize_bool_output_1"',
-      'push true',
-      'setLocal',
-      'goto 3',
-      'push "optimize_bool_output_1"',
-      'push false',
-      'setLocal',
-      'push "optimize_bool_output_2"',
-      'push "optimize_bool_input_2"',
-      'loadVariable',
-      'setLocal',
-      'push "optimize_bool_output_3"',
-      'push "optimize_bool_input_3"',
-      'loadVariable',
-      'not',
-      'setLocal'
-    ];
-    expect(code, expectedCode);
+    String strTestOptimized = '''
+    if(optimize_bool_input_0){
+      var optimize_bool_output_0 = true
+    }else{
+      var optimize_bool_output_0 = false
+    }
+    if(not(optimize_bool_input_1)){
+      var optimize_bool_output_1 = true
+    }else{
+      var optimize_bool_output_1 = false
+    }
+    var optimize_bool_output_2 = optimize_bool_input_2
+    var optimize_bool_output_3 = not(optimize_bool_input_3)
+    ''';
+    var codeOptimized = Analyser().analyseMultiLine(strTestOptimized);
+    expect(code, codeOptimized);
   });
 }

@@ -81,13 +81,13 @@ class ChoiceNode with Choice {
   @override
   bool get isSelectableMode =>
       choiceNodeMode != ChoiceNodeMode.unSelectableMode &&
-          choiceNodeMode != ChoiceNodeMode.onlyCode;
+      choiceNodeMode != ChoiceNodeMode.onlyCode;
 
   ChoiceNode(
       {int width = 1,
-        required this.title,
-        required contents,
-        this.imageString = ""})
+      required this.title,
+      required contents,
+      this.imageString = ""})
       : choiceNodeOption = ChoiceNodeOption(),
         _currentContentsString = contents,
         _contentsString = contents {
@@ -114,17 +114,18 @@ class ChoiceNode with Choice {
         choiceNodeMode = json['choiceNodeMode'] == null
             ? ChoiceNodeMode.defaultMode
             : ((json['isSelectable'] ?? true)
-            ? ChoiceNodeMode.values.byName(json['choiceNodeMode'])
-            : ChoiceNodeMode.unSelectableMode) {
+                ? ChoiceNodeMode.values.byName(json['choiceNodeMode'])
+                : ChoiceNodeMode.unSelectableMode) {
     width = json['width'] ?? 2;
-    if(json.containsKey('conditionalCodeHandler')){
-      conditionalCodeHandler = ConditionalCodeHandler.fromJson(json['conditionalCodeHandler']);
-    }else{
+    if (json.containsKey('conditionalCodeHandler')) {
+      conditionalCodeHandler =
+          ConditionalCodeHandler.fromJson(json['conditionalCodeHandler']);
+    } else {
       conditionalCodeHandler = ConditionalCodeHandler.fromJson(json);
     }
     if (json.containsKey('children')) {
       var list = json['children'];
-      for(int i = 0; i < list.length; i++) {
+      for (int i = 0; i < list.length; i++) {
         var choiceNode = ChoiceNode.fromJson(list[i]);
         choiceNode.currentPos = i;
         choiceNode.parent = this;
@@ -177,20 +178,20 @@ class ChoiceNode with Choice {
     }
 
     var newExecute = isExecute();
-    if(newExecute != oldExecute) {
+    if (newExecute != oldExecute) {
       Choice line = this;
-      while(line is! ChoiceLine){
+      while (line is! ChoiceLine) {
         line = line.parent!;
       }
-      if(newExecute){
+      if (newExecute) {
         line.selectOrder.add(pos);
-      }else{
+      } else {
         line.selectOrder.remove(pos);
       }
     }
   }
 
-  bool _isOpen(){
+  bool _isOpen() {
     if (parent == null) return true;
     if (!parent!.isExecute()) return false;
     switch (choiceNodeMode) {
@@ -206,7 +207,7 @@ class ChoiceNode with Choice {
   @override
   bool isOpen() {
     var out = _isOpen();
-    if(!out){
+    if (!out) {
       select = 0;
     }
     return out;
@@ -265,24 +266,27 @@ class ChoiceNode with Choice {
   String get errorName => "${pos.data.toString()} $title";
 
   @override
-  void updateStatus({List<Pos>? addOrder, int order = 0, bool lineCanAcceptMore = true}) {
+  void updateStatus(
+      {List<Pos>? addOrder, int order = 0, bool lineCanAcceptMore = true}) {
     var oldIsVisible = !isHide();
-    var hideStatus = !conditionalCodeHandler.analyseVisible(errorName, seedInput: seed);
-    var openStatus = conditionalCodeHandler.analyseClickable(errorName, seedInput: seed);
+    var hideStatus =
+        !conditionalCodeHandler.analyseVisible(errorName, seedInput: seed);
+    var openStatus =
+        conditionalCodeHandler.analyseClickable(errorName, seedInput: seed);
     openStatus = openStatus && (isExecute() || lineCanAcceptMore);
     selectableStatus = SelectableStatus(isHide: hideStatus, isOpen: openStatus);
     var newIsVisible = !isHide();
-    if(choiceNodeMode == ChoiceNodeMode.unSelectableMode && oldIsVisible != newIsVisible){
-      if(newIsVisible){
+    if (choiceNodeMode == ChoiceNodeMode.unSelectableMode &&
+        oldIsVisible != newIsVisible) {
+      if (newIsVisible) {
         addOrder!.insert(order, pos);
-      }else{
+      } else {
         addOrder!.remove(pos);
       }
     }
 
     updateNodeVariable();
   }
-
 
   void updateCurrentContentsString() {
     _currentContentsString = _contentsString;
@@ -294,26 +298,34 @@ class ChoiceNode with Choice {
       _currentContentsString = _currentContentsString.replaceRange(
           match.start,
           match.end,
-          conditionalCodeHandler.executeText('error in text!', i, seedInput: seed));
+          conditionalCodeHandler.executeText('error in text!', i,
+              seedInput: seed));
     }
   }
 
-  void updateNodeVariable(){
-    var titleWhitespaceRemoved = title.replaceAll(" ", "");
-    VariableDataBase().setValue(
-      titleWhitespaceRemoved,
-      ValueTypeWrapper(
-        ValueType.bool(isExecute()),
-      ),
-      ValueTypeLocation.global,
-    );
-    if (choiceNodeMode == ChoiceNodeMode.randomMode) {
-      VariableDataBase().setValue('$titleWhitespaceRemoved:random',
-          ValueTypeWrapper(ValueType.int(random)), ValueTypeLocation.global);
+  void updateNodeVariable() {
+    var titleTrim = title.trim();
+    var titleWhitespaceRemoved = titleTrim.replaceAll(" ", "");
+    var titleList = [titleTrim];
+    if (titleTrim != titleWhitespaceRemoved) {
+      titleList.add(titleWhitespaceRemoved);
     }
-    if (choiceNodeMode == ChoiceNodeMode.multiSelect) {
-      VariableDataBase().setValue('$titleWhitespaceRemoved:multi',
-          ValueTypeWrapper(ValueType.int(select)), ValueTypeLocation.global);
+    for (var t in titleList) {
+      VariableDataBase().setValue(
+        t,
+        ValueTypeWrapper(
+          ValueType.bool(isExecute()),
+        ),
+        ValueTypeLocation.global,
+      );
+      if (choiceNodeMode == ChoiceNodeMode.randomMode) {
+        VariableDataBase().setValue('$t:random',
+            ValueTypeWrapper(ValueType.int(random)), ValueTypeLocation.global);
+      }
+      if (choiceNodeMode == ChoiceNodeMode.multiSelect) {
+        VariableDataBase().setValue('$t:multi',
+            ValueTypeWrapper(ValueType.int(select)), ValueTypeLocation.global);
+      }
     }
   }
 

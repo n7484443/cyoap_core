@@ -166,7 +166,6 @@ void main() {
     choiceNode.generateParser();
 
     platform.updateStatus();
-    print(choiceNode.selectableStatus);
     expect(choiceNode.isOpen(), true);
     expect(choiceNode.isHide(), false);
 

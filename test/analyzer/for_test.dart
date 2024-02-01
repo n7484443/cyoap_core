@@ -2,7 +2,7 @@ import 'package:cyoap_core/grammar/analyser.dart';
 import 'package:cyoap_core/variable_db.dart';
 import 'package:test/test.dart';
 
-void main(){
+void main() {
   test('forTest0', () {
     var ins = VariableDataBase();
     String strTest = """

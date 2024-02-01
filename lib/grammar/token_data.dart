@@ -1,13 +1,13 @@
 import 'analyser_const.dart';
 
-class Token {
+class TokenData {
   AnalyserConst type;
   String dataString;
 
-  Token(this.type, {this.dataString = ""});
+  TokenData(this.type, {this.dataString = ""});
 
-  Token changeUnitType(AnalyserConst newType) {
-    return Token(newType, dataString: dataString);
+  TokenData changeUnitType(AnalyserConst newType) {
+    return TokenData(newType, dataString: dataString);
   }
 
   void addUnitData(String newData) {
@@ -30,5 +30,21 @@ class Token {
       default:
         return dataString;
     }
+  }
+
+  bool get isString{
+    return type == AnalyserConst.strings;
+  }
+
+  bool get isDouble{
+    return type == AnalyserConst.doubles;
+  }
+
+  bool get isInt{
+    return type == AnalyserConst.ints;
+  }
+
+  Map<String, dynamic> toJson(){
+    return {"type": type.toString(), "dataString": dataString};
   }
 }

@@ -52,7 +52,6 @@ void main() {
     choiceNode1_0.selectNode(0);
     choiceNode0.selectNode(0);
     platform.updateStatus();
-    print(lineSetting0.selectOrder);
     expect(choiceNode1_0.contentsString, "a other b");
 
     choiceNode0.selectNode(0);

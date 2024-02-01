@@ -35,8 +35,10 @@ class VariableDataBase {
 
   void setValue(
       String name, ValueTypeWrapper value, ValueTypeLocation location) {
-    var trim = name.replaceAll(" ", "");
-    if (value.visible && !visibleOrder.contains(name) && location == ValueTypeLocation.global){
+    var trim = name.trim();
+    if (value.visible &&
+        !visibleOrder.contains(name) &&
+        location == ValueTypeLocation.global) {
       visibleOrder.add(name);
     }
     switch (location) {

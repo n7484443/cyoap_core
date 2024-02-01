@@ -11,23 +11,16 @@ enum AnalyserConst {
   /// string, "" 혹은 ''로 판단
   strings,
 
-  /// 판단 X
-  unspecified,
+  /// list, []로 판단
+  lists,
 
   /// 변수 사용
   variableName,
-
-  /// 전역 변수 설정, let
-  variableLet,
-
-  /// 지역 변수 설정, var
-  variableVar,
-
   loadAddress,
-
   functionFront,
-  functionCenter,
   function,
+
+  assignExtension,
 
   /// (
   functionStart,
@@ -59,11 +52,22 @@ enum AnalyserConst {
   /// ;
   lineEnd,
 
-  ///break
   keywordBreak,
+  keywordContinue,
+  keywordIf,
+  keywordElse,
+  keywordFor,
+  keywordTo,
+  keywordReturn,
+  keywordIn,
+  keywordDot,
 
-  ///break
-  keywordContinue;
+  //for block
+  lines,
+
+  /// 지역 변수 설정, var
+  /// 전역 변수 설정, let
+  setter;
 
   @override
   String toString() {
