@@ -241,4 +241,50 @@ class AST {
     }
     return [];
   }
+
+  void optimizeTree(){
+    _optimizeBool();
+    for (var element in child) {
+      element.optimizeTree();
+    }
+  }
+
+  void _optimizeBool() {
+    if (data == null) {
+      return;
+    }
+    if (data!.value.type == AnalyserConst.function && data!.value.data == "==") {
+      var left = child[0].data!.value;
+      var right = child[1].data!.value;
+      if(left.type == AnalyserConst.bools && right.type == AnalyserConst.bools){
+        data = Token(TokenData(AnalyserConst.bools, dataString: left.data == right.data ? "true" : "false"), data!.buffer, data!.start, data!.stop);
+        child = [];
+        return;
+      }
+      if(left.type == AnalyserConst.bools){
+        if(left.data){
+          data = child[1].data;
+          child = child[1].child;
+          return;
+        }else{
+          data = Token(TokenData(AnalyserConst.function, dataString: "not"), data!.buffer, data!.start, data!.stop);
+          child = [child[1]];
+          return;
+        }
+
+      }
+      if(right.type == AnalyserConst.bools){
+        if(right.data){
+          data = child[0].data;
+          child = child[0].child;
+          return;
+        }else{
+          data = Token(TokenData(AnalyserConst.function, dataString: "not"), data!.buffer, data!.start, data!.stop);
+          child = [child[0]];
+          return;
+        }
+      }
+
+    }
+  }
 }

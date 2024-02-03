@@ -29,7 +29,9 @@ class Analyser {
     if (codeInput == null || codeInput.trim().isEmpty) return null;
     var tokens =
         lexicalAnalyser.analyse(codeInput, isCondition, isDebug: isDebug);
-    return semanticAnalyser.analyseLines(tokens, optimize: false);
+    var ast = semanticAnalyser.analyseLines(tokens, optimize: false);
+    ast?.optimizeTree();
+    return ast;
   }
 
   List<String> analyseMultiLine(String? codeInput,
