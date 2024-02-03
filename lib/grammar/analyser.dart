@@ -25,12 +25,12 @@ class Analyser {
   Functions functionList = Functions();
 
   AST? toAst(String? codeInput,
-      {String pos = "", required bool isCondition, isDebug = false, needOptimize = true}) {
+      {String pos = "", required bool isCondition, isDebug = false, optimization = true}) {
     if (codeInput == null || codeInput.trim().isEmpty) return null;
     var tokens =
         lexicalAnalyser.analyse(codeInput, isCondition, isDebug: isDebug);
     var ast = semanticAnalyser.analyseLines(tokens, optimize: false);
-    if(needOptimize){
+    if(optimization){
       ast?.optimizeTree();
     }
     return ast;
