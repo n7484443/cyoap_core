@@ -30,4 +30,14 @@ void main() {
     expect(db.getValueType(r'!@#$%^ &*()-=+_')?.data, 'test1');
     expect(db.getValueType(r'테스트 노드')?.data, 'test2');
   });
+
+  test('raw string complicated test', () {
+    VariableDataBase db = VariableDataBase();
+    db.setValue(r'테스트 노드[테스트]', ValueTypeWrapper(ValueType.string("test1")),
+        ValueTypeLocation.local);
+    var strTest1 = r"$[테스트 노드[테스트\]] == 'test1'";
+    var code1 = Analyser().analyseSingleLine(strTest1);
+    var output1 = Analyser().run(code1);
+    expect(output1, true);
+  });
 }

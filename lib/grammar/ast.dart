@@ -69,7 +69,7 @@ class AST {
         var replacementIndex = line.lastIndexOf(number);
         var num = int.parse(line.substring(line.lastIndexOf(number)).trim());
         out[i] =
-        "${line.substring(0, replacementIndex).trimRight()} ${jumpList[num]}";
+            "${line.substring(0, replacementIndex).trimRight()} ${jumpList[num]}";
       }
     }
     return out;
@@ -86,11 +86,29 @@ class AST {
           case "let":
             return [...output, "setGlobal"];
           default:
+            if (child[0].child.isNotEmpty) {
+              String varName = child[0].body.dataString;
+              int varIndex = child[0].child[0].body.data;
+              return [
+                "push $varName",
+                "push ${varIndex.toString()}",
+                ...child[1]._toByteCode(),
+                "setListElement"
+              ];
+            }
             return [...output, "setVariable"];
         }
       case AnalyserConst.lines:
         return child.expand((e) => e._toByteCode()).toList();
       case AnalyserConst.loadAddress:
+        if (child.isNotEmpty) {
+          return [
+            "push \"${body.dataString}\"",
+            "loadVariable",
+            ...child[0]._toByteCode(),
+            "loadArray"
+          ];
+        }
         return ["push \"${body.dataString}\"", "loadVariable"];
       case AnalyserConst.strings:
         return ["push \"${body.dataString}\""];
@@ -213,14 +231,14 @@ class AST {
         return [...rangeStart, ...rangeEnd, "createRange"];
       case AnalyserConst.lists:
         List<String> output = child.expand((e) => e._toByteCode()).toList();
-        return [...output, "createList ${output.length}"];
+        return [...output, "createList ${child.length}"];
       case AnalyserConst.function:
         switch (body.data) {
           default:
             if (Analyser().functionList.hasFunction(body.data)) {
               var funcEnum = FunctionListEnum.getFunctionListEnum(body.data);
               List<String> output =
-              child.expand((e) => e._toByteCode()).toList();
+                  child.expand((e) => e._toByteCode()).toList();
               if (funcEnum.hasMultipleArgument) {
                 return [...output, "${funcEnum.name} ${child.length}"];
               }
@@ -242,7 +260,7 @@ class AST {
     return [];
   }
 
-  void optimizeTree(){
+  void optimizeTree() {
     _optimizeBool();
     for (var element in child) {
       element.optimizeTree();
@@ -253,38 +271,45 @@ class AST {
     if (data == null) {
       return;
     }
-    if (data!.value.type == AnalyserConst.function && data!.value.data == "==") {
+    if (data!.value.type == AnalyserConst.function &&
+        data!.value.data == "==") {
       var left = child[0].data!.value;
       var right = child[1].data!.value;
-      if(left.type == AnalyserConst.bools && right.type == AnalyserConst.bools){
-        data = Token(TokenData(AnalyserConst.bools, dataString: left.data == right.data ? "true" : "false"), data!.buffer, data!.start, data!.stop);
+      if (left.type == AnalyserConst.bools &&
+          right.type == AnalyserConst.bools) {
+        data = Token(
+            TokenData(AnalyserConst.bools,
+                dataString: left.data == right.data ? "true" : "false"),
+            data!.buffer,
+            data!.start,
+            data!.stop);
         child = [];
         return;
       }
-      if(left.type == AnalyserConst.bools){
-        if(left.data){
+      if (left.type == AnalyserConst.bools) {
+        if (left.data) {
           data = child[1].data;
           child = child[1].child;
           return;
-        }else{
-          data = Token(TokenData(AnalyserConst.function, dataString: "not"), data!.buffer, data!.start, data!.stop);
+        } else {
+          data = Token(TokenData(AnalyserConst.function, dataString: "not"),
+              data!.buffer, data!.start, data!.stop);
           child = [child[1]];
           return;
         }
-
       }
-      if(right.type == AnalyserConst.bools){
-        if(right.data){
+      if (right.type == AnalyserConst.bools) {
+        if (right.data) {
           data = child[0].data;
           child = child[0].child;
           return;
-        }else{
-          data = Token(TokenData(AnalyserConst.function, dataString: "not"), data!.buffer, data!.start, data!.stop);
+        } else {
+          data = Token(TokenData(AnalyserConst.function, dataString: "not"),
+              data!.buffer, data!.start, data!.stop);
           child = [child[0]];
           return;
         }
       }
-
     }
   }
 }

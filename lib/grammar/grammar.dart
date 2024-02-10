@@ -134,14 +134,11 @@ class CYOAPScriptGrammarDefinition extends GrammarDefinition {
   Parser ret() => ref0(returnToken) & ref0(expression);
 
   Parser eq() =>
-      (ref0(def) & ref0(originalStrings) & ref0(assign) & ref0(expression))
+      (ref0(def) & ref0(assignTargetVariable) & ref0(assign) & ref0(expression))
           .permute([0, 2, 1, 3]).map((value) {
         return [value[0], value[2], value[3]];
       }) |
-      (ref0(def) &
-              ref0(originalStrings) &
-              ref0(assignExtend) &
-              ref0(expression))
+      (ref0(def) & ref0(assignTargetVariable) & ref0(assignExtend) & ref0(expression))
           .map((value) {
         return [value[2], value[1], value[3]];
       });
@@ -157,7 +154,7 @@ class CYOAPScriptGrammarDefinition extends GrammarDefinition {
           .optional();
 
   Parser forExpression() =>
-      (ref0(originalStrings) & ref0(inToken) & ref0(lists)).permute([1, 0, 2]);
+      (ref1(variable, false) & ref0(inToken) & ref0(lists)).permute([1, 0, 2]);
 
   Parser forStatement() =>
       ref0(forToken) &
@@ -242,9 +239,14 @@ class CYOAPScriptGrammarDefinition extends GrammarDefinition {
 
 /* ========================================================== */
   Parser prim() =>
-      ref0(lists) | ref0(data) | ref0(function) | ref0(parens) | ref0(variable);
+      ref0(lists) |
+      ref0(variableArray) |
+      ref0(data) |
+      ref0(function) |
+      ref0(parens) |
+      ref1(variable, true);
 
-  Parser function() => (ref0(originalStrings)
+  Parser function() => (ref1(variable, false)
               .map((value) => TokenData(AnalyserConst.function,
                   dataString: (value as Token<TokenData>).value.dataString))
               .token() &
@@ -266,16 +268,19 @@ class CYOAPScriptGrammarDefinition extends GrammarDefinition {
         ref0(strings)
       ].toChoiceParser();
 
-  Parser variable() => ref2(
+  Parser variable(bool load) => ref2(
       token,
       ref0(variableGeneralName) | ref0(variableName),
-      AnalyserConst.loadAddress);
+      load ? AnalyserConst.loadAddress : AnalyserConst.strings);
 
   Parser variableGeneralName() =>
       pattern(r':_0-9a-zA-Zㄱ-ㅎ가-힣ㅏ-ㅣ').plus().flatten();
 
-  Parser variableName() =>
-      ("\$[".toParser() & char("]").neg().plus().flatten() & char("]")).pick(1);
+  Parser variableName() => ("\$[".toParser() &
+          ("\\]".toParser() | char("]").neg()).plus().flatten() &
+          char("]"))
+      .pick(1)
+      .map((value) => (value as String).replaceAll("\\]", "]"));
 
   Parser number() => ref2(token,
       (char('-').optional() & digit().plus()).flatten(), AnalyserConst.ints);
@@ -304,8 +309,10 @@ class CYOAPScriptGrammarDefinition extends GrammarDefinition {
               .skip(before: char("'"), after: char("'")),
       AnalyserConst.strings);
 
-  Parser originalStrings() =>
-      ref2(token, word().plus().flatten(), AnalyserConst.strings);
+  Parser variableArray() => (ref1(variable, true) &
+          ref0(expression).skip(before: ref0(listStart), after: ref0(listEnd)));
+
+  Parser assignTargetVariable() => ref1(variable, false) & ref0(expression).skip(before: ref0(listStart), after: ref0(listEnd)).optional();
 
   Parser lists() => ref0(rangeExpression) | ref0(listFromElement);
 
@@ -313,13 +320,14 @@ class CYOAPScriptGrammarDefinition extends GrammarDefinition {
       (ref0(rangeComponent) & ref0(range) & ref0(rangeComponent))
           .permute([1, 0, 2]);
 
-  Parser rangeComponent() => ref0(number) | ref0(parens) | ref0(variable);
+  Parser rangeComponent() => ref0(number) | ref0(parens) | ref1(variable, true);
 
-  Parser listFromElement() => (ref3(token, ref0(listStart), AnalyserConst.lists, "") & ref0(prim)
-      .starSeparated(ref0(comma))
-      .skip(
-        after: ref0(listEnd),
-      )).map((value) => [value[0], ...(value[1] as SeparatedList).elements]);
+  Parser listFromElement() =>
+      (ref3(token, ref0(listStart), AnalyserConst.lists, "") &
+              ref0(expression)
+                  .starSeparated(ref0(comma))
+                  .skip(after: ref0(listEnd)))
+          .map((value) => [value[0], ...(value[1] as SeparatedList).elements]);
 
 /* ========================================================== */
   Parser hiddenWhiteSpace() =>
