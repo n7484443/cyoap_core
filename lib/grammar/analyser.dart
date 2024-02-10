@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:math';
+
 import 'package:cyoap_core/choiceNode/choice_node.dart';
+
 import '../option.dart';
 import 'ast.dart';
 import 'function_list.dart';
@@ -25,12 +27,15 @@ class Analyser {
   Functions functionList = Functions();
 
   AST? toAst(String? codeInput,
-      {String pos = "", required bool isCondition, isDebug = false, optimization = true}) {
+      {String pos = "",
+      required bool isCondition,
+      isDebug = false,
+      optimization = true}) {
     if (codeInput == null || codeInput.trim().isEmpty) return null;
     var tokens =
         lexicalAnalyser.analyse(codeInput, isCondition, isDebug: isDebug);
     var ast = semanticAnalyser.analyseLines(tokens, optimize: false);
-    if(optimization){
+    if (optimization) {
       ast?.optimizeTree();
     }
     return ast;
@@ -127,7 +132,7 @@ class Analyser {
         if (out == null) {
           continue;
         }
-        if(out is List){
+        if (out is List) {
           stack.addAll(out as List<ValueType>);
         } else {
           stack.add(out as ValueType);

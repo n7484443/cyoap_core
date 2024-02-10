@@ -1,5 +1,5 @@
-import 'pos.dart';
 import 'conditional_code_handler.dart';
+import 'pos.dart';
 import 'selectable_status.dart';
 
 //실행은 ChoiceLine 단위로, 위에서 아래로 실행된다.
@@ -97,7 +97,7 @@ mixin Choice {
   }
 
   Choice findRootParent() {
-    if(parent == null) return this;
+    if (parent == null) return this;
     var root = parent!;
     while (root.parent != null) {
       root = root.parent!;
@@ -106,7 +106,6 @@ mixin Choice {
   }
 
   void execute() {}
-
 
   void checkDataCorrect() {
     for (int i = 0; i < children.length; i++) {

@@ -5,10 +5,9 @@ part 'selectable_status.g.dart';
 
 @freezed
 class SelectableStatus with _$SelectableStatus {
-  const factory SelectableStatus({
-    @Default(false) bool isHide,
-    @Default(false) bool isOpen
-  }) = _SelectableStatus;
+  const factory SelectableStatus(
+      {@Default(false) bool isHide,
+      @Default(false) bool isOpen}) = _SelectableStatus;
 
   factory SelectableStatus.fromJson(Map<String, dynamic> json) =>
       _$SelectableStatusFromJson(json);

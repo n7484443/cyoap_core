@@ -1,6 +1,7 @@
+import 'package:petitparser/petitparser.dart';
+
 import 'analyser_const.dart';
 import 'token_data.dart';
-import 'package:petitparser/petitparser.dart';
 
 class CYOAPScriptGrammarDefinition extends GrammarDefinition {
   @override
@@ -138,7 +139,10 @@ class CYOAPScriptGrammarDefinition extends GrammarDefinition {
           .permute([0, 2, 1, 3]).map((value) {
         return [value[0], value[2], value[3]];
       }) |
-      (ref0(def) & ref0(assignTargetVariable) & ref0(assignExtend) & ref0(expression))
+      (ref0(def) &
+              ref0(assignTargetVariable) &
+              ref0(assignExtend) &
+              ref0(expression))
           .map((value) {
         return [value[2], value[1], value[3]];
       });
@@ -310,9 +314,13 @@ class CYOAPScriptGrammarDefinition extends GrammarDefinition {
       AnalyserConst.strings);
 
   Parser variableArray() => (ref1(variable, true) &
-          ref0(expression).skip(before: ref0(listStart), after: ref0(listEnd)));
+      ref0(expression).skip(before: ref0(listStart), after: ref0(listEnd)));
 
-  Parser assignTargetVariable() => ref1(variable, false) & ref0(expression).skip(before: ref0(listStart), after: ref0(listEnd)).optional();
+  Parser assignTargetVariable() =>
+      ref1(variable, false) &
+      ref0(expression)
+          .skip(before: ref0(listStart), after: ref0(listEnd))
+          .optional();
 
   Parser lists() => ref0(rangeExpression) | ref0(listFromElement);
 

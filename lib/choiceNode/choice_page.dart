@@ -37,7 +37,8 @@ class ChoicePage with Choice {
   void updateStatus() {
     for (var i = 0; i < choiceLines.length; i++) {
       var lineSetting = choiceLines[i];
-      VariableDataBase().setValue(lineSetting.valName, ValueTypeWrapper(ValueType.int(0)), ValueTypeLocation.global);
+      VariableDataBase().setValue(lineSetting.valName,
+          ValueTypeWrapper(ValueType.int(0)), ValueTypeLocation.global);
     }
     for (var i = 0; i < choiceLines.length; i++) {
       var lineSetting = choiceLines[i];

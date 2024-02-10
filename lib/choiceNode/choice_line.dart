@@ -8,7 +8,6 @@ import 'choice_node.dart';
 import 'conditional_code_handler.dart';
 
 part 'choice_line.freezed.dart';
-
 part 'choice_line.g.dart';
 
 @freezed
@@ -40,7 +39,8 @@ class ChoiceLine with Choice {
   @override
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = super.toJson();
-    map['conditionalCodeHandlerFinalize'] = conditionalCodeHandlerFinalize.toJson();
+    map['conditionalCodeHandlerFinalize'] =
+        conditionalCodeHandlerFinalize.toJson();
     map.addAll(choiceLineOption.toJson());
     return map;
   }
@@ -49,21 +49,23 @@ class ChoiceLine with Choice {
       : choiceLineOption = ChoiceLineOption.fromJson(json) {
     if (json.containsKey('children')) {
       var list = json['children'];
-      for(int i = 0; i < list.length; i++) {
+      for (int i = 0; i < list.length; i++) {
         var choiceNode = ChoiceNode.fromJson(list[i]);
         choiceNode.currentPos = i;
         choiceNode.parent = this;
         children.add(choiceNode);
       }
     }
-    if(json.containsKey('conditionalCodeHandler')){
-      conditionalCodeHandler = ConditionalCodeHandler.fromJson(json['conditionalCodeHandler']);
-    }else{
+    if (json.containsKey('conditionalCodeHandler')) {
+      conditionalCodeHandler =
+          ConditionalCodeHandler.fromJson(json['conditionalCodeHandler']);
+    } else {
       conditionalCodeHandler = ConditionalCodeHandler.fromJson(json);
     }
-    if(json.containsKey('conditionalCodeHandlerFinalize')){
-      conditionalCodeHandlerFinalize = ConditionalCodeHandler.fromJson(json['conditionalCodeHandlerFinalize']);
-    }else{
+    if (json.containsKey('conditionalCodeHandlerFinalize')) {
+      conditionalCodeHandlerFinalize = ConditionalCodeHandler.fromJson(
+          json['conditionalCodeHandlerFinalize']);
+    } else {
       conditionalCodeHandlerFinalize = ConditionalCodeHandler();
     }
   }
@@ -75,7 +77,7 @@ class ChoiceLine with Choice {
     conditionalCodeHandler.executeCodeString = '$valName += 1';
     if (isNeedToCheck()) {
       conditionalCodeHandler.conditionClickableString =
-      '$valName < ${choiceLineOption.maxSelect}';
+          '$valName < ${choiceLineOption.maxSelect}';
     } else {
       conditionalCodeHandler.conditionClickableString = 'true';
     }
@@ -94,7 +96,8 @@ class ChoiceLine with Choice {
   void updateStatus() {
     var isHide = !conditionalCodeHandler.analyseVisible(errorName);
     var isOpen = conditionalCodeHandler.analyseClickable(errorName);
-    selectableStatus = selectableStatus.copyWith(isHide: isHide, isOpen: isOpen);
+    selectableStatus =
+        selectableStatus.copyWith(isHide: isHide, isOpen: isOpen);
   }
 
   @override
@@ -103,10 +106,10 @@ class ChoiceLine with Choice {
   }
 
   @override
-  void execute(){
+  void execute() {
     // 모든 node 의 선택 관련 변수들을 업데이트 ( null -> false )
-    for(var child in children){
-      child.recursiveFunction((current){
+    for (var child in children) {
+      child.recursiveFunction((current) {
         (current as ChoiceNode).updateNodeVariable();
       });
     }
@@ -114,7 +117,7 @@ class ChoiceLine with Choice {
     _updateStatusAll(selectOrder.length);
     // 선택 순서에 따른 실행 순서 업데이트
     int order = 0;
-    while(order < selectOrder.length){
+    while (order < selectOrder.length) {
       var pos = selectOrder[order];
       var node = findRootParent().findChoice(pos) as ChoiceNode;
       node.execute();
@@ -126,18 +129,21 @@ class ChoiceLine with Choice {
     // 라인 마지막에 실행되는 코드 실행
     conditionalCodeHandlerFinalize.execute(errorName);
     // 결과에 따른 내용 변경
-    for(var child in children){
-      child.recursiveFunction((current){
+    for (var child in children) {
+      child.recursiveFunction((current) {
         (current as ChoiceNode).updateCurrentContentsString();
       });
     }
   }
 
-  void _updateStatusAll(int order){
+  void _updateStatusAll(int order) {
     updateStatus();
-    for(var child in children){
-      child.recursiveFunction((current){
-        (current as ChoiceNode).updateStatus(addOrder: selectOrder, order: order, lineCanAcceptMore: selectableStatus.isOpen);
+    for (var child in children) {
+      child.recursiveFunction((current) {
+        (current as ChoiceNode).updateStatus(
+            addOrder: selectOrder,
+            order: order,
+            lineCanAcceptMore: selectableStatus.isOpen);
       });
     }
   }

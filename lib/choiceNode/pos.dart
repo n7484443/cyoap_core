@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'pos.freezed.dart';
-
 part 'pos.g.dart';
 
 @freezed
@@ -57,9 +56,9 @@ class Pos with _$Pos {
     return contain(other);
   }
 
-  static Pos lca(Pos A, Pos B){
+  static Pos lca(Pos A, Pos B) {
     var lca = Pos();
-    for(int i = 0; i < min(A.length, B.length); i++) {
+    for (int i = 0; i < min(A.length, B.length); i++) {
       if (A.data[i] == B.data[i]) {
         lca = lca.addLast(A.data[i]);
       } else {

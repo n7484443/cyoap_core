@@ -32,19 +32,19 @@ class TokenData {
     }
   }
 
-  bool get isString{
+  bool get isString {
     return type == AnalyserConst.strings;
   }
 
-  bool get isDouble{
+  bool get isDouble {
     return type == AnalyserConst.doubles;
   }
 
-  bool get isInt{
+  bool get isInt {
     return type == AnalyserConst.ints;
   }
 
-  Map<String, dynamic> toJson(){
+  Map<String, dynamic> toJson() {
     return {"type": type.toString(), "dataString": dataString};
   }
 }

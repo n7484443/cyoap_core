@@ -1,7 +1,7 @@
 import 'package:petitparser/debug.dart';
+import 'package:petitparser/petitparser.dart';
 
 import 'grammar.dart';
-import 'package:petitparser/petitparser.dart';
 
 class LexicalAnalyser {
   final cyoapScriptGrammarDefinition = CYOAPScriptGrammarDefinition();

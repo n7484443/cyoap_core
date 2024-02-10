@@ -22,22 +22,19 @@ enum ImageAttribute {
 class PlatformDesignSetting with _$PlatformDesignSetting {
   @JsonSerializable(explicitToJson: true)
   factory PlatformDesignSetting({
-    @Default("notoSans")
-        String variableFont,
+    @Default("notoSans") String variableFont,
     String? backgroundImage,
     @Default(ColorOption()) ColorOption backgroundColorOption,
-    @Default(ImageAttribute.fit)
-        ImageAttribute backgroundAttribute,
+    @Default(ImageAttribute.fit) ImageAttribute backgroundAttribute,
     @Default([
       ChoiceLineDesignPreset(name: 'default'),
     ])
-        List<ChoiceLineDesignPreset> choiceLinePresetList,
+    List<ChoiceLineDesignPreset> choiceLinePresetList,
     @Default([
       ChoiceNodeDesignPreset(name: 'default'),
     ])
-        List<ChoiceNodeDesignPreset> choiceNodePresetList,
-    @Default(12.0)
-        double marginVertical,
+    List<ChoiceNodeDesignPreset> choiceNodePresetList,
+    @Default(12.0) double marginVertical,
   }) = _PlatformDesignSetting;
 
   factory PlatformDesignSetting.fromJson(Map<String, dynamic> json) =>

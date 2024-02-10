@@ -26,7 +26,7 @@ class PlayablePlatform {
 
   List<List<String>> selectedChoiceOrder = [];
 
-  PlayablePlatform(): currentFileVersion = fileVersion;
+  PlayablePlatform() : currentFileVersion = fileVersion;
 
   void addGlobalSetting(String name, ValueTypeWrapper wrapper) {
     int pos = _globalSetting.indexWhere((element) => element.$1 == name);

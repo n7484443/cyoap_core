@@ -2,7 +2,6 @@ import 'package:cyoap_core/i18n.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'node_preset.freezed.dart';
-
 part 'node_preset.g.dart';
 
 enum OutlineType {
