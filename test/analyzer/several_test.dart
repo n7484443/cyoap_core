@@ -197,4 +197,10 @@ void main() {
     var out = Analyser().run(Analyser().analyseSingleLine(strTest1));
     expect(out, true);
   });
+
+  test('error list test', () {
+    String strTest1 = "!@#\$!@\$!@#";
+    Analyser().analyseSingleLine(strTest1, pos: "pos[0, 3, 5]");
+    expect(Analyser().errorList, ['pos[0, 3, 5], Exception: Compile Error, check syntax and try again.']);
+  });
 }
