@@ -111,6 +111,9 @@ class ChoiceLine with Choice {
     for (var child in children) {
       child.recursiveFunction((current) {
         (current as ChoiceNode).updateNodeVariable();
+        if(current.choiceNodeMode == ChoiceNodeMode.onlyCode){
+          current.execute();
+        }
       });
     }
     // 선택 가능 여부 업데이트

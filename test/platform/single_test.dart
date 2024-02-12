@@ -74,6 +74,23 @@ void main() {
     //expect(ins.getValueType("testNode2")?.dataUnzip, true);
   });
 
+  test('onlyCodeModeTest', () {
+    var ins = VariableDataBase();
+    var platform = PlayablePlatform();
+    platform.choicePage.addChildren(ChoiceLine());
+    var choiceNode = ChoiceNode.empty()..title = "testNode";
+    choiceNode.choiceNodeMode = ChoiceNodeMode.onlyCode;
+    choiceNode.conditionalCodeHandler.executeCodeString = "point += 1";
+
+
+    platform.choicePage.choiceLines[0].addChildren(choiceNode);
+    choiceNode.generateParser();
+
+    platform.addGlobalSetting('point', ValueTypeWrapper(ValueType.int(0)));
+    platform.updateStatus();
+    expect(ins.getValueType("point")?.dataUnzip, 1);
+  });
+
   test('randomModeTest', () {
     var ins = VariableDataBase();
     var seed = 10;
