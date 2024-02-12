@@ -55,7 +55,7 @@ class PlayablePlatform {
   }
 
   PlayablePlatform.fromJson(Map<String, dynamic> json)
-      : stringImageName = json['stringImageName'] ?? '',
+      : stringImageName = json['stringImageName'],
         designSetting = PlatformDesignSetting.fromJson(json),
         currentFileVersion = json['currentFileVersion'] ?? 0 {
     if (json['globalSetting'] is Map) {
