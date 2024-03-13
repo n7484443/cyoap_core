@@ -111,7 +111,7 @@ class ChoiceLine with Choice {
     for (var child in children) {
       child.recursiveFunction((current) {
         (current as ChoiceNode).updateNodeVariable();
-        if(current.choiceNodeMode == ChoiceNodeMode.onlyCode){
+        if (current.choiceNodeMode == ChoiceNodeMode.onlyCode) {
           current.execute();
         }
       });

@@ -117,6 +117,7 @@ class PlayablePlatform {
           }
           if (node.isOpen() &&
               node.isSelectableMode &&
+              node.select > 0 &&
               !node.choiceNodeOption.hideAsResult) {
             selectedPos.add((node.pos, node.select));
           } else if (node.choiceNodeMode == ChoiceNodeMode.unSelectableMode &&

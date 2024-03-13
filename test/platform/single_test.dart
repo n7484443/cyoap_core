@@ -56,17 +56,18 @@ void main() {
     choiceNode.conditionalCodeHandler.conditionVisibleString = "testInput";
     choiceNode.conditionalCodeHandler.executeCodeString = "point += 1";
 
-
     platform.choicePage.choiceLines[0].addChildren(choiceNode);
     choiceNode.generateParser();
 
-    platform.addGlobalSetting('testInput', ValueTypeWrapper(ValueType.bool(false)));
+    platform.addGlobalSetting(
+        'testInput', ValueTypeWrapper(ValueType.bool(false)));
     platform.addGlobalSetting('point', ValueTypeWrapper(ValueType.int(0)));
     platform.updateStatus();
     expect(ins.getValueType("testNode")?.dataUnzip, false);
     expect(ins.getValueType("point")?.dataUnzip, 0);
 
-    platform.addGlobalSetting('testInput', ValueTypeWrapper(ValueType.bool(true)));
+    platform.addGlobalSetting(
+        'testInput', ValueTypeWrapper(ValueType.bool(true)));
     platform.addGlobalSetting('point', ValueTypeWrapper(ValueType.int(0)));
     platform.updateStatus();
     expect(ins.getValueType("testNode")?.dataUnzip, true);
@@ -81,7 +82,6 @@ void main() {
     var choiceNode = ChoiceNode.empty()..title = "testNode";
     choiceNode.choiceNodeMode = ChoiceNodeMode.onlyCode;
     choiceNode.conditionalCodeHandler.executeCodeString = "point += 1";
-
 
     platform.choicePage.choiceLines[0].addChildren(choiceNode);
     choiceNode.generateParser();
@@ -162,7 +162,9 @@ void main() {
     var ins = VariableDataBase();
     var platform = PlayablePlatform();
     platform.choicePage.addChildren(ChoiceLine());
-    var choiceNode = ChoiceNode.empty()..title = "testNode"..choiceNodeMode=ChoiceNodeMode.unSelectableMode;
+    var choiceNode = ChoiceNode.empty()
+      ..title = "testNode"
+      ..choiceNodeMode = ChoiceNodeMode.unSelectableMode;
     platform.choicePage.choiceLines[0].addChildren(choiceNode);
 
     platform.updateStatus();
@@ -175,10 +177,12 @@ void main() {
     expect(choiceNode.select, 0);
   });
 
-  test('click and hide test', (){
+  test('click and hide test', () {
     var platform = PlayablePlatform();
     platform.choicePage.addChildren(ChoiceLine());
-    var choiceNode = ChoiceNode.empty()..title = "testNode"..conditionalCodeHandler.conditionVisibleString = "not(testNode)";
+    var choiceNode = ChoiceNode.empty()
+      ..title = "testNode"
+      ..conditionalCodeHandler.conditionVisibleString = "not(testNode)";
     platform.choicePage.choiceLines[0].addChildren(choiceNode);
     choiceNode.generateParser();
 
@@ -190,5 +194,31 @@ void main() {
     platform.updateStatus();
     expect(choiceNode.isOpen(), true);
     expect(choiceNode.isHide(), true);
+  });
+
+  test('only once select test', () {
+    var platform = PlayablePlatform();
+    platform.choicePage.addChildren(ChoiceLine());
+    platform.globalSetting.add(("testValue", ValueTypeWrapper(ValueType.bool(true))));
+    var choiceNode = ChoiceNode.empty()
+      ..title = "testNode"
+      ..conditionalCodeHandler.conditionClickableString = "or(testValue, testNode)"
+      ..conditionalCodeHandler.executeCodeString = "testValue = false";
+    platform.choicePage.choiceLines[0].addChildren(choiceNode);
+    choiceNode.generateParser();
+
+    platform.updateStatus();
+    expect(choiceNode.isOpen(), true);
+    expect(choiceNode.isHide(), false);
+
+    choiceNode.selectNode(0);
+    platform.updateStatus();
+    expect(choiceNode.isOpen(), true);
+    expect(choiceNode.isHide(), false);
+
+    choiceNode.selectNode(0);
+    platform.updateStatus();
+    expect(choiceNode.isOpen(), true);
+    expect(choiceNode.isHide(), false);
   });
 }
