@@ -256,7 +256,7 @@ class _$PlatformDesignSettingImpl implements _PlatformDesignSetting {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlatformDesignSettingImpl &&

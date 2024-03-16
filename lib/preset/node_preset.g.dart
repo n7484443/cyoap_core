@@ -102,8 +102,26 @@ _$ChoiceNodeDesignPresetImpl _$$ChoiceNodeDesignPresetImplFromJson(Map json) =>
       name: json['name'] as String,
       titlePosition: json['titlePosition'] as bool? ?? true,
       elevation: (json['elevation'] as num?)?.toDouble() ?? 0.0,
-      round: (json['round'] as num?)?.toDouble() ?? 0.0,
-      padding: (json['padding'] as num?)?.toDouble() ?? 2.0,
+      roundEdge: _$recordConvertAny(
+            json['roundEdge'],
+            ($jsonValue) => (
+              ($jsonValue[r'$1'] as num).toDouble(),
+              ($jsonValue[r'$2'] as num).toDouble(),
+              ($jsonValue[r'$3'] as num).toDouble(),
+              ($jsonValue[r'$4'] as num).toDouble(),
+            ),
+          ) ??
+          (0.0, 0.0, 0.0, 0.0),
+      paddingAround: _$recordConvertAny(
+            json['paddingAround'],
+            ($jsonValue) => (
+              ($jsonValue[r'$1'] as num).toDouble(),
+              ($jsonValue[r'$2'] as num).toDouble(),
+              ($jsonValue[r'$3'] as num).toDouble(),
+              ($jsonValue[r'$4'] as num).toDouble(),
+            ),
+          ) ??
+          (2.0, 2.0, 2.0, 2.0),
       maximizingImage: json['maximizingImage'] as bool? ?? false,
       hideTitle: json['hideTitle'] as bool? ?? false,
       imagePosition: json['imagePosition'] as int? ?? 0,
@@ -136,8 +154,18 @@ Map<String, dynamic> _$$ChoiceNodeDesignPresetImplToJson(
       'name': instance.name,
       'titlePosition': instance.titlePosition,
       'elevation': instance.elevation,
-      'round': instance.round,
-      'padding': instance.padding,
+      'roundEdge': {
+        r'$1': instance.roundEdge.$1,
+        r'$2': instance.roundEdge.$2,
+        r'$3': instance.roundEdge.$3,
+        r'$4': instance.roundEdge.$4,
+      },
+      'paddingAround': {
+        r'$1': instance.paddingAround.$1,
+        r'$2': instance.paddingAround.$2,
+        r'$3': instance.paddingAround.$3,
+        r'$4': instance.paddingAround.$4,
+      },
       'maximizingImage': instance.maximizingImage,
       'hideTitle': instance.hideTitle,
       'imagePosition': instance.imagePosition,
