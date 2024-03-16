@@ -19,19 +19,10 @@ _$ChoiceLineDesignPresetImpl _$$ChoiceLineDesignPresetImplFromJson(
     );
 
 Map<String, dynamic> _$$ChoiceLineDesignPresetImplToJson(
-    _$ChoiceLineDesignPresetImpl instance) {
-  final val = <String, dynamic>{
-    'name': instance.name,
-    'backgroundColorOption': instance.backgroundColorOption.toJson(),
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('backgroundImageString', instance.backgroundImageString);
-  val['alwaysVisibleLine'] = instance.alwaysVisibleLine;
-  return val;
-}
+        _$ChoiceLineDesignPresetImpl instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'backgroundColorOption': instance.backgroundColorOption.toJson(),
+      'backgroundImageString': instance.backgroundImageString,
+      'alwaysVisibleLine': instance.alwaysVisibleLine,
+    };

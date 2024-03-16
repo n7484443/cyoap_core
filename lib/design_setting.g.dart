@@ -32,28 +32,19 @@ _$PlatformDesignSettingImpl _$$PlatformDesignSettingImplFromJson(
     );
 
 Map<String, dynamic> _$$PlatformDesignSettingImplToJson(
-    _$PlatformDesignSettingImpl instance) {
-  final val = <String, dynamic>{
-    'variableFont': instance.variableFont,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('backgroundImage', instance.backgroundImage);
-  val['backgroundColorOption'] = instance.backgroundColorOption.toJson();
-  val['backgroundAttribute'] =
-      _$ImageAttributeEnumMap[instance.backgroundAttribute]!;
-  val['choiceLinePresetList'] =
-      instance.choiceLinePresetList.map((e) => e.toJson()).toList();
-  val['choiceNodePresetList'] =
-      instance.choiceNodePresetList.map((e) => e.toJson()).toList();
-  val['marginVertical'] = instance.marginVertical;
-  return val;
-}
+        _$PlatformDesignSettingImpl instance) =>
+    <String, dynamic>{
+      'variableFont': instance.variableFont,
+      'backgroundImage': instance.backgroundImage,
+      'backgroundColorOption': instance.backgroundColorOption.toJson(),
+      'backgroundAttribute':
+          _$ImageAttributeEnumMap[instance.backgroundAttribute]!,
+      'choiceLinePresetList':
+          instance.choiceLinePresetList.map((e) => e.toJson()).toList(),
+      'choiceNodePresetList':
+          instance.choiceNodePresetList.map((e) => e.toJson()).toList(),
+      'marginVertical': instance.marginVertical,
+    };
 
 const _$ImageAttributeEnumMap = {
   ImageAttribute.fit: 'fit',

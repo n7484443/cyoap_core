@@ -16,19 +16,10 @@ _$ChoiceLineOptionImpl _$$ChoiceLineOptionImplFromJson(
     );
 
 Map<String, dynamic> _$$ChoiceLineOptionImplToJson(
-    _$ChoiceLineOptionImpl instance) {
-  final val = <String, dynamic>{
-    'maxSelect': instance.maxSelect,
-    'enableCancelFeature': instance.enableCancelFeature,
-    'presetName': instance.presetName,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('name', instance.name);
-  return val;
-}
+        _$ChoiceLineOptionImpl instance) =>
+    <String, dynamic>{
+      'maxSelect': instance.maxSelect,
+      'enableCancelFeature': instance.enableCancelFeature,
+      'presetName': instance.presetName,
+      'name': instance.name,
+    };

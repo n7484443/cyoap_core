@@ -33,22 +33,13 @@ ConditionalCodeHandler _$ConditionalCodeHandlerFromJson(
           [[]];
 
 Map<String, dynamic> _$ConditionalCodeHandlerToJson(
-    ConditionalCodeHandler instance) {
-  final val = <String, dynamic>{
-    'conditionClickableCode': instance.conditionClickableCode,
-    'conditionVisibleCode': instance.conditionVisibleCode,
-    'executeCode': instance.executeCode,
-    'textCode': instance.textCode,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('conditionClickableString', instance.conditionClickableString);
-  writeNotNull('conditionVisibleString', instance.conditionVisibleString);
-  writeNotNull('executeCodeString', instance.executeCodeString);
-  return val;
-}
+        ConditionalCodeHandler instance) =>
+    <String, dynamic>{
+      'conditionClickableCode': instance.conditionClickableCode,
+      'conditionVisibleCode': instance.conditionVisibleCode,
+      'executeCode': instance.executeCode,
+      'textCode': instance.textCode,
+      'conditionClickableString': instance.conditionClickableString,
+      'conditionVisibleString': instance.conditionVisibleString,
+      'executeCodeString': instance.executeCodeString,
+    };
