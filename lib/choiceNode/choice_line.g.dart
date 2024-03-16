@@ -6,7 +6,8 @@ part of 'choice_line.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ChoiceLineOptionImpl _$$ChoiceLineOptionImplFromJson(Map json) =>
+_$ChoiceLineOptionImpl _$$ChoiceLineOptionImplFromJson(
+        Map<String, dynamic> json) =>
     _$ChoiceLineOptionImpl(
       maxSelect: json['maxSelect'] as int? ?? -1,
       enableCancelFeature: json['enableCancelFeature'] as bool? ?? false,
@@ -15,10 +16,19 @@ _$ChoiceLineOptionImpl _$$ChoiceLineOptionImplFromJson(Map json) =>
     );
 
 Map<String, dynamic> _$$ChoiceLineOptionImplToJson(
-        _$ChoiceLineOptionImpl instance) =>
-    <String, dynamic>{
-      'maxSelect': instance.maxSelect,
-      'enableCancelFeature': instance.enableCancelFeature,
-      'presetName': instance.presetName,
-      'name': instance.name,
-    };
+    _$ChoiceLineOptionImpl instance) {
+  final val = <String, dynamic>{
+    'maxSelect': instance.maxSelect,
+    'enableCancelFeature': instance.enableCancelFeature,
+    'presetName': instance.presetName,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('name', instance.name);
+  return val;
+}

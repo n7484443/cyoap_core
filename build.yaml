@@ -3,7 +3,7 @@ targets:
     builders:
       json_serializable:
         options:
-          any_map: true
+#          any_map: false
 #          checked: false
 #          constructor: ""
 #          create_factory: true
@@ -14,5 +14,5 @@ targets:
           explicit_to_json: true
 #          field_rename: none
 #          generic_argument_factories: false
-#          ignore_unannotated: true
-#          include_if_null: true
+#          ignore_unannotated: false
+          include_if_null: false

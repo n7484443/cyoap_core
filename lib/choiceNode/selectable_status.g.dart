@@ -6,7 +6,8 @@ part of 'selectable_status.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SelectableStatusImpl _$$SelectableStatusImplFromJson(Map json) =>
+_$SelectableStatusImpl _$$SelectableStatusImplFromJson(
+        Map<String, dynamic> json) =>
     _$SelectableStatusImpl(
       isHide: json['isHide'] as bool? ?? false,
       isOpen: json['isOpen'] as bool? ?? false,
