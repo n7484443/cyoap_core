@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:petitparser/petitparser.dart';
 
 import 'analyser.dart';
@@ -55,8 +53,6 @@ class AST {
   List<String> compile() {
     jumpCount = 0;
     var out = _toByteCode();
-    print(jsonEncode(toJson()));
-    print(jsonEncode(out));
     jumpCount = 0;
 
     final pattern = RegExp(r"\d+:");
