@@ -55,6 +55,7 @@ enum AnalyserConst {
   keywordBreak,
   keywordContinue,
   keywordIf,
+  keywordIfCondition,
   keywordElse,
   keywordFor,
   keywordTo,

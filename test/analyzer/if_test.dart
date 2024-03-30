@@ -106,4 +106,52 @@ void main(){
       'ifSpacedTest0_1': null,
     });
   });
+
+  test('if-elseif-else Test0', () {
+
+    String strTest = """
+    if(in == 0){
+      var out = 0
+    }else if(in == 1){
+      var out = 1
+    }else{
+      var out = 2
+    }
+    """;
+    var code = Analyser().analyseMultiLine(strTest);
+    for(int i = 0; i <= 2; i++){
+      expectMultiple(code, {
+        'out': i,
+      }, input: {
+        'in': i,
+      });
+    }
+  });
+
+  test('if-elseif-else Test1', () {
+
+    String strTest = """
+    if(in == 0){
+      var out = 0
+    }else if(in == 1){
+      var out = 1
+    }else if(in == 2){
+      var out = 2
+    }else if(in == 3){
+      var out = 3
+    }else if(in == 4){
+      var out = 4
+    }else{
+      var out = 5
+    }
+    """;
+    var code = Analyser().analyseMultiLine(strTest);
+    for(int i = 0; i <= 5; i++){
+      expectMultiple(code, {
+        'out': i,
+      }, input: {
+        'in': i,
+      });
+    }
+  });
 }

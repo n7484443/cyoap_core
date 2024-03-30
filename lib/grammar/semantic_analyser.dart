@@ -12,8 +12,9 @@ class SemanticAnalyser {
   }
 
   AST? analyseLines(Result<dynamic> analysedData, {optimize = true}) {
-    if (analysedData is Failure)
+    if (analysedData is Failure) {
       throw Exception("Compile Error, check syntax and try again.");
+    }
     var ast = abstractSyntaxTreeCompile(analysedData.value);
     return ast;
   }

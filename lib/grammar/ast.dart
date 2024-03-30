@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:petitparser/petitparser.dart';
 
 import 'analyser.dart';
@@ -32,6 +34,9 @@ class AST {
       }
       return;
     }
+    if (input == null) {
+      return;
+    }
     print("something wrong $input | ${input.runtimeType}");
   }
 
@@ -50,10 +55,11 @@ class AST {
   List<String> compile() {
     jumpCount = 0;
     var out = _toByteCode();
+    print(jsonEncode(toJson()));
+    print(jsonEncode(out));
     jumpCount = 0;
 
     final pattern = RegExp(r"\d+:");
-    final number = RegExp(r"\d");
 
     var jumpList = List.filled(65535, -1);
     for (int i = 0; i < out.length; i++) {
@@ -67,10 +73,11 @@ class AST {
     for (int i = 0; i < out.length; i++) {
       var line = out[i];
       if (line.contains("goto")) {
-        var replacementIndex = line.lastIndexOf(number);
-        var num = int.parse(line.substring(line.lastIndexOf(number)).trim());
-        out[i] =
-            "${line.substring(0, replacementIndex).trimRight()} ${jumpList[num]}";
+        var codeSplit = line.split(" ");
+        var opCode = codeSplit[0];
+        var arguments = codeSplit.length > 1 ? codeSplit.sublist(1) : null;
+        var num = int.parse(arguments![0]);
+        out[i] = "$opCode ${jumpList[num]}";
       }
     }
     return out;
@@ -124,29 +131,59 @@ class AST {
       case AnalyserConst.keywordReturn:
         return [...child[0]._toByteCode(), "return"];
       case AnalyserConst.keywordIf:
-        var condition = child[0]._toByteCode();
-        var ifCode = child[1]._toByteCode();
-        if (child.length == 3) {
-          var elseCode = child[2]._toByteCode();
-          var jumpCountElseStart = jumpCount++;
-          var jumpCountEnd = jumpCount++;
+        if (child.length == 1) {
+          var condition = child[0].child[0]._toByteCode();
+          var ifCode = child[0].child[1]._toByteCode();
+          var end = jumpCount++;
           return [
             ...condition,
-            "if_goto $jumpCountElseStart",
+            "if_goto $end",
             ...ifCode,
-            "goto $jumpCountEnd",
-            "$jumpCountElseStart:",
-            ...elseCode,
-            "$jumpCountEnd:",
+            "$end:"
           ];
         }
-        var jumpCountEnd = jumpCount++;
-        return [
-          ...condition,
-          "if_goto $jumpCountEnd",
-          ...ifCode,
-          "$jumpCountEnd:",
-        ];
+        var jumpCountNextStart =
+            List.generate(child.length, (index) => jumpCount++);
+        var jumpCountEnd = jumpCountNextStart.last;
+        var ifConditionsCode = child.sublist(0, child.length - 1);
+        var output = <String>[];
+        for (int i = 0; i < ifConditionsCode.length; i++) {
+          var ifChild = ifConditionsCode[i];
+          var condition = ifChild.child[0]._toByteCode();
+          var ifCode = ifChild.child[1]._toByteCode();
+          if (i != 0) {
+            output.add("${jumpCountNextStart[i - 1]}:");
+          }
+          output.addAll([
+            ...condition,
+            "if_goto ${jumpCountNextStart[i]}",
+            ...ifCode,
+            "goto $jumpCountEnd",
+          ]);
+        }
+
+        if (child.last.child.length == 1) {
+          // else 로 끝
+          var defaultCode = child.last.child[0]._toByteCode();
+          output.addAll([
+            "${jumpCountNextStart[jumpCountNextStart.length - 2]}:",
+            ...defaultCode,
+            "$jumpCountEnd:",
+          ]);
+        } else {
+          // else-if로 끝
+          var condition = ifConditionsCode.last.child[0]._toByteCode();
+          var ifCode = ifConditionsCode.last.child[1]._toByteCode();
+          output.addAll([
+            "${jumpCountNextStart[jumpCountNextStart.length - 2]}:",
+            ...condition,
+            "if_goto $jumpCountEnd",
+            ...ifCode,
+            "$jumpCountEnd:",
+          ]);
+        }
+        // return output;
+        return output;
       case AnalyserConst.keywordFor:
         var loopCondition = child[0];
         var variable = loopCondition.child[0].body.dataString;

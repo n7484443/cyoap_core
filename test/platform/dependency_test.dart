@@ -1,11 +1,14 @@
 import 'package:cyoap_core/choiceNode/choice_line.dart';
 import 'package:cyoap_core/choiceNode/choice_node.dart';
+import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/playable_platform.dart';
+import 'package:cyoap_core/variable_db.dart';
 import 'package:test/test.dart';
 
-void printStatus(List<ChoiceNode> choiceNode){
+void printStatus(List<ChoiceNode> choiceNode) {
   for (var element in choiceNode) {
-    print("${element.pos} ${element.select} ${element.selectableStatus} ${element.isOpen()}");
+    print(
+        "${element.pos} ${element.select} ${element.selectableStatus} ${element.isOpen()}");
   }
 }
 
@@ -13,14 +16,19 @@ void main() {
   test('dependency_test_0', () {
     var platform = PlayablePlatform();
     var lineSetting0 = ChoiceLine();
-    var lineSetting1 = ChoiceLine(choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
+    var lineSetting1 = ChoiceLine(
+        choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
     lineSetting0.generateParser();
     platform.choicePage.addChildren(lineSetting0);
     lineSetting1.generateParser();
     platform.choicePage.addChildren(lineSetting1);
     var choiceNode0 = ChoiceNode.empty()..title = "testNode0";
-    var choiceNode1 = ChoiceNode.empty()..title = "testNode1"..conditionalCodeHandler.conditionVisibleString = "testNode0";
-    var choiceNode2 = ChoiceNode.empty()..title = "testNode2"..conditionalCodeHandler.conditionClickableString = "testNode0";
+    var choiceNode1 = ChoiceNode.empty()
+      ..title = "testNode1"
+      ..conditionalCodeHandler.conditionVisibleString = "testNode0";
+    var choiceNode2 = ChoiceNode.empty()
+      ..title = "testNode2"
+      ..conditionalCodeHandler.conditionClickableString = "testNode0";
     choiceNode1.generateParser();
     choiceNode2.generateParser();
     platform.choicePage.choiceLines[0].addChildren(choiceNode0);
@@ -54,11 +62,16 @@ void main() {
 
   test('forced_uncheck0', () {
     var platform = PlayablePlatform();
-    var lineSetting0 = ChoiceLine(choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
+    platform.globalSetting.add(("point", ValueTypeWrapper(ValueType.int(0))));
+    var lineSetting0 = ChoiceLine(
+        choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
     lineSetting0.generateParser();
     platform.choicePage.addChildren(lineSetting0);
     var choiceNode0 = ChoiceNode.empty()..title = "testNode0";
-    var choiceNode1 = ChoiceNode.empty()..title = "testNode1"..conditionalCodeHandler.conditionClickableString = "testNode0";
+    var choiceNode1 = ChoiceNode.empty()
+      ..title = "testNode1"
+      ..conditionalCodeHandler.conditionClickableString = "testNode0"
+      ..conditionalCodeHandler.executeCodeString = "point += 5";
     choiceNode0.generateParser();
     choiceNode1.generateParser();
     lineSetting0.addChildren(choiceNode0);
@@ -85,6 +98,7 @@ void main() {
     expect(choiceNode0.selectableStatus.isOpen, true);
     expect(choiceNode1.select, 1);
     expect(choiceNode1.selectableStatus.isOpen, true);
+    expect(VariableDataBase().getValueType("point")?.dataUnzip, 5);
 
     choiceNode0.selectNode(0);
     platform.updateStatus();
@@ -92,5 +106,16 @@ void main() {
     expect(choiceNode0.selectableStatus.isOpen, true);
     expect(choiceNode1.select, 0);
     expect(choiceNode1.selectableStatus.isOpen, false);
+    expect(VariableDataBase().getValueType("point")?.dataUnzip, 0);
+
+    choiceNode0.selectNode(0);
+    platform.updateStatus();
+    choiceNode1.selectNode(0);
+    platform.updateStatus();
+    expect(choiceNode0.select, 1);
+    expect(choiceNode0.selectableStatus.isOpen, true);
+    expect(choiceNode1.select, 1);
+    expect(choiceNode1.selectableStatus.isOpen, true);
+    expect(VariableDataBase().getValueType("point")?.dataUnzip, 5);
   });
 }

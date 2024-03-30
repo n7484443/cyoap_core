@@ -60,9 +60,12 @@ class CYOAPScriptGrammarDefinition extends GrammarDefinition {
 
   Parser comma() => ref1(token, ',');
 
-  Parser ifToken() => ref2(token, 'if', AnalyserConst.keywordIf);
+  Parser ifToken() => ref2(token, 'if', AnalyserConst.keywordIfCondition);
 
-  Parser elseStatement() => ref2(token, 'else', AnalyserConst.keywordElse);
+  Parser elseIfToken() =>
+      ref2(token, 'else if', AnalyserConst.keywordIfCondition);
+
+  Parser elseToken() => ref2(token, 'else', AnalyserConst.keywordElse);
 
   Parser forToken() => ref2(token, 'for', AnalyserConst.keywordFor);
 
@@ -147,15 +150,36 @@ class CYOAPScriptGrammarDefinition extends GrammarDefinition {
         return [value[2], value[1], value[3]];
       });
 
-  Parser ifStatement() =>
+  Parser ifBlock() =>
       ref0(ifToken) &
       ref0(expression)
           .skip(before: ref0(groupingStart), after: ref0(groupingEnd)) &
-      ref0(block).skip(before: ref0(blockStart), after: ref0(blockEnd)) &
-      (ref0(elseStatement) &
-              ref0(block).skip(before: ref0(blockStart), after: ref0(blockEnd)))
-          .pick(1)
-          .optional();
+      ref0(block).skip(before: ref0(blockStart), after: ref0(blockEnd));
+
+  Parser elseIfBlock() =>
+      ref0(elseIfToken) &
+      ref0(expression)
+          .skip(before: ref0(groupingStart), after: ref0(groupingEnd)) &
+      ref0(block).skip(before: ref0(blockStart), after: ref0(blockEnd));
+
+  Parser elseBlock() =>
+      ref0(elseToken) &
+      ref0(block).skip(before: ref0(blockStart), after: ref0(blockEnd));
+
+  Parser ifStatement() =>
+      (ref0(ifBlock) & ref0(elseIfBlock).star() & ref0(elseBlock).optional())
+          .map((value) {
+        var first = value.first;
+        var elseIf = value[1];
+        var elseBlock = value[2];
+        if (value[1].length == 0) {}
+        return [
+          Token(TokenData(AnalyserConst.keywordIf), "", 0, 0),
+          first,
+          ...elseIf,
+          elseBlock
+        ];
+      });
 
   Parser forExpression() =>
       (ref1(variable, false) & ref0(inToken) & ref0(lists)).permute([1, 0, 2]);

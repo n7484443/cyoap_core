@@ -120,9 +120,16 @@ class ChoiceLine with Choice {
     _updateStatusAll(selectOrder.length);
     // 선택 순서에 따른 실행 순서 업데이트
     int order = 0;
+    var nextSelectOrder = <Pos>[];
     while (order < selectOrder.length) {
       var pos = selectOrder[order];
       var node = findRootParent().findChoice(pos) as ChoiceNode;
+      if(!node.isExecute()){
+        order ++;
+        continue;
+      }else{
+        nextSelectOrder.add(pos);
+      }
       node.execute();
       conditionalCodeHandler.execute(errorName);
       updateStatus();
@@ -137,6 +144,7 @@ class ChoiceLine with Choice {
         (current as ChoiceNode).updateCurrentContentsString();
       });
     }
+    selectOrder = nextSelectOrder;
   }
 
   void _updateStatusAll(int order) {
