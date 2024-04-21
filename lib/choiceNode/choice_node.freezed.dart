@@ -12,7 +12,7 @@ part of 'choice_node.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 ChoiceNodeOption _$ChoiceNodeOptionFromJson(Map<String, dynamic> json) {
   return _ChoiceNodeDesign.fromJson(json);
@@ -24,6 +24,7 @@ mixin _$ChoiceNodeOption {
   bool get hideAsResult => throw _privateConstructorUsedError;
   bool get showAsResult => throw _privateConstructorUsedError;
   bool get showAsSlider => throw _privateConstructorUsedError;
+  bool get executeWhenVisible => throw _privateConstructorUsedError;
   String get presetName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,6 +44,7 @@ abstract class $ChoiceNodeOptionCopyWith<$Res> {
       bool hideAsResult,
       bool showAsResult,
       bool showAsSlider,
+      bool executeWhenVisible,
       String presetName});
 }
 
@@ -63,6 +65,7 @@ class _$ChoiceNodeOptionCopyWithImpl<$Res, $Val extends ChoiceNodeOption>
     Object? hideAsResult = null,
     Object? showAsResult = null,
     Object? showAsSlider = null,
+    Object? executeWhenVisible = null,
     Object? presetName = null,
   }) {
     return _then(_value.copyWith(
@@ -81,6 +84,10 @@ class _$ChoiceNodeOptionCopyWithImpl<$Res, $Val extends ChoiceNodeOption>
       showAsSlider: null == showAsSlider
           ? _value.showAsSlider
           : showAsSlider // ignore: cast_nullable_to_non_nullable
+              as bool,
+      executeWhenVisible: null == executeWhenVisible
+          ? _value.executeWhenVisible
+          : executeWhenVisible // ignore: cast_nullable_to_non_nullable
               as bool,
       presetName: null == presetName
           ? _value.presetName
@@ -103,6 +110,7 @@ abstract class _$$ChoiceNodeDesignImplCopyWith<$Res>
       bool hideAsResult,
       bool showAsResult,
       bool showAsSlider,
+      bool executeWhenVisible,
       String presetName});
 }
 
@@ -121,6 +129,7 @@ class __$$ChoiceNodeDesignImplCopyWithImpl<$Res>
     Object? hideAsResult = null,
     Object? showAsResult = null,
     Object? showAsSlider = null,
+    Object? executeWhenVisible = null,
     Object? presetName = null,
   }) {
     return _then(_$ChoiceNodeDesignImpl(
@@ -140,6 +149,10 @@ class __$$ChoiceNodeDesignImplCopyWithImpl<$Res>
           ? _value.showAsSlider
           : showAsSlider // ignore: cast_nullable_to_non_nullable
               as bool,
+      executeWhenVisible: null == executeWhenVisible
+          ? _value.executeWhenVisible
+          : executeWhenVisible // ignore: cast_nullable_to_non_nullable
+              as bool,
       presetName: null == presetName
           ? _value.presetName
           : presetName // ignore: cast_nullable_to_non_nullable
@@ -157,6 +170,7 @@ class _$ChoiceNodeDesignImpl implements _ChoiceNodeDesign {
       this.hideAsResult = false,
       this.showAsResult = false,
       this.showAsSlider = false,
+      this.executeWhenVisible = false,
       this.presetName = 'default'});
 
   factory _$ChoiceNodeDesignImpl.fromJson(Map<String, dynamic> json) =>
@@ -176,11 +190,14 @@ class _$ChoiceNodeDesignImpl implements _ChoiceNodeDesign {
   final bool showAsSlider;
   @override
   @JsonKey()
+  final bool executeWhenVisible;
+  @override
+  @JsonKey()
   final String presetName;
 
   @override
   String toString() {
-    return 'ChoiceNodeOption(isOccupySpace: $isOccupySpace, hideAsResult: $hideAsResult, showAsResult: $showAsResult, showAsSlider: $showAsSlider, presetName: $presetName)';
+    return 'ChoiceNodeOption(isOccupySpace: $isOccupySpace, hideAsResult: $hideAsResult, showAsResult: $showAsResult, showAsSlider: $showAsSlider, executeWhenVisible: $executeWhenVisible, presetName: $presetName)';
   }
 
   @override
@@ -196,6 +213,8 @@ class _$ChoiceNodeDesignImpl implements _ChoiceNodeDesign {
                 other.showAsResult == showAsResult) &&
             (identical(other.showAsSlider, showAsSlider) ||
                 other.showAsSlider == showAsSlider) &&
+            (identical(other.executeWhenVisible, executeWhenVisible) ||
+                other.executeWhenVisible == executeWhenVisible) &&
             (identical(other.presetName, presetName) ||
                 other.presetName == presetName));
   }
@@ -203,7 +222,7 @@ class _$ChoiceNodeDesignImpl implements _ChoiceNodeDesign {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, isOccupySpace, hideAsResult,
-      showAsResult, showAsSlider, presetName);
+      showAsResult, showAsSlider, executeWhenVisible, presetName);
 
   @JsonKey(ignore: true)
   @override
@@ -226,6 +245,7 @@ abstract class _ChoiceNodeDesign implements ChoiceNodeOption {
       final bool hideAsResult,
       final bool showAsResult,
       final bool showAsSlider,
+      final bool executeWhenVisible,
       final String presetName}) = _$ChoiceNodeDesignImpl;
 
   factory _ChoiceNodeDesign.fromJson(Map<String, dynamic> json) =
@@ -239,6 +259,8 @@ abstract class _ChoiceNodeDesign implements ChoiceNodeOption {
   bool get showAsResult;
   @override
   bool get showAsSlider;
+  @override
+  bool get executeWhenVisible;
   @override
   String get presetName;
   @override

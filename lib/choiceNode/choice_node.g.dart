@@ -13,6 +13,7 @@ _$ChoiceNodeDesignImpl _$$ChoiceNodeDesignImplFromJson(
       hideAsResult: json['hideAsResult'] as bool? ?? false,
       showAsResult: json['showAsResult'] as bool? ?? false,
       showAsSlider: json['showAsSlider'] as bool? ?? false,
+      executeWhenVisible: json['executeWhenVisible'] as bool? ?? false,
       presetName: json['presetName'] as String? ?? 'default',
     );
 
@@ -23,5 +24,6 @@ Map<String, dynamic> _$$ChoiceNodeDesignImplToJson(
       'hideAsResult': instance.hideAsResult,
       'showAsResult': instance.showAsResult,
       'showAsSlider': instance.showAsSlider,
+      'executeWhenVisible': instance.executeWhenVisible,
       'presetName': instance.presetName,
     };

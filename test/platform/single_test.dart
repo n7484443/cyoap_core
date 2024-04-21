@@ -47,7 +47,7 @@ void main() {
     expect(ins.getValueType("testNode")?.dataUnzip, false);
   });
 
-  test('unSelectableModeTest', () {
+  test('unSelectableMode without Execute', () {
     var ins = VariableDataBase();
     var platform = PlayablePlatform();
     platform.choicePage.addChildren(ChoiceLine());
@@ -55,6 +55,34 @@ void main() {
     choiceNode.choiceNodeMode = ChoiceNodeMode.unSelectableMode;
     choiceNode.conditionalCodeHandler.conditionVisibleString = "testInput";
     choiceNode.conditionalCodeHandler.executeCodeString = "point += 1";
+
+    platform.choicePage.choiceLines[0].addChildren(choiceNode);
+    choiceNode.generateParser();
+
+    platform.addGlobalSetting(
+        'testInput', ValueTypeWrapper(ValueType.bool(false)));
+    platform.addGlobalSetting('point', ValueTypeWrapper(ValueType.int(0)));
+    platform.updateStatus();
+    expect(ins.getValueType("testNode")?.dataUnzip, true);
+    expect(ins.getValueType("point")?.dataUnzip, 0);
+
+    platform.addGlobalSetting(
+        'testInput', ValueTypeWrapper(ValueType.bool(true)));
+    platform.addGlobalSetting('point', ValueTypeWrapper(ValueType.int(0)));
+    platform.updateStatus();
+    expect(ins.getValueType("testNode")?.dataUnzip, true);
+    expect(ins.getValueType("point")?.dataUnzip, 0);
+    //expect(ins.getValueType("testNode2")?.dataUnzip, true);
+  });
+  test('unSelectableMode with Execute', () {
+    var ins = VariableDataBase();
+    var platform = PlayablePlatform();
+    platform.choicePage.addChildren(ChoiceLine());
+    var choiceNode = ChoiceNode.empty()..title = "testNode";
+    choiceNode.choiceNodeMode = ChoiceNodeMode.unSelectableMode;
+    choiceNode.conditionalCodeHandler.conditionVisibleString = "testInput";
+    choiceNode.conditionalCodeHandler.executeCodeString = "point += 1";
+    choiceNode.choiceNodeOption = choiceNode.choiceNodeOption.copyWith(executeWhenVisible: true);
 
     platform.choicePage.choiceLines[0].addChildren(choiceNode);
     choiceNode.generateParser();

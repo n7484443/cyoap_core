@@ -14,6 +14,7 @@ import 'choice_line.dart';
 import 'conditional_code_handler.dart';
 
 part 'choice_node.freezed.dart';
+
 part 'choice_node.g.dart';
 
 enum ChoiceNodeMode {
@@ -32,6 +33,7 @@ class ChoiceNodeOption with _$ChoiceNodeOption {
     @Default(false) bool hideAsResult,
     @Default(false) bool showAsResult,
     @Default(false) bool showAsSlider,
+    @Default(false) bool executeWhenVisible,
     @Default('default') String presetName,
   }) = _ChoiceNodeDesign;
 
@@ -79,8 +81,8 @@ class ChoiceNode with Choice {
 
   @override
   bool get isSelectableMode =>
-      choiceNodeMode != ChoiceNodeMode.unSelectableMode &&
-      choiceNodeMode != ChoiceNodeMode.onlyCode;
+      !(choiceNodeMode == ChoiceNodeMode.unSelectableMode ||
+          choiceNodeMode == ChoiceNodeMode.onlyCode);
 
   ChoiceNode(
       {int width = 1,
@@ -217,7 +219,7 @@ class ChoiceNode with Choice {
     if (!isOpen()) return false;
     switch (choiceNodeMode) {
       case ChoiceNodeMode.unSelectableMode:
-        return !isHide();
+        return !choiceNodeOption.executeWhenVisible || !isHide();
       case ChoiceNodeMode.onlyCode:
         return true;
       default:
@@ -276,7 +278,7 @@ class ChoiceNode with Choice {
     selectableStatus = SelectableStatus(isHide: hideStatus, isOpen: openStatus);
     var newIsVisible = !isHide();
     if (choiceNodeMode == ChoiceNodeMode.unSelectableMode &&
-        oldIsVisible != newIsVisible) {
+        oldIsVisible != newIsVisible && choiceNodeOption.executeWhenVisible) {
       if (newIsVisible) {
         addOrder!.insert(order, pos);
       } else {

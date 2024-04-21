@@ -112,5 +112,13 @@ void main() {
     expect(choiceNode0.select, 0);
     expect(choiceNode1.select, 1);
     expect(lineSetting1.isHide(), true);
+    choiceNode0.selectNode(0);
+    platform.updateStatus();
+
+    expect(choiceNode0.select, 1);
+    expect(choiceNode1.select, 1);
+    expect(lineSetting1.isHide(), false);
+    choiceNode0.selectNode(0);
+    platform.updateStatus();
   });
 }
