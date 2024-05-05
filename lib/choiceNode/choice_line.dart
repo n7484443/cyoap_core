@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:cyoap_core/choiceNode/pos.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'choice.dart';
@@ -28,7 +27,7 @@ class ChoiceLine with Choice {
   List<ChoiceNode> get choiceNodes => children.cast<ChoiceNode>();
 
   ChoiceLineOption choiceLineOption;
-  List<Pos> selectOrder = List.empty(growable: true);
+  List<SelectInfo> selectOrder = List.empty(growable: true);
   late ConditionalCodeHandler conditionalCodeHandlerFinalize;
 
   ChoiceLine({this.choiceLineOption = const ChoiceLineOption()}) {
@@ -119,22 +118,19 @@ class ChoiceLine with Choice {
     // 선택 가능 여부 업데이트
     _updateStatusAll(selectOrder.length);
     // 선택 순서에 따른 실행 순서 업데이트
-    int order = 0;
-    var nextSelectOrder = <Pos>[];
-    while (order < selectOrder.length) {
-      var pos = selectOrder[order];
-      var node = findRootParent().findChoice(pos) as ChoiceNode;
+    var nextSelectOrder = <SelectInfo>[];
+    for(int order = 0; order < selectOrder.length; order++){
+      var selectInfo = selectOrder[order];
+      var node = findRootParent().findChoice(selectInfo.pos) as ChoiceNode;
       if(!node.isExecute()){
-        order ++;
+        order += 1;
         continue;
-      }else{
-        nextSelectOrder.add(pos);
       }
       node.execute();
       conditionalCodeHandler.execute(errorName);
       updateStatus();
       _updateStatusAll(order + 1);
-      order++;
+      nextSelectOrder.add(selectInfo);
     }
     // 라인 마지막에 실행되는 코드 실행
     conditionalCodeHandlerFinalize.execute(errorName);

@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:cyoap_core/choiceNode/pos.dart';
 import 'package:cyoap_core/choiceNode/selectable_status.dart';
 import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/i18n.dart';
@@ -185,9 +184,9 @@ class ChoiceNode with Choice {
         line = line.parent!;
       }
       if (newExecute) {
-        line.selectOrder.add(pos);
+        line.selectOrder.add(SelectInfo(pos: pos, select: n));
       } else {
-        line.selectOrder.remove(pos);
+        line.selectOrder.remove(SelectInfo(pos: pos, select: n));
       }
     }
   }
@@ -268,7 +267,9 @@ class ChoiceNode with Choice {
 
   @override
   void updateStatus(
-      {List<Pos>? addOrder, int order = 0, bool lineCanAcceptMore = true}) {
+      {List<SelectInfo>? addOrder,
+      int order = 0,
+      bool lineCanAcceptMore = true}) {
     var oldIsVisible = !isHide();
     var hideStatus =
         !conditionalCodeHandler.analyseVisible(errorName, seedInput: seed);
@@ -278,11 +279,12 @@ class ChoiceNode with Choice {
     selectableStatus = SelectableStatus(isHide: hideStatus, isOpen: openStatus);
     var newIsVisible = !isHide();
     if (choiceNodeMode == ChoiceNodeMode.unSelectableMode &&
-        oldIsVisible != newIsVisible && choiceNodeOption.executeWhenVisible) {
+        oldIsVisible != newIsVisible &&
+        choiceNodeOption.executeWhenVisible) {
       if (newIsVisible) {
-        addOrder!.insert(order, pos);
+        addOrder!.insert(order, SelectInfo(pos: pos, select: 0));
       } else {
-        addOrder!.remove(pos);
+        addOrder!.remove(SelectInfo(pos: pos, select: 0));
       }
     }
 

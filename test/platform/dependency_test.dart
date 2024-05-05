@@ -118,4 +118,70 @@ void main() {
     expect(choiceNode1.selectableStatus.isOpen, true);
     expect(VariableDataBase().getValueType("point")?.dataUnzip, 5);
   });
+
+  test('point_test', () {
+    var platform = PlayablePlatform();
+    platform.globalSetting.add(("point", ValueTypeWrapper(ValueType.int(0))));
+    var lineSetting0 = ChoiceLine(
+        choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
+    lineSetting0.generateParser();
+    platform.choicePage.addChildren(lineSetting0);
+    var choiceNode0 = ChoiceNode.empty()
+      ..title = "testNode0"
+      ..conditionalCodeHandler.conditionClickableString = "point >= 0"
+      ..conditionalCodeHandler.executeCodeString = "point += 1";
+    var choiceNode1 = ChoiceNode.empty()
+      ..title = "testNode1"
+      ..conditionalCodeHandler.conditionClickableString = "point >= 1"
+      ..conditionalCodeHandler.executeCodeString = "point += 1";
+    var choiceNode2 = ChoiceNode.empty()
+      ..title = "testNode2"
+      ..conditionalCodeHandler.conditionClickableString = "point >= 2"
+      ..conditionalCodeHandler.executeCodeString = "point += 1";
+    choiceNode0.generateParser();
+    choiceNode1.generateParser();
+    choiceNode2.generateParser();
+    lineSetting0.addChildren(choiceNode0);
+    lineSetting0.addChildren(choiceNode1);
+    lineSetting0.addChildren(choiceNode2);
+    platform.updateStatus();
+
+    expect(choiceNode0.select, 0);
+    expect(choiceNode1.select, 0);
+    expect(choiceNode2.select, 0);
+    expect(choiceNode0.selectableStatus.isOpen, true);
+    expect(choiceNode1.selectableStatus.isOpen, false);
+    expect(choiceNode2.selectableStatus.isOpen, false);
+    expect(VariableDataBase().getValueType("point")?.dataUnzip, 0);
+
+    choiceNode0.selectNode(0);
+    platform.updateStatus();
+    expect(choiceNode0.select, 1);
+    expect(choiceNode1.select, 0);
+    expect(choiceNode2.select, 0);
+    expect(choiceNode0.selectableStatus.isOpen, true);
+    expect(choiceNode1.selectableStatus.isOpen, true);
+    expect(choiceNode2.selectableStatus.isOpen, false);
+    expect(VariableDataBase().getValueType("point")?.dataUnzip, 1);
+
+    choiceNode1.selectNode(0);
+    platform.updateStatus();
+    expect(choiceNode0.select, 1);
+    expect(choiceNode1.select, 1);
+    expect(choiceNode2.select, 0);
+    expect(choiceNode0.selectableStatus.isOpen, true);
+    expect(choiceNode1.selectableStatus.isOpen, true);
+    expect(choiceNode2.selectableStatus.isOpen, true);
+    expect(VariableDataBase().getValueType("point")?.dataUnzip, 2);
+
+    choiceNode2.selectNode(0);
+    platform.updateStatus();
+    expect(choiceNode0.select, 1);
+    expect(choiceNode1.select, 1);
+    expect(choiceNode2.select, 1);
+    expect(choiceNode0.selectableStatus.isOpen, true);
+    expect(choiceNode1.selectableStatus.isOpen, true);
+    expect(choiceNode2.selectableStatus.isOpen, true);
+    expect(VariableDataBase().getValueType("point")?.dataUnzip, 3);
+  });
 }

@@ -7,6 +7,17 @@ import 'selectable_status.dart';
 //숨겨도 실행된다. 반대로 꺼지면 실행되지 않는다.
 //시작 전 ValueType 과 결과 ValueType을 저장해야 한다.
 
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'choice.freezed.dart';
+@freezed
+class SelectInfo with _$SelectInfo {
+  const factory SelectInfo({
+    required Pos pos,
+    required int select,
+  }) = _SelectInfo;
+}
+
 mixin Choice {
   SelectableStatus selectableStatus =
       SelectableStatus(isHide: false, isOpen: true);
