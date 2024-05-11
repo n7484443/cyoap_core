@@ -20,6 +20,7 @@ extension Localization on String {
       "int": "Integer",
       "double": "Double",
       "String": "String",
+      "bool": "Boolean(true, false)",
       "array": "Array",
     },
     "ko": {
@@ -40,6 +41,7 @@ extension Localization on String {
       "int": "int(정수)",
       "double": "double(소수)",
       "String": "String(문자열)",
+      "bool": "bool(true|참, false|거짓)",
       "array": "array(배열)",
     }
   };
