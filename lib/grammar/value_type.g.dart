@@ -29,7 +29,8 @@ const _$DataTypeEnumMap = {
 _$ValueTypeWrapperImpl _$$ValueTypeWrapperImplFromJson(
         Map<String, dynamic> json) =>
     _$ValueTypeWrapperImpl(
-      valueType: ValueType.fromJson(json['valueType'] as Map<String, dynamic>),
+      valueType: const ValueTypeConverter()
+          .fromJson(json['valueType'] as Map<String, dynamic>),
       visible: json['visible'] as bool? ?? false,
       displayName: json['displayName'] as String? ?? '',
     );
@@ -37,7 +38,7 @@ _$ValueTypeWrapperImpl _$$ValueTypeWrapperImplFromJson(
 Map<String, dynamic> _$$ValueTypeWrapperImplToJson(
         _$ValueTypeWrapperImpl instance) =>
     <String, dynamic>{
-      'valueType': instance.valueType.toJson(),
+      'valueType': const ValueTypeConverter().toJson(instance.valueType),
       'visible': instance.visible,
       'displayName': instance.displayName,
     };

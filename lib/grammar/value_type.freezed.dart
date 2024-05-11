@@ -169,6 +169,7 @@ ValueTypeWrapper _$ValueTypeWrapperFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ValueTypeWrapper {
+  @ValueTypeConverter()
   ValueType get valueType => throw _privateConstructorUsedError;
   bool get visible => throw _privateConstructorUsedError;
   String get displayName => throw _privateConstructorUsedError;
@@ -185,7 +186,10 @@ abstract class $ValueTypeWrapperCopyWith<$Res> {
           ValueTypeWrapper value, $Res Function(ValueTypeWrapper) then) =
       _$ValueTypeWrapperCopyWithImpl<$Res, ValueTypeWrapper>;
   @useResult
-  $Res call({ValueType valueType, bool visible, String displayName});
+  $Res call(
+      {@ValueTypeConverter() ValueType valueType,
+      bool visible,
+      String displayName});
 
   $ValueTypeCopyWith<$Res> get valueType;
 }
@@ -240,7 +244,10 @@ abstract class _$$ValueTypeWrapperImplCopyWith<$Res>
       __$$ValueTypeWrapperImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ValueType valueType, bool visible, String displayName});
+  $Res call(
+      {@ValueTypeConverter() ValueType valueType,
+      bool visible,
+      String displayName});
 
   @override
   $ValueTypeCopyWith<$Res> get valueType;
@@ -282,13 +289,16 @@ class __$$ValueTypeWrapperImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ValueTypeWrapperImpl extends _ValueTypeWrapper {
   const _$ValueTypeWrapperImpl(
-      {required this.valueType, this.visible = false, this.displayName = ''})
+      {@ValueTypeConverter() required this.valueType,
+      this.visible = false,
+      this.displayName = ''})
       : super._();
 
   factory _$ValueTypeWrapperImpl.fromJson(Map<String, dynamic> json) =>
       _$$ValueTypeWrapperImplFromJson(json);
 
   @override
+  @ValueTypeConverter()
   final ValueType valueType;
   @override
   @JsonKey()
@@ -330,7 +340,7 @@ class _$ValueTypeWrapperImpl extends _ValueTypeWrapper {
 
 abstract class _ValueTypeWrapper extends ValueTypeWrapper {
   const factory _ValueTypeWrapper(
-      {required final ValueType valueType,
+      {@ValueTypeConverter() required final ValueType valueType,
       final bool visible,
       final String displayName}) = _$ValueTypeWrapperImpl;
   const _ValueTypeWrapper._() : super._();
@@ -339,6 +349,7 @@ abstract class _ValueTypeWrapper extends ValueTypeWrapper {
       _$ValueTypeWrapperImpl.fromJson;
 
   @override
+  @ValueTypeConverter()
   ValueType get valueType;
   @override
   bool get visible;

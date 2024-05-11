@@ -151,7 +151,7 @@ class ValueType with _$ValueType {
 @freezed
 class ValueTypeWrapper with _$ValueTypeWrapper {
   const factory ValueTypeWrapper({
-    required ValueType valueType,
+    @ValueTypeConverter() required ValueType valueType,
     @Default(false) bool visible,
     @Default('') String displayName,
   }) = _ValueTypeWrapper;
@@ -166,3 +166,21 @@ class ValueTypeWrapper with _$ValueTypeWrapper {
   factory ValueTypeWrapper.fromJson(Map<String, dynamic> json) =>
       _$ValueTypeWrapperFromJson(json);
 }
+
+class ValueTypeConverter implements JsonConverter<ValueType, Map<String, dynamic>> {
+  const ValueTypeConverter();
+
+  @override
+  ValueType fromJson(Map<String, dynamic> json) {
+    if(json is! String){
+      return getValueTypeFromDynamicInput(json);
+    }
+    return ValueType.fromJson(json);
+  }
+
+  @override
+  Map<String, dynamic> toJson(ValueType object) {
+    return object.toJson();
+  }
+}
+
