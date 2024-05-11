@@ -16,6 +16,11 @@ extension Localization on String {
       "linear": "linear",
       "radial": "radial",
       "sweep": "sweep",
+
+      "int": "Integer",
+      "double": "Double",
+      "String": "String",
+      "array": "Array",
     },
     "ko": {
       "choice": "선택지",
@@ -31,7 +36,12 @@ extension Localization on String {
       "linear": "선형",
       "radial": "방사형",
       "sweep": "극좌표형",
-    },
+
+      "int": "int(정수)",
+      "double": "double(소수)",
+      "String": "String(문자열)",
+      "array": "array(배열)",
+    }
   };
 
   String get i18n {

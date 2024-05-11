@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cyoap_core/i18n.dart';
 import 'package:meta/meta.dart';
 
 enum DataType {
@@ -12,6 +13,9 @@ enum DataType {
   final String name;
 
   const DataType(this.name);
+
+  @override
+  String toString() => name.i18n;
 }
 
 extension DataTypeExtension on DataType {
