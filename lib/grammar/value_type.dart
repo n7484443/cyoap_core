@@ -171,9 +171,9 @@ class ValueTypeConverter implements JsonConverter<ValueType, Map<String, dynamic
   const ValueTypeConverter();
 
   @override
-  ValueType fromJson(Map<String, dynamic> json) {
-    if(json is! String){
-      return getValueTypeFromDynamicInput(json["valueType"]);
+  ValueType fromJson(dynamic json) {
+    if(json is! Map<String, dynamic>){
+      return getValueTypeFromDynamicInput(json);
     }
     return ValueType.fromJson(json);
   }
