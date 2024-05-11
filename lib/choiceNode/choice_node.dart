@@ -214,8 +214,12 @@ class ChoiceNode with Choice {
   }
 
   @override
-  bool isExecute() {
-    if (!isOpen()) return false;
+  bool isExecute({bool update = false}) {
+    var func = _isOpen;
+    if (update) {
+      func = isOpen;
+    }
+    if (!func()) return false;
     switch (choiceNodeMode) {
       case ChoiceNodeMode.unSelectableMode:
         return !choiceNodeOption.executeWhenVisible || !isHide();

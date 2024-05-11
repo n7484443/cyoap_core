@@ -122,13 +122,12 @@ class ChoiceLine with Choice {
     for(int order = 0; order < selectOrder.length; order++){
       var selectInfo = selectOrder[order];
       var node = findRootParent().findChoice(selectInfo.pos) as ChoiceNode;
-      if(!node.isExecute()){
+      if(!node.isExecute(update: true)){
         order += 1;
         continue;
       }
       node.execute();
       conditionalCodeHandler.execute(errorName);
-      updateStatus();
       _updateStatusAll(order + 1);
       nextSelectOrder.add(selectInfo);
     }
