@@ -60,15 +60,15 @@ void main() {
     choiceNode.generateParser();
 
     platform.addGlobalSetting(
-        'testInput', ValueTypeWrapper(ValueType.bool(false)));
-    platform.addGlobalSetting('point', ValueTypeWrapper(ValueType.int(0)));
+        'testInput', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(false)));
+    platform.addGlobalSetting('point', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(0)));
     platform.updateStatus();
     expect(ins.getValueType("testNode")?.dataUnzip, true);
     expect(ins.getValueType("point")?.dataUnzip, 0);
 
     platform.addGlobalSetting(
-        'testInput', ValueTypeWrapper(ValueType.bool(true)));
-    platform.addGlobalSetting('point', ValueTypeWrapper(ValueType.int(0)));
+        'testInput', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(true)));
+    platform.addGlobalSetting('point', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(0)));
     platform.updateStatus();
     expect(ins.getValueType("testNode")?.dataUnzip, true);
     expect(ins.getValueType("point")?.dataUnzip, 0);
@@ -88,15 +88,15 @@ void main() {
     choiceNode.generateParser();
 
     platform.addGlobalSetting(
-        'testInput', ValueTypeWrapper(ValueType.bool(false)));
-    platform.addGlobalSetting('point', ValueTypeWrapper(ValueType.int(0)));
+        'testInput', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(false)));
+    platform.addGlobalSetting('point', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(0)));
     platform.updateStatus();
     expect(ins.getValueType("testNode")?.dataUnzip, false);
     expect(ins.getValueType("point")?.dataUnzip, 0);
 
     platform.addGlobalSetting(
-        'testInput', ValueTypeWrapper(ValueType.bool(true)));
-    platform.addGlobalSetting('point', ValueTypeWrapper(ValueType.int(0)));
+        'testInput', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(true)));
+    platform.addGlobalSetting('point', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(0)));
     platform.updateStatus();
     expect(ins.getValueType("testNode")?.dataUnzip, true);
     expect(ins.getValueType("point")?.dataUnzip, 1);
@@ -114,7 +114,7 @@ void main() {
     platform.choicePage.choiceLines[0].addChildren(choiceNode);
     choiceNode.generateParser();
 
-    platform.addGlobalSetting('point', ValueTypeWrapper(ValueType.int(0)));
+    platform.addGlobalSetting('point', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(0)));
     platform.updateStatus();
     expect(ins.getValueType("point")?.dataUnzip, 1);
   });
@@ -227,7 +227,7 @@ void main() {
   test('only once select test', () {
     var platform = PlayablePlatform();
     platform.choicePage.addChildren(ChoiceLine());
-    platform.globalSetting.add(("testValue", ValueTypeWrapper(ValueType.bool(true))));
+    platform.globalSetting.add(("testValue", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(true))));
     var choiceNode = ChoiceNode.empty()
       ..title = "testNode"
       ..conditionalCodeHandler.conditionClickableString = "or(testValue, testNode)"

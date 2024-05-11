@@ -192,7 +192,7 @@ void main() {
 
   test('nodeTest', () {
     VariableDataBase().setValue("테스트용:random",
-        ValueTypeWrapper(ValueType.int(3)), ValueTypeLocation.global);
+        ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(3)), ValueTypeLocation.global);
     String strTest1 = "테스트용:random == 3";
     var out = Analyser().run(Analyser().analyseSingleLine(strTest1));
     expect(out, true);

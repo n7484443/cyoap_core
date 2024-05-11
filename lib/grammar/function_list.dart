@@ -151,170 +151,188 @@ extension FunctionListEnumExtension on FunctionListEnum {
 
   ValueType funcPlus(List<ValueType> input) {
     if (input[0].type.isInt && input[1].type.isInt) {
-      return ValueType.int(input[0].dataUnzip + input[1].dataUnzip);
+      return getValueTypeFromDynamicInput(
+          input[0].dataUnzip + input[1].dataUnzip);
     } else if (input[0].type.isNum && input[1].type.isNum) {
-      return ValueType.double(input[0].dataUnzip + input[1].dataUnzip);
+      return getValueTypeFromDynamicInput(
+          input[0].dataUnzip + input[1].dataUnzip);
     } else {
-      return ValueType.string(input[0].data + input[1].data);
+      return getValueTypeFromDynamicInput(input[0].data + input[1].data);
     }
   }
 
   ValueType funcMinus(List<ValueType> input) {
     if (input[0].type.isInt && input[1].type.isInt) {
-      return ValueType.int(input[0].dataUnzip - input[1].dataUnzip);
+      return getValueTypeFromDynamicInput(
+          input[0].dataUnzip - input[1].dataUnzip);
     } else if (input[0].type.isNum && input[1].type.isNum) {
-      return ValueType.double(input[0].dataUnzip - input[1].dataUnzip);
+      return getValueTypeFromDynamicInput(
+          input[0].dataUnzip - input[1].dataUnzip);
     }
-    return const ValueType.nulls();
+    return getValueTypeFromDynamicInput(null);
   }
 
   ValueType funcMulti(List<ValueType> input) {
     if (input[0].type.isInt && input[1].type.isInt) {
-      return ValueType.int(input[0].dataUnzip * input[1].dataUnzip);
+      return getValueTypeFromDynamicInput(
+          input[0].dataUnzip * input[1].dataUnzip);
     } else if (input[0].type.isNum && input[1].type.isNum) {
-      return ValueType.double(input[0].dataUnzip * input[1].dataUnzip);
+      return getValueTypeFromDynamicInput(
+          input[0].dataUnzip * input[1].dataUnzip);
     }
-    return const ValueType.nulls();
+    return getValueTypeFromDynamicInput(null);
   }
 
   ValueType funcDiv(List<ValueType> input) {
     if (input[0].type.isInt && input[1].type.isInt) {
-      return ValueType.int(input[0].dataUnzip ~/ input[1].dataUnzip);
+      return getValueTypeFromDynamicInput(
+          input[0].dataUnzip ~/ input[1].dataUnzip);
     } else if (input[0].type.isNum && input[1].type.isNum) {
-      return ValueType.double(input[0].dataUnzip / input[1].dataUnzip);
+      return getValueTypeFromDynamicInput(
+          input[0].dataUnzip / input[1].dataUnzip);
     }
-    return const ValueType.nulls();
+    return getValueTypeFromDynamicInput(null);
   }
 
   ValueType funcMod(List<ValueType> input) {
     if (input[0].type.isInt && input[1].type.isInt) {
-      return ValueType.int(input[0].dataUnzip % input[1].dataUnzip);
+      return getValueTypeFromDynamicInput(
+          input[0].dataUnzip % input[1].dataUnzip);
     } else if (input[0].type.isNum && input[1].type.isNum) {
-      return ValueType.double(input[0].dataUnzip / input[1].dataUnzip);
+      return getValueTypeFromDynamicInput(
+          input[0].dataUnzip / input[1].dataUnzip);
     }
-    return const ValueType.nulls();
+    return getValueTypeFromDynamicInput(null);
   }
 
   ValueType funcEqual(List<ValueType> input) {
     if (input[0].type.isNotIntOne(input[1].type)) {
-      return ValueType.bool(
+      return getValueTypeFromDynamicInput(
           (input[0].dataUnzip - input[1].dataUnzip as num).abs() <= epsilon);
     }
-    return ValueType.bool(input[0].dataUnzip == input[1].dataUnzip);
+    return getValueTypeFromDynamicInput(
+        input[0].dataUnzip == input[1].dataUnzip);
   }
 
   ValueType funcNotEqual(List<ValueType> input) =>
-      ValueType.bool(!funcEqual(input).dataUnzip);
+      getValueTypeFromDynamicInput(!funcEqual(input).dataUnzip);
 
   ValueType funcBigger(List<ValueType> input) {
     if (input[0].type.isNum && input[1].type.isNum) {
-      return ValueType.bool(input[0].dataUnzip > input[1].dataUnzip);
+      return getValueTypeFromDynamicInput(
+          input[0].dataUnzip > input[1].dataUnzip);
     }
-    return const ValueType.bool(false);
+    return getValueTypeFromDynamicInput(false);
   }
 
   ValueType funcSmaller(List<ValueType> input) {
     if (input[0].type.isNum && input[1].type.isNum) {
-      return ValueType.bool(input[0].dataUnzip < input[1].dataUnzip);
+      return getValueTypeFromDynamicInput(
+          input[0].dataUnzip < input[1].dataUnzip);
     }
-    return const ValueType.bool(false);
+    return getValueTypeFromDynamicInput(false);
   }
 
   ValueType funcBiggerEqual(List<ValueType> input) =>
-      ValueType.bool(!funcSmaller(input).dataUnzip);
+      getValueTypeFromDynamicInput(!funcSmaller(input).dataUnzip);
 
   ValueType funcSmallerEqual(List<ValueType> input) =>
-      ValueType.bool(!funcBigger(input).dataUnzip);
+      getValueTypeFromDynamicInput(!funcBigger(input).dataUnzip);
 
   ValueType funcAndBit(List<ValueType> input) =>
-      ValueType.int(input[0].dataUnzip & input[1].dataUnzip);
+      getValueTypeFromDynamicInput(input[0].dataUnzip & input[1].dataUnzip);
 
   ValueType funcOrBit(List<ValueType> input) =>
-      ValueType.int(input[0].dataUnzip | input[1].dataUnzip);
+      getValueTypeFromDynamicInput(input[0].dataUnzip | input[1].dataUnzip);
 
   ValueType funcXorBit(List<ValueType> input) =>
-      ValueType.int(input[0].dataUnzip ^ input[1].dataUnzip);
+      getValueTypeFromDynamicInput(input[0].dataUnzip ^ input[1].dataUnzip);
 
   ValueType funcNotBit(List<ValueType> input) =>
-      ValueType.int(~input[0].dataUnzip);
+      getValueTypeFromDynamicInput(~input[0].dataUnzip);
 
   ValueType funcShiftLeftBit(List<ValueType> input) =>
-      ValueType.int(input[0].dataUnzip << input[1].dataUnzip);
+      getValueTypeFromDynamicInput(input[0].dataUnzip << input[1].dataUnzip);
 
   ValueType funcShiftRightBit(List<ValueType> input) =>
-      ValueType.int(input[0].dataUnzip >> input[1].dataUnzip);
+      getValueTypeFromDynamicInput(input[0].dataUnzip >> input[1].dataUnzip);
 
   ValueType funcFloor(List<ValueType> input) {
     if (input[0].type.isNum) {
-      return ValueType.int((input[0].dataUnzip).floor());
+      return getValueTypeFromDynamicInput((input[0].dataUnzip).floor());
     }
-    return const ValueType.nulls();
+    return getValueTypeFromDynamicInput(null);
   }
 
   ValueType funcRound(List<ValueType> input) {
     if (input[0].type.isNum) {
-      return ValueType.int((input[0].dataUnzip).round());
+      return getValueTypeFromDynamicInput((input[0].dataUnzip).round());
     }
-    return const ValueType.nulls();
+    return getValueTypeFromDynamicInput(null);
   }
 
   ValueType funcCeil(List<ValueType> input) {
     if (input[0].type.isNum) {
-      return ValueType.int((input[0].dataUnzip).ceil());
+      return getValueTypeFromDynamicInput((input[0].dataUnzip).ceil());
     }
-    return const ValueType.nulls();
+    return getValueTypeFromDynamicInput(null);
   }
 
   ValueType funcAnd(List<ValueType> input) {
     for (var i in input) {
       if (!(i.type.isBool && i.dataUnzip)) {
-        return const ValueType.bool(false);
+        return getValueTypeFromDynamicInput(false);
       }
     }
-    return const ValueType.bool(true);
+    return getValueTypeFromDynamicInput(true);
   }
 
   ValueType funcOr(List<ValueType> input) {
     for (var i in input) {
       if (i.type.isBool && i.dataUnzip) {
-        return const ValueType.bool(true);
+        return getValueTypeFromDynamicInput(true);
       }
     }
-    return const ValueType.bool(false);
+    return getValueTypeFromDynamicInput(false);
   }
 
   ValueType funcNot(List<ValueType> input) {
     if (input[0].type.isBool) {
-      return ValueType.bool(!input[0].dataUnzip);
+      return getValueTypeFromDynamicInput(!input[0].dataUnzip);
     }
-    return const ValueType.bool(false);
+    return getValueTypeFromDynamicInput(false);
   }
 
   ValueType funcRandom(List<ValueType> input) {
     int? seed = input.length == 1 ? null : input.last.dataUnzip as int;
 
     if (input.first.type.isInt) {
-      return ValueType.int(Random(seed).nextInt(input[0].dataUnzip as int));
+      return getValueTypeFromDynamicInput(
+          Random(seed).nextInt(input[0].dataUnzip as int));
     }
-    return ValueType.bool(Random(seed).nextBool());
+    return getValueTypeFromDynamicInput(Random(seed).nextBool());
   }
 
   ValueType funcMax(List<ValueType> input) {
     if (input[0].type.isInt && input[1].type.isInt) {
-      return ValueType.int(input[0].dataUnzip > input[1].dataUnzip
-          ? input[0].dataUnzip
-          : input[1].dataUnzip);
+      return getValueTypeFromDynamicInput(
+          input[0].dataUnzip > input[1].dataUnzip
+              ? input[0].dataUnzip
+              : input[1].dataUnzip);
     }
-    return ValueType.double(max(input[0].dataUnzip, input[1].dataUnzip));
+    return getValueTypeFromDynamicInput(
+        max(input[0].dataUnzip as double, input[1].dataUnzip as double));
   }
 
   ValueType funcMin(List<ValueType> input) {
     if (input[0].type.isInt && input[1].type.isInt) {
-      return ValueType.int(input[0].dataUnzip < input[1].dataUnzip
-          ? input[0].dataUnzip
-          : input[1].dataUnzip);
+      return getValueTypeFromDynamicInput(
+          input[0].dataUnzip < input[1].dataUnzip
+              ? input[0].dataUnzip
+              : input[1].dataUnzip);
     }
-    return ValueType.double(min(input[0].dataUnzip, input[1].dataUnzip));
+    return getValueTypeFromDynamicInput(
+        min(input[0].dataUnzip as double, input[1].dataUnzip as double));
   }
 }
 
@@ -326,13 +344,16 @@ class Functions {
 
   void init() {
     functionValueType[FunctionListEnum.exist] = (input) =>
-        ValueType.bool(VariableDataBase().hasValue(input[0].dataUnzip));
-    functionValueType[FunctionListEnum.isVisible] = (input) => ValueType.bool(
-        VariableDataBase().getValueTypeWrapper(input[0].dataUnzip)?.visible ??
+        getValueTypeFromDynamicInput(
+            VariableDataBase().hasValue(input[0].dataUnzip));
+    functionValueType[FunctionListEnum.isVisible] = (input) =>
+        getValueTypeFromDynamicInput(VariableDataBase()
+                .getValueTypeWrapper(input[0].dataUnzip)
+                ?.visible ??
             false);
     functionValueType[FunctionListEnum.loadVariable] = (input) =>
         VariableDataBase().getValueType(input[0].dataUnzip) ??
-        const ValueType.nulls();
+        getValueTypeFromDynamicInput(null);
     functionValueType[FunctionListEnum.loadArray] = (input) {
       var array = input[0].dataUnzip as List<ValueType>;
       var pos = input[1].dataUnzip as int;
@@ -344,39 +365,39 @@ class Functions {
       var array = VariableDataBase().getValueType(name)?.dataUnzip as List;
       array[pos] = input[2];
       VariableDataBase().setValue(name,
-          ValueTypeWrapper(ValueType.array(array)), ValueTypeLocation.auto);
+          ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(array)), ValueTypeLocation.auto);
     };
     functionValueType[FunctionListEnum.length] = (input) {
       var array = input[0].dataUnzip;
       if (array is List) {
-        return ValueType.int(array.length);
+        return getValueTypeFromDynamicInput(array.length);
       }
-      return ValueType.int(1);
+      return getValueTypeFromDynamicInput(1);
     };
     functionValueType[FunctionListEnum.createList] = (input) {
       var list = [];
       for (var i in input) {
         list.add(i.dataUnzip);
       }
-      return ValueType.array(list);
+      return getValueTypeFromDynamicInput(list);
     };
     functionValueType[FunctionListEnum.createRange] = (input) {
       var start = input[0].dataUnzip;
       var end = input[1].dataUnzip;
       var list = List.generate(end - start, (index) => index + start);
-      return ValueType.array(list);
+      return getValueTypeFromDynamicInput(list);
     };
     functionValueType[FunctionListEnum.returnCondition] = (input) => input[0];
 
     functionValueType[FunctionListEnum.setLocal] = (input) {
       var varName = input[0].dataUnzip as String;
       VariableDataBase().setValue(
-          varName, ValueTypeWrapper(input[1]), ValueTypeLocation.local);
+          varName, ValueTypeWrapper(valueType: input[1]), ValueTypeLocation.local);
     };
     functionValueType[FunctionListEnum.setGlobal] = (input) {
       var varName = input[0].dataUnzip as String;
       VariableDataBase().setValue(
-          varName, ValueTypeWrapper(input[1]), ValueTypeLocation.global);
+          varName, ValueTypeWrapper(valueType: input[1]), ValueTypeLocation.global);
     };
     functionValueType[FunctionListEnum.setVariable] = (input) {
       var varName = input[0].dataUnzip as String;

@@ -46,40 +46,40 @@ void main() {
     var code = Analyser().analyseMultiLine(strTest);
     print(code);
 
-    ins.setValue('nested_test0_input0', ValueTypeWrapper(ValueType.int(0)), ValueTypeLocation.local);
-    ins.setValue('nested_test0_input1', ValueTypeWrapper(ValueType.int(0)), ValueTypeLocation.local);
+    ins.setValue('nested_test0_input0', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(0)), ValueTypeLocation.local);
+    ins.setValue('nested_test0_input1', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(0)), ValueTypeLocation.local);
     expectMultiple(code, {
       'nested_test0_0': 0,
       'nested_test0_1': 1,
       'nested_test0_input1': 0,
     });
 
-    ins.setValue('nested_test0_input0', ValueTypeWrapper(ValueType.int(1)), ValueTypeLocation.local);
-    ins.setValue('nested_test0_input1', ValueTypeWrapper(ValueType.int(0)), ValueTypeLocation.local);
+    ins.setValue('nested_test0_input0', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(1)), ValueTypeLocation.local);
+    ins.setValue('nested_test0_input1', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(0)), ValueTypeLocation.local);
     expectMultiple(code, {
       'nested_test0_0': -10,
       'nested_test0_1': 1,
       'nested_test0_input1': 1,
     });
 
-    ins.setValue('nested_test0_input0', ValueTypeWrapper(ValueType.int(2)), ValueTypeLocation.local);
-    ins.setValue('nested_test0_input1', ValueTypeWrapper(ValueType.int(0)), ValueTypeLocation.local);
+    ins.setValue('nested_test0_input0', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(2)), ValueTypeLocation.local);
+    ins.setValue('nested_test0_input1', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(0)), ValueTypeLocation.local);
     expectMultiple(code, {
       'nested_test0_0': -25,
       'nested_test0_1': 1,
       'nested_test0_input1': 2,
     });
 
-    ins.setValue('nested_test0_input0', ValueTypeWrapper(ValueType.int(3)), ValueTypeLocation.local);
-    ins.setValue('nested_test0_input1', ValueTypeWrapper(ValueType.int(0)), ValueTypeLocation.local);
+    ins.setValue('nested_test0_input0', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(3)), ValueTypeLocation.local);
+    ins.setValue('nested_test0_input1', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(0)), ValueTypeLocation.local);
     expectMultiple(code, {
       'nested_test0_0': -60,
       'nested_test0_1': 1,
       'nested_test0_input1': 3,
     });
 
-    ins.setValue('nested_test0_input0', ValueTypeWrapper(ValueType.int(4)), ValueTypeLocation.local);
-    ins.setValue('nested_test0_input1', ValueTypeWrapper(ValueType.int(0)), ValueTypeLocation.local);
+    ins.setValue('nested_test0_input0', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(4)), ValueTypeLocation.local);
+    ins.setValue('nested_test0_input1', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(0)), ValueTypeLocation.local);
     expectMultiple(code, {
       'nested_test0_0': -85,
       'nested_test0_1': 1,
@@ -174,8 +174,8 @@ void main() {
     var code = Analyser().analyseMultiLine(strTest);
     for (int i = 0; i <= 8; i++) {
       ins.setValue(
-          'point', ValueTypeWrapper(ValueType.int(0)), ValueTypeLocation.local);
-      ins.setValue('A3:random', ValueTypeWrapper(ValueType.int(i)),
+          'point', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(0)), ValueTypeLocation.local);
+      ins.setValue('A3:random', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(i)),
           ValueTypeLocation.local);
       expectMultiple(code, {
         'point': i + 1,
@@ -183,8 +183,8 @@ void main() {
     }
     for (int i = 10; i <= 20; i++) {
       ins.setValue(
-          'point', ValueTypeWrapper(ValueType.int(0)), ValueTypeLocation.local);
-      ins.setValue('A3:random', ValueTypeWrapper(ValueType.int(i)),
+          'point', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(0)), ValueTypeLocation.local);
+      ins.setValue('A3:random', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(i)),
           ValueTypeLocation.local);
       expectMultiple(code, {
         'point': i,

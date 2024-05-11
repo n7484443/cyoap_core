@@ -15,7 +15,7 @@ void main() {
   test('main replacement test', () {
     var platform = PlayablePlatform();
     platform.addGlobalSetting(
-        'test', ValueTypeWrapper(ValueType.string("initial")));
+        'test', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput("initial")));
     var lineSetting0 = ChoiceLine(choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
     var choiceNode0 = ChoiceNode.empty()..title = "testNode0";
     choiceNode0.conditionalCodeHandler.executeCodeString = "test = 0";
@@ -67,9 +67,9 @@ void main() {
   test('main replacement test 2', () {
     var platform = PlayablePlatform();
     platform.addGlobalSetting(
-        'content', ValueTypeWrapper(ValueType.string("initial")));
+        'content', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput("initial")));
     platform.addGlobalSetting(
-        'c', ValueTypeWrapper(ValueType.string("0")));
+        'c', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput("0")));
     var lineSetting0 = ChoiceLine(choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
     var choiceNode0 = ChoiceNode.empty()
       ..title = "테스트용"

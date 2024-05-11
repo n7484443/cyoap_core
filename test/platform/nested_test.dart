@@ -46,7 +46,7 @@ void main() {
     var platform = PlayablePlatform();
     var line = ChoiceLine()
       ..choiceLineOption = ChoiceLineOption(enableCancelFeature: false);
-    platform.addGlobalSetting("test", ValueTypeWrapper(ValueType.int(0)));
+    platform.addGlobalSetting("test", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(0)));
     var parent = ChoiceNode.empty()
       ..title = "parent"
       ..conditionalCodeHandler.executeCodeString = "test = 0";
@@ -143,29 +143,29 @@ void main() {
     line.addChildren(parent);
     platform.choicePage.addChildren(line);
 
-    platform.addGlobalSetting("a", ValueTypeWrapper(ValueType.bool(false)));
-    platform.addGlobalSetting("b", ValueTypeWrapper(ValueType.bool(false)));
+    platform.addGlobalSetting("a", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(false)));
+    platform.addGlobalSetting("b", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(false)));
     platform.updateStatus();
     expect((parent.select, parent.isHide()), (0, true));
     expect((child0.select, child0.isHide()), (0, true));
     expect((child1.select, child1.isHide()), (0, true));
 
-    platform.addGlobalSetting("a", ValueTypeWrapper(ValueType.bool(true)));
-    platform.addGlobalSetting("b", ValueTypeWrapper(ValueType.bool(false)));
+    platform.addGlobalSetting("a", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(true)));
+    platform.addGlobalSetting("b", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(false)));
     platform.updateStatus();
     expect((parent.select, parent.isOpen()), (0, false));
     expect((child0.select, child0.isOpen()), (0, false));
     expect((child1.select, child1.isHide()), (0, true));
 
-    platform.addGlobalSetting("a", ValueTypeWrapper(ValueType.bool(false)));
-    platform.addGlobalSetting("b", ValueTypeWrapper(ValueType.bool(true)));
+    platform.addGlobalSetting("a", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(false)));
+    platform.addGlobalSetting("b", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(true)));
     platform.updateStatus();
     expect((parent.select, parent.isHide()), (0, true));
     expect((child0.select, child0.isHide()), (0, true));
     expect((child1.select, child1.isHide()), (0, true));
 
-    platform.addGlobalSetting("a", ValueTypeWrapper(ValueType.bool(true)));
-    platform.addGlobalSetting("b", ValueTypeWrapper(ValueType.bool(true)));
+    platform.addGlobalSetting("a", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(true)));
+    platform.addGlobalSetting("b", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(true)));
     platform.updateStatus();
     expect((parent.select, parent.isOpen()), (0, true));
     expect((child0.select, child0.isOpen()), (0, false));

@@ -6,9 +6,9 @@ import 'package:test/test.dart';
 void main() {
   test('raw string getter test', () {
     VariableDataBase db = VariableDataBase();
-    db.setValue(r'!@#$%^ &*()-=+_', ValueTypeWrapper(ValueType.string("test1")),
+    db.setValue(r'!@#$%^ &*()-=+_', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput("test1")),
         ValueTypeLocation.local);
-    db.setValue(r'테스트 노드', ValueTypeWrapper(ValueType.string("test2")),
+    db.setValue(r'테스트 노드', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput("test2")),
         ValueTypeLocation.local);
     var strTest1 = r"$[!@#$%^ &*()-=+_] == 'test1'";
     var strTest2 = r"$[테스트 노드] == 'test2'";
@@ -33,7 +33,7 @@ void main() {
 
   test('raw string complicated test', () {
     VariableDataBase db = VariableDataBase();
-    db.setValue(r'테스트 노드[테스트]', ValueTypeWrapper(ValueType.string("test1")),
+    db.setValue(r'테스트 노드[테스트]', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput("test1")),
         ValueTypeLocation.local);
     var strTest1 = r"$[테스트 노드[테스트\]] == 'test1'";
     var code1 = Analyser().analyseSingleLine(strTest1);

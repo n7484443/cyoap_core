@@ -62,7 +62,7 @@ void main() {
 
   test('forced_uncheck0', () {
     var platform = PlayablePlatform();
-    platform.globalSetting.add(("point", ValueTypeWrapper(ValueType.int(0))));
+    platform.globalSetting.add(("point", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(0))));
     var lineSetting0 = ChoiceLine(
         choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
     lineSetting0.generateParser();
@@ -121,7 +121,7 @@ void main() {
 
   test('point_test', () {
     var platform = PlayablePlatform();
-    platform.globalSetting.add(("point", ValueTypeWrapper(ValueType.int(0))));
+    platform.globalSetting.add(("point", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(0))));
     var lineSetting0 = ChoiceLine(
         choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
     lineSetting0.generateParser();

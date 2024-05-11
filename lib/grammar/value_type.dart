@@ -1,7 +1,11 @@
 import 'dart:convert';
 
 import 'package:cyoap_core/i18n.dart';
-import 'package:meta/meta.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'value_type.freezed.dart';
+
+part 'value_type.g.dart';
 
 enum DataType {
   ints("int"),
@@ -43,94 +47,62 @@ DataType fromName(String name) {
 
 ValueType getValueTypeFromStringInput(String input) {
   if (input.startsWith('"') && input.endsWith('"')) {
-    return ValueType.string(input.substring(1, input.length - 1));
+    return ValueType(
+        data: input.substring(1, input.length - 1), type: DataType.strings);
   }
   if (input.startsWith('[') && input.endsWith(']')) {
-    return ValueType(input, DataType.arrays);
+    return ValueType(data: input, type: DataType.arrays);
   }
   if (input == "true" || input == "false") {
-    return ValueType(input, DataType.bools);
+    return ValueType(data: input, type: DataType.bools);
   }
   if (input.contains('.')) {
     var out = double.tryParse(input);
     if (out != null) {
-      return ValueType(input, DataType.doubles);
+      return ValueType(data: input, type: DataType.doubles);
     }
-    return ValueType.string(input);
+    return ValueType(data: input, type: DataType.strings);
   }
   var out = double.tryParse(input);
   if (out != null) {
-    return ValueType(input, DataType.ints);
+    return ValueType(data: input, type: DataType.ints);
   }
-  return ValueType.string(input);
+  return ValueType(data: input, type: DataType.strings);
 }
 
 ValueType getValueTypeFromDynamicInput(dynamic input) {
   if (input is Map<String, dynamic>) {
-    return getValueTypeFromDynamicInput(input["data"]);
-  }
-  if (input is String) {
-    if (input.startsWith('{') && input.endsWith('}')) {
-      //input 값을 , 이후 부분에서 자르기
-      input = "${input.trim().substring(0, input.indexOf(','))}}";
-      input = input.replaceAll('data', '"data"');
-      var json = jsonDecode(input);
-      return getValueTypeFromDynamicInput(json["data"]);
-    }
-    return ValueType.string(input);
+    return ValueType.fromJson(input);
   }
   if (input is bool) {
-    return ValueType.bool(input);
+    return ValueType(data: input ? "true" : "false", type: DataType.bools);
   }
   if (input is int) {
-    return ValueType.int(input);
+    return ValueType(data: input.toString(), type: DataType.ints);
   }
   if (input is double) {
-    return ValueType.double(input);
+    return ValueType(data: input.toString(), type: DataType.doubles);
   }
   if (input is List) {
-    return ValueType.array(input);
+    return ValueType(data: input.toString(), type: DataType.arrays);
   }
-  return ValueType.string(input.toString());
+  if (input == null) {
+    return ValueType(data: "", type: DataType.strings);
+  }
+  return ValueType(data: input.toString(), type: DataType.strings);
 }
 
-@immutable
-class ValueType {
-  final String data;
-  final DataType type;
+@freezed
+class ValueType with _$ValueType {
+  const factory ValueType({
+    required String data,
+    required DataType type,
+  }) = _ValueType;
 
-  const ValueType(this.data, this.type);
+  const ValueType._();
 
-  ValueType.int(int data)
-      : data = data.toString(),
-        type = DataType.ints;
-
-  ValueType.double(double data)
-      : data = data.toString(),
-        type = DataType.doubles;
-
-  ValueType.array(List list)
-      : data = list.toString(),
-        type = DataType.arrays;
-
-  const ValueType.nulls()
-      : data = "",
-        type = DataType.strings;
-
-  ValueType.fromJson(Map<String, dynamic> json)
-      : data = json['data'],
-        type = fromName(json['type']);
-
-  Map<String, dynamic> toJson() => {
-        'data': data,
-        'type': type.name,
-      };
-
-  const ValueType.string(this.data) : type = DataType.strings;
-
-  const ValueType.bool(bool data)
-      : data = data ? "true" : "false",
-        type = DataType.bools;
+  factory ValueType.fromJson(Map<String, dynamic> json) =>
+      _$ValueTypeFromJson(json);
 
   dynamic get dataUnzip {
     if (data.isEmpty) return null;
@@ -176,38 +148,21 @@ class ValueType {
   }
 }
 
-@immutable
-class ValueTypeWrapper {
-  final ValueType valueType;
-  final bool visible;
-  final String displayName;
+@freezed
+class ValueTypeWrapper with _$ValueTypeWrapper {
+  const factory ValueTypeWrapper({
+    required ValueType valueType,
+    @Default(false) bool visible,
+    @Default('') String displayName,
+  }) = _ValueTypeWrapper;
 
-  const ValueTypeWrapper(this.valueType,
-      {this.visible = false, this.displayName = ''});
+  const ValueTypeWrapper._();
 
   @override
   String toString() {
     return '( $valueType | $visible )';
   }
 
-  ValueTypeWrapper copyWith(
-      {ValueType? valueType,
-      bool? visible,
-      String? displayName,
-      bool? isGlobal}) {
-    return ValueTypeWrapper(valueType ?? this.valueType,
-        visible: visible ?? this.visible,
-        displayName: displayName ?? this.displayName);
-  }
-
-  ValueTypeWrapper.fromJson(Map<String, dynamic> json)
-      : valueType = getValueTypeFromDynamicInput(json['valueType']),
-        visible = json['visible'] ?? false,
-        displayName = json['displayName'] ?? '';
-
-  Map<String, dynamic> toJson() => {
-        'visible': visible,
-        'valueType': valueType.dataUnzip,
-        'displayName': displayName,
-      };
+  factory ValueTypeWrapper.fromJson(Map<String, dynamic> json) =>
+      _$ValueTypeWrapperFromJson(json);
 }

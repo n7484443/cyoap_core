@@ -321,17 +321,21 @@ class ChoiceNode with Choice {
       VariableDataBase().setValue(
         t,
         ValueTypeWrapper(
-          ValueType.bool(isExecute()),
+          valueType: getValueTypeFromDynamicInput(isExecute()),
         ),
         ValueTypeLocation.global,
       );
       if (choiceNodeMode == ChoiceNodeMode.randomMode) {
-        VariableDataBase().setValue('$t:random',
-            ValueTypeWrapper(ValueType.int(random)), ValueTypeLocation.global);
+        VariableDataBase().setValue(
+            '$t:random',
+            ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(random)),
+            ValueTypeLocation.global);
       }
       if (choiceNodeMode == ChoiceNodeMode.multiSelect) {
-        VariableDataBase().setValue('$t:multi',
-            ValueTypeWrapper(ValueType.int(select)), ValueTypeLocation.global);
+        VariableDataBase().setValue(
+            '$t:multi',
+            ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(select)),
+            ValueTypeLocation.global);
       }
     }
   }

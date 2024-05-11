@@ -8,7 +8,7 @@ void expectMultiple(List<String> code, Map<String, dynamic> output,
   if (input != null) {
     for (var key in input.keys) {
       VariableDataBase().setValue(
-          key, ValueTypeWrapper(getValueTypeFromDynamicInput(input[key])),
+          key, ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(input[key])),
           ValueTypeLocation.local);
     }
   }

@@ -15,11 +15,11 @@ void main(){
       var if_test_output_0 = false
     }
     """;
-    ins.setValue("if_test_input_0", ValueTypeWrapper(ValueType.bool(true)), ValueTypeLocation.global);
+    ins.setValue("if_test_input_0", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(true)), ValueTypeLocation.global);
     Analyser().run(Analyser().analyseMultiLine(strTest));
     expect(ins.getValueType("if_test_output_0")?.dataUnzip, true);
 
-    ins.setValue("if_test_input_0", ValueTypeWrapper(ValueType.bool(false)), ValueTypeLocation.global);
+    ins.setValue("if_test_input_0", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(false)), ValueTypeLocation.global);
     Analyser().run(Analyser().analyseMultiLine(strTest));
     expect(ins.getValueType("if_test_output_0")?.dataUnzip, false);
   });

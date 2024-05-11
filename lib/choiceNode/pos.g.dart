@@ -7,7 +7,9 @@ part of 'pos.dart';
 // **************************************************************************
 
 _$PosImpl _$$PosImplFromJson(Map<String, dynamic> json) => _$PosImpl(
-      data: (json['data'] as List<dynamic>?)?.map((e) => e as int).toList() ??
+      data: (json['data'] as List<dynamic>?)
+              ?.map((e) => (e as num).toInt())
+              .toList() ??
           const [],
     );
 

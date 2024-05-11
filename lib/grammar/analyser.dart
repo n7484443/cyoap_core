@@ -120,7 +120,7 @@ class Analyser {
         }
         argumentList = argumentList.reversed.toList();
         if (funcEnum.hasSeedInput) {
-          argumentList.add(ValueType.int(seed));
+          argumentList.add(getValueTypeFromDynamicInput(seed));
           seed += 1;
         }
         Object? out;

@@ -43,12 +43,12 @@ _$GradientDataImpl _$$GradientDataImplFromJson(Map<String, dynamic> json) =>
             ),
           ) ??
           (0.5, 0.5),
-      color: json['color'] as int? ?? 0xFFFFFFFF,
+      color: (json['color'] as num?)?.toInt() ?? 0xFFFFFFFF,
     );
 
 Map<String, dynamic> _$$GradientDataImplToJson(_$GradientDataImpl instance) =>
     <String, dynamic>{
-      'gradientPos': {
+      'gradientPos': <String, dynamic>{
         r'$1': instance.gradientPos.$1,
         r'$2': instance.gradientPos.$2,
       },
@@ -65,7 +65,7 @@ _$ColorOptionImpl _$$ColorOptionImplFromJson(Map<String, dynamic> json) =>
     _$ColorOptionImpl(
       colorType: $enumDecodeNullable(_$ColorTypeEnumMap, json['colorType']) ??
           ColorType.solid,
-      color: json['color'] as int? ?? 0xFF40C4FF,
+      color: (json['color'] as num?)?.toInt() ?? 0xFF40C4FF,
       gradientType:
           $enumDecodeNullable(_$GradientTypeEnumMap, json['gradientType']) ??
               GradientType.linear,
@@ -113,8 +113,8 @@ _$ChoiceNodeDesignPresetImpl _$$ChoiceNodeDesignPresetImplFromJson(
           const [2.0, 2.0, 2.0, 2.0],
       maximizingImage: json['maximizingImage'] as bool? ?? false,
       hideTitle: json['hideTitle'] as bool? ?? false,
-      imagePosition: json['imagePosition'] as int? ?? 0,
-      colorTitle: json['colorTitle'] as int? ?? 0xFF000000,
+      imagePosition: (json['imagePosition'] as num?)?.toInt() ?? 0,
+      colorTitle: (json['colorTitle'] as num?)?.toInt() ?? 0xFF000000,
       titleFont: json['titleFont'] as String? ?? "notoSans",
       mainFont: json['mainFont'] as String? ?? "notoSans",
       defaultOutlineOption: json['defaultOutlineOption'] == null
