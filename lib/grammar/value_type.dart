@@ -167,7 +167,7 @@ class ValueTypeWrapper with _$ValueTypeWrapper {
       _$ValueTypeWrapperFromJson(json);
 }
 
-class ValueTypeConverter implements JsonConverter<ValueType, Map<String, dynamic>> {
+class ValueTypeConverter implements JsonConverter<ValueType, dynamic> {
   const ValueTypeConverter();
 
   @override
