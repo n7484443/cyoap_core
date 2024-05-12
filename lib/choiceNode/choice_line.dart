@@ -133,6 +133,7 @@ class ChoiceLine with Choice {
     }
     // 라인 마지막에 실행되는 코드 실행
     conditionalCodeHandlerFinalize.execute(errorName);
+    _updateStatusAll(selectOrder.length + 1);
     // 결과에 따른 내용 변경
     for (var child in children) {
       child.recursiveFunction((current) {
