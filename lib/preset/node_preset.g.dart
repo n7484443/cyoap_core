@@ -138,11 +138,11 @@ _$ChoiceNodeDesignPresetImpl _$$ChoiceNodeDesignPresetImplFromJson(
       imagePos: (json['imagePos'] as List<dynamic>?)
               ?.map((e) => (e as num).toDouble())
               .toList() ??
-          const [0.0, 0.0, 50.0, 50.0],
+          const [0.0, 0.0, 50.0, 100.0],
       textPos: (json['textPos'] as List<dynamic>?)
               ?.map((e) => (e as num).toDouble())
               .toList() ??
-          const [50.0, 50.0, 100.0, 100.0],
+          const [50.0, 0.0, 100.0, 100.0],
     );
 
 Map<String, dynamic> _$$ChoiceNodeDesignPresetImplToJson(

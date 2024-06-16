@@ -999,8 +999,8 @@ class _$ChoiceNodeDesignPresetImpl implements _ChoiceNodeDesignPreset {
       this.defaultColorOption = const ColorOption(),
       this.selectColorEnable = false,
       this.selectColorOption = const ColorOption(),
-      final List<double> imagePos = const [0.0, 0.0, 50.0, 50.0],
-      final List<double> textPos = const [50.0, 50.0, 100.0, 100.0]})
+      final List<double> imagePos = const [0.0, 0.0, 50.0, 100.0],
+      final List<double> textPos = const [50.0, 0.0, 100.0, 100.0]})
       : _roundEdge = roundEdge,
         _paddingAround = paddingAround,
         _imagePos = imagePos,
