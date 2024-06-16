@@ -634,6 +634,8 @@ mixin _$ChoiceNodeDesignPreset {
   ColorOption get defaultColorOption => throw _privateConstructorUsedError;
   bool get selectColorEnable => throw _privateConstructorUsedError;
   ColorOption get selectColorOption => throw _privateConstructorUsedError;
+  List<double> get imagePos => throw _privateConstructorUsedError;
+  List<double> get textPos => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -664,7 +666,9 @@ abstract class $ChoiceNodeDesignPresetCopyWith<$Res> {
       OutlineOption selectOutlineOption,
       ColorOption defaultColorOption,
       bool selectColorEnable,
-      ColorOption selectColorOption});
+      ColorOption selectColorOption,
+      List<double> imagePos,
+      List<double> textPos});
 
   $OutlineOptionCopyWith<$Res> get defaultOutlineOption;
   $OutlineOptionCopyWith<$Res> get selectOutlineOption;
@@ -703,6 +707,8 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
     Object? defaultColorOption = null,
     Object? selectColorEnable = null,
     Object? selectColorOption = null,
+    Object? imagePos = null,
+    Object? textPos = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -773,6 +779,14 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
           ? _value.selectColorOption
           : selectColorOption // ignore: cast_nullable_to_non_nullable
               as ColorOption,
+      imagePos: null == imagePos
+          ? _value.imagePos
+          : imagePos // ignore: cast_nullable_to_non_nullable
+              as List<double>,
+      textPos: null == textPos
+          ? _value.textPos
+          : textPos // ignore: cast_nullable_to_non_nullable
+              as List<double>,
     ) as $Val);
   }
 
@@ -835,7 +849,9 @@ abstract class _$$ChoiceNodeDesignPresetImplCopyWith<$Res>
       OutlineOption selectOutlineOption,
       ColorOption defaultColorOption,
       bool selectColorEnable,
-      ColorOption selectColorOption});
+      ColorOption selectColorOption,
+      List<double> imagePos,
+      List<double> textPos});
 
   @override
   $OutlineOptionCopyWith<$Res> get defaultOutlineOption;
@@ -877,6 +893,8 @@ class __$$ChoiceNodeDesignPresetImplCopyWithImpl<$Res>
     Object? defaultColorOption = null,
     Object? selectColorEnable = null,
     Object? selectColorOption = null,
+    Object? imagePos = null,
+    Object? textPos = null,
   }) {
     return _then(_$ChoiceNodeDesignPresetImpl(
       name: null == name
@@ -947,6 +965,14 @@ class __$$ChoiceNodeDesignPresetImplCopyWithImpl<$Res>
           ? _value.selectColorOption
           : selectColorOption // ignore: cast_nullable_to_non_nullable
               as ColorOption,
+      imagePos: null == imagePos
+          ? _value._imagePos
+          : imagePos // ignore: cast_nullable_to_non_nullable
+              as List<double>,
+      textPos: null == textPos
+          ? _value._textPos
+          : textPos // ignore: cast_nullable_to_non_nullable
+              as List<double>,
     ));
   }
 }
@@ -972,9 +998,13 @@ class _$ChoiceNodeDesignPresetImpl implements _ChoiceNodeDesignPreset {
       this.selectOutlineOption = const OutlineOption(),
       this.defaultColorOption = const ColorOption(),
       this.selectColorEnable = false,
-      this.selectColorOption = const ColorOption()})
+      this.selectColorOption = const ColorOption(),
+      final List<double> imagePos = const [0.0, 0.0, 50.0, 50.0],
+      final List<double> textPos = const [50.0, 50.0, 100.0, 100.0]})
       : _roundEdge = roundEdge,
-        _paddingAround = paddingAround;
+        _paddingAround = paddingAround,
+        _imagePos = imagePos,
+        _textPos = textPos;
 
   factory _$ChoiceNodeDesignPresetImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChoiceNodeDesignPresetImplFromJson(json);
@@ -1043,10 +1073,27 @@ class _$ChoiceNodeDesignPresetImpl implements _ChoiceNodeDesignPreset {
   @override
   @JsonKey()
   final ColorOption selectColorOption;
+  final List<double> _imagePos;
+  @override
+  @JsonKey()
+  List<double> get imagePos {
+    if (_imagePos is EqualUnmodifiableListView) return _imagePos;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_imagePos);
+  }
+
+  final List<double> _textPos;
+  @override
+  @JsonKey()
+  List<double> get textPos {
+    if (_textPos is EqualUnmodifiableListView) return _textPos;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_textPos);
+  }
 
   @override
   String toString() {
-    return 'ChoiceNodeDesignPreset(name: $name, titlePosition: $titlePosition, elevation: $elevation, roundEdge: $roundEdge, paddingAround: $paddingAround, maximizingImage: $maximizingImage, hideTitle: $hideTitle, imagePosition: $imagePosition, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont, defaultOutlineOption: $defaultOutlineOption, selectOutlineEnable: $selectOutlineEnable, selectOutlineOption: $selectOutlineOption, defaultColorOption: $defaultColorOption, selectColorEnable: $selectColorEnable, selectColorOption: $selectColorOption)';
+    return 'ChoiceNodeDesignPreset(name: $name, titlePosition: $titlePosition, elevation: $elevation, roundEdge: $roundEdge, paddingAround: $paddingAround, maximizingImage: $maximizingImage, hideTitle: $hideTitle, imagePosition: $imagePosition, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont, defaultOutlineOption: $defaultOutlineOption, selectOutlineEnable: $selectOutlineEnable, selectOutlineOption: $selectOutlineOption, defaultColorOption: $defaultColorOption, selectColorEnable: $selectColorEnable, selectColorOption: $selectColorOption, imagePos: $imagePos, textPos: $textPos)';
   }
 
   @override
@@ -1086,30 +1133,35 @@ class _$ChoiceNodeDesignPresetImpl implements _ChoiceNodeDesignPreset {
             (identical(other.selectColorEnable, selectColorEnable) ||
                 other.selectColorEnable == selectColorEnable) &&
             (identical(other.selectColorOption, selectColorOption) ||
-                other.selectColorOption == selectColorOption));
+                other.selectColorOption == selectColorOption) &&
+            const DeepCollectionEquality().equals(other._imagePos, _imagePos) &&
+            const DeepCollectionEquality().equals(other._textPos, _textPos));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      name,
-      titlePosition,
-      elevation,
-      const DeepCollectionEquality().hash(_roundEdge),
-      const DeepCollectionEquality().hash(_paddingAround),
-      maximizingImage,
-      hideTitle,
-      imagePosition,
-      colorTitle,
-      titleFont,
-      mainFont,
-      defaultOutlineOption,
-      selectOutlineEnable,
-      selectOutlineOption,
-      defaultColorOption,
-      selectColorEnable,
-      selectColorOption);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        name,
+        titlePosition,
+        elevation,
+        const DeepCollectionEquality().hash(_roundEdge),
+        const DeepCollectionEquality().hash(_paddingAround),
+        maximizingImage,
+        hideTitle,
+        imagePosition,
+        colorTitle,
+        titleFont,
+        mainFont,
+        defaultOutlineOption,
+        selectOutlineEnable,
+        selectOutlineOption,
+        defaultColorOption,
+        selectColorEnable,
+        selectColorOption,
+        const DeepCollectionEquality().hash(_imagePos),
+        const DeepCollectionEquality().hash(_textPos)
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -1144,7 +1196,9 @@ abstract class _ChoiceNodeDesignPreset implements ChoiceNodeDesignPreset {
       final OutlineOption selectOutlineOption,
       final ColorOption defaultColorOption,
       final bool selectColorEnable,
-      final ColorOption selectColorOption}) = _$ChoiceNodeDesignPresetImpl;
+      final ColorOption selectColorOption,
+      final List<double> imagePos,
+      final List<double> textPos}) = _$ChoiceNodeDesignPresetImpl;
 
   factory _ChoiceNodeDesignPreset.fromJson(Map<String, dynamic> json) =
       _$ChoiceNodeDesignPresetImpl.fromJson;
@@ -1183,6 +1237,10 @@ abstract class _ChoiceNodeDesignPreset implements ChoiceNodeDesignPreset {
   bool get selectColorEnable;
   @override
   ColorOption get selectColorOption;
+  @override
+  List<double> get imagePos;
+  @override
+  List<double> get textPos;
   @override
   @JsonKey(ignore: true)
   _$$ChoiceNodeDesignPresetImplCopyWith<_$ChoiceNodeDesignPresetImpl>
