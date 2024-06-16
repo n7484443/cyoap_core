@@ -135,14 +135,6 @@ _$ChoiceNodeDesignPresetImpl _$$ChoiceNodeDesignPresetImplFromJson(
           ? const ColorOption()
           : ColorOption.fromJson(
               json['selectColorOption'] as Map<String, dynamic>),
-      imagePos: (json['imagePos'] as List<dynamic>?)
-              ?.map((e) => (e as num).toDouble())
-              .toList() ??
-          const [0.0, 0.0, 50.0, 100.0],
-      textPos: (json['textPos'] as List<dynamic>?)
-              ?.map((e) => (e as num).toDouble())
-              .toList() ??
-          const [50.0, 0.0, 100.0, 100.0],
     );
 
 Map<String, dynamic> _$$ChoiceNodeDesignPresetImplToJson(
@@ -165,6 +157,4 @@ Map<String, dynamic> _$$ChoiceNodeDesignPresetImplToJson(
       'defaultColorOption': instance.defaultColorOption.toJson(),
       'selectColorEnable': instance.selectColorEnable,
       'selectColorOption': instance.selectColorOption.toJson(),
-      'imagePos': instance.imagePos,
-      'textPos': instance.textPos,
     };

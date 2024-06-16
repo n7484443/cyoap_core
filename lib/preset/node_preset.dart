@@ -95,8 +95,6 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
     @Default(ColorOption()) ColorOption defaultColorOption,
     @Default(false) bool selectColorEnable,
     @Default(ColorOption()) ColorOption selectColorOption,
-    @Default([0.0, 0.0, 50.0, 100.0]) List<double> imagePos,
-    @Default([50.0, 0.0, 100.0, 100.0]) List<double> textPos,
   }) = _ChoiceNodeDesignPreset;
 
   factory ChoiceNodeDesignPreset.fromJson(Map<String, dynamic> json) =>
