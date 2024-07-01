@@ -15,7 +15,6 @@ class ChoiceLineDesignPreset with _$ChoiceLineDesignPreset {
     @Default(ColorOption(color: 0)) ColorOption? backgroundColorOption,
     String? backgroundImageString,
     @Default(false) bool? alwaysVisibleLine,
-    @Default(12) int? maxChildrenPerRow,
     @Default(ChoiceLineAlignment.left) ChoiceLineAlignment? alignment,
   }) = _ChoiceLineDesignPreset;
 
@@ -27,7 +26,6 @@ class ChoiceLineDesignPreset with _$ChoiceLineDesignPreset {
       backgroundColorOption: null,
       backgroundImageString: null,
       alwaysVisibleLine: null,
-      maxChildrenPerRow: null,
       alignment: null,
     );
   }
@@ -38,7 +36,6 @@ class ChoiceLineDesignPreset with _$ChoiceLineDesignPreset {
       backgroundColorOption: override?.backgroundColorOption ?? backgroundColorOption,
       backgroundImageString: override?.backgroundImageString ?? backgroundImageString,
       alwaysVisibleLine: override?.alwaysVisibleLine ?? alwaysVisibleLine,
-      maxChildrenPerRow: override?.maxChildrenPerRow ?? maxChildrenPerRow,
       alignment: override?.alignment ?? alignment,
     );
   }
