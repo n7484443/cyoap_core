@@ -4,6 +4,7 @@ library cyoap_core;
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:cyoap_core/choiceNode/choice.dart';
 import 'package:cyoap_core/choiceNode/selectable_status.dart';
 import 'package:cyoap_core/grammar/analyser.dart';
 import 'package:cyoap_core/playable_platform.dart';
@@ -135,7 +136,7 @@ external set _getSize(int Function(List<dynamic> pos) f);
 @JS()
 int _getSizeInternal(List<dynamic> pos) {
   Pos innerPos = listToPos(pos);
-  return platform.getChoiceNode(innerPos)?.getMaxSize(true) ?? 12;
+  return platform.getChoiceNode(innerPos)?.getMaxSize(true) ?? defaultMaxSize;
 }
 
 @JS('getContents')

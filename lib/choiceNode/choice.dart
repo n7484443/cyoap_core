@@ -18,6 +18,8 @@ class SelectInfo with _$SelectInfo {
   }) = _SelectInfo;
 }
 
+const int defaultMaxSize = 12;
+
 mixin Choice {
   SelectableStatus selectableStatus =
       SelectableStatus(isHide: false, isOpen: true);
@@ -39,7 +41,7 @@ mixin Choice {
   }
 
   int currentPos = 0;
-  int width = 12;
+  int width = defaultMaxSize;
 
   List<Choice> children = List.empty(growable: true);
 

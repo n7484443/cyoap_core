@@ -40,8 +40,6 @@ class ChoiceNodeOption with _$ChoiceNodeOption {
       _$ChoiceNodeOptionFromJson(json);
 }
 
-const int defaultMaxSize = 12;
-
 const int seedMax = 1000000000;
 
 class ChoiceNode with Choice {
