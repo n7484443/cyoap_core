@@ -17,6 +17,9 @@ _$ChoiceLineDesignPresetImpl _$$ChoiceLineDesignPresetImplFromJson(
       backgroundImageString: json['backgroundImageString'] as String?,
       alwaysVisibleLine: json['alwaysVisibleLine'] as bool? ?? false,
       maxChildrenPerRow: (json['maxChildrenPerRow'] as num?)?.toInt() ?? 12,
+      alignment: $enumDecodeNullable(
+              _$ChoiceLineAlignmentEnumMap, json['alignment']) ??
+          ChoiceLineAlignment.left,
     );
 
 Map<String, dynamic> _$$ChoiceLineDesignPresetImplToJson(
@@ -27,4 +30,11 @@ Map<String, dynamic> _$$ChoiceLineDesignPresetImplToJson(
       'backgroundImageString': instance.backgroundImageString,
       'alwaysVisibleLine': instance.alwaysVisibleLine,
       'maxChildrenPerRow': instance.maxChildrenPerRow,
+      'alignment': _$ChoiceLineAlignmentEnumMap[instance.alignment],
     };
+
+const _$ChoiceLineAlignmentEnumMap = {
+  ChoiceLineAlignment.left: 'left',
+  ChoiceLineAlignment.center: 'center',
+  ChoiceLineAlignment.right: 'right',
+};

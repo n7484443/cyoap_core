@@ -5,6 +5,8 @@ import 'node_preset.dart';
 part 'line_preset.freezed.dart';
 part 'line_preset.g.dart';
 
+enum ChoiceLineAlignment { left, center, right }
+
 @freezed
 class ChoiceLineDesignPreset with _$ChoiceLineDesignPreset {
   @JsonSerializable(explicitToJson: true)
@@ -14,6 +16,7 @@ class ChoiceLineDesignPreset with _$ChoiceLineDesignPreset {
     String? backgroundImageString,
     @Default(false) bool? alwaysVisibleLine,
     @Default(12) int? maxChildrenPerRow,
+    @Default(ChoiceLineAlignment.left) ChoiceLineAlignment? alignment,
   }) = _ChoiceLineDesignPreset;
 
   const ChoiceLineDesignPreset._();
@@ -25,6 +28,7 @@ class ChoiceLineDesignPreset with _$ChoiceLineDesignPreset {
       backgroundImageString: null,
       alwaysVisibleLine: null,
       maxChildrenPerRow: null,
+      alignment: null,
     );
   }
 
@@ -35,6 +39,7 @@ class ChoiceLineDesignPreset with _$ChoiceLineDesignPreset {
       backgroundImageString: override?.backgroundImageString ?? backgroundImageString,
       alwaysVisibleLine: override?.alwaysVisibleLine ?? alwaysVisibleLine,
       maxChildrenPerRow: override?.maxChildrenPerRow ?? maxChildrenPerRow,
+      alignment: override?.alignment ?? alignment,
     );
   }
 
