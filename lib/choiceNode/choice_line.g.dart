@@ -12,6 +12,10 @@ _$ChoiceLineOptionImpl _$$ChoiceLineOptionImplFromJson(
       maxSelect: (json['maxSelect'] as num?)?.toInt() ?? -1,
       enableCancelFeature: json['enableCancelFeature'] as bool? ?? false,
       presetName: json['presetName'] as String? ?? 'default',
+      overridePreset: json['overridePreset'] == null
+          ? null
+          : ChoiceLineDesignPreset.fromJson(
+              json['overridePreset'] as Map<String, dynamic>),
       name: json['name'] as String?,
     );
 
@@ -21,5 +25,6 @@ Map<String, dynamic> _$$ChoiceLineOptionImplToJson(
       'maxSelect': instance.maxSelect,
       'enableCancelFeature': instance.enableCancelFeature,
       'presetName': instance.presetName,
+      'overridePreset': instance.overridePreset?.toJson(),
       'name': instance.name,
     };

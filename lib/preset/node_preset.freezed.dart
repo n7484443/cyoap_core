@@ -615,25 +615,25 @@ ChoiceNodeDesignPreset _$ChoiceNodeDesignPresetFromJson(
 
 /// @nodoc
 mixin _$ChoiceNodeDesignPreset {
-  String get name => throw _privateConstructorUsedError;
-  bool get titlePosition => throw _privateConstructorUsedError;
-  double get elevation => throw _privateConstructorUsedError;
-  List<double> get roundEdge => throw _privateConstructorUsedError;
-  List<double> get paddingAround => throw _privateConstructorUsedError;
-  bool get maximizingImage =>
+  String? get name => throw _privateConstructorUsedError;
+  bool? get titlePosition => throw _privateConstructorUsedError;
+  double? get elevation => throw _privateConstructorUsedError;
+  List<double>? get roundEdge => throw _privateConstructorUsedError;
+  List<double>? get paddingAround => throw _privateConstructorUsedError;
+  bool? get maximizingImage =>
       throw _privateConstructorUsedError; //true: 80%, false: 50%
-  bool get hideTitle => throw _privateConstructorUsedError;
-  int get imagePosition =>
+  bool? get hideTitle => throw _privateConstructorUsedError;
+  int? get imagePosition =>
       throw _privateConstructorUsedError; //0:default, 1:image-right 2:image-left
-  int get colorTitle => throw _privateConstructorUsedError;
-  String get titleFont => throw _privateConstructorUsedError;
-  String get mainFont => throw _privateConstructorUsedError;
-  OutlineOption get defaultOutlineOption => throw _privateConstructorUsedError;
-  bool get selectOutlineEnable => throw _privateConstructorUsedError;
-  OutlineOption get selectOutlineOption => throw _privateConstructorUsedError;
-  ColorOption get defaultColorOption => throw _privateConstructorUsedError;
-  bool get selectColorEnable => throw _privateConstructorUsedError;
-  ColorOption get selectColorOption => throw _privateConstructorUsedError;
+  int? get colorTitle => throw _privateConstructorUsedError;
+  String? get titleFont => throw _privateConstructorUsedError;
+  String? get mainFont => throw _privateConstructorUsedError;
+  OutlineOption? get defaultOutlineOption => throw _privateConstructorUsedError;
+  bool? get selectOutlineEnable => throw _privateConstructorUsedError;
+  OutlineOption? get selectOutlineOption => throw _privateConstructorUsedError;
+  ColorOption? get defaultColorOption => throw _privateConstructorUsedError;
+  bool? get selectColorEnable => throw _privateConstructorUsedError;
+  ColorOption? get selectColorOption => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -648,28 +648,28 @@ abstract class $ChoiceNodeDesignPresetCopyWith<$Res> {
       _$ChoiceNodeDesignPresetCopyWithImpl<$Res, ChoiceNodeDesignPreset>;
   @useResult
   $Res call(
-      {String name,
-      bool titlePosition,
-      double elevation,
-      List<double> roundEdge,
-      List<double> paddingAround,
-      bool maximizingImage,
-      bool hideTitle,
-      int imagePosition,
-      int colorTitle,
-      String titleFont,
-      String mainFont,
-      OutlineOption defaultOutlineOption,
-      bool selectOutlineEnable,
-      OutlineOption selectOutlineOption,
-      ColorOption defaultColorOption,
-      bool selectColorEnable,
-      ColorOption selectColorOption});
+      {String? name,
+      bool? titlePosition,
+      double? elevation,
+      List<double>? roundEdge,
+      List<double>? paddingAround,
+      bool? maximizingImage,
+      bool? hideTitle,
+      int? imagePosition,
+      int? colorTitle,
+      String? titleFont,
+      String? mainFont,
+      OutlineOption? defaultOutlineOption,
+      bool? selectOutlineEnable,
+      OutlineOption? selectOutlineOption,
+      ColorOption? defaultColorOption,
+      bool? selectColorEnable,
+      ColorOption? selectColorOption});
 
-  $OutlineOptionCopyWith<$Res> get defaultOutlineOption;
-  $OutlineOptionCopyWith<$Res> get selectOutlineOption;
-  $ColorOptionCopyWith<$Res> get defaultColorOption;
-  $ColorOptionCopyWith<$Res> get selectColorOption;
+  $OutlineOptionCopyWith<$Res>? get defaultOutlineOption;
+  $OutlineOptionCopyWith<$Res>? get selectOutlineOption;
+  $ColorOptionCopyWith<$Res>? get defaultColorOption;
+  $ColorOptionCopyWith<$Res>? get selectColorOption;
 }
 
 /// @nodoc
@@ -686,124 +686,140 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? titlePosition = null,
-    Object? elevation = null,
-    Object? roundEdge = null,
-    Object? paddingAround = null,
-    Object? maximizingImage = null,
-    Object? hideTitle = null,
-    Object? imagePosition = null,
-    Object? colorTitle = null,
-    Object? titleFont = null,
-    Object? mainFont = null,
-    Object? defaultOutlineOption = null,
-    Object? selectOutlineEnable = null,
-    Object? selectOutlineOption = null,
-    Object? defaultColorOption = null,
-    Object? selectColorEnable = null,
-    Object? selectColorOption = null,
+    Object? name = freezed,
+    Object? titlePosition = freezed,
+    Object? elevation = freezed,
+    Object? roundEdge = freezed,
+    Object? paddingAround = freezed,
+    Object? maximizingImage = freezed,
+    Object? hideTitle = freezed,
+    Object? imagePosition = freezed,
+    Object? colorTitle = freezed,
+    Object? titleFont = freezed,
+    Object? mainFont = freezed,
+    Object? defaultOutlineOption = freezed,
+    Object? selectOutlineEnable = freezed,
+    Object? selectOutlineOption = freezed,
+    Object? defaultColorOption = freezed,
+    Object? selectColorEnable = freezed,
+    Object? selectColorOption = freezed,
   }) {
     return _then(_value.copyWith(
-      name: null == name
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      titlePosition: null == titlePosition
+              as String?,
+      titlePosition: freezed == titlePosition
           ? _value.titlePosition
           : titlePosition // ignore: cast_nullable_to_non_nullable
-              as bool,
-      elevation: null == elevation
+              as bool?,
+      elevation: freezed == elevation
           ? _value.elevation
           : elevation // ignore: cast_nullable_to_non_nullable
-              as double,
-      roundEdge: null == roundEdge
+              as double?,
+      roundEdge: freezed == roundEdge
           ? _value.roundEdge
           : roundEdge // ignore: cast_nullable_to_non_nullable
-              as List<double>,
-      paddingAround: null == paddingAround
+              as List<double>?,
+      paddingAround: freezed == paddingAround
           ? _value.paddingAround
           : paddingAround // ignore: cast_nullable_to_non_nullable
-              as List<double>,
-      maximizingImage: null == maximizingImage
+              as List<double>?,
+      maximizingImage: freezed == maximizingImage
           ? _value.maximizingImage
           : maximizingImage // ignore: cast_nullable_to_non_nullable
-              as bool,
-      hideTitle: null == hideTitle
+              as bool?,
+      hideTitle: freezed == hideTitle
           ? _value.hideTitle
           : hideTitle // ignore: cast_nullable_to_non_nullable
-              as bool,
-      imagePosition: null == imagePosition
+              as bool?,
+      imagePosition: freezed == imagePosition
           ? _value.imagePosition
           : imagePosition // ignore: cast_nullable_to_non_nullable
-              as int,
-      colorTitle: null == colorTitle
+              as int?,
+      colorTitle: freezed == colorTitle
           ? _value.colorTitle
           : colorTitle // ignore: cast_nullable_to_non_nullable
-              as int,
-      titleFont: null == titleFont
+              as int?,
+      titleFont: freezed == titleFont
           ? _value.titleFont
           : titleFont // ignore: cast_nullable_to_non_nullable
-              as String,
-      mainFont: null == mainFont
+              as String?,
+      mainFont: freezed == mainFont
           ? _value.mainFont
           : mainFont // ignore: cast_nullable_to_non_nullable
-              as String,
-      defaultOutlineOption: null == defaultOutlineOption
+              as String?,
+      defaultOutlineOption: freezed == defaultOutlineOption
           ? _value.defaultOutlineOption
           : defaultOutlineOption // ignore: cast_nullable_to_non_nullable
-              as OutlineOption,
-      selectOutlineEnable: null == selectOutlineEnable
+              as OutlineOption?,
+      selectOutlineEnable: freezed == selectOutlineEnable
           ? _value.selectOutlineEnable
           : selectOutlineEnable // ignore: cast_nullable_to_non_nullable
-              as bool,
-      selectOutlineOption: null == selectOutlineOption
+              as bool?,
+      selectOutlineOption: freezed == selectOutlineOption
           ? _value.selectOutlineOption
           : selectOutlineOption // ignore: cast_nullable_to_non_nullable
-              as OutlineOption,
-      defaultColorOption: null == defaultColorOption
+              as OutlineOption?,
+      defaultColorOption: freezed == defaultColorOption
           ? _value.defaultColorOption
           : defaultColorOption // ignore: cast_nullable_to_non_nullable
-              as ColorOption,
-      selectColorEnable: null == selectColorEnable
+              as ColorOption?,
+      selectColorEnable: freezed == selectColorEnable
           ? _value.selectColorEnable
           : selectColorEnable // ignore: cast_nullable_to_non_nullable
-              as bool,
-      selectColorOption: null == selectColorOption
+              as bool?,
+      selectColorOption: freezed == selectColorOption
           ? _value.selectColorOption
           : selectColorOption // ignore: cast_nullable_to_non_nullable
-              as ColorOption,
+              as ColorOption?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $OutlineOptionCopyWith<$Res> get defaultOutlineOption {
-    return $OutlineOptionCopyWith<$Res>(_value.defaultOutlineOption, (value) {
+  $OutlineOptionCopyWith<$Res>? get defaultOutlineOption {
+    if (_value.defaultOutlineOption == null) {
+      return null;
+    }
+
+    return $OutlineOptionCopyWith<$Res>(_value.defaultOutlineOption!, (value) {
       return _then(_value.copyWith(defaultOutlineOption: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $OutlineOptionCopyWith<$Res> get selectOutlineOption {
-    return $OutlineOptionCopyWith<$Res>(_value.selectOutlineOption, (value) {
+  $OutlineOptionCopyWith<$Res>? get selectOutlineOption {
+    if (_value.selectOutlineOption == null) {
+      return null;
+    }
+
+    return $OutlineOptionCopyWith<$Res>(_value.selectOutlineOption!, (value) {
       return _then(_value.copyWith(selectOutlineOption: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ColorOptionCopyWith<$Res> get defaultColorOption {
-    return $ColorOptionCopyWith<$Res>(_value.defaultColorOption, (value) {
+  $ColorOptionCopyWith<$Res>? get defaultColorOption {
+    if (_value.defaultColorOption == null) {
+      return null;
+    }
+
+    return $ColorOptionCopyWith<$Res>(_value.defaultColorOption!, (value) {
       return _then(_value.copyWith(defaultColorOption: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ColorOptionCopyWith<$Res> get selectColorOption {
-    return $ColorOptionCopyWith<$Res>(_value.selectColorOption, (value) {
+  $ColorOptionCopyWith<$Res>? get selectColorOption {
+    if (_value.selectColorOption == null) {
+      return null;
+    }
+
+    return $ColorOptionCopyWith<$Res>(_value.selectColorOption!, (value) {
       return _then(_value.copyWith(selectColorOption: value) as $Val);
     });
   }
@@ -819,32 +835,32 @@ abstract class _$$ChoiceNodeDesignPresetImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String name,
-      bool titlePosition,
-      double elevation,
-      List<double> roundEdge,
-      List<double> paddingAround,
-      bool maximizingImage,
-      bool hideTitle,
-      int imagePosition,
-      int colorTitle,
-      String titleFont,
-      String mainFont,
-      OutlineOption defaultOutlineOption,
-      bool selectOutlineEnable,
-      OutlineOption selectOutlineOption,
-      ColorOption defaultColorOption,
-      bool selectColorEnable,
-      ColorOption selectColorOption});
+      {String? name,
+      bool? titlePosition,
+      double? elevation,
+      List<double>? roundEdge,
+      List<double>? paddingAround,
+      bool? maximizingImage,
+      bool? hideTitle,
+      int? imagePosition,
+      int? colorTitle,
+      String? titleFont,
+      String? mainFont,
+      OutlineOption? defaultOutlineOption,
+      bool? selectOutlineEnable,
+      OutlineOption? selectOutlineOption,
+      ColorOption? defaultColorOption,
+      bool? selectColorEnable,
+      ColorOption? selectColorOption});
 
   @override
-  $OutlineOptionCopyWith<$Res> get defaultOutlineOption;
+  $OutlineOptionCopyWith<$Res>? get defaultOutlineOption;
   @override
-  $OutlineOptionCopyWith<$Res> get selectOutlineOption;
+  $OutlineOptionCopyWith<$Res>? get selectOutlineOption;
   @override
-  $ColorOptionCopyWith<$Res> get defaultColorOption;
+  $ColorOptionCopyWith<$Res>? get defaultColorOption;
   @override
-  $ColorOptionCopyWith<$Res> get selectColorOption;
+  $ColorOptionCopyWith<$Res>? get selectColorOption;
 }
 
 /// @nodoc
@@ -860,93 +876,93 @@ class __$$ChoiceNodeDesignPresetImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? titlePosition = null,
-    Object? elevation = null,
-    Object? roundEdge = null,
-    Object? paddingAround = null,
-    Object? maximizingImage = null,
-    Object? hideTitle = null,
-    Object? imagePosition = null,
-    Object? colorTitle = null,
-    Object? titleFont = null,
-    Object? mainFont = null,
-    Object? defaultOutlineOption = null,
-    Object? selectOutlineEnable = null,
-    Object? selectOutlineOption = null,
-    Object? defaultColorOption = null,
-    Object? selectColorEnable = null,
-    Object? selectColorOption = null,
+    Object? name = freezed,
+    Object? titlePosition = freezed,
+    Object? elevation = freezed,
+    Object? roundEdge = freezed,
+    Object? paddingAround = freezed,
+    Object? maximizingImage = freezed,
+    Object? hideTitle = freezed,
+    Object? imagePosition = freezed,
+    Object? colorTitle = freezed,
+    Object? titleFont = freezed,
+    Object? mainFont = freezed,
+    Object? defaultOutlineOption = freezed,
+    Object? selectOutlineEnable = freezed,
+    Object? selectOutlineOption = freezed,
+    Object? defaultColorOption = freezed,
+    Object? selectColorEnable = freezed,
+    Object? selectColorOption = freezed,
   }) {
     return _then(_$ChoiceNodeDesignPresetImpl(
-      name: null == name
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      titlePosition: null == titlePosition
+              as String?,
+      titlePosition: freezed == titlePosition
           ? _value.titlePosition
           : titlePosition // ignore: cast_nullable_to_non_nullable
-              as bool,
-      elevation: null == elevation
+              as bool?,
+      elevation: freezed == elevation
           ? _value.elevation
           : elevation // ignore: cast_nullable_to_non_nullable
-              as double,
-      roundEdge: null == roundEdge
+              as double?,
+      roundEdge: freezed == roundEdge
           ? _value._roundEdge
           : roundEdge // ignore: cast_nullable_to_non_nullable
-              as List<double>,
-      paddingAround: null == paddingAround
+              as List<double>?,
+      paddingAround: freezed == paddingAround
           ? _value._paddingAround
           : paddingAround // ignore: cast_nullable_to_non_nullable
-              as List<double>,
-      maximizingImage: null == maximizingImage
+              as List<double>?,
+      maximizingImage: freezed == maximizingImage
           ? _value.maximizingImage
           : maximizingImage // ignore: cast_nullable_to_non_nullable
-              as bool,
-      hideTitle: null == hideTitle
+              as bool?,
+      hideTitle: freezed == hideTitle
           ? _value.hideTitle
           : hideTitle // ignore: cast_nullable_to_non_nullable
-              as bool,
-      imagePosition: null == imagePosition
+              as bool?,
+      imagePosition: freezed == imagePosition
           ? _value.imagePosition
           : imagePosition // ignore: cast_nullable_to_non_nullable
-              as int,
-      colorTitle: null == colorTitle
+              as int?,
+      colorTitle: freezed == colorTitle
           ? _value.colorTitle
           : colorTitle // ignore: cast_nullable_to_non_nullable
-              as int,
-      titleFont: null == titleFont
+              as int?,
+      titleFont: freezed == titleFont
           ? _value.titleFont
           : titleFont // ignore: cast_nullable_to_non_nullable
-              as String,
-      mainFont: null == mainFont
+              as String?,
+      mainFont: freezed == mainFont
           ? _value.mainFont
           : mainFont // ignore: cast_nullable_to_non_nullable
-              as String,
-      defaultOutlineOption: null == defaultOutlineOption
+              as String?,
+      defaultOutlineOption: freezed == defaultOutlineOption
           ? _value.defaultOutlineOption
           : defaultOutlineOption // ignore: cast_nullable_to_non_nullable
-              as OutlineOption,
-      selectOutlineEnable: null == selectOutlineEnable
+              as OutlineOption?,
+      selectOutlineEnable: freezed == selectOutlineEnable
           ? _value.selectOutlineEnable
           : selectOutlineEnable // ignore: cast_nullable_to_non_nullable
-              as bool,
-      selectOutlineOption: null == selectOutlineOption
+              as bool?,
+      selectOutlineOption: freezed == selectOutlineOption
           ? _value.selectOutlineOption
           : selectOutlineOption // ignore: cast_nullable_to_non_nullable
-              as OutlineOption,
-      defaultColorOption: null == defaultColorOption
+              as OutlineOption?,
+      defaultColorOption: freezed == defaultColorOption
           ? _value.defaultColorOption
           : defaultColorOption // ignore: cast_nullable_to_non_nullable
-              as ColorOption,
-      selectColorEnable: null == selectColorEnable
+              as ColorOption?,
+      selectColorEnable: freezed == selectColorEnable
           ? _value.selectColorEnable
           : selectColorEnable // ignore: cast_nullable_to_non_nullable
-              as bool,
-      selectColorOption: null == selectColorOption
+              as bool?,
+      selectColorOption: freezed == selectColorOption
           ? _value.selectColorOption
           : selectColorOption // ignore: cast_nullable_to_non_nullable
-              as ColorOption,
+              as ColorOption?,
     ));
   }
 }
@@ -954,13 +970,13 @@ class __$$ChoiceNodeDesignPresetImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$ChoiceNodeDesignPresetImpl implements _ChoiceNodeDesignPreset {
+class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
   const _$ChoiceNodeDesignPresetImpl(
-      {required this.name,
+      {this.name,
       this.titlePosition = true,
       this.elevation = 0.0,
-      final List<double> roundEdge = const [0.0, 0.0, 0.0, 0.0],
-      final List<double> paddingAround = const [2.0, 2.0, 2.0, 2.0],
+      final List<double>? roundEdge = const [0.0, 0.0, 0.0, 0.0],
+      final List<double>? paddingAround = const [2.0, 2.0, 2.0, 2.0],
       this.maximizingImage = false,
       this.hideTitle = false,
       this.imagePosition = 0,
@@ -974,75 +990,80 @@ class _$ChoiceNodeDesignPresetImpl implements _ChoiceNodeDesignPreset {
       this.selectColorEnable = false,
       this.selectColorOption = const ColorOption()})
       : _roundEdge = roundEdge,
-        _paddingAround = paddingAround;
+        _paddingAround = paddingAround,
+        super._();
 
   factory _$ChoiceNodeDesignPresetImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChoiceNodeDesignPresetImplFromJson(json);
 
   @override
-  final String name;
+  final String? name;
   @override
   @JsonKey()
-  final bool titlePosition;
+  final bool? titlePosition;
   @override
   @JsonKey()
-  final double elevation;
-  final List<double> _roundEdge;
+  final double? elevation;
+  final List<double>? _roundEdge;
   @override
   @JsonKey()
-  List<double> get roundEdge {
+  List<double>? get roundEdge {
+    final value = _roundEdge;
+    if (value == null) return null;
     if (_roundEdge is EqualUnmodifiableListView) return _roundEdge;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_roundEdge);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<double> _paddingAround;
+  final List<double>? _paddingAround;
   @override
   @JsonKey()
-  List<double> get paddingAround {
+  List<double>? get paddingAround {
+    final value = _paddingAround;
+    if (value == null) return null;
     if (_paddingAround is EqualUnmodifiableListView) return _paddingAround;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_paddingAround);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
   @JsonKey()
-  final bool maximizingImage;
+  final bool? maximizingImage;
 //true: 80%, false: 50%
   @override
   @JsonKey()
-  final bool hideTitle;
+  final bool? hideTitle;
   @override
   @JsonKey()
-  final int imagePosition;
+  final int? imagePosition;
 //0:default, 1:image-right 2:image-left
   @override
   @JsonKey()
-  final int colorTitle;
+  final int? colorTitle;
   @override
   @JsonKey()
-  final String titleFont;
+  final String? titleFont;
   @override
   @JsonKey()
-  final String mainFont;
+  final String? mainFont;
   @override
   @JsonKey()
-  final OutlineOption defaultOutlineOption;
+  final OutlineOption? defaultOutlineOption;
   @override
   @JsonKey()
-  final bool selectOutlineEnable;
+  final bool? selectOutlineEnable;
   @override
   @JsonKey()
-  final OutlineOption selectOutlineOption;
+  final OutlineOption? selectOutlineOption;
   @override
   @JsonKey()
-  final ColorOption defaultColorOption;
+  final ColorOption? defaultColorOption;
   @override
   @JsonKey()
-  final bool selectColorEnable;
+  final bool? selectColorEnable;
   @override
   @JsonKey()
-  final ColorOption selectColorOption;
+  final ColorOption? selectColorOption;
 
   @override
   String toString() {
@@ -1126,63 +1147,64 @@ class _$ChoiceNodeDesignPresetImpl implements _ChoiceNodeDesignPreset {
   }
 }
 
-abstract class _ChoiceNodeDesignPreset implements ChoiceNodeDesignPreset {
+abstract class _ChoiceNodeDesignPreset extends ChoiceNodeDesignPreset {
   const factory _ChoiceNodeDesignPreset(
-      {required final String name,
-      final bool titlePosition,
-      final double elevation,
-      final List<double> roundEdge,
-      final List<double> paddingAround,
-      final bool maximizingImage,
-      final bool hideTitle,
-      final int imagePosition,
-      final int colorTitle,
-      final String titleFont,
-      final String mainFont,
-      final OutlineOption defaultOutlineOption,
-      final bool selectOutlineEnable,
-      final OutlineOption selectOutlineOption,
-      final ColorOption defaultColorOption,
-      final bool selectColorEnable,
-      final ColorOption selectColorOption}) = _$ChoiceNodeDesignPresetImpl;
+      {final String? name,
+      final bool? titlePosition,
+      final double? elevation,
+      final List<double>? roundEdge,
+      final List<double>? paddingAround,
+      final bool? maximizingImage,
+      final bool? hideTitle,
+      final int? imagePosition,
+      final int? colorTitle,
+      final String? titleFont,
+      final String? mainFont,
+      final OutlineOption? defaultOutlineOption,
+      final bool? selectOutlineEnable,
+      final OutlineOption? selectOutlineOption,
+      final ColorOption? defaultColorOption,
+      final bool? selectColorEnable,
+      final ColorOption? selectColorOption}) = _$ChoiceNodeDesignPresetImpl;
+  const _ChoiceNodeDesignPreset._() : super._();
 
   factory _ChoiceNodeDesignPreset.fromJson(Map<String, dynamic> json) =
       _$ChoiceNodeDesignPresetImpl.fromJson;
 
   @override
-  String get name;
+  String? get name;
   @override
-  bool get titlePosition;
+  bool? get titlePosition;
   @override
-  double get elevation;
+  double? get elevation;
   @override
-  List<double> get roundEdge;
+  List<double>? get roundEdge;
   @override
-  List<double> get paddingAround;
+  List<double>? get paddingAround;
   @override
-  bool get maximizingImage;
+  bool? get maximizingImage;
   @override //true: 80%, false: 50%
-  bool get hideTitle;
+  bool? get hideTitle;
   @override
-  int get imagePosition;
+  int? get imagePosition;
   @override //0:default, 1:image-right 2:image-left
-  int get colorTitle;
+  int? get colorTitle;
   @override
-  String get titleFont;
+  String? get titleFont;
   @override
-  String get mainFont;
+  String? get mainFont;
   @override
-  OutlineOption get defaultOutlineOption;
+  OutlineOption? get defaultOutlineOption;
   @override
-  bool get selectOutlineEnable;
+  bool? get selectOutlineEnable;
   @override
-  OutlineOption get selectOutlineOption;
+  OutlineOption? get selectOutlineOption;
   @override
-  ColorOption get defaultColorOption;
+  ColorOption? get defaultColorOption;
   @override
-  bool get selectColorEnable;
+  bool? get selectColorEnable;
   @override
-  ColorOption get selectColorOption;
+  ColorOption? get selectColorOption;
   @override
   @JsonKey(ignore: true)
   _$$ChoiceNodeDesignPresetImplCopyWith<_$ChoiceNodeDesignPresetImpl>

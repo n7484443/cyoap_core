@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../preset/line_preset.dart';
 import 'choice.dart';
 import 'choice_node.dart';
 import 'conditional_code_handler.dart';
@@ -16,6 +17,7 @@ class ChoiceLineOption with _$ChoiceLineOption {
     @Default(-1) int maxSelect,
     @Default(false) bool enableCancelFeature,
     @Default('default') String presetName,
+    @Default(null) ChoiceLineDesignPreset? overridePreset,
     String? name,
   }) = _ChoiceLineOption;
 

@@ -78,24 +78,70 @@ class ColorOption with _$ColorOption {
 class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
   @JsonSerializable(explicitToJson: true)
   const factory ChoiceNodeDesignPreset({
-    required String name,
-    @Default(true) bool titlePosition,
-    @Default(0.0) double elevation,
-    @Default([0.0, 0.0, 0.0, 0.0]) List<double> roundEdge,
-    @Default([2.0, 2.0, 2.0, 2.0]) List<double> paddingAround,
-    @Default(false) bool maximizingImage, //true: 80%, false: 50%
-    @Default(false) bool hideTitle,
-    @Default(0) int imagePosition, //0:default, 1:image-right 2:image-left
-    @Default(0xFF000000) int colorTitle,
-    @Default("notoSans") String titleFont,
-    @Default("notoSans") String mainFont,
-    @Default(OutlineOption()) OutlineOption defaultOutlineOption,
-    @Default(false) bool selectOutlineEnable,
-    @Default(OutlineOption()) OutlineOption selectOutlineOption,
-    @Default(ColorOption()) ColorOption defaultColorOption,
-    @Default(false) bool selectColorEnable,
-    @Default(ColorOption()) ColorOption selectColorOption,
+    String? name,
+    @Default(true) bool? titlePosition,
+    @Default(0.0) double? elevation,
+    @Default([0.0, 0.0, 0.0, 0.0]) List<double>? roundEdge,
+    @Default([2.0, 2.0, 2.0, 2.0]) List<double>? paddingAround,
+    @Default(false) bool? maximizingImage, //true: 80%, false: 50%
+    @Default(false) bool? hideTitle,
+    @Default(0) int? imagePosition, //0:default, 1:image-right 2:image-left
+    @Default(0xFF000000) int? colorTitle,
+    @Default("notoSans") String? titleFont,
+    @Default("notoSans") String? mainFont,
+    @Default(OutlineOption()) OutlineOption? defaultOutlineOption,
+    @Default(false) bool? selectOutlineEnable,
+    @Default(OutlineOption()) OutlineOption? selectOutlineOption,
+    @Default(ColorOption()) ColorOption? defaultColorOption,
+    @Default(false) bool? selectColorEnable,
+    @Default(ColorOption()) ColorOption? selectColorOption,
   }) = _ChoiceNodeDesignPreset;
+
+  const ChoiceNodeDesignPreset._();
+
+  static ChoiceNodeDesignPreset emptyPreset(){
+    return ChoiceNodeDesignPreset(
+      name: null,
+      titlePosition: null,
+      elevation: null,
+      roundEdge: null,
+      paddingAround: null,
+      maximizingImage: null,
+      hideTitle: null,
+      imagePosition: null,
+      colorTitle: null,
+      titleFont: null,
+      mainFont: null,
+      defaultOutlineOption: null,
+      selectOutlineEnable: null,
+      selectOutlineOption: null,
+      defaultColorOption: null,
+      selectColorEnable: null,
+      selectColorOption: null,
+    );
+  }
+
+  ChoiceNodeDesignPreset getPresetWithOverride(ChoiceNodeDesignPreset? override){
+    return ChoiceNodeDesignPreset(
+      name: override?.name ?? name,
+      titlePosition: override?.titlePosition ?? titlePosition,
+      elevation: override?.elevation ?? elevation,
+      roundEdge: override?.roundEdge ?? roundEdge,
+      paddingAround: override?.paddingAround ?? paddingAround,
+      maximizingImage: override?.maximizingImage ?? maximizingImage,
+      hideTitle: override?.hideTitle ?? hideTitle,
+      imagePosition: override?.imagePosition ?? imagePosition,
+      colorTitle: override?.colorTitle ?? colorTitle,
+      titleFont: override?.titleFont ?? titleFont,
+      mainFont: override?.mainFont ?? mainFont,
+      defaultOutlineOption: override?.defaultOutlineOption ?? defaultOutlineOption,
+      selectOutlineEnable: override?.selectOutlineEnable ?? selectOutlineEnable,
+      selectOutlineOption: override?.selectOutlineOption ?? selectOutlineOption,
+      defaultColorOption: override?.defaultColorOption ?? defaultColorOption,
+      selectColorEnable: override?.selectColorEnable ?? selectColorEnable,
+      selectColorOption: override?.selectColorOption ?? selectColorOption,
+    );
+  }
 
   factory ChoiceNodeDesignPreset.fromJson(Map<String, dynamic> json) =>
       _$ChoiceNodeDesignPresetFromJson(json);

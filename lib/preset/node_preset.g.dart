@@ -100,7 +100,7 @@ const _$GradientTypeEnumMap = {
 _$ChoiceNodeDesignPresetImpl _$$ChoiceNodeDesignPresetImplFromJson(
         Map<String, dynamic> json) =>
     _$ChoiceNodeDesignPresetImpl(
-      name: json['name'] as String,
+      name: json['name'] as String?,
       titlePosition: json['titlePosition'] as bool? ?? true,
       elevation: (json['elevation'] as num?)?.toDouble() ?? 0.0,
       roundEdge: (json['roundEdge'] as List<dynamic>?)
@@ -151,10 +151,10 @@ Map<String, dynamic> _$$ChoiceNodeDesignPresetImplToJson(
       'colorTitle': instance.colorTitle,
       'titleFont': instance.titleFont,
       'mainFont': instance.mainFont,
-      'defaultOutlineOption': instance.defaultOutlineOption.toJson(),
+      'defaultOutlineOption': instance.defaultOutlineOption?.toJson(),
       'selectOutlineEnable': instance.selectOutlineEnable,
-      'selectOutlineOption': instance.selectOutlineOption.toJson(),
-      'defaultColorOption': instance.defaultColorOption.toJson(),
+      'selectOutlineOption': instance.selectOutlineOption?.toJson(),
+      'defaultColorOption': instance.defaultColorOption?.toJson(),
       'selectColorEnable': instance.selectColorEnable,
-      'selectColorOption': instance.selectColorOption.toJson(),
+      'selectColorOption': instance.selectColorOption?.toJson(),
     };
