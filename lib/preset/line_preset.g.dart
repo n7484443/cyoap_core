@@ -19,6 +19,7 @@ _$ChoiceLineDesignPresetImpl _$$ChoiceLineDesignPresetImplFromJson(
       alignment: $enumDecodeNullable(
               _$ChoiceLineAlignmentEnumMap, json['alignment']) ??
           ChoiceLineAlignment.left,
+      maxChildrenPerRow: (json['maxChildrenPerRow'] as num?)?.toInt() ?? 12,
     );
 
 Map<String, dynamic> _$$ChoiceLineDesignPresetImplToJson(
@@ -29,6 +30,7 @@ Map<String, dynamic> _$$ChoiceLineDesignPresetImplToJson(
       'backgroundImageString': instance.backgroundImageString,
       'alwaysVisibleLine': instance.alwaysVisibleLine,
       'alignment': _$ChoiceLineAlignmentEnumMap[instance.alignment],
+      'maxChildrenPerRow': instance.maxChildrenPerRow,
     };
 
 const _$ChoiceLineAlignmentEnumMap = {

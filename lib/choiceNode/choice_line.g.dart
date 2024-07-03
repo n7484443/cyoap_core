@@ -16,7 +16,6 @@ _$ChoiceLineOptionImpl _$$ChoiceLineOptionImplFromJson(
           ? null
           : ChoiceLineDesignPreset.fromJson(
               json['overridePreset'] as Map<String, dynamic>),
-      maxChildrenPerRow: (json['maxChildrenPerRow'] as num?)?.toInt() ?? 12,
       name: json['name'] as String?,
     );
 
@@ -27,6 +26,5 @@ Map<String, dynamic> _$$ChoiceLineOptionImplToJson(
       'enableCancelFeature': instance.enableCancelFeature,
       'presetName': instance.presetName,
       'overridePreset': instance.overridePreset?.toJson(),
-      'maxChildrenPerRow': instance.maxChildrenPerRow,
       'name': instance.name,
     };

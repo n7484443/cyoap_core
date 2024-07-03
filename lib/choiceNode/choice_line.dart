@@ -18,7 +18,6 @@ class ChoiceLineOption with _$ChoiceLineOption {
     @Default(false) bool enableCancelFeature,
     @Default('default') String presetName,
     @Default(null) ChoiceLineDesignPreset? overridePreset,
-    @Default(12) int maxChildrenPerRow,
     String? name,
   }) = _ChoiceLineOption;
 

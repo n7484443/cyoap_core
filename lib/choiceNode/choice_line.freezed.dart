@@ -25,7 +25,6 @@ mixin _$ChoiceLineOption {
   String get presetName => throw _privateConstructorUsedError;
   ChoiceLineDesignPreset? get overridePreset =>
       throw _privateConstructorUsedError;
-  int get maxChildrenPerRow => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,7 +44,6 @@ abstract class $ChoiceLineOptionCopyWith<$Res> {
       bool enableCancelFeature,
       String presetName,
       ChoiceLineDesignPreset? overridePreset,
-      int maxChildrenPerRow,
       String? name});
 
   $ChoiceLineDesignPresetCopyWith<$Res>? get overridePreset;
@@ -68,7 +66,6 @@ class _$ChoiceLineOptionCopyWithImpl<$Res, $Val extends ChoiceLineOption>
     Object? enableCancelFeature = null,
     Object? presetName = null,
     Object? overridePreset = freezed,
-    Object? maxChildrenPerRow = null,
     Object? name = freezed,
   }) {
     return _then(_value.copyWith(
@@ -88,10 +85,6 @@ class _$ChoiceLineOptionCopyWithImpl<$Res, $Val extends ChoiceLineOption>
           ? _value.overridePreset
           : overridePreset // ignore: cast_nullable_to_non_nullable
               as ChoiceLineDesignPreset?,
-      maxChildrenPerRow: null == maxChildrenPerRow
-          ? _value.maxChildrenPerRow
-          : maxChildrenPerRow // ignore: cast_nullable_to_non_nullable
-              as int,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -126,7 +119,6 @@ abstract class _$$ChoiceLineOptionImplCopyWith<$Res>
       bool enableCancelFeature,
       String presetName,
       ChoiceLineDesignPreset? overridePreset,
-      int maxChildrenPerRow,
       String? name});
 
   @override
@@ -148,7 +140,6 @@ class __$$ChoiceLineOptionImplCopyWithImpl<$Res>
     Object? enableCancelFeature = null,
     Object? presetName = null,
     Object? overridePreset = freezed,
-    Object? maxChildrenPerRow = null,
     Object? name = freezed,
   }) {
     return _then(_$ChoiceLineOptionImpl(
@@ -168,10 +159,6 @@ class __$$ChoiceLineOptionImplCopyWithImpl<$Res>
           ? _value.overridePreset
           : overridePreset // ignore: cast_nullable_to_non_nullable
               as ChoiceLineDesignPreset?,
-      maxChildrenPerRow: null == maxChildrenPerRow
-          ? _value.maxChildrenPerRow
-          : maxChildrenPerRow // ignore: cast_nullable_to_non_nullable
-              as int,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -189,7 +176,6 @@ class _$ChoiceLineOptionImpl implements _ChoiceLineOption {
       this.enableCancelFeature = false,
       this.presetName = 'default',
       this.overridePreset = null,
-      this.maxChildrenPerRow = 12,
       this.name});
 
   factory _$ChoiceLineOptionImpl.fromJson(Map<String, dynamic> json) =>
@@ -208,14 +194,11 @@ class _$ChoiceLineOptionImpl implements _ChoiceLineOption {
   @JsonKey()
   final ChoiceLineDesignPreset? overridePreset;
   @override
-  @JsonKey()
-  final int maxChildrenPerRow;
-  @override
   final String? name;
 
   @override
   String toString() {
-    return 'ChoiceLineOption(maxSelect: $maxSelect, enableCancelFeature: $enableCancelFeature, presetName: $presetName, overridePreset: $overridePreset, maxChildrenPerRow: $maxChildrenPerRow, name: $name)';
+    return 'ChoiceLineOption(maxSelect: $maxSelect, enableCancelFeature: $enableCancelFeature, presetName: $presetName, overridePreset: $overridePreset, name: $name)';
   }
 
   @override
@@ -231,15 +214,13 @@ class _$ChoiceLineOptionImpl implements _ChoiceLineOption {
                 other.presetName == presetName) &&
             (identical(other.overridePreset, overridePreset) ||
                 other.overridePreset == overridePreset) &&
-            (identical(other.maxChildrenPerRow, maxChildrenPerRow) ||
-                other.maxChildrenPerRow == maxChildrenPerRow) &&
             (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, maxSelect, enableCancelFeature,
-      presetName, overridePreset, maxChildrenPerRow, name);
+      presetName, overridePreset, name);
 
   @JsonKey(ignore: true)
   @override
@@ -262,7 +243,6 @@ abstract class _ChoiceLineOption implements ChoiceLineOption {
       final bool enableCancelFeature,
       final String presetName,
       final ChoiceLineDesignPreset? overridePreset,
-      final int maxChildrenPerRow,
       final String? name}) = _$ChoiceLineOptionImpl;
 
   factory _ChoiceLineOption.fromJson(Map<String, dynamic> json) =
@@ -276,8 +256,6 @@ abstract class _ChoiceLineOption implements ChoiceLineOption {
   String get presetName;
   @override
   ChoiceLineDesignPreset? get overridePreset;
-  @override
-  int get maxChildrenPerRow;
   @override
   String? get name;
   @override
