@@ -12,10 +12,15 @@ extension Localization on String {
       "solid": "solid",
       "dotted": "dotted",
       "dashed": "dashed",
+
       "gradient": "gradient",
       "linear": "linear",
       "radial": "radial",
       "sweep": "sweep",
+
+      "left": "left",
+      "center": "center",
+      "right": "right",
 
       "int": "Integer",
       "double": "Double",
@@ -33,10 +38,15 @@ extension Localization on String {
       "solid": "실선",
       "dotted": "점선",
       "dashed": "파선",
+
       "gradient": "그라데이션",
       "linear": "선형",
       "radial": "방사형",
       "sweep": "극좌표형",
+
+      "left": "왼쪽 정렬",
+      "center": "중앙 정렬",
+      "right": "오른쪽 정렬",
 
       "int": "int(정수)",
       "double": "double(소수)",

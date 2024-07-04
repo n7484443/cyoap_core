@@ -43,7 +43,10 @@ enum ColorType {
 enum GradientType {
   linear,
   radial,
-  sweep,
+  sweep;
+
+  @override
+  String toString() => name.i18n;
 }
 
 @freezed
