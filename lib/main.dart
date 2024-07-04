@@ -52,6 +52,8 @@ void main() {
 
   _getNodeDefaultPreset = allowInterop(_getNodeDefaultPresetInternal);
   _getLineDefaultPreset = allowInterop(_getLineDefaultPresetInternal);
+
+  _getSizeDataList = allowInterop(_getSizeDataListInternal);
 }
 
 @JS('loadPlatform')
@@ -308,4 +310,20 @@ external set _getLineDefaultPreset(String Function() f);
 @JS()
 String _getLineDefaultPresetInternal() {
   return jsonEncode(ChoiceLineDesignPreset(name: 'default').toJson());
+}
+
+@JS('getSizeDataList')
+external set _getSizeDataList(String Function(List<dynamic> pos, String alignment, int maxChildrenPerRow) f);
+
+@JS()
+String _getSizeDataListInternal(List<dynamic> pos, String alignment, int maxChildrenPerRow) {
+  Pos innerPos = listToPos(pos);
+  var choice = platform.getChoice(innerPos);
+  var align = ChoiceLineAlignment.values.firstWhere((e) => e.name == alignment);
+  List<List<SizeData>>? out = choice?.getSizeDataList(align: align, maxChildrenPerRow: maxChildrenPerRow);
+  if (out == null) {
+    return jsonEncode([]);
+  }
+
+  return jsonEncode(out.map((e) => e.map((e) => e.toJson()).toList()).toList());
 }

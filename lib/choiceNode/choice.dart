@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import '../preset/line_preset.dart';
 import 'conditional_code_handler.dart';
 import 'pos.dart';
 import 'selectable_status.dart';
@@ -10,6 +13,7 @@ import 'selectable_status.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'choice.freezed.dart';
+part 'choice.g.dart';
 @freezed
 class SelectInfo with _$SelectInfo {
   const factory SelectInfo({
@@ -132,4 +136,70 @@ mixin Choice {
   }
 
   Choice clone();
+
+  List<List<SizeData>> getSizeDataList({
+    required ChoiceLineAlignment align,
+    required int maxChildrenPerRow,
+  }) {
+    var sizeDataList = List<List<SizeData>>.empty(growable: true);
+    var subSizeDataList = List<SizeData>.empty(growable: true);
+    int stack = 0;
+    for (var child in children) {
+      int size = child.width == 0
+          ? maxChildrenPerRow
+          : min(child.width, maxChildrenPerRow);
+      var node = SizeData(width: size * 2, pos: child.pos);
+      if (stack + size < maxChildrenPerRow) {
+        subSizeDataList.add(node);
+        stack += size;
+      } else if (stack + size == maxChildrenPerRow) {
+        subSizeDataList.add(node);
+        sizeDataList.add(subSizeDataList);
+        subSizeDataList = List<SizeData>.empty(growable: true);
+        stack = 0;
+      } else {
+        int leftSize = maxChildrenPerRow - stack;
+        switch (align) {
+          case ChoiceLineAlignment.left:
+            subSizeDataList.add(SizeData(width: leftSize * 2));
+            break;
+          case ChoiceLineAlignment.center:
+            subSizeDataList.insert(0, SizeData(width: leftSize));
+            subSizeDataList.add(SizeData(width: leftSize));
+            break;
+          case ChoiceLineAlignment.right:
+            subSizeDataList.insert(0, SizeData(width: leftSize * 2));
+            break;
+        }
+        sizeDataList.add(subSizeDataList);
+        subSizeDataList = List<SizeData>.empty(growable: true);
+        subSizeDataList.add(node);
+        stack = size;
+      }
+    }
+    if (stack < maxChildrenPerRow) {
+      int leftSize = maxChildrenPerRow - stack;
+      switch (align) {
+        case ChoiceLineAlignment.left:
+          subSizeDataList.add(SizeData(width: leftSize * 2));
+          break;
+        case ChoiceLineAlignment.center:
+          subSizeDataList.insert(0, SizeData(width: leftSize));
+          subSizeDataList.add(SizeData(width: leftSize));
+          break;
+        case ChoiceLineAlignment.right:
+          subSizeDataList.insert(0, SizeData(width: leftSize * 2));
+          break;
+      }
+      sizeDataList.add(subSizeDataList);
+    }
+    return sizeDataList;
+  }
+}
+
+@freezed
+class SizeData with _$SizeData {
+  const factory SizeData({required int width, Pos? pos}) = _SizeData;
+
+  factory SizeData.fromJson(Map<String, dynamic> json) => _$SizeDataFromJson(json);
 }
