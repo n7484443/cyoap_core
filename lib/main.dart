@@ -320,10 +320,13 @@ String _getSizeDataListInternal(List<dynamic> pos, String alignment, int maxChil
   Pos innerPos = listToPos(pos);
   var choice = platform.getChoice(innerPos);
   var align = ChoiceLineAlignment.values.firstWhere((e) => e.name == alignment);
-  List<List<SizeData>>? out = choice?.getSizeDataList(align: align, maxChildrenPerRow: maxChildrenPerRow);
+  (List<List<SizeData>>, int)? out = choice?.getSizeDataList(align: align, maxChildrenPerRow: maxChildrenPerRow);
   if (out == null) {
     return jsonEncode([]);
   }
 
-  return jsonEncode(out.map((e) => e.map((e) => e.toJson()).toList()).toList());
+  return jsonEncode({
+    'list': out.$1.map((e) => e.map((e) => e.toJson()).toList()).toList(),
+    'max': out.$2
+  });
 }

@@ -137,7 +137,7 @@ mixin Choice {
 
   Choice clone();
 
-  List<List<SizeData>> getSizeDataList({
+  (List<List<SizeData>>, int) getSizeDataList({
     required ChoiceLineAlignment align,
     required int maxChildrenPerRow,
   }) {
@@ -193,7 +193,7 @@ mixin Choice {
       }
       sizeDataList.add(subSizeDataList);
     }
-    return sizeDataList;
+    return (sizeDataList, 2 * maxChildrenPerRow);
   }
 }
 
