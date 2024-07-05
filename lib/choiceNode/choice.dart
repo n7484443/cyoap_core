@@ -140,11 +140,15 @@ mixin Choice {
   (List<List<SizeData>>, int) getSizeDataList({
     required ChoiceLineAlignment align,
     required int maxChildrenPerRow,
+    required bool showAll,
   }) {
     var sizeDataList = List<List<SizeData>>.empty(growable: true);
     var subSizeDataList = List<SizeData>.empty(growable: true);
     int stack = 0;
     for (var child in children) {
+      if(!showAll && child.isHide()){
+        continue;
+      }
       int size = child.width == 0
           ? maxChildrenPerRow
           : min(child.width, maxChildrenPerRow);
