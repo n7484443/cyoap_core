@@ -165,17 +165,19 @@ mixin Choice {
         stack = 0;
       } else {
         int leftSize = maxChildrenPerRow - stack;
-        switch (align) {
-          case ChoiceLineAlignment.left:
-            subSizeDataList.add(SizeData(width: leftSize * 2));
-            break;
-          case ChoiceLineAlignment.center:
-            subSizeDataList.insert(0, SizeData(width: leftSize));
-            subSizeDataList.add(SizeData(width: leftSize));
-            break;
-          case ChoiceLineAlignment.right:
-            subSizeDataList.insert(0, SizeData(width: leftSize * 2));
-            break;
+        if(leftSize != 0){
+          switch (align) {
+            case ChoiceLineAlignment.left:
+              subSizeDataList.add(SizeData(width: leftSize * 2));
+              break;
+            case ChoiceLineAlignment.center:
+              subSizeDataList.insert(0, SizeData(width: leftSize));
+              subSizeDataList.add(SizeData(width: leftSize));
+              break;
+            case ChoiceLineAlignment.right:
+              subSizeDataList.insert(0, SizeData(width: leftSize * 2));
+              break;
+          }
         }
         sizeDataList.add(subSizeDataList);
         subSizeDataList = List<SizeData>.empty(growable: true);
