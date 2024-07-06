@@ -13,7 +13,9 @@ import 'selectable_status.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'choice.freezed.dart';
+
 part 'choice.g.dart';
+
 @freezed
 class SelectInfo with _$SelectInfo {
   const factory SelectInfo({
@@ -146,7 +148,7 @@ mixin Choice {
     var subSizeDataList = List<SizeData>.empty(growable: true);
     int stack = 0;
     for (var child in children) {
-      if(!showAll && child.isHide()){
+      if (!showAll && child.isHide()) {
         continue;
       }
       int size = child.width == 0
@@ -181,7 +183,7 @@ mixin Choice {
         stack = size;
       }
     }
-    if (stack < maxChildrenPerRow) {
+    if (stack != 0 && stack < maxChildrenPerRow) {
       int leftSize = maxChildrenPerRow - stack;
       switch (align) {
         case ChoiceLineAlignment.left:
@@ -205,5 +207,6 @@ mixin Choice {
 class SizeData with _$SizeData {
   const factory SizeData({required int width, Pos? pos}) = _SizeData;
 
-  factory SizeData.fromJson(Map<String, dynamic> json) => _$SizeDataFromJson(json);
+  factory SizeData.fromJson(Map<String, dynamic> json) =>
+      _$SizeDataFromJson(json);
 }

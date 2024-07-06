@@ -15,6 +15,7 @@ class MemoryDb {
   void clear() {
     clearHeapMemory();
     clearStackMemory();
+    addHeapDefaultFunction();
   }
 
   int addHeapMemory(dynamic value) {
@@ -59,5 +60,8 @@ class MemoryDb {
 
   void clearStackMemory() {
     _stackMemory = DoubleLinkedQueue();
+  }
+
+  void addHeapDefaultFunction(){
   }
 }
