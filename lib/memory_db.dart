@@ -33,7 +33,7 @@ class MemoryDb {
     _heapMemory[address] = value;
   }
 
-  dynamic getHeapMemory(int address, dynamic value) {
+  dynamic getHeapMemory(int address) {
     return _heapMemory[address];
   }
 
@@ -45,7 +45,7 @@ class MemoryDb {
     _stackMemory.addLast(value);
   }
 
-  dynamic popStackMemory(int address, dynamic value) {
+  dynamic popStackMemory() {
     return _stackMemory.removeLast();
   }
 
