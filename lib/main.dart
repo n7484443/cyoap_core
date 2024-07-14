@@ -5,7 +5,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:cyoap_core/choiceNode/choice.dart';
-import 'package:cyoap_core/choiceNode/selectable_status.dart';
 import 'package:cyoap_core/grammar/analyser.dart';
 import 'package:cyoap_core/playable_platform.dart';
 import 'package:cyoap_core/preset/line_preset.dart';
@@ -66,9 +65,8 @@ void _loadPlatformInternal(String jsonPlatform, List<dynamic> jsonLine) {
 
   platform.choicePage.children = list;
   for (int i = 0; i < jsonLine.length; i++) {
-    var choiceLine = ChoiceLine.fromJson(jsonDecode(jsonLine[i]));
-    list[i] = choiceLine;
-    choiceLine.parent = platform.choicePage;
+    list[i] = ChoiceLine.fromJson(jsonDecode(jsonLine[i]));
+    list[i].parent = platform.choicePage;
   }
   platform.checkDataCorrect();
   platform.updateStatus();
@@ -94,6 +92,7 @@ void _selectInternal(List<dynamic> pos, int n) {
   if (!isProcessing) {
     Pos innerPos = listToPos(pos);
     platform.getChoiceNode(innerPos)?.selectNode(n);
+    platform.updateStatus();
     isProcessing = true;
     Timer(Duration(microseconds: 10), () {
       isProcessing = false;
@@ -117,9 +116,8 @@ external set _getChoiceStatus(
 @JS()
 ExternalSelectableStatus _getChoiceStatusInternal(List<dynamic> pos) {
   Pos innerPos = listToPos(pos);
-  var status =
-      platform.getChoice(innerPos)?.selectableStatus ?? SelectableStatus();
-  return ExternalSelectableStatus(isHide: status.isHide, isOpen: status.isOpen);
+  var node = platform.getChoice(innerPos)!;
+  return ExternalSelectableStatus(isHide: node.isHide(), isOpen: node.isOpen());
 }
 
 @JS()
@@ -319,6 +317,7 @@ external set _getSizeDataList(String Function(List<dynamic> pos, String alignmen
 String _getSizeDataListInternal(List<dynamic> pos, String alignment, int maxChildrenPerRow) {
   Pos innerPos = listToPos(pos);
   var choice = platform.getChoice(innerPos);
+
   var align = ChoiceLineAlignment.values.firstWhere((e) => e.name == alignment);
   (List<List<SizeData>>, int)? out = choice?.getSizeDataList(align: align, maxChildrenPerRow: maxChildrenPerRow, showAll: false);
   if (out == null) {

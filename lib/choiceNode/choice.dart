@@ -130,10 +130,8 @@ mixin Choice {
     for (int i = 0; i < children.length; i++) {
       var choice = children[i];
       choice.currentPos = i;
-      for (int x = 0; x < choice.children.length; x++) {
-        choice.children[x].currentPos = x;
-        choice.children[x].parent = choice;
-      }
+      choice.parent = this;
+      choice.checkDataCorrect();
     }
   }
 
@@ -185,7 +183,7 @@ mixin Choice {
         stack = size;
       }
     }
-    if (stack != 0 && stack < maxChildrenPerRow) {
+    if (subSizeDataList.isNotEmpty) {
       int leftSize = maxChildrenPerRow - stack;
       switch (align) {
         case ChoiceLineAlignment.left:
