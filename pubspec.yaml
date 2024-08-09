@@ -3,7 +3,7 @@ description: CYOAP Project's core library
 version: 4.0.0
 
 environment:
-  sdk: '>=3.3.0 <4.0.0'
+  sdk: '>=3.4.0 <4.0.0'
 
 dependencies:
   freezed_annotation: any
@@ -16,5 +16,5 @@ dev_dependencies:
   freezed: ^2.4.6
   build_runner: ^2.4.8
   json_serializable: any
-  lints: ^3.0.0
+  lints: ^4.0.0
   test: ^1.16.0
