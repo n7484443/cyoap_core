@@ -27,8 +27,12 @@ mixin _$ChoiceNodeOption {
   bool get executeWhenVisible => throw _privateConstructorUsedError;
   String get presetName => throw _privateConstructorUsedError;
 
+  /// Serializes this ChoiceNodeOption to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ChoiceNodeOption
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ChoiceNodeOptionCopyWith<ChoiceNodeOption> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -58,6 +62,8 @@ class _$ChoiceNodeOptionCopyWithImpl<$Res, $Val extends ChoiceNodeOption>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ChoiceNodeOption
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -122,6 +128,8 @@ class __$$ChoiceNodeDesignImplCopyWithImpl<$Res>
       $Res Function(_$ChoiceNodeDesignImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ChoiceNodeOption
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -219,12 +227,14 @@ class _$ChoiceNodeDesignImpl implements _ChoiceNodeDesign {
                 other.presetName == presetName));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, isOccupySpace, hideAsResult,
       showAsResult, showAsSlider, executeWhenVisible, presetName);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChoiceNodeOption
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChoiceNodeDesignImplCopyWith<_$ChoiceNodeDesignImpl> get copyWith =>
@@ -263,8 +273,11 @@ abstract class _ChoiceNodeDesign implements ChoiceNodeOption {
   bool get executeWhenVisible;
   @override
   String get presetName;
+
+  /// Create a copy of ChoiceNodeOption
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChoiceNodeDesignImplCopyWith<_$ChoiceNodeDesignImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

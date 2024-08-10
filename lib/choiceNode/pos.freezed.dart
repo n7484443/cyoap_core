@@ -22,8 +22,12 @@ Pos _$PosFromJson(Map<String, dynamic> json) {
 mixin _$Pos {
   List<int> get data => throw _privateConstructorUsedError;
 
+  /// Serializes this Pos to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Pos
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PosCopyWith<Pos> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -44,6 +48,8 @@ class _$PosCopyWithImpl<$Res, $Val extends Pos> implements $PosCopyWith<$Res> {
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Pos
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -73,6 +79,8 @@ class __$$PosImplCopyWithImpl<$Res> extends _$PosCopyWithImpl<$Res, _$PosImpl>
   __$$PosImplCopyWithImpl(_$PosImpl _value, $Res Function(_$PosImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Pos
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -119,12 +127,14 @@ class _$PosImpl extends _Pos {
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Pos
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PosImplCopyWith<_$PosImpl> get copyWith =>
@@ -146,8 +156,11 @@ abstract class _Pos extends Pos {
 
   @override
   List<int> get data;
+
+  /// Create a copy of Pos
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PosImplCopyWith<_$PosImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

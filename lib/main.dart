@@ -27,6 +27,8 @@ void main() {
   _getSelectedPos = allowInterop(_getSelectedPosInternal);
   _setSelectedPos = allowInterop(_setSelectedPosInternal);
 
+  _getSelectedResult = allowInterop(_getSelectedResultInternal);
+
   _lineLength = allowInterop(_lineLengthInternal);
 
   _getSelect = allowInterop(_getSelectInternal);
@@ -284,6 +286,14 @@ external set _setSelectedPos(void Function(String json) f);
 @JS()
 void _setSelectedPosInternal(String json) {
   platform.setSelectedPosInternal(json);
+}
+
+@JS('getSelectedResult')
+external set _getSelectedResult(String Function(bool separateChildren) f);
+
+@JS()
+String _getSelectedResultInternal(bool separateChildren) {
+  return platform.getSelectedResultInternal(separateChildren);
 }
 
 @JS('getErrorLog')

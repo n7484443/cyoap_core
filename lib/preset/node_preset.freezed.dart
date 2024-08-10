@@ -25,8 +25,12 @@ mixin _$OutlineOption {
   double get outlinePadding => throw _privateConstructorUsedError;
   double get outlineWidth => throw _privateConstructorUsedError;
 
+  /// Serializes this OutlineOption to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of OutlineOption
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $OutlineOptionCopyWith<OutlineOption> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -56,6 +60,8 @@ class _$OutlineOptionCopyWithImpl<$Res, $Val extends OutlineOption>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of OutlineOption
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -84,6 +90,8 @@ class _$OutlineOptionCopyWithImpl<$Res, $Val extends OutlineOption>
     ) as $Val);
   }
 
+  /// Create a copy of OutlineOption
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ColorOptionCopyWith<$Res> get outlineColor {
@@ -119,6 +127,8 @@ class __$$OutlineOptionImplCopyWithImpl<$Res>
       _$OutlineOptionImpl _value, $Res Function(_$OutlineOptionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of OutlineOption
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -194,12 +204,14 @@ class _$OutlineOptionImpl implements _OutlineOption {
                 other.outlineWidth == outlineWidth));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, outlineType, outlineColor, outlinePadding, outlineWidth);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OutlineOption
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$OutlineOptionImplCopyWith<_$OutlineOptionImpl> get copyWith =>
@@ -231,8 +243,11 @@ abstract class _OutlineOption implements OutlineOption {
   double get outlinePadding;
   @override
   double get outlineWidth;
+
+  /// Create a copy of OutlineOption
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OutlineOptionImplCopyWith<_$OutlineOptionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -246,8 +261,12 @@ mixin _$GradientData {
   (double, double) get gradientPos => throw _privateConstructorUsedError;
   int get color => throw _privateConstructorUsedError;
 
+  /// Serializes this GradientData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GradientData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GradientDataCopyWith<GradientData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -271,6 +290,8 @@ class _$GradientDataCopyWithImpl<$Res, $Val extends GradientData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GradientData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -309,6 +330,8 @@ class __$$GradientDataImplCopyWithImpl<$Res>
       _$GradientDataImpl _value, $Res Function(_$GradientDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GradientData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -360,11 +383,13 @@ class _$GradientDataImpl implements _GradientData {
             (identical(other.color, color) || other.color == color));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, gradientPos, color);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GradientData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GradientDataImplCopyWith<_$GradientDataImpl> get copyWith =>
@@ -390,8 +415,11 @@ abstract class _GradientData implements GradientData {
   (double, double) get gradientPos;
   @override
   int get color;
+
+  /// Create a copy of GradientData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GradientDataImplCopyWith<_$GradientDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -407,8 +435,12 @@ mixin _$ColorOption {
   GradientType get gradientType => throw _privateConstructorUsedError;
   List<GradientData> get gradientData => throw _privateConstructorUsedError;
 
+  /// Serializes this ColorOption to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ColorOption
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ColorOptionCopyWith<ColorOption> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -436,6 +468,8 @@ class _$ColorOptionCopyWithImpl<$Res, $Val extends ColorOption>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ColorOption
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -488,6 +522,8 @@ class __$$ColorOptionImplCopyWithImpl<$Res>
       _$ColorOptionImpl _value, $Res Function(_$ColorOptionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ColorOption
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -565,12 +601,14 @@ class _$ColorOptionImpl implements _ColorOption {
                 .equals(other.gradientData, gradientData));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, colorType, color, gradientType,
       const DeepCollectionEquality().hash(gradientData));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ColorOption
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ColorOptionImplCopyWith<_$ColorOptionImpl> get copyWith =>
@@ -602,8 +640,11 @@ abstract class _ColorOption implements ColorOption {
   GradientType get gradientType;
   @override
   List<GradientData> get gradientData;
+
+  /// Create a copy of ColorOption
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ColorOptionImplCopyWith<_$ColorOptionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -635,8 +676,12 @@ mixin _$ChoiceNodeDesignPreset {
   bool? get selectColorEnable => throw _privateConstructorUsedError;
   ColorOption? get selectColorOption => throw _privateConstructorUsedError;
 
+  /// Serializes this ChoiceNodeDesignPreset to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ChoiceNodeDesignPresetCopyWith<ChoiceNodeDesignPreset> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -683,6 +728,8 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -776,6 +823,8 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $OutlineOptionCopyWith<$Res>? get defaultOutlineOption {
@@ -788,6 +837,8 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $OutlineOptionCopyWith<$Res>? get selectOutlineOption {
@@ -800,6 +851,8 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ColorOptionCopyWith<$Res>? get defaultColorOption {
@@ -812,6 +865,8 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ColorOptionCopyWith<$Res>? get selectColorOption {
@@ -873,6 +928,8 @@ class __$$ChoiceNodeDesignPresetImplCopyWithImpl<$Res>
       $Res Function(_$ChoiceNodeDesignPresetImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1110,7 +1167,7 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
                 other.selectColorOption == selectColorOption));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1132,7 +1189,9 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
       selectColorEnable,
       selectColorOption);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChoiceNodeDesignPresetImplCopyWith<_$ChoiceNodeDesignPresetImpl>
@@ -1182,12 +1241,12 @@ abstract class _ChoiceNodeDesignPreset extends ChoiceNodeDesignPreset {
   @override
   List<double>? get paddingAround;
   @override
-  bool? get maximizingImage;
-  @override //true: 80%, false: 50%
+  bool? get maximizingImage; //true: 80%, false: 50%
+  @override
   bool? get hideTitle;
   @override
-  int? get imagePosition;
-  @override //0:default, 1:image-right 2:image-left
+  int? get imagePosition; //0:default, 1:image-right 2:image-left
+  @override
   int? get colorTitle;
   @override
   String? get titleFont;
@@ -1205,8 +1264,11 @@ abstract class _ChoiceNodeDesignPreset extends ChoiceNodeDesignPreset {
   bool? get selectColorEnable;
   @override
   ColorOption? get selectColorOption;
+
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChoiceNodeDesignPresetImplCopyWith<_$ChoiceNodeDesignPresetImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

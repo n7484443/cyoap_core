@@ -23,8 +23,12 @@ mixin _$SelectableStatus {
   bool get isHide => throw _privateConstructorUsedError;
   bool get isOpen => throw _privateConstructorUsedError;
 
+  /// Serializes this SelectableStatus to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SelectableStatus
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SelectableStatusCopyWith<SelectableStatus> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$SelectableStatusCopyWithImpl<$Res, $Val extends SelectableStatus>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SelectableStatus
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$SelectableStatusImplCopyWithImpl<$Res>
       $Res Function(_$SelectableStatusImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SelectableStatus
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -134,11 +142,13 @@ class _$SelectableStatusImpl implements _SelectableStatus {
             (identical(other.isOpen, isOpen) || other.isOpen == isOpen));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, isHide, isOpen);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SelectableStatus
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SelectableStatusImplCopyWith<_$SelectableStatusImpl> get copyWith =>
@@ -164,8 +174,11 @@ abstract class _SelectableStatus implements SelectableStatus {
   bool get isHide;
   @override
   bool get isOpen;
+
+  /// Create a copy of SelectableStatus
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SelectableStatusImplCopyWith<_$SelectableStatusImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -27,8 +27,12 @@ mixin _$ChoiceLineOption {
       throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
 
+  /// Serializes this ChoiceLineOption to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ChoiceLineOption
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ChoiceLineOptionCopyWith<ChoiceLineOption> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -59,6 +63,8 @@ class _$ChoiceLineOptionCopyWithImpl<$Res, $Val extends ChoiceLineOption>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ChoiceLineOption
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class _$ChoiceLineOptionCopyWithImpl<$Res, $Val extends ChoiceLineOption>
     ) as $Val);
   }
 
+  /// Create a copy of ChoiceLineOption
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ChoiceLineDesignPresetCopyWith<$Res>? get overridePreset {
@@ -133,6 +141,8 @@ class __$$ChoiceLineOptionImplCopyWithImpl<$Res>
       $Res Function(_$ChoiceLineOptionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ChoiceLineOption
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -217,12 +227,14 @@ class _$ChoiceLineOptionImpl implements _ChoiceLineOption {
             (identical(other.name, name) || other.name == name));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, maxSelect, enableCancelFeature,
       presetName, overridePreset, name);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChoiceLineOption
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChoiceLineOptionImplCopyWith<_$ChoiceLineOptionImpl> get copyWith =>
@@ -258,8 +270,11 @@ abstract class _ChoiceLineOption implements ChoiceLineOption {
   ChoiceLineDesignPreset? get overridePreset;
   @override
   String? get name;
+
+  /// Create a copy of ChoiceLineOption
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChoiceLineOptionImplCopyWith<_$ChoiceLineOptionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

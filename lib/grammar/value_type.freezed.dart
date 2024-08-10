@@ -23,8 +23,12 @@ mixin _$ValueType {
   String get data => throw _privateConstructorUsedError;
   DataType get type => throw _privateConstructorUsedError;
 
+  /// Serializes this ValueType to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ValueType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ValueTypeCopyWith<ValueType> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +51,8 @@ class _$ValueTypeCopyWithImpl<$Res, $Val extends ValueType>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ValueType
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -85,6 +91,8 @@ class __$$ValueTypeImplCopyWithImpl<$Res>
       _$ValueTypeImpl _value, $Res Function(_$ValueTypeImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ValueType
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -126,11 +134,13 @@ class _$ValueTypeImpl extends _ValueType {
             (identical(other.type, type) || other.type == type));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, data, type);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ValueType
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ValueTypeImplCopyWith<_$ValueTypeImpl> get copyWith =>
@@ -157,8 +167,11 @@ abstract class _ValueType extends ValueType {
   String get data;
   @override
   DataType get type;
+
+  /// Create a copy of ValueType
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ValueTypeImplCopyWith<_$ValueTypeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -174,8 +187,12 @@ mixin _$ValueTypeWrapper {
   bool get visible => throw _privateConstructorUsedError;
   String get displayName => throw _privateConstructorUsedError;
 
+  /// Serializes this ValueTypeWrapper to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ValueTypeWrapper
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ValueTypeWrapperCopyWith<ValueTypeWrapper> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -204,6 +221,8 @@ class _$ValueTypeWrapperCopyWithImpl<$Res, $Val extends ValueTypeWrapper>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ValueTypeWrapper
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -227,6 +246,8 @@ class _$ValueTypeWrapperCopyWithImpl<$Res, $Val extends ValueTypeWrapper>
     ) as $Val);
   }
 
+  /// Create a copy of ValueTypeWrapper
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ValueTypeCopyWith<$Res> get valueType {
@@ -261,6 +282,8 @@ class __$$ValueTypeWrapperImplCopyWithImpl<$Res>
       $Res Function(_$ValueTypeWrapperImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ValueTypeWrapper
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -319,11 +342,13 @@ class _$ValueTypeWrapperImpl extends _ValueTypeWrapper {
                 other.displayName == displayName));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, valueType, visible, displayName);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ValueTypeWrapper
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ValueTypeWrapperImplCopyWith<_$ValueTypeWrapperImpl> get copyWith =>
@@ -355,8 +380,11 @@ abstract class _ValueTypeWrapper extends ValueTypeWrapper {
   bool get visible;
   @override
   String get displayName;
+
+  /// Create a copy of ValueTypeWrapper
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ValueTypeWrapperImplCopyWith<_$ValueTypeWrapperImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

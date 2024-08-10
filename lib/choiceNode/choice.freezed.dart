@@ -19,7 +19,9 @@ mixin _$SelectInfo {
   Pos get pos => throw _privateConstructorUsedError;
   int get select => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SelectInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SelectInfoCopyWith<SelectInfo> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,6 +47,8 @@ class _$SelectInfoCopyWithImpl<$Res, $Val extends SelectInfo>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SelectInfo
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -63,6 +67,8 @@ class _$SelectInfoCopyWithImpl<$Res, $Val extends SelectInfo>
     ) as $Val);
   }
 
+  /// Create a copy of SelectInfo
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PosCopyWith<$Res> get pos {
@@ -94,6 +100,8 @@ class __$$SelectInfoImplCopyWithImpl<$Res>
       _$SelectInfoImpl _value, $Res Function(_$SelectInfoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SelectInfo
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -140,7 +148,9 @@ class _$SelectInfoImpl implements _SelectInfo {
   @override
   int get hashCode => Object.hash(runtimeType, pos, select);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SelectInfo
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SelectInfoImplCopyWith<_$SelectInfoImpl> get copyWith =>
@@ -155,8 +165,11 @@ abstract class _SelectInfo implements SelectInfo {
   Pos get pos;
   @override
   int get select;
+
+  /// Create a copy of SelectInfo
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SelectInfoImplCopyWith<_$SelectInfoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -170,8 +183,12 @@ mixin _$SizeData {
   int get width => throw _privateConstructorUsedError;
   Pos? get pos => throw _privateConstructorUsedError;
 
+  /// Serializes this SizeData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SizeData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SizeDataCopyWith<SizeData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -196,6 +213,8 @@ class _$SizeDataCopyWithImpl<$Res, $Val extends SizeData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SizeData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -214,6 +233,8 @@ class _$SizeDataCopyWithImpl<$Res, $Val extends SizeData>
     ) as $Val);
   }
 
+  /// Create a copy of SizeData
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PosCopyWith<$Res>? get pos {
@@ -249,6 +270,8 @@ class __$$SizeDataImplCopyWithImpl<$Res>
       _$SizeDataImpl _value, $Res Function(_$SizeDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SizeData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -295,11 +318,13 @@ class _$SizeDataImpl implements _SizeData {
             (identical(other.pos, pos) || other.pos == pos));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, width, pos);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SizeData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SizeDataImplCopyWith<_$SizeDataImpl> get copyWith =>
@@ -324,8 +349,11 @@ abstract class _SizeData implements SizeData {
   int get width;
   @override
   Pos? get pos;
+
+  /// Create a copy of SizeData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SizeDataImplCopyWith<_$SizeDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

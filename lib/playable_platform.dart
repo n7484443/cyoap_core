@@ -107,6 +107,20 @@ class PlayablePlatform {
     choicePage.generateParser();
   }
 
+  bool checkIsSelected(ChoiceNode choice, bool checkResult) {
+    if (choice.isOpen() &&
+        choice.isSelectableMode &&
+        choice.select > 0 &&
+        (!checkResult || !choice.choiceNodeOption.hideAsResult)) {
+      return true;
+    }
+    if (choice.choiceNodeMode == ChoiceNodeMode.unSelectableMode &&
+        (!checkResult || choice.choiceNodeOption.showAsResult)) {
+      return true;
+    }
+    return false;
+  }
+
   List<(Pos, int)> get selectedPos {
     List<(Pos, int)> selectedPos = [];
     for (var line in choicePage.choiceLines) {
@@ -115,18 +129,40 @@ class PlayablePlatform {
           if (node is! ChoiceNode) {
             return;
           }
-          if (node.isOpen() &&
-              node.isSelectableMode &&
-              node.select > 0 &&
-              !node.choiceNodeOption.hideAsResult) {
-            selectedPos.add((node.pos, node.select));
-          } else if (node.choiceNodeMode == ChoiceNodeMode.unSelectableMode &&
-              node.choiceNodeOption.showAsResult) {
+          if (checkIsSelected(node, false)) {
             selectedPos.add((node.pos, node.select));
           }
         });
       }
     }
+    return selectedPos;
+  }
+
+  List<List<List<int>>> selectedResult(bool separateChildren) {
+    List<List<List<int>>> selectedPos =
+        List.generate(choicePage.choiceLines.length, (i) => List<List<int>>.empty(growable: true));
+
+    for (var y = 0; y < choicePage.choiceLines.length; y++) {
+      var line = choicePage.choiceLines[y];
+      for (var choice in line.children) {
+        ChoiceNode choiceNode = choice as ChoiceNode;
+        if (separateChildren) {
+          choiceNode.recursiveFunction((node) {
+            if (node is! ChoiceNode) {
+              return;
+            }
+            if (checkIsSelected(node, true)) {
+              selectedPos[y].add(node.pos.data);
+            }
+          });
+        } else {
+          if (checkIsSelected(choiceNode, true)) {
+            selectedPos[y].add(choiceNode.pos.data);
+          }
+        }
+      }
+    }
+    selectedPos = selectedPos.where((e) => e.isNotEmpty).toList();
     return selectedPos;
   }
 
@@ -143,5 +179,9 @@ class PlayablePlatform {
   String getSelectedPosInternal() {
     return jsonEncode(
         selectedPos.map((e) => {'pos': e.$1.data, 'select': e.$2}).toList());
+  }
+
+  String getSelectedResultInternal(bool separateChildren) {
+    return jsonEncode(selectedResult(separateChildren));
   }
 }

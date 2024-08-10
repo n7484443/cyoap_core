@@ -31,8 +31,12 @@ mixin _$PlatformDesignSetting {
       throw _privateConstructorUsedError;
   double get marginVertical => throw _privateConstructorUsedError;
 
+  /// Serializes this PlatformDesignSetting to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PlatformDesignSetting
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PlatformDesignSettingCopyWith<PlatformDesignSetting> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -66,6 +70,8 @@ class _$PlatformDesignSettingCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PlatformDesignSetting
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -109,6 +115,8 @@ class _$PlatformDesignSettingCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of PlatformDesignSetting
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ColorOptionCopyWith<$Res> get backgroundColorOption {
@@ -149,6 +157,8 @@ class __$$PlatformDesignSettingImplCopyWithImpl<$Res>
       $Res Function(_$PlatformDesignSettingImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PlatformDesignSetting
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -276,7 +286,7 @@ class _$PlatformDesignSettingImpl implements _PlatformDesignSetting {
                 other.marginVertical == marginVertical));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -288,7 +298,9 @@ class _$PlatformDesignSettingImpl implements _PlatformDesignSetting {
       const DeepCollectionEquality().hash(_choiceNodePresetList),
       marginVertical);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PlatformDesignSetting
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PlatformDesignSettingImplCopyWith<_$PlatformDesignSettingImpl>
@@ -330,8 +342,11 @@ abstract class _PlatformDesignSetting implements PlatformDesignSetting {
   List<ChoiceNodeDesignPreset> get choiceNodePresetList;
   @override
   double get marginVertical;
+
+  /// Create a copy of PlatformDesignSetting
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PlatformDesignSettingImplCopyWith<_$PlatformDesignSettingImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

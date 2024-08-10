@@ -28,8 +28,12 @@ mixin _$ChoiceLineDesignPreset {
   ChoiceLineAlignment? get alignment => throw _privateConstructorUsedError;
   int? get maxChildrenPerRow => throw _privateConstructorUsedError;
 
+  /// Serializes this ChoiceLineDesignPreset to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ChoiceLineDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ChoiceLineDesignPresetCopyWith<ChoiceLineDesignPreset> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -62,6 +66,8 @@ class _$ChoiceLineDesignPresetCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ChoiceLineDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -100,6 +106,8 @@ class _$ChoiceLineDesignPresetCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of ChoiceLineDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ColorOptionCopyWith<$Res>? get backgroundColorOption {
@@ -144,6 +152,8 @@ class __$$ChoiceLineDesignPresetImplCopyWithImpl<$Res>
       $Res Function(_$ChoiceLineDesignPresetImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ChoiceLineDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -239,12 +249,14 @@ class _$ChoiceLineDesignPresetImpl extends _ChoiceLineDesignPreset {
                 other.maxChildrenPerRow == maxChildrenPerRow));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, name, backgroundColorOption,
       backgroundImageString, alwaysVisibleLine, alignment, maxChildrenPerRow);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChoiceLineDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChoiceLineDesignPresetImplCopyWith<_$ChoiceLineDesignPresetImpl>
@@ -284,8 +296,11 @@ abstract class _ChoiceLineDesignPreset extends ChoiceLineDesignPreset {
   ChoiceLineAlignment? get alignment;
   @override
   int? get maxChildrenPerRow;
+
+  /// Create a copy of ChoiceLineDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChoiceLineDesignPresetImplCopyWith<_$ChoiceLineDesignPresetImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
