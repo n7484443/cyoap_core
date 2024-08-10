@@ -100,10 +100,11 @@ mixin Choice {
 
   void updateStatus();
 
-  void recursiveFunction(Function(Choice) function) {
-    function(this);
-    for (var child in children) {
-      child.recursiveFunction(function);
+  void recursiveFunction(bool? Function(Choice) function) {
+    if(function(this) ?? true){
+      for (var child in children) {
+        child.recursiveFunction(function);
+      }
     }
   }
 

@@ -28,6 +28,7 @@ void main() {
   _setSelectedPos = allowInterop(_setSelectedPosInternal);
 
   _getSelectedResult = allowInterop(_getSelectedResultInternal);
+  _checkSelectedResult = allowInterop(_checkSelectedResultInternal);
 
   _lineLength = allowInterop(_lineLengthInternal);
 
@@ -294,6 +295,16 @@ external set _getSelectedResult(String Function(bool separateChildren) f);
 @JS()
 String _getSelectedResultInternal(bool separateChildren) {
   return platform.getSelectedResultInternal(separateChildren);
+}
+
+@JS('checkSelectedResult')
+external set _checkSelectedResult(bool Function(List<dynamic> pos) f);
+
+@JS()
+bool _checkSelectedResultInternal(List<dynamic> pos) {
+  Pos innerPos = listToPos(pos);
+  var choice = platform.getChoice(innerPos) as ChoiceNode;
+  return platform.checkIsSelected(choice, true);
 }
 
 @JS('getErrorLog')

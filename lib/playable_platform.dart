@@ -127,11 +127,12 @@ class PlayablePlatform {
       for (var choice in line.children) {
         (choice as ChoiceNode).recursiveFunction((node) {
           if (node is! ChoiceNode) {
-            return;
+            return null;
           }
           if (checkIsSelected(node, false)) {
             selectedPos.add((node.pos, node.select));
           }
+          return null;
         });
       }
     }
@@ -149,16 +150,24 @@ class PlayablePlatform {
         if (separateChildren) {
           choiceNode.recursiveFunction((node) {
             if (node is! ChoiceNode) {
-              return;
+              return null;
             }
             if (checkIsSelected(node, true)) {
               selectedPos[y].add(node.pos.data);
             }
+            return null;
           });
         } else {
-          if (checkIsSelected(choiceNode, true)) {
-            selectedPos[y].add(choiceNode.pos.data);
-          }
+          choiceNode.recursiveFunction((node) {
+            if (node is! ChoiceNode) {
+              return null;
+            }
+            if (checkIsSelected(node, true)) {
+              selectedPos[y].add(node.pos.data);
+              return false;
+            }
+            return null;
+          });
         }
       }
     }
