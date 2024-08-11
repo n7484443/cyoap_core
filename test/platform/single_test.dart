@@ -150,40 +150,29 @@ void main() {
     var ins = VariableDataBase();
     var platform = PlayablePlatform();
     platform.choicePage.addChildren(ChoiceLine());
+    var maximumStatus = 3;
     var choiceNode = ChoiceNode.empty()
       ..title = "testNode"
       ..choiceNodeMode = ChoiceNodeMode.multiSelect
-      ..maximumStatus = 2;
+      ..maximumStatus = maximumStatus;
     platform.choicePage.choiceLines[0].addChildren(choiceNode);
     platform.updateStatus();
 
     expect(ins.getValueType("testNode")?.dataUnzip, false);
     expect(ins.getValueType("testNode:multi")?.dataUnzip, 0);
 
-    choiceNode.selectNode(1);
-    platform.updateStatus();
-    expect(ins.getValueType("testNode")?.dataUnzip, true);
-    expect(ins.getValueType("testNode:multi")?.dataUnzip, 1);
-
-    choiceNode.selectNode(1);
-    platform.updateStatus();
-    expect(ins.getValueType("testNode")?.dataUnzip, true);
-    expect(ins.getValueType("testNode:multi")?.dataUnzip, 2);
-
-    choiceNode.selectNode(1);
-    platform.updateStatus();
-    expect(ins.getValueType("testNode")?.dataUnzip, true);
-    expect(ins.getValueType("testNode:multi")?.dataUnzip, 2);
-
-    choiceNode.selectNode(-1);
-    platform.updateStatus();
-    expect(ins.getValueType("testNode")?.dataUnzip, true);
-    expect(ins.getValueType("testNode:multi")?.dataUnzip, 1);
-
-    choiceNode.selectNode(-1);
-    platform.updateStatus();
-    expect(ins.getValueType("testNode")?.dataUnzip, false);
-    expect(ins.getValueType("testNode:multi")?.dataUnzip, 0);
+    for(int i = 0; i <= maximumStatus; i++){
+      choiceNode.selectNode(i);
+      platform.updateStatus();
+      expect(ins.getValueType("testNode")?.dataUnzip, i != 0);
+      expect(ins.getValueType("testNode:multi")?.dataUnzip, i.clamp(0, maximumStatus));
+    }
+    for(int i = maximumStatus; i < 0; i--){
+      choiceNode.selectNode(i);
+      platform.updateStatus();
+      expect(ins.getValueType("testNode")?.dataUnzip, i != 0);
+      expect(ins.getValueType("testNode:multi")?.dataUnzip, i.clamp(0, maximumStatus));
+    }
   });
 
   test('defaultModeTest', () {

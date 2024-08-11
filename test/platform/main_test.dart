@@ -90,7 +90,7 @@ void main() {
 
     platform.updateStatus();
     for (int i = 0; i < 10; i++) {
-      choiceNode0.selectNode(1);
+      choiceNode0.selectNode(i+1);
       platform.updateStatus();
       if (i < 9) {
         expect(choiceNode0.contentsString, "a");

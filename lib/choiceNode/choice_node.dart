@@ -153,8 +153,7 @@ class ChoiceNode with Choice {
     var oldExecute = isExecute();
     switch (choiceNodeMode) {
       case ChoiceNodeMode.multiSelect:
-        select += n;
-        select = select.clamp(0, maximumStatus);
+        select = n.clamp(0, maximumStatus);
         break;
       case ChoiceNodeMode.randomMode:
         if (select == 0 && maximumStatus >= 0) {

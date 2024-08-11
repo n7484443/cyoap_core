@@ -25,7 +25,7 @@ void main() {
     platform.updateStatus();
     expect(ins.getValueType('pt_b')?.dataUnzip, 50);
     for (int i = 1; i < choiceNode0.maximumStatus; i++) {
-      choiceNode0.selectNode(1);
+      choiceNode0.selectNode(i);
       platform.updateStatus();
       expect(ins.getValueType('pt_b')?.dataUnzip, 50 - (4 + i));
     }
