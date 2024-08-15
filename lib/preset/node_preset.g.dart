@@ -33,6 +33,27 @@ const _$OutlineTypeEnumMap = {
   OutlineType.dashed: 'dashed',
 };
 
+_$SliderOptionImpl _$$SliderOptionImplFromJson(Map<String, dynamic> json) =>
+    _$SliderOptionImpl(
+      sliderColor: json['sliderColor'] == null
+          ? const ColorOption()
+          : ColorOption.fromJson(json['sliderColor'] as Map<String, dynamic>),
+      sliderThumbShape: $enumDecodeNullable(
+              _$SliderThumbShapeEnumMap, json['sliderThumbShape']) ??
+          SliderThumbShape.circle,
+    );
+
+Map<String, dynamic> _$$SliderOptionImplToJson(_$SliderOptionImpl instance) =>
+    <String, dynamic>{
+      'sliderColor': instance.sliderColor.toJson(),
+      'sliderThumbShape': _$SliderThumbShapeEnumMap[instance.sliderThumbShape]!,
+    };
+
+const _$SliderThumbShapeEnumMap = {
+  SliderThumbShape.circle: 'circle',
+  SliderThumbShape.line: 'line',
+};
+
 _$GradientDataImpl _$$GradientDataImplFromJson(Map<String, dynamic> json) =>
     _$GradientDataImpl(
       gradientPos: _$recordConvert(

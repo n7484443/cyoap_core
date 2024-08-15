@@ -159,8 +159,7 @@ class __$$OutlineOptionImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class _$OutlineOptionImpl implements _OutlineOption {
   const _$OutlineOptionImpl(
       {this.outlineType = OutlineType.solid,
@@ -249,6 +248,194 @@ abstract class _OutlineOption implements OutlineOption {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OutlineOptionImplCopyWith<_$OutlineOptionImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+SliderOption _$SliderOptionFromJson(Map<String, dynamic> json) {
+  return _SliderOption.fromJson(json);
+}
+
+/// @nodoc
+mixin _$SliderOption {
+  ColorOption get sliderColor => throw _privateConstructorUsedError;
+  SliderThumbShape get sliderThumbShape => throw _privateConstructorUsedError;
+
+  /// Serializes this SliderOption to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of SliderOption
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $SliderOptionCopyWith<SliderOption> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SliderOptionCopyWith<$Res> {
+  factory $SliderOptionCopyWith(
+          SliderOption value, $Res Function(SliderOption) then) =
+      _$SliderOptionCopyWithImpl<$Res, SliderOption>;
+  @useResult
+  $Res call({ColorOption sliderColor, SliderThumbShape sliderThumbShape});
+
+  $ColorOptionCopyWith<$Res> get sliderColor;
+}
+
+/// @nodoc
+class _$SliderOptionCopyWithImpl<$Res, $Val extends SliderOption>
+    implements $SliderOptionCopyWith<$Res> {
+  _$SliderOptionCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of SliderOption
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? sliderColor = null,
+    Object? sliderThumbShape = null,
+  }) {
+    return _then(_value.copyWith(
+      sliderColor: null == sliderColor
+          ? _value.sliderColor
+          : sliderColor // ignore: cast_nullable_to_non_nullable
+              as ColorOption,
+      sliderThumbShape: null == sliderThumbShape
+          ? _value.sliderThumbShape
+          : sliderThumbShape // ignore: cast_nullable_to_non_nullable
+              as SliderThumbShape,
+    ) as $Val);
+  }
+
+  /// Create a copy of SliderOption
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ColorOptionCopyWith<$Res> get sliderColor {
+    return $ColorOptionCopyWith<$Res>(_value.sliderColor, (value) {
+      return _then(_value.copyWith(sliderColor: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$SliderOptionImplCopyWith<$Res>
+    implements $SliderOptionCopyWith<$Res> {
+  factory _$$SliderOptionImplCopyWith(
+          _$SliderOptionImpl value, $Res Function(_$SliderOptionImpl) then) =
+      __$$SliderOptionImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({ColorOption sliderColor, SliderThumbShape sliderThumbShape});
+
+  @override
+  $ColorOptionCopyWith<$Res> get sliderColor;
+}
+
+/// @nodoc
+class __$$SliderOptionImplCopyWithImpl<$Res>
+    extends _$SliderOptionCopyWithImpl<$Res, _$SliderOptionImpl>
+    implements _$$SliderOptionImplCopyWith<$Res> {
+  __$$SliderOptionImplCopyWithImpl(
+      _$SliderOptionImpl _value, $Res Function(_$SliderOptionImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of SliderOption
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? sliderColor = null,
+    Object? sliderThumbShape = null,
+  }) {
+    return _then(_$SliderOptionImpl(
+      sliderColor: null == sliderColor
+          ? _value.sliderColor
+          : sliderColor // ignore: cast_nullable_to_non_nullable
+              as ColorOption,
+      sliderThumbShape: null == sliderThumbShape
+          ? _value.sliderThumbShape
+          : sliderThumbShape // ignore: cast_nullable_to_non_nullable
+              as SliderThumbShape,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$SliderOptionImpl implements _SliderOption {
+  const _$SliderOptionImpl(
+      {this.sliderColor = const ColorOption(),
+      this.sliderThumbShape = SliderThumbShape.circle});
+
+  factory _$SliderOptionImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SliderOptionImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final ColorOption sliderColor;
+  @override
+  @JsonKey()
+  final SliderThumbShape sliderThumbShape;
+
+  @override
+  String toString() {
+    return 'SliderOption(sliderColor: $sliderColor, sliderThumbShape: $sliderThumbShape)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SliderOptionImpl &&
+            (identical(other.sliderColor, sliderColor) ||
+                other.sliderColor == sliderColor) &&
+            (identical(other.sliderThumbShape, sliderThumbShape) ||
+                other.sliderThumbShape == sliderThumbShape));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, sliderColor, sliderThumbShape);
+
+  /// Create a copy of SliderOption
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SliderOptionImplCopyWith<_$SliderOptionImpl> get copyWith =>
+      __$$SliderOptionImplCopyWithImpl<_$SliderOptionImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SliderOptionImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _SliderOption implements SliderOption {
+  const factory _SliderOption(
+      {final ColorOption sliderColor,
+      final SliderThumbShape sliderThumbShape}) = _$SliderOptionImpl;
+
+  factory _SliderOption.fromJson(Map<String, dynamic> json) =
+      _$SliderOptionImpl.fromJson;
+
+  @override
+  ColorOption get sliderColor;
+  @override
+  SliderThumbShape get sliderThumbShape;
+
+  /// Create a copy of SliderOption
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SliderOptionImplCopyWith<_$SliderOptionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -352,8 +539,7 @@ class __$$GradientDataImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class _$GradientDataImpl implements _GradientData {
   const _$GradientDataImpl(
       {this.gradientPos = const (0.5, 0.5), this.color = 0xFFFFFFFF});
@@ -554,8 +740,7 @@ class __$$ColorOptionImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class _$ColorOptionImpl implements _ColorOption {
   const _$ColorOptionImpl(
       {this.colorType = ColorType.solid,
@@ -1025,8 +1210,7 @@ class __$$ChoiceNodeDesignPresetImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
   const _$ChoiceNodeDesignPresetImpl(
       {this.name,

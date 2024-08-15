@@ -204,8 +204,7 @@ class __$$PlatformDesignSettingImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class _$PlatformDesignSettingImpl implements _PlatformDesignSetting {
   _$PlatformDesignSettingImpl(
       {this.variableFont = "notoSans",

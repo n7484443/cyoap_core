@@ -178,8 +178,7 @@ class __$$ChoiceLineOptionImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class _$ChoiceLineOptionImpl implements _ChoiceLineOption {
   const _$ChoiceLineOptionImpl(
       {this.maxSelect = -1,

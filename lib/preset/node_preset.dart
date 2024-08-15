@@ -18,7 +18,6 @@ enum OutlineType {
 
 @freezed
 class OutlineOption with _$OutlineOption {
-  @JsonSerializable(explicitToJson: true)
   const factory OutlineOption({
     @Default(OutlineType.solid) OutlineType outlineType,
     @Default(ColorOption()) ColorOption outlineColor,
@@ -28,6 +27,22 @@ class OutlineOption with _$OutlineOption {
 
   factory OutlineOption.fromJson(Map<String, dynamic> json) =>
       _$OutlineOptionFromJson(json);
+}
+
+enum SliderThumbShape{
+  circle,
+  line
+}
+
+@freezed
+class SliderOption with _$SliderOption{
+  const factory SliderOption({
+    @Default(ColorOption()) ColorOption sliderColor,
+    @Default(SliderThumbShape.circle) SliderThumbShape sliderThumbShape,
+  }) = _SliderOption;
+
+  factory SliderOption.fromJson(Map<String, dynamic> json) =>
+      _$SliderOptionFromJson(json);
 }
 
 enum ColorType {
@@ -51,7 +66,6 @@ enum GradientType {
 
 @freezed
 class GradientData with _$GradientData {
-  @JsonSerializable(explicitToJson: true)
   const factory GradientData({
     @Default((0.5, 0.5)) (double, double) gradientPos,
     @Default(0xFFFFFFFF) int color,
@@ -63,7 +77,6 @@ class GradientData with _$GradientData {
 
 @Freezed(makeCollectionsUnmodifiable: false)
 class ColorOption with _$ColorOption {
-  @JsonSerializable(explicitToJson: true)
   const factory ColorOption({
     @Default(ColorType.solid) ColorType colorType,
     @Default(0xFF40C4FF) int color,
@@ -79,7 +92,6 @@ class ColorOption with _$ColorOption {
 
 @freezed
 class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
-  @JsonSerializable(explicitToJson: true)
   const factory ChoiceNodeDesignPreset({
     String? name,
     @Default(true) bool? titlePosition,

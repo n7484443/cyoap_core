@@ -18,7 +18,6 @@ enum ChoiceLineAlignment {
 
 @freezed
 class ChoiceLineDesignPreset with _$ChoiceLineDesignPreset {
-  @JsonSerializable(explicitToJson: true)
   const factory ChoiceLineDesignPreset({
     String? name,
     @Default(ColorOption(color: 0)) ColorOption? backgroundColorOption,

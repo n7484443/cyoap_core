@@ -194,8 +194,7 @@ class __$$ChoiceLineDesignPresetImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class _$ChoiceLineDesignPresetImpl extends _ChoiceLineDesignPreset {
   const _$ChoiceLineDesignPresetImpl(
       {this.name,

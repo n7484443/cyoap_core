@@ -12,7 +12,6 @@ part 'choice_line.g.dart';
 
 @freezed
 class ChoiceLineOption with _$ChoiceLineOption {
-  @JsonSerializable(explicitToJson: true)
   const factory ChoiceLineOption({
     @Default(-1) int maxSelect,
     @Default(false) bool enableCancelFeature,
@@ -115,6 +114,7 @@ class ChoiceLine with Choice {
         if (current.choiceNodeMode == ChoiceNodeMode.onlyCode) {
           current.execute();
         }
+        return null;
       });
     }
     // 선택 가능 여부 업데이트
@@ -140,6 +140,7 @@ class ChoiceLine with Choice {
     for (var child in children) {
       child.recursiveFunction((current) {
         (current as ChoiceNode).updateCurrentContentsString();
+        return null;
       });
     }
     selectOrder = nextSelectOrder;
@@ -153,6 +154,7 @@ class ChoiceLine with Choice {
             addOrder: selectOrder,
             order: order,
             lineCanAcceptMore: selectableStatus.isOpen);
+        return null;
       });
     }
   }

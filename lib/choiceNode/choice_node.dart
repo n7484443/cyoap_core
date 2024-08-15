@@ -26,7 +26,6 @@ enum ChoiceNodeMode {
 
 @freezed
 class ChoiceNodeOption with _$ChoiceNodeOption {
-  @JsonSerializable(explicitToJson: true)
   factory ChoiceNodeOption({
     @Default(false) bool isOccupySpace,
     @Default(false) bool hideAsResult,

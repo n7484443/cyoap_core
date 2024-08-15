@@ -170,8 +170,7 @@ class __$$ChoiceNodeDesignImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class _$ChoiceNodeDesignImpl implements _ChoiceNodeDesign {
   _$ChoiceNodeDesignImpl(
       {this.isOccupySpace = false,

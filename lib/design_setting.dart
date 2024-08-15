@@ -20,7 +20,6 @@ enum ImageAttribute {
 
 @freezed
 class PlatformDesignSetting with _$PlatformDesignSetting {
-  @JsonSerializable(explicitToJson: true)
   factory PlatformDesignSetting({
     @Default("notoSans") String variableFont,
     String? backgroundImage,
