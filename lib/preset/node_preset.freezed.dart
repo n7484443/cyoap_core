@@ -860,6 +860,7 @@ mixin _$ChoiceNodeDesignPreset {
   ColorOption? get defaultColorOption => throw _privateConstructorUsedError;
   bool? get selectColorEnable => throw _privateConstructorUsedError;
   ColorOption? get selectColorOption => throw _privateConstructorUsedError;
+  SliderOption? get sliderOption => throw _privateConstructorUsedError;
 
   /// Serializes this ChoiceNodeDesignPreset to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -894,12 +895,14 @@ abstract class $ChoiceNodeDesignPresetCopyWith<$Res> {
       OutlineOption? selectOutlineOption,
       ColorOption? defaultColorOption,
       bool? selectColorEnable,
-      ColorOption? selectColorOption});
+      ColorOption? selectColorOption,
+      SliderOption? sliderOption});
 
   $OutlineOptionCopyWith<$Res>? get defaultOutlineOption;
   $OutlineOptionCopyWith<$Res>? get selectOutlineOption;
   $ColorOptionCopyWith<$Res>? get defaultColorOption;
   $ColorOptionCopyWith<$Res>? get selectColorOption;
+  $SliderOptionCopyWith<$Res>? get sliderOption;
 }
 
 /// @nodoc
@@ -935,6 +938,7 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
     Object? defaultColorOption = freezed,
     Object? selectColorEnable = freezed,
     Object? selectColorOption = freezed,
+    Object? sliderOption = freezed,
   }) {
     return _then(_value.copyWith(
       name: freezed == name
@@ -1005,6 +1009,10 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
           ? _value.selectColorOption
           : selectColorOption // ignore: cast_nullable_to_non_nullable
               as ColorOption?,
+      sliderOption: freezed == sliderOption
+          ? _value.sliderOption
+          : sliderOption // ignore: cast_nullable_to_non_nullable
+              as SliderOption?,
     ) as $Val);
   }
 
@@ -1063,6 +1071,20 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
       return _then(_value.copyWith(selectColorOption: value) as $Val);
     });
   }
+
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SliderOptionCopyWith<$Res>? get sliderOption {
+    if (_value.sliderOption == null) {
+      return null;
+    }
+
+    return $SliderOptionCopyWith<$Res>(_value.sliderOption!, (value) {
+      return _then(_value.copyWith(sliderOption: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -1091,7 +1113,8 @@ abstract class _$$ChoiceNodeDesignPresetImplCopyWith<$Res>
       OutlineOption? selectOutlineOption,
       ColorOption? defaultColorOption,
       bool? selectColorEnable,
-      ColorOption? selectColorOption});
+      ColorOption? selectColorOption,
+      SliderOption? sliderOption});
 
   @override
   $OutlineOptionCopyWith<$Res>? get defaultOutlineOption;
@@ -1101,6 +1124,8 @@ abstract class _$$ChoiceNodeDesignPresetImplCopyWith<$Res>
   $ColorOptionCopyWith<$Res>? get defaultColorOption;
   @override
   $ColorOptionCopyWith<$Res>? get selectColorOption;
+  @override
+  $SliderOptionCopyWith<$Res>? get sliderOption;
 }
 
 /// @nodoc
@@ -1135,6 +1160,7 @@ class __$$ChoiceNodeDesignPresetImplCopyWithImpl<$Res>
     Object? defaultColorOption = freezed,
     Object? selectColorEnable = freezed,
     Object? selectColorOption = freezed,
+    Object? sliderOption = freezed,
   }) {
     return _then(_$ChoiceNodeDesignPresetImpl(
       name: freezed == name
@@ -1205,6 +1231,10 @@ class __$$ChoiceNodeDesignPresetImplCopyWithImpl<$Res>
           ? _value.selectColorOption
           : selectColorOption // ignore: cast_nullable_to_non_nullable
               as ColorOption?,
+      sliderOption: freezed == sliderOption
+          ? _value.sliderOption
+          : sliderOption // ignore: cast_nullable_to_non_nullable
+              as SliderOption?,
     ));
   }
 }
@@ -1229,7 +1259,8 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
       this.selectOutlineOption = const OutlineOption(),
       this.defaultColorOption = const ColorOption(),
       this.selectColorEnable = false,
-      this.selectColorOption = const ColorOption()})
+      this.selectColorOption = const ColorOption(),
+      this.sliderOption = const SliderOption()})
       : _roundEdge = roundEdge,
         _paddingAround = paddingAround,
         super._();
@@ -1305,10 +1336,13 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
   @override
   @JsonKey()
   final ColorOption? selectColorOption;
+  @override
+  @JsonKey()
+  final SliderOption? sliderOption;
 
   @override
   String toString() {
-    return 'ChoiceNodeDesignPreset(name: $name, titlePosition: $titlePosition, elevation: $elevation, roundEdge: $roundEdge, paddingAround: $paddingAround, maximizingImage: $maximizingImage, hideTitle: $hideTitle, imagePosition: $imagePosition, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont, defaultOutlineOption: $defaultOutlineOption, selectOutlineEnable: $selectOutlineEnable, selectOutlineOption: $selectOutlineOption, defaultColorOption: $defaultColorOption, selectColorEnable: $selectColorEnable, selectColorOption: $selectColorOption)';
+    return 'ChoiceNodeDesignPreset(name: $name, titlePosition: $titlePosition, elevation: $elevation, roundEdge: $roundEdge, paddingAround: $paddingAround, maximizingImage: $maximizingImage, hideTitle: $hideTitle, imagePosition: $imagePosition, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont, defaultOutlineOption: $defaultOutlineOption, selectOutlineEnable: $selectOutlineEnable, selectOutlineOption: $selectOutlineOption, defaultColorOption: $defaultColorOption, selectColorEnable: $selectColorEnable, selectColorOption: $selectColorOption, sliderOption: $sliderOption)';
   }
 
   @override
@@ -1348,7 +1382,9 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
             (identical(other.selectColorEnable, selectColorEnable) ||
                 other.selectColorEnable == selectColorEnable) &&
             (identical(other.selectColorOption, selectColorOption) ||
-                other.selectColorOption == selectColorOption));
+                other.selectColorOption == selectColorOption) &&
+            (identical(other.sliderOption, sliderOption) ||
+                other.sliderOption == sliderOption));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -1371,7 +1407,8 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
       selectOutlineOption,
       defaultColorOption,
       selectColorEnable,
-      selectColorOption);
+      selectColorOption,
+      sliderOption);
 
   /// Create a copy of ChoiceNodeDesignPreset
   /// with the given fields replaced by the non-null parameter values.
@@ -1408,7 +1445,8 @@ abstract class _ChoiceNodeDesignPreset extends ChoiceNodeDesignPreset {
       final OutlineOption? selectOutlineOption,
       final ColorOption? defaultColorOption,
       final bool? selectColorEnable,
-      final ColorOption? selectColorOption}) = _$ChoiceNodeDesignPresetImpl;
+      final ColorOption? selectColorOption,
+      final SliderOption? sliderOption}) = _$ChoiceNodeDesignPresetImpl;
   const _ChoiceNodeDesignPreset._() : super._();
 
   factory _ChoiceNodeDesignPreset.fromJson(Map<String, dynamic> json) =
@@ -1448,6 +1486,8 @@ abstract class _ChoiceNodeDesignPreset extends ChoiceNodeDesignPreset {
   bool? get selectColorEnable;
   @override
   ColorOption? get selectColorOption;
+  @override
+  SliderOption? get sliderOption;
 
   /// Create a copy of ChoiceNodeDesignPreset
   /// with the given fields replaced by the non-null parameter values.

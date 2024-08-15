@@ -156,6 +156,9 @@ _$ChoiceNodeDesignPresetImpl _$$ChoiceNodeDesignPresetImplFromJson(
           ? const ColorOption()
           : ColorOption.fromJson(
               json['selectColorOption'] as Map<String, dynamic>),
+      sliderOption: json['sliderOption'] == null
+          ? const SliderOption()
+          : SliderOption.fromJson(json['sliderOption'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$ChoiceNodeDesignPresetImplToJson(
@@ -178,4 +181,5 @@ Map<String, dynamic> _$$ChoiceNodeDesignPresetImplToJson(
       'defaultColorOption': instance.defaultColorOption?.toJson(),
       'selectColorEnable': instance.selectColorEnable,
       'selectColorOption': instance.selectColorOption?.toJson(),
+      'sliderOption': instance.sliderOption?.toJson(),
     };

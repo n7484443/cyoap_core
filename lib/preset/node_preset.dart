@@ -2,6 +2,7 @@ import 'package:cyoap_core/i18n.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'node_preset.freezed.dart';
+
 part 'node_preset.g.dart';
 
 enum OutlineType {
@@ -29,13 +30,10 @@ class OutlineOption with _$OutlineOption {
       _$OutlineOptionFromJson(json);
 }
 
-enum SliderThumbShape{
-  circle,
-  line
-}
+enum SliderThumbShape { circle, line }
 
 @freezed
-class SliderOption with _$SliderOption{
+class SliderOption with _$SliderOption {
   const factory SliderOption({
     @Default(ColorOption()) ColorOption sliderColor,
     @Default(SliderThumbShape.circle) SliderThumbShape sliderThumbShape,
@@ -110,11 +108,12 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
     @Default(ColorOption()) ColorOption? defaultColorOption,
     @Default(false) bool? selectColorEnable,
     @Default(ColorOption()) ColorOption? selectColorOption,
+    @Default(SliderOption()) SliderOption? sliderOption,
   }) = _ChoiceNodeDesignPreset;
 
   const ChoiceNodeDesignPreset._();
 
-  static ChoiceNodeDesignPreset emptyPreset(){
+  static ChoiceNodeDesignPreset emptyPreset() {
     return ChoiceNodeDesignPreset(
       name: null,
       titlePosition: null,
@@ -133,10 +132,12 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
       defaultColorOption: null,
       selectColorEnable: null,
       selectColorOption: null,
+      sliderOption: null,
     );
   }
 
-  ChoiceNodeDesignPreset getPresetWithOverride(ChoiceNodeDesignPreset? override){
+  ChoiceNodeDesignPreset getPresetWithOverride(
+      ChoiceNodeDesignPreset? override) {
     return ChoiceNodeDesignPreset(
       name: override?.name ?? name,
       titlePosition: override?.titlePosition ?? titlePosition,
@@ -149,12 +150,14 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
       colorTitle: override?.colorTitle ?? colorTitle,
       titleFont: override?.titleFont ?? titleFont,
       mainFont: override?.mainFont ?? mainFont,
-      defaultOutlineOption: override?.defaultOutlineOption ?? defaultOutlineOption,
+      defaultOutlineOption:
+          override?.defaultOutlineOption ?? defaultOutlineOption,
       selectOutlineEnable: override?.selectOutlineEnable ?? selectOutlineEnable,
       selectOutlineOption: override?.selectOutlineOption ?? selectOutlineOption,
       defaultColorOption: override?.defaultColorOption ?? defaultColorOption,
       selectColorEnable: override?.selectColorEnable ?? selectColorEnable,
       selectColorOption: override?.selectColorOption ?? selectColorOption,
+      sliderOption: override?.sliderOption ?? sliderOption,
     );
   }
 
