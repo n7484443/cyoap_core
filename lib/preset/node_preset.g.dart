@@ -35,9 +35,14 @@ const _$OutlineTypeEnumMap = {
 
 _$SliderOptionImpl _$$SliderOptionImplFromJson(Map<String, dynamic> json) =>
     _$SliderOptionImpl(
-      sliderColor: json['sliderColor'] == null
+      sliderThumbColor: json['sliderThumbColor'] == null
           ? const ColorOption()
-          : ColorOption.fromJson(json['sliderColor'] as Map<String, dynamic>),
+          : ColorOption.fromJson(
+              json['sliderThumbColor'] as Map<String, dynamic>),
+      sliderTrackColor: json['sliderTrackColor'] == null
+          ? const ColorOption()
+          : ColorOption.fromJson(
+              json['sliderTrackColor'] as Map<String, dynamic>),
       sliderThumbShape: $enumDecodeNullable(
               _$SliderThumbShapeEnumMap, json['sliderThumbShape']) ??
           SliderThumbShape.circle,
@@ -45,7 +50,8 @@ _$SliderOptionImpl _$$SliderOptionImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$SliderOptionImplToJson(_$SliderOptionImpl instance) =>
     <String, dynamic>{
-      'sliderColor': instance.sliderColor.toJson(),
+      'sliderThumbColor': instance.sliderThumbColor.toJson(),
+      'sliderTrackColor': instance.sliderTrackColor.toJson(),
       'sliderThumbShape': _$SliderThumbShapeEnumMap[instance.sliderThumbShape]!,
     };
 
