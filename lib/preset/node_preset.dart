@@ -30,7 +30,15 @@ class OutlineOption with _$OutlineOption {
       _$OutlineOptionFromJson(json);
 }
 
-enum SliderThumbShape { circle, line }
+enum SliderThumbShape {
+  circle,
+  line;
+
+  @override
+  String toString() => name.i18n;
+
+  const SliderThumbShape();
+}
 
 @freezed
 class SliderOption with _$SliderOption {
@@ -82,8 +90,10 @@ class ColorOption with _$ColorOption {
     @Default(0xFF40C4FF) int color,
     @Default(GradientType.linear) GradientType gradientType,
     @Default(
-        [GradientData(gradientPos: (0, 0)), GradientData(gradientPos: (1, 1))])
-    List<GradientData> gradientData,
+        [
+          GradientData(gradientPos: (0, 0)),
+          GradientData(gradientPos: (1, 1))
+        ]) List<GradientData> gradientData,
   }) = _ColorOption;
 
   factory ColorOption.fromJson(Map<String, dynamic> json) =>
@@ -153,7 +163,7 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
       titleFont: override?.titleFont ?? titleFont,
       mainFont: override?.mainFont ?? mainFont,
       defaultOutlineOption:
-          override?.defaultOutlineOption ?? defaultOutlineOption,
+      override?.defaultOutlineOption ?? defaultOutlineOption,
       selectOutlineEnable: override?.selectOutlineEnable ?? selectOutlineEnable,
       selectOutlineOption: override?.selectOutlineOption ?? selectOutlineOption,
       defaultColorOption: override?.defaultColorOption ?? defaultColorOption,
