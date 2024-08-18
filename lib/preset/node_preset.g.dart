@@ -62,7 +62,7 @@ Map<String, dynamic> _$$SliderOptionImplToJson(_$SliderOptionImpl instance) =>
 
 const _$SliderThumbShapeEnumMap = {
   SliderThumbShape.circle: 'circle',
-  SliderThumbShape.line: 'line',
+  SliderThumbShape.thinRectangle: 'thinRectangle',
 };
 
 _$GradientDataImpl _$$GradientDataImplFromJson(Map<String, dynamic> json) =>

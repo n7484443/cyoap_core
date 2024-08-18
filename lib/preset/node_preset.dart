@@ -32,7 +32,7 @@ class OutlineOption with _$OutlineOption {
 
 enum SliderThumbShape {
   circle,
-  line;
+  thinRectangle;
 
   @override
   String toString() => name.i18n;

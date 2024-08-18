@@ -27,6 +27,9 @@ extension Localization on String {
       "String": "String",
       "bool": "Boolean(true, false)",
       "array": "Array",
+
+      "circle": "Circle",
+      "thinRectangle": "Thin Rectangle",
     },
     "ko": {
       "choice": "선택지",
@@ -53,6 +56,9 @@ extension Localization on String {
       "String": "String(문자열)",
       "bool": "bool(true|참, false|거짓)",
       "array": "array(배열)",
+      
+      "circle": "원형",
+      "thinRectangle": "얇은 직사각형",
     }
   };
 
