@@ -36,7 +36,8 @@ enum SliderThumbShape { circle, line }
 class SliderOption with _$SliderOption {
   const factory SliderOption({
     @Default(ColorOption()) ColorOption sliderThumbColor,
-    @Default(ColorOption()) ColorOption sliderTrackColor,
+    @Default(ColorOption()) ColorOption sliderTrackActiveColor,
+    @Default(ColorOption()) ColorOption sliderTrackInactiveColor,
     @Default(SliderThumbShape.circle) SliderThumbShape sliderThumbShape,
   }) = _SliderOption;
 

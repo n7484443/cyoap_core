@@ -258,7 +258,9 @@ SliderOption _$SliderOptionFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SliderOption {
   ColorOption get sliderThumbColor => throw _privateConstructorUsedError;
-  ColorOption get sliderTrackColor => throw _privateConstructorUsedError;
+  ColorOption get sliderTrackActiveColor => throw _privateConstructorUsedError;
+  ColorOption get sliderTrackInactiveColor =>
+      throw _privateConstructorUsedError;
   SliderThumbShape get sliderThumbShape => throw _privateConstructorUsedError;
 
   /// Serializes this SliderOption to a JSON map.
@@ -279,11 +281,13 @@ abstract class $SliderOptionCopyWith<$Res> {
   @useResult
   $Res call(
       {ColorOption sliderThumbColor,
-      ColorOption sliderTrackColor,
+      ColorOption sliderTrackActiveColor,
+      ColorOption sliderTrackInactiveColor,
       SliderThumbShape sliderThumbShape});
 
   $ColorOptionCopyWith<$Res> get sliderThumbColor;
-  $ColorOptionCopyWith<$Res> get sliderTrackColor;
+  $ColorOptionCopyWith<$Res> get sliderTrackActiveColor;
+  $ColorOptionCopyWith<$Res> get sliderTrackInactiveColor;
 }
 
 /// @nodoc
@@ -302,7 +306,8 @@ class _$SliderOptionCopyWithImpl<$Res, $Val extends SliderOption>
   @override
   $Res call({
     Object? sliderThumbColor = null,
-    Object? sliderTrackColor = null,
+    Object? sliderTrackActiveColor = null,
+    Object? sliderTrackInactiveColor = null,
     Object? sliderThumbShape = null,
   }) {
     return _then(_value.copyWith(
@@ -310,9 +315,13 @@ class _$SliderOptionCopyWithImpl<$Res, $Val extends SliderOption>
           ? _value.sliderThumbColor
           : sliderThumbColor // ignore: cast_nullable_to_non_nullable
               as ColorOption,
-      sliderTrackColor: null == sliderTrackColor
-          ? _value.sliderTrackColor
-          : sliderTrackColor // ignore: cast_nullable_to_non_nullable
+      sliderTrackActiveColor: null == sliderTrackActiveColor
+          ? _value.sliderTrackActiveColor
+          : sliderTrackActiveColor // ignore: cast_nullable_to_non_nullable
+              as ColorOption,
+      sliderTrackInactiveColor: null == sliderTrackInactiveColor
+          ? _value.sliderTrackInactiveColor
+          : sliderTrackInactiveColor // ignore: cast_nullable_to_non_nullable
               as ColorOption,
       sliderThumbShape: null == sliderThumbShape
           ? _value.sliderThumbShape
@@ -335,9 +344,19 @@ class _$SliderOptionCopyWithImpl<$Res, $Val extends SliderOption>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ColorOptionCopyWith<$Res> get sliderTrackColor {
-    return $ColorOptionCopyWith<$Res>(_value.sliderTrackColor, (value) {
-      return _then(_value.copyWith(sliderTrackColor: value) as $Val);
+  $ColorOptionCopyWith<$Res> get sliderTrackActiveColor {
+    return $ColorOptionCopyWith<$Res>(_value.sliderTrackActiveColor, (value) {
+      return _then(_value.copyWith(sliderTrackActiveColor: value) as $Val);
+    });
+  }
+
+  /// Create a copy of SliderOption
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ColorOptionCopyWith<$Res> get sliderTrackInactiveColor {
+    return $ColorOptionCopyWith<$Res>(_value.sliderTrackInactiveColor, (value) {
+      return _then(_value.copyWith(sliderTrackInactiveColor: value) as $Val);
     });
   }
 }
@@ -352,13 +371,16 @@ abstract class _$$SliderOptionImplCopyWith<$Res>
   @useResult
   $Res call(
       {ColorOption sliderThumbColor,
-      ColorOption sliderTrackColor,
+      ColorOption sliderTrackActiveColor,
+      ColorOption sliderTrackInactiveColor,
       SliderThumbShape sliderThumbShape});
 
   @override
   $ColorOptionCopyWith<$Res> get sliderThumbColor;
   @override
-  $ColorOptionCopyWith<$Res> get sliderTrackColor;
+  $ColorOptionCopyWith<$Res> get sliderTrackActiveColor;
+  @override
+  $ColorOptionCopyWith<$Res> get sliderTrackInactiveColor;
 }
 
 /// @nodoc
@@ -375,7 +397,8 @@ class __$$SliderOptionImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? sliderThumbColor = null,
-    Object? sliderTrackColor = null,
+    Object? sliderTrackActiveColor = null,
+    Object? sliderTrackInactiveColor = null,
     Object? sliderThumbShape = null,
   }) {
     return _then(_$SliderOptionImpl(
@@ -383,9 +406,13 @@ class __$$SliderOptionImplCopyWithImpl<$Res>
           ? _value.sliderThumbColor
           : sliderThumbColor // ignore: cast_nullable_to_non_nullable
               as ColorOption,
-      sliderTrackColor: null == sliderTrackColor
-          ? _value.sliderTrackColor
-          : sliderTrackColor // ignore: cast_nullable_to_non_nullable
+      sliderTrackActiveColor: null == sliderTrackActiveColor
+          ? _value.sliderTrackActiveColor
+          : sliderTrackActiveColor // ignore: cast_nullable_to_non_nullable
+              as ColorOption,
+      sliderTrackInactiveColor: null == sliderTrackInactiveColor
+          ? _value.sliderTrackInactiveColor
+          : sliderTrackInactiveColor // ignore: cast_nullable_to_non_nullable
               as ColorOption,
       sliderThumbShape: null == sliderThumbShape
           ? _value.sliderThumbShape
@@ -400,7 +427,8 @@ class __$$SliderOptionImplCopyWithImpl<$Res>
 class _$SliderOptionImpl implements _SliderOption {
   const _$SliderOptionImpl(
       {this.sliderThumbColor = const ColorOption(),
-      this.sliderTrackColor = const ColorOption(),
+      this.sliderTrackActiveColor = const ColorOption(),
+      this.sliderTrackInactiveColor = const ColorOption(),
       this.sliderThumbShape = SliderThumbShape.circle});
 
   factory _$SliderOptionImpl.fromJson(Map<String, dynamic> json) =>
@@ -411,14 +439,17 @@ class _$SliderOptionImpl implements _SliderOption {
   final ColorOption sliderThumbColor;
   @override
   @JsonKey()
-  final ColorOption sliderTrackColor;
+  final ColorOption sliderTrackActiveColor;
+  @override
+  @JsonKey()
+  final ColorOption sliderTrackInactiveColor;
   @override
   @JsonKey()
   final SliderThumbShape sliderThumbShape;
 
   @override
   String toString() {
-    return 'SliderOption(sliderThumbColor: $sliderThumbColor, sliderTrackColor: $sliderTrackColor, sliderThumbShape: $sliderThumbShape)';
+    return 'SliderOption(sliderThumbColor: $sliderThumbColor, sliderTrackActiveColor: $sliderTrackActiveColor, sliderTrackInactiveColor: $sliderTrackInactiveColor, sliderThumbShape: $sliderThumbShape)';
   }
 
   @override
@@ -428,16 +459,19 @@ class _$SliderOptionImpl implements _SliderOption {
             other is _$SliderOptionImpl &&
             (identical(other.sliderThumbColor, sliderThumbColor) ||
                 other.sliderThumbColor == sliderThumbColor) &&
-            (identical(other.sliderTrackColor, sliderTrackColor) ||
-                other.sliderTrackColor == sliderTrackColor) &&
+            (identical(other.sliderTrackActiveColor, sliderTrackActiveColor) ||
+                other.sliderTrackActiveColor == sliderTrackActiveColor) &&
+            (identical(
+                    other.sliderTrackInactiveColor, sliderTrackInactiveColor) ||
+                other.sliderTrackInactiveColor == sliderTrackInactiveColor) &&
             (identical(other.sliderThumbShape, sliderThumbShape) ||
                 other.sliderThumbShape == sliderThumbShape));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, sliderThumbColor, sliderTrackColor, sliderThumbShape);
+  int get hashCode => Object.hash(runtimeType, sliderThumbColor,
+      sliderTrackActiveColor, sliderTrackInactiveColor, sliderThumbShape);
 
   /// Create a copy of SliderOption
   /// with the given fields replaced by the non-null parameter values.
@@ -458,7 +492,8 @@ class _$SliderOptionImpl implements _SliderOption {
 abstract class _SliderOption implements SliderOption {
   const factory _SliderOption(
       {final ColorOption sliderThumbColor,
-      final ColorOption sliderTrackColor,
+      final ColorOption sliderTrackActiveColor,
+      final ColorOption sliderTrackInactiveColor,
       final SliderThumbShape sliderThumbShape}) = _$SliderOptionImpl;
 
   factory _SliderOption.fromJson(Map<String, dynamic> json) =
@@ -467,7 +502,9 @@ abstract class _SliderOption implements SliderOption {
   @override
   ColorOption get sliderThumbColor;
   @override
-  ColorOption get sliderTrackColor;
+  ColorOption get sliderTrackActiveColor;
+  @override
+  ColorOption get sliderTrackInactiveColor;
   @override
   SliderThumbShape get sliderThumbShape;
 
