@@ -108,8 +108,7 @@ class PlayablePlatform {
   }
 
   bool checkIsSelected(ChoiceNode choice, bool checkResult) {
-    if (choice.isOpen() &&
-        choice.isSelectableMode &&
+    if (choice.isSelectableMode &&
         choice.select > 0 &&
         (!checkResult || !choice.choiceNodeOption.hideAsResult)) {
       return true;
