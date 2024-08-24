@@ -137,9 +137,10 @@ class __$$DimensionalValueImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$DimensionalValueImpl implements _DimensionalValue {
+class _$DimensionalValueImpl extends _DimensionalValue {
   const _$DimensionalValueImpl(
-      {this.top = 0.0, this.right = 0.0, this.bottom = 0.0, this.left = 0.0});
+      {this.top = 0.0, this.right = 0.0, this.bottom = 0.0, this.left = 0.0})
+      : super._();
 
   factory _$DimensionalValueImpl.fromJson(Map<String, dynamic> json) =>
       _$$DimensionalValueImplFromJson(json);
@@ -194,12 +195,13 @@ class _$DimensionalValueImpl implements _DimensionalValue {
   }
 }
 
-abstract class _DimensionalValue implements DimensionalValue {
+abstract class _DimensionalValue extends DimensionalValue {
   const factory _DimensionalValue(
       {final double top,
       final double right,
       final double bottom,
       final double left}) = _$DimensionalValueImpl;
+  const _DimensionalValue._() : super._();
 
   factory _DimensionalValue.fromJson(Map<String, dynamic> json) =
       _$DimensionalValueImpl.fromJson;

@@ -14,6 +14,23 @@ class DimensionalValue with _$DimensionalValue {
     @Default(0.0) double left,
   }) = _DimensionalValue;
 
+  const DimensionalValue._();
+
+  double getValue(String key) {
+    switch (key) {
+      case "top":
+        return top;
+      case "right":
+        return right;
+      case "bottom":
+        return bottom;
+      case "left":
+        return left;
+      default:
+        return 0.0;
+    }
+  }
+
   factory DimensionalValue.fromJson(Map<String, dynamic> json) =>
       _$DimensionalValueFromJson(json);
 }
