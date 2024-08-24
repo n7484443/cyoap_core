@@ -5,6 +5,19 @@ part 'node_preset.freezed.dart';
 
 part 'node_preset.g.dart';
 
+@freezed
+class DimensionalValue with _$DimensionalValue {
+  const factory DimensionalValue({
+    @Default(0.0) double top,
+    @Default(0.0) double right,
+    @Default(0.0) double bottom,
+    @Default(0.0) double left,
+  }) = _DimensionalValue;
+
+  factory DimensionalValue.fromJson(Map<String, dynamic> json) =>
+      _$DimensionalValueFromJson(json);
+}
+
 enum OutlineType {
   none,
   solid,
@@ -22,7 +35,7 @@ class OutlineOption with _$OutlineOption {
   const factory OutlineOption({
     @Default(OutlineType.solid) OutlineType outlineType,
     @Default(ColorOption()) ColorOption outlineColor,
-    @Default([4.0, 4.0, 4.0, 4.0]) List<double> outlineDistance,
+    @Default(DimensionalValue(top: 4.0, right: 4.0, bottom: 4.0, left: 4.0)) DimensionalValue outlineDistance,
     @Default(2.0) double outlineWidth,
   }) = _OutlineOption;
 
