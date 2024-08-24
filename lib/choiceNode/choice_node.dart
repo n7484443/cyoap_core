@@ -155,7 +155,7 @@ class ChoiceNode with Choice {
         select = n.clamp(0, maximumStatus);
         break;
       case ChoiceNodeMode.randomMode:
-        if (select == 0 && maximumStatus >= 0) {
+        if (select == 0 && maximumStatus > 0) {
           random = Random(seed).nextInt(maximumStatus);
         } else {
           random = -1;

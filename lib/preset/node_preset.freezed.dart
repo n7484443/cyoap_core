@@ -22,7 +22,7 @@ OutlineOption _$OutlineOptionFromJson(Map<String, dynamic> json) {
 mixin _$OutlineOption {
   OutlineType get outlineType => throw _privateConstructorUsedError;
   ColorOption get outlineColor => throw _privateConstructorUsedError;
-  double get outlinePadding => throw _privateConstructorUsedError;
+  List<double> get outlineDistance => throw _privateConstructorUsedError;
   double get outlineWidth => throw _privateConstructorUsedError;
 
   /// Serializes this OutlineOption to a JSON map.
@@ -44,7 +44,7 @@ abstract class $OutlineOptionCopyWith<$Res> {
   $Res call(
       {OutlineType outlineType,
       ColorOption outlineColor,
-      double outlinePadding,
+      List<double> outlineDistance,
       double outlineWidth});
 
   $ColorOptionCopyWith<$Res> get outlineColor;
@@ -67,7 +67,7 @@ class _$OutlineOptionCopyWithImpl<$Res, $Val extends OutlineOption>
   $Res call({
     Object? outlineType = null,
     Object? outlineColor = null,
-    Object? outlinePadding = null,
+    Object? outlineDistance = null,
     Object? outlineWidth = null,
   }) {
     return _then(_value.copyWith(
@@ -79,10 +79,10 @@ class _$OutlineOptionCopyWithImpl<$Res, $Val extends OutlineOption>
           ? _value.outlineColor
           : outlineColor // ignore: cast_nullable_to_non_nullable
               as ColorOption,
-      outlinePadding: null == outlinePadding
-          ? _value.outlinePadding
-          : outlinePadding // ignore: cast_nullable_to_non_nullable
-              as double,
+      outlineDistance: null == outlineDistance
+          ? _value.outlineDistance
+          : outlineDistance // ignore: cast_nullable_to_non_nullable
+              as List<double>,
       outlineWidth: null == outlineWidth
           ? _value.outlineWidth
           : outlineWidth // ignore: cast_nullable_to_non_nullable
@@ -112,7 +112,7 @@ abstract class _$$OutlineOptionImplCopyWith<$Res>
   $Res call(
       {OutlineType outlineType,
       ColorOption outlineColor,
-      double outlinePadding,
+      List<double> outlineDistance,
       double outlineWidth});
 
   @override
@@ -134,7 +134,7 @@ class __$$OutlineOptionImplCopyWithImpl<$Res>
   $Res call({
     Object? outlineType = null,
     Object? outlineColor = null,
-    Object? outlinePadding = null,
+    Object? outlineDistance = null,
     Object? outlineWidth = null,
   }) {
     return _then(_$OutlineOptionImpl(
@@ -146,10 +146,10 @@ class __$$OutlineOptionImplCopyWithImpl<$Res>
           ? _value.outlineColor
           : outlineColor // ignore: cast_nullable_to_non_nullable
               as ColorOption,
-      outlinePadding: null == outlinePadding
-          ? _value.outlinePadding
-          : outlinePadding // ignore: cast_nullable_to_non_nullable
-              as double,
+      outlineDistance: null == outlineDistance
+          ? _value._outlineDistance
+          : outlineDistance // ignore: cast_nullable_to_non_nullable
+              as List<double>,
       outlineWidth: null == outlineWidth
           ? _value.outlineWidth
           : outlineWidth // ignore: cast_nullable_to_non_nullable
@@ -164,8 +164,9 @@ class _$OutlineOptionImpl implements _OutlineOption {
   const _$OutlineOptionImpl(
       {this.outlineType = OutlineType.solid,
       this.outlineColor = const ColorOption(),
-      this.outlinePadding = 4.0,
-      this.outlineWidth = 2.0});
+      final List<double> outlineDistance = const [4.0, 4.0, 4.0, 4.0],
+      this.outlineWidth = 2.0})
+      : _outlineDistance = outlineDistance;
 
   factory _$OutlineOptionImpl.fromJson(Map<String, dynamic> json) =>
       _$$OutlineOptionImplFromJson(json);
@@ -176,16 +177,22 @@ class _$OutlineOptionImpl implements _OutlineOption {
   @override
   @JsonKey()
   final ColorOption outlineColor;
+  final List<double> _outlineDistance;
   @override
   @JsonKey()
-  final double outlinePadding;
+  List<double> get outlineDistance {
+    if (_outlineDistance is EqualUnmodifiableListView) return _outlineDistance;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_outlineDistance);
+  }
+
   @override
   @JsonKey()
   final double outlineWidth;
 
   @override
   String toString() {
-    return 'OutlineOption(outlineType: $outlineType, outlineColor: $outlineColor, outlinePadding: $outlinePadding, outlineWidth: $outlineWidth)';
+    return 'OutlineOption(outlineType: $outlineType, outlineColor: $outlineColor, outlineDistance: $outlineDistance, outlineWidth: $outlineWidth)';
   }
 
   @override
@@ -197,16 +204,16 @@ class _$OutlineOptionImpl implements _OutlineOption {
                 other.outlineType == outlineType) &&
             (identical(other.outlineColor, outlineColor) ||
                 other.outlineColor == outlineColor) &&
-            (identical(other.outlinePadding, outlinePadding) ||
-                other.outlinePadding == outlinePadding) &&
+            const DeepCollectionEquality()
+                .equals(other._outlineDistance, _outlineDistance) &&
             (identical(other.outlineWidth, outlineWidth) ||
                 other.outlineWidth == outlineWidth));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, outlineType, outlineColor, outlinePadding, outlineWidth);
+  int get hashCode => Object.hash(runtimeType, outlineType, outlineColor,
+      const DeepCollectionEquality().hash(_outlineDistance), outlineWidth);
 
   /// Create a copy of OutlineOption
   /// with the given fields replaced by the non-null parameter values.
@@ -228,7 +235,7 @@ abstract class _OutlineOption implements OutlineOption {
   const factory _OutlineOption(
       {final OutlineType outlineType,
       final ColorOption outlineColor,
-      final double outlinePadding,
+      final List<double> outlineDistance,
       final double outlineWidth}) = _$OutlineOptionImpl;
 
   factory _OutlineOption.fromJson(Map<String, dynamic> json) =
@@ -239,7 +246,7 @@ abstract class _OutlineOption implements OutlineOption {
   @override
   ColorOption get outlineColor;
   @override
-  double get outlinePadding;
+  List<double> get outlineDistance;
   @override
   double get outlineWidth;
 

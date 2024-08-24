@@ -14,7 +14,10 @@ _$OutlineOptionImpl _$$OutlineOptionImplFromJson(Map<String, dynamic> json) =>
       outlineColor: json['outlineColor'] == null
           ? const ColorOption()
           : ColorOption.fromJson(json['outlineColor'] as Map<String, dynamic>),
-      outlinePadding: (json['outlinePadding'] as num?)?.toDouble() ?? 4.0,
+      outlineDistance: (json['outlineDistance'] as List<dynamic>?)
+              ?.map((e) => (e as num).toDouble())
+              .toList() ??
+          const [4.0, 4.0, 4.0, 4.0],
       outlineWidth: (json['outlineWidth'] as num?)?.toDouble() ?? 2.0,
     );
 
@@ -22,7 +25,7 @@ Map<String, dynamic> _$$OutlineOptionImplToJson(_$OutlineOptionImpl instance) =>
     <String, dynamic>{
       'outlineType': _$OutlineTypeEnumMap[instance.outlineType]!,
       'outlineColor': instance.outlineColor.toJson(),
-      'outlinePadding': instance.outlinePadding,
+      'outlineDistance': instance.outlineDistance,
       'outlineWidth': instance.outlineWidth,
     };
 

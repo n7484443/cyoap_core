@@ -22,7 +22,7 @@ class OutlineOption with _$OutlineOption {
   const factory OutlineOption({
     @Default(OutlineType.solid) OutlineType outlineType,
     @Default(ColorOption()) ColorOption outlineColor,
-    @Default(4.0) double outlinePadding,
+    @Default([4.0, 4.0, 4.0, 4.0]) List<double> outlineDistance,
     @Default(2.0) double outlineWidth,
   }) = _OutlineOption;
 
