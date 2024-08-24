@@ -6,15 +6,15 @@ part 'node_preset.freezed.dart';
 part 'node_preset.g.dart';
 
 @freezed
-class DimensionalValue with _$DimensionalValue {
-  const factory DimensionalValue({
+class EdgeValue with _$EdgeValue {
+  const factory EdgeValue({
     @Default(0.0) double top,
     @Default(0.0) double right,
     @Default(0.0) double bottom,
     @Default(0.0) double left,
-  }) = _DimensionalValue;
+  }) = _EdgeValue;
 
-  const DimensionalValue._();
+  const EdgeValue._();
 
   double getValue(String key) {
     switch (key) {
@@ -31,8 +31,38 @@ class DimensionalValue with _$DimensionalValue {
     }
   }
 
-  factory DimensionalValue.fromJson(Map<String, dynamic> json) =>
-      _$DimensionalValueFromJson(json);
+  factory EdgeValue.fromJson(Map<String, dynamic> json) =>
+      _$EdgeValueFromJson(json);
+}
+
+@freezed
+class VertexValue with _$VertexValue {
+  const factory VertexValue({
+    @Default(0.0) double topLeft,
+    @Default(0.0) double topRight,
+    @Default(0.0) double bottomLeft,
+    @Default(0.0) double bottomRight,
+  }) = _VertexValue;
+
+  const VertexValue._();
+
+  double getValue(String key) {
+    switch (key) {
+      case "topLeft":
+        return topLeft;
+      case "topRight":
+        return topRight;
+      case "bottomLeft":
+        return bottomLeft;
+      case "bottomRight":
+        return bottomRight;
+      default:
+        return 0.0;
+    }
+  }
+
+  factory VertexValue.fromJson(Map<String, dynamic> json) =>
+      _$VertexValueFromJson(json);
 }
 
 enum OutlineType {
@@ -52,7 +82,11 @@ class OutlineOption with _$OutlineOption {
   const factory OutlineOption({
     @Default(OutlineType.solid) OutlineType outlineType,
     @Default(ColorOption()) ColorOption outlineColor,
-    @Default(DimensionalValue(top: 4.0, right: 4.0, bottom: 4.0, left: 4.0)) DimensionalValue outlineDistance,
+    @Default(VertexValue(
+        topLeft: 4.0, topRight: 4.0, bottomLeft: 4.0, bottomRight: 4.0))
+    VertexValue round,
+    @Default(EdgeValue(top: 4.0, right: 4.0, bottom: 4.0, left: 4.0))
+    EdgeValue distance,
     @Default(2.0) double outlineWidth,
   }) = _OutlineOption;
 
@@ -120,10 +154,8 @@ class ColorOption with _$ColorOption {
     @Default(0xFF40C4FF) int color,
     @Default(GradientType.linear) GradientType gradientType,
     @Default(
-        [
-          GradientData(gradientPos: (0, 0)),
-          GradientData(gradientPos: (1, 1))
-        ]) List<GradientData> gradientData,
+        [GradientData(gradientPos: (0, 0)), GradientData(gradientPos: (1, 1))])
+    List<GradientData> gradientData,
   }) = _ColorOption;
 
   factory ColorOption.fromJson(Map<String, dynamic> json) =>
@@ -136,8 +168,9 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
     String? name,
     @Default(true) bool? titlePosition,
     @Default(0.0) double? elevation,
-    @Default([0.0, 0.0, 0.0, 0.0]) List<double>? roundEdge,
-    @Default([2.0, 2.0, 2.0, 2.0]) List<double>? paddingAround,
+    @Default(VertexValue(
+        topLeft: 4.0, topRight: 4.0, bottomLeft: 4.0, bottomRight: 4.0)) VertexValue? round,
+    @Default(EdgeValue()) EdgeValue? padding,
     @Default(false) bool? maximizingImage, //true: 80%, false: 50%
     @Default(false) bool? hideTitle,
     @Default(0) int? imagePosition, //0:default, 1:image-right 2:image-left
@@ -160,8 +193,8 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
       name: null,
       titlePosition: null,
       elevation: null,
-      roundEdge: null,
-      paddingAround: null,
+      round: null,
+      padding: null,
       maximizingImage: null,
       hideTitle: null,
       imagePosition: null,
@@ -184,8 +217,8 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
       name: override?.name ?? name,
       titlePosition: override?.titlePosition ?? titlePosition,
       elevation: override?.elevation ?? elevation,
-      roundEdge: override?.roundEdge ?? roundEdge,
-      paddingAround: override?.paddingAround ?? paddingAround,
+      round: override?.round ?? round,
+      padding: override?.padding ?? padding,
       maximizingImage: override?.maximizingImage ?? maximizingImage,
       hideTitle: override?.hideTitle ?? hideTitle,
       imagePosition: override?.imagePosition ?? imagePosition,
@@ -193,7 +226,7 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
       titleFont: override?.titleFont ?? titleFont,
       mainFont: override?.mainFont ?? mainFont,
       defaultOutlineOption:
-      override?.defaultOutlineOption ?? defaultOutlineOption,
+          override?.defaultOutlineOption ?? defaultOutlineOption,
       selectOutlineEnable: override?.selectOutlineEnable ?? selectOutlineEnable,
       selectOutlineOption: override?.selectOutlineOption ?? selectOutlineOption,
       defaultColorOption: override?.defaultColorOption ?? defaultColorOption,

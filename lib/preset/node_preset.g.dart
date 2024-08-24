@@ -6,22 +6,36 @@ part of 'node_preset.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$DimensionalValueImpl _$$DimensionalValueImplFromJson(
-        Map<String, dynamic> json) =>
-    _$DimensionalValueImpl(
+_$EdgeValueImpl _$$EdgeValueImplFromJson(Map<String, dynamic> json) =>
+    _$EdgeValueImpl(
       top: (json['top'] as num?)?.toDouble() ?? 0.0,
       right: (json['right'] as num?)?.toDouble() ?? 0.0,
       bottom: (json['bottom'] as num?)?.toDouble() ?? 0.0,
       left: (json['left'] as num?)?.toDouble() ?? 0.0,
     );
 
-Map<String, dynamic> _$$DimensionalValueImplToJson(
-        _$DimensionalValueImpl instance) =>
+Map<String, dynamic> _$$EdgeValueImplToJson(_$EdgeValueImpl instance) =>
     <String, dynamic>{
       'top': instance.top,
       'right': instance.right,
       'bottom': instance.bottom,
       'left': instance.left,
+    };
+
+_$VertexValueImpl _$$VertexValueImplFromJson(Map<String, dynamic> json) =>
+    _$VertexValueImpl(
+      topLeft: (json['topLeft'] as num?)?.toDouble() ?? 0.0,
+      topRight: (json['topRight'] as num?)?.toDouble() ?? 0.0,
+      bottomLeft: (json['bottomLeft'] as num?)?.toDouble() ?? 0.0,
+      bottomRight: (json['bottomRight'] as num?)?.toDouble() ?? 0.0,
+    );
+
+Map<String, dynamic> _$$VertexValueImplToJson(_$VertexValueImpl instance) =>
+    <String, dynamic>{
+      'topLeft': instance.topLeft,
+      'topRight': instance.topRight,
+      'bottomLeft': instance.bottomLeft,
+      'bottomRight': instance.bottomRight,
     };
 
 _$OutlineOptionImpl _$$OutlineOptionImplFromJson(Map<String, dynamic> json) =>
@@ -32,10 +46,13 @@ _$OutlineOptionImpl _$$OutlineOptionImplFromJson(Map<String, dynamic> json) =>
       outlineColor: json['outlineColor'] == null
           ? const ColorOption()
           : ColorOption.fromJson(json['outlineColor'] as Map<String, dynamic>),
-      outlineDistance: json['outlineDistance'] == null
-          ? const DimensionalValue(top: 4.0, right: 4.0, bottom: 4.0, left: 4.0)
-          : DimensionalValue.fromJson(
-              json['outlineDistance'] as Map<String, dynamic>),
+      round: json['round'] == null
+          ? const VertexValue(
+              topLeft: 4.0, topRight: 4.0, bottomLeft: 4.0, bottomRight: 4.0)
+          : VertexValue.fromJson(json['round'] as Map<String, dynamic>),
+      distance: json['distance'] == null
+          ? const EdgeValue(top: 4.0, right: 4.0, bottom: 4.0, left: 4.0)
+          : EdgeValue.fromJson(json['distance'] as Map<String, dynamic>),
       outlineWidth: (json['outlineWidth'] as num?)?.toDouble() ?? 2.0,
     );
 
@@ -43,7 +60,8 @@ Map<String, dynamic> _$$OutlineOptionImplToJson(_$OutlineOptionImpl instance) =>
     <String, dynamic>{
       'outlineType': _$OutlineTypeEnumMap[instance.outlineType]!,
       'outlineColor': instance.outlineColor.toJson(),
-      'outlineDistance': instance.outlineDistance.toJson(),
+      'round': instance.round.toJson(),
+      'distance': instance.distance.toJson(),
       'outlineWidth': instance.outlineWidth,
     };
 
@@ -156,14 +174,13 @@ _$ChoiceNodeDesignPresetImpl _$$ChoiceNodeDesignPresetImplFromJson(
       name: json['name'] as String?,
       titlePosition: json['titlePosition'] as bool? ?? true,
       elevation: (json['elevation'] as num?)?.toDouble() ?? 0.0,
-      roundEdge: (json['roundEdge'] as List<dynamic>?)
-              ?.map((e) => (e as num).toDouble())
-              .toList() ??
-          const [0.0, 0.0, 0.0, 0.0],
-      paddingAround: (json['paddingAround'] as List<dynamic>?)
-              ?.map((e) => (e as num).toDouble())
-              .toList() ??
-          const [2.0, 2.0, 2.0, 2.0],
+      round: json['round'] == null
+          ? const VertexValue(
+              topLeft: 4.0, topRight: 4.0, bottomLeft: 4.0, bottomRight: 4.0)
+          : VertexValue.fromJson(json['round'] as Map<String, dynamic>),
+      padding: json['padding'] == null
+          ? const EdgeValue()
+          : EdgeValue.fromJson(json['padding'] as Map<String, dynamic>),
       maximizingImage: json['maximizingImage'] as bool? ?? false,
       hideTitle: json['hideTitle'] as bool? ?? false,
       imagePosition: (json['imagePosition'] as num?)?.toInt() ?? 0,
@@ -199,8 +216,8 @@ Map<String, dynamic> _$$ChoiceNodeDesignPresetImplToJson(
       'name': instance.name,
       'titlePosition': instance.titlePosition,
       'elevation': instance.elevation,
-      'roundEdge': instance.roundEdge,
-      'paddingAround': instance.paddingAround,
+      'round': instance.round?.toJson(),
+      'padding': instance.padding?.toJson(),
       'maximizingImage': instance.maximizingImage,
       'hideTitle': instance.hideTitle,
       'imagePosition': instance.imagePosition,

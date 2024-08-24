@@ -14,47 +14,46 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-DimensionalValue _$DimensionalValueFromJson(Map<String, dynamic> json) {
-  return _DimensionalValue.fromJson(json);
+EdgeValue _$EdgeValueFromJson(Map<String, dynamic> json) {
+  return _EdgeValue.fromJson(json);
 }
 
 /// @nodoc
-mixin _$DimensionalValue {
+mixin _$EdgeValue {
   double get top => throw _privateConstructorUsedError;
   double get right => throw _privateConstructorUsedError;
   double get bottom => throw _privateConstructorUsedError;
   double get left => throw _privateConstructorUsedError;
 
-  /// Serializes this DimensionalValue to a JSON map.
+  /// Serializes this EdgeValue to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of DimensionalValue
+  /// Create a copy of EdgeValue
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $DimensionalValueCopyWith<DimensionalValue> get copyWith =>
+  $EdgeValueCopyWith<EdgeValue> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DimensionalValueCopyWith<$Res> {
-  factory $DimensionalValueCopyWith(
-          DimensionalValue value, $Res Function(DimensionalValue) then) =
-      _$DimensionalValueCopyWithImpl<$Res, DimensionalValue>;
+abstract class $EdgeValueCopyWith<$Res> {
+  factory $EdgeValueCopyWith(EdgeValue value, $Res Function(EdgeValue) then) =
+      _$EdgeValueCopyWithImpl<$Res, EdgeValue>;
   @useResult
   $Res call({double top, double right, double bottom, double left});
 }
 
 /// @nodoc
-class _$DimensionalValueCopyWithImpl<$Res, $Val extends DimensionalValue>
-    implements $DimensionalValueCopyWith<$Res> {
-  _$DimensionalValueCopyWithImpl(this._value, this._then);
+class _$EdgeValueCopyWithImpl<$Res, $Val extends EdgeValue>
+    implements $EdgeValueCopyWith<$Res> {
+  _$EdgeValueCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of DimensionalValue
+  /// Create a copy of EdgeValue
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -86,25 +85,25 @@ class _$DimensionalValueCopyWithImpl<$Res, $Val extends DimensionalValue>
 }
 
 /// @nodoc
-abstract class _$$DimensionalValueImplCopyWith<$Res>
-    implements $DimensionalValueCopyWith<$Res> {
-  factory _$$DimensionalValueImplCopyWith(_$DimensionalValueImpl value,
-          $Res Function(_$DimensionalValueImpl) then) =
-      __$$DimensionalValueImplCopyWithImpl<$Res>;
+abstract class _$$EdgeValueImplCopyWith<$Res>
+    implements $EdgeValueCopyWith<$Res> {
+  factory _$$EdgeValueImplCopyWith(
+          _$EdgeValueImpl value, $Res Function(_$EdgeValueImpl) then) =
+      __$$EdgeValueImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({double top, double right, double bottom, double left});
 }
 
 /// @nodoc
-class __$$DimensionalValueImplCopyWithImpl<$Res>
-    extends _$DimensionalValueCopyWithImpl<$Res, _$DimensionalValueImpl>
-    implements _$$DimensionalValueImplCopyWith<$Res> {
-  __$$DimensionalValueImplCopyWithImpl(_$DimensionalValueImpl _value,
-      $Res Function(_$DimensionalValueImpl) _then)
+class __$$EdgeValueImplCopyWithImpl<$Res>
+    extends _$EdgeValueCopyWithImpl<$Res, _$EdgeValueImpl>
+    implements _$$EdgeValueImplCopyWith<$Res> {
+  __$$EdgeValueImplCopyWithImpl(
+      _$EdgeValueImpl _value, $Res Function(_$EdgeValueImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DimensionalValue
+  /// Create a copy of EdgeValue
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -114,7 +113,7 @@ class __$$DimensionalValueImplCopyWithImpl<$Res>
     Object? bottom = null,
     Object? left = null,
   }) {
-    return _then(_$DimensionalValueImpl(
+    return _then(_$EdgeValueImpl(
       top: null == top
           ? _value.top
           : top // ignore: cast_nullable_to_non_nullable
@@ -137,13 +136,13 @@ class __$$DimensionalValueImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$DimensionalValueImpl extends _DimensionalValue {
-  const _$DimensionalValueImpl(
+class _$EdgeValueImpl extends _EdgeValue {
+  const _$EdgeValueImpl(
       {this.top = 0.0, this.right = 0.0, this.bottom = 0.0, this.left = 0.0})
       : super._();
 
-  factory _$DimensionalValueImpl.fromJson(Map<String, dynamic> json) =>
-      _$$DimensionalValueImplFromJson(json);
+  factory _$EdgeValueImpl.fromJson(Map<String, dynamic> json) =>
+      _$$EdgeValueImplFromJson(json);
 
   @override
   @JsonKey()
@@ -160,14 +159,14 @@ class _$DimensionalValueImpl extends _DimensionalValue {
 
   @override
   String toString() {
-    return 'DimensionalValue(top: $top, right: $right, bottom: $bottom, left: $left)';
+    return 'EdgeValue(top: $top, right: $right, bottom: $bottom, left: $left)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DimensionalValueImpl &&
+            other is _$EdgeValueImpl &&
             (identical(other.top, top) || other.top == top) &&
             (identical(other.right, right) || other.right == right) &&
             (identical(other.bottom, bottom) || other.bottom == bottom) &&
@@ -178,33 +177,32 @@ class _$DimensionalValueImpl extends _DimensionalValue {
   @override
   int get hashCode => Object.hash(runtimeType, top, right, bottom, left);
 
-  /// Create a copy of DimensionalValue
+  /// Create a copy of EdgeValue
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DimensionalValueImplCopyWith<_$DimensionalValueImpl> get copyWith =>
-      __$$DimensionalValueImplCopyWithImpl<_$DimensionalValueImpl>(
-          this, _$identity);
+  _$$EdgeValueImplCopyWith<_$EdgeValueImpl> get copyWith =>
+      __$$EdgeValueImplCopyWithImpl<_$EdgeValueImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$DimensionalValueImplToJson(
+    return _$$EdgeValueImplToJson(
       this,
     );
   }
 }
 
-abstract class _DimensionalValue extends DimensionalValue {
-  const factory _DimensionalValue(
+abstract class _EdgeValue extends EdgeValue {
+  const factory _EdgeValue(
       {final double top,
       final double right,
       final double bottom,
-      final double left}) = _$DimensionalValueImpl;
-  const _DimensionalValue._() : super._();
+      final double left}) = _$EdgeValueImpl;
+  const _EdgeValue._() : super._();
 
-  factory _DimensionalValue.fromJson(Map<String, dynamic> json) =
-      _$DimensionalValueImpl.fromJson;
+  factory _EdgeValue.fromJson(Map<String, dynamic> json) =
+      _$EdgeValueImpl.fromJson;
 
   @override
   double get top;
@@ -215,11 +213,228 @@ abstract class _DimensionalValue extends DimensionalValue {
   @override
   double get left;
 
-  /// Create a copy of DimensionalValue
+  /// Create a copy of EdgeValue
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DimensionalValueImplCopyWith<_$DimensionalValueImpl> get copyWith =>
+  _$$EdgeValueImplCopyWith<_$EdgeValueImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+VertexValue _$VertexValueFromJson(Map<String, dynamic> json) {
+  return _VertexValue.fromJson(json);
+}
+
+/// @nodoc
+mixin _$VertexValue {
+  double get topLeft => throw _privateConstructorUsedError;
+  double get topRight => throw _privateConstructorUsedError;
+  double get bottomLeft => throw _privateConstructorUsedError;
+  double get bottomRight => throw _privateConstructorUsedError;
+
+  /// Serializes this VertexValue to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of VertexValue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $VertexValueCopyWith<VertexValue> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $VertexValueCopyWith<$Res> {
+  factory $VertexValueCopyWith(
+          VertexValue value, $Res Function(VertexValue) then) =
+      _$VertexValueCopyWithImpl<$Res, VertexValue>;
+  @useResult
+  $Res call(
+      {double topLeft, double topRight, double bottomLeft, double bottomRight});
+}
+
+/// @nodoc
+class _$VertexValueCopyWithImpl<$Res, $Val extends VertexValue>
+    implements $VertexValueCopyWith<$Res> {
+  _$VertexValueCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of VertexValue
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? topLeft = null,
+    Object? topRight = null,
+    Object? bottomLeft = null,
+    Object? bottomRight = null,
+  }) {
+    return _then(_value.copyWith(
+      topLeft: null == topLeft
+          ? _value.topLeft
+          : topLeft // ignore: cast_nullable_to_non_nullable
+              as double,
+      topRight: null == topRight
+          ? _value.topRight
+          : topRight // ignore: cast_nullable_to_non_nullable
+              as double,
+      bottomLeft: null == bottomLeft
+          ? _value.bottomLeft
+          : bottomLeft // ignore: cast_nullable_to_non_nullable
+              as double,
+      bottomRight: null == bottomRight
+          ? _value.bottomRight
+          : bottomRight // ignore: cast_nullable_to_non_nullable
+              as double,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$VertexValueImplCopyWith<$Res>
+    implements $VertexValueCopyWith<$Res> {
+  factory _$$VertexValueImplCopyWith(
+          _$VertexValueImpl value, $Res Function(_$VertexValueImpl) then) =
+      __$$VertexValueImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {double topLeft, double topRight, double bottomLeft, double bottomRight});
+}
+
+/// @nodoc
+class __$$VertexValueImplCopyWithImpl<$Res>
+    extends _$VertexValueCopyWithImpl<$Res, _$VertexValueImpl>
+    implements _$$VertexValueImplCopyWith<$Res> {
+  __$$VertexValueImplCopyWithImpl(
+      _$VertexValueImpl _value, $Res Function(_$VertexValueImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of VertexValue
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? topLeft = null,
+    Object? topRight = null,
+    Object? bottomLeft = null,
+    Object? bottomRight = null,
+  }) {
+    return _then(_$VertexValueImpl(
+      topLeft: null == topLeft
+          ? _value.topLeft
+          : topLeft // ignore: cast_nullable_to_non_nullable
+              as double,
+      topRight: null == topRight
+          ? _value.topRight
+          : topRight // ignore: cast_nullable_to_non_nullable
+              as double,
+      bottomLeft: null == bottomLeft
+          ? _value.bottomLeft
+          : bottomLeft // ignore: cast_nullable_to_non_nullable
+              as double,
+      bottomRight: null == bottomRight
+          ? _value.bottomRight
+          : bottomRight // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$VertexValueImpl extends _VertexValue {
+  const _$VertexValueImpl(
+      {this.topLeft = 0.0,
+      this.topRight = 0.0,
+      this.bottomLeft = 0.0,
+      this.bottomRight = 0.0})
+      : super._();
+
+  factory _$VertexValueImpl.fromJson(Map<String, dynamic> json) =>
+      _$$VertexValueImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final double topLeft;
+  @override
+  @JsonKey()
+  final double topRight;
+  @override
+  @JsonKey()
+  final double bottomLeft;
+  @override
+  @JsonKey()
+  final double bottomRight;
+
+  @override
+  String toString() {
+    return 'VertexValue(topLeft: $topLeft, topRight: $topRight, bottomLeft: $bottomLeft, bottomRight: $bottomRight)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$VertexValueImpl &&
+            (identical(other.topLeft, topLeft) || other.topLeft == topLeft) &&
+            (identical(other.topRight, topRight) ||
+                other.topRight == topRight) &&
+            (identical(other.bottomLeft, bottomLeft) ||
+                other.bottomLeft == bottomLeft) &&
+            (identical(other.bottomRight, bottomRight) ||
+                other.bottomRight == bottomRight));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, topLeft, topRight, bottomLeft, bottomRight);
+
+  /// Create a copy of VertexValue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$VertexValueImplCopyWith<_$VertexValueImpl> get copyWith =>
+      __$$VertexValueImplCopyWithImpl<_$VertexValueImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$VertexValueImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _VertexValue extends VertexValue {
+  const factory _VertexValue(
+      {final double topLeft,
+      final double topRight,
+      final double bottomLeft,
+      final double bottomRight}) = _$VertexValueImpl;
+  const _VertexValue._() : super._();
+
+  factory _VertexValue.fromJson(Map<String, dynamic> json) =
+      _$VertexValueImpl.fromJson;
+
+  @override
+  double get topLeft;
+  @override
+  double get topRight;
+  @override
+  double get bottomLeft;
+  @override
+  double get bottomRight;
+
+  /// Create a copy of VertexValue
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$VertexValueImplCopyWith<_$VertexValueImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -231,7 +446,8 @@ OutlineOption _$OutlineOptionFromJson(Map<String, dynamic> json) {
 mixin _$OutlineOption {
   OutlineType get outlineType => throw _privateConstructorUsedError;
   ColorOption get outlineColor => throw _privateConstructorUsedError;
-  DimensionalValue get outlineDistance => throw _privateConstructorUsedError;
+  VertexValue get round => throw _privateConstructorUsedError;
+  EdgeValue get distance => throw _privateConstructorUsedError;
   double get outlineWidth => throw _privateConstructorUsedError;
 
   /// Serializes this OutlineOption to a JSON map.
@@ -253,11 +469,13 @@ abstract class $OutlineOptionCopyWith<$Res> {
   $Res call(
       {OutlineType outlineType,
       ColorOption outlineColor,
-      DimensionalValue outlineDistance,
+      VertexValue round,
+      EdgeValue distance,
       double outlineWidth});
 
   $ColorOptionCopyWith<$Res> get outlineColor;
-  $DimensionalValueCopyWith<$Res> get outlineDistance;
+  $VertexValueCopyWith<$Res> get round;
+  $EdgeValueCopyWith<$Res> get distance;
 }
 
 /// @nodoc
@@ -277,7 +495,8 @@ class _$OutlineOptionCopyWithImpl<$Res, $Val extends OutlineOption>
   $Res call({
     Object? outlineType = null,
     Object? outlineColor = null,
-    Object? outlineDistance = null,
+    Object? round = null,
+    Object? distance = null,
     Object? outlineWidth = null,
   }) {
     return _then(_value.copyWith(
@@ -289,10 +508,14 @@ class _$OutlineOptionCopyWithImpl<$Res, $Val extends OutlineOption>
           ? _value.outlineColor
           : outlineColor // ignore: cast_nullable_to_non_nullable
               as ColorOption,
-      outlineDistance: null == outlineDistance
-          ? _value.outlineDistance
-          : outlineDistance // ignore: cast_nullable_to_non_nullable
-              as DimensionalValue,
+      round: null == round
+          ? _value.round
+          : round // ignore: cast_nullable_to_non_nullable
+              as VertexValue,
+      distance: null == distance
+          ? _value.distance
+          : distance // ignore: cast_nullable_to_non_nullable
+              as EdgeValue,
       outlineWidth: null == outlineWidth
           ? _value.outlineWidth
           : outlineWidth // ignore: cast_nullable_to_non_nullable
@@ -314,9 +537,19 @@ class _$OutlineOptionCopyWithImpl<$Res, $Val extends OutlineOption>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $DimensionalValueCopyWith<$Res> get outlineDistance {
-    return $DimensionalValueCopyWith<$Res>(_value.outlineDistance, (value) {
-      return _then(_value.copyWith(outlineDistance: value) as $Val);
+  $VertexValueCopyWith<$Res> get round {
+    return $VertexValueCopyWith<$Res>(_value.round, (value) {
+      return _then(_value.copyWith(round: value) as $Val);
+    });
+  }
+
+  /// Create a copy of OutlineOption
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $EdgeValueCopyWith<$Res> get distance {
+    return $EdgeValueCopyWith<$Res>(_value.distance, (value) {
+      return _then(_value.copyWith(distance: value) as $Val);
     });
   }
 }
@@ -332,13 +565,16 @@ abstract class _$$OutlineOptionImplCopyWith<$Res>
   $Res call(
       {OutlineType outlineType,
       ColorOption outlineColor,
-      DimensionalValue outlineDistance,
+      VertexValue round,
+      EdgeValue distance,
       double outlineWidth});
 
   @override
   $ColorOptionCopyWith<$Res> get outlineColor;
   @override
-  $DimensionalValueCopyWith<$Res> get outlineDistance;
+  $VertexValueCopyWith<$Res> get round;
+  @override
+  $EdgeValueCopyWith<$Res> get distance;
 }
 
 /// @nodoc
@@ -356,7 +592,8 @@ class __$$OutlineOptionImplCopyWithImpl<$Res>
   $Res call({
     Object? outlineType = null,
     Object? outlineColor = null,
-    Object? outlineDistance = null,
+    Object? round = null,
+    Object? distance = null,
     Object? outlineWidth = null,
   }) {
     return _then(_$OutlineOptionImpl(
@@ -368,10 +605,14 @@ class __$$OutlineOptionImplCopyWithImpl<$Res>
           ? _value.outlineColor
           : outlineColor // ignore: cast_nullable_to_non_nullable
               as ColorOption,
-      outlineDistance: null == outlineDistance
-          ? _value.outlineDistance
-          : outlineDistance // ignore: cast_nullable_to_non_nullable
-              as DimensionalValue,
+      round: null == round
+          ? _value.round
+          : round // ignore: cast_nullable_to_non_nullable
+              as VertexValue,
+      distance: null == distance
+          ? _value.distance
+          : distance // ignore: cast_nullable_to_non_nullable
+              as EdgeValue,
       outlineWidth: null == outlineWidth
           ? _value.outlineWidth
           : outlineWidth // ignore: cast_nullable_to_non_nullable
@@ -386,8 +627,10 @@ class _$OutlineOptionImpl implements _OutlineOption {
   const _$OutlineOptionImpl(
       {this.outlineType = OutlineType.solid,
       this.outlineColor = const ColorOption(),
-      this.outlineDistance =
-          const DimensionalValue(top: 4.0, right: 4.0, bottom: 4.0, left: 4.0),
+      this.round = const VertexValue(
+          topLeft: 4.0, topRight: 4.0, bottomLeft: 4.0, bottomRight: 4.0),
+      this.distance =
+          const EdgeValue(top: 4.0, right: 4.0, bottom: 4.0, left: 4.0),
       this.outlineWidth = 2.0});
 
   factory _$OutlineOptionImpl.fromJson(Map<String, dynamic> json) =>
@@ -401,14 +644,17 @@ class _$OutlineOptionImpl implements _OutlineOption {
   final ColorOption outlineColor;
   @override
   @JsonKey()
-  final DimensionalValue outlineDistance;
+  final VertexValue round;
+  @override
+  @JsonKey()
+  final EdgeValue distance;
   @override
   @JsonKey()
   final double outlineWidth;
 
   @override
   String toString() {
-    return 'OutlineOption(outlineType: $outlineType, outlineColor: $outlineColor, outlineDistance: $outlineDistance, outlineWidth: $outlineWidth)';
+    return 'OutlineOption(outlineType: $outlineType, outlineColor: $outlineColor, round: $round, distance: $distance, outlineWidth: $outlineWidth)';
   }
 
   @override
@@ -420,8 +666,9 @@ class _$OutlineOptionImpl implements _OutlineOption {
                 other.outlineType == outlineType) &&
             (identical(other.outlineColor, outlineColor) ||
                 other.outlineColor == outlineColor) &&
-            (identical(other.outlineDistance, outlineDistance) ||
-                other.outlineDistance == outlineDistance) &&
+            (identical(other.round, round) || other.round == round) &&
+            (identical(other.distance, distance) ||
+                other.distance == distance) &&
             (identical(other.outlineWidth, outlineWidth) ||
                 other.outlineWidth == outlineWidth));
   }
@@ -429,7 +676,7 @@ class _$OutlineOptionImpl implements _OutlineOption {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, outlineType, outlineColor, outlineDistance, outlineWidth);
+      runtimeType, outlineType, outlineColor, round, distance, outlineWidth);
 
   /// Create a copy of OutlineOption
   /// with the given fields replaced by the non-null parameter values.
@@ -451,7 +698,8 @@ abstract class _OutlineOption implements OutlineOption {
   const factory _OutlineOption(
       {final OutlineType outlineType,
       final ColorOption outlineColor,
-      final DimensionalValue outlineDistance,
+      final VertexValue round,
+      final EdgeValue distance,
       final double outlineWidth}) = _$OutlineOptionImpl;
 
   factory _OutlineOption.fromJson(Map<String, dynamic> json) =
@@ -462,7 +710,9 @@ abstract class _OutlineOption implements OutlineOption {
   @override
   ColorOption get outlineColor;
   @override
-  DimensionalValue get outlineDistance;
+  VertexValue get round;
+  @override
+  EdgeValue get distance;
   @override
   double get outlineWidth;
 
@@ -1144,8 +1394,8 @@ mixin _$ChoiceNodeDesignPreset {
   String? get name => throw _privateConstructorUsedError;
   bool? get titlePosition => throw _privateConstructorUsedError;
   double? get elevation => throw _privateConstructorUsedError;
-  List<double>? get roundEdge => throw _privateConstructorUsedError;
-  List<double>? get paddingAround => throw _privateConstructorUsedError;
+  VertexValue? get round => throw _privateConstructorUsedError;
+  EdgeValue? get padding => throw _privateConstructorUsedError;
   bool? get maximizingImage =>
       throw _privateConstructorUsedError; //true: 80%, false: 50%
   bool? get hideTitle => throw _privateConstructorUsedError;
@@ -1182,8 +1432,8 @@ abstract class $ChoiceNodeDesignPresetCopyWith<$Res> {
       {String? name,
       bool? titlePosition,
       double? elevation,
-      List<double>? roundEdge,
-      List<double>? paddingAround,
+      VertexValue? round,
+      EdgeValue? padding,
       bool? maximizingImage,
       bool? hideTitle,
       int? imagePosition,
@@ -1198,6 +1448,8 @@ abstract class $ChoiceNodeDesignPresetCopyWith<$Res> {
       ColorOption? selectColorOption,
       SliderOption? sliderOption});
 
+  $VertexValueCopyWith<$Res>? get round;
+  $EdgeValueCopyWith<$Res>? get padding;
   $OutlineOptionCopyWith<$Res>? get defaultOutlineOption;
   $OutlineOptionCopyWith<$Res>? get selectOutlineOption;
   $ColorOptionCopyWith<$Res>? get defaultColorOption;
@@ -1224,8 +1476,8 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
     Object? name = freezed,
     Object? titlePosition = freezed,
     Object? elevation = freezed,
-    Object? roundEdge = freezed,
-    Object? paddingAround = freezed,
+    Object? round = freezed,
+    Object? padding = freezed,
     Object? maximizingImage = freezed,
     Object? hideTitle = freezed,
     Object? imagePosition = freezed,
@@ -1253,14 +1505,14 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
           ? _value.elevation
           : elevation // ignore: cast_nullable_to_non_nullable
               as double?,
-      roundEdge: freezed == roundEdge
-          ? _value.roundEdge
-          : roundEdge // ignore: cast_nullable_to_non_nullable
-              as List<double>?,
-      paddingAround: freezed == paddingAround
-          ? _value.paddingAround
-          : paddingAround // ignore: cast_nullable_to_non_nullable
-              as List<double>?,
+      round: freezed == round
+          ? _value.round
+          : round // ignore: cast_nullable_to_non_nullable
+              as VertexValue?,
+      padding: freezed == padding
+          ? _value.padding
+          : padding // ignore: cast_nullable_to_non_nullable
+              as EdgeValue?,
       maximizingImage: freezed == maximizingImage
           ? _value.maximizingImage
           : maximizingImage // ignore: cast_nullable_to_non_nullable
@@ -1314,6 +1566,34 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
           : sliderOption // ignore: cast_nullable_to_non_nullable
               as SliderOption?,
     ) as $Val);
+  }
+
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $VertexValueCopyWith<$Res>? get round {
+    if (_value.round == null) {
+      return null;
+    }
+
+    return $VertexValueCopyWith<$Res>(_value.round!, (value) {
+      return _then(_value.copyWith(round: value) as $Val);
+    });
+  }
+
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $EdgeValueCopyWith<$Res>? get padding {
+    if (_value.padding == null) {
+      return null;
+    }
+
+    return $EdgeValueCopyWith<$Res>(_value.padding!, (value) {
+      return _then(_value.copyWith(padding: value) as $Val);
+    });
   }
 
   /// Create a copy of ChoiceNodeDesignPreset
@@ -1400,8 +1680,8 @@ abstract class _$$ChoiceNodeDesignPresetImplCopyWith<$Res>
       {String? name,
       bool? titlePosition,
       double? elevation,
-      List<double>? roundEdge,
-      List<double>? paddingAround,
+      VertexValue? round,
+      EdgeValue? padding,
       bool? maximizingImage,
       bool? hideTitle,
       int? imagePosition,
@@ -1416,6 +1696,10 @@ abstract class _$$ChoiceNodeDesignPresetImplCopyWith<$Res>
       ColorOption? selectColorOption,
       SliderOption? sliderOption});
 
+  @override
+  $VertexValueCopyWith<$Res>? get round;
+  @override
+  $EdgeValueCopyWith<$Res>? get padding;
   @override
   $OutlineOptionCopyWith<$Res>? get defaultOutlineOption;
   @override
@@ -1446,8 +1730,8 @@ class __$$ChoiceNodeDesignPresetImplCopyWithImpl<$Res>
     Object? name = freezed,
     Object? titlePosition = freezed,
     Object? elevation = freezed,
-    Object? roundEdge = freezed,
-    Object? paddingAround = freezed,
+    Object? round = freezed,
+    Object? padding = freezed,
     Object? maximizingImage = freezed,
     Object? hideTitle = freezed,
     Object? imagePosition = freezed,
@@ -1475,14 +1759,14 @@ class __$$ChoiceNodeDesignPresetImplCopyWithImpl<$Res>
           ? _value.elevation
           : elevation // ignore: cast_nullable_to_non_nullable
               as double?,
-      roundEdge: freezed == roundEdge
-          ? _value._roundEdge
-          : roundEdge // ignore: cast_nullable_to_non_nullable
-              as List<double>?,
-      paddingAround: freezed == paddingAround
-          ? _value._paddingAround
-          : paddingAround // ignore: cast_nullable_to_non_nullable
-              as List<double>?,
+      round: freezed == round
+          ? _value.round
+          : round // ignore: cast_nullable_to_non_nullable
+              as VertexValue?,
+      padding: freezed == padding
+          ? _value.padding
+          : padding // ignore: cast_nullable_to_non_nullable
+              as EdgeValue?,
       maximizingImage: freezed == maximizingImage
           ? _value.maximizingImage
           : maximizingImage // ignore: cast_nullable_to_non_nullable
@@ -1546,8 +1830,9 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
       {this.name,
       this.titlePosition = true,
       this.elevation = 0.0,
-      final List<double>? roundEdge = const [0.0, 0.0, 0.0, 0.0],
-      final List<double>? paddingAround = const [2.0, 2.0, 2.0, 2.0],
+      this.round = const VertexValue(
+          topLeft: 4.0, topRight: 4.0, bottomLeft: 4.0, bottomRight: 4.0),
+      this.padding = const EdgeValue(),
       this.maximizingImage = false,
       this.hideTitle = false,
       this.imagePosition = 0,
@@ -1561,9 +1846,7 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
       this.selectColorEnable = false,
       this.selectColorOption = const ColorOption(),
       this.sliderOption = const SliderOption()})
-      : _roundEdge = roundEdge,
-        _paddingAround = paddingAround,
-        super._();
+      : super._();
 
   factory _$ChoiceNodeDesignPresetImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChoiceNodeDesignPresetImplFromJson(json);
@@ -1576,28 +1859,12 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
   @override
   @JsonKey()
   final double? elevation;
-  final List<double>? _roundEdge;
   @override
   @JsonKey()
-  List<double>? get roundEdge {
-    final value = _roundEdge;
-    if (value == null) return null;
-    if (_roundEdge is EqualUnmodifiableListView) return _roundEdge;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final List<double>? _paddingAround;
+  final VertexValue? round;
   @override
   @JsonKey()
-  List<double>? get paddingAround {
-    final value = _paddingAround;
-    if (value == null) return null;
-    if (_paddingAround is EqualUnmodifiableListView) return _paddingAround;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
+  final EdgeValue? padding;
   @override
   @JsonKey()
   final bool? maximizingImage;
@@ -1642,7 +1909,7 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
 
   @override
   String toString() {
-    return 'ChoiceNodeDesignPreset(name: $name, titlePosition: $titlePosition, elevation: $elevation, roundEdge: $roundEdge, paddingAround: $paddingAround, maximizingImage: $maximizingImage, hideTitle: $hideTitle, imagePosition: $imagePosition, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont, defaultOutlineOption: $defaultOutlineOption, selectOutlineEnable: $selectOutlineEnable, selectOutlineOption: $selectOutlineOption, defaultColorOption: $defaultColorOption, selectColorEnable: $selectColorEnable, selectColorOption: $selectColorOption, sliderOption: $sliderOption)';
+    return 'ChoiceNodeDesignPreset(name: $name, titlePosition: $titlePosition, elevation: $elevation, round: $round, padding: $padding, maximizingImage: $maximizingImage, hideTitle: $hideTitle, imagePosition: $imagePosition, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont, defaultOutlineOption: $defaultOutlineOption, selectOutlineEnable: $selectOutlineEnable, selectOutlineOption: $selectOutlineOption, defaultColorOption: $defaultColorOption, selectColorEnable: $selectColorEnable, selectColorOption: $selectColorOption, sliderOption: $sliderOption)';
   }
 
   @override
@@ -1655,10 +1922,8 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
                 other.titlePosition == titlePosition) &&
             (identical(other.elevation, elevation) ||
                 other.elevation == elevation) &&
-            const DeepCollectionEquality()
-                .equals(other._roundEdge, _roundEdge) &&
-            const DeepCollectionEquality()
-                .equals(other._paddingAround, _paddingAround) &&
+            (identical(other.round, round) || other.round == round) &&
+            (identical(other.padding, padding) || other.padding == padding) &&
             (identical(other.maximizingImage, maximizingImage) ||
                 other.maximizingImage == maximizingImage) &&
             (identical(other.hideTitle, hideTitle) ||
@@ -1694,8 +1959,8 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
       name,
       titlePosition,
       elevation,
-      const DeepCollectionEquality().hash(_roundEdge),
-      const DeepCollectionEquality().hash(_paddingAround),
+      round,
+      padding,
       maximizingImage,
       hideTitle,
       imagePosition,
@@ -1732,8 +1997,8 @@ abstract class _ChoiceNodeDesignPreset extends ChoiceNodeDesignPreset {
       {final String? name,
       final bool? titlePosition,
       final double? elevation,
-      final List<double>? roundEdge,
-      final List<double>? paddingAround,
+      final VertexValue? round,
+      final EdgeValue? padding,
       final bool? maximizingImage,
       final bool? hideTitle,
       final int? imagePosition,
@@ -1759,9 +2024,9 @@ abstract class _ChoiceNodeDesignPreset extends ChoiceNodeDesignPreset {
   @override
   double? get elevation;
   @override
-  List<double>? get roundEdge;
+  VertexValue? get round;
   @override
-  List<double>? get paddingAround;
+  EdgeValue? get padding;
   @override
   bool? get maximizingImage; //true: 80%, false: 50%
   @override
