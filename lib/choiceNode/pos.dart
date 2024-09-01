@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'pos.freezed.dart';
+
 part 'pos.g.dart';
 
 @freezed
@@ -68,26 +69,22 @@ class Pos with _$Pos {
     return lca;
   }
 
-  Pos minPos(Pos other) {
-    for(int i = 0; i < min(length, other.length); i++) {
+  bool operator >(Pos other) {
+    for (int i = 0; i < min(length, other.length); i++) {
       if (data[i] < other.data[i]) {
-        return this;
+        return true;
       }
       if (data[i] > other.data[i]) {
-        return other;
+        return false;
       }
     }
     if (length < other.length) {
-      return this;
+      return true;
     }
-    return other;
+    return false;
   }
 
-  Pos maxPos(Pos other) {
-    var reverse = minPos(other);
-    if (reverse == this) {
-      return other;
-    }
-    return this;
+  bool operator <(Pos other) {
+    return !(this > other);
   }
 }
