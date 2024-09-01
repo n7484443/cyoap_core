@@ -71,14 +71,14 @@ class Pos with _$Pos {
 
   bool operator >(Pos other) {
     for (int i = 0; i < min(length, other.length); i++) {
-      if (data[i] < other.data[i]) {
+      if (data[i] > other.data[i]) {
         return true;
       }
-      if (data[i] > other.data[i]) {
+      if (data[i] < other.data[i]) {
         return false;
       }
     }
-    if (length < other.length) {
+    if (length > other.length) {
       return true;
     }
     return false;
