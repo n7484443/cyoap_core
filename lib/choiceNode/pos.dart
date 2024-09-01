@@ -67,4 +67,27 @@ class Pos with _$Pos {
     }
     return lca;
   }
+
+  Pos minPos(Pos other) {
+    for(int i = 0; i < min(length, other.length); i++) {
+      if (data[i] < other.data[i]) {
+        return this;
+      }
+      if (data[i] > other.data[i]) {
+        return other;
+      }
+    }
+    if (length < other.length) {
+      return this;
+    }
+    return other;
+  }
+
+  Pos maxPos(Pos other) {
+    var reverse = minPos(other);
+    if (reverse == this) {
+      return other;
+    }
+    return this;
+  }
 }
