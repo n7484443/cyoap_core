@@ -30,4 +30,36 @@ void main() {
       expect(ins.getValueType('pt_b')?.dataUnzip, 50 - (4 + i));
     }
   });
+
+  /* https://github.com/n7484443/cyoap_flutter/issues/63 issue */
+  test('setVisible bug', () {
+    var platform = PlayablePlatform();
+    // platform.addGlobalSetting(
+    //     "visible", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(50), visible: true));
+    platform.addGlobalSetting(
+        "invisible", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(50), visible: false));
+    var lineSetting0 = ChoiceLine();
+    // var choiceNode0 = ChoiceNode.empty()..conditionalCodeHandler.executeCodeString = "setVisible('visible', false)";
+    var choiceNode1 = ChoiceNode.empty()..conditionalCodeHandler.executeCodeString = "setVisible('invisible', true)";
+    // lineSetting0.addChildren(choiceNode0);
+    lineSetting0.addChildren(choiceNode1);
+    lineSetting0.generateParser();
+    platform.choicePage.addChildren(lineSetting0);
+
+    platform.updateStatus();
+    // expect(ins.getValueTypeWrapper('visible')?.visible, true);
+    expect(ins.getValueTypeWrapper('invisible')?.visible, false);
+
+    // choiceNode0.selectNode(0);
+    choiceNode1.selectNode(0);
+    platform.updateStatus();
+    // expect(ins.getValueTypeWrapper('visible')?.visible, false);
+    expect(ins.getValueTypeWrapper('invisible')?.visible, true);
+
+    // choiceNode0.selectNode(0);
+    choiceNode1.selectNode(0);
+    platform.updateStatus();
+    // expect(ins.getValueTypeWrapper('visible')?.visible, true);
+    expect(ins.getValueTypeWrapper('invisible')?.visible, false);
+  });
 }

@@ -414,6 +414,8 @@ class Functions {
       if (original != null) {
         VariableDataBase().setValue(
             varName, original.copyWith(visible: value), ValueTypeLocation.auto);
+      }else{
+        print("not found $varName");
       }
     };
   }

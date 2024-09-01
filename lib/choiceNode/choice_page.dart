@@ -6,6 +6,7 @@ import 'choice.dart';
 import 'choice_line.dart';
 
 part 'choice_page.freezed.dart';
+
 part 'choice_page.g.dart';
 
 @freezed
@@ -20,13 +21,18 @@ class ChoicePageOption with _$ChoicePageOption {
 
 // TODO: page 시스템 구현
 class ChoicePage with Choice {
+  ChoicePageOption choicePageOption;
+
   List<ChoiceLine> get choiceLines => children.cast<ChoiceLine>();
 
-  ChoicePage(int page) {
-    currentPos = page;
+  ChoicePage(int page) : choicePageOption = ChoicePageOption() {
+    super.currentPos = page;
   }
 
-  ChoicePage.fromJson(Map<String, dynamic> json) {
+  ChoicePage.fromJson(Map<String, dynamic> json)
+      : choicePageOption = json['choicePageOption'] == null
+            ? ChoicePageOption()
+            : ChoicePageOption.fromJson(json['choicePageOption']) {
     children = json['children'].cast<ChoiceLine>();
   }
 
@@ -34,6 +40,7 @@ class ChoicePage with Choice {
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = {
       'children': children,
+      'choicePageOption': choicePageOption.toJson(),
     };
     return map;
   }
@@ -50,17 +57,21 @@ class ChoicePage with Choice {
 
   @override
   void updateStatus() {
-    for (var i = 0; i < choiceLines.length; i++) {
-      var lineSetting = choiceLines[i];
-      VariableDataBase().setValue(
-          lineSetting.valName,
-          ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(0)),
-          ValueTypeLocation.global);
-    }
-    for (var i = 0; i < choiceLines.length; i++) {
-      var lineSetting = choiceLines[i];
-      lineSetting.execute();
-      VariableDataBase().clearLocalVariable();
+    if (choicePageOption.setEntireAsOneLine) {
+
+    }else{
+      for (var i = 0; i < choiceLines.length; i++) {
+        var lineSetting = choiceLines[i];
+        VariableDataBase().setValue(
+            lineSetting.valName,
+            ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(0)),
+            ValueTypeLocation.global);
+      }
+      for (var i = 0; i < choiceLines.length; i++) {
+        var lineSetting = choiceLines[i];
+        lineSetting.execute();
+        VariableDataBase().clearLocalVariable();
+      }
     }
   }
 
