@@ -13,7 +13,6 @@ import 'choice_line.dart';
 import 'conditional_code_handler.dart';
 
 part 'choice_node.freezed.dart';
-
 part 'choice_node.g.dart';
 
 enum ChoiceNodeMode {
