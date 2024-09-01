@@ -96,10 +96,7 @@ class PlayablePlatform {
 
   void updateStatus() {
     VariableDataBase().clear();
-    for (var element in _globalSetting) {
-      VariableDataBase()
-          .setValue(element.$1, element.$2, ValueTypeLocation.global);
-    }
+    VariableDataBase().initializeGlobalSetting(_globalSetting);
     choicePage.updateStatus();
   }
 

@@ -36,11 +36,6 @@ class VariableDataBase {
   void setValue(
       String name, ValueTypeWrapper value, ValueTypeLocation location) {
     var trim = name.trim();
-    if (value.visible &&
-        !visibleOrder.contains(name) &&
-        location == ValueTypeLocation.global) {
-      visibleOrder.add(name);
-    }
     switch (location) {
       case ValueTypeLocation.global:
         varMapGlobal[trim] = value;
@@ -102,5 +97,12 @@ class VariableDataBase {
 
   void clearLocalVariable() {
     varMapLocal.clear();
+  }
+
+  void initializeGlobalSetting(List<(String, ValueTypeWrapper)> globalSetting) {
+    for (var (name, value) in globalSetting) {
+      visibleOrder.add(name);
+      VariableDataBase().setValue(name, value, ValueTypeLocation.global);
+    }
   }
 }
