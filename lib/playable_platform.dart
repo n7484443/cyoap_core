@@ -111,8 +111,9 @@ class PlayablePlatform {
       return true;
     }
     if (choice.choiceNodeMode == ChoiceNodeMode.unSelectableMode &&
-        !choice.selectableStatus.isHide &&
-        (!checkResult || choice.choiceNodeOption.showAsResult)) {
+        (!checkResult ||
+            (!choice.selectableStatus.isHide &&
+                choice.choiceNodeOption.showAsResult))) {
       return true;
     }
     return false;
@@ -137,8 +138,9 @@ class PlayablePlatform {
   }
 
   List<List<List<int>>> selectedResult(bool separateChildren) {
-    List<List<List<int>>> selectedPos =
-        List.generate(choicePage.choiceLines.length, (i) => List<List<int>>.empty(growable: true));
+    List<List<List<int>>> selectedPos = List.generate(
+        choicePage.choiceLines.length,
+        (i) => List<List<int>>.empty(growable: true));
 
     for (var y = 0; y < choicePage.choiceLines.length; y++) {
       var line = choicePage.choiceLines[y];
