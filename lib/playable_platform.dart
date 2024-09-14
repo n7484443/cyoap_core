@@ -111,6 +111,7 @@ class PlayablePlatform {
       return true;
     }
     if (choice.choiceNodeMode == ChoiceNodeMode.unSelectableMode &&
+        !choice.selectableStatus.isHide &&
         (!checkResult || choice.choiceNodeOption.showAsResult)) {
       return true;
     }
