@@ -40,6 +40,10 @@ class StackFrame {
 
   @override
   String toString() => _variableMap.toString();
+
+  Map<String, ValueTypeWrapper> getVariableMap() {
+    return _variableMap;
+  }
 }
 
 class VariableDataBase {
