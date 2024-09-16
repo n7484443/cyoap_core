@@ -55,14 +55,7 @@ class Analyser {
 
   List<String> analyseSingleLine(String? codeInput,
       {String pos = "", isDebug = false}) {
-    if (codeInput == null || codeInput.trim().isEmpty) return [];
-    try {
-      var out = toAst(codeInput, isCondition: true, isDebug: isDebug)!;
-      return out.compile();
-    } catch (e, stackTrace) {
-      addError("$pos, $e", stackTrace);
-    }
-    return [];
+    return analyseMultiLine("return $codeInput", pos: pos, isDebug: isDebug);
   }
 
   dynamic run(List<String> unitList, {String pos = "", int? seedInput}) {

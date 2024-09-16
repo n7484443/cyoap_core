@@ -69,8 +69,9 @@ class ChoicePage with Choice {
       }
       for (var i = 0; i < choiceLines.length; i++) {
         var lineSetting = choiceLines[i];
+        VariableDataBase().enterStackFrame();
         lineSetting.execute();
-        VariableDataBase().clearLocalVariable();
+        VariableDataBase().exitStackFrame();
       }
     }
   }

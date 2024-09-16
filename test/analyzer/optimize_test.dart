@@ -19,8 +19,7 @@ void main() {
     var optimize_bool_output_2 = optimize_bool_input_2 == true
     var optimize_bool_output_3 = optimize_bool_input_3 == false
     ''';
-    var code = Analyser().analyseMultiLine(strTest);
-    expectMultiple(code, {
+    expectMultiple(strTest, {
       "optimize_bool_output_0": false,
       "optimize_bool_output_1": true,
       "optimize_bool_output_2": false,
@@ -32,7 +31,7 @@ void main() {
       "optimize_bool_input_3": false,
     });
 
-    expectMultiple(code, {
+    expectMultiple(strTest, {
       "optimize_bool_output_0": true,
       "optimize_bool_output_1": false,
       "optimize_bool_output_2": true,
@@ -57,6 +56,7 @@ void main() {
     var optimize_bool_output_2 = optimize_bool_input_2
     var optimize_bool_output_3 = not(optimize_bool_input_3)
     ''';
+    var code = Analyser().analyseMultiLine(strTest);
     var codeOptimized = Analyser().analyseMultiLine(strTestOptimized);
     expect(code, codeOptimized);
   });

@@ -1,6 +1,7 @@
-import 'package:cyoap_core/grammar/analyser.dart';
 import 'package:cyoap_core/variable_db.dart';
 import 'package:test/test.dart';
+
+import 'analyzer_tool.dart';
 
 void main() {
   test('forTest0', () {
@@ -11,7 +12,7 @@ void main() {
       for_test_0 += i
     }
     """;
-    Analyser().run(Analyser().analyseMultiLine(strTest));
+    execute(strTest);
     expect(ins.getValueType('for_test_0')?.dataUnzip, 45);
   });
   test('forTest1', () {
@@ -23,7 +24,7 @@ void main() {
       for_test_1 += i
     }
     """;
-    Analyser().run(Analyser().analyseMultiLine(strTest));
+    execute(strTest);
     expect(ins.getValueType('for_test_1')?.dataUnzip, 45);
   });
   test('forTest2', () {
@@ -36,7 +37,7 @@ void main() {
       for_test_output_2 += i
     }
     """;
-    Analyser().run(Analyser().analyseMultiLine(strTest));
+    execute(strTest);
     expect(ins.getValueType('for_test_output_2')?.dataUnzip, 45);
   });
   test('forTest3', () {
@@ -49,7 +50,7 @@ void main() {
         for_test_output_3 *= i
     }
     """;
-    Analyser().run(Analyser().analyseMultiLine(strTest));
+    execute(strTest);
     expect(ins.getValueType('for_test_output_3')?.dataUnzip, 6);
   });
   test('forBreakTest', () {
@@ -63,7 +64,7 @@ void main() {
       }
     }
     """;
-    Analyser().run(Analyser().analyseMultiLine(strTest));
+    execute(strTest);
     expect(ins.getValueType('for_break_test_0')?.dataUnzip, 15);
   });
   test('forContinueTest', () {
@@ -77,7 +78,7 @@ void main() {
       for_continue_test_0 += i
     }
     """;
-    Analyser().run(Analyser().analyseMultiLine(strTest));
+    execute(strTest);
     expect(ins.getValueType('for_continue_test_0')?.dataUnzip, 40);
   });
 }

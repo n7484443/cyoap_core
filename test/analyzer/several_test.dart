@@ -1,7 +1,8 @@
 import 'package:cyoap_core/grammar/analyser.dart';
-import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/variable_db.dart';
 import 'package:test/test.dart';
+
+import 'analyzer_tool.dart';
 
 void main() {
   var ins = VariableDataBase();
@@ -17,14 +18,15 @@ void main() {
     let numberTest5 = 6 / 3
     let numberTest6 = 7 % 3
     """;
-    Analyser().run(Analyser().analyseMultiLine(strTest));
-    expect(ins.getValueType('numberTest0')?.dataUnzip, closeTo(-5.5, epsilon));
-    expect(ins.getValueType('numberTest1')?.dataUnzip, 24);
-    expect(ins.getValueType('numberTest2')?.dataUnzip, 14);
-    expect(ins.getValueType('numberTest3')?.dataUnzip, closeTo(0.5, epsilon));
-    expect(ins.getValueType('numberTest4')?.dataUnzip, 18);
-    expect(ins.getValueType('numberTest5')?.dataUnzip, 2);
-    expect(ins.getValueType('numberTest6')?.dataUnzip, 1);
+    executeInNoReturn(strTest, {}, {
+      'numberTest0': closeTo(-5.5, epsilon),
+      'numberTest1': 24,
+      'numberTest2': 14,
+      'numberTest3': closeTo(0.5, epsilon),
+      'numberTest4': 18,
+      'numberTest5': 2,
+      'numberTest6': 1,
+    });
   });
   test('bitTest', () {
     //int a = 0b00001011
@@ -44,23 +46,25 @@ void main() {
     let bitTest5 = 11 >> 1
     let bitTest6 = ~~(3+8)
     """;
-    Analyser().run(Analyser().analyseMultiLine(strTest));
-    expect(ins.getValueType('bitTest0')?.dataUnzip, 2);
-    expect(ins.getValueType('bitTest1')?.dataUnzip, 15);
-    expect(ins.getValueType('bitTest2')?.dataUnzip, 13);
-    expect(ins.getValueType('bitTest3')?.dataUnzip, ~11);
-    expect(ins.getValueType('bitTest4')?.dataUnzip, 22);
-    expect(ins.getValueType('bitTest5')?.dataUnzip, 5);
-    expect(ins.getValueType('bitTest6')?.dataUnzip, ~~11);
+    executeInNoReturn(strTest, {}, {
+      'bitTest0': 2,
+      'bitTest1': 15,
+      'bitTest2': 13,
+      'bitTest3': ~11,
+      'bitTest4': 22,
+      'bitTest5': 5,
+      'bitTest6': ~~11,
+    });
   });
   test('boolTest', () {
-    String strTest = """                
+    String strTest = """
     var boolTest1 = true
     var boolTest2 = false
     """;
-    Analyser().run(Analyser().analyseMultiLine(strTest));
-    expect(ins.getValueType('boolTest1')?.dataUnzip, true);
-    expect(ins.getValueType('boolTest2')?.dataUnzip, false);
+    executeInNoReturn(strTest, {}, {
+      'boolTest1': true,
+      'boolTest2': false,
+    });
   });
 
   test('funcTest', () {
@@ -69,10 +73,11 @@ void main() {
     var ceilTest = ceil(4.8)
     var floorTest = floor(4.8)
     """;
-    Analyser().run(Analyser().analyseMultiLine(strTest));
-    expect(ins.getValueType('roundTest')?.dataUnzip, 5);
-    expect(ins.getValueType('ceilTest')?.dataUnzip, 5);
-    expect(ins.getValueType('floorTest')?.dataUnzip, 4);
+    executeInNoReturn(strTest, {}, {
+      'roundTest': 5,
+      'ceilTest': 5,
+      'floorTest': 4,
+    });
   });
 
   test('stringTest', () {
@@ -84,27 +89,25 @@ void main() {
     var stringTest2 = "문자열 속 * 나 / 등이 들어가 있어도 멀정함."
     var stringTest3 = "문자열 속 '따음표'가 들어가도 멀쩡함."
     """;
-    Analyser().run(Analyser().analyseMultiLine(strTest));
-    expect(ins.getValueType('stringTest')?.dataUnzip, "문자열 테스트String1");
-    expect(ins.getValueType('stringAddTest')?.dataUnzip, "문자열테스트1");
-    expect(ins.getValueType('stringAddTest1')?.dataUnzip, "문자열테스트1");
-    expect(ins.getValueType('stringAddTest2')?.dataUnzip, true);
-    expect(ins.getValueType('stringTest2')?.dataUnzip,
-        """문자열 속 * 나 / 등이 들어가 있어도 멀정함.""");
-    expect(ins.getValueType('stringTest3')?.dataUnzip,
-        """문자열 속 '따음표'가 들어가도 멀쩡함.""");
+    executeInNoReturn(strTest, {}, {
+      'stringTest': "문자열 테스트String1",
+      'stringAddTest': "문자열테스트1",
+      'stringAddTest1': "문자열테스트1",
+      'stringAddTest2': true,
+      'stringTest2': """문자열 속 * 나 / 등이 들어가 있어도 멀정함.""",
+      'stringTest3': """문자열 속 '따음표'가 들어가도 멀쩡함.""",
+    });
   });
 
   test('compTest', () {
     String strTest = """
+    let numberTest0 = -5.5
     var comp1 = numberTest0==-5.5
     var comp2 = numberTest0 >= -5.5
     var comp3 = numberTest0 > -5.5
     """;
-    Analyser().run(Analyser().analyseMultiLine(strTest));
-    expect(ins.getValueType('comp1')?.dataUnzip, true);
-    expect(ins.getValueType('comp2')?.dataUnzip, true);
-    expect(ins.getValueType('comp3')?.dataUnzip, false);
+    executeInNoReturn(
+        strTest, {}, {'comp1': true, 'comp2': true, 'comp3': false});
   });
   test('addTest', () {
     var addTestStr = """
@@ -113,29 +116,25 @@ void main() {
     var test_beta = 1
     test_beta -= 5
     """;
-    Analyser().run(Analyser().analyseMultiLine(addTestStr));
-    expect(ins.getValueType('test_alpha')?.dataUnzip, 4);
-    expect(ins.getValueType('test_beta')?.dataUnzip, -4);
+    executeInNoReturn(addTestStr, {}, {'test_alpha': 4, 'test_beta': -4});
   });
 
   test('multiple Test', () {
     String strTest = """
     var multiple_test_1 = and(not(and(true, false)), true)
     """;
-    Analyser().run(Analyser().analyseMultiLine(strTest));
-    expect(ins.getValueType('multiple_test_1')?.dataUnzip, true);
+    executeInNoReturn(strTest, {}, {'multiple_test_1': true});
   });
 
   test('return Test', () {
     String strTest = """
     numberTest0 < 0
     """;
-    String strTest1 = """ 
+    String strTest1 = """
     numberTest4 >= 19
     """;
-    expect(Analyser().run(Analyser().analyseSingleLine(strTest)) as bool, true);
-    expect(
-        Analyser().run(Analyser().analyseSingleLine(strTest1)) as bool, false);
+    executeInReturn(strTest, {'numberTest0': -5.5}, true, singleLine: true);
+    executeInReturn(strTest1, {'numberTest4': 18}, false, singleLine: true);
   });
 
   test('global variable Test', () {
@@ -156,8 +155,13 @@ void main() {
     var visibleTest = isVisible("globalTest")
     var visibleTest_other = isVisible("globalTest_other")
     """;
+    VariableDataBase().enterStackFrame();
+
+    VariableDataBase().enterStackFrame();
     Analyser().run(Analyser().analyseMultiLine(strTest));
-    ins.clearLocalVariable();
+    VariableDataBase().exitStackFrame();
+
+    VariableDataBase().enterStackFrame();
     Analyser().run(Analyser().analyseMultiLine(strGlobalTest));
     expect(ins.getValueType('T')?.dataUnzip, true);
     expect(ins.getValueType('existTest')?.dataUnzip, true);
@@ -167,6 +171,7 @@ void main() {
     expect(ins.getValueTypeWrapper('globalTest_other')?.visible, false);
     expect(ins.getValueType('visibleTest')?.dataUnzip, true);
     expect(ins.getValueType('visibleTest_other')?.dataUnzip, false);
+    VariableDataBase().exitStackFrame();
   });
   test('comment test', () {
     String strTest = """
@@ -174,33 +179,30 @@ void main() {
       //이건 해석하면 안되는 문장. var asb = 0
       var commentTest1 = 0
     """;
-    ins.clearLocalVariable();
-    Analyser().run(Analyser().analyseMultiLine(strTest));
-    expect(ins.getValueType('commentTest')?.dataUnzip, 123);
-    expect(ins.getValueType('asb')?.dataUnzip, null);
-    expect(ins.getValueType('commentTest1')?.dataUnzip, 0);
+    executeInNoReturn(strTest, {}, {
+      'commentTest': 123,
+      'asb': null,
+      'commentTest1': 0,
+    });
   });
 
   test('simpleTest', () {
     String strTest1 = "true";
-    var out = Analyser().run(Analyser().analyseSingleLine(strTest1));
-    expect(out, true);
+    executeInReturn(strTest1, {}, true, singleLine: true);
     String strTest2 = "false";
-    out = Analyser().run(Analyser().analyseSingleLine(strTest2));
-    expect(out, false);
+    executeInReturn(strTest2, {}, false, singleLine: true);
   });
 
   test('nodeTest', () {
-    VariableDataBase().setValue("테스트용:random",
-        ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(3)), ValueTypeLocation.global);
     String strTest1 = "테스트용:random == 3";
-    var out = Analyser().run(Analyser().analyseSingleLine(strTest1));
-    expect(out, true);
+    executeInReturn(strTest1, {"테스트용:random": 3}, true, singleLine: true);
   });
 
   test('error list test', () {
     String strTest1 = "!@#\$!@\$!@#";
     Analyser().analyseSingleLine(strTest1, pos: "pos[0, 3, 5]");
-    expect(Analyser().errorList, ['pos[0, 3, 5], Exception: Compile Error, check syntax and try again.']);
+    expect(Analyser().errorList, [
+      'pos[0, 3, 5], Exception: Compile Error, check syntax and try again.'
+    ]);
   });
 }

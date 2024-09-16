@@ -1,13 +1,9 @@
-import 'package:cyoap_core/grammar/analyser.dart';
-import 'package:cyoap_core/grammar/value_type.dart';
-import 'package:cyoap_core/variable_db.dart';
 import 'package:test/test.dart';
 
 import 'analyzer_tool.dart';
 
 void main(){
   test('ifTestInput', () {
-    var ins = VariableDataBase();
     String strTest = """
     if(if_test_input_0){
       var if_test_output_0 = true
@@ -15,13 +11,13 @@ void main(){
       var if_test_output_0 = false
     }
     """;
-    ins.setValue("if_test_input_0", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(true)), ValueTypeLocation.global);
-    Analyser().run(Analyser().analyseMultiLine(strTest));
-    expect(ins.getValueType("if_test_output_0")?.dataUnzip, true);
-
-    ins.setValue("if_test_input_0", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(false)), ValueTypeLocation.global);
-    Analyser().run(Analyser().analyseMultiLine(strTest));
-    expect(ins.getValueType("if_test_output_0")?.dataUnzip, false);
+    for(var b in [false, true]){
+      executeInNoReturn(strTest, {
+        'if_test_input_0': b,
+      }, {
+        'if_test_output_0': b,
+      });
+    }
   });
   test('ifTest', () {
     String strTest = """
@@ -34,8 +30,7 @@ void main(){
       var if_test_gamma = true
     }
     """;
-    var code = Analyser().analyseMultiLine(strTest);
-    expectMultiple(code, {
+    expectMultiple(strTest, {
       'if_test_alpha': true,
       'if_test_beta': null,
       'if_test_gamma': true,
@@ -55,8 +50,7 @@ void main(){
       var ifNestedTest0_2 = true
     }
     """;
-    var code = Analyser().analyseMultiLine(strTest);
-    expectMultiple(code, {
+    expectMultiple(strTest, {
       'ifNestedTest0_0': true,
       'ifNestedTest0_1': true,
       'ifNestedTest0_2': null,
@@ -81,8 +75,7 @@ void main(){
       var ifNestedTest1_3 = true
     }
     """;
-    var code = Analyser().analyseMultiLine(strTest);
-    expectMultiple(code, {
+    expectMultiple(strTest, {
       'ifNestedTest1_0': true,
       'ifNestedTest1_1': true,
       'ifNestedTest1_2': null,
@@ -100,8 +93,7 @@ void main(){
       var ifSpacedTest0_1 = true
     }
     """;
-    var code = Analyser().analyseMultiLine(strTest);
-    expectMultiple(code, {
+    expectMultiple(strTest, {
       'ifSpacedTest0_0': true,
       'ifSpacedTest0_1': null,
     });
@@ -118,9 +110,8 @@ void main(){
       var out = 2
     }
     """;
-    var code = Analyser().analyseMultiLine(strTest);
     for(int i = 0; i <= 2; i++){
-      expectMultiple(code, {
+      expectMultiple(strTest, {
         'out': i,
       }, input: {
         'in': i,
@@ -145,9 +136,8 @@ void main(){
       var out = 5
     }
     """;
-    var code = Analyser().analyseMultiLine(strTest);
     for(int i = 0; i <= 5; i++){
-      expectMultiple(code, {
+      expectMultiple(strTest, {
         'out': i,
       }, input: {
         'in': i,
