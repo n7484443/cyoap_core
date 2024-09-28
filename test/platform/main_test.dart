@@ -21,19 +21,19 @@ void main() {
     choiceNode0.conditionalCodeHandler.executeCodeString = "test = 0";
     var choiceNode1 = ChoiceNode.empty()..title = "testNode1";
     choiceNode1.conditionalCodeHandler.executeCodeString = "test = 'other'";
-    lineSetting0.addChildren(choiceNode0);
-    lineSetting0.addChildren(choiceNode1);
+    lineSetting0.addChild(choiceNode0);
+    lineSetting0.addChild(choiceNode1);
     lineSetting0.generateParser();
 
     var lineSetting1 = ChoiceLine(choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
     var choiceNode1_0 = ChoiceNode(
         title: "testNode 1_0", contents: "a {{test}} b", imageString: '');
     choiceNode1_0.conditionalCodeHandler.executeCodeString = "test = 'self'";
-    lineSetting1.addChildren(choiceNode1_0);
+    lineSetting1.addChild(choiceNode1_0);
     lineSetting1.generateParser();
 
-    platform.choicePage.addChildren(lineSetting0);
-    platform.choicePage.addChildren(lineSetting1);
+    platform.choicePage.addChild(lineSetting0);
+    platform.choicePage.addChild(lineSetting1);
     platform.updateStatus();
     expect(choiceNode1_0.contentsString, "a initial b");
 
@@ -84,9 +84,9 @@ void main() {
       content = "b"
     }
     """;
-    lineSetting0.addChildren(choiceNode0);
+    lineSetting0.addChild(choiceNode0);
     lineSetting0.generateParser();
-    platform.choicePage.addChildren(lineSetting0);
+    platform.choicePage.addChild(lineSetting0);
 
     platform.updateStatus();
     for (int i = 0; i < 10; i++) {

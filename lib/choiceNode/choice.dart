@@ -75,7 +75,7 @@ mixin Choice {
     return posList.addLast(currentPos);
   }
 
-  void addChildren(Choice childNode, {int? pos}) {
+  void addChild(Choice childNode, {int? pos}) {
     pos ??= children.length;
     childNode.parent = this;
     childNode.width = childNode.width.clamp(0, width);

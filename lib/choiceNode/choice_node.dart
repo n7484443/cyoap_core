@@ -82,11 +82,11 @@ class ChoiceNode with Choice {
   ChoiceNode(
       {int width = 1,
       required this.title,
-      required contents,
+      String? contents,
       this.imageString = ""})
       : choiceNodeOption = ChoiceNodeOption(),
-        _currentContentsString = contents,
-        _contentsString = contents {
+        _currentContentsString = contents ?? '',
+        _contentsString = contents ?? '' {
     conditionalCodeHandler = ConditionalCodeHandler();
     super.width = width;
   }
@@ -341,5 +341,10 @@ class ChoiceNode with Choice {
       return;
     }
     conditionalCodeHandler.execute(errorName, seedInput: seed);
+  }
+
+  @override
+  String toString() {
+    return "$title $select $selectableStatus";
   }
 }

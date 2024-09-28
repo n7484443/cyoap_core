@@ -7,11 +7,11 @@ import 'package:test/test.dart';
 void main() {
   test('nestedTest', () {
     var platform = PlayablePlatform();
-    platform.choicePage.addChildren(ChoiceLine(choiceLineOption: ChoiceLineOption(enableCancelFeature: true)));
+    platform.choicePage.addChild(ChoiceLine(choiceLineOption: ChoiceLineOption(enableCancelFeature: true)));
     var parent = ChoiceNode.empty()..title = "parent";
     var child = ChoiceNode.empty()..title = "child";
-    parent.addChildren(child);
-    platform.choicePage.choiceLines[0].addChildren(parent);
+    parent.addChild(child);
+    platform.choicePage.choiceLines[0].addChild(parent);
     platform.updateStatus();
     expect(parent.select, 0);
     expect(child.select, 0);
@@ -61,10 +61,10 @@ void main() {
     parent.generateParser();
     child0.generateParser();
     child1.generateParser();
-    parent.addChildren(child0);
-    parent.addChildren(child1);
-    line.addChildren(parent);
-    platform.choicePage.addChildren(line);
+    parent.addChild(child0);
+    parent.addChild(child1);
+    line.addChild(parent);
+    platform.choicePage.addChild(line);
     platform.updateStatus();
 
     expect(parent.select, 0);
@@ -138,10 +138,10 @@ void main() {
     parent.generateParser();
     child0.generateParser();
     child1.generateParser();
-    parent.addChildren(child0);
-    parent.addChildren(child1);
-    line.addChildren(parent);
-    platform.choicePage.addChildren(line);
+    parent.addChild(child0);
+    parent.addChild(child1);
+    line.addChild(parent);
+    platform.choicePage.addChild(line);
 
     platform.addGlobalSetting("a", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(false)));
     platform.addGlobalSetting("b", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(false)));

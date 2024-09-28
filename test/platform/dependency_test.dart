@@ -19,9 +19,9 @@ void main() {
     var lineSetting1 = ChoiceLine(
         choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
     lineSetting0.generateParser();
-    platform.choicePage.addChildren(lineSetting0);
+    platform.choicePage.addChild(lineSetting0);
     lineSetting1.generateParser();
-    platform.choicePage.addChildren(lineSetting1);
+    platform.choicePage.addChild(lineSetting1);
     var choiceNode0 = ChoiceNode.empty()..title = "testNode0";
     var choiceNode1 = ChoiceNode.empty()
       ..title = "testNode1"
@@ -31,9 +31,9 @@ void main() {
       ..conditionalCodeHandler.conditionClickableString = "testNode0";
     choiceNode1.generateParser();
     choiceNode2.generateParser();
-    platform.choicePage.choiceLines[0].addChildren(choiceNode0);
-    platform.choicePage.choiceLines[1].addChildren(choiceNode1);
-    platform.choicePage.choiceLines[1].addChildren(choiceNode2);
+    platform.choicePage.choiceLines[0].addChild(choiceNode0);
+    platform.choicePage.choiceLines[1].addChild(choiceNode1);
+    platform.choicePage.choiceLines[1].addChild(choiceNode2);
     platform.updateStatus();
     choiceNode0.selectNode(0);
     platform.updateStatus();
@@ -66,7 +66,7 @@ void main() {
     var lineSetting0 = ChoiceLine(
         choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
     lineSetting0.generateParser();
-    platform.choicePage.addChildren(lineSetting0);
+    platform.choicePage.addChild(lineSetting0);
     var choiceNode0 = ChoiceNode.empty()..title = "testNode0";
     var choiceNode1 = ChoiceNode.empty()
       ..title = "testNode1"
@@ -74,8 +74,8 @@ void main() {
       ..conditionalCodeHandler.executeCodeString = "point += 5";
     choiceNode0.generateParser();
     choiceNode1.generateParser();
-    lineSetting0.addChildren(choiceNode0);
-    lineSetting0.addChildren(choiceNode1);
+    lineSetting0.addChild(choiceNode0);
+    lineSetting0.addChild(choiceNode1);
     platform.updateStatus();
 
     expect(choiceNode0.select, 0);
@@ -125,7 +125,7 @@ void main() {
     var lineSetting0 = ChoiceLine(
         choiceLineOption: ChoiceLineOption(enableCancelFeature: true));
     lineSetting0.generateParser();
-    platform.choicePage.addChildren(lineSetting0);
+    platform.choicePage.addChild(lineSetting0);
     var choiceNode0 = ChoiceNode.empty()
       ..title = "testNode0"
       ..conditionalCodeHandler.conditionClickableString = "point >= 0"
@@ -141,9 +141,9 @@ void main() {
     choiceNode0.generateParser();
     choiceNode1.generateParser();
     choiceNode2.generateParser();
-    lineSetting0.addChildren(choiceNode0);
-    lineSetting0.addChildren(choiceNode1);
-    lineSetting0.addChildren(choiceNode2);
+    lineSetting0.addChild(choiceNode0);
+    lineSetting0.addChild(choiceNode1);
+    lineSetting0.addChild(choiceNode2);
     platform.updateStatus();
 
     expect(choiceNode0.select, 0);
