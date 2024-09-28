@@ -125,7 +125,6 @@ class ChoiceLine with Choice {
       var selectInfo = selectOrder[order];
       var node = findRootParent().findChoice(selectInfo.pos) as ChoiceNode;
       if(!node.isExecute(update: true)){
-        order += 1;
         continue;
       }
       node.execute();
