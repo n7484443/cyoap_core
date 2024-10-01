@@ -1396,7 +1396,7 @@ mixin _$ChoiceNodeDesignPreset {
   double? get elevation => throw _privateConstructorUsedError;
   VertexValue? get round => throw _privateConstructorUsedError;
   EdgeValue? get padding => throw _privateConstructorUsedError;
-  double? get maxImageRatioHeight => throw _privateConstructorUsedError;
+  double? get imageMaxHeightRatio => throw _privateConstructorUsedError;
   bool? get hideTitle => throw _privateConstructorUsedError;
   int? get imagePosition =>
       throw _privateConstructorUsedError; //0:default, 1:image-right 2:image-left
@@ -1433,7 +1433,7 @@ abstract class $ChoiceNodeDesignPresetCopyWith<$Res> {
       double? elevation,
       VertexValue? round,
       EdgeValue? padding,
-      double? maxImageRatioHeight,
+      double? imageMaxHeightRatio,
       bool? hideTitle,
       int? imagePosition,
       int? colorTitle,
@@ -1477,7 +1477,7 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
     Object? elevation = freezed,
     Object? round = freezed,
     Object? padding = freezed,
-    Object? maxImageRatioHeight = freezed,
+    Object? imageMaxHeightRatio = freezed,
     Object? hideTitle = freezed,
     Object? imagePosition = freezed,
     Object? colorTitle = freezed,
@@ -1512,9 +1512,9 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
           ? _value.padding
           : padding // ignore: cast_nullable_to_non_nullable
               as EdgeValue?,
-      maxImageRatioHeight: freezed == maxImageRatioHeight
-          ? _value.maxImageRatioHeight
-          : maxImageRatioHeight // ignore: cast_nullable_to_non_nullable
+      imageMaxHeightRatio: freezed == imageMaxHeightRatio
+          ? _value.imageMaxHeightRatio
+          : imageMaxHeightRatio // ignore: cast_nullable_to_non_nullable
               as double?,
       hideTitle: freezed == hideTitle
           ? _value.hideTitle
@@ -1681,7 +1681,7 @@ abstract class _$$ChoiceNodeDesignPresetImplCopyWith<$Res>
       double? elevation,
       VertexValue? round,
       EdgeValue? padding,
-      double? maxImageRatioHeight,
+      double? imageMaxHeightRatio,
       bool? hideTitle,
       int? imagePosition,
       int? colorTitle,
@@ -1731,7 +1731,7 @@ class __$$ChoiceNodeDesignPresetImplCopyWithImpl<$Res>
     Object? elevation = freezed,
     Object? round = freezed,
     Object? padding = freezed,
-    Object? maxImageRatioHeight = freezed,
+    Object? imageMaxHeightRatio = freezed,
     Object? hideTitle = freezed,
     Object? imagePosition = freezed,
     Object? colorTitle = freezed,
@@ -1766,9 +1766,9 @@ class __$$ChoiceNodeDesignPresetImplCopyWithImpl<$Res>
           ? _value.padding
           : padding // ignore: cast_nullable_to_non_nullable
               as EdgeValue?,
-      maxImageRatioHeight: freezed == maxImageRatioHeight
-          ? _value.maxImageRatioHeight
-          : maxImageRatioHeight // ignore: cast_nullable_to_non_nullable
+      imageMaxHeightRatio: freezed == imageMaxHeightRatio
+          ? _value.imageMaxHeightRatio
+          : imageMaxHeightRatio // ignore: cast_nullable_to_non_nullable
               as double?,
       hideTitle: freezed == hideTitle
           ? _value.hideTitle
@@ -1832,7 +1832,7 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
       this.round = const VertexValue(
           topLeft: 4.0, topRight: 4.0, bottomLeft: 4.0, bottomRight: 4.0),
       this.padding = const EdgeValue(),
-      this.maxImageRatioHeight = 0.5,
+      this.imageMaxHeightRatio = 0.5,
       this.hideTitle = false,
       this.imagePosition = 0,
       this.colorTitle = 0xFF000000,
@@ -1866,7 +1866,7 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
   final EdgeValue? padding;
   @override
   @JsonKey()
-  final double? maxImageRatioHeight;
+  final double? imageMaxHeightRatio;
   @override
   @JsonKey()
   final bool? hideTitle;
@@ -1907,7 +1907,7 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
 
   @override
   String toString() {
-    return 'ChoiceNodeDesignPreset(name: $name, titlePosition: $titlePosition, elevation: $elevation, round: $round, padding: $padding, maxImageRatioHeight: $maxImageRatioHeight, hideTitle: $hideTitle, imagePosition: $imagePosition, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont, defaultOutlineOption: $defaultOutlineOption, selectOutlineEnable: $selectOutlineEnable, selectOutlineOption: $selectOutlineOption, defaultColorOption: $defaultColorOption, selectColorEnable: $selectColorEnable, selectColorOption: $selectColorOption, sliderOption: $sliderOption)';
+    return 'ChoiceNodeDesignPreset(name: $name, titlePosition: $titlePosition, elevation: $elevation, round: $round, padding: $padding, imageMaxHeightRatio: $imageMaxHeightRatio, hideTitle: $hideTitle, imagePosition: $imagePosition, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont, defaultOutlineOption: $defaultOutlineOption, selectOutlineEnable: $selectOutlineEnable, selectOutlineOption: $selectOutlineOption, defaultColorOption: $defaultColorOption, selectColorEnable: $selectColorEnable, selectColorOption: $selectColorOption, sliderOption: $sliderOption)';
   }
 
   @override
@@ -1922,8 +1922,8 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
                 other.elevation == elevation) &&
             (identical(other.round, round) || other.round == round) &&
             (identical(other.padding, padding) || other.padding == padding) &&
-            (identical(other.maxImageRatioHeight, maxImageRatioHeight) ||
-                other.maxImageRatioHeight == maxImageRatioHeight) &&
+            (identical(other.imageMaxHeightRatio, imageMaxHeightRatio) ||
+                other.imageMaxHeightRatio == imageMaxHeightRatio) &&
             (identical(other.hideTitle, hideTitle) ||
                 other.hideTitle == hideTitle) &&
             (identical(other.imagePosition, imagePosition) ||
@@ -1959,7 +1959,7 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
       elevation,
       round,
       padding,
-      maxImageRatioHeight,
+      imageMaxHeightRatio,
       hideTitle,
       imagePosition,
       colorTitle,
@@ -1997,7 +1997,7 @@ abstract class _ChoiceNodeDesignPreset extends ChoiceNodeDesignPreset {
       final double? elevation,
       final VertexValue? round,
       final EdgeValue? padding,
-      final double? maxImageRatioHeight,
+      final double? imageMaxHeightRatio,
       final bool? hideTitle,
       final int? imagePosition,
       final int? colorTitle,
@@ -2026,7 +2026,7 @@ abstract class _ChoiceNodeDesignPreset extends ChoiceNodeDesignPreset {
   @override
   EdgeValue? get padding;
   @override
-  double? get maxImageRatioHeight;
+  double? get imageMaxHeightRatio;
   @override
   bool? get hideTitle;
   @override
