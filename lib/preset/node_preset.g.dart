@@ -181,7 +181,8 @@ _$ChoiceNodeDesignPresetImpl _$$ChoiceNodeDesignPresetImplFromJson(
       padding: json['padding'] == null
           ? const EdgeValue()
           : EdgeValue.fromJson(json['padding'] as Map<String, dynamic>),
-      maximizingImage: json['maximizingImage'] as bool? ?? false,
+      maxImageRatioHeight:
+          (json['maxImageRatioHeight'] as num?)?.toDouble() ?? 0.5,
       hideTitle: json['hideTitle'] as bool? ?? false,
       imagePosition: (json['imagePosition'] as num?)?.toInt() ?? 0,
       colorTitle: (json['colorTitle'] as num?)?.toInt() ?? 0xFF000000,
@@ -218,7 +219,7 @@ Map<String, dynamic> _$$ChoiceNodeDesignPresetImplToJson(
       'elevation': instance.elevation,
       'round': instance.round?.toJson(),
       'padding': instance.padding?.toJson(),
-      'maximizingImage': instance.maximizingImage,
+      'maxImageRatioHeight': instance.maxImageRatioHeight,
       'hideTitle': instance.hideTitle,
       'imagePosition': instance.imagePosition,
       'colorTitle': instance.colorTitle,

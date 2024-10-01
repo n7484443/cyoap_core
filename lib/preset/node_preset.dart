@@ -171,7 +171,7 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
     @Default(VertexValue(
         topLeft: 4.0, topRight: 4.0, bottomLeft: 4.0, bottomRight: 4.0)) VertexValue? round,
     @Default(EdgeValue()) EdgeValue? padding,
-    @Default(false) bool? maximizingImage, //true: 80%, false: 50%
+    @Default(0.5) double? maxImageRatioHeight,
     @Default(false) bool? hideTitle,
     @Default(0) int? imagePosition, //0:default, 1:image-right 2:image-left
     @Default(0xFF000000) int? colorTitle,
@@ -195,7 +195,7 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
       elevation: null,
       round: null,
       padding: null,
-      maximizingImage: null,
+      maxImageRatioHeight: null,
       hideTitle: null,
       imagePosition: null,
       colorTitle: null,
@@ -219,7 +219,7 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
       elevation: override?.elevation ?? elevation,
       round: override?.round ?? round,
       padding: override?.padding ?? padding,
-      maximizingImage: override?.maximizingImage ?? maximizingImage,
+      maxImageRatioHeight: override?.maxImageRatioHeight ?? maxImageRatioHeight,
       hideTitle: override?.hideTitle ?? hideTitle,
       imagePosition: override?.imagePosition ?? imagePosition,
       colorTitle: override?.colorTitle ?? colorTitle,
