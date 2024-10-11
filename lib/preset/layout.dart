@@ -119,14 +119,6 @@ class ResponsiveBox with _$ResponsiveBox {
       _$ResponsiveBoxFromJson(json);
 }
 
-enum NodeLayoutElementType{
-  title,
-  image,
-  content,
-  text,
-  box
-}
-
 const double defaultTitleHeight = 36;
 
 @freezed
