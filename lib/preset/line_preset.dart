@@ -1,10 +1,9 @@
 import 'package:cyoap_core/i18n.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'node_preset.dart';
+import 'layout.dart';
 
 part 'line_preset.freezed.dart';
-
 part 'line_preset.g.dart';
 
 enum ChoiceLineAlignment {
