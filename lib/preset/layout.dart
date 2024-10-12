@@ -171,6 +171,25 @@ class NodeLayoutElement with _$NodeLayoutElement{
   }) = Box;
 
   const NodeLayoutElement._();
+
+  double getIntrinsicWidth(double parentWidth){
+    if(responsiveBox.width != null){
+      return responsiveBox.width!.value(parentWidth);
+    }
+    var left = responsiveBox.left?.value(parentWidth) ?? 0;
+    var right = responsiveBox.right?.value(parentWidth) ?? 0;
+    return parentWidth - left - right;
+  }
+
+  double getIntrinsicHeight(double parentHeight){
+    if(responsiveBox.height != null){
+      return responsiveBox.height!.value(parentHeight);
+    }
+    var top = responsiveBox.left?.value(parentHeight) ?? 0;
+    var bottom = responsiveBox.right?.value(parentHeight) ?? 0;
+    return parentHeight - top - bottom;
+  }
+
   factory NodeLayoutElement.fromJson(Map<String, dynamic> json) =>
       _$NodeLayoutElementFromJson(json);
 }
