@@ -111,8 +111,8 @@ class ResponsiveBox with _$ResponsiveBox {
     @Default(null) ResponsiveSize? top,
     @Default(null) ResponsiveSize? bottom,
 
-    @Default(ResponsiveSize(percentage: 100)) ResponsiveSize? width,
-    @Default(ResponsiveSize(percentage: 100)) ResponsiveSize? height,
+    @Default(null) ResponsiveSize? width,
+    @Default(null) ResponsiveSize? height,
   }) = _ResponsiveBox;
 
   factory ResponsiveBox.fromJson(Map<String, dynamic> json) =>

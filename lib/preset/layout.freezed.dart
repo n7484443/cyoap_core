@@ -868,8 +868,8 @@ class _$ResponsiveBoxImpl implements _ResponsiveBox {
       this.right = null,
       this.top = null,
       this.bottom = null,
-      this.width = const ResponsiveSize(percentage: 100),
-      this.height = const ResponsiveSize(percentage: 100)});
+      this.width = null,
+      this.height = null});
 
   factory _$ResponsiveBoxImpl.fromJson(Map<String, dynamic> json) =>
       _$$ResponsiveBoxImplFromJson(json);

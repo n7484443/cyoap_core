@@ -107,10 +107,10 @@ _$ResponsiveBoxImpl _$$ResponsiveBoxImplFromJson(Map<String, dynamic> json) =>
           ? null
           : ResponsiveSize.fromJson(json['bottom'] as Map<String, dynamic>),
       width: json['width'] == null
-          ? const ResponsiveSize(percentage: 100)
+          ? null
           : ResponsiveSize.fromJson(json['width'] as Map<String, dynamic>),
       height: json['height'] == null
-          ? const ResponsiveSize(percentage: 100)
+          ? null
           : ResponsiveSize.fromJson(json['height'] as Map<String, dynamic>),
     );
 
