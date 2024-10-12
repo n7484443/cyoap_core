@@ -69,13 +69,13 @@ class ResponsiveSize with _$ResponsiveSize {
   double value(double parentSize){
     assert(px != null || percentage != null);
     if(option == null){
-      return px ?? (percentage! * parentSize);
+      return px ?? (percentage! / 100.0 * parentSize);
     }
     if(option == ResponsiveSizeOption.min){
-      return min(px!, percentage! * parentSize);
+      return min(px!, percentage! / 100.0 * parentSize);
     }
     if(option == ResponsiveSizeOption.max){
-      return max(px!, percentage! * parentSize);
+      return max(px!, percentage! / 100.0 * parentSize);
     }
     return 0;
   }
