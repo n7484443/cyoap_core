@@ -862,14 +862,15 @@ class __$$ResponsiveBoxImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ResponsiveBoxImpl implements _ResponsiveBox {
+class _$ResponsiveBoxImpl extends _ResponsiveBox {
   const _$ResponsiveBoxImpl(
       {this.left = null,
       this.right = null,
       this.top = null,
       this.bottom = null,
       this.width = null,
-      this.height = null});
+      this.height = null})
+      : super._();
 
   factory _$ResponsiveBoxImpl.fromJson(Map<String, dynamic> json) =>
       _$$ResponsiveBoxImplFromJson(json);
@@ -932,7 +933,7 @@ class _$ResponsiveBoxImpl implements _ResponsiveBox {
   }
 }
 
-abstract class _ResponsiveBox implements ResponsiveBox {
+abstract class _ResponsiveBox extends ResponsiveBox {
   const factory _ResponsiveBox(
       {final ResponsiveSize? left,
       final ResponsiveSize? right,
@@ -940,6 +941,7 @@ abstract class _ResponsiveBox implements ResponsiveBox {
       final ResponsiveSize? bottom,
       final ResponsiveSize? width,
       final ResponsiveSize? height}) = _$ResponsiveBoxImpl;
+  const _ResponsiveBox._() : super._();
 
   factory _ResponsiveBox.fromJson(Map<String, dynamic> json) =
       _$ResponsiveBoxImpl.fromJson;

@@ -115,6 +115,27 @@ class ResponsiveBox with _$ResponsiveBox {
     @Default(null) ResponsiveSize? height,
   }) = _ResponsiveBox;
 
+  const ResponsiveBox._();
+
+  ResponsiveSize? getValue(String key) {
+    switch (key) {
+      case "left":
+        return left;
+      case "right":
+        return right;
+      case "top":
+        return top;
+      case "bottom":
+        return bottom;
+      case "width":
+        return width;
+      case "height":
+        return height;
+    }
+    assert(false, "Invalid key in ResponsiveBox");
+    return null;
+  }
+
   factory ResponsiveBox.fromJson(Map<String, dynamic> json) =>
       _$ResponsiveBoxFromJson(json);
 }
