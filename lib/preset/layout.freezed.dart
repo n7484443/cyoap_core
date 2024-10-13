@@ -1150,10 +1150,11 @@ class __$$TitleImplCopyWithImpl<$Res>
 class _$TitleImpl extends Title {
   const _$TitleImpl(
       {this.responsiveBox = const ResponsiveBox(
-          left: ResponsiveSize(px: 0),
-          right: ResponsiveSize(px: 0),
-          top: ResponsiveSize(px: 0),
-          height: ResponsiveSize(px: defaultTitleHeight)),
+          left: ResponsiveSize(px: 0, option: ResponsiveSizeOption.px),
+          right: ResponsiveSize(px: 0, option: ResponsiveSizeOption.px),
+          top: ResponsiveSize(px: 0, option: ResponsiveSizeOption.px),
+          height: ResponsiveSize(
+              px: defaultTitleHeight, option: ResponsiveSizeOption.px)),
       final String? $type})
       : $type = $type ?? 'title',
         super._();
@@ -1344,10 +1345,12 @@ class __$$ImageImplCopyWithImpl<$Res>
 class _$ImageImpl extends Image {
   const _$ImageImpl(
       {this.responsiveBox = const ResponsiveBox(
-          left: ResponsiveSize(px: 0),
-          right: ResponsiveSize(percentage: 50),
-          top: ResponsiveSize(px: defaultTitleHeight),
-          bottom: ResponsiveSize(px: 0)),
+          left: ResponsiveSize(px: 0, option: ResponsiveSizeOption.px),
+          right: ResponsiveSize(
+              percentage: 50, option: ResponsiveSizeOption.percentage),
+          top: ResponsiveSize(
+              px: defaultTitleHeight, option: ResponsiveSizeOption.px),
+          bottom: ResponsiveSize(px: 0, option: ResponsiveSizeOption.px)),
       final String? $type})
       : $type = $type ?? 'image',
         super._();
@@ -1538,10 +1541,12 @@ class __$$ContentImplCopyWithImpl<$Res>
 class _$ContentImpl extends Content {
   const _$ContentImpl(
       {this.responsiveBox = const ResponsiveBox(
-          left: ResponsiveSize(percentage: 50),
-          right: ResponsiveSize(px: 0),
-          top: ResponsiveSize(px: defaultTitleHeight),
-          bottom: ResponsiveSize(px: 0)),
+          left: ResponsiveSize(
+              percentage: 50, option: ResponsiveSizeOption.percentage),
+          right: ResponsiveSize(px: 0, option: ResponsiveSizeOption.px),
+          top: ResponsiveSize(
+              px: defaultTitleHeight, option: ResponsiveSizeOption.px),
+          bottom: ResponsiveSize(px: 0, option: ResponsiveSizeOption.px)),
       final String? $type})
       : $type = $type ?? 'content',
         super._();
@@ -1736,10 +1741,14 @@ class __$$TextImplCopyWithImpl<$Res>
 class _$TextImpl extends Text {
   const _$TextImpl(
       {this.responsiveBox = const ResponsiveBox(
-          left: ResponsiveSize(percentage: 0),
-          right: ResponsiveSize(percentage: 0),
-          top: ResponsiveSize(percentage: 45),
-          bottom: ResponsiveSize(percentage: 55)),
+          left: ResponsiveSize(
+              percentage: 0, option: ResponsiveSizeOption.percentage),
+          right: ResponsiveSize(
+              percentage: 0, option: ResponsiveSizeOption.percentage),
+          top: ResponsiveSize(
+              percentage: 45, option: ResponsiveSizeOption.percentage),
+          bottom: ResponsiveSize(
+              percentage: 55, option: ResponsiveSizeOption.percentage)),
       this.quillText = "defaultValue",
       final String? $type})
       : $type = $type ?? 'text',
@@ -1952,10 +1961,14 @@ class __$$BoxImplCopyWithImpl<$Res>
 class _$BoxImpl extends Box {
   const _$BoxImpl(
       {this.responsiveBox = const ResponsiveBox(
-          left: ResponsiveSize(percentage: 0),
-          right: ResponsiveSize(percentage: 0),
-          top: ResponsiveSize(percentage: 45),
-          bottom: ResponsiveSize(percentage: 55)),
+          left: ResponsiveSize(
+              percentage: 0, option: ResponsiveSizeOption.percentage),
+          right: ResponsiveSize(
+              percentage: 0, option: ResponsiveSizeOption.percentage),
+          top: ResponsiveSize(
+              percentage: 45, option: ResponsiveSizeOption.percentage),
+          bottom: ResponsiveSize(
+              percentage: 55, option: ResponsiveSizeOption.percentage)),
       this.boxColor = const ColorOption(),
       final String? $type})
       : $type = $type ?? 'box',

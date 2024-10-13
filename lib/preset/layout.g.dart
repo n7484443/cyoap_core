@@ -129,10 +129,11 @@ Map<String, dynamic> _$$ResponsiveBoxImplToJson(_$ResponsiveBoxImpl instance) =>
 _$TitleImpl _$$TitleImplFromJson(Map<String, dynamic> json) => _$TitleImpl(
       responsiveBox: json['responsiveBox'] == null
           ? const ResponsiveBox(
-              left: ResponsiveSize(px: 0),
-              right: ResponsiveSize(px: 0),
-              top: ResponsiveSize(px: 0),
-              height: ResponsiveSize(px: defaultTitleHeight))
+              left: ResponsiveSize(px: 0, option: ResponsiveSizeOption.px),
+              right: ResponsiveSize(px: 0, option: ResponsiveSizeOption.px),
+              top: ResponsiveSize(px: 0, option: ResponsiveSizeOption.px),
+              height: ResponsiveSize(
+                  px: defaultTitleHeight, option: ResponsiveSizeOption.px))
           : ResponsiveBox.fromJson(
               json['responsiveBox'] as Map<String, dynamic>),
       $type: json['runtimeType'] as String?,
@@ -147,10 +148,12 @@ Map<String, dynamic> _$$TitleImplToJson(_$TitleImpl instance) =>
 _$ImageImpl _$$ImageImplFromJson(Map<String, dynamic> json) => _$ImageImpl(
       responsiveBox: json['responsiveBox'] == null
           ? const ResponsiveBox(
-              left: ResponsiveSize(px: 0),
-              right: ResponsiveSize(percentage: 50),
-              top: ResponsiveSize(px: defaultTitleHeight),
-              bottom: ResponsiveSize(px: 0))
+              left: ResponsiveSize(px: 0, option: ResponsiveSizeOption.px),
+              right: ResponsiveSize(
+                  percentage: 50, option: ResponsiveSizeOption.percentage),
+              top: ResponsiveSize(
+                  px: defaultTitleHeight, option: ResponsiveSizeOption.px),
+              bottom: ResponsiveSize(px: 0, option: ResponsiveSizeOption.px))
           : ResponsiveBox.fromJson(
               json['responsiveBox'] as Map<String, dynamic>),
       $type: json['runtimeType'] as String?,
@@ -166,10 +169,12 @@ _$ContentImpl _$$ContentImplFromJson(Map<String, dynamic> json) =>
     _$ContentImpl(
       responsiveBox: json['responsiveBox'] == null
           ? const ResponsiveBox(
-              left: ResponsiveSize(percentage: 50),
-              right: ResponsiveSize(px: 0),
-              top: ResponsiveSize(px: defaultTitleHeight),
-              bottom: ResponsiveSize(px: 0))
+              left: ResponsiveSize(
+                  percentage: 50, option: ResponsiveSizeOption.percentage),
+              right: ResponsiveSize(px: 0, option: ResponsiveSizeOption.px),
+              top: ResponsiveSize(
+                  px: defaultTitleHeight, option: ResponsiveSizeOption.px),
+              bottom: ResponsiveSize(px: 0, option: ResponsiveSizeOption.px))
           : ResponsiveBox.fromJson(
               json['responsiveBox'] as Map<String, dynamic>),
       $type: json['runtimeType'] as String?,
@@ -184,10 +189,14 @@ Map<String, dynamic> _$$ContentImplToJson(_$ContentImpl instance) =>
 _$TextImpl _$$TextImplFromJson(Map<String, dynamic> json) => _$TextImpl(
       responsiveBox: json['responsiveBox'] == null
           ? const ResponsiveBox(
-              left: ResponsiveSize(percentage: 0),
-              right: ResponsiveSize(percentage: 0),
-              top: ResponsiveSize(percentage: 45),
-              bottom: ResponsiveSize(percentage: 55))
+              left: ResponsiveSize(
+                  percentage: 0, option: ResponsiveSizeOption.percentage),
+              right: ResponsiveSize(
+                  percentage: 0, option: ResponsiveSizeOption.percentage),
+              top: ResponsiveSize(
+                  percentage: 45, option: ResponsiveSizeOption.percentage),
+              bottom: ResponsiveSize(
+                  percentage: 55, option: ResponsiveSizeOption.percentage))
           : ResponsiveBox.fromJson(
               json['responsiveBox'] as Map<String, dynamic>),
       quillText: json['quillText'] as String? ?? "defaultValue",
@@ -204,10 +213,14 @@ Map<String, dynamic> _$$TextImplToJson(_$TextImpl instance) =>
 _$BoxImpl _$$BoxImplFromJson(Map<String, dynamic> json) => _$BoxImpl(
       responsiveBox: json['responsiveBox'] == null
           ? const ResponsiveBox(
-              left: ResponsiveSize(percentage: 0),
-              right: ResponsiveSize(percentage: 0),
-              top: ResponsiveSize(percentage: 45),
-              bottom: ResponsiveSize(percentage: 55))
+              left: ResponsiveSize(
+                  percentage: 0, option: ResponsiveSizeOption.percentage),
+              right: ResponsiveSize(
+                  percentage: 0, option: ResponsiveSizeOption.percentage),
+              top: ResponsiveSize(
+                  percentage: 45, option: ResponsiveSizeOption.percentage),
+              bottom: ResponsiveSize(
+                  percentage: 55, option: ResponsiveSizeOption.percentage))
           : ResponsiveBox.fromJson(
               json['responsiveBox'] as Map<String, dynamic>),
       boxColor: json['boxColor'] == null

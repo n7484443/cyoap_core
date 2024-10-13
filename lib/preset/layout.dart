@@ -149,47 +149,47 @@ const double defaultTitleHeight = 36;
 class NodeLayoutElement with _$NodeLayoutElement{
   const factory NodeLayoutElement.title({
     @Default(ResponsiveBox(
-      left: ResponsiveSize(px: 0),
-      right: ResponsiveSize(px: 0),
-      top: ResponsiveSize(px: 0),
-      height: ResponsiveSize(px: defaultTitleHeight),
+      left: ResponsiveSize(px: 0, option: ResponsiveSizeOption.px),
+      right: ResponsiveSize(px: 0, option: ResponsiveSizeOption.px),
+      top: ResponsiveSize(px: 0, option: ResponsiveSizeOption.px),
+      height: ResponsiveSize(px: defaultTitleHeight, option: ResponsiveSizeOption.px),
     )) ResponsiveBox responsiveBox,
   }) = Title;
 
   const factory NodeLayoutElement.image({
     @Default(ResponsiveBox(
-      left: ResponsiveSize(px: 0),
-      right: ResponsiveSize(percentage: 50),
-      top: ResponsiveSize(px: defaultTitleHeight),
-      bottom: ResponsiveSize(px: 0),
+      left: ResponsiveSize(px: 0, option: ResponsiveSizeOption.px),
+      right: ResponsiveSize(percentage: 50, option: ResponsiveSizeOption.percentage),
+      top: ResponsiveSize(px: defaultTitleHeight, option: ResponsiveSizeOption.px),
+      bottom: ResponsiveSize(px: 0, option: ResponsiveSizeOption.px),
     )) ResponsiveBox responsiveBox,
   }) = Image;
 
   const factory NodeLayoutElement.content({
     @Default(ResponsiveBox(
-      left: ResponsiveSize(percentage: 50),
-      right: ResponsiveSize(px: 0),
-      top: ResponsiveSize(px: defaultTitleHeight),
-      bottom: ResponsiveSize(px: 0),
+      left: ResponsiveSize(percentage: 50, option: ResponsiveSizeOption.percentage),
+      right: ResponsiveSize(px: 0, option: ResponsiveSizeOption.px),
+      top: ResponsiveSize(px: defaultTitleHeight, option: ResponsiveSizeOption.px),
+      bottom: ResponsiveSize(px: 0, option: ResponsiveSizeOption.px),
     )) ResponsiveBox responsiveBox,
   }) = Content;
 
   const factory NodeLayoutElement.text({
     @Default(ResponsiveBox(
-      left: ResponsiveSize(percentage: 0),
-      right: ResponsiveSize(percentage: 0),
-      top: ResponsiveSize(percentage: 45),
-      bottom: ResponsiveSize(percentage: 55),
+      left: ResponsiveSize(percentage: 0, option: ResponsiveSizeOption.percentage),
+      right: ResponsiveSize(percentage: 0, option: ResponsiveSizeOption.percentage),
+      top: ResponsiveSize(percentage: 45, option: ResponsiveSizeOption.percentage),
+      bottom: ResponsiveSize(percentage: 55, option: ResponsiveSizeOption.percentage),
     )) ResponsiveBox responsiveBox,
     @Default("defaultValue") String quillText,
   }) = Text;
 
   const factory NodeLayoutElement.box({
     @Default(ResponsiveBox(
-      left: ResponsiveSize(percentage: 0),
-      right: ResponsiveSize(percentage: 0),
-      top: ResponsiveSize(percentage: 45),
-      bottom: ResponsiveSize(percentage: 55),
+      left: ResponsiveSize(percentage: 0, option: ResponsiveSizeOption.percentage),
+      right: ResponsiveSize(percentage: 0, option: ResponsiveSizeOption.percentage),
+      top: ResponsiveSize(percentage: 45, option: ResponsiveSizeOption.percentage),
+      bottom: ResponsiveSize(percentage: 55, option: ResponsiveSizeOption.percentage),
     )) ResponsiveBox responsiveBox,
     @Default(ColorOption()) ColorOption boxColor,
   }) = Box;
