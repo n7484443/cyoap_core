@@ -76,7 +76,7 @@ _$ResponsiveSizeImpl _$$ResponsiveSizeImplFromJson(Map<String, dynamic> json) =>
       percentage: (json['percentage'] as num?)?.toDouble() ?? null,
       option:
           $enumDecodeNullable(_$ResponsiveSizeOptionEnumMap, json['option']) ??
-              null,
+              ResponsiveSizeOption.percentage,
     );
 
 Map<String, dynamic> _$$ResponsiveSizeImplToJson(
@@ -84,12 +84,14 @@ Map<String, dynamic> _$$ResponsiveSizeImplToJson(
     <String, dynamic>{
       'px': instance.px,
       'percentage': instance.percentage,
-      'option': _$ResponsiveSizeOptionEnumMap[instance.option],
+      'option': _$ResponsiveSizeOptionEnumMap[instance.option]!,
     };
 
 const _$ResponsiveSizeOptionEnumMap = {
   ResponsiveSizeOption.min: 'min',
   ResponsiveSizeOption.max: 'max',
+  ResponsiveSizeOption.px: 'px',
+  ResponsiveSizeOption.percentage: 'percentage',
 };
 
 _$ResponsiveBoxImpl _$$ResponsiveBoxImplFromJson(Map<String, dynamic> json) =>

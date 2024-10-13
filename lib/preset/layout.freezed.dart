@@ -417,7 +417,7 @@ ResponsiveSize _$ResponsiveSizeFromJson(Map<String, dynamic> json) {
 mixin _$ResponsiveSize {
   double? get px => throw _privateConstructorUsedError;
   double? get percentage => throw _privateConstructorUsedError;
-  ResponsiveSizeOption? get option => throw _privateConstructorUsedError;
+  ResponsiveSizeOption get option => throw _privateConstructorUsedError;
 
   /// Serializes this ResponsiveSize to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -435,7 +435,7 @@ abstract class $ResponsiveSizeCopyWith<$Res> {
           ResponsiveSize value, $Res Function(ResponsiveSize) then) =
       _$ResponsiveSizeCopyWithImpl<$Res, ResponsiveSize>;
   @useResult
-  $Res call({double? px, double? percentage, ResponsiveSizeOption? option});
+  $Res call({double? px, double? percentage, ResponsiveSizeOption option});
 }
 
 /// @nodoc
@@ -455,7 +455,7 @@ class _$ResponsiveSizeCopyWithImpl<$Res, $Val extends ResponsiveSize>
   $Res call({
     Object? px = freezed,
     Object? percentage = freezed,
-    Object? option = freezed,
+    Object? option = null,
   }) {
     return _then(_value.copyWith(
       px: freezed == px
@@ -466,10 +466,10 @@ class _$ResponsiveSizeCopyWithImpl<$Res, $Val extends ResponsiveSize>
           ? _value.percentage
           : percentage // ignore: cast_nullable_to_non_nullable
               as double?,
-      option: freezed == option
+      option: null == option
           ? _value.option
           : option // ignore: cast_nullable_to_non_nullable
-              as ResponsiveSizeOption?,
+              as ResponsiveSizeOption,
     ) as $Val);
   }
 }
@@ -482,7 +482,7 @@ abstract class _$$ResponsiveSizeImplCopyWith<$Res>
       __$$ResponsiveSizeImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({double? px, double? percentage, ResponsiveSizeOption? option});
+  $Res call({double? px, double? percentage, ResponsiveSizeOption option});
 }
 
 /// @nodoc
@@ -500,7 +500,7 @@ class __$$ResponsiveSizeImplCopyWithImpl<$Res>
   $Res call({
     Object? px = freezed,
     Object? percentage = freezed,
-    Object? option = freezed,
+    Object? option = null,
   }) {
     return _then(_$ResponsiveSizeImpl(
       px: freezed == px
@@ -511,10 +511,10 @@ class __$$ResponsiveSizeImplCopyWithImpl<$Res>
           ? _value.percentage
           : percentage // ignore: cast_nullable_to_non_nullable
               as double?,
-      option: freezed == option
+      option: null == option
           ? _value.option
           : option // ignore: cast_nullable_to_non_nullable
-              as ResponsiveSizeOption?,
+              as ResponsiveSizeOption,
     ));
   }
 }
@@ -523,7 +523,9 @@ class __$$ResponsiveSizeImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ResponsiveSizeImpl extends _ResponsiveSize {
   const _$ResponsiveSizeImpl(
-      {this.px = null, this.percentage = null, this.option = null})
+      {this.px = null,
+      this.percentage = null,
+      this.option = ResponsiveSizeOption.percentage})
       : super._();
 
   factory _$ResponsiveSizeImpl.fromJson(Map<String, dynamic> json) =>
@@ -537,7 +539,7 @@ class _$ResponsiveSizeImpl extends _ResponsiveSize {
   final double? percentage;
   @override
   @JsonKey()
-  final ResponsiveSizeOption? option;
+  final ResponsiveSizeOption option;
 
   @override
   String toString() {
@@ -580,7 +582,7 @@ abstract class _ResponsiveSize extends ResponsiveSize {
   const factory _ResponsiveSize(
       {final double? px,
       final double? percentage,
-      final ResponsiveSizeOption? option}) = _$ResponsiveSizeImpl;
+      final ResponsiveSizeOption option}) = _$ResponsiveSizeImpl;
   const _ResponsiveSize._() : super._();
 
   factory _ResponsiveSize.fromJson(Map<String, dynamic> json) =
@@ -591,7 +593,7 @@ abstract class _ResponsiveSize extends ResponsiveSize {
   @override
   double? get percentage;
   @override
-  ResponsiveSizeOption? get option;
+  ResponsiveSizeOption get option;
 
   /// Create a copy of ResponsiveSize
   /// with the given fields replaced by the non-null parameter values.

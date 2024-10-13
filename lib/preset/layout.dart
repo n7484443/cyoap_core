@@ -55,7 +55,9 @@ class ColorOption with _$ColorOption {
 
 enum ResponsiveSizeOption{
   min,
-  max
+  max,
+  px,
+  percentage
 }
 
 @freezed
@@ -63,38 +65,39 @@ class ResponsiveSize with _$ResponsiveSize {
   const factory ResponsiveSize({
     @Default(null) double? px,
     @Default(null) double? percentage,
-    @Default(null) ResponsiveSizeOption? option,
+    @Default(ResponsiveSizeOption.percentage) ResponsiveSizeOption option,
   }) = _ResponsiveSize;
 
   double value(double parentSize){
     assert(px != null || percentage != null);
-    if(option == null){
-      return px ?? (percentage! / 100.0 * parentSize);
+    switch(option){
+      case ResponsiveSizeOption.px:
+        assert(px != null, "px is null");
+        return px!;
+      case ResponsiveSizeOption.percentage:
+        assert(percentage != null, "percentage is null");
+        return percentage! / 100.0 * parentSize;
+      case ResponsiveSizeOption.min:
+        return min(px!, percentage! / 100.0 * parentSize);
+      case ResponsiveSizeOption.max:
+        return max(px!, percentage! / 100.0 * parentSize);
     }
-    if(option == ResponsiveSizeOption.min){
-      return min(px!, percentage! / 100.0 * parentSize);
-    }
-    if(option == ResponsiveSizeOption.max){
-      return max(px!, percentage! / 100.0 * parentSize);
-    }
-    return 0;
   }
 
   String valueCss(){
     assert(px != null || percentage != null);
-    if(option == null){
-      if(px != null){
+    switch(option){
+      case ResponsiveSizeOption.px:
+        assert(px != null, "px is null");
         return "${px}px";
-      }
-      return "$percentage%";
+      case ResponsiveSizeOption.percentage:
+        assert(percentage != null, "percentage is null");
+        return "$percentage%";
+      case ResponsiveSizeOption.min:
+        return "min(${px}px, $percentage%)";
+      case ResponsiveSizeOption.max:
+        return "max(${px}px, $percentage%)";
     }
-    if(option == ResponsiveSizeOption.min){
-      return "min(${px}px, $percentage%)";
-    }
-    if(option == ResponsiveSizeOption.max){
-      return "max(${px}px, $percentage%)";
-    }
-    return '';
   }
 
   const ResponsiveSize._();
