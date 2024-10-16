@@ -72,8 +72,8 @@ const _$GradientTypeEnumMap = {
 
 _$ResponsiveSizeImpl _$$ResponsiveSizeImplFromJson(Map<String, dynamic> json) =>
     _$ResponsiveSizeImpl(
-      px: (json['px'] as num?)?.toDouble() ?? null,
-      percentage: (json['percentage'] as num?)?.toDouble() ?? null,
+      px: (json['px'] as num?)?.toDouble() ?? 0.0,
+      percentage: (json['percentage'] as num?)?.toDouble() ?? 0.0,
       option:
           $enumDecodeNullable(_$ResponsiveSizeOptionEnumMap, json['option']) ??
               ResponsiveSizeOption.percentage,

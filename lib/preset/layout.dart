@@ -63,35 +63,29 @@ enum ResponsiveSizeOption{
 @freezed
 class ResponsiveSize with _$ResponsiveSize {
   const factory ResponsiveSize({
-    @Default(null) double? px,
-    @Default(null) double? percentage,
+    @Default(0.0) double px,
+    @Default(0.0) double percentage,
     @Default(ResponsiveSizeOption.percentage) ResponsiveSizeOption option,
   }) = _ResponsiveSize;
 
   double value(double parentSize){
-    assert(px != null || percentage != null);
     switch(option){
       case ResponsiveSizeOption.px:
-        assert(px != null, "px is null");
-        return px!;
+        return px;
       case ResponsiveSizeOption.percentage:
-        assert(percentage != null, "percentage is null");
-        return percentage! / 100.0 * parentSize;
+        return percentage / 100.0 * parentSize;
       case ResponsiveSizeOption.min:
-        return min(px!, percentage! / 100.0 * parentSize);
+        return min(px, percentage / 100.0 * parentSize);
       case ResponsiveSizeOption.max:
-        return max(px!, percentage! / 100.0 * parentSize);
+        return max(px, percentage / 100.0 * parentSize);
     }
   }
 
   String valueCss(){
-    assert(px != null || percentage != null);
     switch(option){
       case ResponsiveSizeOption.px:
-        assert(px != null, "px is null");
         return "${px}px";
       case ResponsiveSizeOption.percentage:
-        assert(percentage != null, "percentage is null");
         return "$percentage%";
       case ResponsiveSizeOption.min:
         return "min(${px}px, $percentage%)";

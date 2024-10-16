@@ -415,8 +415,8 @@ ResponsiveSize _$ResponsiveSizeFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ResponsiveSize {
-  double? get px => throw _privateConstructorUsedError;
-  double? get percentage => throw _privateConstructorUsedError;
+  double get px => throw _privateConstructorUsedError;
+  double get percentage => throw _privateConstructorUsedError;
   ResponsiveSizeOption get option => throw _privateConstructorUsedError;
 
   /// Serializes this ResponsiveSize to a JSON map.
@@ -435,7 +435,7 @@ abstract class $ResponsiveSizeCopyWith<$Res> {
           ResponsiveSize value, $Res Function(ResponsiveSize) then) =
       _$ResponsiveSizeCopyWithImpl<$Res, ResponsiveSize>;
   @useResult
-  $Res call({double? px, double? percentage, ResponsiveSizeOption option});
+  $Res call({double px, double percentage, ResponsiveSizeOption option});
 }
 
 /// @nodoc
@@ -453,19 +453,19 @@ class _$ResponsiveSizeCopyWithImpl<$Res, $Val extends ResponsiveSize>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? px = freezed,
-    Object? percentage = freezed,
+    Object? px = null,
+    Object? percentage = null,
     Object? option = null,
   }) {
     return _then(_value.copyWith(
-      px: freezed == px
+      px: null == px
           ? _value.px
           : px // ignore: cast_nullable_to_non_nullable
-              as double?,
-      percentage: freezed == percentage
+              as double,
+      percentage: null == percentage
           ? _value.percentage
           : percentage // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as double,
       option: null == option
           ? _value.option
           : option // ignore: cast_nullable_to_non_nullable
@@ -482,7 +482,7 @@ abstract class _$$ResponsiveSizeImplCopyWith<$Res>
       __$$ResponsiveSizeImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({double? px, double? percentage, ResponsiveSizeOption option});
+  $Res call({double px, double percentage, ResponsiveSizeOption option});
 }
 
 /// @nodoc
@@ -498,19 +498,19 @@ class __$$ResponsiveSizeImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? px = freezed,
-    Object? percentage = freezed,
+    Object? px = null,
+    Object? percentage = null,
     Object? option = null,
   }) {
     return _then(_$ResponsiveSizeImpl(
-      px: freezed == px
+      px: null == px
           ? _value.px
           : px // ignore: cast_nullable_to_non_nullable
-              as double?,
-      percentage: freezed == percentage
+              as double,
+      percentage: null == percentage
           ? _value.percentage
           : percentage // ignore: cast_nullable_to_non_nullable
-              as double?,
+              as double,
       option: null == option
           ? _value.option
           : option // ignore: cast_nullable_to_non_nullable
@@ -523,8 +523,8 @@ class __$$ResponsiveSizeImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ResponsiveSizeImpl extends _ResponsiveSize {
   const _$ResponsiveSizeImpl(
-      {this.px = null,
-      this.percentage = null,
+      {this.px = 0.0,
+      this.percentage = 0.0,
       this.option = ResponsiveSizeOption.percentage})
       : super._();
 
@@ -533,10 +533,10 @@ class _$ResponsiveSizeImpl extends _ResponsiveSize {
 
   @override
   @JsonKey()
-  final double? px;
+  final double px;
   @override
   @JsonKey()
-  final double? percentage;
+  final double percentage;
   @override
   @JsonKey()
   final ResponsiveSizeOption option;
@@ -580,8 +580,8 @@ class _$ResponsiveSizeImpl extends _ResponsiveSize {
 
 abstract class _ResponsiveSize extends ResponsiveSize {
   const factory _ResponsiveSize(
-      {final double? px,
-      final double? percentage,
+      {final double px,
+      final double percentage,
       final ResponsiveSizeOption option}) = _$ResponsiveSizeImpl;
   const _ResponsiveSize._() : super._();
 
@@ -589,9 +589,9 @@ abstract class _ResponsiveSize extends ResponsiveSize {
       _$ResponsiveSizeImpl.fromJson;
 
   @override
-  double? get px;
+  double get px;
   @override
-  double? get percentage;
+  double get percentage;
   @override
   ResponsiveSizeOption get option;
 
