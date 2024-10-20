@@ -24,8 +24,7 @@ class PlatformDesignSetting with _$PlatformDesignSetting {
   factory PlatformDesignSetting({
     @Default("notoSans") String variableFont,
     String? backgroundImage,
-    // @Default(EDEEFFFF) backgroundColor,
-    @Default(ColorOption(color: 3991863295)) ColorOption backgroundColorOption,
+    @Default(ColorOption(color: 0xEEEEFFFF)) ColorOption backgroundColorOption,
     @Default(ImageAttribute.fit) ImageAttribute backgroundAttribute,
     @Default([
       ChoiceLineDesignPreset(name: 'default'),

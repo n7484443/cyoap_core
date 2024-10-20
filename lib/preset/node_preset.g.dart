@@ -109,13 +109,13 @@ _$ChoiceNodeDesignPresetImpl _$$ChoiceNodeDesignPresetImplFromJson(
     _$ChoiceNodeDesignPresetImpl(
       name: json['name'] as String?,
       titlePosition: json['titlePosition'] as bool? ?? true,
-      elevation: (json['elevation'] as num?)?.toDouble() ?? 0.0,
+      elevation: (json['elevation'] as num?)?.toDouble() ?? 4.0,
       round: json['round'] == null
           ? const VertexValue(
               topLeft: 4.0, topRight: 4.0, bottomLeft: 4.0, bottomRight: 4.0)
           : VertexValue.fromJson(json['round'] as Map<String, dynamic>),
       padding: json['padding'] == null
-          ? const EdgeValue()
+          ? const EdgeValue(top: 2.0, left: 2.0, right: 2.0, bottom: 2.0)
           : EdgeValue.fromJson(json['padding'] as Map<String, dynamic>),
       imageMaxHeightRatio:
           (json['imageMaxHeightRatio'] as num?)?.toDouble() ?? 0.5,
@@ -125,25 +125,36 @@ _$ChoiceNodeDesignPresetImpl _$$ChoiceNodeDesignPresetImplFromJson(
       titleFont: json['titleFont'] as String? ?? "notoSans",
       mainFont: json['mainFont'] as String? ?? "notoSans",
       defaultOutlineOption: json['defaultOutlineOption'] == null
-          ? const OutlineOption()
+          ? const OutlineOption(
+              distance: EdgeValue(top: 0.0, left: 0.0, right: 0.0, bottom: 0.0),
+              outlineColor: ColorOption(color: 0xFFFFFFFF))
           : OutlineOption.fromJson(
               json['defaultOutlineOption'] as Map<String, dynamic>),
-      selectOutlineEnable: json['selectOutlineEnable'] as bool? ?? false,
+      selectOutlineEnable: json['selectOutlineEnable'] as bool? ?? true,
       selectOutlineOption: json['selectOutlineOption'] == null
-          ? const OutlineOption()
+          ? const OutlineOption(
+              distance: EdgeValue(top: 4.0, left: 4.0, right: 4.0, bottom: 4.0),
+              outlineColor: ColorOption(color: 0x91ABFFFF))
           : OutlineOption.fromJson(
               json['selectOutlineOption'] as Map<String, dynamic>),
       defaultColorOption: json['defaultColorOption'] == null
-          ? const ColorOption()
+          ? const ColorOption(color: 0xFFFFFFFF)
           : ColorOption.fromJson(
               json['defaultColorOption'] as Map<String, dynamic>),
-      selectColorEnable: json['selectColorEnable'] as bool? ?? false,
+      selectColorEnable: json['selectColorEnable'] as bool? ?? true,
       selectColorOption: json['selectColorOption'] == null
-          ? const ColorOption()
+          ? const ColorOption(gradientType: GradientType.linear, gradientData: [
+              GradientData(gradientPos: (0, 0), color: 0xDADBFFFF),
+              GradientData(gradientPos: (1, 1), color: 0xD6F3FFFF)
+            ])
           : ColorOption.fromJson(
               json['selectColorOption'] as Map<String, dynamic>),
       sliderOption: json['sliderOption'] == null
-          ? const SliderOption()
+          ? const SliderOption(
+              sliderThumbColor: ColorOption(color: 0xDAF4FFFF),
+              sliderTrackActiveColor: ColorOption(color: 0xB0E5FDFF),
+              sliderTrackInactiveColor: ColorOption(color: 0xC6EDFFFF),
+              sliderThumbShape: SliderThumbShape.circle)
           : SliderOption.fromJson(json['sliderOption'] as Map<String, dynamic>),
     );
 

@@ -22,8 +22,7 @@ PlatformDesignSetting _$PlatformDesignSettingFromJson(
 /// @nodoc
 mixin _$PlatformDesignSetting {
   String get variableFont => throw _privateConstructorUsedError;
-  String? get backgroundImage =>
-      throw _privateConstructorUsedError; // @Default(EDEEFFFF) backgroundColor,
+  String? get backgroundImage => throw _privateConstructorUsedError;
   ColorOption get backgroundColorOption => throw _privateConstructorUsedError;
   ImageAttribute get backgroundAttribute => throw _privateConstructorUsedError;
   List<ChoiceLineDesignPreset> get choiceLinePresetList =>
@@ -210,7 +209,7 @@ class _$PlatformDesignSettingImpl implements _PlatformDesignSetting {
   _$PlatformDesignSettingImpl(
       {this.variableFont = "notoSans",
       this.backgroundImage,
-      this.backgroundColorOption = const ColorOption(color: 3991863295),
+      this.backgroundColorOption = const ColorOption(color: 0xEEEEFFFF),
       this.backgroundAttribute = ImageAttribute.fit,
       final List<ChoiceLineDesignPreset> choiceLinePresetList = const [
         ChoiceLineDesignPreset(name: 'default')
@@ -230,7 +229,6 @@ class _$PlatformDesignSettingImpl implements _PlatformDesignSetting {
   final String variableFont;
   @override
   final String? backgroundImage;
-// @Default(EDEEFFFF) backgroundColor,
   @override
   @JsonKey()
   final ColorOption backgroundColorOption;
@@ -332,7 +330,7 @@ abstract class _PlatformDesignSetting implements PlatformDesignSetting {
   @override
   String get variableFont;
   @override
-  String? get backgroundImage; // @Default(EDEEFFFF) backgroundColor,
+  String? get backgroundImage;
   @override
   ColorOption get backgroundColorOption;
   @override

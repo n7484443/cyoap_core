@@ -1433,23 +1433,36 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
   const _$ChoiceNodeDesignPresetImpl(
       {this.name,
       this.titlePosition = true,
-      this.elevation = 0.0,
+      this.elevation = 4.0,
       this.round = const VertexValue(
           topLeft: 4.0, topRight: 4.0, bottomLeft: 4.0, bottomRight: 4.0),
-      this.padding = const EdgeValue(),
+      this.padding =
+          const EdgeValue(top: 2.0, left: 2.0, right: 2.0, bottom: 2.0),
       this.imageMaxHeightRatio = 0.5,
       this.hideTitle = false,
       this.imagePosition = 0,
       this.colorTitle = 0xFF000000,
       this.titleFont = "notoSans",
       this.mainFont = "notoSans",
-      this.defaultOutlineOption = const OutlineOption(),
-      this.selectOutlineEnable = false,
-      this.selectOutlineOption = const OutlineOption(),
-      this.defaultColorOption = const ColorOption(),
-      this.selectColorEnable = false,
-      this.selectColorOption = const ColorOption(),
-      this.sliderOption = const SliderOption()})
+      this.defaultOutlineOption = const OutlineOption(
+          distance: EdgeValue(top: 0.0, left: 0.0, right: 0.0, bottom: 0.0),
+          outlineColor: ColorOption(color: 0xFFFFFFFF)),
+      this.selectOutlineEnable = true,
+      this.selectOutlineOption = const OutlineOption(
+          distance: EdgeValue(top: 4.0, left: 4.0, right: 4.0, bottom: 4.0),
+          outlineColor: ColorOption(color: 0x91ABFFFF)),
+      this.defaultColorOption = const ColorOption(color: 0xFFFFFFFF),
+      this.selectColorEnable = true,
+      this.selectColorOption =
+          const ColorOption(gradientType: GradientType.linear, gradientData: [
+        GradientData(gradientPos: (0, 0), color: 0xDADBFFFF),
+        GradientData(gradientPos: (1, 1), color: 0xD6F3FFFF)
+      ]),
+      this.sliderOption = const SliderOption(
+          sliderThumbColor: ColorOption(color: 0xDAF4FFFF),
+          sliderTrackActiveColor: ColorOption(color: 0xB0E5FDFF),
+          sliderTrackInactiveColor: ColorOption(color: 0xC6EDFFFF),
+          sliderThumbShape: SliderThumbShape.circle)})
       : super._();
 
   factory _$ChoiceNodeDesignPresetImpl.fromJson(Map<String, dynamic> json) =>

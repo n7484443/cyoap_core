@@ -3,6 +3,7 @@ import 'package:cyoap_core/preset/preset.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'node_preset.freezed.dart';
+
 part 'node_preset.g.dart';
 
 @freezed
@@ -122,23 +123,78 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
   const factory ChoiceNodeDesignPreset({
     String? name,
     @Default(true) bool? titlePosition,
-    @Default(0.0) double? elevation,
+    @Default(4.0) double? elevation,
     @Default(VertexValue(
-        topLeft: 4.0, topRight: 4.0, bottomLeft: 4.0, bottomRight: 4.0)) VertexValue? round,
-    @Default(EdgeValue()) EdgeValue? padding,
+      topLeft: 4.0,
+      topRight: 4.0,
+      bottomLeft: 4.0,
+      bottomRight: 4.0,
+    ))
+    VertexValue? round,
+    @Default(EdgeValue(
+      top: 2.0,
+      left: 2.0,
+      right: 2.0,
+      bottom: 2.0,
+    ))
+    EdgeValue? padding,
     @Default(0.5) double? imageMaxHeightRatio,
     @Default(false) bool? hideTitle,
     @Default(0) int? imagePosition, //0:default, 1:image-right 2:image-left
     @Default(0xFF000000) int? colorTitle,
     @Default("notoSans") String? titleFont,
     @Default("notoSans") String? mainFont,
-    @Default(OutlineOption()) OutlineOption? defaultOutlineOption,
-    @Default(false) bool? selectOutlineEnable,
-    @Default(OutlineOption()) OutlineOption? selectOutlineOption,
-    @Default(ColorOption()) ColorOption? defaultColorOption,
-    @Default(false) bool? selectColorEnable,
-    @Default(ColorOption()) ColorOption? selectColorOption,
-    @Default(SliderOption()) SliderOption? sliderOption,
+    @Default(OutlineOption(
+      distance: EdgeValue(
+        top: 0.0,
+        left: 0.0,
+        right: 0.0,
+        bottom: 0.0,
+      ),
+      outlineColor: ColorOption(
+        color: 0xFFFFFFFF,
+      ),
+    ))
+    OutlineOption? defaultOutlineOption,
+    @Default(true) bool? selectOutlineEnable,
+    @Default(OutlineOption(
+      distance: EdgeValue(
+        top: 4.0,
+        left: 4.0,
+        right: 4.0,
+        bottom: 4.0,
+      ),
+      outlineColor: ColorOption(
+        color: 0x91ABFFFF,
+      ),
+    ))
+    OutlineOption? selectOutlineOption,
+    @Default(ColorOption(
+      color: 0xFFFFFFFF,
+    ))
+    ColorOption? defaultColorOption,
+    @Default(true) bool? selectColorEnable,
+    @Default(ColorOption(
+      gradientType: GradientType.linear,
+      gradientData: [
+        GradientData(gradientPos: (0, 0), color: 0xDADBFFFF),
+        GradientData(gradientPos: (1, 1), color: 0xD6F3FFFF),
+      ],
+    ))
+    ColorOption? selectColorOption,
+    @Default(SliderOption(
+      sliderThumbColor: ColorOption(
+        color: 0xDAF4FFFF,
+      ),
+      sliderTrackActiveColor: ColorOption(
+        color: 0xB0E5FDFF,
+      ),
+      sliderTrackInactiveColor: ColorOption(
+        color: 0xC6EDFFFF,
+      ),
+      sliderThumbShape: SliderThumbShape.circle,
+    ))
+    SliderOption? sliderOption,
   }) = _ChoiceNodeDesignPreset;
 
   const ChoiceNodeDesignPreset._();
