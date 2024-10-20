@@ -175,6 +175,7 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
     ColorOption? defaultColorOption,
     @Default(true) bool? selectColorEnable,
     @Default(ColorOption(
+      colorType: ColorType.gradient,
       gradientType: GradientType.linear,
       gradientData: [
         GradientData(gradientPos: (0, 0), color: 0xFFDADBFF),

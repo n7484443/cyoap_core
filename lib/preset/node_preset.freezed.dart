@@ -1453,11 +1453,13 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
           outlineColor: ColorOption(color: 0xFF91ABFF)),
       this.defaultColorOption = const ColorOption(color: 0xFFFFFFFF),
       this.selectColorEnable = true,
-      this.selectColorOption =
-          const ColorOption(gradientType: GradientType.linear, gradientData: [
-        GradientData(gradientPos: (0, 0), color: 0xFFDADBFF),
-        GradientData(gradientPos: (1, 1), color: 0xFFD6F3FF)
-      ]),
+      this.selectColorOption = const ColorOption(
+          colorType: ColorType.gradient,
+          gradientType: GradientType.linear,
+          gradientData: [
+            GradientData(gradientPos: (0, 0), color: 0xFFDADBFF),
+            GradientData(gradientPos: (1, 1), color: 0xFFD6F3FF)
+          ]),
       this.sliderOption = const SliderOption(
           sliderThumbColor: ColorOption(color: 0xFFDAF4FF),
           sliderTrackActiveColor: ColorOption(color: 0xFFB0E5FD),

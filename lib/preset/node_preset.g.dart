@@ -143,10 +143,13 @@ _$ChoiceNodeDesignPresetImpl _$$ChoiceNodeDesignPresetImplFromJson(
               json['defaultColorOption'] as Map<String, dynamic>),
       selectColorEnable: json['selectColorEnable'] as bool? ?? true,
       selectColorOption: json['selectColorOption'] == null
-          ? const ColorOption(gradientType: GradientType.linear, gradientData: [
-              GradientData(gradientPos: (0, 0), color: 0xFFDADBFF),
-              GradientData(gradientPos: (1, 1), color: 0xFFD6F3FF)
-            ])
+          ? const ColorOption(
+              colorType: ColorType.gradient,
+              gradientType: GradientType.linear,
+              gradientData: [
+                  GradientData(gradientPos: (0, 0), color: 0xFFDADBFF),
+                  GradientData(gradientPos: (1, 1), color: 0xFFD6F3FF)
+                ])
           : ColorOption.fromJson(
               json['selectColorOption'] as Map<String, dynamic>),
       sliderOption: json['sliderOption'] == null
