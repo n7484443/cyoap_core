@@ -209,7 +209,7 @@ class _$PlatformDesignSettingImpl implements _PlatformDesignSetting {
   _$PlatformDesignSettingImpl(
       {this.variableFont = "notoSans",
       this.backgroundImage,
-      this.backgroundColorOption = const ColorOption(color: 0xEEEEFFFF),
+      this.backgroundColorOption = const ColorOption(color: 0xFFEEEEFF),
       this.backgroundAttribute = ImageAttribute.fit,
       final List<ChoiceLineDesignPreset> choiceLinePresetList = const [
         ChoiceLineDesignPreset(name: 'default')

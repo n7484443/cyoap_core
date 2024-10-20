@@ -12,7 +12,7 @@ _$PlatformDesignSettingImpl _$$PlatformDesignSettingImplFromJson(
       variableFont: json['variableFont'] as String? ?? "notoSans",
       backgroundImage: json['backgroundImage'] as String?,
       backgroundColorOption: json['backgroundColorOption'] == null
-          ? const ColorOption(color: 0xEEEEFFFF)
+          ? const ColorOption(color: 0xFFEEEEFF)
           : ColorOption.fromJson(
               json['backgroundColorOption'] as Map<String, dynamic>),
       backgroundAttribute: $enumDecodeNullable(

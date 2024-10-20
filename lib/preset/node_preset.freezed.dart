@@ -1437,7 +1437,7 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
       this.round = const VertexValue(
           topLeft: 4.0, topRight: 4.0, bottomLeft: 4.0, bottomRight: 4.0),
       this.padding =
-          const EdgeValue(top: 2.0, left: 2.0, right: 2.0, bottom: 2.0),
+          const EdgeValue(top: 4.0, left: 4.0, right: 4.0, bottom: 4.0),
       this.imageMaxHeightRatio = 0.5,
       this.hideTitle = false,
       this.imagePosition = 0,
@@ -1450,18 +1450,18 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
       this.selectOutlineEnable = true,
       this.selectOutlineOption = const OutlineOption(
           distance: EdgeValue(top: 4.0, left: 4.0, right: 4.0, bottom: 4.0),
-          outlineColor: ColorOption(color: 0x91ABFFFF)),
+          outlineColor: ColorOption(color: 0xFF91ABFF)),
       this.defaultColorOption = const ColorOption(color: 0xFFFFFFFF),
       this.selectColorEnable = true,
       this.selectColorOption =
           const ColorOption(gradientType: GradientType.linear, gradientData: [
-        GradientData(gradientPos: (0, 0), color: 0xDADBFFFF),
-        GradientData(gradientPos: (1, 1), color: 0xD6F3FFFF)
+        GradientData(gradientPos: (0, 0), color: 0xFFDADBFF),
+        GradientData(gradientPos: (1, 1), color: 0xFFD6F3FF)
       ]),
       this.sliderOption = const SliderOption(
-          sliderThumbColor: ColorOption(color: 0xDAF4FFFF),
-          sliderTrackActiveColor: ColorOption(color: 0xB0E5FDFF),
-          sliderTrackInactiveColor: ColorOption(color: 0xC6EDFFFF),
+          sliderThumbColor: ColorOption(color: 0xFFDAF4FF),
+          sliderTrackActiveColor: ColorOption(color: 0xFFB0E5FD),
+          sliderTrackInactiveColor: ColorOption(color: 0xFFC6EDFF),
           sliderThumbShape: SliderThumbShape.circle)})
       : super._();
 
