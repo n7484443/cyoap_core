@@ -1,7 +1,6 @@
 import 'package:cyoap_core/i18n.dart';
+import 'package:cyoap_core/preset/preset.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import 'node_preset.dart';
 
 part 'line_preset.freezed.dart';
 

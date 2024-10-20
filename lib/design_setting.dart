@@ -1,6 +1,7 @@
 import 'package:cyoap_core/i18n.dart';
 import 'package:cyoap_core/preset/line_preset.dart';
 import 'package:cyoap_core/preset/node_preset.dart';
+import 'package:cyoap_core/preset/preset.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'design_setting.freezed.dart';
@@ -23,7 +24,8 @@ class PlatformDesignSetting with _$PlatformDesignSetting {
   factory PlatformDesignSetting({
     @Default("notoSans") String variableFont,
     String? backgroundImage,
-    @Default(ColorOption()) ColorOption backgroundColorOption,
+    // @Default(EDEEFFFF) backgroundColor,
+    @Default(ColorOption(color: 3991863295)) ColorOption backgroundColorOption,
     @Default(ImageAttribute.fit) ImageAttribute backgroundAttribute,
     @Default([
       ChoiceLineDesignPreset(name: 'default'),
