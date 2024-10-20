@@ -104,6 +104,70 @@ const _$SliderThumbShapeEnumMap = {
   SliderThumbShape.thinRectangle: 'thinRectangle',
 };
 
+_$GradientDataImpl _$$GradientDataImplFromJson(Map<String, dynamic> json) =>
+    _$GradientDataImpl(
+      gradientPos: _$recordConvert(
+            json['gradientPos'],
+            ($jsonValue) => (
+              ($jsonValue[r'$1'] as num).toDouble(),
+              ($jsonValue[r'$2'] as num).toDouble(),
+            ),
+          ) ??
+          (0.5, 0.5),
+      color: (json['color'] as num?)?.toInt() ?? 0xFFFFFFFF,
+    );
+
+Map<String, dynamic> _$$GradientDataImplToJson(_$GradientDataImpl instance) =>
+    <String, dynamic>{
+      'gradientPos': <String, dynamic>{
+        r'$1': instance.gradientPos.$1,
+        r'$2': instance.gradientPos.$2,
+      },
+      'color': instance.color,
+    };
+
+$Rec _$recordConvert<$Rec>(
+  Object? value,
+  $Rec Function(Map) convert,
+) =>
+    convert(value as Map<String, dynamic>);
+
+_$ColorOptionImpl _$$ColorOptionImplFromJson(Map<String, dynamic> json) =>
+    _$ColorOptionImpl(
+      colorType: $enumDecodeNullable(_$ColorTypeEnumMap, json['colorType']) ??
+          ColorType.solid,
+      color: (json['color'] as num?)?.toInt() ?? 0xFF40C4FF,
+      gradientType:
+          $enumDecodeNullable(_$GradientTypeEnumMap, json['gradientType']) ??
+              GradientType.linear,
+      gradientData: (json['gradientData'] as List<dynamic>?)
+              ?.map((e) => GradientData.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [
+            GradientData(gradientPos: (0, 0)),
+            GradientData(gradientPos: (1, 1))
+          ],
+    );
+
+Map<String, dynamic> _$$ColorOptionImplToJson(_$ColorOptionImpl instance) =>
+    <String, dynamic>{
+      'colorType': _$ColorTypeEnumMap[instance.colorType]!,
+      'color': instance.color,
+      'gradientType': _$GradientTypeEnumMap[instance.gradientType]!,
+      'gradientData': instance.gradientData.map((e) => e.toJson()).toList(),
+    };
+
+const _$ColorTypeEnumMap = {
+  ColorType.solid: 'solid',
+  ColorType.gradient: 'gradient',
+};
+
+const _$GradientTypeEnumMap = {
+  GradientType.linear: 'linear',
+  GradientType.radial: 'radial',
+  GradientType.sweep: 'sweep',
+};
+
 _$ChoiceNodeDesignPresetImpl _$$ChoiceNodeDesignPresetImplFromJson(
         Map<String, dynamic> json) =>
     _$ChoiceNodeDesignPresetImpl(
@@ -120,6 +184,7 @@ _$ChoiceNodeDesignPresetImpl _$$ChoiceNodeDesignPresetImplFromJson(
       imageMaxHeightRatio:
           (json['imageMaxHeightRatio'] as num?)?.toDouble() ?? 0.5,
       hideTitle: json['hideTitle'] as bool? ?? false,
+      imagePosition: (json['imagePosition'] as num?)?.toInt() ?? 0,
       colorTitle: (json['colorTitle'] as num?)?.toInt() ?? 0xFF000000,
       titleFont: json['titleFont'] as String? ?? "notoSans",
       mainFont: json['mainFont'] as String? ?? "notoSans",
@@ -144,9 +209,6 @@ _$ChoiceNodeDesignPresetImpl _$$ChoiceNodeDesignPresetImplFromJson(
       sliderOption: json['sliderOption'] == null
           ? const SliderOption()
           : SliderOption.fromJson(json['sliderOption'] as Map<String, dynamic>),
-      layout: json['layout'] == null
-          ? const NodeLayout()
-          : NodeLayout.fromJson(json['layout'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$ChoiceNodeDesignPresetImplToJson(
@@ -159,6 +221,7 @@ Map<String, dynamic> _$$ChoiceNodeDesignPresetImplToJson(
       'padding': instance.padding?.toJson(),
       'imageMaxHeightRatio': instance.imageMaxHeightRatio,
       'hideTitle': instance.hideTitle,
+      'imagePosition': instance.imagePosition,
       'colorTitle': instance.colorTitle,
       'titleFont': instance.titleFont,
       'mainFont': instance.mainFont,
@@ -169,5 +232,4 @@ Map<String, dynamic> _$$ChoiceNodeDesignPresetImplToJson(
       'selectColorEnable': instance.selectColorEnable,
       'selectColorOption': instance.selectColorOption?.toJson(),
       'sliderOption': instance.sliderOption?.toJson(),
-      'layout': instance.layout?.toJson(),
     };

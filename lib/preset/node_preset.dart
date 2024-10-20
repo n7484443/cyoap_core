@@ -1,8 +1,6 @@
 import 'package:cyoap_core/i18n.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'layout.dart';
-
 part 'node_preset.freezed.dart';
 
 part 'node_preset.g.dart';
@@ -119,6 +117,51 @@ class SliderOption with _$SliderOption {
       _$SliderOptionFromJson(json);
 }
 
+enum ColorType {
+  solid,
+  gradient;
+
+  @override
+  String toString() => name.i18n;
+
+  const ColorType();
+}
+
+enum GradientType {
+  linear,
+  radial,
+  sweep;
+
+  @override
+  String toString() => name.i18n;
+}
+
+@freezed
+class GradientData with _$GradientData {
+  const factory GradientData({
+    @Default((0.5, 0.5)) (double, double) gradientPos,
+    @Default(0xFFFFFFFF) int color,
+  }) = _GradientData;
+
+  factory GradientData.fromJson(Map<String, dynamic> json) =>
+      _$GradientDataFromJson(json);
+}
+
+@Freezed(makeCollectionsUnmodifiable: false)
+class ColorOption with _$ColorOption {
+  const factory ColorOption({
+    @Default(ColorType.solid) ColorType colorType,
+    @Default(0xFF40C4FF) int color,
+    @Default(GradientType.linear) GradientType gradientType,
+    @Default(
+        [GradientData(gradientPos: (0, 0)), GradientData(gradientPos: (1, 1))])
+    List<GradientData> gradientData,
+  }) = _ColorOption;
+
+  factory ColorOption.fromJson(Map<String, dynamic> json) =>
+      _$ColorOptionFromJson(json);
+}
+
 @freezed
 class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
   const factory ChoiceNodeDesignPreset({
@@ -126,11 +169,11 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
     @Default(true) bool? titlePosition,
     @Default(0.0) double? elevation,
     @Default(VertexValue(
-        topLeft: 4.0, topRight: 4.0, bottomLeft: 4.0, bottomRight: 4.0))
-    VertexValue? round,
+        topLeft: 4.0, topRight: 4.0, bottomLeft: 4.0, bottomRight: 4.0)) VertexValue? round,
     @Default(EdgeValue()) EdgeValue? padding,
     @Default(0.5) double? imageMaxHeightRatio,
     @Default(false) bool? hideTitle,
+    @Default(0) int? imagePosition, //0:default, 1:image-right 2:image-left
     @Default(0xFF000000) int? colorTitle,
     @Default("notoSans") String? titleFont,
     @Default("notoSans") String? mainFont,
@@ -141,7 +184,6 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
     @Default(false) bool? selectColorEnable,
     @Default(ColorOption()) ColorOption? selectColorOption,
     @Default(SliderOption()) SliderOption? sliderOption,
-    @Default(NodeLayout()) NodeLayout? layout,
   }) = _ChoiceNodeDesignPreset;
 
   const ChoiceNodeDesignPreset._();
@@ -155,6 +197,7 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
       padding: null,
       imageMaxHeightRatio: null,
       hideTitle: null,
+      imagePosition: null,
       colorTitle: null,
       titleFont: null,
       mainFont: null,
@@ -165,7 +208,6 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
       selectColorEnable: null,
       selectColorOption: null,
       sliderOption: null,
-      layout: null,
     );
   }
 
@@ -179,6 +221,7 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
       padding: override?.padding ?? padding,
       imageMaxHeightRatio: override?.imageMaxHeightRatio ?? imageMaxHeightRatio,
       hideTitle: override?.hideTitle ?? hideTitle,
+      imagePosition: override?.imagePosition ?? imagePosition,
       colorTitle: override?.colorTitle ?? colorTitle,
       titleFont: override?.titleFont ?? titleFont,
       mainFont: override?.mainFont ?? mainFont,
@@ -190,24 +233,9 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
       selectColorEnable: override?.selectColorEnable ?? selectColorEnable,
       selectColorOption: override?.selectColorOption ?? selectColorOption,
       sliderOption: override?.sliderOption ?? sliderOption,
-      layout: override?.layout ?? layout,
     );
   }
 
   factory ChoiceNodeDesignPreset.fromJson(Map<String, dynamic> json) =>
-      _$ChoiceNodeDesignPresetFromJson(convertImagePositionToNodeLayout(json));
-}
-
-Map<String, dynamic> convertImagePositionToNodeLayout(
-    Map<String, dynamic> json) {
-  if (json['layout'] != null) return json;
-  var titlePosition = json['titlePosition'] ?? false;
-  var layout = switch (json['imagePosition']) {
-    0 => titlePosition ? NodeLayout.upTitle() : NodeLayout.downTitle(),
-    1 => NodeLayout.leftImage(),
-    2 => NodeLayout.rightImage(),
-    _ => NodeLayout.upTitle(),
-  };
-  json['layout'] = layout.toJson();
-  return json;
+      _$ChoiceNodeDesignPresetFromJson(json);
 }

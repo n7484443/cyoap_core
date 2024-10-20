@@ -1,5 +1,4 @@
 import 'package:cyoap_core/i18n.dart';
-import 'package:cyoap_core/preset/layout.dart';
 import 'package:cyoap_core/preset/line_preset.dart';
 import 'package:cyoap_core/preset/node_preset.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
