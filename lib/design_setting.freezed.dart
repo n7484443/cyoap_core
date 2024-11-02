@@ -205,7 +205,7 @@ class __$$PlatformDesignSettingImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PlatformDesignSettingImpl implements _PlatformDesignSetting {
+class _$PlatformDesignSettingImpl extends _PlatformDesignSetting {
   _$PlatformDesignSettingImpl(
       {this.variableFont = "notoSans",
       this.backgroundImage,
@@ -219,7 +219,8 @@ class _$PlatformDesignSettingImpl implements _PlatformDesignSetting {
       ],
       this.marginVertical = 12.0})
       : _choiceLinePresetList = choiceLinePresetList,
-        _choiceNodePresetList = choiceNodePresetList;
+        _choiceNodePresetList = choiceNodePresetList,
+        super._();
 
   factory _$PlatformDesignSettingImpl.fromJson(Map<String, dynamic> json) =>
       _$$PlatformDesignSettingImplFromJson(json);
@@ -314,7 +315,7 @@ class _$PlatformDesignSettingImpl implements _PlatformDesignSetting {
   }
 }
 
-abstract class _PlatformDesignSetting implements PlatformDesignSetting {
+abstract class _PlatformDesignSetting extends PlatformDesignSetting {
   factory _PlatformDesignSetting(
       {final String variableFont,
       final String? backgroundImage,
@@ -323,6 +324,7 @@ abstract class _PlatformDesignSetting implements PlatformDesignSetting {
       final List<ChoiceLineDesignPreset> choiceLinePresetList,
       final List<ChoiceNodeDesignPreset> choiceNodePresetList,
       final double marginVertical}) = _$PlatformDesignSettingImpl;
+  _PlatformDesignSetting._() : super._();
 
   factory _PlatformDesignSetting.fromJson(Map<String, dynamic> json) =
       _$PlatformDesignSettingImpl.fromJson;

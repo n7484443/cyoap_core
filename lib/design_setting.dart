@@ -39,4 +39,20 @@ class PlatformDesignSetting with _$PlatformDesignSetting {
 
   factory PlatformDesignSetting.fromJson(Map<String, dynamic> json) =>
       _$PlatformDesignSettingFromJson(json);
+
+  const PlatformDesignSetting._();
+
+  ChoiceLineDesignPreset getChoiceLinePreset(String name) {
+    return choiceLinePresetList.firstWhere(
+      (element) => element.name == name,
+      orElse: () => ChoiceLineDesignPreset(name: name),
+    );
+  }
+
+  ChoiceNodeDesignPreset getChoiceNodePreset(String name) {
+    return choiceNodePresetList.firstWhere(
+      (element) => element.name == name,
+      orElse: () => ChoiceNodeDesignPreset(name: name),
+    );
+  }
 }

@@ -15,6 +15,10 @@ _$ChoiceNodeDesignImpl _$$ChoiceNodeDesignImplFromJson(
       showAsSlider: json['showAsSlider'] as bool? ?? false,
       executeWhenVisible: json['executeWhenVisible'] as bool? ?? false,
       presetName: json['presetName'] as String? ?? 'default',
+      overridePreset: json['overridePreset'] == null
+          ? null
+          : ChoiceNodeDesignPreset.fromJson(
+              json['overridePreset'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$ChoiceNodeDesignImplToJson(
@@ -26,4 +30,5 @@ Map<String, dynamic> _$$ChoiceNodeDesignImplToJson(
       'showAsSlider': instance.showAsSlider,
       'executeWhenVisible': instance.executeWhenVisible,
       'presetName': instance.presetName,
+      'overridePreset': instance.overridePreset?.toJson(),
     };

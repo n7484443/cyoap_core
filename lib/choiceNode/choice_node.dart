@@ -2,9 +2,11 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:cyoap_core/choiceNode/selectable_status.dart';
+import 'package:cyoap_core/design_setting.dart';
 import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/i18n.dart';
 import 'package:cyoap_core/option.dart';
+import 'package:cyoap_core/preset/node_preset.dart';
 import 'package:cyoap_core/variable_db.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -32,10 +34,18 @@ class ChoiceNodeOption with _$ChoiceNodeOption {
     @Default(false) bool showAsSlider,
     @Default(false) bool executeWhenVisible,
     @Default('default') String presetName,
+    @Default(null) ChoiceNodeDesignPreset? overridePreset,
   }) = _ChoiceNodeDesign;
 
   factory ChoiceNodeOption.fromJson(Map<String, dynamic> json) =>
       _$ChoiceNodeOptionFromJson(json);
+
+  const ChoiceNodeOption._();
+
+  ChoiceNodeDesignPreset getPreset(PlatformDesignSetting setting) {
+    var motherPreset = setting.getChoiceNodePreset(presetName);
+    return motherPreset.getPresetWithOverride(overridePreset);
+  }
 }
 
 const int seedMax = 1000000000;

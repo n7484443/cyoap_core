@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../design_setting.dart';
 import '../preset/line_preset.dart';
 import 'choice.dart';
 import 'choice_node.dart';
@@ -22,6 +23,13 @@ class ChoiceLineOption with _$ChoiceLineOption {
 
   factory ChoiceLineOption.fromJson(Map<String, dynamic> json) =>
       _$ChoiceLineOptionFromJson(json);
+
+  const ChoiceLineOption._();
+
+  ChoiceLineDesignPreset getPreset(PlatformDesignSetting setting) {
+    var motherPreset = setting.getChoiceLinePreset(presetName);
+    return motherPreset.getPresetWithOverride(overridePreset);
+  }
 }
 
 class ChoiceLine with Choice {

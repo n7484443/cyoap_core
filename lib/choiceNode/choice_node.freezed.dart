@@ -26,6 +26,8 @@ mixin _$ChoiceNodeOption {
   bool get showAsSlider => throw _privateConstructorUsedError;
   bool get executeWhenVisible => throw _privateConstructorUsedError;
   String get presetName => throw _privateConstructorUsedError;
+  ChoiceNodeDesignPreset? get overridePreset =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this ChoiceNodeOption to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -49,7 +51,10 @@ abstract class $ChoiceNodeOptionCopyWith<$Res> {
       bool showAsResult,
       bool showAsSlider,
       bool executeWhenVisible,
-      String presetName});
+      String presetName,
+      ChoiceNodeDesignPreset? overridePreset});
+
+  $ChoiceNodeDesignPresetCopyWith<$Res>? get overridePreset;
 }
 
 /// @nodoc
@@ -73,6 +78,7 @@ class _$ChoiceNodeOptionCopyWithImpl<$Res, $Val extends ChoiceNodeOption>
     Object? showAsSlider = null,
     Object? executeWhenVisible = null,
     Object? presetName = null,
+    Object? overridePreset = freezed,
   }) {
     return _then(_value.copyWith(
       isOccupySpace: null == isOccupySpace
@@ -99,7 +105,26 @@ class _$ChoiceNodeOptionCopyWithImpl<$Res, $Val extends ChoiceNodeOption>
           ? _value.presetName
           : presetName // ignore: cast_nullable_to_non_nullable
               as String,
+      overridePreset: freezed == overridePreset
+          ? _value.overridePreset
+          : overridePreset // ignore: cast_nullable_to_non_nullable
+              as ChoiceNodeDesignPreset?,
     ) as $Val);
+  }
+
+  /// Create a copy of ChoiceNodeOption
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ChoiceNodeDesignPresetCopyWith<$Res>? get overridePreset {
+    if (_value.overridePreset == null) {
+      return null;
+    }
+
+    return $ChoiceNodeDesignPresetCopyWith<$Res>(_value.overridePreset!,
+        (value) {
+      return _then(_value.copyWith(overridePreset: value) as $Val);
+    });
   }
 }
 
@@ -117,7 +142,11 @@ abstract class _$$ChoiceNodeDesignImplCopyWith<$Res>
       bool showAsResult,
       bool showAsSlider,
       bool executeWhenVisible,
-      String presetName});
+      String presetName,
+      ChoiceNodeDesignPreset? overridePreset});
+
+  @override
+  $ChoiceNodeDesignPresetCopyWith<$Res>? get overridePreset;
 }
 
 /// @nodoc
@@ -139,6 +168,7 @@ class __$$ChoiceNodeDesignImplCopyWithImpl<$Res>
     Object? showAsSlider = null,
     Object? executeWhenVisible = null,
     Object? presetName = null,
+    Object? overridePreset = freezed,
   }) {
     return _then(_$ChoiceNodeDesignImpl(
       isOccupySpace: null == isOccupySpace
@@ -165,20 +195,26 @@ class __$$ChoiceNodeDesignImplCopyWithImpl<$Res>
           ? _value.presetName
           : presetName // ignore: cast_nullable_to_non_nullable
               as String,
+      overridePreset: freezed == overridePreset
+          ? _value.overridePreset
+          : overridePreset // ignore: cast_nullable_to_non_nullable
+              as ChoiceNodeDesignPreset?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ChoiceNodeDesignImpl implements _ChoiceNodeDesign {
+class _$ChoiceNodeDesignImpl extends _ChoiceNodeDesign {
   _$ChoiceNodeDesignImpl(
       {this.isOccupySpace = false,
       this.hideAsResult = false,
       this.showAsResult = false,
       this.showAsSlider = false,
       this.executeWhenVisible = false,
-      this.presetName = 'default'});
+      this.presetName = 'default',
+      this.overridePreset = null})
+      : super._();
 
   factory _$ChoiceNodeDesignImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChoiceNodeDesignImplFromJson(json);
@@ -201,10 +237,13 @@ class _$ChoiceNodeDesignImpl implements _ChoiceNodeDesign {
   @override
   @JsonKey()
   final String presetName;
+  @override
+  @JsonKey()
+  final ChoiceNodeDesignPreset? overridePreset;
 
   @override
   String toString() {
-    return 'ChoiceNodeOption(isOccupySpace: $isOccupySpace, hideAsResult: $hideAsResult, showAsResult: $showAsResult, showAsSlider: $showAsSlider, executeWhenVisible: $executeWhenVisible, presetName: $presetName)';
+    return 'ChoiceNodeOption(isOccupySpace: $isOccupySpace, hideAsResult: $hideAsResult, showAsResult: $showAsResult, showAsSlider: $showAsSlider, executeWhenVisible: $executeWhenVisible, presetName: $presetName, overridePreset: $overridePreset)';
   }
 
   @override
@@ -223,13 +262,22 @@ class _$ChoiceNodeDesignImpl implements _ChoiceNodeDesign {
             (identical(other.executeWhenVisible, executeWhenVisible) ||
                 other.executeWhenVisible == executeWhenVisible) &&
             (identical(other.presetName, presetName) ||
-                other.presetName == presetName));
+                other.presetName == presetName) &&
+            (identical(other.overridePreset, overridePreset) ||
+                other.overridePreset == overridePreset));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, isOccupySpace, hideAsResult,
-      showAsResult, showAsSlider, executeWhenVisible, presetName);
+  int get hashCode => Object.hash(
+      runtimeType,
+      isOccupySpace,
+      hideAsResult,
+      showAsResult,
+      showAsSlider,
+      executeWhenVisible,
+      presetName,
+      overridePreset);
 
   /// Create a copy of ChoiceNodeOption
   /// with the given fields replaced by the non-null parameter values.
@@ -248,14 +296,16 @@ class _$ChoiceNodeDesignImpl implements _ChoiceNodeDesign {
   }
 }
 
-abstract class _ChoiceNodeDesign implements ChoiceNodeOption {
+abstract class _ChoiceNodeDesign extends ChoiceNodeOption {
   factory _ChoiceNodeDesign(
       {final bool isOccupySpace,
       final bool hideAsResult,
       final bool showAsResult,
       final bool showAsSlider,
       final bool executeWhenVisible,
-      final String presetName}) = _$ChoiceNodeDesignImpl;
+      final String presetName,
+      final ChoiceNodeDesignPreset? overridePreset}) = _$ChoiceNodeDesignImpl;
+  _ChoiceNodeDesign._() : super._();
 
   factory _ChoiceNodeDesign.fromJson(Map<String, dynamic> json) =
       _$ChoiceNodeDesignImpl.fromJson;
@@ -272,6 +322,8 @@ abstract class _ChoiceNodeDesign implements ChoiceNodeOption {
   bool get executeWhenVisible;
   @override
   String get presetName;
+  @override
+  ChoiceNodeDesignPreset? get overridePreset;
 
   /// Create a copy of ChoiceNodeOption
   /// with the given fields replaced by the non-null parameter values.
