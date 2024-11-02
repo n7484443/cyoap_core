@@ -60,7 +60,8 @@ Map<String, dynamic> jsonConvert(Map<String, dynamic> json) {
       var name = jsonItem["name"] as String;
       map[name] = jsonItem;
     }
-    json["choiceNodePresetList"] = map;
+    json["choiceNodePresetMap"] = map;
   }
+  print(json);
   return json;
 }
