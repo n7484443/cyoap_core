@@ -45,12 +45,11 @@ class PlatformDesignSetting with _$PlatformDesignSetting {
   }
 }
 
-dynamic jsonConvert(dynamic json) {
-  json = Map<String, dynamic>.from(json as Map);
+Map<String, dynamic> jsonConvert(Map<String, dynamic> json) {
   if (json["choiceLinePresetList"] != null) {
     var map = {};
     for (var jsonItem in json["choiceLinePresetList"]) {
-      var name = jsonItem["name"];
+      var name = jsonItem["name"] as String;
       map[name] = jsonItem;
     }
     json["choiceLinePresetMap"] = map;
@@ -58,7 +57,7 @@ dynamic jsonConvert(dynamic json) {
   if (json["choiceNodePresetList"] != null) {
     var map = {};
     for (var jsonItem in json["choiceNodePresetList"]) {
-      var name = jsonItem["name"];
+      var name = jsonItem["name"] as String;
       map[name] = jsonItem;
     }
     json["choiceNodePresetList"] = map;
