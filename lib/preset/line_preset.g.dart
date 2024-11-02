@@ -9,7 +9,6 @@ part of 'line_preset.dart';
 _$ChoiceLineDesignPresetImpl _$$ChoiceLineDesignPresetImplFromJson(
         Map<String, dynamic> json) =>
     _$ChoiceLineDesignPresetImpl(
-      name: json['name'] as String?,
       backgroundColorOption: json['backgroundColorOption'] == null
           ? const ColorOption(color: 0)
           : ColorOption.fromJson(
@@ -25,7 +24,6 @@ _$ChoiceLineDesignPresetImpl _$$ChoiceLineDesignPresetImplFromJson(
 Map<String, dynamic> _$$ChoiceLineDesignPresetImplToJson(
         _$ChoiceLineDesignPresetImpl instance) =>
     <String, dynamic>{
-      'name': instance.name,
       'backgroundColorOption': instance.backgroundColorOption?.toJson(),
       'backgroundImageString': instance.backgroundImageString,
       'alwaysVisibleLine': instance.alwaysVisibleLine,

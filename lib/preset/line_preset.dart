@@ -18,7 +18,6 @@ enum ChoiceLineAlignment {
 @freezed
 class ChoiceLineDesignPreset with _$ChoiceLineDesignPreset {
   const factory ChoiceLineDesignPreset({
-    String? name,
     @Default(ColorOption(color: 0)) ColorOption? backgroundColorOption,
     String? backgroundImageString,
     @Default(false) bool? alwaysVisibleLine,
@@ -30,7 +29,6 @@ class ChoiceLineDesignPreset with _$ChoiceLineDesignPreset {
 
   static ChoiceLineDesignPreset emptyPreset() {
     return ChoiceLineDesignPreset(
-      name: null,
       backgroundColorOption: null,
       backgroundImageString: null,
       alwaysVisibleLine: null,
@@ -42,7 +40,6 @@ class ChoiceLineDesignPreset with _$ChoiceLineDesignPreset {
   ChoiceLineDesignPreset getPresetWithOverride(
       ChoiceLineDesignPreset? override) {
     return ChoiceLineDesignPreset(
-      name: override?.name ?? name,
       backgroundColorOption:
           override?.backgroundColorOption ?? backgroundColorOption,
       backgroundImageString:

@@ -107,7 +107,6 @@ const _$SliderThumbShapeEnumMap = {
 _$ChoiceNodeDesignPresetImpl _$$ChoiceNodeDesignPresetImplFromJson(
         Map<String, dynamic> json) =>
     _$ChoiceNodeDesignPresetImpl(
-      name: json['name'] as String?,
       titlePosition: json['titlePosition'] as bool? ?? true,
       elevation: (json['elevation'] as num?)?.toDouble() ?? 4.0,
       round: json['round'] == null
@@ -164,7 +163,6 @@ _$ChoiceNodeDesignPresetImpl _$$ChoiceNodeDesignPresetImplFromJson(
 Map<String, dynamic> _$$ChoiceNodeDesignPresetImplToJson(
         _$ChoiceNodeDesignPresetImpl instance) =>
     <String, dynamic>{
-      'name': instance.name,
       'titlePosition': instance.titlePosition,
       'elevation': instance.elevation,
       'round': instance.round?.toJson(),

@@ -996,7 +996,6 @@ ChoiceNodeDesignPreset _$ChoiceNodeDesignPresetFromJson(
 
 /// @nodoc
 mixin _$ChoiceNodeDesignPreset {
-  String? get name => throw _privateConstructorUsedError;
   bool? get titlePosition => throw _privateConstructorUsedError;
   double? get elevation => throw _privateConstructorUsedError;
   VertexValue? get round => throw _privateConstructorUsedError;
@@ -1033,8 +1032,7 @@ abstract class $ChoiceNodeDesignPresetCopyWith<$Res> {
       _$ChoiceNodeDesignPresetCopyWithImpl<$Res, ChoiceNodeDesignPreset>;
   @useResult
   $Res call(
-      {String? name,
-      bool? titlePosition,
+      {bool? titlePosition,
       double? elevation,
       VertexValue? round,
       EdgeValue? padding,
@@ -1077,7 +1075,6 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
     Object? titlePosition = freezed,
     Object? elevation = freezed,
     Object? round = freezed,
@@ -1097,10 +1094,6 @@ class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
     Object? sliderOption = freezed,
   }) {
     return _then(_value.copyWith(
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
       titlePosition: freezed == titlePosition
           ? _value.titlePosition
           : titlePosition // ignore: cast_nullable_to_non_nullable
@@ -1281,8 +1274,7 @@ abstract class _$$ChoiceNodeDesignPresetImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? name,
-      bool? titlePosition,
+      {bool? titlePosition,
       double? elevation,
       VertexValue? round,
       EdgeValue? padding,
@@ -1331,7 +1323,6 @@ class __$$ChoiceNodeDesignPresetImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
     Object? titlePosition = freezed,
     Object? elevation = freezed,
     Object? round = freezed,
@@ -1351,10 +1342,6 @@ class __$$ChoiceNodeDesignPresetImplCopyWithImpl<$Res>
     Object? sliderOption = freezed,
   }) {
     return _then(_$ChoiceNodeDesignPresetImpl(
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
       titlePosition: freezed == titlePosition
           ? _value.titlePosition
           : titlePosition // ignore: cast_nullable_to_non_nullable
@@ -1431,8 +1418,7 @@ class __$$ChoiceNodeDesignPresetImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
   const _$ChoiceNodeDesignPresetImpl(
-      {this.name,
-      this.titlePosition = true,
+      {this.titlePosition = true,
       this.elevation = 4.0,
       this.round = const VertexValue(
           topLeft: 4.0, topRight: 4.0, bottomLeft: 4.0, bottomRight: 4.0),
@@ -1470,8 +1456,6 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
   factory _$ChoiceNodeDesignPresetImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChoiceNodeDesignPresetImplFromJson(json);
 
-  @override
-  final String? name;
   @override
   @JsonKey()
   final bool? titlePosition;
@@ -1527,7 +1511,7 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
 
   @override
   String toString() {
-    return 'ChoiceNodeDesignPreset(name: $name, titlePosition: $titlePosition, elevation: $elevation, round: $round, padding: $padding, imageMaxHeightRatio: $imageMaxHeightRatio, hideTitle: $hideTitle, imagePosition: $imagePosition, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont, defaultOutlineOption: $defaultOutlineOption, selectOutlineEnable: $selectOutlineEnable, selectOutlineOption: $selectOutlineOption, defaultColorOption: $defaultColorOption, selectColorEnable: $selectColorEnable, selectColorOption: $selectColorOption, sliderOption: $sliderOption)';
+    return 'ChoiceNodeDesignPreset(titlePosition: $titlePosition, elevation: $elevation, round: $round, padding: $padding, imageMaxHeightRatio: $imageMaxHeightRatio, hideTitle: $hideTitle, imagePosition: $imagePosition, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont, defaultOutlineOption: $defaultOutlineOption, selectOutlineEnable: $selectOutlineEnable, selectOutlineOption: $selectOutlineOption, defaultColorOption: $defaultColorOption, selectColorEnable: $selectColorEnable, selectColorOption: $selectColorOption, sliderOption: $sliderOption)';
   }
 
   @override
@@ -1535,7 +1519,6 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChoiceNodeDesignPresetImpl &&
-            (identical(other.name, name) || other.name == name) &&
             (identical(other.titlePosition, titlePosition) ||
                 other.titlePosition == titlePosition) &&
             (identical(other.elevation, elevation) ||
@@ -1574,7 +1557,6 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      name,
       titlePosition,
       elevation,
       round,
@@ -1612,8 +1594,7 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
 
 abstract class _ChoiceNodeDesignPreset extends ChoiceNodeDesignPreset {
   const factory _ChoiceNodeDesignPreset(
-      {final String? name,
-      final bool? titlePosition,
+      {final bool? titlePosition,
       final double? elevation,
       final VertexValue? round,
       final EdgeValue? padding,
@@ -1635,8 +1616,6 @@ abstract class _ChoiceNodeDesignPreset extends ChoiceNodeDesignPreset {
   factory _ChoiceNodeDesignPreset.fromJson(Map<String, dynamic> json) =
       _$ChoiceNodeDesignPresetImpl.fromJson;
 
-  @override
-  String? get name;
   @override
   bool? get titlePosition;
   @override

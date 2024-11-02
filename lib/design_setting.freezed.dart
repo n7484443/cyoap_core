@@ -25,9 +25,9 @@ mixin _$PlatformDesignSetting {
   String? get backgroundImage => throw _privateConstructorUsedError;
   ColorOption get backgroundColorOption => throw _privateConstructorUsedError;
   ImageAttribute get backgroundAttribute => throw _privateConstructorUsedError;
-  List<ChoiceLineDesignPreset> get choiceLinePresetList =>
+  Map<String, ChoiceLineDesignPreset> get choiceLinePresetMap =>
       throw _privateConstructorUsedError;
-  List<ChoiceNodeDesignPreset> get choiceNodePresetList =>
+  Map<String, ChoiceNodeDesignPreset> get choiceNodePresetMap =>
       throw _privateConstructorUsedError;
   double get marginVertical => throw _privateConstructorUsedError;
 
@@ -52,8 +52,8 @@ abstract class $PlatformDesignSettingCopyWith<$Res> {
       String? backgroundImage,
       ColorOption backgroundColorOption,
       ImageAttribute backgroundAttribute,
-      List<ChoiceLineDesignPreset> choiceLinePresetList,
-      List<ChoiceNodeDesignPreset> choiceNodePresetList,
+      Map<String, ChoiceLineDesignPreset> choiceLinePresetMap,
+      Map<String, ChoiceNodeDesignPreset> choiceNodePresetMap,
       double marginVertical});
 
   $ColorOptionCopyWith<$Res> get backgroundColorOption;
@@ -79,8 +79,8 @@ class _$PlatformDesignSettingCopyWithImpl<$Res,
     Object? backgroundImage = freezed,
     Object? backgroundColorOption = null,
     Object? backgroundAttribute = null,
-    Object? choiceLinePresetList = null,
-    Object? choiceNodePresetList = null,
+    Object? choiceLinePresetMap = null,
+    Object? choiceNodePresetMap = null,
     Object? marginVertical = null,
   }) {
     return _then(_value.copyWith(
@@ -100,14 +100,14 @@ class _$PlatformDesignSettingCopyWithImpl<$Res,
           ? _value.backgroundAttribute
           : backgroundAttribute // ignore: cast_nullable_to_non_nullable
               as ImageAttribute,
-      choiceLinePresetList: null == choiceLinePresetList
-          ? _value.choiceLinePresetList
-          : choiceLinePresetList // ignore: cast_nullable_to_non_nullable
-              as List<ChoiceLineDesignPreset>,
-      choiceNodePresetList: null == choiceNodePresetList
-          ? _value.choiceNodePresetList
-          : choiceNodePresetList // ignore: cast_nullable_to_non_nullable
-              as List<ChoiceNodeDesignPreset>,
+      choiceLinePresetMap: null == choiceLinePresetMap
+          ? _value.choiceLinePresetMap
+          : choiceLinePresetMap // ignore: cast_nullable_to_non_nullable
+              as Map<String, ChoiceLineDesignPreset>,
+      choiceNodePresetMap: null == choiceNodePresetMap
+          ? _value.choiceNodePresetMap
+          : choiceNodePresetMap // ignore: cast_nullable_to_non_nullable
+              as Map<String, ChoiceNodeDesignPreset>,
       marginVertical: null == marginVertical
           ? _value.marginVertical
           : marginVertical // ignore: cast_nullable_to_non_nullable
@@ -140,8 +140,8 @@ abstract class _$$PlatformDesignSettingImplCopyWith<$Res>
       String? backgroundImage,
       ColorOption backgroundColorOption,
       ImageAttribute backgroundAttribute,
-      List<ChoiceLineDesignPreset> choiceLinePresetList,
-      List<ChoiceNodeDesignPreset> choiceNodePresetList,
+      Map<String, ChoiceLineDesignPreset> choiceLinePresetMap,
+      Map<String, ChoiceNodeDesignPreset> choiceNodePresetMap,
       double marginVertical});
 
   @override
@@ -166,8 +166,8 @@ class __$$PlatformDesignSettingImplCopyWithImpl<$Res>
     Object? backgroundImage = freezed,
     Object? backgroundColorOption = null,
     Object? backgroundAttribute = null,
-    Object? choiceLinePresetList = null,
-    Object? choiceNodePresetList = null,
+    Object? choiceLinePresetMap = null,
+    Object? choiceNodePresetMap = null,
     Object? marginVertical = null,
   }) {
     return _then(_$PlatformDesignSettingImpl(
@@ -187,14 +187,14 @@ class __$$PlatformDesignSettingImplCopyWithImpl<$Res>
           ? _value.backgroundAttribute
           : backgroundAttribute // ignore: cast_nullable_to_non_nullable
               as ImageAttribute,
-      choiceLinePresetList: null == choiceLinePresetList
-          ? _value._choiceLinePresetList
-          : choiceLinePresetList // ignore: cast_nullable_to_non_nullable
-              as List<ChoiceLineDesignPreset>,
-      choiceNodePresetList: null == choiceNodePresetList
-          ? _value._choiceNodePresetList
-          : choiceNodePresetList // ignore: cast_nullable_to_non_nullable
-              as List<ChoiceNodeDesignPreset>,
+      choiceLinePresetMap: null == choiceLinePresetMap
+          ? _value._choiceLinePresetMap
+          : choiceLinePresetMap // ignore: cast_nullable_to_non_nullable
+              as Map<String, ChoiceLineDesignPreset>,
+      choiceNodePresetMap: null == choiceNodePresetMap
+          ? _value._choiceNodePresetMap
+          : choiceNodePresetMap // ignore: cast_nullable_to_non_nullable
+              as Map<String, ChoiceNodeDesignPreset>,
       marginVertical: null == marginVertical
           ? _value.marginVertical
           : marginVertical // ignore: cast_nullable_to_non_nullable
@@ -211,15 +211,15 @@ class _$PlatformDesignSettingImpl extends _PlatformDesignSetting {
       this.backgroundImage,
       this.backgroundColorOption = const ColorOption(color: 0xFFEEEEFF),
       this.backgroundAttribute = ImageAttribute.fit,
-      final List<ChoiceLineDesignPreset> choiceLinePresetList = const [
-        ChoiceLineDesignPreset(name: 'default')
-      ],
-      final List<ChoiceNodeDesignPreset> choiceNodePresetList = const [
-        ChoiceNodeDesignPreset(name: 'default')
-      ],
+      final Map<String, ChoiceLineDesignPreset> choiceLinePresetMap = const {
+        'default': ChoiceLineDesignPreset()
+      },
+      final Map<String, ChoiceNodeDesignPreset> choiceNodePresetMap = const {
+        'default': ChoiceNodeDesignPreset()
+      },
       this.marginVertical = 12.0})
-      : _choiceLinePresetList = choiceLinePresetList,
-        _choiceNodePresetList = choiceNodePresetList,
+      : _choiceLinePresetMap = choiceLinePresetMap,
+        _choiceNodePresetMap = choiceNodePresetMap,
         super._();
 
   factory _$PlatformDesignSettingImpl.fromJson(Map<String, dynamic> json) =>
@@ -236,24 +236,24 @@ class _$PlatformDesignSettingImpl extends _PlatformDesignSetting {
   @override
   @JsonKey()
   final ImageAttribute backgroundAttribute;
-  final List<ChoiceLineDesignPreset> _choiceLinePresetList;
+  final Map<String, ChoiceLineDesignPreset> _choiceLinePresetMap;
   @override
   @JsonKey()
-  List<ChoiceLineDesignPreset> get choiceLinePresetList {
-    if (_choiceLinePresetList is EqualUnmodifiableListView)
-      return _choiceLinePresetList;
+  Map<String, ChoiceLineDesignPreset> get choiceLinePresetMap {
+    if (_choiceLinePresetMap is EqualUnmodifiableMapView)
+      return _choiceLinePresetMap;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_choiceLinePresetList);
+    return EqualUnmodifiableMapView(_choiceLinePresetMap);
   }
 
-  final List<ChoiceNodeDesignPreset> _choiceNodePresetList;
+  final Map<String, ChoiceNodeDesignPreset> _choiceNodePresetMap;
   @override
   @JsonKey()
-  List<ChoiceNodeDesignPreset> get choiceNodePresetList {
-    if (_choiceNodePresetList is EqualUnmodifiableListView)
-      return _choiceNodePresetList;
+  Map<String, ChoiceNodeDesignPreset> get choiceNodePresetMap {
+    if (_choiceNodePresetMap is EqualUnmodifiableMapView)
+      return _choiceNodePresetMap;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_choiceNodePresetList);
+    return EqualUnmodifiableMapView(_choiceNodePresetMap);
   }
 
   @override
@@ -262,7 +262,7 @@ class _$PlatformDesignSettingImpl extends _PlatformDesignSetting {
 
   @override
   String toString() {
-    return 'PlatformDesignSetting(variableFont: $variableFont, backgroundImage: $backgroundImage, backgroundColorOption: $backgroundColorOption, backgroundAttribute: $backgroundAttribute, choiceLinePresetList: $choiceLinePresetList, choiceNodePresetList: $choiceNodePresetList, marginVertical: $marginVertical)';
+    return 'PlatformDesignSetting(variableFont: $variableFont, backgroundImage: $backgroundImage, backgroundColorOption: $backgroundColorOption, backgroundAttribute: $backgroundAttribute, choiceLinePresetMap: $choiceLinePresetMap, choiceNodePresetMap: $choiceNodePresetMap, marginVertical: $marginVertical)';
   }
 
   @override
@@ -279,9 +279,9 @@ class _$PlatformDesignSettingImpl extends _PlatformDesignSetting {
             (identical(other.backgroundAttribute, backgroundAttribute) ||
                 other.backgroundAttribute == backgroundAttribute) &&
             const DeepCollectionEquality()
-                .equals(other._choiceLinePresetList, _choiceLinePresetList) &&
+                .equals(other._choiceLinePresetMap, _choiceLinePresetMap) &&
             const DeepCollectionEquality()
-                .equals(other._choiceNodePresetList, _choiceNodePresetList) &&
+                .equals(other._choiceNodePresetMap, _choiceNodePresetMap) &&
             (identical(other.marginVertical, marginVertical) ||
                 other.marginVertical == marginVertical));
   }
@@ -294,8 +294,8 @@ class _$PlatformDesignSettingImpl extends _PlatformDesignSetting {
       backgroundImage,
       backgroundColorOption,
       backgroundAttribute,
-      const DeepCollectionEquality().hash(_choiceLinePresetList),
-      const DeepCollectionEquality().hash(_choiceNodePresetList),
+      const DeepCollectionEquality().hash(_choiceLinePresetMap),
+      const DeepCollectionEquality().hash(_choiceNodePresetMap),
       marginVertical);
 
   /// Create a copy of PlatformDesignSetting
@@ -321,8 +321,8 @@ abstract class _PlatformDesignSetting extends PlatformDesignSetting {
       final String? backgroundImage,
       final ColorOption backgroundColorOption,
       final ImageAttribute backgroundAttribute,
-      final List<ChoiceLineDesignPreset> choiceLinePresetList,
-      final List<ChoiceNodeDesignPreset> choiceNodePresetList,
+      final Map<String, ChoiceLineDesignPreset> choiceLinePresetMap,
+      final Map<String, ChoiceNodeDesignPreset> choiceNodePresetMap,
       final double marginVertical}) = _$PlatformDesignSettingImpl;
   _PlatformDesignSetting._() : super._();
 
@@ -338,9 +338,9 @@ abstract class _PlatformDesignSetting extends PlatformDesignSetting {
   @override
   ImageAttribute get backgroundAttribute;
   @override
-  List<ChoiceLineDesignPreset> get choiceLinePresetList;
+  Map<String, ChoiceLineDesignPreset> get choiceLinePresetMap;
   @override
-  List<ChoiceNodeDesignPreset> get choiceNodePresetList;
+  Map<String, ChoiceNodeDesignPreset> get choiceNodePresetMap;
   @override
   double get marginVertical;
 

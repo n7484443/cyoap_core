@@ -5,6 +5,7 @@ import 'package:cyoap_core/preset/preset.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'design_setting.freezed.dart';
+
 part 'design_setting.g.dart';
 
 enum ImageAttribute {
@@ -26,33 +27,40 @@ class PlatformDesignSetting with _$PlatformDesignSetting {
     String? backgroundImage,
     @Default(ColorOption(color: 0xFFEEEEFF)) ColorOption backgroundColorOption,
     @Default(ImageAttribute.fit) ImageAttribute backgroundAttribute,
-    @Default([
-      ChoiceLineDesignPreset(name: 'default'),
-    ])
-    List<ChoiceLineDesignPreset> choiceLinePresetList,
-    @Default([
-      ChoiceNodeDesignPreset(name: 'default'),
-    ])
-    List<ChoiceNodeDesignPreset> choiceNodePresetList,
+    @Default({'default': ChoiceLineDesignPreset()}) Map<String, ChoiceLineDesignPreset> choiceLinePresetMap,
+    @Default({'default': ChoiceNodeDesignPreset()}) Map<String, ChoiceNodeDesignPreset> choiceNodePresetMap,
     @Default(12.0) double marginVertical,
   }) = _PlatformDesignSetting;
 
-  factory PlatformDesignSetting.fromJson(Map<String, dynamic> json) =>
-      _$PlatformDesignSettingFromJson(json);
+  factory PlatformDesignSetting.fromJson(Map<String, dynamic> json) => _$PlatformDesignSettingFromJson((jsonConvert(json)));
 
   const PlatformDesignSetting._();
 
   ChoiceLineDesignPreset getChoiceLinePreset(String name) {
-    return choiceLinePresetList.firstWhere(
-      (element) => element.name == name,
-      orElse: () => ChoiceLineDesignPreset(name: name),
-    );
+    return choiceLinePresetMap[name] ?? choiceLinePresetMap['default'] ?? ChoiceLineDesignPreset();
   }
 
   ChoiceNodeDesignPreset getChoiceNodePreset(String name) {
-    return choiceNodePresetList.firstWhere(
-      (element) => element.name == name,
-      orElse: () => ChoiceNodeDesignPreset(name: name),
-    );
+    return choiceNodePresetMap[name] ?? choiceNodePresetMap['default'] ?? ChoiceNodeDesignPreset();
   }
+}
+
+Map<String, dynamic> jsonConvert(Map<String, dynamic> json) {
+  if (json["choiceLinePresetList"] != null) {
+    var map = {};
+    for (var jsonItem in json["choiceLinePresetList"]) {
+      var name = jsonItem["name"];
+      map[name] = jsonItem;
+    }
+    json["choiceLinePresetMap"] = map;
+  }
+  if (json["choiceNodePresetList"] != null) {
+    var map = {};
+    for (var jsonItem in json["choiceNodePresetList"]) {
+      var name = jsonItem["name"];
+      map[name] = jsonItem;
+    }
+    json["choiceNodePresetList"] = map;
+  }
+  return json;
 }

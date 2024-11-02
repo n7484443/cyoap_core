@@ -21,7 +21,6 @@ ChoiceLineDesignPreset _$ChoiceLineDesignPresetFromJson(
 
 /// @nodoc
 mixin _$ChoiceLineDesignPreset {
-  String? get name => throw _privateConstructorUsedError;
   ColorOption? get backgroundColorOption => throw _privateConstructorUsedError;
   String? get backgroundImageString => throw _privateConstructorUsedError;
   bool? get alwaysVisibleLine => throw _privateConstructorUsedError;
@@ -45,8 +44,7 @@ abstract class $ChoiceLineDesignPresetCopyWith<$Res> {
       _$ChoiceLineDesignPresetCopyWithImpl<$Res, ChoiceLineDesignPreset>;
   @useResult
   $Res call(
-      {String? name,
-      ColorOption? backgroundColorOption,
+      {ColorOption? backgroundColorOption,
       String? backgroundImageString,
       bool? alwaysVisibleLine,
       ChoiceLineAlignment? alignment,
@@ -71,7 +69,6 @@ class _$ChoiceLineDesignPresetCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
     Object? backgroundColorOption = freezed,
     Object? backgroundImageString = freezed,
     Object? alwaysVisibleLine = freezed,
@@ -79,10 +76,6 @@ class _$ChoiceLineDesignPresetCopyWithImpl<$Res,
     Object? maxChildrenPerRow = freezed,
   }) {
     return _then(_value.copyWith(
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
       backgroundColorOption: freezed == backgroundColorOption
           ? _value.backgroundColorOption
           : backgroundColorOption // ignore: cast_nullable_to_non_nullable
@@ -131,8 +124,7 @@ abstract class _$$ChoiceLineDesignPresetImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? name,
-      ColorOption? backgroundColorOption,
+      {ColorOption? backgroundColorOption,
       String? backgroundImageString,
       bool? alwaysVisibleLine,
       ChoiceLineAlignment? alignment,
@@ -157,7 +149,6 @@ class __$$ChoiceLineDesignPresetImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
     Object? backgroundColorOption = freezed,
     Object? backgroundImageString = freezed,
     Object? alwaysVisibleLine = freezed,
@@ -165,10 +156,6 @@ class __$$ChoiceLineDesignPresetImplCopyWithImpl<$Res>
     Object? maxChildrenPerRow = freezed,
   }) {
     return _then(_$ChoiceLineDesignPresetImpl(
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
       backgroundColorOption: freezed == backgroundColorOption
           ? _value.backgroundColorOption
           : backgroundColorOption // ignore: cast_nullable_to_non_nullable
@@ -197,8 +184,7 @@ class __$$ChoiceLineDesignPresetImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChoiceLineDesignPresetImpl extends _ChoiceLineDesignPreset {
   const _$ChoiceLineDesignPresetImpl(
-      {this.name,
-      this.backgroundColorOption = const ColorOption(color: 0),
+      {this.backgroundColorOption = const ColorOption(color: 0),
       this.backgroundImageString,
       this.alwaysVisibleLine = false,
       this.alignment = ChoiceLineAlignment.left,
@@ -208,8 +194,6 @@ class _$ChoiceLineDesignPresetImpl extends _ChoiceLineDesignPreset {
   factory _$ChoiceLineDesignPresetImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChoiceLineDesignPresetImplFromJson(json);
 
-  @override
-  final String? name;
   @override
   @JsonKey()
   final ColorOption? backgroundColorOption;
@@ -227,7 +211,7 @@ class _$ChoiceLineDesignPresetImpl extends _ChoiceLineDesignPreset {
 
   @override
   String toString() {
-    return 'ChoiceLineDesignPreset(name: $name, backgroundColorOption: $backgroundColorOption, backgroundImageString: $backgroundImageString, alwaysVisibleLine: $alwaysVisibleLine, alignment: $alignment, maxChildrenPerRow: $maxChildrenPerRow)';
+    return 'ChoiceLineDesignPreset(backgroundColorOption: $backgroundColorOption, backgroundImageString: $backgroundImageString, alwaysVisibleLine: $alwaysVisibleLine, alignment: $alignment, maxChildrenPerRow: $maxChildrenPerRow)';
   }
 
   @override
@@ -235,7 +219,6 @@ class _$ChoiceLineDesignPresetImpl extends _ChoiceLineDesignPreset {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChoiceLineDesignPresetImpl &&
-            (identical(other.name, name) || other.name == name) &&
             (identical(other.backgroundColorOption, backgroundColorOption) ||
                 other.backgroundColorOption == backgroundColorOption) &&
             (identical(other.backgroundImageString, backgroundImageString) ||
@@ -250,7 +233,7 @@ class _$ChoiceLineDesignPresetImpl extends _ChoiceLineDesignPreset {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, name, backgroundColorOption,
+  int get hashCode => Object.hash(runtimeType, backgroundColorOption,
       backgroundImageString, alwaysVisibleLine, alignment, maxChildrenPerRow);
 
   /// Create a copy of ChoiceLineDesignPreset
@@ -272,8 +255,7 @@ class _$ChoiceLineDesignPresetImpl extends _ChoiceLineDesignPreset {
 
 abstract class _ChoiceLineDesignPreset extends ChoiceLineDesignPreset {
   const factory _ChoiceLineDesignPreset(
-      {final String? name,
-      final ColorOption? backgroundColorOption,
+      {final ColorOption? backgroundColorOption,
       final String? backgroundImageString,
       final bool? alwaysVisibleLine,
       final ChoiceLineAlignment? alignment,
@@ -283,8 +265,6 @@ abstract class _ChoiceLineDesignPreset extends ChoiceLineDesignPreset {
   factory _ChoiceLineDesignPreset.fromJson(Map<String, dynamic> json) =
       _$ChoiceLineDesignPresetImpl.fromJson;
 
-  @override
-  String? get name;
   @override
   ColorOption? get backgroundColorOption;
   @override

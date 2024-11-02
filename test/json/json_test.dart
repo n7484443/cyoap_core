@@ -6,14 +6,14 @@ import 'package:test/test.dart';
 
 void main() {
   test('PlatformDesignSettingTest', () {
-    var expectedJson = [ChoiceNodeDesignPreset(name: 'default').toJson()];
-    var expected = [ChoiceNodeDesignPreset(name: 'default')];
+    var expectedJson = {"default" : ChoiceNodeDesignPreset().toJson()};
+    var expected = {"default" : ChoiceNodeDesignPreset()};
 
     var platformDesign = PlatformDesignSetting();
     var json = platformDesign.toJson();
-    expect(json['choiceNodePresetList'], expectedJson);
+    expect(json['choiceNodePresetMap'], expectedJson);
     var jsonString = jsonEncode(json);
     var jsonDecoded = PlatformDesignSetting.fromJson(jsonDecode(jsonString));
-    expect(jsonDecoded.choiceNodePresetList, expected);
+    expect(jsonDecoded.choiceNodePresetMap, expected);
   });
 }

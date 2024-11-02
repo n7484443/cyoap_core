@@ -121,7 +121,6 @@ class SliderOption with _$SliderOption {
 @freezed
 class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
   const factory ChoiceNodeDesignPreset({
-    String? name,
     @Default(true) bool? titlePosition,
     @Default(4.0) double? elevation,
     @Default(VertexValue(
@@ -202,7 +201,6 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
 
   static ChoiceNodeDesignPreset emptyPreset() {
     return ChoiceNodeDesignPreset(
-      name: null,
       titlePosition: null,
       elevation: null,
       round: null,
@@ -226,7 +224,6 @@ class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
   ChoiceNodeDesignPreset getPresetWithOverride(
       ChoiceNodeDesignPreset? override) {
     return ChoiceNodeDesignPreset(
-      name: override?.name ?? name,
       titlePosition: override?.titlePosition ?? titlePosition,
       elevation: override?.elevation ?? elevation,
       round: override?.round ?? round,

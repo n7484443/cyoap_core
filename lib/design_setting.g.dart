@@ -18,16 +18,18 @@ _$PlatformDesignSettingImpl _$$PlatformDesignSettingImplFromJson(
       backgroundAttribute: $enumDecodeNullable(
               _$ImageAttributeEnumMap, json['backgroundAttribute']) ??
           ImageAttribute.fit,
-      choiceLinePresetList: (json['choiceLinePresetList'] as List<dynamic>?)
-              ?.map((e) =>
-                  ChoiceLineDesignPreset.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [ChoiceLineDesignPreset(name: 'default')],
-      choiceNodePresetList: (json['choiceNodePresetList'] as List<dynamic>?)
-              ?.map((e) =>
-                  ChoiceNodeDesignPreset.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [ChoiceNodeDesignPreset(name: 'default')],
+      choiceLinePresetMap:
+          (json['choiceLinePresetMap'] as Map<String, dynamic>?)?.map(
+                (k, e) => MapEntry(k,
+                    ChoiceLineDesignPreset.fromJson(e as Map<String, dynamic>)),
+              ) ??
+              const {'default': ChoiceLineDesignPreset()},
+      choiceNodePresetMap:
+          (json['choiceNodePresetMap'] as Map<String, dynamic>?)?.map(
+                (k, e) => MapEntry(k,
+                    ChoiceNodeDesignPreset.fromJson(e as Map<String, dynamic>)),
+              ) ??
+              const {'default': ChoiceNodeDesignPreset()},
       marginVertical: (json['marginVertical'] as num?)?.toDouble() ?? 12.0,
     );
 
@@ -39,10 +41,10 @@ Map<String, dynamic> _$$PlatformDesignSettingImplToJson(
       'backgroundColorOption': instance.backgroundColorOption.toJson(),
       'backgroundAttribute':
           _$ImageAttributeEnumMap[instance.backgroundAttribute]!,
-      'choiceLinePresetList':
-          instance.choiceLinePresetList.map((e) => e.toJson()).toList(),
-      'choiceNodePresetList':
-          instance.choiceNodePresetList.map((e) => e.toJson()).toList(),
+      'choiceLinePresetMap':
+          instance.choiceLinePresetMap.map((k, e) => MapEntry(k, e.toJson())),
+      'choiceNodePresetMap':
+          instance.choiceNodePresetMap.map((k, e) => MapEntry(k, e.toJson())),
       'marginVertical': instance.marginVertical,
     };
 

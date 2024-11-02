@@ -45,8 +45,8 @@ void main() {
   _getChoiceNodeMode = allowInterop(_getChoiceNodeModeInternal);
 
   _getValueList = allowInterop(_getValueListInternal);
-  _getNodePresetList = allowInterop(_getNodePresetListInternal);
-  _getLinePresetList = allowInterop(_getLinePresetListInternal);
+  _getNodePresetMap = allowInterop(_getNodePresetMapInternal);
+  _getLinePresetMap = allowInterop(_getLinePresetMapInternal);
 
   _getLineOption = allowInterop(_getLineOptionInternal);
 
@@ -239,21 +239,21 @@ String _getChoiceNodeOptionInternal(List<dynamic> pos) {
 }
 
 @JS('getNodePresetList')
-external set _getNodePresetList(String Function() f);
+external set _getNodePresetMap(String Function() f);
 
 @JS()
-String _getNodePresetListInternal() {
-  var list = platform.designSetting.choiceNodePresetList;
-  return jsonEncode(list.map((e) => e.toJson()).toList());
+String _getNodePresetMapInternal() {
+  var map = platform.designSetting.choiceNodePresetMap;
+  return jsonEncode(map.map((v, e) => MapEntry(v, e.toJson())));
 }
 
 @JS('getLinePresetList')
-external set _getLinePresetList(String Function() f);
+external set _getLinePresetMap(String Function() f);
 
 @JS()
-String _getLinePresetListInternal() {
-  var list = platform.designSetting.choiceLinePresetList;
-  return jsonEncode(list.map((e) => e.toJson()).toList());
+String _getLinePresetMapInternal() {
+  var map = platform.designSetting.choiceLinePresetMap;
+  return jsonEncode(map.map((v, e) => MapEntry(v, e.toJson())));
 }
 
 @JS('getLineOption')
@@ -320,7 +320,7 @@ external set _getNodeDefaultPreset(String Function() f);
 
 @JS()
 String _getNodeDefaultPresetInternal() {
-  return jsonEncode(ChoiceNodeDesignPreset(name: 'default').toJson());
+  return jsonEncode(ChoiceNodeDesignPreset().toJson());
 }
 
 @JS('getLineDefaultPreset')
@@ -328,7 +328,7 @@ external set _getLineDefaultPreset(String Function() f);
 
 @JS()
 String _getLineDefaultPresetInternal() {
-  return jsonEncode(ChoiceLineDesignPreset(name: 'default').toJson());
+  return jsonEncode(ChoiceLineDesignPreset().toJson());
 }
 
 @JS('getSizeDataList')
