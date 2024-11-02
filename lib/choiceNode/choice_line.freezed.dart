@@ -179,13 +179,14 @@ class __$$ChoiceLineOptionImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ChoiceLineOptionImpl implements _ChoiceLineOption {
+class _$ChoiceLineOptionImpl extends _ChoiceLineOption {
   const _$ChoiceLineOptionImpl(
       {this.maxSelect = -1,
       this.enableCancelFeature = false,
       this.presetName = 'default',
       this.overridePreset = null,
-      this.name});
+      this.name})
+      : super._();
 
   factory _$ChoiceLineOptionImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChoiceLineOptionImplFromJson(json);
@@ -248,13 +249,14 @@ class _$ChoiceLineOptionImpl implements _ChoiceLineOption {
   }
 }
 
-abstract class _ChoiceLineOption implements ChoiceLineOption {
+abstract class _ChoiceLineOption extends ChoiceLineOption {
   const factory _ChoiceLineOption(
       {final int maxSelect,
       final bool enableCancelFeature,
       final String presetName,
       final ChoiceLineDesignPreset? overridePreset,
       final String? name}) = _$ChoiceLineOptionImpl;
+  const _ChoiceLineOption._() : super._();
 
   factory _ChoiceLineOption.fromJson(Map<String, dynamic> json) =
       _$ChoiceLineOptionImpl.fromJson;
