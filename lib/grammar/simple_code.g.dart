@@ -37,7 +37,7 @@ const _$SimpleActionTypeEnumMap = {
 _$ConditionImpl _$$ConditionImplFromJson(Map<String, dynamic> json) =>
     _$ConditionImpl(
       type: $enumDecodeNullable(_$SimpleConditionTypeEnumMap, json['type']) ??
-          SimpleConditionType.nodeOnOff,
+          SimpleConditionType.nodeOn,
       varName: json['varName'] as String? ?? "",
       anotherVarName: json['anotherVarName'] as String? ?? null,
       value: json['value'] == null
@@ -56,7 +56,8 @@ Map<String, dynamic> _$$ConditionImplToJson(_$ConditionImpl instance) =>
     };
 
 const _$SimpleConditionTypeEnumMap = {
-  SimpleConditionType.nodeOnOff: 'nodeOnOff',
+  SimpleConditionType.nodeOn: 'nodeOn',
+  SimpleConditionType.nodeOff: 'nodeOff',
   SimpleConditionType.varEqual: 'varEqual',
   SimpleConditionType.varNotEqual: 'varNotEqual',
   SimpleConditionType.varGreater: 'varGreater',

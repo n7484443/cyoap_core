@@ -414,7 +414,7 @@ class __$$ConditionImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ConditionImpl extends Condition {
   const _$ConditionImpl(
-      {this.type = SimpleConditionType.nodeOnOff,
+      {this.type = SimpleConditionType.nodeOn,
       this.varName = "",
       this.anotherVarName = null,
       this.value = const ValueType(data: 'true', type: DataType.bools),
