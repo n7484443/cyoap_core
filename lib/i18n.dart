@@ -30,7 +30,8 @@ extension Localization on String {
 
       "circle": "Circle",
       "thinRectangle": "Thin Rectangle",
-
+      
+      "alwaysOn": "Always on",
       "nodeOn": "When selected node on",
       "nodeOff": "When selected node off",
       "varEqual": "When a = b",
@@ -69,6 +70,7 @@ extension Localization on String {
       "circle": "원형",
       "thinRectangle": "얇은 직사각형",
 
+      "alwaysOn": "항상 만족",
       "nodeOn": "선택된 노드가 켜질 때",
       "nodeOff": "선택된 노드가 꺼질 때",
       "varEqual": "a와 b가 같을 때",

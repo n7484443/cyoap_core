@@ -25,6 +25,7 @@ Map<String, dynamic> _$$ActionImplToJson(_$ActionImpl instance) =>
     };
 
 const _$SimpleActionTypeEnumMap = {
+  SimpleActionType.nothing: 'nothing',
   SimpleActionType.varCreateLocal: 'varCreateLocal',
   SimpleActionType.varCreateGlobal: 'varCreateGlobal',
   SimpleActionType.varSet: 'varSet',
@@ -56,6 +57,7 @@ Map<String, dynamic> _$$ConditionImplToJson(_$ConditionImpl instance) =>
     };
 
 const _$SimpleConditionTypeEnumMap = {
+  SimpleConditionType.alwaysOn: 'alwaysOn',
   SimpleConditionType.nodeOn: 'nodeOn',
   SimpleConditionType.nodeOff: 'nodeOff',
   SimpleConditionType.varEqual: 'varEqual',

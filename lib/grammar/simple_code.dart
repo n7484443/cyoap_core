@@ -10,6 +10,7 @@ part 'simple_code.g.dart';
 enum SimpleType { action, condition }
 
 enum SimpleConditionType {
+  alwaysOn,
   nodeOn,
   nodeOff,
   varEqual,
@@ -26,6 +27,7 @@ enum SimpleConditionType {
 }
 
 enum SimpleActionType {
+  nothing,
   varCreateLocal,
   varCreateGlobal,
   varSet,
