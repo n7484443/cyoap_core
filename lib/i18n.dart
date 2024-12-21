@@ -40,6 +40,15 @@ extension Localization on String {
       "varLess": "When a < b",
       "varGreaterEqual": "When a >= b",
       "varLessEqual": "When a <= b",
+
+      "nothing" : "Do nothing",
+      "varCreateLocal" : "Create local variable",
+      "varCreateGlobal" : "Create global variable",
+      "varSet" : "Set variable",
+      "varAdd" : "Add value to variable",
+      "varSub" : "Subtract value from variable",
+      "varMul" : "Multiply value to variable",
+      "varDiv" : "Divide value from variable",
     },
     "ko": {
       "choice": "선택지",
@@ -79,6 +88,15 @@ extension Localization on String {
       "varLess": "a < b 일 때",
       "varGreaterEqual": "a >= b 일 때",
       "varLessEqual": "a <= b 일 때",
+
+      "nothing" : "아무것도 하지 않음",
+      "varCreateLocal" : "지역 변수 생성",
+      "varCreateGlobal" : "전역 변수 생성",
+      "varSet" : "변수 설정",
+      "varAdd" : "변수에 값 추가",
+      "varSub" : "변수에 값 감소",
+      "varMul" : "변수에 값 곱하기",
+      "varDiv" : "변수에 값 나누기",
     }
   };
 
