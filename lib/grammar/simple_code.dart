@@ -24,6 +24,18 @@ enum SimpleConditionType {
   String toString() {
     return name.i18n;
   }
+
+  int get argumentLength {
+    switch (this) {
+      case SimpleConditionType.alwaysOn:
+        return 0;
+      case SimpleConditionType.nodeOn:
+      case SimpleConditionType.nodeOff:
+        return 1;
+      default:
+        return 2;
+    }
+  }
 }
 
 enum SimpleActionType {
@@ -39,6 +51,15 @@ enum SimpleActionType {
   @override
   String toString() {
     return name.i18n;
+  }
+
+  int get argumentLength {
+    switch (this) {
+      case SimpleActionType.nothing:
+        return 0;
+      default:
+        return 2;
+    }
   }
 }
 
