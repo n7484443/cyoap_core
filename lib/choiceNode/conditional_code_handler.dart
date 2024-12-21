@@ -1,6 +1,8 @@
 import 'package:cyoap_core/grammar/analyser.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import '../grammar/simple_code.dart';
+
 part 'conditional_code_handler.g.dart';
 
 final RegExp textFinder = RegExp(r"\{\{(.*?)\}\}");
@@ -21,6 +23,29 @@ class ConditionalCodeHandler {
   String? conditionVisibleString;
   String? executeCodeString;
 
+  SimpleCodes? conditionClickableSimple = SimpleCodes(type: SimpleType.condition);
+  SimpleCodes? conditionVisibleSimple = SimpleCodes(type: SimpleType.condition);
+  SimpleCodes? executeSimple = SimpleCodes(type: SimpleType.action);
+
+  String? get reducedClickable{
+    if(conditionClickableString != null && conditionClickableString!.isNotEmpty){
+      return conditionClickableString;
+    }
+    return conditionClickableSimple?.toCode();
+  }
+  String? get reducedVisible{
+    if(conditionVisibleString != null && conditionVisibleString!.isNotEmpty){
+      return conditionVisibleString;
+    }
+    return conditionVisibleSimple?.toCode();
+  }
+  String? get reducedExecute{
+    if(executeCodeString != null && executeCodeString!.isNotEmpty){
+      return executeCodeString;
+    }
+    return executeSimple?.toCode();
+  }
+
   ConditionalCodeHandler({
     this.conditionClickableString,
     this.conditionVisibleString,
@@ -34,10 +59,10 @@ class ConditionalCodeHandler {
 
   void compile(String pos, {String? text}) {
     conditionClickableCode =
-        Analyser().analyseSingleLine(conditionClickableString, pos: pos);
+        Analyser().analyseSingleLine(reducedClickable, pos: pos);
     conditionVisibleCode =
-        Analyser().analyseSingleLine(conditionVisibleString, pos: pos);
-    executeCode = Analyser().analyseMultiLine(executeCodeString, pos: pos);
+        Analyser().analyseSingleLine(reducedVisible, pos: pos);
+    executeCode = Analyser().analyseMultiLine(reducedExecute, pos: pos);
     textCode.clear();
     textFinder.allMatches(text ?? '').forEach((element) {
       textCode.add(Analyser().analyseSingleLine(element.group(1)));

@@ -30,7 +30,18 @@ ConditionalCodeHandler _$ConditionalCodeHandlerFromJson(
               ?.map(
                   (e) => (e as List<dynamic>).map((e) => e as String).toList())
               .toList() ??
-          [[]];
+          [[]]
+      ..conditionClickableSimple = json['conditionClickableSimple'] == null
+          ? null
+          : SimpleCodes.fromJson(
+              json['conditionClickableSimple'] as Map<String, dynamic>)
+      ..conditionVisibleSimple = json['conditionVisibleSimple'] == null
+          ? null
+          : SimpleCodes.fromJson(
+              json['conditionVisibleSimple'] as Map<String, dynamic>)
+      ..executeSimple = json['executeSimple'] == null
+          ? null
+          : SimpleCodes.fromJson(json['executeSimple'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$ConditionalCodeHandlerToJson(
         ConditionalCodeHandler instance) =>
@@ -42,4 +53,7 @@ Map<String, dynamic> _$ConditionalCodeHandlerToJson(
       'conditionClickableString': instance.conditionClickableString,
       'conditionVisibleString': instance.conditionVisibleString,
       'executeCodeString': instance.executeCodeString,
+      'conditionClickableSimple': instance.conditionClickableSimple?.toJson(),
+      'conditionVisibleSimple': instance.conditionVisibleSimple?.toJson(),
+      'executeSimple': instance.executeSimple?.toJson(),
     };
