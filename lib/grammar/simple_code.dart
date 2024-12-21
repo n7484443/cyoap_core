@@ -10,7 +10,8 @@ part 'simple_code.g.dart';
 enum SimpleType { action, condition }
 
 enum SimpleConditionType {
-  nodeOnOff,
+  nodeOn,
+  nodeOff,
   varEqual,
   varNotEqual,
   varGreater,
@@ -48,7 +49,7 @@ class SimpleCodeBlock with _$SimpleCodeBlock {
   }) = Action;
 
   const factory SimpleCodeBlock.condition({
-    @Default(SimpleConditionType.nodeOnOff) SimpleConditionType type,
+    @Default(SimpleConditionType.nodeOn) SimpleConditionType type,
     @Default("") String varName,
     @Default(null) String? anotherVarName,
     @Default(ValueType(data: 'true', type: DataType.bools)) ValueType? value,
@@ -80,7 +81,7 @@ class SimpleCodeBlock with _$SimpleCodeBlock {
       var conditionConvert = this as Condition;
       String rightSide = conditionConvert.anotherVarName ?? value?.data ?? "true";
       switch (type) {
-        case SimpleConditionType.nodeOnOff:
+        case SimpleConditionType.nodeOn:
           if (!(value?.dataUnzip ?? true)) {
             return "not(\$[$varName])";
           }
