@@ -88,6 +88,15 @@ class SimpleCodeBlock with _$SimpleCodeBlock {
 
   const SimpleCodeBlock._();
 
+  int get argumentLength {
+    if (this is Action) {
+      return (type as SimpleActionType).argumentLength;
+    } else if (this is Condition) {
+      return (type as SimpleConditionType).argumentLength;
+    }
+    return 0;
+  }
+
   String toCode() {
     if (this is Action) {
       switch (type) {
