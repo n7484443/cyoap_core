@@ -9,7 +9,11 @@ part 'simple_code.g.dart';
 
 enum SimpleType { action, condition }
 
-enum SimpleConditionType {
+mixin SimpleTypeMixin {
+  int get argumentLength;
+}
+
+enum SimpleConditionType implements SimpleTypeMixin{
   alwaysOn,
   nodeOn,
   nodeOff,
@@ -25,6 +29,7 @@ enum SimpleConditionType {
     return name.i18n;
   }
 
+  @override
   int get argumentLength {
     switch (this) {
       case SimpleConditionType.alwaysOn:
@@ -38,7 +43,7 @@ enum SimpleConditionType {
   }
 }
 
-enum SimpleActionType {
+enum SimpleActionType implements SimpleTypeMixin{
   nothing,
   varCreateLocal,
   varCreateGlobal,
@@ -53,6 +58,7 @@ enum SimpleActionType {
     return name.i18n;
   }
 
+  @override
   int get argumentLength {
     switch (this) {
       case SimpleActionType.nothing:

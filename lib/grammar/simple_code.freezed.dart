@@ -29,7 +29,7 @@ SimpleCodeBlock _$SimpleCodeBlockFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SimpleCodeBlock {
-  Enum get type => throw _privateConstructorUsedError;
+  Object get type => throw _privateConstructorUsedError;
   String get varName => throw _privateConstructorUsedError;
   ValueType? get value => throw _privateConstructorUsedError;
   @optionalTypeArgs
