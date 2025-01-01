@@ -73,15 +73,12 @@ enum SimpleActionType implements SimpleTypeMixin{
 class SimpleCodeBlock with _$SimpleCodeBlock {
   const factory SimpleCodeBlock.action({
     @Default(SimpleActionType.varSet) SimpleActionType type,
-    @Default("") String varName,
-    @Default(null) ValueType? value,
+    @Default([]) List<ValueType> arguments,
   }) = Action;
 
   const factory SimpleCodeBlock.condition({
     @Default(SimpleConditionType.nodeOn) SimpleConditionType type,
-    @Default("") String varName,
-    @Default(null) String? anotherVarName,
-    @Default(ValueType(data: 'true', type: DataType.bools)) ValueType? value,
+    @Default([]) List<ValueType> arguments,
   }) = Condition;
 
   factory SimpleCodeBlock.fromJson(Map<String, dynamic> json) => _$SimpleCodeBlockFromJson(json);
@@ -99,6 +96,8 @@ class SimpleCodeBlock with _$SimpleCodeBlock {
 
   String toCode() {
     if (this is Action) {
+      var varName = arguments[0];
+      var value = arguments[1];
       switch (type) {
         case SimpleActionType.varCreateLocal:
           return "var $varName = $value";
@@ -116,26 +115,26 @@ class SimpleCodeBlock with _$SimpleCodeBlock {
           return "$varName /= $value";
       }
     } else if (this is Condition) {
-      var conditionConvert = this as Condition;
-      String rightSide = conditionConvert.anotherVarName ?? value?.data ?? "true";
+      var varName = arguments[0];
+      var value = arguments[1];
       switch (type) {
         case SimpleConditionType.nodeOn:
-          if (!(value?.dataUnzip ?? true)) {
+          if (!(value.dataUnzip ?? true)) {
             return "not(\$[$varName])";
           }
           return "\$[$varName]";
         case SimpleConditionType.varEqual:
-          return "$varName == $rightSide";
+          return "$varName == $value";
         case SimpleConditionType.varNotEqual:
-          return "$varName != $rightSide";
+          return "$varName != $value";
         case SimpleConditionType.varGreater:
-          return "$varName > $rightSide";
+          return "$varName > $value";
         case SimpleConditionType.varLess:
-          return "$varName < $rightSide";
+          return "$varName < $value";
         case SimpleConditionType.varGreaterEqual:
-          return "$varName >= $rightSide";
+          return "$varName >= $value";
         case SimpleConditionType.varLessEqual:
-          return "$varName <= $rightSide";
+          return "$varName <= $value";
       }
     }
     return "";

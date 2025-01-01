@@ -30,33 +30,27 @@ SimpleCodeBlock _$SimpleCodeBlockFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SimpleCodeBlock {
   Object get type => throw _privateConstructorUsedError;
-  String get varName => throw _privateConstructorUsedError;
-  ValueType? get value => throw _privateConstructorUsedError;
+  List<ValueType> get arguments => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            SimpleActionType type, String varName, ValueType? value)
+    required TResult Function(SimpleActionType type, List<ValueType> arguments)
         action,
-    required TResult Function(SimpleConditionType type, String varName,
-            String? anotherVarName, ValueType? value)
+    required TResult Function(
+            SimpleConditionType type, List<ValueType> arguments)
         condition,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SimpleActionType type, String varName, ValueType? value)?
-        action,
-    TResult? Function(SimpleConditionType type, String varName,
-            String? anotherVarName, ValueType? value)?
+    TResult? Function(SimpleActionType type, List<ValueType> arguments)? action,
+    TResult? Function(SimpleConditionType type, List<ValueType> arguments)?
         condition,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SimpleActionType type, String varName, ValueType? value)?
-        action,
-    TResult Function(SimpleConditionType type, String varName,
-            String? anotherVarName, ValueType? value)?
+    TResult Function(SimpleActionType type, List<ValueType> arguments)? action,
+    TResult Function(SimpleConditionType type, List<ValueType> arguments)?
         condition,
     required TResult orElse(),
   }) =>
@@ -97,9 +91,7 @@ abstract class $SimpleCodeBlockCopyWith<$Res> {
           SimpleCodeBlock value, $Res Function(SimpleCodeBlock) then) =
       _$SimpleCodeBlockCopyWithImpl<$Res, SimpleCodeBlock>;
   @useResult
-  $Res call({String varName, ValueType? value});
-
-  $ValueTypeCopyWith<$Res>? get value;
+  $Res call({List<ValueType> arguments});
 }
 
 /// @nodoc
@@ -117,33 +109,14 @@ class _$SimpleCodeBlockCopyWithImpl<$Res, $Val extends SimpleCodeBlock>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? varName = null,
-    Object? value = freezed,
+    Object? arguments = null,
   }) {
     return _then(_value.copyWith(
-      varName: null == varName
-          ? _value.varName
-          : varName // ignore: cast_nullable_to_non_nullable
-              as String,
-      value: freezed == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as ValueType?,
+      arguments: null == arguments
+          ? _value.arguments
+          : arguments // ignore: cast_nullable_to_non_nullable
+              as List<ValueType>,
     ) as $Val);
-  }
-
-  /// Create a copy of SimpleCodeBlock
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ValueTypeCopyWith<$Res>? get value {
-    if (_value.value == null) {
-      return null;
-    }
-
-    return $ValueTypeCopyWith<$Res>(_value.value!, (value) {
-      return _then(_value.copyWith(value: value) as $Val);
-    });
   }
 }
 
@@ -155,10 +128,7 @@ abstract class _$$ActionImplCopyWith<$Res>
       __$$ActionImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({SimpleActionType type, String varName, ValueType? value});
-
-  @override
-  $ValueTypeCopyWith<$Res>? get value;
+  $Res call({SimpleActionType type, List<ValueType> arguments});
 }
 
 /// @nodoc
@@ -175,22 +145,17 @@ class __$$ActionImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? type = null,
-    Object? varName = null,
-    Object? value = freezed,
+    Object? arguments = null,
   }) {
     return _then(_$ActionImpl(
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as SimpleActionType,
-      varName: null == varName
-          ? _value.varName
-          : varName // ignore: cast_nullable_to_non_nullable
-              as String,
-      value: freezed == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as ValueType?,
+      arguments: null == arguments
+          ? _value._arguments
+          : arguments // ignore: cast_nullable_to_non_nullable
+              as List<ValueType>,
     ));
   }
 }
@@ -200,10 +165,10 @@ class __$$ActionImplCopyWithImpl<$Res>
 class _$ActionImpl extends Action {
   const _$ActionImpl(
       {this.type = SimpleActionType.varSet,
-      this.varName = "",
-      this.value = null,
+      final List<ValueType> arguments = const [],
       final String? $type})
-      : $type = $type ?? 'action',
+      : _arguments = arguments,
+        $type = $type ?? 'action',
         super._();
 
   factory _$ActionImpl.fromJson(Map<String, dynamic> json) =>
@@ -212,19 +177,21 @@ class _$ActionImpl extends Action {
   @override
   @JsonKey()
   final SimpleActionType type;
+  final List<ValueType> _arguments;
   @override
   @JsonKey()
-  final String varName;
-  @override
-  @JsonKey()
-  final ValueType? value;
+  List<ValueType> get arguments {
+    if (_arguments is EqualUnmodifiableListView) return _arguments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_arguments);
+  }
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'SimpleCodeBlock.action(type: $type, varName: $varName, value: $value)';
+    return 'SimpleCodeBlock.action(type: $type, arguments: $arguments)';
   }
 
   @override
@@ -233,13 +200,14 @@ class _$ActionImpl extends Action {
         (other.runtimeType == runtimeType &&
             other is _$ActionImpl &&
             (identical(other.type, type) || other.type == type) &&
-            (identical(other.varName, varName) || other.varName == varName) &&
-            (identical(other.value, value) || other.value == value));
+            const DeepCollectionEquality()
+                .equals(other._arguments, _arguments));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, type, varName, value);
+  int get hashCode => Object.hash(
+      runtimeType, type, const DeepCollectionEquality().hash(_arguments));
 
   /// Create a copy of SimpleCodeBlock
   /// with the given fields replaced by the non-null parameter values.
@@ -252,40 +220,35 @@ class _$ActionImpl extends Action {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            SimpleActionType type, String varName, ValueType? value)
+    required TResult Function(SimpleActionType type, List<ValueType> arguments)
         action,
-    required TResult Function(SimpleConditionType type, String varName,
-            String? anotherVarName, ValueType? value)
+    required TResult Function(
+            SimpleConditionType type, List<ValueType> arguments)
         condition,
   }) {
-    return action(type, varName, value);
+    return action(type, arguments);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SimpleActionType type, String varName, ValueType? value)?
-        action,
-    TResult? Function(SimpleConditionType type, String varName,
-            String? anotherVarName, ValueType? value)?
+    TResult? Function(SimpleActionType type, List<ValueType> arguments)? action,
+    TResult? Function(SimpleConditionType type, List<ValueType> arguments)?
         condition,
   }) {
-    return action?.call(type, varName, value);
+    return action?.call(type, arguments);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SimpleActionType type, String varName, ValueType? value)?
-        action,
-    TResult Function(SimpleConditionType type, String varName,
-            String? anotherVarName, ValueType? value)?
+    TResult Function(SimpleActionType type, List<ValueType> arguments)? action,
+    TResult Function(SimpleConditionType type, List<ValueType> arguments)?
         condition,
     required TResult orElse(),
   }) {
     if (action != null) {
-      return action(type, varName, value);
+      return action(type, arguments);
     }
     return orElse();
   }
@@ -332,8 +295,7 @@ class _$ActionImpl extends Action {
 abstract class Action extends SimpleCodeBlock {
   const factory Action(
       {final SimpleActionType type,
-      final String varName,
-      final ValueType? value}) = _$ActionImpl;
+      final List<ValueType> arguments}) = _$ActionImpl;
   const Action._() : super._();
 
   factory Action.fromJson(Map<String, dynamic> json) = _$ActionImpl.fromJson;
@@ -341,9 +303,7 @@ abstract class Action extends SimpleCodeBlock {
   @override
   SimpleActionType get type;
   @override
-  String get varName;
-  @override
-  ValueType? get value;
+  List<ValueType> get arguments;
 
   /// Create a copy of SimpleCodeBlock
   /// with the given fields replaced by the non-null parameter values.
@@ -361,14 +321,7 @@ abstract class _$$ConditionImplCopyWith<$Res>
       __$$ConditionImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {SimpleConditionType type,
-      String varName,
-      String? anotherVarName,
-      ValueType? value});
-
-  @override
-  $ValueTypeCopyWith<$Res>? get value;
+  $Res call({SimpleConditionType type, List<ValueType> arguments});
 }
 
 /// @nodoc
@@ -385,27 +338,17 @@ class __$$ConditionImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? type = null,
-    Object? varName = null,
-    Object? anotherVarName = freezed,
-    Object? value = freezed,
+    Object? arguments = null,
   }) {
     return _then(_$ConditionImpl(
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as SimpleConditionType,
-      varName: null == varName
-          ? _value.varName
-          : varName // ignore: cast_nullable_to_non_nullable
-              as String,
-      anotherVarName: freezed == anotherVarName
-          ? _value.anotherVarName
-          : anotherVarName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      value: freezed == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as ValueType?,
+      arguments: null == arguments
+          ? _value._arguments
+          : arguments // ignore: cast_nullable_to_non_nullable
+              as List<ValueType>,
     ));
   }
 }
@@ -415,11 +358,10 @@ class __$$ConditionImplCopyWithImpl<$Res>
 class _$ConditionImpl extends Condition {
   const _$ConditionImpl(
       {this.type = SimpleConditionType.nodeOn,
-      this.varName = "",
-      this.anotherVarName = null,
-      this.value = const ValueType(data: 'true', type: DataType.bools),
+      final List<ValueType> arguments = const [],
       final String? $type})
-      : $type = $type ?? 'condition',
+      : _arguments = arguments,
+        $type = $type ?? 'condition',
         super._();
 
   factory _$ConditionImpl.fromJson(Map<String, dynamic> json) =>
@@ -428,22 +370,21 @@ class _$ConditionImpl extends Condition {
   @override
   @JsonKey()
   final SimpleConditionType type;
+  final List<ValueType> _arguments;
   @override
   @JsonKey()
-  final String varName;
-  @override
-  @JsonKey()
-  final String? anotherVarName;
-  @override
-  @JsonKey()
-  final ValueType? value;
+  List<ValueType> get arguments {
+    if (_arguments is EqualUnmodifiableListView) return _arguments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_arguments);
+  }
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'SimpleCodeBlock.condition(type: $type, varName: $varName, anotherVarName: $anotherVarName, value: $value)';
+    return 'SimpleCodeBlock.condition(type: $type, arguments: $arguments)';
   }
 
   @override
@@ -452,16 +393,14 @@ class _$ConditionImpl extends Condition {
         (other.runtimeType == runtimeType &&
             other is _$ConditionImpl &&
             (identical(other.type, type) || other.type == type) &&
-            (identical(other.varName, varName) || other.varName == varName) &&
-            (identical(other.anotherVarName, anotherVarName) ||
-                other.anotherVarName == anotherVarName) &&
-            (identical(other.value, value) || other.value == value));
+            const DeepCollectionEquality()
+                .equals(other._arguments, _arguments));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, type, varName, anotherVarName, value);
+  int get hashCode => Object.hash(
+      runtimeType, type, const DeepCollectionEquality().hash(_arguments));
 
   /// Create a copy of SimpleCodeBlock
   /// with the given fields replaced by the non-null parameter values.
@@ -474,40 +413,35 @@ class _$ConditionImpl extends Condition {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            SimpleActionType type, String varName, ValueType? value)
+    required TResult Function(SimpleActionType type, List<ValueType> arguments)
         action,
-    required TResult Function(SimpleConditionType type, String varName,
-            String? anotherVarName, ValueType? value)
+    required TResult Function(
+            SimpleConditionType type, List<ValueType> arguments)
         condition,
   }) {
-    return condition(type, varName, anotherVarName, value);
+    return condition(type, arguments);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SimpleActionType type, String varName, ValueType? value)?
-        action,
-    TResult? Function(SimpleConditionType type, String varName,
-            String? anotherVarName, ValueType? value)?
+    TResult? Function(SimpleActionType type, List<ValueType> arguments)? action,
+    TResult? Function(SimpleConditionType type, List<ValueType> arguments)?
         condition,
   }) {
-    return condition?.call(type, varName, anotherVarName, value);
+    return condition?.call(type, arguments);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SimpleActionType type, String varName, ValueType? value)?
-        action,
-    TResult Function(SimpleConditionType type, String varName,
-            String? anotherVarName, ValueType? value)?
+    TResult Function(SimpleActionType type, List<ValueType> arguments)? action,
+    TResult Function(SimpleConditionType type, List<ValueType> arguments)?
         condition,
     required TResult orElse(),
   }) {
     if (condition != null) {
-      return condition(type, varName, anotherVarName, value);
+      return condition(type, arguments);
     }
     return orElse();
   }
@@ -554,9 +488,7 @@ class _$ConditionImpl extends Condition {
 abstract class Condition extends SimpleCodeBlock {
   const factory Condition(
       {final SimpleConditionType type,
-      final String varName,
-      final String? anotherVarName,
-      final ValueType? value}) = _$ConditionImpl;
+      final List<ValueType> arguments}) = _$ConditionImpl;
   const Condition._() : super._();
 
   factory Condition.fromJson(Map<String, dynamic> json) =
@@ -565,10 +497,7 @@ abstract class Condition extends SimpleCodeBlock {
   @override
   SimpleConditionType get type;
   @override
-  String get varName;
-  String? get anotherVarName;
-  @override
-  ValueType? get value;
+  List<ValueType> get arguments;
 
   /// Create a copy of SimpleCodeBlock
   /// with the given fields replaced by the non-null parameter values.
