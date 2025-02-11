@@ -5,6 +5,7 @@ import 'package:cyoap_core/choiceNode/selectable_status.dart';
 import 'package:cyoap_core/design_setting.dart';
 import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/i18n.dart';
+import 'package:cyoap_core/main.dart';
 import 'package:cyoap_core/option.dart';
 import 'package:cyoap_core/preset/node_preset.dart';
 import 'package:cyoap_core/variable_db.dart';
@@ -258,7 +259,9 @@ class ChoiceNode with Choice {
           break;
         }
       } else {
-        out = defaultMaxSize;
+        var parent = nodeParent as ChoiceLine;
+        var parentPreset = parent.choiceLineOption.getPreset(platform.designSetting);
+        out = parentPreset.maxChildrenPerRow ?? 12;
         break;
       }
     }

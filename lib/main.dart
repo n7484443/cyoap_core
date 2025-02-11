@@ -139,7 +139,7 @@ external set _getSize(int Function(List<dynamic> pos) f);
 @JS()
 int _getSizeInternal(List<dynamic> pos) {
   Pos innerPos = listToPos(pos);
-  return platform.getChoiceNode(innerPos)?.getMaxSize(true) ?? defaultMaxSize;
+  return platform.getChoiceNode(innerPos)!.getMaxSize(true);
 }
 
 @JS('getContents')
