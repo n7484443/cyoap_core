@@ -45,7 +45,7 @@ mixin Choice {
   }
 
   int currentPos = 0;
-  int width = 0;
+  int width = 12;
 
   List<Choice> children = List.empty(growable: true);
 
