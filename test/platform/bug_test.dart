@@ -18,9 +18,9 @@ void main() {
         "pt_b-=(4+testNode0:multi)";
     choiceNode0.choiceNodeMode = ChoiceNodeMode.multiSelect;
     choiceNode0.maximumStatus = 10;
-    lineSetting0.addChild(choiceNode0);
+    lineSetting0.addChild(platform, choiceNode0);
     lineSetting0.generateParser();
-    platform.choicePage.addChild(lineSetting0);
+    platform.choicePage.addChild(platform, lineSetting0);
 
     platform.updateStatus();
     expect(ins.getValueType('pt_b')?.dataUnzip, 50);
@@ -42,9 +42,9 @@ void main() {
     // var choiceNode0 = ChoiceNode.empty()..conditionalCodeHandler.executeCodeString = "setVisible('visible', false)";
     var choiceNode1 = ChoiceNode.empty()..conditionalCodeHandler.executeCodeString = "setVisible('invisible', true)";
     // lineSetting0.addChildren(choiceNode0);
-    lineSetting0.addChild(choiceNode1);
+    lineSetting0.addChild(platform, choiceNode1);
     lineSetting0.generateParser();
-    platform.choicePage.addChild(lineSetting0);
+    platform.choicePage.addChild(platform, lineSetting0);
 
     platform.updateStatus();
     // expect(ins.getValueTypeWrapper('visible')?.visible, true);
@@ -77,10 +77,10 @@ void main() {
     choiceNodes[2].conditionalCodeHandler.conditionVisibleString = "B";
     for(int i = 0; i < choiceNodes.length; i++) {
       choiceNodes[i].conditionalCodeHandler.executeCodeString = "p=${i+1}";
-      lineSetting0.addChild(choiceNodes[i]);
+      lineSetting0.addChild(platform, choiceNodes[i]);
     }
     lineSetting0.generateParser();
-    platform.choicePage.addChild(lineSetting0);
+    platform.choicePage.addChild(platform, lineSetting0);
 
     platform.updateStatus();
     expect(choiceNodes[0].isOpen(), true);

@@ -14,13 +14,13 @@ void main() {
     var platform = PlayablePlatform();
     var lineSetting = ChoiceLine(choiceLineOption: ChoiceLineOption(maxSelect: 1));
     lineSetting.generateParser();
-    platform.choicePage.addChild(lineSetting);
+    platform.choicePage.addChild(platform, lineSetting);
     var choiceNode0 = ChoiceNode.empty()..title = "testNode0";
     var choiceNode1 = ChoiceNode.empty()..title = "testNode1";
     var choiceNode2 = ChoiceNode.empty()..title = "testNode2"..choiceNodeMode=ChoiceNodeMode.unSelectableMode;
-    lineSetting.addChild(choiceNode0);
-    lineSetting.addChild(choiceNode1);
-    lineSetting.addChild(choiceNode2);
+    lineSetting.addChild(platform, choiceNode0);
+    lineSetting.addChild(platform, choiceNode1);
+    lineSetting.addChild(platform, choiceNode2);
     platform.updateStatus();
 
     expect(choiceNode0.select, 0);
@@ -85,10 +85,10 @@ void main() {
     lineSetting1.generateParser();
     var choiceNode0 = ChoiceNode.empty()..title = "testNode0";
     var choiceNode1 = ChoiceNode.empty()..title = "testNode1";
-    platform.choicePage.addChild(lineSetting0);
-    platform.choicePage.addChild(lineSetting1);
-    lineSetting0.addChild(choiceNode0);
-    lineSetting1.addChild(choiceNode1);
+    platform.choicePage.addChild(platform, lineSetting0);
+    platform.choicePage.addChild(platform, lineSetting1);
+    lineSetting0.addChild(platform, choiceNode0);
+    lineSetting1.addChild(platform, choiceNode1);
     platform.updateStatus();
 
     expect(choiceNode0.select, 0);

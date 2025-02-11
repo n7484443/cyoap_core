@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:cyoap_core/playable_platform.dart';
+
 import '../preset/line_preset.dart';
 import 'conditional_code_handler.dart';
 import 'pos.dart';
@@ -47,6 +49,10 @@ mixin Choice {
   int currentPos = 0;
   int width = 12;
 
+  int getWidth(PlayablePlatform platform) {
+    return width;
+  }
+
   List<Choice> children = List.empty(growable: true);
 
   Choice? parent;
@@ -73,7 +79,7 @@ mixin Choice {
     return posList.addLast(currentPos);
   }
 
-  void addChild(Choice childNode, {int? pos}) {
+  void addChild(PlayablePlatform platform, Choice childNode, {int? pos}) {
     pos ??= children.length;
     childNode.parent = this;
     childNode.width = childNode.width.clamp(0, width);

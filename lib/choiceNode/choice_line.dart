@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../design_setting.dart';
+import '../playable_platform.dart';
 import '../preset/line_preset.dart';
 import 'choice.dart';
 import 'choice_node.dart';
@@ -170,5 +171,22 @@ class ChoiceLine with Choice {
   Choice clone() {
     var json = jsonDecode(jsonEncode(toJson()));
     return ChoiceLine.fromJson(json);
+  }
+
+  @override
+  void addChild(PlayablePlatform platform, Choice childNode, {int? pos}) {
+    pos ??= children.length;
+    childNode.parent = this;
+    childNode.width = childNode.width.clamp(0, width);
+    children.insert(pos, childNode);
+    for (int i = 0; i < children.length; i++) {
+      children[i].currentPos = i;
+    }
+  }
+
+  @override
+  int getWidth(PlayablePlatform platform){
+    var preset = choiceLineOption.getPreset(platform.designSetting);
+    return preset.maxChildrenPerRow ?? 12;
   }
 }

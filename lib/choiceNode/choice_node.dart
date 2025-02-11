@@ -260,8 +260,7 @@ class ChoiceNode with Choice {
         }
       } else {
         var parent = nodeParent as ChoiceLine;
-        var parentPreset = parent.choiceLineOption.getPreset(platform.designSetting);
-        out = parentPreset.maxChildrenPerRow ?? 12;
+        out = parent.getWidth(platform);
         break;
       }
     }
