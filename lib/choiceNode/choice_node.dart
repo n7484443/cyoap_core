@@ -5,12 +5,12 @@ import 'package:cyoap_core/choiceNode/selectable_status.dart';
 import 'package:cyoap_core/design_setting.dart';
 import 'package:cyoap_core/grammar/value_type.dart';
 import 'package:cyoap_core/i18n.dart';
-import 'package:cyoap_core/main.dart';
 import 'package:cyoap_core/option.dart';
 import 'package:cyoap_core/preset/node_preset.dart';
 import 'package:cyoap_core/variable_db.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../playable_platform.dart';
 import 'choice.dart';
 import 'choice_line.dart';
 import 'conditional_code_handler.dart';
@@ -246,7 +246,7 @@ class ChoiceNode with Choice {
     }
   }
 
-  int getMaxSize(bool containSelf) {
+  int getMaxSize(PlayablePlatform platform, bool containSelf) {
     var nodeParent = containSelf ? this : parent;
     var out = 0;
     while (true) {
