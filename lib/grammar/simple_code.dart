@@ -170,4 +170,14 @@ class SimpleCodes with _$SimpleCodes {
       return "and(${code.map((e) => e.toCode()).join(",")})";
     }
   }
+
+  SimpleCodes addCodeBlock(SimpleCodeBlock block) {
+    return copyWith(code: [...code, block.generateArguments()]);
+  }
+
+  SimpleCodes setCodeBlock(int index, SimpleCodeBlock block) {
+    var copy = List<SimpleCodeBlock>.from(code);
+    copy[index] = block.generateArguments();
+    return copyWith(code: copy);
+  }
 }
