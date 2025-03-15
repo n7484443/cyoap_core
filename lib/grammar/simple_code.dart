@@ -85,6 +85,11 @@ class SimpleCodeBlock with _$SimpleCodeBlock {
 
   const SimpleCodeBlock._();
 
+  SimpleCodeBlock generateArguments(){
+    var arguments = List<ValueType>.filled(argumentLength, getValueTypeFromDynamicInput(null), growable: false);
+    return copyWith(arguments: arguments);
+  }
+
   int get argumentLength {
     if (this is Action) {
       return (type as SimpleActionType).argumentLength;
