@@ -69,7 +69,7 @@ enum SimpleActionType implements SimpleTypeMixin{
   }
 }
 
-@freezed
+@Freezed(makeCollectionsUnmodifiable: false)
 class SimpleCodeBlock with _$SimpleCodeBlock {
   const factory SimpleCodeBlock.action({
     @Default(SimpleActionType.varSet) SimpleActionType type,
@@ -84,11 +84,6 @@ class SimpleCodeBlock with _$SimpleCodeBlock {
   factory SimpleCodeBlock.fromJson(Map<String, dynamic> json) => _$SimpleCodeBlockFromJson(json);
 
   const SimpleCodeBlock._();
-
-  SimpleCodeBlock generateArguments(){
-    var arguments = List<ValueType>.filled(argumentLength, getValueTypeFromDynamicInput(null), growable: false);
-    return copyWith(arguments: arguments);
-  }
 
   int get argumentLength {
     if (this is Action) {
@@ -169,15 +164,5 @@ class SimpleCodes with _$SimpleCodes {
       }
       return "and(${code.map((e) => e.toCode()).join(",")})";
     }
-  }
-
-  SimpleCodes addCodeBlock(SimpleCodeBlock block) {
-    return copyWith(code: [...code, block.generateArguments()]);
-  }
-
-  SimpleCodes setCodeBlock(int index, SimpleCodeBlock block) {
-    var copy = List<SimpleCodeBlock>.from(code);
-    copy[index] = block.generateArguments();
-    return copyWith(code: copy);
   }
 }
