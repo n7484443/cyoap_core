@@ -104,4 +104,8 @@ class ConditionalCodeHandler {
     conditionVisibleString = null;
     executeCodeString = null;
   }
+
+  bool get isSimple{
+    return conditionClickableString == null && conditionVisibleString == null && executeCodeString == null;
+  }
 }
