@@ -153,7 +153,7 @@ class __$$ActionImplCopyWithImpl<$Res>
           : type // ignore: cast_nullable_to_non_nullable
               as SimpleActionType,
       arguments: null == arguments
-          ? _value.arguments
+          ? _value._arguments
           : arguments // ignore: cast_nullable_to_non_nullable
               as List<ValueType>,
     ));
@@ -165,9 +165,10 @@ class __$$ActionImplCopyWithImpl<$Res>
 class _$ActionImpl extends Action {
   const _$ActionImpl(
       {this.type = SimpleActionType.varSet,
-      this.arguments = const [],
+      final List<ValueType> arguments = const [],
       final String? $type})
-      : $type = $type ?? 'action',
+      : _arguments = arguments,
+        $type = $type ?? 'action',
         super._();
 
   factory _$ActionImpl.fromJson(Map<String, dynamic> json) =>
@@ -176,9 +177,14 @@ class _$ActionImpl extends Action {
   @override
   @JsonKey()
   final SimpleActionType type;
+  final List<ValueType> _arguments;
   @override
   @JsonKey()
-  final List<ValueType> arguments;
+  List<ValueType> get arguments {
+    if (_arguments is EqualUnmodifiableListView) return _arguments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_arguments);
+  }
 
   @JsonKey(name: 'runtimeType')
   final String $type;
@@ -194,13 +200,14 @@ class _$ActionImpl extends Action {
         (other.runtimeType == runtimeType &&
             other is _$ActionImpl &&
             (identical(other.type, type) || other.type == type) &&
-            const DeepCollectionEquality().equals(other.arguments, arguments));
+            const DeepCollectionEquality()
+                .equals(other._arguments, _arguments));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, type, const DeepCollectionEquality().hash(arguments));
+      runtimeType, type, const DeepCollectionEquality().hash(_arguments));
 
   /// Create a copy of SimpleCodeBlock
   /// with the given fields replaced by the non-null parameter values.
@@ -339,7 +346,7 @@ class __$$ConditionImplCopyWithImpl<$Res>
           : type // ignore: cast_nullable_to_non_nullable
               as SimpleConditionType,
       arguments: null == arguments
-          ? _value.arguments
+          ? _value._arguments
           : arguments // ignore: cast_nullable_to_non_nullable
               as List<ValueType>,
     ));
@@ -351,9 +358,10 @@ class __$$ConditionImplCopyWithImpl<$Res>
 class _$ConditionImpl extends Condition {
   const _$ConditionImpl(
       {this.type = SimpleConditionType.nodeOn,
-      this.arguments = const [],
+      final List<ValueType> arguments = const [],
       final String? $type})
-      : $type = $type ?? 'condition',
+      : _arguments = arguments,
+        $type = $type ?? 'condition',
         super._();
 
   factory _$ConditionImpl.fromJson(Map<String, dynamic> json) =>
@@ -362,9 +370,14 @@ class _$ConditionImpl extends Condition {
   @override
   @JsonKey()
   final SimpleConditionType type;
+  final List<ValueType> _arguments;
   @override
   @JsonKey()
-  final List<ValueType> arguments;
+  List<ValueType> get arguments {
+    if (_arguments is EqualUnmodifiableListView) return _arguments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_arguments);
+  }
 
   @JsonKey(name: 'runtimeType')
   final String $type;
@@ -380,13 +393,14 @@ class _$ConditionImpl extends Condition {
         (other.runtimeType == runtimeType &&
             other is _$ConditionImpl &&
             (identical(other.type, type) || other.type == type) &&
-            const DeepCollectionEquality().equals(other.arguments, arguments));
+            const DeepCollectionEquality()
+                .equals(other._arguments, _arguments));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, type, const DeepCollectionEquality().hash(arguments));
+      runtimeType, type, const DeepCollectionEquality().hash(_arguments));
 
   /// Create a copy of SimpleCodeBlock
   /// with the given fields replaced by the non-null parameter values.
