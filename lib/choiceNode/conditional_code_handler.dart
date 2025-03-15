@@ -92,4 +92,16 @@ class ConditionalCodeHandler {
         .run(textCode[num], pos: errorName, seedInput: seedInput)
         .toString();
   }
+
+  void convertSimpleToCode(){
+    conditionClickableString = conditionClickableSimple?.toCode();
+    conditionVisibleString = conditionVisibleSimple?.toCode();
+    executeCodeString = executeSimple?.toCode();
+  }
+
+  void convertCodeToSimple(){
+    conditionClickableString = null;
+    conditionVisibleString = null;
+    executeCodeString = null;
+  }
 }
