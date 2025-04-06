@@ -251,11 +251,11 @@ class ChoiceNode with Choice {
     var out = 0;
     while (true) {
       if (nodeParent is ChoiceNode) {
-        if (nodeParent.width == 0) {
+        if (nodeParent.getWidth(platform) == 0) {
           nodeParent = nodeParent.parent;
           continue;
         } else {
-          out = nodeParent.width;
+          out = nodeParent.getWidth(platform);
           break;
         }
       } else {

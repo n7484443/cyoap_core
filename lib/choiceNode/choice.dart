@@ -39,7 +39,7 @@ mixin Choice {
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = {
-      'width': width,
+      'width': _width,
       'children': children,
       'conditionalCodeHandler': conditionalCodeHandler,
     };
@@ -47,10 +47,14 @@ mixin Choice {
   }
 
   int currentPos = 0;
-  int width = 12;
+  int _width = 12;
 
   int getWidth(PlayablePlatform platform) {
-    return width;
+    return _width;
+  }
+
+  set width(int value) {
+    _width = value;
   }
 
   List<Choice> children = List.empty(growable: true);
@@ -82,7 +86,7 @@ mixin Choice {
   void addChild(PlayablePlatform platform, Choice childNode, {int? pos}) {
     pos ??= children.length;
     childNode.parent = this;
-    childNode.width = childNode.width.clamp(0, width);
+    childNode.width = childNode.getWidth(platform).clamp(0, getWidth(platform));
     children.insert(pos, childNode);
     for (int i = 0; i < children.length; i++) {
       children[i].currentPos = i;
@@ -143,6 +147,7 @@ mixin Choice {
   Choice clone();
 
   (List<List<SizeData>>, int) getSizeDataList({
+    required PlayablePlatform platform,
     required ChoiceLineAlignment align,
     required int maxChildrenPerRow,
     required bool showAll,
@@ -154,9 +159,9 @@ mixin Choice {
       if (!showAll && child.isHide()) {
         continue;
       }
-      int size = child.width == 0
+      int size = child.getWidth(platform) == 0
           ? maxChildrenPerRow
-          : min(child.width, maxChildrenPerRow);
+          : min(child.getWidth(platform), maxChildrenPerRow);
       var node = SizeData(width: size * 2, pos: child.pos);
       if (stack + size < maxChildrenPerRow) {
         subSizeDataList.add(node);

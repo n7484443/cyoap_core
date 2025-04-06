@@ -340,7 +340,7 @@ String _getSizeDataListInternal(List<dynamic> pos, String alignment, int maxChil
   var choice = platform.getChoice(innerPos);
 
   var align = ChoiceLineAlignment.values.firstWhere((e) => e.name == alignment);
-  (List<List<SizeData>>, int)? out = choice?.getSizeDataList(align: align, maxChildrenPerRow: maxChildrenPerRow, showAll: false);
+  (List<List<SizeData>>, int)? out = choice?.getSizeDataList(align: align, maxChildrenPerRow: maxChildrenPerRow, showAll: false, platform: platform);
   if (out == null) {
     return jsonEncode([]);
   }

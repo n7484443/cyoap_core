@@ -177,7 +177,7 @@ class ChoiceLine with Choice {
   void addChild(PlayablePlatform platform, Choice childNode, {int? pos}) {
     pos ??= children.length;
     childNode.parent = this;
-    childNode.width = childNode.width.clamp(0, width);
+    childNode.width = childNode.getWidth(platform).clamp(0, getWidth(platform));
     children.insert(pos, childNode);
     for (int i = 0; i < children.length; i++) {
       children[i].currentPos = i;
