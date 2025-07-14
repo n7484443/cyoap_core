@@ -27,7 +27,7 @@ enum ChoiceNodeMode {
 }
 
 @freezed
-class ChoiceNodeOption with _$ChoiceNodeOption {
+abstract class ChoiceNodeOption with _$ChoiceNodeOption {
   factory ChoiceNodeOption({
     @Default(false) bool isOccupySpace,
     @Default(false) bool hideAsResult,

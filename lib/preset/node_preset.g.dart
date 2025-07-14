@@ -6,15 +6,14 @@ part of 'node_preset.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$EdgeValueImpl _$$EdgeValueImplFromJson(Map<String, dynamic> json) =>
-    _$EdgeValueImpl(
+_EdgeValue _$EdgeValueFromJson(Map<String, dynamic> json) => _EdgeValue(
       top: (json['top'] as num?)?.toDouble() ?? 0.0,
       right: (json['right'] as num?)?.toDouble() ?? 0.0,
       bottom: (json['bottom'] as num?)?.toDouble() ?? 0.0,
       left: (json['left'] as num?)?.toDouble() ?? 0.0,
     );
 
-Map<String, dynamic> _$$EdgeValueImplToJson(_$EdgeValueImpl instance) =>
+Map<String, dynamic> _$EdgeValueToJson(_EdgeValue instance) =>
     <String, dynamic>{
       'top': instance.top,
       'right': instance.right,
@@ -22,15 +21,14 @@ Map<String, dynamic> _$$EdgeValueImplToJson(_$EdgeValueImpl instance) =>
       'left': instance.left,
     };
 
-_$VertexValueImpl _$$VertexValueImplFromJson(Map<String, dynamic> json) =>
-    _$VertexValueImpl(
+_VertexValue _$VertexValueFromJson(Map<String, dynamic> json) => _VertexValue(
       topLeft: (json['topLeft'] as num?)?.toDouble() ?? 0.0,
       topRight: (json['topRight'] as num?)?.toDouble() ?? 0.0,
       bottomLeft: (json['bottomLeft'] as num?)?.toDouble() ?? 0.0,
       bottomRight: (json['bottomRight'] as num?)?.toDouble() ?? 0.0,
     );
 
-Map<String, dynamic> _$$VertexValueImplToJson(_$VertexValueImpl instance) =>
+Map<String, dynamic> _$VertexValueToJson(_VertexValue instance) =>
     <String, dynamic>{
       'topLeft': instance.topLeft,
       'topRight': instance.topRight,
@@ -38,8 +36,8 @@ Map<String, dynamic> _$$VertexValueImplToJson(_$VertexValueImpl instance) =>
       'bottomRight': instance.bottomRight,
     };
 
-_$OutlineOptionImpl _$$OutlineOptionImplFromJson(Map<String, dynamic> json) =>
-    _$OutlineOptionImpl(
+_OutlineOption _$OutlineOptionFromJson(Map<String, dynamic> json) =>
+    _OutlineOption(
       outlineType:
           $enumDecodeNullable(_$OutlineTypeEnumMap, json['outlineType']) ??
               OutlineType.solid,
@@ -56,7 +54,7 @@ _$OutlineOptionImpl _$$OutlineOptionImplFromJson(Map<String, dynamic> json) =>
       outlineWidth: (json['outlineWidth'] as num?)?.toDouble() ?? 2.0,
     );
 
-Map<String, dynamic> _$$OutlineOptionImplToJson(_$OutlineOptionImpl instance) =>
+Map<String, dynamic> _$OutlineOptionToJson(_OutlineOption instance) =>
     <String, dynamic>{
       'outlineType': _$OutlineTypeEnumMap[instance.outlineType]!,
       'outlineColor': instance.outlineColor.toJson(),
@@ -72,8 +70,8 @@ const _$OutlineTypeEnumMap = {
   OutlineType.dashed: 'dashed',
 };
 
-_$SliderOptionImpl _$$SliderOptionImplFromJson(Map<String, dynamic> json) =>
-    _$SliderOptionImpl(
+_SliderOption _$SliderOptionFromJson(Map<String, dynamic> json) =>
+    _SliderOption(
       sliderThumbColor: json['sliderThumbColor'] == null
           ? const ColorOption()
           : ColorOption.fromJson(
@@ -91,7 +89,7 @@ _$SliderOptionImpl _$$SliderOptionImplFromJson(Map<String, dynamic> json) =>
           SliderThumbShape.circle,
     );
 
-Map<String, dynamic> _$$SliderOptionImplToJson(_$SliderOptionImpl instance) =>
+Map<String, dynamic> _$SliderOptionToJson(_SliderOption instance) =>
     <String, dynamic>{
       'sliderThumbColor': instance.sliderThumbColor.toJson(),
       'sliderTrackActiveColor': instance.sliderTrackActiveColor.toJson(),
@@ -104,9 +102,9 @@ const _$SliderThumbShapeEnumMap = {
   SliderThumbShape.thinRectangle: 'thinRectangle',
 };
 
-_$ChoiceNodeDesignPresetImpl _$$ChoiceNodeDesignPresetImplFromJson(
+_ChoiceNodeDesignPreset _$ChoiceNodeDesignPresetFromJson(
         Map<String, dynamic> json) =>
-    _$ChoiceNodeDesignPresetImpl(
+    _ChoiceNodeDesignPreset(
       titlePosition: json['titlePosition'] as bool? ?? true,
       elevation: (json['elevation'] as num?)?.toDouble() ?? 4.0,
       round: json['round'] == null
@@ -160,8 +158,8 @@ _$ChoiceNodeDesignPresetImpl _$$ChoiceNodeDesignPresetImplFromJson(
           : SliderOption.fromJson(json['sliderOption'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$ChoiceNodeDesignPresetImplToJson(
-        _$ChoiceNodeDesignPresetImpl instance) =>
+Map<String, dynamic> _$ChoiceNodeDesignPresetToJson(
+        _ChoiceNodeDesignPreset instance) =>
     <String, dynamic>{
       'titlePosition': instance.titlePosition,
       'elevation': instance.elevation,

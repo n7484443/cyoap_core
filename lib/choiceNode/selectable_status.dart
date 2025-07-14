@@ -4,7 +4,7 @@ part 'selectable_status.freezed.dart';
 part 'selectable_status.g.dart';
 
 @freezed
-class SelectableStatus with _$SelectableStatus {
+abstract class SelectableStatus with _$SelectableStatus {
   const factory SelectableStatus(
       {@Default(false) bool isHide,
       @Default(false) bool isOpen}) = _SelectableStatus;

@@ -6,9 +6,9 @@ part of 'line_preset.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ChoiceLineDesignPresetImpl _$$ChoiceLineDesignPresetImplFromJson(
+_ChoiceLineDesignPreset _$ChoiceLineDesignPresetFromJson(
         Map<String, dynamic> json) =>
-    _$ChoiceLineDesignPresetImpl(
+    _ChoiceLineDesignPreset(
       backgroundColorOption: json['backgroundColorOption'] == null
           ? const ColorOption(color: 0)
           : ColorOption.fromJson(
@@ -21,8 +21,8 @@ _$ChoiceLineDesignPresetImpl _$$ChoiceLineDesignPresetImplFromJson(
       maxChildrenPerRow: (json['maxChildrenPerRow'] as num?)?.toInt() ?? 12,
     );
 
-Map<String, dynamic> _$$ChoiceLineDesignPresetImplToJson(
-        _$ChoiceLineDesignPresetImpl instance) =>
+Map<String, dynamic> _$ChoiceLineDesignPresetToJson(
+        _ChoiceLineDesignPreset instance) =>
     <String, dynamic>{
       'backgroundColorOption': instance.backgroundColorOption?.toJson(),
       'backgroundImageString': instance.backgroundImageString,

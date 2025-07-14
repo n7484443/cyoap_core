@@ -70,7 +70,7 @@ enum SimpleActionType implements SimpleTypeMixin{
 }
 
 @freezed
-class SimpleCodeBlock with _$SimpleCodeBlock {
+abstract class SimpleCodeBlock with _$SimpleCodeBlock {
   const factory SimpleCodeBlock.action({
     @Default(SimpleActionType.varSet) SimpleActionType type,
     @Default([]) List<ValueType> arguments,
@@ -155,7 +155,7 @@ class SimpleCodeBlock with _$SimpleCodeBlock {
 }
 
 @freezed
-class SimpleCodes with _$SimpleCodes {
+abstract class SimpleCodes with _$SimpleCodes {
   const factory SimpleCodes({
     @Default([]) List<SimpleCodeBlock> code,
     @Default(SimpleType.action) SimpleType type,

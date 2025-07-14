@@ -6,13 +6,13 @@ part of 'pos.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PosImpl _$$PosImplFromJson(Map<String, dynamic> json) => _$PosImpl(
+_Pos _$PosFromJson(Map<String, dynamic> json) => _Pos(
       data: (json['data'] as List<dynamic>?)
               ?.map((e) => (e as num).toInt())
               .toList() ??
           const [],
     );
 
-Map<String, dynamic> _$$PosImplToJson(_$PosImpl instance) => <String, dynamic>{
+Map<String, dynamic> _$PosToJson(_Pos instance) => <String, dynamic>{
       'data': instance.data,
     };

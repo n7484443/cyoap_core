@@ -6,8 +6,8 @@ part of 'preset.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$GradientDataImpl _$$GradientDataImplFromJson(Map<String, dynamic> json) =>
-    _$GradientDataImpl(
+_GradientData _$GradientDataFromJson(Map<String, dynamic> json) =>
+    _GradientData(
       gradientPos: _$recordConvert(
             json['gradientPos'],
             ($jsonValue) => (
@@ -19,7 +19,7 @@ _$GradientDataImpl _$$GradientDataImplFromJson(Map<String, dynamic> json) =>
       color: (json['color'] as num?)?.toInt() ?? 0xFFFFFFFF,
     );
 
-Map<String, dynamic> _$$GradientDataImplToJson(_$GradientDataImpl instance) =>
+Map<String, dynamic> _$GradientDataToJson(_GradientData instance) =>
     <String, dynamic>{
       'gradientPos': <String, dynamic>{
         r'$1': instance.gradientPos.$1,
@@ -34,8 +34,7 @@ $Rec _$recordConvert<$Rec>(
 ) =>
     convert(value as Map<String, dynamic>);
 
-_$ColorOptionImpl _$$ColorOptionImplFromJson(Map<String, dynamic> json) =>
-    _$ColorOptionImpl(
+_ColorOption _$ColorOptionFromJson(Map<String, dynamic> json) => _ColorOption(
       colorType: $enumDecodeNullable(_$ColorTypeEnumMap, json['colorType']) ??
           ColorType.solid,
       color: (json['color'] as num?)?.toInt() ?? 0xFF40C4FF,
@@ -51,7 +50,7 @@ _$ColorOptionImpl _$$ColorOptionImplFromJson(Map<String, dynamic> json) =>
           ],
     );
 
-Map<String, dynamic> _$$ColorOptionImplToJson(_$ColorOptionImpl instance) =>
+Map<String, dynamic> _$ColorOptionToJson(_ColorOption instance) =>
     <String, dynamic>{
       'colorType': _$ColorTypeEnumMap[instance.colorType]!,
       'color': instance.color,

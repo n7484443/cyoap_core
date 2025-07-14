@@ -13,7 +13,7 @@ part 'choice_line.freezed.dart';
 part 'choice_line.g.dart';
 
 @freezed
-class ChoiceLineOption with _$ChoiceLineOption {
+abstract class ChoiceLineOption with _$ChoiceLineOption {
   const factory ChoiceLineOption({
     @Default(-1) int maxSelect,
     @Default(false) bool enableCancelFeature,

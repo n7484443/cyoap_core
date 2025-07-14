@@ -24,7 +24,7 @@ enum GradientType {
 }
 
 @freezed
-class GradientData with _$GradientData {
+abstract class GradientData with _$GradientData {
   const factory GradientData({
     @Default((0.5, 0.5)) (double, double) gradientPos,
     @Default(0xFFFFFFFF) int color,
@@ -35,7 +35,7 @@ class GradientData with _$GradientData {
 }
 
 @Freezed(makeCollectionsUnmodifiable: false)
-class ColorOption with _$ColorOption {
+abstract class ColorOption with _$ColorOption {
   const factory ColorOption({
     @Default(ColorType.solid) ColorType colorType,
     @Default(0xFF40C4FF) int color,

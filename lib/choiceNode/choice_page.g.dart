@@ -6,14 +6,12 @@ part of 'choice_page.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ChoicePageOptionImpl _$$ChoicePageOptionImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ChoicePageOptionImpl(
+_ChoicePageOption _$ChoicePageOptionFromJson(Map<String, dynamic> json) =>
+    _ChoicePageOption(
       setEntireAsOneLine: json['setEntireAsOneLine'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$ChoicePageOptionImplToJson(
-        _$ChoicePageOptionImpl instance) =>
+Map<String, dynamic> _$ChoicePageOptionToJson(_ChoicePageOption instance) =>
     <String, dynamic>{
       'setEntireAsOneLine': instance.setEntireAsOneLine,
     };

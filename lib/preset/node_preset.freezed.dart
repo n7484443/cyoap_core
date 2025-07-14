@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,99 +9,61 @@ part of 'node_preset.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-EdgeValue _$EdgeValueFromJson(Map<String, dynamic> json) {
-  return _EdgeValue.fromJson(json);
-}
 
 /// @nodoc
 mixin _$EdgeValue {
-  double get top => throw _privateConstructorUsedError;
-  double get right => throw _privateConstructorUsedError;
-  double get bottom => throw _privateConstructorUsedError;
-  double get left => throw _privateConstructorUsedError;
-
-  /// Serializes this EdgeValue to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  double get top;
+  double get right;
+  double get bottom;
+  double get left;
 
   /// Create a copy of EdgeValue
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $EdgeValueCopyWith<EdgeValue> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $EdgeValueCopyWith<$Res> {
-  factory $EdgeValueCopyWith(EdgeValue value, $Res Function(EdgeValue) then) =
-      _$EdgeValueCopyWithImpl<$Res, EdgeValue>;
-  @useResult
-  $Res call({double top, double right, double bottom, double left});
-}
-
-/// @nodoc
-class _$EdgeValueCopyWithImpl<$Res, $Val extends EdgeValue>
-    implements $EdgeValueCopyWith<$Res> {
-  _$EdgeValueCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of EdgeValue
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $EdgeValueCopyWith<EdgeValue> get copyWith =>
+      _$EdgeValueCopyWithImpl<EdgeValue>(this as EdgeValue, _$identity);
+
+  /// Serializes this EdgeValue to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? top = null,
-    Object? right = null,
-    Object? bottom = null,
-    Object? left = null,
-  }) {
-    return _then(_value.copyWith(
-      top: null == top
-          ? _value.top
-          : top // ignore: cast_nullable_to_non_nullable
-              as double,
-      right: null == right
-          ? _value.right
-          : right // ignore: cast_nullable_to_non_nullable
-              as double,
-      bottom: null == bottom
-          ? _value.bottom
-          : bottom // ignore: cast_nullable_to_non_nullable
-              as double,
-      left: null == left
-          ? _value.left
-          : left // ignore: cast_nullable_to_non_nullable
-              as double,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is EdgeValue &&
+            (identical(other.top, top) || other.top == top) &&
+            (identical(other.right, right) || other.right == right) &&
+            (identical(other.bottom, bottom) || other.bottom == bottom) &&
+            (identical(other.left, left) || other.left == left));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, top, right, bottom, left);
+
+  @override
+  String toString() {
+    return 'EdgeValue(top: $top, right: $right, bottom: $bottom, left: $left)';
   }
 }
 
 /// @nodoc
-abstract class _$$EdgeValueImplCopyWith<$Res>
-    implements $EdgeValueCopyWith<$Res> {
-  factory _$$EdgeValueImplCopyWith(
-          _$EdgeValueImpl value, $Res Function(_$EdgeValueImpl) then) =
-      __$$EdgeValueImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $EdgeValueCopyWith<$Res> {
+  factory $EdgeValueCopyWith(EdgeValue value, $Res Function(EdgeValue) _then) =
+      _$EdgeValueCopyWithImpl;
   @useResult
   $Res call({double top, double right, double bottom, double left});
 }
 
 /// @nodoc
-class __$$EdgeValueImplCopyWithImpl<$Res>
-    extends _$EdgeValueCopyWithImpl<$Res, _$EdgeValueImpl>
-    implements _$$EdgeValueImplCopyWith<$Res> {
-  __$$EdgeValueImplCopyWithImpl(
-      _$EdgeValueImpl _value, $Res Function(_$EdgeValueImpl) _then)
-      : super(_value, _then);
+class _$EdgeValueCopyWithImpl<$Res> implements $EdgeValueCopyWith<$Res> {
+  _$EdgeValueCopyWithImpl(this._self, this._then);
+
+  final EdgeValue _self;
+  final $Res Function(EdgeValue) _then;
 
   /// Create a copy of EdgeValue
   /// with the given fields replaced by the non-null parameter values.
@@ -113,36 +75,195 @@ class __$$EdgeValueImplCopyWithImpl<$Res>
     Object? bottom = null,
     Object? left = null,
   }) {
-    return _then(_$EdgeValueImpl(
+    return _then(_self.copyWith(
       top: null == top
-          ? _value.top
+          ? _self.top
           : top // ignore: cast_nullable_to_non_nullable
               as double,
       right: null == right
-          ? _value.right
+          ? _self.right
           : right // ignore: cast_nullable_to_non_nullable
               as double,
       bottom: null == bottom
-          ? _value.bottom
+          ? _self.bottom
           : bottom // ignore: cast_nullable_to_non_nullable
               as double,
       left: null == left
-          ? _value.left
+          ? _self.left
           : left // ignore: cast_nullable_to_non_nullable
               as double,
     ));
   }
 }
 
+/// Adds pattern-matching-related methods to [EdgeValue].
+extension EdgeValuePatterns on EdgeValue {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_EdgeValue value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _EdgeValue() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_EdgeValue value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _EdgeValue():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_EdgeValue value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _EdgeValue() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(double top, double right, double bottom, double left)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _EdgeValue() when $default != null:
+        return $default(_that.top, _that.right, _that.bottom, _that.left);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(double top, double right, double bottom, double left)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _EdgeValue():
+        return $default(_that.top, _that.right, _that.bottom, _that.left);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(double top, double right, double bottom, double left)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _EdgeValue() when $default != null:
+        return $default(_that.top, _that.right, _that.bottom, _that.left);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 @JsonSerializable()
-class _$EdgeValueImpl extends _EdgeValue {
-  const _$EdgeValueImpl(
+class _EdgeValue extends EdgeValue {
+  const _EdgeValue(
       {this.top = 0.0, this.right = 0.0, this.bottom = 0.0, this.left = 0.0})
       : super._();
-
-  factory _$EdgeValueImpl.fromJson(Map<String, dynamic> json) =>
-      _$$EdgeValueImplFromJson(json);
+  factory _EdgeValue.fromJson(Map<String, dynamic> json) =>
+      _$EdgeValueFromJson(json);
 
   @override
   @JsonKey()
@@ -157,16 +278,26 @@ class _$EdgeValueImpl extends _EdgeValue {
   @JsonKey()
   final double left;
 
+  /// Create a copy of EdgeValue
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'EdgeValue(top: $top, right: $right, bottom: $bottom, left: $left)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$EdgeValueCopyWith<_EdgeValue> get copyWith =>
+      __$EdgeValueCopyWithImpl<_EdgeValue>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$EdgeValueToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$EdgeValueImpl &&
+            other is _EdgeValue &&
             (identical(other.top, top) || other.top == top) &&
             (identical(other.right, right) || other.right == right) &&
             (identical(other.bottom, bottom) || other.bottom == bottom) &&
@@ -177,209 +308,83 @@ class _$EdgeValueImpl extends _EdgeValue {
   @override
   int get hashCode => Object.hash(runtimeType, top, right, bottom, left);
 
-  /// Create a copy of EdgeValue
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$EdgeValueImplCopyWith<_$EdgeValueImpl> get copyWith =>
-      __$$EdgeValueImplCopyWithImpl<_$EdgeValueImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$EdgeValueImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _EdgeValue extends EdgeValue {
-  const factory _EdgeValue(
-      {final double top,
-      final double right,
-      final double bottom,
-      final double left}) = _$EdgeValueImpl;
-  const _EdgeValue._() : super._();
-
-  factory _EdgeValue.fromJson(Map<String, dynamic> json) =
-      _$EdgeValueImpl.fromJson;
-
-  @override
-  double get top;
-  @override
-  double get right;
-  @override
-  double get bottom;
-  @override
-  double get left;
-
-  /// Create a copy of EdgeValue
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$EdgeValueImplCopyWith<_$EdgeValueImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-VertexValue _$VertexValueFromJson(Map<String, dynamic> json) {
-  return _VertexValue.fromJson(json);
-}
-
-/// @nodoc
-mixin _$VertexValue {
-  double get topLeft => throw _privateConstructorUsedError;
-  double get topRight => throw _privateConstructorUsedError;
-  double get bottomLeft => throw _privateConstructorUsedError;
-  double get bottomRight => throw _privateConstructorUsedError;
-
-  /// Serializes this VertexValue to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of VertexValue
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $VertexValueCopyWith<VertexValue> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $VertexValueCopyWith<$Res> {
-  factory $VertexValueCopyWith(
-          VertexValue value, $Res Function(VertexValue) then) =
-      _$VertexValueCopyWithImpl<$Res, VertexValue>;
-  @useResult
-  $Res call(
-      {double topLeft, double topRight, double bottomLeft, double bottomRight});
-}
-
-/// @nodoc
-class _$VertexValueCopyWithImpl<$Res, $Val extends VertexValue>
-    implements $VertexValueCopyWith<$Res> {
-  _$VertexValueCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of VertexValue
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? topLeft = null,
-    Object? topRight = null,
-    Object? bottomLeft = null,
-    Object? bottomRight = null,
-  }) {
-    return _then(_value.copyWith(
-      topLeft: null == topLeft
-          ? _value.topLeft
-          : topLeft // ignore: cast_nullable_to_non_nullable
-              as double,
-      topRight: null == topRight
-          ? _value.topRight
-          : topRight // ignore: cast_nullable_to_non_nullable
-              as double,
-      bottomLeft: null == bottomLeft
-          ? _value.bottomLeft
-          : bottomLeft // ignore: cast_nullable_to_non_nullable
-              as double,
-      bottomRight: null == bottomRight
-          ? _value.bottomRight
-          : bottomRight // ignore: cast_nullable_to_non_nullable
-              as double,
-    ) as $Val);
+  String toString() {
+    return 'EdgeValue(top: $top, right: $right, bottom: $bottom, left: $left)';
   }
 }
 
 /// @nodoc
-abstract class _$$VertexValueImplCopyWith<$Res>
-    implements $VertexValueCopyWith<$Res> {
-  factory _$$VertexValueImplCopyWith(
-          _$VertexValueImpl value, $Res Function(_$VertexValueImpl) then) =
-      __$$VertexValueImplCopyWithImpl<$Res>;
+abstract mixin class _$EdgeValueCopyWith<$Res>
+    implements $EdgeValueCopyWith<$Res> {
+  factory _$EdgeValueCopyWith(
+          _EdgeValue value, $Res Function(_EdgeValue) _then) =
+      __$EdgeValueCopyWithImpl;
   @override
   @useResult
-  $Res call(
-      {double topLeft, double topRight, double bottomLeft, double bottomRight});
+  $Res call({double top, double right, double bottom, double left});
 }
 
 /// @nodoc
-class __$$VertexValueImplCopyWithImpl<$Res>
-    extends _$VertexValueCopyWithImpl<$Res, _$VertexValueImpl>
-    implements _$$VertexValueImplCopyWith<$Res> {
-  __$$VertexValueImplCopyWithImpl(
-      _$VertexValueImpl _value, $Res Function(_$VertexValueImpl) _then)
-      : super(_value, _then);
+class __$EdgeValueCopyWithImpl<$Res> implements _$EdgeValueCopyWith<$Res> {
+  __$EdgeValueCopyWithImpl(this._self, this._then);
 
-  /// Create a copy of VertexValue
+  final _EdgeValue _self;
+  final $Res Function(_EdgeValue) _then;
+
+  /// Create a copy of EdgeValue
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
-    Object? topLeft = null,
-    Object? topRight = null,
-    Object? bottomLeft = null,
-    Object? bottomRight = null,
+    Object? top = null,
+    Object? right = null,
+    Object? bottom = null,
+    Object? left = null,
   }) {
-    return _then(_$VertexValueImpl(
-      topLeft: null == topLeft
-          ? _value.topLeft
-          : topLeft // ignore: cast_nullable_to_non_nullable
+    return _then(_EdgeValue(
+      top: null == top
+          ? _self.top
+          : top // ignore: cast_nullable_to_non_nullable
               as double,
-      topRight: null == topRight
-          ? _value.topRight
-          : topRight // ignore: cast_nullable_to_non_nullable
+      right: null == right
+          ? _self.right
+          : right // ignore: cast_nullable_to_non_nullable
               as double,
-      bottomLeft: null == bottomLeft
-          ? _value.bottomLeft
-          : bottomLeft // ignore: cast_nullable_to_non_nullable
+      bottom: null == bottom
+          ? _self.bottom
+          : bottom // ignore: cast_nullable_to_non_nullable
               as double,
-      bottomRight: null == bottomRight
-          ? _value.bottomRight
-          : bottomRight // ignore: cast_nullable_to_non_nullable
+      left: null == left
+          ? _self.left
+          : left // ignore: cast_nullable_to_non_nullable
               as double,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$VertexValueImpl extends _VertexValue {
-  const _$VertexValueImpl(
-      {this.topLeft = 0.0,
-      this.topRight = 0.0,
-      this.bottomLeft = 0.0,
-      this.bottomRight = 0.0})
-      : super._();
+mixin _$VertexValue {
+  double get topLeft;
+  double get topRight;
+  double get bottomLeft;
+  double get bottomRight;
 
-  factory _$VertexValueImpl.fromJson(Map<String, dynamic> json) =>
-      _$$VertexValueImplFromJson(json);
+  /// Create a copy of VertexValue
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $VertexValueCopyWith<VertexValue> get copyWith =>
+      _$VertexValueCopyWithImpl<VertexValue>(this as VertexValue, _$identity);
 
-  @override
-  @JsonKey()
-  final double topLeft;
-  @override
-  @JsonKey()
-  final double topRight;
-  @override
-  @JsonKey()
-  final double bottomLeft;
-  @override
-  @JsonKey()
-  final double bottomRight;
-
-  @override
-  String toString() {
-    return 'VertexValue(topLeft: $topLeft, topRight: $topRight, bottomLeft: $bottomLeft, bottomRight: $bottomRight)';
-  }
+  /// Serializes this VertexValue to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$VertexValueImpl &&
+            other is VertexValue &&
             (identical(other.topLeft, topLeft) || other.topLeft == topLeft) &&
             (identical(other.topRight, topRight) ||
                 other.topRight == topRight) &&
@@ -394,77 +399,392 @@ class _$VertexValueImpl extends _VertexValue {
   int get hashCode =>
       Object.hash(runtimeType, topLeft, topRight, bottomLeft, bottomRight);
 
-  /// Create a copy of VertexValue
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$VertexValueImplCopyWith<_$VertexValueImpl> get copyWith =>
-      __$$VertexValueImplCopyWithImpl<_$VertexValueImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$VertexValueImplToJson(
-      this,
-    );
+  String toString() {
+    return 'VertexValue(topLeft: $topLeft, topRight: $topRight, bottomLeft: $bottomLeft, bottomRight: $bottomRight)';
   }
 }
 
-abstract class _VertexValue extends VertexValue {
-  const factory _VertexValue(
-      {final double topLeft,
-      final double topRight,
-      final double bottomLeft,
-      final double bottomRight}) = _$VertexValueImpl;
-  const _VertexValue._() : super._();
+/// @nodoc
+abstract mixin class $VertexValueCopyWith<$Res> {
+  factory $VertexValueCopyWith(
+          VertexValue value, $Res Function(VertexValue) _then) =
+      _$VertexValueCopyWithImpl;
+  @useResult
+  $Res call(
+      {double topLeft, double topRight, double bottomLeft, double bottomRight});
+}
 
-  factory _VertexValue.fromJson(Map<String, dynamic> json) =
-      _$VertexValueImpl.fromJson;
+/// @nodoc
+class _$VertexValueCopyWithImpl<$Res> implements $VertexValueCopyWith<$Res> {
+  _$VertexValueCopyWithImpl(this._self, this._then);
+
+  final VertexValue _self;
+  final $Res Function(VertexValue) _then;
+
+  /// Create a copy of VertexValue
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? topLeft = null,
+    Object? topRight = null,
+    Object? bottomLeft = null,
+    Object? bottomRight = null,
+  }) {
+    return _then(_self.copyWith(
+      topLeft: null == topLeft
+          ? _self.topLeft
+          : topLeft // ignore: cast_nullable_to_non_nullable
+              as double,
+      topRight: null == topRight
+          ? _self.topRight
+          : topRight // ignore: cast_nullable_to_non_nullable
+              as double,
+      bottomLeft: null == bottomLeft
+          ? _self.bottomLeft
+          : bottomLeft // ignore: cast_nullable_to_non_nullable
+              as double,
+      bottomRight: null == bottomRight
+          ? _self.bottomRight
+          : bottomRight // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [VertexValue].
+extension VertexValuePatterns on VertexValue {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_VertexValue value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _VertexValue() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_VertexValue value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _VertexValue():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_VertexValue value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _VertexValue() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(double topLeft, double topRight, double bottomLeft,
+            double bottomRight)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _VertexValue() when $default != null:
+        return $default(
+            _that.topLeft, _that.topRight, _that.bottomLeft, _that.bottomRight);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(double topLeft, double topRight, double bottomLeft,
+            double bottomRight)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _VertexValue():
+        return $default(
+            _that.topLeft, _that.topRight, _that.bottomLeft, _that.bottomRight);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(double topLeft, double topRight, double bottomLeft,
+            double bottomRight)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _VertexValue() when $default != null:
+        return $default(
+            _that.topLeft, _that.topRight, _that.bottomLeft, _that.bottomRight);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _VertexValue extends VertexValue {
+  const _VertexValue(
+      {this.topLeft = 0.0,
+      this.topRight = 0.0,
+      this.bottomLeft = 0.0,
+      this.bottomRight = 0.0})
+      : super._();
+  factory _VertexValue.fromJson(Map<String, dynamic> json) =>
+      _$VertexValueFromJson(json);
 
   @override
-  double get topLeft;
+  @JsonKey()
+  final double topLeft;
   @override
-  double get topRight;
+  @JsonKey()
+  final double topRight;
   @override
-  double get bottomLeft;
+  @JsonKey()
+  final double bottomLeft;
   @override
-  double get bottomRight;
+  @JsonKey()
+  final double bottomRight;
 
   /// Create a copy of VertexValue
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$VertexValueImplCopyWith<_$VertexValueImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  _$VertexValueCopyWith<_VertexValue> get copyWith =>
+      __$VertexValueCopyWithImpl<_VertexValue>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$VertexValueToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _VertexValue &&
+            (identical(other.topLeft, topLeft) || other.topLeft == topLeft) &&
+            (identical(other.topRight, topRight) ||
+                other.topRight == topRight) &&
+            (identical(other.bottomLeft, bottomLeft) ||
+                other.bottomLeft == bottomLeft) &&
+            (identical(other.bottomRight, bottomRight) ||
+                other.bottomRight == bottomRight));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, topLeft, topRight, bottomLeft, bottomRight);
+
+  @override
+  String toString() {
+    return 'VertexValue(topLeft: $topLeft, topRight: $topRight, bottomLeft: $bottomLeft, bottomRight: $bottomRight)';
+  }
 }
 
-OutlineOption _$OutlineOptionFromJson(Map<String, dynamic> json) {
-  return _OutlineOption.fromJson(json);
+/// @nodoc
+abstract mixin class _$VertexValueCopyWith<$Res>
+    implements $VertexValueCopyWith<$Res> {
+  factory _$VertexValueCopyWith(
+          _VertexValue value, $Res Function(_VertexValue) _then) =
+      __$VertexValueCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {double topLeft, double topRight, double bottomLeft, double bottomRight});
+}
+
+/// @nodoc
+class __$VertexValueCopyWithImpl<$Res> implements _$VertexValueCopyWith<$Res> {
+  __$VertexValueCopyWithImpl(this._self, this._then);
+
+  final _VertexValue _self;
+  final $Res Function(_VertexValue) _then;
+
+  /// Create a copy of VertexValue
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? topLeft = null,
+    Object? topRight = null,
+    Object? bottomLeft = null,
+    Object? bottomRight = null,
+  }) {
+    return _then(_VertexValue(
+      topLeft: null == topLeft
+          ? _self.topLeft
+          : topLeft // ignore: cast_nullable_to_non_nullable
+              as double,
+      topRight: null == topRight
+          ? _self.topRight
+          : topRight // ignore: cast_nullable_to_non_nullable
+              as double,
+      bottomLeft: null == bottomLeft
+          ? _self.bottomLeft
+          : bottomLeft // ignore: cast_nullable_to_non_nullable
+              as double,
+      bottomRight: null == bottomRight
+          ? _self.bottomRight
+          : bottomRight // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
 }
 
 /// @nodoc
 mixin _$OutlineOption {
-  OutlineType get outlineType => throw _privateConstructorUsedError;
-  ColorOption get outlineColor => throw _privateConstructorUsedError;
-  VertexValue get round => throw _privateConstructorUsedError;
-  EdgeValue get distance => throw _privateConstructorUsedError;
-  double get outlineWidth => throw _privateConstructorUsedError;
-
-  /// Serializes this OutlineOption to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  OutlineType get outlineType;
+  ColorOption get outlineColor;
+  VertexValue get round;
+  EdgeValue get distance;
+  double get outlineWidth;
 
   /// Create a copy of OutlineOption
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $OutlineOptionCopyWith<OutlineOption> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$OutlineOptionCopyWithImpl<OutlineOption>(
+          this as OutlineOption, _$identity);
+
+  /// Serializes this OutlineOption to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is OutlineOption &&
+            (identical(other.outlineType, outlineType) ||
+                other.outlineType == outlineType) &&
+            (identical(other.outlineColor, outlineColor) ||
+                other.outlineColor == outlineColor) &&
+            (identical(other.round, round) || other.round == round) &&
+            (identical(other.distance, distance) ||
+                other.distance == distance) &&
+            (identical(other.outlineWidth, outlineWidth) ||
+                other.outlineWidth == outlineWidth));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, outlineType, outlineColor, round, distance, outlineWidth);
+
+  @override
+  String toString() {
+    return 'OutlineOption(outlineType: $outlineType, outlineColor: $outlineColor, round: $round, distance: $distance, outlineWidth: $outlineWidth)';
+  }
 }
 
 /// @nodoc
-abstract class $OutlineOptionCopyWith<$Res> {
+abstract mixin class $OutlineOptionCopyWith<$Res> {
   factory $OutlineOptionCopyWith(
-          OutlineOption value, $Res Function(OutlineOption) then) =
-      _$OutlineOptionCopyWithImpl<$Res, OutlineOption>;
+          OutlineOption value, $Res Function(OutlineOption) _then) =
+      _$OutlineOptionCopyWithImpl;
   @useResult
   $Res call(
       {OutlineType outlineType,
@@ -479,14 +799,12 @@ abstract class $OutlineOptionCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$OutlineOptionCopyWithImpl<$Res, $Val extends OutlineOption>
+class _$OutlineOptionCopyWithImpl<$Res>
     implements $OutlineOptionCopyWith<$Res> {
-  _$OutlineOptionCopyWithImpl(this._value, this._then);
+  _$OutlineOptionCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final OutlineOption _self;
+  final $Res Function(OutlineOption) _then;
 
   /// Create a copy of OutlineOption
   /// with the given fields replaced by the non-null parameter values.
@@ -499,28 +817,28 @@ class _$OutlineOptionCopyWithImpl<$Res, $Val extends OutlineOption>
     Object? distance = null,
     Object? outlineWidth = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       outlineType: null == outlineType
-          ? _value.outlineType
+          ? _self.outlineType
           : outlineType // ignore: cast_nullable_to_non_nullable
               as OutlineType,
       outlineColor: null == outlineColor
-          ? _value.outlineColor
+          ? _self.outlineColor
           : outlineColor // ignore: cast_nullable_to_non_nullable
               as ColorOption,
       round: null == round
-          ? _value.round
+          ? _self.round
           : round // ignore: cast_nullable_to_non_nullable
               as VertexValue,
       distance: null == distance
-          ? _value.distance
+          ? _self.distance
           : distance // ignore: cast_nullable_to_non_nullable
               as EdgeValue,
       outlineWidth: null == outlineWidth
-          ? _value.outlineWidth
+          ? _self.outlineWidth
           : outlineWidth // ignore: cast_nullable_to_non_nullable
               as double,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of OutlineOption
@@ -528,8 +846,8 @@ class _$OutlineOptionCopyWithImpl<$Res, $Val extends OutlineOption>
   @override
   @pragma('vm:prefer-inline')
   $ColorOptionCopyWith<$Res> get outlineColor {
-    return $ColorOptionCopyWith<$Res>(_value.outlineColor, (value) {
-      return _then(_value.copyWith(outlineColor: value) as $Val);
+    return $ColorOptionCopyWith<$Res>(_self.outlineColor, (value) {
+      return _then(_self.copyWith(outlineColor: value));
     });
   }
 
@@ -538,8 +856,8 @@ class _$OutlineOptionCopyWithImpl<$Res, $Val extends OutlineOption>
   @override
   @pragma('vm:prefer-inline')
   $VertexValueCopyWith<$Res> get round {
-    return $VertexValueCopyWith<$Res>(_value.round, (value) {
-      return _then(_value.copyWith(round: value) as $Val);
+    return $VertexValueCopyWith<$Res>(_self.round, (value) {
+      return _then(_self.copyWith(round: value));
     });
   }
 
@@ -548,83 +866,182 @@ class _$OutlineOptionCopyWithImpl<$Res, $Val extends OutlineOption>
   @override
   @pragma('vm:prefer-inline')
   $EdgeValueCopyWith<$Res> get distance {
-    return $EdgeValueCopyWith<$Res>(_value.distance, (value) {
-      return _then(_value.copyWith(distance: value) as $Val);
+    return $EdgeValueCopyWith<$Res>(_self.distance, (value) {
+      return _then(_self.copyWith(distance: value));
     });
   }
 }
 
-/// @nodoc
-abstract class _$$OutlineOptionImplCopyWith<$Res>
-    implements $OutlineOptionCopyWith<$Res> {
-  factory _$$OutlineOptionImplCopyWith(
-          _$OutlineOptionImpl value, $Res Function(_$OutlineOptionImpl) then) =
-      __$$OutlineOptionImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {OutlineType outlineType,
-      ColorOption outlineColor,
-      VertexValue round,
-      EdgeValue distance,
-      double outlineWidth});
+/// Adds pattern-matching-related methods to [OutlineOption].
+extension OutlineOptionPatterns on OutlineOption {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-  @override
-  $ColorOptionCopyWith<$Res> get outlineColor;
-  @override
-  $VertexValueCopyWith<$Res> get round;
-  @override
-  $EdgeValueCopyWith<$Res> get distance;
-}
-
-/// @nodoc
-class __$$OutlineOptionImplCopyWithImpl<$Res>
-    extends _$OutlineOptionCopyWithImpl<$Res, _$OutlineOptionImpl>
-    implements _$$OutlineOptionImplCopyWith<$Res> {
-  __$$OutlineOptionImplCopyWithImpl(
-      _$OutlineOptionImpl _value, $Res Function(_$OutlineOptionImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of OutlineOption
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? outlineType = null,
-    Object? outlineColor = null,
-    Object? round = null,
-    Object? distance = null,
-    Object? outlineWidth = null,
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_OutlineOption value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_$OutlineOptionImpl(
-      outlineType: null == outlineType
-          ? _value.outlineType
-          : outlineType // ignore: cast_nullable_to_non_nullable
-              as OutlineType,
-      outlineColor: null == outlineColor
-          ? _value.outlineColor
-          : outlineColor // ignore: cast_nullable_to_non_nullable
-              as ColorOption,
-      round: null == round
-          ? _value.round
-          : round // ignore: cast_nullable_to_non_nullable
-              as VertexValue,
-      distance: null == distance
-          ? _value.distance
-          : distance // ignore: cast_nullable_to_non_nullable
-              as EdgeValue,
-      outlineWidth: null == outlineWidth
-          ? _value.outlineWidth
-          : outlineWidth // ignore: cast_nullable_to_non_nullable
-              as double,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _OutlineOption() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_OutlineOption value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _OutlineOption():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_OutlineOption value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _OutlineOption() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(OutlineType outlineType, ColorOption outlineColor,
+            VertexValue round, EdgeValue distance, double outlineWidth)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _OutlineOption() when $default != null:
+        return $default(_that.outlineType, _that.outlineColor, _that.round,
+            _that.distance, _that.outlineWidth);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(OutlineType outlineType, ColorOption outlineColor,
+            VertexValue round, EdgeValue distance, double outlineWidth)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _OutlineOption():
+        return $default(_that.outlineType, _that.outlineColor, _that.round,
+            _that.distance, _that.outlineWidth);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(OutlineType outlineType, ColorOption outlineColor,
+            VertexValue round, EdgeValue distance, double outlineWidth)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _OutlineOption() when $default != null:
+        return $default(_that.outlineType, _that.outlineColor, _that.round,
+            _that.distance, _that.outlineWidth);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$OutlineOptionImpl implements _OutlineOption {
-  const _$OutlineOptionImpl(
+class _OutlineOption implements OutlineOption {
+  const _OutlineOption(
       {this.outlineType = OutlineType.solid,
       this.outlineColor = const ColorOption(),
       this.round = const VertexValue(
@@ -632,9 +1049,8 @@ class _$OutlineOptionImpl implements _OutlineOption {
       this.distance =
           const EdgeValue(top: 4.0, right: 4.0, bottom: 4.0, left: 4.0),
       this.outlineWidth = 2.0});
-
-  factory _$OutlineOptionImpl.fromJson(Map<String, dynamic> json) =>
-      _$$OutlineOptionImplFromJson(json);
+  factory _OutlineOption.fromJson(Map<String, dynamic> json) =>
+      _$OutlineOptionFromJson(json);
 
   @override
   @JsonKey()
@@ -652,16 +1068,26 @@ class _$OutlineOptionImpl implements _OutlineOption {
   @JsonKey()
   final double outlineWidth;
 
+  /// Create a copy of OutlineOption
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'OutlineOption(outlineType: $outlineType, outlineColor: $outlineColor, round: $round, distance: $distance, outlineWidth: $outlineWidth)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$OutlineOptionCopyWith<_OutlineOption> get copyWith =>
+      __$OutlineOptionCopyWithImpl<_OutlineOption>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$OutlineOptionToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$OutlineOptionImpl &&
+            other is _OutlineOption &&
             (identical(other.outlineType, outlineType) ||
                 other.outlineType == outlineType) &&
             (identical(other.outlineColor, outlineColor) ||
@@ -678,258 +1104,132 @@ class _$OutlineOptionImpl implements _OutlineOption {
   int get hashCode => Object.hash(
       runtimeType, outlineType, outlineColor, round, distance, outlineWidth);
 
-  /// Create a copy of OutlineOption
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$OutlineOptionImplCopyWith<_$OutlineOptionImpl> get copyWith =>
-      __$$OutlineOptionImplCopyWithImpl<_$OutlineOptionImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$OutlineOptionImplToJson(
-      this,
-    );
+  String toString() {
+    return 'OutlineOption(outlineType: $outlineType, outlineColor: $outlineColor, round: $round, distance: $distance, outlineWidth: $outlineWidth)';
   }
 }
 
-abstract class _OutlineOption implements OutlineOption {
-  const factory _OutlineOption(
-      {final OutlineType outlineType,
-      final ColorOption outlineColor,
-      final VertexValue round,
-      final EdgeValue distance,
-      final double outlineWidth}) = _$OutlineOptionImpl;
+/// @nodoc
+abstract mixin class _$OutlineOptionCopyWith<$Res>
+    implements $OutlineOptionCopyWith<$Res> {
+  factory _$OutlineOptionCopyWith(
+          _OutlineOption value, $Res Function(_OutlineOption) _then) =
+      __$OutlineOptionCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {OutlineType outlineType,
+      ColorOption outlineColor,
+      VertexValue round,
+      EdgeValue distance,
+      double outlineWidth});
 
-  factory _OutlineOption.fromJson(Map<String, dynamic> json) =
-      _$OutlineOptionImpl.fromJson;
+  @override
+  $ColorOptionCopyWith<$Res> get outlineColor;
+  @override
+  $VertexValueCopyWith<$Res> get round;
+  @override
+  $EdgeValueCopyWith<$Res> get distance;
+}
 
-  @override
-  OutlineType get outlineType;
-  @override
-  ColorOption get outlineColor;
-  @override
-  VertexValue get round;
-  @override
-  EdgeValue get distance;
-  @override
-  double get outlineWidth;
+/// @nodoc
+class __$OutlineOptionCopyWithImpl<$Res>
+    implements _$OutlineOptionCopyWith<$Res> {
+  __$OutlineOptionCopyWithImpl(this._self, this._then);
+
+  final _OutlineOption _self;
+  final $Res Function(_OutlineOption) _then;
 
   /// Create a copy of OutlineOption
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$OutlineOptionImplCopyWith<_$OutlineOptionImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? outlineType = null,
+    Object? outlineColor = null,
+    Object? round = null,
+    Object? distance = null,
+    Object? outlineWidth = null,
+  }) {
+    return _then(_OutlineOption(
+      outlineType: null == outlineType
+          ? _self.outlineType
+          : outlineType // ignore: cast_nullable_to_non_nullable
+              as OutlineType,
+      outlineColor: null == outlineColor
+          ? _self.outlineColor
+          : outlineColor // ignore: cast_nullable_to_non_nullable
+              as ColorOption,
+      round: null == round
+          ? _self.round
+          : round // ignore: cast_nullable_to_non_nullable
+              as VertexValue,
+      distance: null == distance
+          ? _self.distance
+          : distance // ignore: cast_nullable_to_non_nullable
+              as EdgeValue,
+      outlineWidth: null == outlineWidth
+          ? _self.outlineWidth
+          : outlineWidth // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
 
-SliderOption _$SliderOptionFromJson(Map<String, dynamic> json) {
-  return _SliderOption.fromJson(json);
+  /// Create a copy of OutlineOption
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ColorOptionCopyWith<$Res> get outlineColor {
+    return $ColorOptionCopyWith<$Res>(_self.outlineColor, (value) {
+      return _then(_self.copyWith(outlineColor: value));
+    });
+  }
+
+  /// Create a copy of OutlineOption
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $VertexValueCopyWith<$Res> get round {
+    return $VertexValueCopyWith<$Res>(_self.round, (value) {
+      return _then(_self.copyWith(round: value));
+    });
+  }
+
+  /// Create a copy of OutlineOption
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $EdgeValueCopyWith<$Res> get distance {
+    return $EdgeValueCopyWith<$Res>(_self.distance, (value) {
+      return _then(_self.copyWith(distance: value));
+    });
+  }
 }
 
 /// @nodoc
 mixin _$SliderOption {
-  ColorOption get sliderThumbColor => throw _privateConstructorUsedError;
-  ColorOption get sliderTrackActiveColor => throw _privateConstructorUsedError;
-  ColorOption get sliderTrackInactiveColor =>
-      throw _privateConstructorUsedError;
-  SliderThumbShape get sliderThumbShape => throw _privateConstructorUsedError;
-
-  /// Serializes this SliderOption to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  ColorOption get sliderThumbColor;
+  ColorOption get sliderTrackActiveColor;
+  ColorOption get sliderTrackInactiveColor;
+  SliderThumbShape get sliderThumbShape;
 
   /// Create a copy of SliderOption
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $SliderOptionCopyWith<SliderOption> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+      _$SliderOptionCopyWithImpl<SliderOption>(
+          this as SliderOption, _$identity);
 
-/// @nodoc
-abstract class $SliderOptionCopyWith<$Res> {
-  factory $SliderOptionCopyWith(
-          SliderOption value, $Res Function(SliderOption) then) =
-      _$SliderOptionCopyWithImpl<$Res, SliderOption>;
-  @useResult
-  $Res call(
-      {ColorOption sliderThumbColor,
-      ColorOption sliderTrackActiveColor,
-      ColorOption sliderTrackInactiveColor,
-      SliderThumbShape sliderThumbShape});
-
-  $ColorOptionCopyWith<$Res> get sliderThumbColor;
-  $ColorOptionCopyWith<$Res> get sliderTrackActiveColor;
-  $ColorOptionCopyWith<$Res> get sliderTrackInactiveColor;
-}
-
-/// @nodoc
-class _$SliderOptionCopyWithImpl<$Res, $Val extends SliderOption>
-    implements $SliderOptionCopyWith<$Res> {
-  _$SliderOptionCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of SliderOption
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? sliderThumbColor = null,
-    Object? sliderTrackActiveColor = null,
-    Object? sliderTrackInactiveColor = null,
-    Object? sliderThumbShape = null,
-  }) {
-    return _then(_value.copyWith(
-      sliderThumbColor: null == sliderThumbColor
-          ? _value.sliderThumbColor
-          : sliderThumbColor // ignore: cast_nullable_to_non_nullable
-              as ColorOption,
-      sliderTrackActiveColor: null == sliderTrackActiveColor
-          ? _value.sliderTrackActiveColor
-          : sliderTrackActiveColor // ignore: cast_nullable_to_non_nullable
-              as ColorOption,
-      sliderTrackInactiveColor: null == sliderTrackInactiveColor
-          ? _value.sliderTrackInactiveColor
-          : sliderTrackInactiveColor // ignore: cast_nullable_to_non_nullable
-              as ColorOption,
-      sliderThumbShape: null == sliderThumbShape
-          ? _value.sliderThumbShape
-          : sliderThumbShape // ignore: cast_nullable_to_non_nullable
-              as SliderThumbShape,
-    ) as $Val);
-  }
-
-  /// Create a copy of SliderOption
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ColorOptionCopyWith<$Res> get sliderThumbColor {
-    return $ColorOptionCopyWith<$Res>(_value.sliderThumbColor, (value) {
-      return _then(_value.copyWith(sliderThumbColor: value) as $Val);
-    });
-  }
-
-  /// Create a copy of SliderOption
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ColorOptionCopyWith<$Res> get sliderTrackActiveColor {
-    return $ColorOptionCopyWith<$Res>(_value.sliderTrackActiveColor, (value) {
-      return _then(_value.copyWith(sliderTrackActiveColor: value) as $Val);
-    });
-  }
-
-  /// Create a copy of SliderOption
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ColorOptionCopyWith<$Res> get sliderTrackInactiveColor {
-    return $ColorOptionCopyWith<$Res>(_value.sliderTrackInactiveColor, (value) {
-      return _then(_value.copyWith(sliderTrackInactiveColor: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$SliderOptionImplCopyWith<$Res>
-    implements $SliderOptionCopyWith<$Res> {
-  factory _$$SliderOptionImplCopyWith(
-          _$SliderOptionImpl value, $Res Function(_$SliderOptionImpl) then) =
-      __$$SliderOptionImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {ColorOption sliderThumbColor,
-      ColorOption sliderTrackActiveColor,
-      ColorOption sliderTrackInactiveColor,
-      SliderThumbShape sliderThumbShape});
-
-  @override
-  $ColorOptionCopyWith<$Res> get sliderThumbColor;
-  @override
-  $ColorOptionCopyWith<$Res> get sliderTrackActiveColor;
-  @override
-  $ColorOptionCopyWith<$Res> get sliderTrackInactiveColor;
-}
-
-/// @nodoc
-class __$$SliderOptionImplCopyWithImpl<$Res>
-    extends _$SliderOptionCopyWithImpl<$Res, _$SliderOptionImpl>
-    implements _$$SliderOptionImplCopyWith<$Res> {
-  __$$SliderOptionImplCopyWithImpl(
-      _$SliderOptionImpl _value, $Res Function(_$SliderOptionImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SliderOption
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? sliderThumbColor = null,
-    Object? sliderTrackActiveColor = null,
-    Object? sliderTrackInactiveColor = null,
-    Object? sliderThumbShape = null,
-  }) {
-    return _then(_$SliderOptionImpl(
-      sliderThumbColor: null == sliderThumbColor
-          ? _value.sliderThumbColor
-          : sliderThumbColor // ignore: cast_nullable_to_non_nullable
-              as ColorOption,
-      sliderTrackActiveColor: null == sliderTrackActiveColor
-          ? _value.sliderTrackActiveColor
-          : sliderTrackActiveColor // ignore: cast_nullable_to_non_nullable
-              as ColorOption,
-      sliderTrackInactiveColor: null == sliderTrackInactiveColor
-          ? _value.sliderTrackInactiveColor
-          : sliderTrackInactiveColor // ignore: cast_nullable_to_non_nullable
-              as ColorOption,
-      sliderThumbShape: null == sliderThumbShape
-          ? _value.sliderThumbShape
-          : sliderThumbShape // ignore: cast_nullable_to_non_nullable
-              as SliderThumbShape,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$SliderOptionImpl implements _SliderOption {
-  const _$SliderOptionImpl(
-      {this.sliderThumbColor = const ColorOption(),
-      this.sliderTrackActiveColor = const ColorOption(),
-      this.sliderTrackInactiveColor = const ColorOption(),
-      this.sliderThumbShape = SliderThumbShape.circle});
-
-  factory _$SliderOptionImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SliderOptionImplFromJson(json);
-
-  @override
-  @JsonKey()
-  final ColorOption sliderThumbColor;
-  @override
-  @JsonKey()
-  final ColorOption sliderTrackActiveColor;
-  @override
-  @JsonKey()
-  final ColorOption sliderTrackInactiveColor;
-  @override
-  @JsonKey()
-  final SliderThumbShape sliderThumbShape;
-
-  @override
-  String toString() {
-    return 'SliderOption(sliderThumbColor: $sliderThumbColor, sliderTrackActiveColor: $sliderTrackActiveColor, sliderTrackInactiveColor: $sliderTrackInactiveColor, sliderThumbShape: $sliderThumbShape)';
-  }
+  /// Serializes this SliderOption to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SliderOptionImpl &&
+            other is SliderOption &&
             (identical(other.sliderThumbColor, sliderThumbColor) ||
                 other.sliderThumbColor == sliderThumbColor) &&
             (identical(other.sliderTrackActiveColor, sliderTrackActiveColor) ||
@@ -946,579 +1246,465 @@ class _$SliderOptionImpl implements _SliderOption {
   int get hashCode => Object.hash(runtimeType, sliderThumbColor,
       sliderTrackActiveColor, sliderTrackInactiveColor, sliderThumbShape);
 
-  /// Create a copy of SliderOption
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$SliderOptionImplCopyWith<_$SliderOptionImpl> get copyWith =>
-      __$$SliderOptionImplCopyWithImpl<_$SliderOptionImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SliderOptionImplToJson(
-      this,
-    );
+  String toString() {
+    return 'SliderOption(sliderThumbColor: $sliderThumbColor, sliderTrackActiveColor: $sliderTrackActiveColor, sliderTrackInactiveColor: $sliderTrackInactiveColor, sliderThumbShape: $sliderThumbShape)';
   }
 }
 
-abstract class _SliderOption implements SliderOption {
-  const factory _SliderOption(
-      {final ColorOption sliderThumbColor,
-      final ColorOption sliderTrackActiveColor,
-      final ColorOption sliderTrackInactiveColor,
-      final SliderThumbShape sliderThumbShape}) = _$SliderOptionImpl;
-
-  factory _SliderOption.fromJson(Map<String, dynamic> json) =
-      _$SliderOptionImpl.fromJson;
-
-  @override
-  ColorOption get sliderThumbColor;
-  @override
-  ColorOption get sliderTrackActiveColor;
-  @override
-  ColorOption get sliderTrackInactiveColor;
-  @override
-  SliderThumbShape get sliderThumbShape;
-
-  /// Create a copy of SliderOption
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SliderOptionImplCopyWith<_$SliderOptionImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-ChoiceNodeDesignPreset _$ChoiceNodeDesignPresetFromJson(
-    Map<String, dynamic> json) {
-  return _ChoiceNodeDesignPreset.fromJson(json);
-}
-
 /// @nodoc
-mixin _$ChoiceNodeDesignPreset {
-  bool? get titlePosition => throw _privateConstructorUsedError;
-  double? get elevation => throw _privateConstructorUsedError;
-  VertexValue? get round => throw _privateConstructorUsedError;
-  EdgeValue? get padding => throw _privateConstructorUsedError;
-  double? get imageMaxHeightRatio => throw _privateConstructorUsedError;
-  bool? get hideTitle => throw _privateConstructorUsedError;
-  int? get imagePosition =>
-      throw _privateConstructorUsedError; //0:default, 1:image-right 2:image-left
-  int? get colorTitle => throw _privateConstructorUsedError;
-  String? get titleFont => throw _privateConstructorUsedError;
-  String? get mainFont => throw _privateConstructorUsedError;
-  OutlineOption? get defaultOutlineOption => throw _privateConstructorUsedError;
-  bool? get selectOutlineEnable => throw _privateConstructorUsedError;
-  OutlineOption? get selectOutlineOption => throw _privateConstructorUsedError;
-  ColorOption? get defaultColorOption => throw _privateConstructorUsedError;
-  bool? get selectColorEnable => throw _privateConstructorUsedError;
-  ColorOption? get selectColorOption => throw _privateConstructorUsedError;
-  SliderOption? get sliderOption => throw _privateConstructorUsedError;
-
-  /// Serializes this ChoiceNodeDesignPreset to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ChoiceNodeDesignPreset
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ChoiceNodeDesignPresetCopyWith<ChoiceNodeDesignPreset> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ChoiceNodeDesignPresetCopyWith<$Res> {
-  factory $ChoiceNodeDesignPresetCopyWith(ChoiceNodeDesignPreset value,
-          $Res Function(ChoiceNodeDesignPreset) then) =
-      _$ChoiceNodeDesignPresetCopyWithImpl<$Res, ChoiceNodeDesignPreset>;
+abstract mixin class $SliderOptionCopyWith<$Res> {
+  factory $SliderOptionCopyWith(
+          SliderOption value, $Res Function(SliderOption) _then) =
+      _$SliderOptionCopyWithImpl;
   @useResult
   $Res call(
-      {bool? titlePosition,
-      double? elevation,
-      VertexValue? round,
-      EdgeValue? padding,
-      double? imageMaxHeightRatio,
-      bool? hideTitle,
-      int? imagePosition,
-      int? colorTitle,
-      String? titleFont,
-      String? mainFont,
-      OutlineOption? defaultOutlineOption,
-      bool? selectOutlineEnable,
-      OutlineOption? selectOutlineOption,
-      ColorOption? defaultColorOption,
-      bool? selectColorEnable,
-      ColorOption? selectColorOption,
-      SliderOption? sliderOption});
+      {ColorOption sliderThumbColor,
+      ColorOption sliderTrackActiveColor,
+      ColorOption sliderTrackInactiveColor,
+      SliderThumbShape sliderThumbShape});
 
-  $VertexValueCopyWith<$Res>? get round;
-  $EdgeValueCopyWith<$Res>? get padding;
-  $OutlineOptionCopyWith<$Res>? get defaultOutlineOption;
-  $OutlineOptionCopyWith<$Res>? get selectOutlineOption;
-  $ColorOptionCopyWith<$Res>? get defaultColorOption;
-  $ColorOptionCopyWith<$Res>? get selectColorOption;
-  $SliderOptionCopyWith<$Res>? get sliderOption;
+  $ColorOptionCopyWith<$Res> get sliderThumbColor;
+  $ColorOptionCopyWith<$Res> get sliderTrackActiveColor;
+  $ColorOptionCopyWith<$Res> get sliderTrackInactiveColor;
 }
 
 /// @nodoc
-class _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
-        $Val extends ChoiceNodeDesignPreset>
-    implements $ChoiceNodeDesignPresetCopyWith<$Res> {
-  _$ChoiceNodeDesignPresetCopyWithImpl(this._value, this._then);
+class _$SliderOptionCopyWithImpl<$Res> implements $SliderOptionCopyWith<$Res> {
+  _$SliderOptionCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final SliderOption _self;
+  final $Res Function(SliderOption) _then;
 
-  /// Create a copy of ChoiceNodeDesignPreset
+  /// Create a copy of SliderOption
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? titlePosition = freezed,
-    Object? elevation = freezed,
-    Object? round = freezed,
-    Object? padding = freezed,
-    Object? imageMaxHeightRatio = freezed,
-    Object? hideTitle = freezed,
-    Object? imagePosition = freezed,
-    Object? colorTitle = freezed,
-    Object? titleFont = freezed,
-    Object? mainFont = freezed,
-    Object? defaultOutlineOption = freezed,
-    Object? selectOutlineEnable = freezed,
-    Object? selectOutlineOption = freezed,
-    Object? defaultColorOption = freezed,
-    Object? selectColorEnable = freezed,
-    Object? selectColorOption = freezed,
-    Object? sliderOption = freezed,
+    Object? sliderThumbColor = null,
+    Object? sliderTrackActiveColor = null,
+    Object? sliderTrackInactiveColor = null,
+    Object? sliderThumbShape = null,
   }) {
-    return _then(_value.copyWith(
-      titlePosition: freezed == titlePosition
-          ? _value.titlePosition
-          : titlePosition // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      elevation: freezed == elevation
-          ? _value.elevation
-          : elevation // ignore: cast_nullable_to_non_nullable
-              as double?,
-      round: freezed == round
-          ? _value.round
-          : round // ignore: cast_nullable_to_non_nullable
-              as VertexValue?,
-      padding: freezed == padding
-          ? _value.padding
-          : padding // ignore: cast_nullable_to_non_nullable
-              as EdgeValue?,
-      imageMaxHeightRatio: freezed == imageMaxHeightRatio
-          ? _value.imageMaxHeightRatio
-          : imageMaxHeightRatio // ignore: cast_nullable_to_non_nullable
-              as double?,
-      hideTitle: freezed == hideTitle
-          ? _value.hideTitle
-          : hideTitle // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      imagePosition: freezed == imagePosition
-          ? _value.imagePosition
-          : imagePosition // ignore: cast_nullable_to_non_nullable
-              as int?,
-      colorTitle: freezed == colorTitle
-          ? _value.colorTitle
-          : colorTitle // ignore: cast_nullable_to_non_nullable
-              as int?,
-      titleFont: freezed == titleFont
-          ? _value.titleFont
-          : titleFont // ignore: cast_nullable_to_non_nullable
-              as String?,
-      mainFont: freezed == mainFont
-          ? _value.mainFont
-          : mainFont // ignore: cast_nullable_to_non_nullable
-              as String?,
-      defaultOutlineOption: freezed == defaultOutlineOption
-          ? _value.defaultOutlineOption
-          : defaultOutlineOption // ignore: cast_nullable_to_non_nullable
-              as OutlineOption?,
-      selectOutlineEnable: freezed == selectOutlineEnable
-          ? _value.selectOutlineEnable
-          : selectOutlineEnable // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      selectOutlineOption: freezed == selectOutlineOption
-          ? _value.selectOutlineOption
-          : selectOutlineOption // ignore: cast_nullable_to_non_nullable
-              as OutlineOption?,
-      defaultColorOption: freezed == defaultColorOption
-          ? _value.defaultColorOption
-          : defaultColorOption // ignore: cast_nullable_to_non_nullable
-              as ColorOption?,
-      selectColorEnable: freezed == selectColorEnable
-          ? _value.selectColorEnable
-          : selectColorEnable // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      selectColorOption: freezed == selectColorOption
-          ? _value.selectColorOption
-          : selectColorOption // ignore: cast_nullable_to_non_nullable
-              as ColorOption?,
-      sliderOption: freezed == sliderOption
-          ? _value.sliderOption
-          : sliderOption // ignore: cast_nullable_to_non_nullable
-              as SliderOption?,
-    ) as $Val);
-  }
-
-  /// Create a copy of ChoiceNodeDesignPreset
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $VertexValueCopyWith<$Res>? get round {
-    if (_value.round == null) {
-      return null;
-    }
-
-    return $VertexValueCopyWith<$Res>(_value.round!, (value) {
-      return _then(_value.copyWith(round: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ChoiceNodeDesignPreset
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $EdgeValueCopyWith<$Res>? get padding {
-    if (_value.padding == null) {
-      return null;
-    }
-
-    return $EdgeValueCopyWith<$Res>(_value.padding!, (value) {
-      return _then(_value.copyWith(padding: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ChoiceNodeDesignPreset
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $OutlineOptionCopyWith<$Res>? get defaultOutlineOption {
-    if (_value.defaultOutlineOption == null) {
-      return null;
-    }
-
-    return $OutlineOptionCopyWith<$Res>(_value.defaultOutlineOption!, (value) {
-      return _then(_value.copyWith(defaultOutlineOption: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ChoiceNodeDesignPreset
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $OutlineOptionCopyWith<$Res>? get selectOutlineOption {
-    if (_value.selectOutlineOption == null) {
-      return null;
-    }
-
-    return $OutlineOptionCopyWith<$Res>(_value.selectOutlineOption!, (value) {
-      return _then(_value.copyWith(selectOutlineOption: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ChoiceNodeDesignPreset
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ColorOptionCopyWith<$Res>? get defaultColorOption {
-    if (_value.defaultColorOption == null) {
-      return null;
-    }
-
-    return $ColorOptionCopyWith<$Res>(_value.defaultColorOption!, (value) {
-      return _then(_value.copyWith(defaultColorOption: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ChoiceNodeDesignPreset
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ColorOptionCopyWith<$Res>? get selectColorOption {
-    if (_value.selectColorOption == null) {
-      return null;
-    }
-
-    return $ColorOptionCopyWith<$Res>(_value.selectColorOption!, (value) {
-      return _then(_value.copyWith(selectColorOption: value) as $Val);
-    });
-  }
-
-  /// Create a copy of ChoiceNodeDesignPreset
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $SliderOptionCopyWith<$Res>? get sliderOption {
-    if (_value.sliderOption == null) {
-      return null;
-    }
-
-    return $SliderOptionCopyWith<$Res>(_value.sliderOption!, (value) {
-      return _then(_value.copyWith(sliderOption: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$ChoiceNodeDesignPresetImplCopyWith<$Res>
-    implements $ChoiceNodeDesignPresetCopyWith<$Res> {
-  factory _$$ChoiceNodeDesignPresetImplCopyWith(
-          _$ChoiceNodeDesignPresetImpl value,
-          $Res Function(_$ChoiceNodeDesignPresetImpl) then) =
-      __$$ChoiceNodeDesignPresetImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {bool? titlePosition,
-      double? elevation,
-      VertexValue? round,
-      EdgeValue? padding,
-      double? imageMaxHeightRatio,
-      bool? hideTitle,
-      int? imagePosition,
-      int? colorTitle,
-      String? titleFont,
-      String? mainFont,
-      OutlineOption? defaultOutlineOption,
-      bool? selectOutlineEnable,
-      OutlineOption? selectOutlineOption,
-      ColorOption? defaultColorOption,
-      bool? selectColorEnable,
-      ColorOption? selectColorOption,
-      SliderOption? sliderOption});
-
-  @override
-  $VertexValueCopyWith<$Res>? get round;
-  @override
-  $EdgeValueCopyWith<$Res>? get padding;
-  @override
-  $OutlineOptionCopyWith<$Res>? get defaultOutlineOption;
-  @override
-  $OutlineOptionCopyWith<$Res>? get selectOutlineOption;
-  @override
-  $ColorOptionCopyWith<$Res>? get defaultColorOption;
-  @override
-  $ColorOptionCopyWith<$Res>? get selectColorOption;
-  @override
-  $SliderOptionCopyWith<$Res>? get sliderOption;
-}
-
-/// @nodoc
-class __$$ChoiceNodeDesignPresetImplCopyWithImpl<$Res>
-    extends _$ChoiceNodeDesignPresetCopyWithImpl<$Res,
-        _$ChoiceNodeDesignPresetImpl>
-    implements _$$ChoiceNodeDesignPresetImplCopyWith<$Res> {
-  __$$ChoiceNodeDesignPresetImplCopyWithImpl(
-      _$ChoiceNodeDesignPresetImpl _value,
-      $Res Function(_$ChoiceNodeDesignPresetImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ChoiceNodeDesignPreset
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? titlePosition = freezed,
-    Object? elevation = freezed,
-    Object? round = freezed,
-    Object? padding = freezed,
-    Object? imageMaxHeightRatio = freezed,
-    Object? hideTitle = freezed,
-    Object? imagePosition = freezed,
-    Object? colorTitle = freezed,
-    Object? titleFont = freezed,
-    Object? mainFont = freezed,
-    Object? defaultOutlineOption = freezed,
-    Object? selectOutlineEnable = freezed,
-    Object? selectOutlineOption = freezed,
-    Object? defaultColorOption = freezed,
-    Object? selectColorEnable = freezed,
-    Object? selectColorOption = freezed,
-    Object? sliderOption = freezed,
-  }) {
-    return _then(_$ChoiceNodeDesignPresetImpl(
-      titlePosition: freezed == titlePosition
-          ? _value.titlePosition
-          : titlePosition // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      elevation: freezed == elevation
-          ? _value.elevation
-          : elevation // ignore: cast_nullable_to_non_nullable
-              as double?,
-      round: freezed == round
-          ? _value.round
-          : round // ignore: cast_nullable_to_non_nullable
-              as VertexValue?,
-      padding: freezed == padding
-          ? _value.padding
-          : padding // ignore: cast_nullable_to_non_nullable
-              as EdgeValue?,
-      imageMaxHeightRatio: freezed == imageMaxHeightRatio
-          ? _value.imageMaxHeightRatio
-          : imageMaxHeightRatio // ignore: cast_nullable_to_non_nullable
-              as double?,
-      hideTitle: freezed == hideTitle
-          ? _value.hideTitle
-          : hideTitle // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      imagePosition: freezed == imagePosition
-          ? _value.imagePosition
-          : imagePosition // ignore: cast_nullable_to_non_nullable
-              as int?,
-      colorTitle: freezed == colorTitle
-          ? _value.colorTitle
-          : colorTitle // ignore: cast_nullable_to_non_nullable
-              as int?,
-      titleFont: freezed == titleFont
-          ? _value.titleFont
-          : titleFont // ignore: cast_nullable_to_non_nullable
-              as String?,
-      mainFont: freezed == mainFont
-          ? _value.mainFont
-          : mainFont // ignore: cast_nullable_to_non_nullable
-              as String?,
-      defaultOutlineOption: freezed == defaultOutlineOption
-          ? _value.defaultOutlineOption
-          : defaultOutlineOption // ignore: cast_nullable_to_non_nullable
-              as OutlineOption?,
-      selectOutlineEnable: freezed == selectOutlineEnable
-          ? _value.selectOutlineEnable
-          : selectOutlineEnable // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      selectOutlineOption: freezed == selectOutlineOption
-          ? _value.selectOutlineOption
-          : selectOutlineOption // ignore: cast_nullable_to_non_nullable
-              as OutlineOption?,
-      defaultColorOption: freezed == defaultColorOption
-          ? _value.defaultColorOption
-          : defaultColorOption // ignore: cast_nullable_to_non_nullable
-              as ColorOption?,
-      selectColorEnable: freezed == selectColorEnable
-          ? _value.selectColorEnable
-          : selectColorEnable // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      selectColorOption: freezed == selectColorOption
-          ? _value.selectColorOption
-          : selectColorOption // ignore: cast_nullable_to_non_nullable
-              as ColorOption?,
-      sliderOption: freezed == sliderOption
-          ? _value.sliderOption
-          : sliderOption // ignore: cast_nullable_to_non_nullable
-              as SliderOption?,
+    return _then(_self.copyWith(
+      sliderThumbColor: null == sliderThumbColor
+          ? _self.sliderThumbColor
+          : sliderThumbColor // ignore: cast_nullable_to_non_nullable
+              as ColorOption,
+      sliderTrackActiveColor: null == sliderTrackActiveColor
+          ? _self.sliderTrackActiveColor
+          : sliderTrackActiveColor // ignore: cast_nullable_to_non_nullable
+              as ColorOption,
+      sliderTrackInactiveColor: null == sliderTrackInactiveColor
+          ? _self.sliderTrackInactiveColor
+          : sliderTrackInactiveColor // ignore: cast_nullable_to_non_nullable
+              as ColorOption,
+      sliderThumbShape: null == sliderThumbShape
+          ? _self.sliderThumbShape
+          : sliderThumbShape // ignore: cast_nullable_to_non_nullable
+              as SliderThumbShape,
     ));
+  }
+
+  /// Create a copy of SliderOption
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ColorOptionCopyWith<$Res> get sliderThumbColor {
+    return $ColorOptionCopyWith<$Res>(_self.sliderThumbColor, (value) {
+      return _then(_self.copyWith(sliderThumbColor: value));
+    });
+  }
+
+  /// Create a copy of SliderOption
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ColorOptionCopyWith<$Res> get sliderTrackActiveColor {
+    return $ColorOptionCopyWith<$Res>(_self.sliderTrackActiveColor, (value) {
+      return _then(_self.copyWith(sliderTrackActiveColor: value));
+    });
+  }
+
+  /// Create a copy of SliderOption
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ColorOptionCopyWith<$Res> get sliderTrackInactiveColor {
+    return $ColorOptionCopyWith<$Res>(_self.sliderTrackInactiveColor, (value) {
+      return _then(_self.copyWith(sliderTrackInactiveColor: value));
+    });
+  }
+}
+
+/// Adds pattern-matching-related methods to [SliderOption].
+extension SliderOptionPatterns on SliderOption {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_SliderOption value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _SliderOption() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_SliderOption value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SliderOption():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_SliderOption value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SliderOption() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            ColorOption sliderThumbColor,
+            ColorOption sliderTrackActiveColor,
+            ColorOption sliderTrackInactiveColor,
+            SliderThumbShape sliderThumbShape)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _SliderOption() when $default != null:
+        return $default(_that.sliderThumbColor, _that.sliderTrackActiveColor,
+            _that.sliderTrackInactiveColor, _that.sliderThumbShape);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            ColorOption sliderThumbColor,
+            ColorOption sliderTrackActiveColor,
+            ColorOption sliderTrackInactiveColor,
+            SliderThumbShape sliderThumbShape)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SliderOption():
+        return $default(_that.sliderThumbColor, _that.sliderTrackActiveColor,
+            _that.sliderTrackInactiveColor, _that.sliderThumbShape);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            ColorOption sliderThumbColor,
+            ColorOption sliderTrackActiveColor,
+            ColorOption sliderTrackInactiveColor,
+            SliderThumbShape sliderThumbShape)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _SliderOption() when $default != null:
+        return $default(_that.sliderThumbColor, _that.sliderTrackActiveColor,
+            _that.sliderTrackInactiveColor, _that.sliderThumbShape);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
-  const _$ChoiceNodeDesignPresetImpl(
-      {this.titlePosition = true,
-      this.elevation = 4.0,
-      this.round = const VertexValue(
-          topLeft: 4.0, topRight: 4.0, bottomLeft: 4.0, bottomRight: 4.0),
-      this.padding =
-          const EdgeValue(top: 4.0, left: 4.0, right: 4.0, bottom: 4.0),
-      this.imageMaxHeightRatio = 0.5,
-      this.hideTitle = false,
-      this.imagePosition = 0,
-      this.colorTitle = 0xFF000000,
-      this.titleFont = "notoSans",
-      this.mainFont = "notoSans",
-      this.defaultOutlineOption = const OutlineOption(
-          distance: EdgeValue(top: 0.0, left: 0.0, right: 0.0, bottom: 0.0),
-          outlineColor: ColorOption(color: 0xFFFFFFFF)),
-      this.selectOutlineEnable = true,
-      this.selectOutlineOption = const OutlineOption(
-          distance: EdgeValue(top: 4.0, left: 4.0, right: 4.0, bottom: 4.0),
-          outlineColor: ColorOption(color: 0xFF91ABFF)),
-      this.defaultColorOption = const ColorOption(color: 0xFFFFFFFF),
-      this.selectColorEnable = true,
-      this.selectColorOption = const ColorOption(
-          colorType: ColorType.gradient,
-          gradientType: GradientType.linear,
-          gradientData: [
-            GradientData(gradientPos: (0, 0), color: 0xFFDADBFF),
-            GradientData(gradientPos: (1, 1), color: 0xFFD6F3FF)
-          ]),
-      this.sliderOption = const SliderOption(
-          sliderThumbColor: ColorOption(color: 0xFFDAF4FF),
-          sliderTrackActiveColor: ColorOption(color: 0xFFB0E5FD),
-          sliderTrackInactiveColor: ColorOption(color: 0xFFC6EDFF),
-          sliderThumbShape: SliderThumbShape.circle)})
-      : super._();
-
-  factory _$ChoiceNodeDesignPresetImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ChoiceNodeDesignPresetImplFromJson(json);
+class _SliderOption implements SliderOption {
+  const _SliderOption(
+      {this.sliderThumbColor = const ColorOption(),
+      this.sliderTrackActiveColor = const ColorOption(),
+      this.sliderTrackInactiveColor = const ColorOption(),
+      this.sliderThumbShape = SliderThumbShape.circle});
+  factory _SliderOption.fromJson(Map<String, dynamic> json) =>
+      _$SliderOptionFromJson(json);
 
   @override
   @JsonKey()
-  final bool? titlePosition;
+  final ColorOption sliderThumbColor;
   @override
   @JsonKey()
-  final double? elevation;
+  final ColorOption sliderTrackActiveColor;
   @override
   @JsonKey()
-  final VertexValue? round;
+  final ColorOption sliderTrackInactiveColor;
   @override
   @JsonKey()
-  final EdgeValue? padding;
+  final SliderThumbShape sliderThumbShape;
+
+  /// Create a copy of SliderOption
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey()
-  final double? imageMaxHeightRatio;
-  @override
-  @JsonKey()
-  final bool? hideTitle;
-  @override
-  @JsonKey()
-  final int? imagePosition;
-//0:default, 1:image-right 2:image-left
-  @override
-  @JsonKey()
-  final int? colorTitle;
-  @override
-  @JsonKey()
-  final String? titleFont;
-  @override
-  @JsonKey()
-  final String? mainFont;
-  @override
-  @JsonKey()
-  final OutlineOption? defaultOutlineOption;
-  @override
-  @JsonKey()
-  final bool? selectOutlineEnable;
-  @override
-  @JsonKey()
-  final OutlineOption? selectOutlineOption;
-  @override
-  @JsonKey()
-  final ColorOption? defaultColorOption;
-  @override
-  @JsonKey()
-  final bool? selectColorEnable;
-  @override
-  @JsonKey()
-  final ColorOption? selectColorOption;
-  @override
-  @JsonKey()
-  final SliderOption? sliderOption;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$SliderOptionCopyWith<_SliderOption> get copyWith =>
+      __$SliderOptionCopyWithImpl<_SliderOption>(this, _$identity);
 
   @override
-  String toString() {
-    return 'ChoiceNodeDesignPreset(titlePosition: $titlePosition, elevation: $elevation, round: $round, padding: $padding, imageMaxHeightRatio: $imageMaxHeightRatio, hideTitle: $hideTitle, imagePosition: $imagePosition, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont, defaultOutlineOption: $defaultOutlineOption, selectOutlineEnable: $selectOutlineEnable, selectOutlineOption: $selectOutlineOption, defaultColorOption: $defaultColorOption, selectColorEnable: $selectColorEnable, selectColorOption: $selectColorOption, sliderOption: $sliderOption)';
+  Map<String, dynamic> toJson() {
+    return _$SliderOptionToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ChoiceNodeDesignPresetImpl &&
+            other is _SliderOption &&
+            (identical(other.sliderThumbColor, sliderThumbColor) ||
+                other.sliderThumbColor == sliderThumbColor) &&
+            (identical(other.sliderTrackActiveColor, sliderTrackActiveColor) ||
+                other.sliderTrackActiveColor == sliderTrackActiveColor) &&
+            (identical(
+                    other.sliderTrackInactiveColor, sliderTrackInactiveColor) ||
+                other.sliderTrackInactiveColor == sliderTrackInactiveColor) &&
+            (identical(other.sliderThumbShape, sliderThumbShape) ||
+                other.sliderThumbShape == sliderThumbShape));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, sliderThumbColor,
+      sliderTrackActiveColor, sliderTrackInactiveColor, sliderThumbShape);
+
+  @override
+  String toString() {
+    return 'SliderOption(sliderThumbColor: $sliderThumbColor, sliderTrackActiveColor: $sliderTrackActiveColor, sliderTrackInactiveColor: $sliderTrackInactiveColor, sliderThumbShape: $sliderThumbShape)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$SliderOptionCopyWith<$Res>
+    implements $SliderOptionCopyWith<$Res> {
+  factory _$SliderOptionCopyWith(
+          _SliderOption value, $Res Function(_SliderOption) _then) =
+      __$SliderOptionCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {ColorOption sliderThumbColor,
+      ColorOption sliderTrackActiveColor,
+      ColorOption sliderTrackInactiveColor,
+      SliderThumbShape sliderThumbShape});
+
+  @override
+  $ColorOptionCopyWith<$Res> get sliderThumbColor;
+  @override
+  $ColorOptionCopyWith<$Res> get sliderTrackActiveColor;
+  @override
+  $ColorOptionCopyWith<$Res> get sliderTrackInactiveColor;
+}
+
+/// @nodoc
+class __$SliderOptionCopyWithImpl<$Res>
+    implements _$SliderOptionCopyWith<$Res> {
+  __$SliderOptionCopyWithImpl(this._self, this._then);
+
+  final _SliderOption _self;
+  final $Res Function(_SliderOption) _then;
+
+  /// Create a copy of SliderOption
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? sliderThumbColor = null,
+    Object? sliderTrackActiveColor = null,
+    Object? sliderTrackInactiveColor = null,
+    Object? sliderThumbShape = null,
+  }) {
+    return _then(_SliderOption(
+      sliderThumbColor: null == sliderThumbColor
+          ? _self.sliderThumbColor
+          : sliderThumbColor // ignore: cast_nullable_to_non_nullable
+              as ColorOption,
+      sliderTrackActiveColor: null == sliderTrackActiveColor
+          ? _self.sliderTrackActiveColor
+          : sliderTrackActiveColor // ignore: cast_nullable_to_non_nullable
+              as ColorOption,
+      sliderTrackInactiveColor: null == sliderTrackInactiveColor
+          ? _self.sliderTrackInactiveColor
+          : sliderTrackInactiveColor // ignore: cast_nullable_to_non_nullable
+              as ColorOption,
+      sliderThumbShape: null == sliderThumbShape
+          ? _self.sliderThumbShape
+          : sliderThumbShape // ignore: cast_nullable_to_non_nullable
+              as SliderThumbShape,
+    ));
+  }
+
+  /// Create a copy of SliderOption
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ColorOptionCopyWith<$Res> get sliderThumbColor {
+    return $ColorOptionCopyWith<$Res>(_self.sliderThumbColor, (value) {
+      return _then(_self.copyWith(sliderThumbColor: value));
+    });
+  }
+
+  /// Create a copy of SliderOption
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ColorOptionCopyWith<$Res> get sliderTrackActiveColor {
+    return $ColorOptionCopyWith<$Res>(_self.sliderTrackActiveColor, (value) {
+      return _then(_self.copyWith(sliderTrackActiveColor: value));
+    });
+  }
+
+  /// Create a copy of SliderOption
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ColorOptionCopyWith<$Res> get sliderTrackInactiveColor {
+    return $ColorOptionCopyWith<$Res>(_self.sliderTrackInactiveColor, (value) {
+      return _then(_self.copyWith(sliderTrackInactiveColor: value));
+    });
+  }
+}
+
+/// @nodoc
+mixin _$ChoiceNodeDesignPreset {
+  bool? get titlePosition;
+  double? get elevation;
+  VertexValue? get round;
+  EdgeValue? get padding;
+  double? get imageMaxHeightRatio;
+  bool? get hideTitle;
+  int? get imagePosition; //0:default, 1:image-right 2:image-left
+  int? get colorTitle;
+  String? get titleFont;
+  String? get mainFont;
+  OutlineOption? get defaultOutlineOption;
+  bool? get selectOutlineEnable;
+  OutlineOption? get selectOutlineOption;
+  ColorOption? get defaultColorOption;
+  bool? get selectColorEnable;
+  ColorOption? get selectColorOption;
+  SliderOption? get sliderOption;
+
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChoiceNodeDesignPresetCopyWith<ChoiceNodeDesignPreset> get copyWith =>
+      _$ChoiceNodeDesignPresetCopyWithImpl<ChoiceNodeDesignPreset>(
+          this as ChoiceNodeDesignPreset, _$identity);
+
+  /// Serializes this ChoiceNodeDesignPreset to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ChoiceNodeDesignPreset &&
             (identical(other.titlePosition, titlePosition) ||
                 other.titlePosition == titlePosition) &&
             (identical(other.elevation, elevation) ||
@@ -1575,86 +1761,930 @@ class _$ChoiceNodeDesignPresetImpl extends _ChoiceNodeDesignPreset {
       selectColorOption,
       sliderOption);
 
-  /// Create a copy of ChoiceNodeDesignPreset
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ChoiceNodeDesignPresetImplCopyWith<_$ChoiceNodeDesignPresetImpl>
-      get copyWith => __$$ChoiceNodeDesignPresetImplCopyWithImpl<
-          _$ChoiceNodeDesignPresetImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ChoiceNodeDesignPresetImplToJson(
-      this,
-    );
+  String toString() {
+    return 'ChoiceNodeDesignPreset(titlePosition: $titlePosition, elevation: $elevation, round: $round, padding: $padding, imageMaxHeightRatio: $imageMaxHeightRatio, hideTitle: $hideTitle, imagePosition: $imagePosition, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont, defaultOutlineOption: $defaultOutlineOption, selectOutlineEnable: $selectOutlineEnable, selectOutlineOption: $selectOutlineOption, defaultColorOption: $defaultColorOption, selectColorEnable: $selectColorEnable, selectColorOption: $selectColorOption, sliderOption: $sliderOption)';
   }
 }
 
-abstract class _ChoiceNodeDesignPreset extends ChoiceNodeDesignPreset {
-  const factory _ChoiceNodeDesignPreset(
-      {final bool? titlePosition,
-      final double? elevation,
-      final VertexValue? round,
-      final EdgeValue? padding,
-      final double? imageMaxHeightRatio,
-      final bool? hideTitle,
-      final int? imagePosition,
-      final int? colorTitle,
-      final String? titleFont,
-      final String? mainFont,
-      final OutlineOption? defaultOutlineOption,
-      final bool? selectOutlineEnable,
-      final OutlineOption? selectOutlineOption,
-      final ColorOption? defaultColorOption,
-      final bool? selectColorEnable,
-      final ColorOption? selectColorOption,
-      final SliderOption? sliderOption}) = _$ChoiceNodeDesignPresetImpl;
-  const _ChoiceNodeDesignPreset._() : super._();
+/// @nodoc
+abstract mixin class $ChoiceNodeDesignPresetCopyWith<$Res> {
+  factory $ChoiceNodeDesignPresetCopyWith(ChoiceNodeDesignPreset value,
+          $Res Function(ChoiceNodeDesignPreset) _then) =
+      _$ChoiceNodeDesignPresetCopyWithImpl;
+  @useResult
+  $Res call(
+      {bool? titlePosition,
+      double? elevation,
+      VertexValue? round,
+      EdgeValue? padding,
+      double? imageMaxHeightRatio,
+      bool? hideTitle,
+      int? imagePosition,
+      int? colorTitle,
+      String? titleFont,
+      String? mainFont,
+      OutlineOption? defaultOutlineOption,
+      bool? selectOutlineEnable,
+      OutlineOption? selectOutlineOption,
+      ColorOption? defaultColorOption,
+      bool? selectColorEnable,
+      ColorOption? selectColorOption,
+      SliderOption? sliderOption});
 
-  factory _ChoiceNodeDesignPreset.fromJson(Map<String, dynamic> json) =
-      _$ChoiceNodeDesignPresetImpl.fromJson;
+  $VertexValueCopyWith<$Res>? get round;
+  $EdgeValueCopyWith<$Res>? get padding;
+  $OutlineOptionCopyWith<$Res>? get defaultOutlineOption;
+  $OutlineOptionCopyWith<$Res>? get selectOutlineOption;
+  $ColorOptionCopyWith<$Res>? get defaultColorOption;
+  $ColorOptionCopyWith<$Res>? get selectColorOption;
+  $SliderOptionCopyWith<$Res>? get sliderOption;
+}
+
+/// @nodoc
+class _$ChoiceNodeDesignPresetCopyWithImpl<$Res>
+    implements $ChoiceNodeDesignPresetCopyWith<$Res> {
+  _$ChoiceNodeDesignPresetCopyWithImpl(this._self, this._then);
+
+  final ChoiceNodeDesignPreset _self;
+  final $Res Function(ChoiceNodeDesignPreset) _then;
+
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? titlePosition = freezed,
+    Object? elevation = freezed,
+    Object? round = freezed,
+    Object? padding = freezed,
+    Object? imageMaxHeightRatio = freezed,
+    Object? hideTitle = freezed,
+    Object? imagePosition = freezed,
+    Object? colorTitle = freezed,
+    Object? titleFont = freezed,
+    Object? mainFont = freezed,
+    Object? defaultOutlineOption = freezed,
+    Object? selectOutlineEnable = freezed,
+    Object? selectOutlineOption = freezed,
+    Object? defaultColorOption = freezed,
+    Object? selectColorEnable = freezed,
+    Object? selectColorOption = freezed,
+    Object? sliderOption = freezed,
+  }) {
+    return _then(_self.copyWith(
+      titlePosition: freezed == titlePosition
+          ? _self.titlePosition
+          : titlePosition // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      elevation: freezed == elevation
+          ? _self.elevation
+          : elevation // ignore: cast_nullable_to_non_nullable
+              as double?,
+      round: freezed == round
+          ? _self.round
+          : round // ignore: cast_nullable_to_non_nullable
+              as VertexValue?,
+      padding: freezed == padding
+          ? _self.padding
+          : padding // ignore: cast_nullable_to_non_nullable
+              as EdgeValue?,
+      imageMaxHeightRatio: freezed == imageMaxHeightRatio
+          ? _self.imageMaxHeightRatio
+          : imageMaxHeightRatio // ignore: cast_nullable_to_non_nullable
+              as double?,
+      hideTitle: freezed == hideTitle
+          ? _self.hideTitle
+          : hideTitle // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      imagePosition: freezed == imagePosition
+          ? _self.imagePosition
+          : imagePosition // ignore: cast_nullable_to_non_nullable
+              as int?,
+      colorTitle: freezed == colorTitle
+          ? _self.colorTitle
+          : colorTitle // ignore: cast_nullable_to_non_nullable
+              as int?,
+      titleFont: freezed == titleFont
+          ? _self.titleFont
+          : titleFont // ignore: cast_nullable_to_non_nullable
+              as String?,
+      mainFont: freezed == mainFont
+          ? _self.mainFont
+          : mainFont // ignore: cast_nullable_to_non_nullable
+              as String?,
+      defaultOutlineOption: freezed == defaultOutlineOption
+          ? _self.defaultOutlineOption
+          : defaultOutlineOption // ignore: cast_nullable_to_non_nullable
+              as OutlineOption?,
+      selectOutlineEnable: freezed == selectOutlineEnable
+          ? _self.selectOutlineEnable
+          : selectOutlineEnable // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      selectOutlineOption: freezed == selectOutlineOption
+          ? _self.selectOutlineOption
+          : selectOutlineOption // ignore: cast_nullable_to_non_nullable
+              as OutlineOption?,
+      defaultColorOption: freezed == defaultColorOption
+          ? _self.defaultColorOption
+          : defaultColorOption // ignore: cast_nullable_to_non_nullable
+              as ColorOption?,
+      selectColorEnable: freezed == selectColorEnable
+          ? _self.selectColorEnable
+          : selectColorEnable // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      selectColorOption: freezed == selectColorOption
+          ? _self.selectColorOption
+          : selectColorOption // ignore: cast_nullable_to_non_nullable
+              as ColorOption?,
+      sliderOption: freezed == sliderOption
+          ? _self.sliderOption
+          : sliderOption // ignore: cast_nullable_to_non_nullable
+              as SliderOption?,
+    ));
+  }
+
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $VertexValueCopyWith<$Res>? get round {
+    if (_self.round == null) {
+      return null;
+    }
+
+    return $VertexValueCopyWith<$Res>(_self.round!, (value) {
+      return _then(_self.copyWith(round: value));
+    });
+  }
+
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $EdgeValueCopyWith<$Res>? get padding {
+    if (_self.padding == null) {
+      return null;
+    }
+
+    return $EdgeValueCopyWith<$Res>(_self.padding!, (value) {
+      return _then(_self.copyWith(padding: value));
+    });
+  }
+
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $OutlineOptionCopyWith<$Res>? get defaultOutlineOption {
+    if (_self.defaultOutlineOption == null) {
+      return null;
+    }
+
+    return $OutlineOptionCopyWith<$Res>(_self.defaultOutlineOption!, (value) {
+      return _then(_self.copyWith(defaultOutlineOption: value));
+    });
+  }
+
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $OutlineOptionCopyWith<$Res>? get selectOutlineOption {
+    if (_self.selectOutlineOption == null) {
+      return null;
+    }
+
+    return $OutlineOptionCopyWith<$Res>(_self.selectOutlineOption!, (value) {
+      return _then(_self.copyWith(selectOutlineOption: value));
+    });
+  }
+
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ColorOptionCopyWith<$Res>? get defaultColorOption {
+    if (_self.defaultColorOption == null) {
+      return null;
+    }
+
+    return $ColorOptionCopyWith<$Res>(_self.defaultColorOption!, (value) {
+      return _then(_self.copyWith(defaultColorOption: value));
+    });
+  }
+
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ColorOptionCopyWith<$Res>? get selectColorOption {
+    if (_self.selectColorOption == null) {
+      return null;
+    }
+
+    return $ColorOptionCopyWith<$Res>(_self.selectColorOption!, (value) {
+      return _then(_self.copyWith(selectColorOption: value));
+    });
+  }
+
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SliderOptionCopyWith<$Res>? get sliderOption {
+    if (_self.sliderOption == null) {
+      return null;
+    }
+
+    return $SliderOptionCopyWith<$Res>(_self.sliderOption!, (value) {
+      return _then(_self.copyWith(sliderOption: value));
+    });
+  }
+}
+
+/// Adds pattern-matching-related methods to [ChoiceNodeDesignPreset].
+extension ChoiceNodeDesignPresetPatterns on ChoiceNodeDesignPreset {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ChoiceNodeDesignPreset value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ChoiceNodeDesignPreset() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ChoiceNodeDesignPreset value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChoiceNodeDesignPreset():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ChoiceNodeDesignPreset value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChoiceNodeDesignPreset() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            bool? titlePosition,
+            double? elevation,
+            VertexValue? round,
+            EdgeValue? padding,
+            double? imageMaxHeightRatio,
+            bool? hideTitle,
+            int? imagePosition,
+            int? colorTitle,
+            String? titleFont,
+            String? mainFont,
+            OutlineOption? defaultOutlineOption,
+            bool? selectOutlineEnable,
+            OutlineOption? selectOutlineOption,
+            ColorOption? defaultColorOption,
+            bool? selectColorEnable,
+            ColorOption? selectColorOption,
+            SliderOption? sliderOption)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ChoiceNodeDesignPreset() when $default != null:
+        return $default(
+            _that.titlePosition,
+            _that.elevation,
+            _that.round,
+            _that.padding,
+            _that.imageMaxHeightRatio,
+            _that.hideTitle,
+            _that.imagePosition,
+            _that.colorTitle,
+            _that.titleFont,
+            _that.mainFont,
+            _that.defaultOutlineOption,
+            _that.selectOutlineEnable,
+            _that.selectOutlineOption,
+            _that.defaultColorOption,
+            _that.selectColorEnable,
+            _that.selectColorOption,
+            _that.sliderOption);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            bool? titlePosition,
+            double? elevation,
+            VertexValue? round,
+            EdgeValue? padding,
+            double? imageMaxHeightRatio,
+            bool? hideTitle,
+            int? imagePosition,
+            int? colorTitle,
+            String? titleFont,
+            String? mainFont,
+            OutlineOption? defaultOutlineOption,
+            bool? selectOutlineEnable,
+            OutlineOption? selectOutlineOption,
+            ColorOption? defaultColorOption,
+            bool? selectColorEnable,
+            ColorOption? selectColorOption,
+            SliderOption? sliderOption)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChoiceNodeDesignPreset():
+        return $default(
+            _that.titlePosition,
+            _that.elevation,
+            _that.round,
+            _that.padding,
+            _that.imageMaxHeightRatio,
+            _that.hideTitle,
+            _that.imagePosition,
+            _that.colorTitle,
+            _that.titleFont,
+            _that.mainFont,
+            _that.defaultOutlineOption,
+            _that.selectOutlineEnable,
+            _that.selectOutlineOption,
+            _that.defaultColorOption,
+            _that.selectColorEnable,
+            _that.selectColorOption,
+            _that.sliderOption);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            bool? titlePosition,
+            double? elevation,
+            VertexValue? round,
+            EdgeValue? padding,
+            double? imageMaxHeightRatio,
+            bool? hideTitle,
+            int? imagePosition,
+            int? colorTitle,
+            String? titleFont,
+            String? mainFont,
+            OutlineOption? defaultOutlineOption,
+            bool? selectOutlineEnable,
+            OutlineOption? selectOutlineOption,
+            ColorOption? defaultColorOption,
+            bool? selectColorEnable,
+            ColorOption? selectColorOption,
+            SliderOption? sliderOption)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChoiceNodeDesignPreset() when $default != null:
+        return $default(
+            _that.titlePosition,
+            _that.elevation,
+            _that.round,
+            _that.padding,
+            _that.imageMaxHeightRatio,
+            _that.hideTitle,
+            _that.imagePosition,
+            _that.colorTitle,
+            _that.titleFont,
+            _that.mainFont,
+            _that.defaultOutlineOption,
+            _that.selectOutlineEnable,
+            _that.selectOutlineOption,
+            _that.defaultColorOption,
+            _that.selectColorEnable,
+            _that.selectColorOption,
+            _that.sliderOption);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _ChoiceNodeDesignPreset extends ChoiceNodeDesignPreset {
+  const _ChoiceNodeDesignPreset(
+      {this.titlePosition = true,
+      this.elevation = 4.0,
+      this.round = const VertexValue(
+          topLeft: 4.0, topRight: 4.0, bottomLeft: 4.0, bottomRight: 4.0),
+      this.padding =
+          const EdgeValue(top: 4.0, left: 4.0, right: 4.0, bottom: 4.0),
+      this.imageMaxHeightRatio = 0.5,
+      this.hideTitle = false,
+      this.imagePosition = 0,
+      this.colorTitle = 0xFF000000,
+      this.titleFont = "notoSans",
+      this.mainFont = "notoSans",
+      this.defaultOutlineOption = const OutlineOption(
+          distance: EdgeValue(top: 0.0, left: 0.0, right: 0.0, bottom: 0.0),
+          outlineColor: ColorOption(color: 0xFFFFFFFF)),
+      this.selectOutlineEnable = true,
+      this.selectOutlineOption = const OutlineOption(
+          distance: EdgeValue(top: 4.0, left: 4.0, right: 4.0, bottom: 4.0),
+          outlineColor: ColorOption(color: 0xFF91ABFF)),
+      this.defaultColorOption = const ColorOption(color: 0xFFFFFFFF),
+      this.selectColorEnable = true,
+      this.selectColorOption = const ColorOption(
+          colorType: ColorType.gradient,
+          gradientType: GradientType.linear,
+          gradientData: [
+            GradientData(gradientPos: (0, 0), color: 0xFFDADBFF),
+            GradientData(gradientPos: (1, 1), color: 0xFFD6F3FF)
+          ]),
+      this.sliderOption = const SliderOption(
+          sliderThumbColor: ColorOption(color: 0xFFDAF4FF),
+          sliderTrackActiveColor: ColorOption(color: 0xFFB0E5FD),
+          sliderTrackInactiveColor: ColorOption(color: 0xFFC6EDFF),
+          sliderThumbShape: SliderThumbShape.circle)})
+      : super._();
+  factory _ChoiceNodeDesignPreset.fromJson(Map<String, dynamic> json) =>
+      _$ChoiceNodeDesignPresetFromJson(json);
 
   @override
-  bool? get titlePosition;
+  @JsonKey()
+  final bool? titlePosition;
   @override
-  double? get elevation;
+  @JsonKey()
+  final double? elevation;
   @override
-  VertexValue? get round;
+  @JsonKey()
+  final VertexValue? round;
   @override
-  EdgeValue? get padding;
+  @JsonKey()
+  final EdgeValue? padding;
   @override
-  double? get imageMaxHeightRatio;
+  @JsonKey()
+  final double? imageMaxHeightRatio;
   @override
-  bool? get hideTitle;
+  @JsonKey()
+  final bool? hideTitle;
   @override
-  int? get imagePosition; //0:default, 1:image-right 2:image-left
+  @JsonKey()
+  final int? imagePosition;
+//0:default, 1:image-right 2:image-left
   @override
-  int? get colorTitle;
+  @JsonKey()
+  final int? colorTitle;
   @override
-  String? get titleFont;
+  @JsonKey()
+  final String? titleFont;
   @override
-  String? get mainFont;
+  @JsonKey()
+  final String? mainFont;
   @override
-  OutlineOption? get defaultOutlineOption;
+  @JsonKey()
+  final OutlineOption? defaultOutlineOption;
   @override
-  bool? get selectOutlineEnable;
+  @JsonKey()
+  final bool? selectOutlineEnable;
   @override
-  OutlineOption? get selectOutlineOption;
+  @JsonKey()
+  final OutlineOption? selectOutlineOption;
   @override
-  ColorOption? get defaultColorOption;
+  @JsonKey()
+  final ColorOption? defaultColorOption;
   @override
-  bool? get selectColorEnable;
+  @JsonKey()
+  final bool? selectColorEnable;
   @override
-  ColorOption? get selectColorOption;
+  @JsonKey()
+  final ColorOption? selectColorOption;
   @override
-  SliderOption? get sliderOption;
+  @JsonKey()
+  final SliderOption? sliderOption;
 
   /// Create a copy of ChoiceNodeDesignPreset
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ChoiceNodeDesignPresetImplCopyWith<_$ChoiceNodeDesignPresetImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  _$ChoiceNodeDesignPresetCopyWith<_ChoiceNodeDesignPreset> get copyWith =>
+      __$ChoiceNodeDesignPresetCopyWithImpl<_ChoiceNodeDesignPreset>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ChoiceNodeDesignPresetToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ChoiceNodeDesignPreset &&
+            (identical(other.titlePosition, titlePosition) ||
+                other.titlePosition == titlePosition) &&
+            (identical(other.elevation, elevation) ||
+                other.elevation == elevation) &&
+            (identical(other.round, round) || other.round == round) &&
+            (identical(other.padding, padding) || other.padding == padding) &&
+            (identical(other.imageMaxHeightRatio, imageMaxHeightRatio) ||
+                other.imageMaxHeightRatio == imageMaxHeightRatio) &&
+            (identical(other.hideTitle, hideTitle) ||
+                other.hideTitle == hideTitle) &&
+            (identical(other.imagePosition, imagePosition) ||
+                other.imagePosition == imagePosition) &&
+            (identical(other.colorTitle, colorTitle) ||
+                other.colorTitle == colorTitle) &&
+            (identical(other.titleFont, titleFont) ||
+                other.titleFont == titleFont) &&
+            (identical(other.mainFont, mainFont) ||
+                other.mainFont == mainFont) &&
+            (identical(other.defaultOutlineOption, defaultOutlineOption) ||
+                other.defaultOutlineOption == defaultOutlineOption) &&
+            (identical(other.selectOutlineEnable, selectOutlineEnable) ||
+                other.selectOutlineEnable == selectOutlineEnable) &&
+            (identical(other.selectOutlineOption, selectOutlineOption) ||
+                other.selectOutlineOption == selectOutlineOption) &&
+            (identical(other.defaultColorOption, defaultColorOption) ||
+                other.defaultColorOption == defaultColorOption) &&
+            (identical(other.selectColorEnable, selectColorEnable) ||
+                other.selectColorEnable == selectColorEnable) &&
+            (identical(other.selectColorOption, selectColorOption) ||
+                other.selectColorOption == selectColorOption) &&
+            (identical(other.sliderOption, sliderOption) ||
+                other.sliderOption == sliderOption));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      titlePosition,
+      elevation,
+      round,
+      padding,
+      imageMaxHeightRatio,
+      hideTitle,
+      imagePosition,
+      colorTitle,
+      titleFont,
+      mainFont,
+      defaultOutlineOption,
+      selectOutlineEnable,
+      selectOutlineOption,
+      defaultColorOption,
+      selectColorEnable,
+      selectColorOption,
+      sliderOption);
+
+  @override
+  String toString() {
+    return 'ChoiceNodeDesignPreset(titlePosition: $titlePosition, elevation: $elevation, round: $round, padding: $padding, imageMaxHeightRatio: $imageMaxHeightRatio, hideTitle: $hideTitle, imagePosition: $imagePosition, colorTitle: $colorTitle, titleFont: $titleFont, mainFont: $mainFont, defaultOutlineOption: $defaultOutlineOption, selectOutlineEnable: $selectOutlineEnable, selectOutlineOption: $selectOutlineOption, defaultColorOption: $defaultColorOption, selectColorEnable: $selectColorEnable, selectColorOption: $selectColorOption, sliderOption: $sliderOption)';
+  }
 }
+
+/// @nodoc
+abstract mixin class _$ChoiceNodeDesignPresetCopyWith<$Res>
+    implements $ChoiceNodeDesignPresetCopyWith<$Res> {
+  factory _$ChoiceNodeDesignPresetCopyWith(_ChoiceNodeDesignPreset value,
+          $Res Function(_ChoiceNodeDesignPreset) _then) =
+      __$ChoiceNodeDesignPresetCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {bool? titlePosition,
+      double? elevation,
+      VertexValue? round,
+      EdgeValue? padding,
+      double? imageMaxHeightRatio,
+      bool? hideTitle,
+      int? imagePosition,
+      int? colorTitle,
+      String? titleFont,
+      String? mainFont,
+      OutlineOption? defaultOutlineOption,
+      bool? selectOutlineEnable,
+      OutlineOption? selectOutlineOption,
+      ColorOption? defaultColorOption,
+      bool? selectColorEnable,
+      ColorOption? selectColorOption,
+      SliderOption? sliderOption});
+
+  @override
+  $VertexValueCopyWith<$Res>? get round;
+  @override
+  $EdgeValueCopyWith<$Res>? get padding;
+  @override
+  $OutlineOptionCopyWith<$Res>? get defaultOutlineOption;
+  @override
+  $OutlineOptionCopyWith<$Res>? get selectOutlineOption;
+  @override
+  $ColorOptionCopyWith<$Res>? get defaultColorOption;
+  @override
+  $ColorOptionCopyWith<$Res>? get selectColorOption;
+  @override
+  $SliderOptionCopyWith<$Res>? get sliderOption;
+}
+
+/// @nodoc
+class __$ChoiceNodeDesignPresetCopyWithImpl<$Res>
+    implements _$ChoiceNodeDesignPresetCopyWith<$Res> {
+  __$ChoiceNodeDesignPresetCopyWithImpl(this._self, this._then);
+
+  final _ChoiceNodeDesignPreset _self;
+  final $Res Function(_ChoiceNodeDesignPreset) _then;
+
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? titlePosition = freezed,
+    Object? elevation = freezed,
+    Object? round = freezed,
+    Object? padding = freezed,
+    Object? imageMaxHeightRatio = freezed,
+    Object? hideTitle = freezed,
+    Object? imagePosition = freezed,
+    Object? colorTitle = freezed,
+    Object? titleFont = freezed,
+    Object? mainFont = freezed,
+    Object? defaultOutlineOption = freezed,
+    Object? selectOutlineEnable = freezed,
+    Object? selectOutlineOption = freezed,
+    Object? defaultColorOption = freezed,
+    Object? selectColorEnable = freezed,
+    Object? selectColorOption = freezed,
+    Object? sliderOption = freezed,
+  }) {
+    return _then(_ChoiceNodeDesignPreset(
+      titlePosition: freezed == titlePosition
+          ? _self.titlePosition
+          : titlePosition // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      elevation: freezed == elevation
+          ? _self.elevation
+          : elevation // ignore: cast_nullable_to_non_nullable
+              as double?,
+      round: freezed == round
+          ? _self.round
+          : round // ignore: cast_nullable_to_non_nullable
+              as VertexValue?,
+      padding: freezed == padding
+          ? _self.padding
+          : padding // ignore: cast_nullable_to_non_nullable
+              as EdgeValue?,
+      imageMaxHeightRatio: freezed == imageMaxHeightRatio
+          ? _self.imageMaxHeightRatio
+          : imageMaxHeightRatio // ignore: cast_nullable_to_non_nullable
+              as double?,
+      hideTitle: freezed == hideTitle
+          ? _self.hideTitle
+          : hideTitle // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      imagePosition: freezed == imagePosition
+          ? _self.imagePosition
+          : imagePosition // ignore: cast_nullable_to_non_nullable
+              as int?,
+      colorTitle: freezed == colorTitle
+          ? _self.colorTitle
+          : colorTitle // ignore: cast_nullable_to_non_nullable
+              as int?,
+      titleFont: freezed == titleFont
+          ? _self.titleFont
+          : titleFont // ignore: cast_nullable_to_non_nullable
+              as String?,
+      mainFont: freezed == mainFont
+          ? _self.mainFont
+          : mainFont // ignore: cast_nullable_to_non_nullable
+              as String?,
+      defaultOutlineOption: freezed == defaultOutlineOption
+          ? _self.defaultOutlineOption
+          : defaultOutlineOption // ignore: cast_nullable_to_non_nullable
+              as OutlineOption?,
+      selectOutlineEnable: freezed == selectOutlineEnable
+          ? _self.selectOutlineEnable
+          : selectOutlineEnable // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      selectOutlineOption: freezed == selectOutlineOption
+          ? _self.selectOutlineOption
+          : selectOutlineOption // ignore: cast_nullable_to_non_nullable
+              as OutlineOption?,
+      defaultColorOption: freezed == defaultColorOption
+          ? _self.defaultColorOption
+          : defaultColorOption // ignore: cast_nullable_to_non_nullable
+              as ColorOption?,
+      selectColorEnable: freezed == selectColorEnable
+          ? _self.selectColorEnable
+          : selectColorEnable // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      selectColorOption: freezed == selectColorOption
+          ? _self.selectColorOption
+          : selectColorOption // ignore: cast_nullable_to_non_nullable
+              as ColorOption?,
+      sliderOption: freezed == sliderOption
+          ? _self.sliderOption
+          : sliderOption // ignore: cast_nullable_to_non_nullable
+              as SliderOption?,
+    ));
+  }
+
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $VertexValueCopyWith<$Res>? get round {
+    if (_self.round == null) {
+      return null;
+    }
+
+    return $VertexValueCopyWith<$Res>(_self.round!, (value) {
+      return _then(_self.copyWith(round: value));
+    });
+  }
+
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $EdgeValueCopyWith<$Res>? get padding {
+    if (_self.padding == null) {
+      return null;
+    }
+
+    return $EdgeValueCopyWith<$Res>(_self.padding!, (value) {
+      return _then(_self.copyWith(padding: value));
+    });
+  }
+
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $OutlineOptionCopyWith<$Res>? get defaultOutlineOption {
+    if (_self.defaultOutlineOption == null) {
+      return null;
+    }
+
+    return $OutlineOptionCopyWith<$Res>(_self.defaultOutlineOption!, (value) {
+      return _then(_self.copyWith(defaultOutlineOption: value));
+    });
+  }
+
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $OutlineOptionCopyWith<$Res>? get selectOutlineOption {
+    if (_self.selectOutlineOption == null) {
+      return null;
+    }
+
+    return $OutlineOptionCopyWith<$Res>(_self.selectOutlineOption!, (value) {
+      return _then(_self.copyWith(selectOutlineOption: value));
+    });
+  }
+
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ColorOptionCopyWith<$Res>? get defaultColorOption {
+    if (_self.defaultColorOption == null) {
+      return null;
+    }
+
+    return $ColorOptionCopyWith<$Res>(_self.defaultColorOption!, (value) {
+      return _then(_self.copyWith(defaultColorOption: value));
+    });
+  }
+
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ColorOptionCopyWith<$Res>? get selectColorOption {
+    if (_self.selectColorOption == null) {
+      return null;
+    }
+
+    return $ColorOptionCopyWith<$Res>(_self.selectColorOption!, (value) {
+      return _then(_self.copyWith(selectColorOption: value));
+    });
+  }
+
+  /// Create a copy of ChoiceNodeDesignPreset
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SliderOptionCopyWith<$Res>? get sliderOption {
+    if (_self.sliderOption == null) {
+      return null;
+    }
+
+    return $SliderOptionCopyWith<$Res>(_self.sliderOption!, (value) {
+      return _then(_self.copyWith(sliderOption: value));
+    });
+  }
+}
+
+// dart format on

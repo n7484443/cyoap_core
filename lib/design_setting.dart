@@ -21,7 +21,7 @@ enum ImageAttribute {
 }
 
 @freezed
-class PlatformDesignSetting with _$PlatformDesignSetting {
+abstract class PlatformDesignSetting with _$PlatformDesignSetting {
   factory PlatformDesignSetting({
     @Default("notoSans") String variableFont,
     String? backgroundImage,

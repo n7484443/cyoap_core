@@ -92,7 +92,7 @@ ValueType getValueTypeFromDynamicInput(dynamic input) {
 }
 
 @freezed
-class ValueType with _$ValueType {
+abstract class ValueType with _$ValueType {
   const factory ValueType({
     required String data,
     required DataType type,
@@ -148,7 +148,7 @@ class ValueType with _$ValueType {
 }
 
 @freezed
-class ValueTypeWrapper with _$ValueTypeWrapper {
+abstract class ValueTypeWrapper with _$ValueTypeWrapper {
   const factory ValueTypeWrapper({
     @ValueTypeConverter() required ValueType valueType,
     @Default(false) bool visible,

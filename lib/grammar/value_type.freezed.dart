@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,127 +9,29 @@ part of 'value_type.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-ValueType _$ValueTypeFromJson(Map<String, dynamic> json) {
-  return _ValueType.fromJson(json);
-}
 
 /// @nodoc
 mixin _$ValueType {
-  String get data => throw _privateConstructorUsedError;
-  DataType get type => throw _privateConstructorUsedError;
-
-  /// Serializes this ValueType to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  String get data;
+  DataType get type;
 
   /// Create a copy of ValueType
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $ValueTypeCopyWith<ValueType> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+      _$ValueTypeCopyWithImpl<ValueType>(this as ValueType, _$identity);
 
-/// @nodoc
-abstract class $ValueTypeCopyWith<$Res> {
-  factory $ValueTypeCopyWith(ValueType value, $Res Function(ValueType) then) =
-      _$ValueTypeCopyWithImpl<$Res, ValueType>;
-  @useResult
-  $Res call({String data, DataType type});
-}
-
-/// @nodoc
-class _$ValueTypeCopyWithImpl<$Res, $Val extends ValueType>
-    implements $ValueTypeCopyWith<$Res> {
-  _$ValueTypeCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ValueType
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? data = null,
-    Object? type = null,
-  }) {
-    return _then(_value.copyWith(
-      data: null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as DataType,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$ValueTypeImplCopyWith<$Res>
-    implements $ValueTypeCopyWith<$Res> {
-  factory _$$ValueTypeImplCopyWith(
-          _$ValueTypeImpl value, $Res Function(_$ValueTypeImpl) then) =
-      __$$ValueTypeImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String data, DataType type});
-}
-
-/// @nodoc
-class __$$ValueTypeImplCopyWithImpl<$Res>
-    extends _$ValueTypeCopyWithImpl<$Res, _$ValueTypeImpl>
-    implements _$$ValueTypeImplCopyWith<$Res> {
-  __$$ValueTypeImplCopyWithImpl(
-      _$ValueTypeImpl _value, $Res Function(_$ValueTypeImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ValueType
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? data = null,
-    Object? type = null,
-  }) {
-    return _then(_$ValueTypeImpl(
-      data: null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as DataType,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$ValueTypeImpl extends _ValueType {
-  const _$ValueTypeImpl({required this.data, required this.type}) : super._();
-
-  factory _$ValueTypeImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ValueTypeImplFromJson(json);
-
-  @override
-  final String data;
-  @override
-  final DataType type;
+  /// Serializes this ValueType to a JSON map.
+  Map<String, dynamic> toJson();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ValueTypeImpl &&
+            other is ValueType &&
             (identical(other.data, data) || other.data == data) &&
             (identical(other.type, type) || other.type == type));
   }
@@ -137,71 +39,321 @@ class _$ValueTypeImpl extends _ValueType {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, data, type);
+}
+
+/// @nodoc
+abstract mixin class $ValueTypeCopyWith<$Res> {
+  factory $ValueTypeCopyWith(ValueType value, $Res Function(ValueType) _then) =
+      _$ValueTypeCopyWithImpl;
+  @useResult
+  $Res call({String data, DataType type});
+}
+
+/// @nodoc
+class _$ValueTypeCopyWithImpl<$Res> implements $ValueTypeCopyWith<$Res> {
+  _$ValueTypeCopyWithImpl(this._self, this._then);
+
+  final ValueType _self;
+  final $Res Function(ValueType) _then;
 
   /// Create a copy of ValueType
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
   @pragma('vm:prefer-inline')
-  _$$ValueTypeImplCopyWith<_$ValueTypeImpl> get copyWith =>
-      __$$ValueTypeImplCopyWithImpl<_$ValueTypeImpl>(this, _$identity);
-
   @override
-  Map<String, dynamic> toJson() {
-    return _$$ValueTypeImplToJson(
-      this,
-    );
+  $Res call({
+    Object? data = null,
+    Object? type = null,
+  }) {
+    return _then(_self.copyWith(
+      data: null == data
+          ? _self.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as DataType,
+    ));
   }
 }
 
-abstract class _ValueType extends ValueType {
-  const factory _ValueType(
-      {required final String data,
-      required final DataType type}) = _$ValueTypeImpl;
-  const _ValueType._() : super._();
+/// Adds pattern-matching-related methods to [ValueType].
+extension ValueTypePatterns on ValueType {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-  factory _ValueType.fromJson(Map<String, dynamic> json) =
-      _$ValueTypeImpl.fromJson;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ValueType value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ValueType() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ValueType value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ValueType():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ValueType value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ValueType() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String data, DataType type)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ValueType() when $default != null:
+        return $default(_that.data, _that.type);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String data, DataType type) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ValueType():
+        return $default(_that.data, _that.type);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String data, DataType type)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ValueType() when $default != null:
+        return $default(_that.data, _that.type);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _ValueType extends ValueType {
+  const _ValueType({required this.data, required this.type}) : super._();
+  factory _ValueType.fromJson(Map<String, dynamic> json) =>
+      _$ValueTypeFromJson(json);
 
   @override
-  String get data;
+  final String data;
   @override
-  DataType get type;
+  final DataType type;
 
   /// Create a copy of ValueType
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ValueTypeImplCopyWith<_$ValueTypeImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  _$ValueTypeCopyWith<_ValueType> get copyWith =>
+      __$ValueTypeCopyWithImpl<_ValueType>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ValueTypeToJson(
+      this,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ValueType &&
+            (identical(other.data, data) || other.data == data) &&
+            (identical(other.type, type) || other.type == type));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, data, type);
 }
 
-ValueTypeWrapper _$ValueTypeWrapperFromJson(Map<String, dynamic> json) {
-  return _ValueTypeWrapper.fromJson(json);
+/// @nodoc
+abstract mixin class _$ValueTypeCopyWith<$Res>
+    implements $ValueTypeCopyWith<$Res> {
+  factory _$ValueTypeCopyWith(
+          _ValueType value, $Res Function(_ValueType) _then) =
+      __$ValueTypeCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String data, DataType type});
+}
+
+/// @nodoc
+class __$ValueTypeCopyWithImpl<$Res> implements _$ValueTypeCopyWith<$Res> {
+  __$ValueTypeCopyWithImpl(this._self, this._then);
+
+  final _ValueType _self;
+  final $Res Function(_ValueType) _then;
+
+  /// Create a copy of ValueType
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? data = null,
+    Object? type = null,
+  }) {
+    return _then(_ValueType(
+      data: null == data
+          ? _self.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as DataType,
+    ));
+  }
 }
 
 /// @nodoc
 mixin _$ValueTypeWrapper {
   @ValueTypeConverter()
-  ValueType get valueType => throw _privateConstructorUsedError;
-  bool get visible => throw _privateConstructorUsedError;
-  String get displayName => throw _privateConstructorUsedError;
-
-  /// Serializes this ValueTypeWrapper to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  ValueType get valueType;
+  bool get visible;
+  String get displayName;
 
   /// Create a copy of ValueTypeWrapper
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $ValueTypeWrapperCopyWith<ValueTypeWrapper> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$ValueTypeWrapperCopyWithImpl<ValueTypeWrapper>(
+          this as ValueTypeWrapper, _$identity);
+
+  /// Serializes this ValueTypeWrapper to a JSON map.
+  Map<String, dynamic> toJson();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ValueTypeWrapper &&
+            (identical(other.valueType, valueType) ||
+                other.valueType == valueType) &&
+            (identical(other.visible, visible) || other.visible == visible) &&
+            (identical(other.displayName, displayName) ||
+                other.displayName == displayName));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, valueType, visible, displayName);
 }
 
 /// @nodoc
-abstract class $ValueTypeWrapperCopyWith<$Res> {
+abstract mixin class $ValueTypeWrapperCopyWith<$Res> {
   factory $ValueTypeWrapperCopyWith(
-          ValueTypeWrapper value, $Res Function(ValueTypeWrapper) then) =
-      _$ValueTypeWrapperCopyWithImpl<$Res, ValueTypeWrapper>;
+          ValueTypeWrapper value, $Res Function(ValueTypeWrapper) _then) =
+      _$ValueTypeWrapperCopyWithImpl;
   @useResult
   $Res call(
       {@ValueTypeConverter() ValueType valueType,
@@ -212,14 +364,12 @@ abstract class $ValueTypeWrapperCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ValueTypeWrapperCopyWithImpl<$Res, $Val extends ValueTypeWrapper>
+class _$ValueTypeWrapperCopyWithImpl<$Res>
     implements $ValueTypeWrapperCopyWith<$Res> {
-  _$ValueTypeWrapperCopyWithImpl(this._value, this._then);
+  _$ValueTypeWrapperCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ValueTypeWrapper _self;
+  final $Res Function(ValueTypeWrapper) _then;
 
   /// Create a copy of ValueTypeWrapper
   /// with the given fields replaced by the non-null parameter values.
@@ -230,20 +380,20 @@ class _$ValueTypeWrapperCopyWithImpl<$Res, $Val extends ValueTypeWrapper>
     Object? visible = null,
     Object? displayName = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       valueType: null == valueType
-          ? _value.valueType
+          ? _self.valueType
           : valueType // ignore: cast_nullable_to_non_nullable
               as ValueType,
       visible: null == visible
-          ? _value.visible
+          ? _self.visible
           : visible // ignore: cast_nullable_to_non_nullable
               as bool,
       displayName: null == displayName
-          ? _value.displayName
+          ? _self.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
               as String,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of ValueTypeWrapper
@@ -251,74 +401,185 @@ class _$ValueTypeWrapperCopyWithImpl<$Res, $Val extends ValueTypeWrapper>
   @override
   @pragma('vm:prefer-inline')
   $ValueTypeCopyWith<$Res> get valueType {
-    return $ValueTypeCopyWith<$Res>(_value.valueType, (value) {
-      return _then(_value.copyWith(valueType: value) as $Val);
+    return $ValueTypeCopyWith<$Res>(_self.valueType, (value) {
+      return _then(_self.copyWith(valueType: value));
     });
   }
 }
 
-/// @nodoc
-abstract class _$$ValueTypeWrapperImplCopyWith<$Res>
-    implements $ValueTypeWrapperCopyWith<$Res> {
-  factory _$$ValueTypeWrapperImplCopyWith(_$ValueTypeWrapperImpl value,
-          $Res Function(_$ValueTypeWrapperImpl) then) =
-      __$$ValueTypeWrapperImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@ValueTypeConverter() ValueType valueType,
-      bool visible,
-      String displayName});
+/// Adds pattern-matching-related methods to [ValueTypeWrapper].
+extension ValueTypeWrapperPatterns on ValueTypeWrapper {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-  @override
-  $ValueTypeCopyWith<$Res> get valueType;
-}
-
-/// @nodoc
-class __$$ValueTypeWrapperImplCopyWithImpl<$Res>
-    extends _$ValueTypeWrapperCopyWithImpl<$Res, _$ValueTypeWrapperImpl>
-    implements _$$ValueTypeWrapperImplCopyWith<$Res> {
-  __$$ValueTypeWrapperImplCopyWithImpl(_$ValueTypeWrapperImpl _value,
-      $Res Function(_$ValueTypeWrapperImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ValueTypeWrapper
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? valueType = null,
-    Object? visible = null,
-    Object? displayName = null,
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ValueTypeWrapper value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_$ValueTypeWrapperImpl(
-      valueType: null == valueType
-          ? _value.valueType
-          : valueType // ignore: cast_nullable_to_non_nullable
-              as ValueType,
-      visible: null == visible
-          ? _value.visible
-          : visible // ignore: cast_nullable_to_non_nullable
-              as bool,
-      displayName: null == displayName
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _ValueTypeWrapper() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ValueTypeWrapper value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ValueTypeWrapper():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ValueTypeWrapper value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ValueTypeWrapper() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(@ValueTypeConverter() ValueType valueType, bool visible,
+            String displayName)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ValueTypeWrapper() when $default != null:
+        return $default(_that.valueType, _that.visible, _that.displayName);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(@ValueTypeConverter() ValueType valueType, bool visible,
+            String displayName)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ValueTypeWrapper():
+        return $default(_that.valueType, _that.visible, _that.displayName);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(@ValueTypeConverter() ValueType valueType, bool visible,
+            String displayName)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ValueTypeWrapper() when $default != null:
+        return $default(_that.valueType, _that.visible, _that.displayName);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ValueTypeWrapperImpl extends _ValueTypeWrapper {
-  const _$ValueTypeWrapperImpl(
+class _ValueTypeWrapper extends ValueTypeWrapper {
+  const _ValueTypeWrapper(
       {@ValueTypeConverter() required this.valueType,
       this.visible = false,
       this.displayName = ''})
       : super._();
-
-  factory _$ValueTypeWrapperImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ValueTypeWrapperImplFromJson(json);
+  factory _ValueTypeWrapper.fromJson(Map<String, dynamic> json) =>
+      _$ValueTypeWrapperFromJson(json);
 
   @override
   @ValueTypeConverter()
@@ -330,11 +591,26 @@ class _$ValueTypeWrapperImpl extends _ValueTypeWrapper {
   @JsonKey()
   final String displayName;
 
+  /// Create a copy of ValueTypeWrapper
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ValueTypeWrapperCopyWith<_ValueTypeWrapper> get copyWith =>
+      __$ValueTypeWrapperCopyWithImpl<_ValueTypeWrapper>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$ValueTypeWrapperToJson(
+      this,
+    );
+  }
+
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ValueTypeWrapperImpl &&
+            other is _ValueTypeWrapper &&
             (identical(other.valueType, valueType) ||
                 other.valueType == valueType) &&
             (identical(other.visible, visible) || other.visible == visible) &&
@@ -345,46 +621,67 @@ class _$ValueTypeWrapperImpl extends _ValueTypeWrapper {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, valueType, visible, displayName);
+}
+
+/// @nodoc
+abstract mixin class _$ValueTypeWrapperCopyWith<$Res>
+    implements $ValueTypeWrapperCopyWith<$Res> {
+  factory _$ValueTypeWrapperCopyWith(
+          _ValueTypeWrapper value, $Res Function(_ValueTypeWrapper) _then) =
+      __$ValueTypeWrapperCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {@ValueTypeConverter() ValueType valueType,
+      bool visible,
+      String displayName});
+
+  @override
+  $ValueTypeCopyWith<$Res> get valueType;
+}
+
+/// @nodoc
+class __$ValueTypeWrapperCopyWithImpl<$Res>
+    implements _$ValueTypeWrapperCopyWith<$Res> {
+  __$ValueTypeWrapperCopyWithImpl(this._self, this._then);
+
+  final _ValueTypeWrapper _self;
+  final $Res Function(_ValueTypeWrapper) _then;
 
   /// Create a copy of ValueTypeWrapper
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ValueTypeWrapperImplCopyWith<_$ValueTypeWrapperImpl> get copyWith =>
-      __$$ValueTypeWrapperImplCopyWithImpl<_$ValueTypeWrapperImpl>(
-          this, _$identity);
+  $Res call({
+    Object? valueType = null,
+    Object? visible = null,
+    Object? displayName = null,
+  }) {
+    return _then(_ValueTypeWrapper(
+      valueType: null == valueType
+          ? _self.valueType
+          : valueType // ignore: cast_nullable_to_non_nullable
+              as ValueType,
+      visible: null == visible
+          ? _self.visible
+          : visible // ignore: cast_nullable_to_non_nullable
+              as bool,
+      displayName: null == displayName
+          ? _self.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 
+  /// Create a copy of ValueTypeWrapper
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  Map<String, dynamic> toJson() {
-    return _$$ValueTypeWrapperImplToJson(
-      this,
-    );
+  @pragma('vm:prefer-inline')
+  $ValueTypeCopyWith<$Res> get valueType {
+    return $ValueTypeCopyWith<$Res>(_self.valueType, (value) {
+      return _then(_self.copyWith(valueType: value));
+    });
   }
 }
 
-abstract class _ValueTypeWrapper extends ValueTypeWrapper {
-  const factory _ValueTypeWrapper(
-      {@ValueTypeConverter() required final ValueType valueType,
-      final bool visible,
-      final String displayName}) = _$ValueTypeWrapperImpl;
-  const _ValueTypeWrapper._() : super._();
-
-  factory _ValueTypeWrapper.fromJson(Map<String, dynamic> json) =
-      _$ValueTypeWrapperImpl.fromJson;
-
-  @override
-  @ValueTypeConverter()
-  ValueType get valueType;
-  @override
-  bool get visible;
-  @override
-  String get displayName;
-
-  /// Create a copy of ValueTypeWrapper
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ValueTypeWrapperImplCopyWith<_$ValueTypeWrapperImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+// dart format on

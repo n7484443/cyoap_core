@@ -13,8 +13,8 @@ dependencies:
   petitparser: ^6.0.2
 
 dev_dependencies:
-  freezed: ^2.4.6
-  build_runner: ^2.4.8
+  freezed: ^3.1.0
+  build_runner: ^2.5.4
   json_serializable: any
-  lints: ^4.0.0
+  lints: ^6.0.0
   test: ^1.16.0

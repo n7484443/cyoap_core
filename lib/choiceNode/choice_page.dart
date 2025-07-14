@@ -10,7 +10,7 @@ part 'choice_page.freezed.dart';
 part 'choice_page.g.dart';
 
 @freezed
-class ChoicePageOption with _$ChoicePageOption {
+abstract class ChoicePageOption with _$ChoicePageOption {
   factory ChoicePageOption({
     @Default(false) bool setEntireAsOneLine,
   }) = _ChoicePageOption;

@@ -20,15 +20,14 @@ part 'choice.g.dart';
 
 @freezed
 class SelectInfo with _$SelectInfo {
-  const factory SelectInfo({
-    required Pos pos,
-    required int select,
-  }) = _SelectInfo;
+  final Pos pos;
+  final int select;
+
+  const SelectInfo({required this.pos, required this.select});
 }
 
 mixin Choice {
-  SelectableStatus selectableStatus =
-      SelectableStatus(isHide: false, isOpen: true);
+  SelectableStatus selectableStatus = SelectableStatus(isHide: false, isOpen: true);
 
   void generateParser() {
     conditionalCodeHandler.compile(errorName);
@@ -109,7 +108,7 @@ mixin Choice {
   void updateStatus();
 
   void recursiveFunction(bool? Function(Choice) function) {
-    if(function(this) ?? true){
+    if (function(this) ?? true) {
       for (var child in children) {
         child.recursiveFunction(function);
       }
@@ -159,9 +158,7 @@ mixin Choice {
       if (!showAll && child.isHide()) {
         continue;
       }
-      int size = child.getWidth(platform) == 0
-          ? maxChildrenPerRow
-          : min(child.getWidth(platform), maxChildrenPerRow);
+      int size = child.getWidth(platform) == 0 ? maxChildrenPerRow : min(child.getWidth(platform), maxChildrenPerRow);
       var node = SizeData(width: size * 2, pos: child.pos);
       if (stack + size < maxChildrenPerRow) {
         subSizeDataList.add(node);
@@ -173,7 +170,7 @@ mixin Choice {
         stack = 0;
       } else {
         int leftSize = maxChildrenPerRow - stack;
-        if(leftSize != 0){
+        if (leftSize != 0) {
           switch (align) {
             case ChoiceLineAlignment.left:
               subSizeDataList.add(SizeData(width: leftSize * 2));
@@ -214,9 +211,8 @@ mixin Choice {
 }
 
 @freezed
-class SizeData with _$SizeData {
+abstract class SizeData with _$SizeData {
   const factory SizeData({required int width, Pos? pos}) = _SizeData;
 
-  factory SizeData.fromJson(Map<String, dynamic> json) =>
-      _$SizeDataFromJson(json);
+  factory SizeData.fromJson(Map<String, dynamic> json) => _$SizeDataFromJson(json);
 }

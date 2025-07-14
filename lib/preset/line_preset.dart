@@ -16,7 +16,7 @@ enum ChoiceLineAlignment {
 }
 
 @freezed
-class ChoiceLineDesignPreset with _$ChoiceLineDesignPreset {
+abstract class ChoiceLineDesignPreset with _$ChoiceLineDesignPreset {
   const factory ChoiceLineDesignPreset({
     @Default(ColorOption(color: 0)) ColorOption? backgroundColorOption,
     String? backgroundImageString,

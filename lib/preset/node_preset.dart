@@ -7,7 +7,7 @@ part 'node_preset.freezed.dart';
 part 'node_preset.g.dart';
 
 @freezed
-class EdgeValue with _$EdgeValue {
+abstract class EdgeValue with _$EdgeValue {
   const factory EdgeValue({
     @Default(0.0) double top,
     @Default(0.0) double right,
@@ -37,7 +37,7 @@ class EdgeValue with _$EdgeValue {
 }
 
 @freezed
-class VertexValue with _$VertexValue {
+abstract class VertexValue with _$VertexValue {
   const factory VertexValue({
     @Default(0.0) double topLeft,
     @Default(0.0) double topRight,
@@ -79,7 +79,7 @@ enum OutlineType {
 }
 
 @freezed
-class OutlineOption with _$OutlineOption {
+abstract class OutlineOption with _$OutlineOption {
   const factory OutlineOption({
     @Default(OutlineType.solid) OutlineType outlineType,
     @Default(ColorOption()) ColorOption outlineColor,
@@ -106,7 +106,7 @@ enum SliderThumbShape {
 }
 
 @freezed
-class SliderOption with _$SliderOption {
+abstract class SliderOption with _$SliderOption {
   const factory SliderOption({
     @Default(ColorOption()) ColorOption sliderThumbColor,
     @Default(ColorOption()) ColorOption sliderTrackActiveColor,
@@ -119,7 +119,7 @@ class SliderOption with _$SliderOption {
 }
 
 @freezed
-class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
+abstract class ChoiceNodeDesignPreset with _$ChoiceNodeDesignPreset {
   const factory ChoiceNodeDesignPreset({
     @Default(true) bool? titlePosition,
     @Default(4.0) double? elevation,

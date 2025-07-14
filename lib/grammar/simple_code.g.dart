@@ -6,7 +6,7 @@ part of 'simple_code.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ActionImpl _$$ActionImplFromJson(Map<String, dynamic> json) => _$ActionImpl(
+Action _$ActionFromJson(Map<String, dynamic> json) => Action(
       type: $enumDecodeNullable(_$SimpleActionTypeEnumMap, json['type']) ??
           SimpleActionType.varSet,
       arguments: (json['arguments'] as List<dynamic>?)
@@ -16,8 +16,7 @@ _$ActionImpl _$$ActionImplFromJson(Map<String, dynamic> json) => _$ActionImpl(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$ActionImplToJson(_$ActionImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ActionToJson(Action instance) => <String, dynamic>{
       'type': _$SimpleActionTypeEnumMap[instance.type]!,
       'arguments': instance.arguments.map((e) => e.toJson()).toList(),
       'runtimeType': instance.$type,
@@ -34,8 +33,7 @@ const _$SimpleActionTypeEnumMap = {
   SimpleActionType.varDiv: 'varDiv',
 };
 
-_$ConditionImpl _$$ConditionImplFromJson(Map<String, dynamic> json) =>
-    _$ConditionImpl(
+Condition _$ConditionFromJson(Map<String, dynamic> json) => Condition(
       type: $enumDecodeNullable(_$SimpleConditionTypeEnumMap, json['type']) ??
           SimpleConditionType.nodeOn,
       arguments: (json['arguments'] as List<dynamic>?)
@@ -45,8 +43,7 @@ _$ConditionImpl _$$ConditionImplFromJson(Map<String, dynamic> json) =>
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$ConditionImplToJson(_$ConditionImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ConditionToJson(Condition instance) => <String, dynamic>{
       'type': _$SimpleConditionTypeEnumMap[instance.type]!,
       'arguments': instance.arguments.map((e) => e.toJson()).toList(),
       'runtimeType': instance.$type,
@@ -64,8 +61,7 @@ const _$SimpleConditionTypeEnumMap = {
   SimpleConditionType.varLessEqual: 'varLessEqual',
 };
 
-_$SimpleCodesImpl _$$SimpleCodesImplFromJson(Map<String, dynamic> json) =>
-    _$SimpleCodesImpl(
+_SimpleCodes _$SimpleCodesFromJson(Map<String, dynamic> json) => _SimpleCodes(
       code: (json['code'] as List<dynamic>?)
               ?.map((e) => SimpleCodeBlock.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -74,7 +70,7 @@ _$SimpleCodesImpl _$$SimpleCodesImplFromJson(Map<String, dynamic> json) =>
           SimpleType.action,
     );
 
-Map<String, dynamic> _$$SimpleCodesImplToJson(_$SimpleCodesImpl instance) =>
+Map<String, dynamic> _$SimpleCodesToJson(_SimpleCodes instance) =>
     <String, dynamic>{
       'code': instance.code.map((e) => e.toJson()).toList(),
       'type': _$SimpleTypeEnumMap[instance.type]!,
