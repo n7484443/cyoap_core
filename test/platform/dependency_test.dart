@@ -8,7 +8,7 @@ import 'package:test/test.dart';
 void printStatus(List<ChoiceNode> choiceNode) {
   for (var element in choiceNode) {
     print(
-        "${element.pos} ${element.select} ${element.selectableStatus} ${element.isOpen()}");
+        "${element.pos} ${element.selectedValue} ${element.selectableStatus} ${element.isOpen()}");
   }
 }
 
@@ -41,9 +41,9 @@ void main() {
     platform.updateStatus();
     choiceNode2.selectNode(0);
 
-    expect(choiceNode0.select, 1);
-    expect(choiceNode1.select, 1);
-    expect(choiceNode2.select, 1);
+    expect(choiceNode0.selectedValue, 1);
+    expect(choiceNode1.selectedValue, 1);
+    expect(choiceNode2.selectedValue, 1);
     expect(choiceNode0.isOpen(), true);
     expect(choiceNode1.isOpen(), true);
     expect(choiceNode1.isHide(), false);
@@ -51,9 +51,9 @@ void main() {
     choiceNode0.selectNode(0);
     platform.updateStatus();
 
-    expect(choiceNode0.select, 0);
-    expect(choiceNode1.select, 1);
-    expect(choiceNode2.select, 0);
+    expect(choiceNode0.selectedValue, 0);
+    expect(choiceNode1.selectedValue, 1);
+    expect(choiceNode2.selectedValue, 0);
     expect(choiceNode0.isOpen(), true);
     expect(choiceNode1.isOpen(), true);
     expect(choiceNode1.isHide(), true);
@@ -78,33 +78,33 @@ void main() {
     lineSetting0.addChild(platform, choiceNode1);
     platform.updateStatus();
 
-    expect(choiceNode0.select, 0);
-    expect(choiceNode1.select, 0);
-    expect(choiceNode0.select, 0);
+    expect(choiceNode0.selectedValue, 0);
+    expect(choiceNode1.selectedValue, 0);
+    expect(choiceNode0.selectedValue, 0);
     expect(choiceNode0.selectableStatus.isOpen, true);
-    expect(choiceNode1.select, 0);
+    expect(choiceNode1.selectedValue, 0);
     expect(choiceNode1.selectableStatus.isOpen, false);
 
     choiceNode0.selectNode(0);
     platform.updateStatus();
-    expect(choiceNode0.select, 1);
+    expect(choiceNode0.selectedValue, 1);
     expect(choiceNode0.selectableStatus.isOpen, true);
-    expect(choiceNode1.select, 0);
+    expect(choiceNode1.selectedValue, 0);
     expect(choiceNode1.selectableStatus.isOpen, true);
 
     choiceNode1.selectNode(0);
     platform.updateStatus();
-    expect(choiceNode0.select, 1);
+    expect(choiceNode0.selectedValue, 1);
     expect(choiceNode0.selectableStatus.isOpen, true);
-    expect(choiceNode1.select, 1);
+    expect(choiceNode1.selectedValue, 1);
     expect(choiceNode1.selectableStatus.isOpen, true);
     expect(VariableDataBase().getValueType("point")?.dataUnzip, 5);
 
     choiceNode0.selectNode(0);
     platform.updateStatus();
-    expect(choiceNode0.select, 0);
+    expect(choiceNode0.selectedValue, 0);
     expect(choiceNode0.selectableStatus.isOpen, true);
-    expect(choiceNode1.select, 0);
+    expect(choiceNode1.selectedValue, 0);
     expect(choiceNode1.selectableStatus.isOpen, false);
     expect(VariableDataBase().getValueType("point")?.dataUnzip, 0);
 
@@ -112,9 +112,9 @@ void main() {
     platform.updateStatus();
     choiceNode1.selectNode(0);
     platform.updateStatus();
-    expect(choiceNode0.select, 1);
+    expect(choiceNode0.selectedValue, 1);
     expect(choiceNode0.selectableStatus.isOpen, true);
-    expect(choiceNode1.select, 1);
+    expect(choiceNode1.selectedValue, 1);
     expect(choiceNode1.selectableStatus.isOpen, true);
     expect(VariableDataBase().getValueType("point")?.dataUnzip, 5);
   });
@@ -146,9 +146,9 @@ void main() {
     lineSetting0.addChild(platform, choiceNode2);
     platform.updateStatus();
 
-    expect(choiceNode0.select, 0);
-    expect(choiceNode1.select, 0);
-    expect(choiceNode2.select, 0);
+    expect(choiceNode0.selectedValue, 0);
+    expect(choiceNode1.selectedValue, 0);
+    expect(choiceNode2.selectedValue, 0);
     expect(choiceNode0.selectableStatus.isOpen, true);
     expect(choiceNode1.selectableStatus.isOpen, false);
     expect(choiceNode2.selectableStatus.isOpen, false);
@@ -156,9 +156,9 @@ void main() {
 
     choiceNode0.selectNode(0);
     platform.updateStatus();
-    expect(choiceNode0.select, 1);
-    expect(choiceNode1.select, 0);
-    expect(choiceNode2.select, 0);
+    expect(choiceNode0.selectedValue, 1);
+    expect(choiceNode1.selectedValue, 0);
+    expect(choiceNode2.selectedValue, 0);
     expect(choiceNode0.selectableStatus.isOpen, true);
     expect(choiceNode1.selectableStatus.isOpen, true);
     expect(choiceNode2.selectableStatus.isOpen, false);
@@ -166,9 +166,9 @@ void main() {
 
     choiceNode1.selectNode(0);
     platform.updateStatus();
-    expect(choiceNode0.select, 1);
-    expect(choiceNode1.select, 1);
-    expect(choiceNode2.select, 0);
+    expect(choiceNode0.selectedValue, 1);
+    expect(choiceNode1.selectedValue, 1);
+    expect(choiceNode2.selectedValue, 0);
     expect(choiceNode0.selectableStatus.isOpen, true);
     expect(choiceNode1.selectableStatus.isOpen, true);
     expect(choiceNode2.selectableStatus.isOpen, true);
@@ -176,9 +176,9 @@ void main() {
 
     choiceNode2.selectNode(0);
     platform.updateStatus();
-    expect(choiceNode0.select, 1);
-    expect(choiceNode1.select, 1);
-    expect(choiceNode2.select, 1);
+    expect(choiceNode0.selectedValue, 1);
+    expect(choiceNode1.selectedValue, 1);
+    expect(choiceNode2.selectedValue, 1);
     expect(choiceNode0.selectableStatus.isOpen, true);
     expect(choiceNode1.selectableStatus.isOpen, true);
     expect(choiceNode2.selectableStatus.isOpen, true);

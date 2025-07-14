@@ -106,7 +106,7 @@ class PlayablePlatform {
 
   bool checkIsSelected(ChoiceNode choice, bool checkResult) {
     if (choice.isSelectableMode &&
-        choice.select > 0 &&
+        choice.selectedValue > 0 &&
         (!checkResult || !choice.choiceNodeOption.hideAsResult)) {
       return true;
     }
@@ -128,7 +128,7 @@ class PlayablePlatform {
             return null;
           }
           if (checkIsSelected(node, false)) {
-            selectedPos.add((node.pos, node.select));
+            selectedPos.add((node.pos, node.selectedValue));
           }
           return null;
         });

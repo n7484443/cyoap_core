@@ -16,15 +16,10 @@ import 'choice_line.dart';
 import 'conditional_code_handler.dart';
 
 part 'choice_node.freezed.dart';
+
 part 'choice_node.g.dart';
 
-enum ChoiceNodeMode {
-  defaultMode,
-  randomMode,
-  multiSelect,
-  unSelectableMode,
-  onlyCode
-}
+enum ChoiceNodeMode { defaultMode, randomMode, multiSelect, unSelectableMode, onlyCode }
 
 @freezed
 abstract class ChoiceNodeOption with _$ChoiceNodeOption {
@@ -38,14 +33,42 @@ abstract class ChoiceNodeOption with _$ChoiceNodeOption {
     @Default(null) ChoiceNodeDesignPreset? overridePreset,
   }) = _ChoiceNodeDesign;
 
-  factory ChoiceNodeOption.fromJson(Map<String, dynamic> json) =>
-      _$ChoiceNodeOptionFromJson(json);
+  factory ChoiceNodeOption.fromJson(Map<String, dynamic> json) => _$ChoiceNodeOptionFromJson(json);
 
   const ChoiceNodeOption._();
 
   ChoiceNodeDesignPreset getPreset(PlatformDesignSetting setting) {
     var motherPreset = setting.getChoiceNodePreset(presetName);
     return motherPreset.getPresetWithOverride(overridePreset);
+  }
+}
+
+@freezed
+abstract class ChoiceNodeState with _$ChoiceNodeState {
+  factory ChoiceNodeState({
+    @Default(0) int selectedValue,
+    @Default(-1) int randomValue,
+    @Default(0) int seed,
+  }) = _ChoiceNodeState;
+
+  ChoiceNodeState._();
+
+  ChoiceNodeState updateState(ChoiceNodeMode choiceNodeMode, int select, int maximumStatus){
+    int nextSeed = Random().nextInt(seedMax);
+    switch (choiceNodeMode) {
+      case ChoiceNodeMode.multiSelect:
+        return copyWith(selectedValue: select.clamp(0, maximumStatus), seed: nextSeed);
+      case ChoiceNodeMode.randomMode:
+        if (selectedValue == 0 && maximumStatus > 0) {
+          return copyWith(randomValue: Random(seed).nextInt(maximumStatus), selectedValue: 1 - selectedValue, seed: nextSeed);
+        } else {
+          return copyWith(randomValue: -1, selectedValue: 1 - selectedValue, seed: nextSeed);
+        }
+      case ChoiceNodeMode.unSelectableMode:
+        return copyWith(seed: nextSeed);
+      default:
+        return copyWith(selectedValue: 1 - selectedValue, seed: nextSeed);
+    }
   }
 }
 
@@ -56,6 +79,7 @@ class ChoiceNode with Choice {
 
   ChoiceNodeOption choiceNodeOption;
   ChoiceNodeMode choiceNodeMode = ChoiceNodeMode.defaultMode;
+  ChoiceNodeState choiceNodeState = ChoiceNodeState(seed: Random().nextInt(seedMax));
 
   String title;
   String _contentsString;
@@ -63,10 +87,6 @@ class ChoiceNode with Choice {
   String imageString;
 
   int maximumStatus = 0;
-  int random = -1;
-  int select = 0;
-
-  int seed = Random().nextInt(seedMax);
 
   @override
   void generateParser() {
@@ -86,15 +106,9 @@ class ChoiceNode with Choice {
   }
 
   @override
-  bool get isSelectableMode =>
-      !(choiceNodeMode == ChoiceNodeMode.unSelectableMode ||
-          choiceNodeMode == ChoiceNodeMode.onlyCode);
+  bool get isSelectableMode => !(choiceNodeMode == ChoiceNodeMode.unSelectableMode || choiceNodeMode == ChoiceNodeMode.onlyCode);
 
-  ChoiceNode(
-      {int width = 1,
-      required this.title,
-      String? contents,
-      this.imageString = ""})
+  ChoiceNode({int width = 1, required this.title, String? contents, this.imageString = ""})
       : choiceNodeOption = ChoiceNodeOption(),
         _currentContentsString = contents ?? '',
         _contentsString = contents ?? '' {
@@ -118,15 +132,11 @@ class ChoiceNode with Choice {
         _currentContentsString = json['contentsString'],
         imageString = json['imageString'] ?? json['image'],
         choiceNodeOption = ChoiceNodeOption.fromJson(json),
-        choiceNodeMode = json['choiceNodeMode'] == null
-            ? ChoiceNodeMode.defaultMode
-            : ((json['isSelectable'] ?? true)
-                ? ChoiceNodeMode.values.byName(json['choiceNodeMode'])
-                : ChoiceNodeMode.unSelectableMode) {
+        choiceNodeMode =
+            json['choiceNodeMode'] == null ? ChoiceNodeMode.defaultMode : ((json['isSelectable'] ?? true) ? ChoiceNodeMode.values.byName(json['choiceNodeMode']) : ChoiceNodeMode.unSelectableMode) {
     width = json['width'] ?? 2;
     if (json.containsKey('conditionalCodeHandler')) {
-      conditionalCodeHandler =
-          ConditionalCodeHandler.fromJson(json['conditionalCodeHandler']);
+      conditionalCodeHandler = ConditionalCodeHandler.fromJson(json['conditionalCodeHandler']);
     } else {
       conditionalCodeHandler = ConditionalCodeHandler.fromJson(json);
     }
@@ -140,6 +150,10 @@ class ChoiceNode with Choice {
       }
     }
   }
+
+  int get selectedValue => choiceNodeState.selectedValue;
+  int get randomValue => choiceNodeState.randomValue;
+  int get seed => choiceNodeState.seed;
 
   @override
   Map<String, dynamic> toJson() {
@@ -160,27 +174,9 @@ class ChoiceNode with Choice {
       return;
     }
     var oldExecute = isExecute();
-    switch (choiceNodeMode) {
-      case ChoiceNodeMode.multiSelect:
-        select = n.clamp(0, maximumStatus);
-        break;
-      case ChoiceNodeMode.randomMode:
-        if (select == 0 && maximumStatus > 0) {
-          random = Random(seed).nextInt(maximumStatus);
-        } else {
-          random = -1;
-        }
-        select = 1 - select;
-        break;
-      case ChoiceNodeMode.unSelectableMode:
-        break;
-      default:
-        select = 1 - select;
-        break;
-    }
-    seed = Random().nextInt(seedMax);
+    choiceNodeState = choiceNodeState.updateState(choiceNodeMode, n, maximumStatus);
     if (Option().isDebugMode && Option().enableSelectLog) {
-      print("$errorName $select $selectableStatus $choiceNodeMode ${isOpen()}");
+      print("$errorName $selectedValue $selectableStatus $choiceNodeMode ${isOpen()}");
     }
 
     var newExecute = isExecute();
@@ -214,7 +210,7 @@ class ChoiceNode with Choice {
   bool isOpen() {
     var out = _isOpen();
     if (!out) {
-      select = 0;
+      choiceNodeState = choiceNodeState.copyWith(selectedValue: 0);
     }
     return out;
   }
@@ -232,7 +228,7 @@ class ChoiceNode with Choice {
       case ChoiceNodeMode.onlyCode:
         return true;
       default:
-        return select > 0;
+        return selectedValue > 0;
     }
   }
 
@@ -277,21 +273,14 @@ class ChoiceNode with Choice {
   String get errorName => "${pos.data.toString()} $title";
 
   @override
-  void updateStatus(
-      {List<SelectInfo>? addOrder,
-      int order = 0,
-      bool lineCanAcceptMore = true}) {
+  void updateStatus({List<SelectInfo>? addOrder, int order = 0, bool lineCanAcceptMore = true}) {
     var oldIsVisible = !isHide();
-    var hideStatus =
-        !conditionalCodeHandler.analyseVisible(errorName, seedInput: seed);
-    var openStatus =
-        conditionalCodeHandler.analyseClickable(errorName, seedInput: seed);
+    var hideStatus = !conditionalCodeHandler.analyseVisible(errorName, seedInput: seed);
+    var openStatus = conditionalCodeHandler.analyseClickable(errorName, seedInput: seed);
     openStatus = openStatus && (isExecute() || lineCanAcceptMore);
     selectableStatus = SelectableStatus(isHide: hideStatus, isOpen: openStatus);
     var newIsVisible = !isHide();
-    if (choiceNodeMode == ChoiceNodeMode.unSelectableMode &&
-        oldIsVisible != newIsVisible &&
-        choiceNodeOption.executeWhenVisible) {
+    if (choiceNodeMode == ChoiceNodeMode.unSelectableMode && oldIsVisible != newIsVisible && choiceNodeOption.executeWhenVisible) {
       if (newIsVisible) {
         addOrder!.insert(order, SelectInfo(pos: pos, select: 0));
       } else {
@@ -309,11 +298,7 @@ class ChoiceNode with Choice {
       if (match == null) {
         break;
       }
-      _currentContentsString = _currentContentsString.replaceRange(
-          match.start,
-          match.end,
-          conditionalCodeHandler.executeText('error in text!', i,
-              seedInput: seed));
+      _currentContentsString = _currentContentsString.replaceRange(match.start, match.end, conditionalCodeHandler.executeText('error in text!', i, seedInput: seed));
     }
   }
 
@@ -333,16 +318,10 @@ class ChoiceNode with Choice {
         ValueTypeLocation.global,
       );
       if (choiceNodeMode == ChoiceNodeMode.randomMode) {
-        VariableDataBase().setValue(
-            '$t:random',
-            ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(random)),
-            ValueTypeLocation.global);
+        VariableDataBase().setValue('$t:random', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(randomValue)), ValueTypeLocation.global);
       }
       if (choiceNodeMode == ChoiceNodeMode.multiSelect) {
-        VariableDataBase().setValue(
-            '$t:multi',
-            ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(select)),
-            ValueTypeLocation.global);
+        VariableDataBase().setValue('$t:multi', ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(selectedValue)), ValueTypeLocation.global);
       }
     }
   }
@@ -357,6 +336,6 @@ class ChoiceNode with Choice {
 
   @override
   String toString() {
-    return "$title $select $selectableStatus";
+    return "$title $selectedValue $selectableStatus";
   }
 }

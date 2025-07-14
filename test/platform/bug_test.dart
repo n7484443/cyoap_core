@@ -99,34 +99,34 @@ void main() {
     platform.updateStatus();
     expect(choiceNodes[0].isOpen(), true);
     expect(choiceNodes[0].isHide(), false);
-    expect(choiceNodes[0].select, 1);
+    expect(choiceNodes[0].selectedValue, 1);
     expect(choiceNodes[1].isOpen(), true);
     expect(choiceNodes[1].isHide(), false);
-    expect(choiceNodes[1].select, 1);
+    expect(choiceNodes[1].selectedValue, 1);
     expect(choiceNodes[2].isOpen(), true);
     expect(choiceNodes[2].isHide(), false);
-    expect(choiceNodes[2].select, 1);
+    expect(choiceNodes[2].selectedValue, 1);
     expect(ins.getValueType('p')?.dataUnzip, 3);
 
     choiceNodes[0].selectNode(0);
     platform.updateStatus();
-    expect(choiceNodes[0].select, 0);
-    expect(choiceNodes[1].select, 0);
-    expect(choiceNodes[2].select, 0);
+    expect(choiceNodes[0].selectedValue, 0);
+    expect(choiceNodes[1].selectedValue, 0);
+    expect(choiceNodes[2].selectedValue, 0);
     expect(ins.getValueType('p')?.dataUnzip, 0);
 
     choiceNodes[0].selectNode(0);
     platform.updateStatus();
-    expect(choiceNodes[0].select, 1);
-    expect(choiceNodes[1].select, 0);
-    expect(choiceNodes[2].select, 0);
+    expect(choiceNodes[0].selectedValue, 1);
+    expect(choiceNodes[1].selectedValue, 0);
+    expect(choiceNodes[2].selectedValue, 0);
     expect(ins.getValueType('p')?.dataUnzip, 1);
 
     choiceNodes[1].selectNode(0);
     platform.updateStatus();
-    expect(choiceNodes[0].select, 1);
-    expect(choiceNodes[1].select, 1);
-    expect(choiceNodes[2].select, 0);
+    expect(choiceNodes[0].selectedValue, 1);
+    expect(choiceNodes[1].selectedValue, 1);
+    expect(choiceNodes[2].selectedValue, 0);
     expect(ins.getValueType('p')?.dataUnzip, 2);
   });
 }

@@ -13,33 +13,33 @@ void main() {
     parent.addChild(platform, child);
     platform.choicePage.choiceLines[0].addChild(platform, parent);
     platform.updateStatus();
-    expect(parent.select, 0);
-    expect(child.select, 0);
+    expect(parent.selectedValue, 0);
+    expect(child.selectedValue, 0);
 
     child.selectNode(0);
     platform.updateStatus();
-    expect(parent.select, 0);
-    expect(child.select, 0);
+    expect(parent.selectedValue, 0);
+    expect(child.selectedValue, 0);
 
     parent.selectNode(0);
     platform.updateStatus();
-    expect(parent.select, 1);
-    expect(child.select, 0);
+    expect(parent.selectedValue, 1);
+    expect(child.selectedValue, 0);
 
     child.selectNode(0);
     platform.updateStatus();
-    expect(parent.select, 1);
-    expect(child.select, 1);
+    expect(parent.selectedValue, 1);
+    expect(child.selectedValue, 1);
 
     parent.selectNode(0);
     platform.updateStatus();
-    expect(parent.select, 0);
+    expect(parent.selectedValue, 0);
     expect(parent.isExecute(), false);
 
     parent.selectNode(0);
     platform.updateStatus();
-    expect(parent.select, 1);
-    expect(child.select, 0);
+    expect(parent.selectedValue, 1);
+    expect(child.selectedValue, 0);
   });
 
   test('nestedMultipleTest', () {
@@ -67,54 +67,54 @@ void main() {
     platform.choicePage.addChild(platform, line);
     platform.updateStatus();
 
-    expect(parent.select, 0);
-    expect(child0.select, 0);
-    expect(child1.select, 0);
+    expect(parent.selectedValue, 0);
+    expect(child0.selectedValue, 0);
+    expect(child1.selectedValue, 0);
     expect(parent.isOpen(), true);
     expect(child0.isOpen(), false);
     expect(child1.isOpen(), false);
 
     parent.selectNode(0);
     platform.updateStatus();
-    expect(parent.select, 1);
-    expect(child0.select, 0);
-    expect(child1.select, 0);
+    expect(parent.selectedValue, 1);
+    expect(child0.selectedValue, 0);
+    expect(child1.selectedValue, 0);
     expect(parent.isOpen(), true);
     expect(child0.isOpen(), true);
     expect(child1.isOpen(), true);
 
     child0.selectNode(0);
     platform.updateStatus();
-    expect(parent.select, 1);
-    expect(child0.select, 1);
-    expect(child1.select, 0);
+    expect(parent.selectedValue, 1);
+    expect(child0.selectedValue, 1);
+    expect(child1.selectedValue, 0);
     expect(parent.isOpen(), true);
     expect(child0.isOpen(), true);
     expect(child1.isOpen(), false);
 
     child0.selectNode(0);
     platform.updateStatus();
-    expect(parent.select, 1);
-    expect(child0.select, 0);
-    expect(child1.select, 0);
+    expect(parent.selectedValue, 1);
+    expect(child0.selectedValue, 0);
+    expect(child1.selectedValue, 0);
     expect(parent.isOpen(), true);
     expect(child0.isOpen(), true);
     expect(child1.isOpen(), true);
 
     child0.selectNode(0);
     platform.updateStatus();
-    expect(parent.select, 1);
-    expect(child0.select, 1);
-    expect(child1.select, 0);
+    expect(parent.selectedValue, 1);
+    expect(child0.selectedValue, 1);
+    expect(child1.selectedValue, 0);
     expect(parent.isOpen(), true);
     expect(child0.isOpen(), true);
     expect(child1.isOpen(), false);
 
     child1.selectNode(0);
     platform.updateStatus();
-    expect(parent.select, 1);
-    expect(child0.select, 1);
-    expect(child1.select, 0);
+    expect(parent.selectedValue, 1);
+    expect(child0.selectedValue, 1);
+    expect(child1.selectedValue, 0);
     expect(parent.isOpen(), true);
     expect(child0.isOpen(), true);
     expect(child1.isOpen(), false);
@@ -146,35 +146,35 @@ void main() {
     platform.addGlobalSetting("a", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(false)));
     platform.addGlobalSetting("b", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(false)));
     platform.updateStatus();
-    expect((parent.select, parent.isHide()), (0, true));
-    expect((child0.select, child0.isHide()), (0, true));
-    expect((child1.select, child1.isHide()), (0, true));
+    expect((parent.selectedValue, parent.isHide()), (0, true));
+    expect((child0.selectedValue, child0.isHide()), (0, true));
+    expect((child1.selectedValue, child1.isHide()), (0, true));
 
     platform.addGlobalSetting("a", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(true)));
     platform.addGlobalSetting("b", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(false)));
     platform.updateStatus();
-    expect((parent.select, parent.isOpen()), (0, false));
-    expect((child0.select, child0.isOpen()), (0, false));
-    expect((child1.select, child1.isHide()), (0, true));
+    expect((parent.selectedValue, parent.isOpen()), (0, false));
+    expect((child0.selectedValue, child0.isOpen()), (0, false));
+    expect((child1.selectedValue, child1.isHide()), (0, true));
 
     platform.addGlobalSetting("a", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(false)));
     platform.addGlobalSetting("b", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(true)));
     platform.updateStatus();
-    expect((parent.select, parent.isHide()), (0, true));
-    expect((child0.select, child0.isHide()), (0, true));
-    expect((child1.select, child1.isHide()), (0, true));
+    expect((parent.selectedValue, parent.isHide()), (0, true));
+    expect((child0.selectedValue, child0.isHide()), (0, true));
+    expect((child1.selectedValue, child1.isHide()), (0, true));
 
     platform.addGlobalSetting("a", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(true)));
     platform.addGlobalSetting("b", ValueTypeWrapper(valueType: getValueTypeFromDynamicInput(true)));
     platform.updateStatus();
-    expect((parent.select, parent.isOpen()), (0, true));
-    expect((child0.select, child0.isOpen()), (0, false));
-    expect((child1.select, child1.isHide()), (0, true));
+    expect((parent.selectedValue, parent.isOpen()), (0, true));
+    expect((child0.selectedValue, child0.isOpen()), (0, false));
+    expect((child1.selectedValue, child1.isHide()), (0, true));
 
     parent.selectNode(0);
     platform.updateStatus();
-    expect((parent.select, parent.isOpen()), (1, true));
-    expect((child0.select, child0.isOpen()), (0, true));
-    expect((child1.select, child1.isOpen()), (0, true));
+    expect((parent.selectedValue, parent.isOpen()), (1, true));
+    expect((child0.selectedValue, child0.isOpen()), (0, true));
+    expect((child1.selectedValue, child1.isOpen()), (0, true));
   });
 }

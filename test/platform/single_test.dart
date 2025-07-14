@@ -133,7 +133,7 @@ void main() {
     expect(ins.getValueType("testNode")?.dataUnzip, false);
     expect(ins.getValueType("testNode:random")?.dataUnzip, -1);
 
-    choiceNode.seed = seed;
+    choiceNode.choiceNodeState = choiceNode.choiceNodeState.copyWith(seed: seed);
     choiceNode.selectNode(0);
     platform.updateStatus();
     expect(ins.getValueType("testNode")?.dataUnzip, true);
@@ -186,12 +186,12 @@ void main() {
 
     platform.updateStatus();
     expect(ins.getValueType("testNode")?.dataUnzip, true);
-    expect(choiceNode.select, 0);
+    expect(choiceNode.selectedValue, 0);
 
     choiceNode.selectNode(0);
     platform.updateStatus();
     expect(ins.getValueType("testNode")?.dataUnzip, true);
-    expect(choiceNode.select, 0);
+    expect(choiceNode.selectedValue, 0);
   });
 
   test('click and hide test', () {

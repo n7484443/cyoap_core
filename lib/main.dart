@@ -82,7 +82,7 @@ external set _getSelect(int Function(List<dynamic> pos) f);
 int _getSelectInternal(List<dynamic> pos) {
   Pos innerPos = listToPos(pos);
   var node = platform.getChoiceNode(innerPos);
-  return node?.select ?? 0;
+  return node?.selectedValue ?? 0;
 }
 
 bool isProcessing = false;
@@ -113,8 +113,7 @@ int _getMaximumStatusInternal(List<dynamic> pos) {
 }
 
 @JS('getChoiceStatus')
-external set _getChoiceStatus(
-    ExternalSelectableStatus Function(List<dynamic> pos) f);
+external set _getChoiceStatus(ExternalSelectableStatus Function(List<dynamic> pos) f);
 
 @JS()
 ExternalSelectableStatus _getChoiceStatusInternal(List<dynamic> pos) {
@@ -196,8 +195,7 @@ external set _getChoiceNodeMode(String Function(List<dynamic> pos) f);
 @JS()
 String _getChoiceNodeModeInternal(List<dynamic> pos) {
   Pos innerPos = listToPos(pos);
-  var mod = platform.getChoiceNode(innerPos)?.choiceNodeMode ??
-      ChoiceNodeMode.defaultMode;
+  var mod = platform.getChoiceNode(innerPos)?.choiceNodeMode ?? ChoiceNodeMode.defaultMode;
   return mod.name.trim();
 }
 
@@ -345,8 +343,5 @@ String _getSizeDataListInternal(List<dynamic> pos, String alignment, int maxChil
     return jsonEncode([]);
   }
 
-  return jsonEncode({
-    'list': out.$1.map((e) => e.map((e) => e.toJson()).toList()).toList(),
-    'max': out.$2
-  });
+  return jsonEncode({'list': out.$1.map((e) => e.map((e) => e.toJson()).toList()).toList(), 'max': out.$2});
 }

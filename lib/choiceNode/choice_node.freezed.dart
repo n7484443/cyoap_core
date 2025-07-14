@@ -545,4 +545,332 @@ class __$ChoiceNodeDesignCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
+mixin _$ChoiceNodeState {
+  int get selectedValue;
+  int get randomValue;
+  int get seed;
+
+  /// Create a copy of ChoiceNodeState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ChoiceNodeStateCopyWith<ChoiceNodeState> get copyWith =>
+      _$ChoiceNodeStateCopyWithImpl<ChoiceNodeState>(
+          this as ChoiceNodeState, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ChoiceNodeState &&
+            (identical(other.selectedValue, selectedValue) ||
+                other.selectedValue == selectedValue) &&
+            (identical(other.randomValue, randomValue) ||
+                other.randomValue == randomValue) &&
+            (identical(other.seed, seed) || other.seed == seed));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, selectedValue, randomValue, seed);
+
+  @override
+  String toString() {
+    return 'ChoiceNodeState(selectedValue: $selectedValue, randomValue: $randomValue, seed: $seed)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ChoiceNodeStateCopyWith<$Res> {
+  factory $ChoiceNodeStateCopyWith(
+          ChoiceNodeState value, $Res Function(ChoiceNodeState) _then) =
+      _$ChoiceNodeStateCopyWithImpl;
+  @useResult
+  $Res call({int selectedValue, int randomValue, int seed});
+}
+
+/// @nodoc
+class _$ChoiceNodeStateCopyWithImpl<$Res>
+    implements $ChoiceNodeStateCopyWith<$Res> {
+  _$ChoiceNodeStateCopyWithImpl(this._self, this._then);
+
+  final ChoiceNodeState _self;
+  final $Res Function(ChoiceNodeState) _then;
+
+  /// Create a copy of ChoiceNodeState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedValue = null,
+    Object? randomValue = null,
+    Object? seed = null,
+  }) {
+    return _then(_self.copyWith(
+      selectedValue: null == selectedValue
+          ? _self.selectedValue
+          : selectedValue // ignore: cast_nullable_to_non_nullable
+              as int,
+      randomValue: null == randomValue
+          ? _self.randomValue
+          : randomValue // ignore: cast_nullable_to_non_nullable
+              as int,
+      seed: null == seed
+          ? _self.seed
+          : seed // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [ChoiceNodeState].
+extension ChoiceNodeStatePatterns on ChoiceNodeState {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_ChoiceNodeState value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ChoiceNodeState() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_ChoiceNodeState value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChoiceNodeState():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_ChoiceNodeState value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChoiceNodeState() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int selectedValue, int randomValue, int seed)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ChoiceNodeState() when $default != null:
+        return $default(_that.selectedValue, _that.randomValue, _that.seed);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int selectedValue, int randomValue, int seed) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChoiceNodeState():
+        return $default(_that.selectedValue, _that.randomValue, _that.seed);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int selectedValue, int randomValue, int seed)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _ChoiceNodeState() when $default != null:
+        return $default(_that.selectedValue, _that.randomValue, _that.seed);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+
+class _ChoiceNodeState extends ChoiceNodeState {
+  _ChoiceNodeState(
+      {this.selectedValue = 0, this.randomValue = -1, this.seed = 0})
+      : super._();
+
+  @override
+  @JsonKey()
+  final int selectedValue;
+  @override
+  @JsonKey()
+  final int randomValue;
+  @override
+  @JsonKey()
+  final int seed;
+
+  /// Create a copy of ChoiceNodeState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ChoiceNodeStateCopyWith<_ChoiceNodeState> get copyWith =>
+      __$ChoiceNodeStateCopyWithImpl<_ChoiceNodeState>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _ChoiceNodeState &&
+            (identical(other.selectedValue, selectedValue) ||
+                other.selectedValue == selectedValue) &&
+            (identical(other.randomValue, randomValue) ||
+                other.randomValue == randomValue) &&
+            (identical(other.seed, seed) || other.seed == seed));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, selectedValue, randomValue, seed);
+
+  @override
+  String toString() {
+    return 'ChoiceNodeState(selectedValue: $selectedValue, randomValue: $randomValue, seed: $seed)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$ChoiceNodeStateCopyWith<$Res>
+    implements $ChoiceNodeStateCopyWith<$Res> {
+  factory _$ChoiceNodeStateCopyWith(
+          _ChoiceNodeState value, $Res Function(_ChoiceNodeState) _then) =
+      __$ChoiceNodeStateCopyWithImpl;
+  @override
+  @useResult
+  $Res call({int selectedValue, int randomValue, int seed});
+}
+
+/// @nodoc
+class __$ChoiceNodeStateCopyWithImpl<$Res>
+    implements _$ChoiceNodeStateCopyWith<$Res> {
+  __$ChoiceNodeStateCopyWithImpl(this._self, this._then);
+
+  final _ChoiceNodeState _self;
+  final $Res Function(_ChoiceNodeState) _then;
+
+  /// Create a copy of ChoiceNodeState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? selectedValue = null,
+    Object? randomValue = null,
+    Object? seed = null,
+  }) {
+    return _then(_ChoiceNodeState(
+      selectedValue: null == selectedValue
+          ? _self.selectedValue
+          : selectedValue // ignore: cast_nullable_to_non_nullable
+              as int,
+      randomValue: null == randomValue
+          ? _self.randomValue
+          : randomValue // ignore: cast_nullable_to_non_nullable
+              as int,
+      seed: null == seed
+          ? _self.seed
+          : seed // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
 // dart format on
